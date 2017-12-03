@@ -1,0 +1,1184 @@
+﻿{
+ "Items":[
+ {
+   "Index": 1,
+   "Food": 0.02,
+   "Science": 0,
+   "Words": 0,
+   "Temperature": 0,
+   "Pressure": 0,
+   "Magnetic": 0,
+   "Gravity": 0
+ },
+ {
+   "Index": 2,
+   "Food": 0.01,
+   "Science": 0.02,
+   "Words": 0,
+   "Temperature": 0,
+   "Pressure": 0,
+   "Magnetic": 0,
+   "Gravity": 0
+ },
+ {
+   "Index": 3,
+   "Food": 0,
+   "Science": 0.03,
+   "Words": 0.02,
+   "Temperature": 0,
+   "Pressure": 0,
+   "Magnetic": 0,
+   "Gravity": 0
+ },
+ {
+   "Index": 4,
+   "Food": 0,
+   "Science": 0.02,
+   "Words": 0.03,
+   "Temperature": 0.01,
+   "Pressure": 0,
+   "Magnetic": 0,
+   "Gravity": 0
+ },
+ {
+   "Index": 5,
+   "Food": 0,
+   "Science": 0,
+   "Words": 0.03,
+   "Temperature": 0.01,
+   "Pressure": 0,
+   "Magnetic": 0,
+   "Gravity": 0.01
+ },
+ {
+   "Index": 6,
+   "Food": 0.01,
+   "Science": 0,
+   "Words": 0.01,
+   "Temperature": 0,
+   "Pressure": 0.01,
+   "Magnetic": 0,
+   "Gravity": 0.01
+ },
+ {
+   "Index": 7,
+   "Food": 0.03,
+   "Science": 0,
+   "Words": 0,
+   "Temperature": 0,
+   "Pressure": 0.01,
+   "Magnetic": 0,
+   "Gravity": 0.01
+ },
+ {
+   "Index": 8,
+   "Food": 0.04,
+   "Science": 0,
+   "Words": 0,
+   "Temperature": 0,
+   "Pressure": 0.01,
+   "Magnetic": 0.01,
+   "Gravity": 0
+ },
+ {
+   "Index": 9,
+   "Food": 0.03,
+   "Science": 0.03,
+   "Words": 0,
+   "Temperature": 0.01,
+   "Pressure": 0.01,
+   "Magnetic": 0.02,
+   "Gravity": 0
+ },
+ {
+   "Index": 10,
+   "Food": 0.01,
+   "Science": 0.04,
+   "Words": 0.02,
+   "Temperature": 0.01,
+   "Pressure": 0,
+   "Magnetic": 0.01,
+   "Gravity": 0
+ },
+ {
+   "Index": 11,
+   "Food": 0,
+   "Science": 0.04,
+   "Words": 0.04,
+   "Temperature": 0.02,
+   "Pressure": 0,
+   "Magnetic": 0.01,
+   "Gravity": 0.01
+ },
+ {
+   "Index": 12,
+   "Food": 0,
+   "Science": 0.02,
+   "Words": 0.04,
+   "Temperature": 0.02,
+   "Pressure": 0.01,
+   "Magnetic": 0,
+   "Gravity": 0.02
+ },
+ {
+   "Index": 13,
+   "Food": 0.01,
+   "Science": 0,
+   "Words": 0.03,
+   "Temperature": 0.01,
+   "Pressure": 0.02,
+   "Magnetic": 0,
+   "Gravity": 0.02
+ },
+ {
+   "Index": 14,
+   "Food": 0.03,
+   "Science": 0,
+   "Words": 0,
+   "Temperature": 0,
+   "Pressure": 0.02,
+   "Magnetic": 0.01,
+   "Gravity": 0.02
+ },
+ {
+   "Index": 15,
+   "Food": 0.05,
+   "Science": 0,
+   "Words": 0,
+   "Temperature": 0,
+   "Pressure": 0.02,
+   "Magnetic": 0.02,
+   "Gravity": 0.01
+ },
+ {
+   "Index": 16,
+   "Food": 0.05,
+   "Science": 0.03,
+   "Words": 0,
+   "Temperature": 0.01,
+   "Pressure": 0.02,
+   "Magnetic": 0.03,
+   "Gravity": 0
+ },
+ {
+   "Index": 17,
+   "Food": 0.03,
+   "Science": 0.05,
+   "Words": 0.02,
+   "Temperature": 0.02,
+   "Pressure": 0.01,
+   "Magnetic": 0.03,
+   "Gravity": 0
+ },
+ {
+   "Index": 18,
+   "Food": 0,
+   "Science": 0.06,
+   "Words": 0.05,
+   "Temperature": 0.03,
+   "Pressure": 0,
+   "Magnetic": 0.02,
+   "Gravity": 0.01
+ },
+ {
+   "Index": 19,
+   "Food": 0,
+   "Science": 0.04,
+   "Words": 0.06,
+   "Temperature": 0.03,
+   "Pressure": 0,
+   "Magnetic": 0.01,
+   "Gravity": 0.02
+ },
+ {
+   "Index": 20,
+   "Food": 0,
+   "Science": 0.01,
+   "Words": 0.05,
+   "Temperature": 0.02,
+   "Pressure": 0.02,
+   "Magnetic": 0,
+   "Gravity": 0.03
+ },
+ {
+   "Index": 21,
+   "Food": 0.03,
+   "Science": 0,
+   "Words": 0.02,
+   "Temperature": 0.01,
+   "Pressure": 0.03,
+   "Magnetic": 0,
+   "Gravity": 0.03
+ },
+ {
+   "Index": 22,
+   "Food": 0.06,
+   "Science": 0,
+   "Words": 0,
+   "Temperature": 0,
+   "Pressure": 0.04,
+   "Magnetic": 0.02,
+   "Gravity": 0.02
+ },
+ {
+   "Index": 23,
+   "Food": 0.07,
+   "Science": 0.03,
+   "Words": 0,
+   "Temperature": 0,
+   "Pressure": 0.03,
+   "Magnetic": 0.03,
+   "Gravity": 0.01
+ },
+ {
+   "Index": 24,
+   "Food": 0.05,
+   "Science": 0.06,
+   "Words": 0.02,
+   "Temperature": 0.02,
+   "Pressure": 0.01,
+   "Magnetic": 0.04,
+   "Gravity": 0
+ },
+ {
+   "Index": 25,
+   "Food": 0.02,
+   "Science": 0.08,
+   "Words": 0.05,
+   "Temperature": 0.04,
+   "Pressure": 0,
+   "Magnetic": 0.03,
+   "Gravity": 0.01
+ },
+ {
+   "Index": 26,
+   "Food": 0,
+   "Science": 0.07,
+   "Words": 0.08,
+   "Temperature": 0.04,
+   "Pressure": 0,
+   "Magnetic": 0.02,
+   "Gravity": 0.02
+ },
+ {
+   "Index": 27,
+   "Food": 0,
+   "Science": 0.03,
+   "Words": 0.07,
+   "Temperature": 0.04,
+   "Pressure": 0.02,
+   "Magnetic": 0,
+   "Gravity": 0.04
+ },
+ {
+   "Index": 28,
+   "Food": 0.03,
+   "Science": 0,
+   "Words": 0.05,
+   "Temperature": 0.02,
+   "Pressure": 0.04,
+   "Magnetic": 0,
+   "Gravity": 0.05
+ },
+ {
+   "Index": 29,
+   "Food": 0.07,
+   "Science": 0,
+   "Words": 0.01,
+   "Temperature": 0,
+   "Pressure": 0.05,
+   "Magnetic": 0.02,
+   "Gravity": 0.04
+ },
+ {
+   "Index": 30,
+   "Food": 0.09,
+   "Science": 0.02,
+   "Words": 0,
+   "Temperature": 0,
+   "Pressure": 0.04,
+   "Magnetic": 0.04,
+   "Gravity": 0.02
+ },
+ {
+   "Index": 31,
+   "Food": 0.08,
+   "Science": 0.06,
+   "Words": 0.01,
+   "Temperature": 0.02,
+   "Pressure": 0.03,
+   "Magnetic": 0.05,
+   "Gravity": 0
+ },
+ {
+   "Index": 32,
+   "Food": 0.04,
+   "Science": 0.09,
+   "Words": 0.05,
+   "Temperature": 0.04,
+   "Pressure": 0.01,
+   "Magnetic": 0.05,
+   "Gravity": 0
+ },
+ {
+   "Index": 33,
+   "Food": 0.01,
+   "Science": 0.09,
+   "Words": 0.09,
+   "Temperature": 0.06,
+   "Pressure": 0,
+   "Magnetic": 0.03,
+   "Gravity": 0.02
+ },
+ {
+   "Index": 34,
+   "Food": 0,
+   "Science": 0.06,
+   "Words": 0.1,
+   "Temperature": 0.05,
+   "Pressure": 0.01,
+   "Magnetic": 0.01,
+   "Gravity": 0.05
+ },
+ {
+   "Index": 35,
+   "Food": 0.02,
+   "Science": 0.02,
+   "Words": 0.07,
+   "Temperature": 0.03,
+   "Pressure": 0.04,
+   "Magnetic": 0,
+   "Gravity": 0.06
+ },
+ {
+   "Index": 36,
+   "Food": 0.07,
+   "Science": 0,
+   "Words": 0.03,
+   "Temperature": 0.01,
+   "Pressure": 0.06,
+   "Magnetic": 0.01,
+   "Gravity": 0.05
+ },
+ {
+   "Index": 37,
+   "Food": 0.1,
+   "Science": 0.01,
+   "Words": 0,
+   "Temperature": 0,
+   "Pressure": 0.06,
+   "Magnetic": 0.04,
+   "Gravity": 0.03
+ },
+ {
+   "Index": 38,
+   "Food": 0.1,
+   "Science": 0.05,
+   "Words": 0.01,
+   "Temperature": 0.01,
+   "Pressure": 0.04,
+   "Magnetic": 0.06,
+   "Gravity": 0.01
+ },
+ {
+   "Index": 39,
+   "Food": 0.07,
+   "Science": 0.1,
+   "Words": 0.04,
+   "Temperature": 0.04,
+   "Pressure": 0.02,
+   "Magnetic": 0.06,
+   "Gravity": 0
+ },
+ {
+   "Index": 40,
+   "Food": 0.03,
+   "Science": 0.11,
+   "Words": 0.09,
+   "Temperature": 0.06,
+   "Pressure": 0,
+   "Magnetic": 0.05,
+   "Gravity": 0.02
+ },
+ {
+   "Index": 41,
+   "Food": 0,
+   "Science": 0.09,
+   "Words": 0.11,
+   "Temperature": 0.07,
+   "Pressure": 0.01,
+   "Magnetic": 0.02,
+   "Gravity": 0.04
+ },
+ {
+   "Index": 42,
+   "Food": 0.02,
+   "Science": 0.04,
+   "Words": 0.1,
+   "Temperature": 0.05,
+   "Pressure": 0.03,
+   "Magnetic": 0,
+   "Gravity": 0.07
+ },
+ {
+   "Index": 43,
+   "Food": 0.06,
+   "Science": 0.01,
+   "Words": 0.06,
+   "Temperature": 0.02,
+   "Pressure": 0.06,
+   "Magnetic": 0.01,
+   "Gravity": 0.07
+ },
+ {
+   "Index": 44,
+   "Food": 0.1,
+   "Science": 0.01,
+   "Words": 0.02,
+   "Temperature": 0,
+   "Pressure": 0.07,
+   "Magnetic": 0.03,
+   "Gravity": 0.05
+ },
+ {
+   "Index": 45,
+   "Food": 0.12,
+   "Science": 0.04,
+   "Words": 0.01,
+   "Temperature": 0.01,
+   "Pressure": 0.06,
+   "Magnetic": 0.06,
+   "Gravity": 0.02
+ },
+ {
+   "Index": 46,
+   "Food": 0.1,
+   "Science": 0.09,
+   "Words": 0.03,
+   "Temperature": 0.03,
+   "Pressure": 0.03,
+   "Magnetic": 0.08,
+   "Gravity": 0
+ },
+ {
+   "Index": 47,
+   "Food": 0.05,
+   "Science": 0.13,
+   "Words": 0.08,
+   "Temperature": 0.06,
+   "Pressure": 0.01,
+   "Magnetic": 0.07,
+   "Gravity": 0.01
+ },
+ {
+   "Index": 48,
+   "Food": 0.01,
+   "Science": 0.12,
+   "Words": 0.12,
+   "Temperature": 0.08,
+   "Pressure": 0,
+   "Magnetic": 0.04,
+   "Gravity": 0.04
+ },
+ {
+   "Index": 49,
+   "Food": 0.01,
+   "Science": 0.07,
+   "Words": 0.13,
+   "Temperature": 0.07,
+   "Pressure": 0.02,
+   "Magnetic": 0.01,
+   "Gravity": 0.07
+ },
+ {
+   "Index": 50,
+   "Food": 0.05,
+   "Science": 0.03,
+   "Words": 0.09,
+   "Temperature": 0.04,
+   "Pressure": 0.06,
+   "Magnetic": 0,
+   "Gravity": 0.08
+ },
+ {
+   "Index": 51,
+   "Food": 0.1,
+   "Science": 0.01,
+   "Words": 0.04,
+   "Temperature": 0.01,
+   "Pressure": 0.08,
+   "Magnetic": 0.02,
+   "Gravity": 0.07
+ },
+ {
+   "Index": 52,
+   "Food": 0.14,
+   "Science": 0.03,
+   "Words": 0.01,
+   "Temperature": 0,
+   "Pressure": 0.08,
+   "Magnetic": 0.06,
+   "Gravity": 0.04
+ },
+ {
+   "Index": 53,
+   "Food": 0.13,
+   "Science": 0.09,
+   "Words": 0.02,
+   "Temperature": 0.02,
+   "Pressure": 0.05,
+   "Magnetic": 0.09,
+   "Gravity": 0.01
+ },
+ {
+   "Index": 54,
+   "Food": 0.08,
+   "Science": 0.13,
+   "Words": 0.07,
+   "Temperature": 0.06,
+   "Pressure": 0.02,
+   "Magnetic": 0.09,
+   "Gravity": 0
+ },
+ {
+   "Index": 55,
+   "Food": 0.03,
+   "Science": 0.14,
+   "Words": 0.13,
+   "Temperature": 0.09,
+   "Pressure": 0,
+   "Magnetic": 0.06,
+   "Gravity": 0.03
+ },
+ {
+   "Index": 56,
+   "Food": 0.01,
+   "Science": 0.11,
+   "Words": 0.15,
+   "Temperature": 0.09,
+   "Pressure": 0.01,
+   "Magnetic": 0.02,
+   "Gravity": 0.07
+ },
+ {
+   "Index": 57,
+   "Food": 0.04,
+   "Science": 0.05,
+   "Words": 0.12,
+   "Temperature": 0.06,
+   "Pressure": 0.05,
+   "Magnetic": 0,
+   "Gravity": 0.09
+ },
+ {
+   "Index": 58,
+   "Food": 0.09,
+   "Science": 0.02,
+   "Words": 0.07,
+   "Temperature": 0.02,
+   "Pressure": 0.09,
+   "Magnetic": 0.01,
+   "Gravity": 0.09
+ },
+ {
+   "Index": 59,
+   "Food": 0.14,
+   "Science": 0.02,
+   "Words": 0.02,
+   "Temperature": 0,
+   "Pressure": 0.1,
+   "Magnetic": 0.05,
+   "Gravity": 0.06
+ },
+ {
+   "Index": 60,
+   "Food": 0.15,
+   "Science": 0.07,
+   "Words": 0.02,
+   "Temperature": 0.01,
+   "Pressure": 0.08,
+   "Magnetic": 0.09,
+   "Gravity": 0.02
+ },
+ {
+   "Index": 61,
+   "Food": 0.12,
+   "Science": 0.13,
+   "Words": 0.06,
+   "Temperature": 0.05,
+   "Pressure": 0.03,
+   "Magnetic": 0.1,
+   "Gravity": 0
+ },
+ {
+   "Index": 62,
+   "Food": 0.06,
+   "Science": 0.16,
+   "Words": 0.12,
+   "Temperature": 0.09,
+   "Pressure": 0,
+   "Magnetic": 0.08,
+   "Gravity": 0.02
+ },
+ {
+   "Index": 63,
+   "Food": 0.02,
+   "Science": 0.14,
+   "Words": 0.16,
+   "Temperature": 0.11,
+   "Pressure": 0.01,
+   "Magnetic": 0.04,
+   "Gravity": 0.06
+ },
+ {
+   "Index": 64,
+   "Food": 0.03,
+   "Science": 0.08,
+   "Words": 0.15,
+   "Temperature": 0.09,
+   "Pressure": 0.04,
+   "Magnetic": 0.01,
+   "Gravity": 0.1
+ },
+ {
+   "Index": 65,
+   "Food": 0.08,
+   "Science": 0.03,
+   "Words": 0.1,
+   "Temperature": 0.04,
+   "Pressure": 0.09,
+   "Magnetic": 0,
+   "Gravity": 0.11
+ },
+ {
+   "Index": 66,
+   "Food": 0.14,
+   "Science": 0.02,
+   "Words": 0.04,
+   "Temperature": 0.01,
+   "Pressure": 0.11,
+   "Magnetic": 0.04,
+   "Gravity": 0.08
+ },
+ {
+   "Index": 67,
+   "Food": 0.17,
+   "Science": 0.06,
+   "Words": 0.02,
+   "Temperature": 0,
+   "Pressure": 0.1,
+   "Magnetic": 0.08,
+   "Gravity": 0.04
+ },
+ {
+   "Index": 68,
+   "Food": 0.15,
+   "Science": 0.12,
+   "Words": 0.04,
+   "Temperature": 0.04,
+   "Pressure": 0.06,
+   "Magnetic": 0.11,
+   "Gravity": 0
+ },
+ {
+   "Index": 69,
+   "Food": 0.09,
+   "Science": 0.17,
+   "Words": 0.11,
+   "Temperature": 0.09,
+   "Pressure": 0.01,
+   "Magnetic": 0.11,
+   "Gravity": 0.01
+ },
+ {
+   "Index": 70,
+   "Food": 0.04,
+   "Science": 0.17,
+   "Words": 0.16,
+   "Temperature": 0.12,
+   "Pressure": 0,
+   "Magnetic": 0.06,
+   "Gravity": 0.05
+ },
+ {
+   "Index": 71,
+   "Food": 0.02,
+   "Science": 0.12,
+   "Words": 0.18,
+   "Temperature": 0.11,
+   "Pressure": 0.03,
+   "Magnetic": 0.02,
+   "Gravity": 0.1
+ },
+ {
+   "Index": 72,
+   "Food": 0.06,
+   "Science": 0.05,
+   "Words": 0.14,
+   "Temperature": 0.07,
+   "Pressure": 0.08,
+   "Magnetic": 0,
+   "Gravity": 0.12
+ },
+ {
+   "Index": 73,
+   "Food": 0.13,
+   "Science": 0.02,
+   "Words": 0.07,
+   "Temperature": 0.02,
+   "Pressure": 0.12,
+   "Magnetic": 0.02,
+   "Gravity": 0.11
+ },
+ {
+   "Index": 74,
+   "Food": 0.18,
+   "Science": 0.04,
+   "Words": 0.03,
+   "Temperature": 0,
+   "Pressure": 0.12,
+   "Magnetic": 0.07,
+   "Gravity": 0.06
+ },
+ {
+   "Index": 75,
+   "Food": 0.18,
+   "Science": 0.11,
+   "Words": 0.03,
+   "Temperature": 0.02,
+   "Pressure": 0.08,
+   "Magnetic": 0.12,
+   "Gravity": 0.01
+ },
+ {
+   "Index": 76,
+   "Food": 0.13,
+   "Science": 0.17,
+   "Words": 0.09,
+   "Temperature": 0.07,
+   "Pressure": 0.03,
+   "Magnetic": 0.13,
+   "Gravity": 0
+ },
+ {
+   "Index": 77,
+   "Food": 0.06,
+   "Science": 0.19,
+   "Words": 0.16,
+   "Temperature": 0.12,
+   "Pressure": 0,
+   "Magnetic": 0.09,
+   "Gravity": 0.03
+ },
+ {
+   "Index": 78,
+   "Food": 0.02,
+   "Science": 0.16,
+   "Words": 0.2,
+   "Temperature": 0.13,
+   "Pressure": 0.01,
+   "Magnetic": 0.04,
+   "Gravity": 0.09
+ },
+ {
+   "Index": 79,
+   "Food": 0.05,
+   "Science": 0.09,
+   "Words": 0.17,
+   "Temperature": 0.1,
+   "Pressure": 0.06,
+   "Magnetic": 0,
+   "Gravity": 0.13
+ },
+ {
+   "Index": 80,
+   "Food": 0.11,
+   "Science": 0.03,
+   "Words": 0.11,
+   "Temperature": 0.04,
+   "Pressure": 0.12,
+   "Magnetic": 0.01,
+   "Gravity": 0.13
+ },
+ {
+   "Index": 81,
+   "Food": 0.18,
+   "Science": 0.03,
+   "Words": 0.05,
+   "Temperature": 0,
+   "Pressure": 0.14,
+   "Magnetic": 0.06,
+   "Gravity": 0.09
+ },
+ {
+   "Index": 82,
+   "Food": 0.2,
+   "Science": 0.09,
+   "Words": 0.03,
+   "Temperature": 0.01,
+   "Pressure": 0.11,
+   "Magnetic": 0.11,
+   "Gravity": 0.03
+ },
+ {
+   "Index": 83,
+   "Food": 0.17,
+   "Science": 0.16,
+   "Words": 0.07,
+   "Temperature": 0.06,
+   "Pressure": 0.06,
+   "Magnetic": 0.14,
+   "Gravity": 0
+ },
+ {
+   "Index": 84,
+   "Food": 0.1,
+   "Science": 0.21,
+   "Words": 0.15,
+   "Temperature": 0.12,
+   "Pressure": 0.01,
+   "Magnetic": 0.12,
+   "Gravity": 0.02
+ },
+ {
+   "Index": 85,
+   "Food": 0.04,
+   "Science": 0.19,
+   "Words": 0.2,
+   "Temperature": 0.14,
+   "Pressure": 0,
+   "Magnetic": 0.07,
+   "Gravity": 0.07
+ },
+ {
+   "Index": 86,
+   "Food": 0.04,
+   "Science": 0.13,
+   "Words": 0.21,
+   "Temperature": 0.12,
+   "Pressure": 0.04,
+   "Magnetic": 0.01,
+   "Gravity": 0.13
+ },
+ {
+   "Index": 87,
+   "Food": 0.09,
+   "Science": 0.06,
+   "Words": 0.15,
+   "Temperature": 0.07,
+   "Pressure": 0.1,
+   "Magnetic": 0,
+   "Gravity": 0.15
+ },
+ {
+   "Index": 88,
+   "Food": 0.17,
+   "Science": 0.03,
+   "Words": 0.07,
+   "Temperature": 0.01,
+   "Pressure": 0.15,
+   "Magnetic": 0.04,
+   "Gravity": 0.12
+ },
+ {
+   "Index": 89,
+   "Food": 0.22,
+   "Science": 0.07,
+   "Words": 0.03,
+   "Temperature": 0,
+   "Pressure": 0.14,
+   "Magnetic": 0.1,
+   "Gravity": 0.06
+ },
+ {
+   "Index": 90,
+   "Food": 0.2,
+   "Science": 0.15,
+   "Words": 0.05,
+   "Temperature": 0.04,
+   "Pressure": 0.09,
+   "Magnetic": 0.15,
+   "Gravity": 0.01
+ },
+ {
+   "Index": 91,
+   "Food": 0.14,
+   "Science": 0.21,
+   "Words": 0.13,
+   "Temperature": 0.1,
+   "Pressure": 0.03,
+   "Magnetic": 0.15,
+   "Gravity": 0
+ },
+ {
+   "Index": 92,
+   "Food": 0.06,
+   "Science": 0.22,
+   "Words": 0.2,
+   "Temperature": 0.15,
+   "Pressure": 0,
+   "Magnetic": 0.1,
+   "Gravity": 0.05
+ },
+ {
+   "Index": 93,
+   "Food": 0.03,
+   "Science": 0.17,
+   "Words": 0.23,
+   "Temperature": 0.15,
+   "Pressure": 0.03,
+   "Magnetic": 0.03,
+   "Gravity": 0.11
+ },
+ {
+   "Index": 94,
+   "Food": 0.07,
+   "Science": 0.09,
+   "Words": 0.19,
+   "Temperature": 0.1,
+   "Pressure": 0.09,
+   "Magnetic": 0,
+   "Gravity": 0.16
+ },
+ {
+   "Index": 95,
+   "Food": 0.15,
+   "Science": 0.04,
+   "Words": 0.11,
+   "Temperature": 0.04,
+   "Pressure": 0.15,
+   "Magnetic": 0.02,
+   "Gravity": 0.15
+ },
+ {
+   "Index": 96,
+   "Food": 0.22,
+   "Science": 0.05,
+   "Words": 0.05,
+   "Temperature": 0,
+   "Pressure": 0.16,
+   "Magnetic": 0.08,
+   "Gravity": 0.09
+ },
+ {
+   "Index": 97,
+   "Food": 0.23,
+   "Science": 0.12,
+   "Words": 0.04,
+   "Temperature": 0.02,
+   "Pressure": 0.12,
+   "Magnetic": 0.14,
+   "Gravity": 0.03
+ },
+ {
+   "Index": 98,
+   "Food": 0.18,
+   "Science": 0.21,
+   "Words": 0.1,
+   "Temperature": 0.08,
+   "Pressure": 0.05,
+   "Magnetic": 0.17,
+   "Gravity": 0
+ },
+ {
+   "Index": 99,
+   "Food": 0.1,
+   "Science": 0.24,
+   "Words": 0.19,
+   "Temperature": 0.15,
+   "Pressure": 0.01,
+   "Magnetic": 0.13,
+   "Gravity": 0.03
+ },
+ {
+   "Index": 100,
+   "Food": 0.04,
+   "Science": 0.21,
+   "Words": 0.24,
+   "Temperature": 0.17,
+   "Pressure": 0.01,
+   "Magnetic": 0.06,
+   "Gravity": 0.1
+ },
+ {
+   "Index": 101,
+   "Food": 0.05,
+   "Science": 0.13,
+   "Words": 0.23,
+   "Temperature": 0.13,
+   "Pressure": 0.07,
+   "Magnetic": 0.01,
+   "Gravity": 0.16
+ },
+ {
+   "Index": 102,
+   "Food": 0.13,
+   "Science": 0.06,
+   "Words": 0.16,
+   "Temperature": 0.06,
+   "Pressure": 0.14,
+   "Magnetic": 0.01,
+   "Gravity": 0.17
+ },
+ {
+   "Index": 103,
+   "Food": 0.21,
+   "Science": 0.04,
+   "Words": 0.07,
+   "Temperature": 0.01,
+   "Pressure": 0.17,
+   "Magnetic": 0.06,
+   "Gravity": 0.13
+ },
+ {
+   "Index": 104,
+   "Food": 0.25,
+   "Science": 0.1,
+   "Words": 0.04,
+   "Temperature": 0.01,
+   "Pressure": 0.15,
+   "Magnetic": 0.13,
+   "Gravity": 0.05
+ },
+ {
+   "Index": 105,
+   "Food": 0.22,
+   "Science": 0.19,
+   "Words": 0.08,
+   "Temperature": 0.06,
+   "Pressure": 0.09,
+   "Magnetic": 0.18,
+   "Gravity": 0
+ },
+ {
+   "Index": 106,
+   "Food": 0.14,
+   "Science": 0.25,
+   "Words": 0.17,
+   "Temperature": 0.13,
+   "Pressure": 0.02,
+   "Magnetic": 0.16,
+   "Gravity": 0.01
+ },
+ {
+   "Index": 107,
+   "Food": 0.06,
+   "Science": 0.25,
+   "Words": 0.24,
+   "Temperature": 0.18,
+   "Pressure": 0,
+   "Magnetic": 0.1,
+   "Gravity": 0.07
+ },
+ {
+   "Index": 108,
+   "Food": 0.04,
+   "Science": 0.18,
+   "Words": 0.26,
+   "Temperature": 0.16,
+   "Pressure": 0.04,
+   "Magnetic": 0.03,
+   "Gravity": 0.15
+ },
+ {
+   "Index": 109,
+   "Food": 0.1,
+   "Science": 0.09,
+   "Words": 0.2,
+   "Temperature": 0.1,
+   "Pressure": 0.12,
+   "Magnetic": 0,
+   "Gravity": 0.18
+ },
+ {
+   "Index": 110,
+   "Food": 0.19,
+   "Science": 0.04,
+   "Words": 0.11,
+   "Temperature": 0.03,
+   "Pressure": 0.18,
+   "Magnetic": 0.04,
+   "Gravity": 0.16
+ },
+ {
+   "Index": 111,
+   "Food": 0.26,
+   "Science": 0.07,
+   "Words": 0.05,
+   "Temperature": 0,
+   "Pressure": 0.18,
+   "Magnetic": 0.11,
+   "Gravity": 0.09
+ },
+ {
+   "Index": 112,
+   "Food": 0.26,
+   "Science": 0.16,
+   "Words": 0.06,
+   "Temperature": 0.04,
+   "Pressure": 0.12,
+   "Magnetic": 0.18,
+   "Gravity": 0.02
+ },
+ {
+   "Index": 113,
+   "Food": 0.19,
+   "Science": 0.25,
+   "Words": 0.14,
+   "Temperature": 0.11,
+   "Pressure": 0.05,
+   "Magnetic": 0.19,
+   "Gravity": 0
+ },
+ {
+   "Index": 114,
+   "Food": 0.1,
+   "Science": 0.28,
+   "Words": 0.23,
+   "Temperature": 0.18,
+   "Pressure": 0,
+   "Magnetic": 0.13,
+   "Gravity": 0.05
+ },
+ {
+   "Index": 115,
+   "Food": 0.05,
+   "Science": 0.22,
+   "Words": 0.28,
+   "Temperature": 0.19,
+   "Pressure": 0.02,
+   "Magnetic": 0.05,
+   "Gravity": 0.13
+ },
+ {
+   "Index": 116,
+   "Food": 0.08,
+   "Science": 0.13,
+   "Words": 0.25,
+   "Temperature": 0.14,
+   "Pressure": 0.09,
+   "Magnetic": 0,
+   "Gravity": 0.19
+ },
+ {
+   "Index": 117,
+   "Food": 0.17,
+   "Science": 0.06,
+   "Words": 0.16,
+   "Temperature": 0.06,
+   "Pressure": 0.17,
+   "Magnetic": 0.02,
+   "Gravity": 0.19
+ },
+ {
+   "Index": 118,
+   "Food": 0.26,
+   "Science": 0.06,
+   "Words": 0.07,
+   "Temperature": 0,
+   "Pressure": 0.2,
+   "Magnetic": 0.09,
+   "Gravity": 0.13
+ }
+ ]
+}
