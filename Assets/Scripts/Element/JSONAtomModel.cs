@@ -4,16 +4,18 @@ using UnityEngine;
 [Serializable]
 public class JSONAtomModel
 {
+    public int Index;
     public string Name;
     public string Symbol;
-    public int AtomicNumber;
-    public float AtomicWeight;
+    public double Weight;
     public string HexColor;
     public string GroupBlock;
-    public int Stock;
-    public int MaxStock;
-    public int MaxStockUpgradePrice = 10;
-    public int MaxStockNextLevel = 100;
-    public float HarvestRate = 1f;
-    public int HarvestRateUpgradePrice = 10;
+    public double Food;
+    public double Science;
+    public double Words;
+    public double Temperature;
+    public double Pressure;
+    public double Radiation;
+    public double Gravity;
+
 }

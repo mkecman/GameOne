@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public static class ElementModifier
+public static class ElementModifiers
 {
     public static string FOOD = "Food";
     public static string SCIENCE = "Science";
@@ -9,5 +9,5 @@ public static class ElementModifier
     public static string TEMPERATURE = "Temperature";
     public static string PRESSURE = "Pressure";
     public static string GRAVITY = "Gravity";
-    public static string MAGNETIC = "Magnetic";
+    public static string RADIATION = "Radiation";
 }

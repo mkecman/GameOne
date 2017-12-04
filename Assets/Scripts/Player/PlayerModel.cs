@@ -7,5 +7,6 @@ using System;
 public class PlayerModel
 {
     public string Name;
+    public int CreatedGalaxies;
     public List<GalaxyModel> Galaxies;
 }

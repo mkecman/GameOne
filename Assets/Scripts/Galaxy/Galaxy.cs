@@ -1,0 +1,22 @@
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class Galaxy
+{
+    private GalaxyModel _galaxy;
+    
+    public void CreateGalaxy( int Index )
+    {
+        _galaxy = new GalaxyModel();
+        _galaxy.Name = "Galaxy " + Index;
+        _galaxy.CreatedStars = 0;
+        _galaxy.Stars = new List<StarModel>();
+    }
+
+    public void CreateStar( double Words )
+    {
+        Star star = new Star();
+        star.CreateStar( Words, _galaxy.CreatedStars++ );
+    }
+}

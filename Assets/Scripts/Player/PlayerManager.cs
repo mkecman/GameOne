@@ -1,16 +1,34 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour {
+public class PlayerManager
+{
+    private List<Galaxy> _galaxies;
+    private PlayerModel _player;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public PlayerManager()
+    {
+        _player = CreatePlayer();
+        _createGalaxy();
+        _galaxies[ 0 ].CreateStar( 1000 );
+        
+    }
+
+    public PlayerModel CreatePlayer()
+    {
+        PlayerModel model = new PlayerModel();
+        model.Name = DateTime.Now.Ticks.ToString();
+        model.CreatedGalaxies = 0;
+        model.Galaxies = new List<GalaxyModel>();
+        return model;
+    }
+
+    private void _createGalaxy()
+    {
+        Galaxy galaxy = new Galaxy();
+        galaxy.CreateGalaxy( _player.CreatedGalaxies++ );
+        _galaxies.Add( galaxy );
+    }
 }

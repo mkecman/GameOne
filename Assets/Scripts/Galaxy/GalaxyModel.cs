@@ -5,6 +5,7 @@ using System;
 public class GalaxyModel
 {
     public string Name;
+    public int CreatedStars;
     public List<StarModel> Stars;
 }
 

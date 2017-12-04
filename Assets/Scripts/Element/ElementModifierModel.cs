@@ -8,5 +8,5 @@ using System.Collections.Generic;
 public class ElementModifierModel
 {
     public string Property;
-    public float Delta;
+    public double Delta;
 }
