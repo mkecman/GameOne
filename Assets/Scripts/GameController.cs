@@ -8,13 +8,11 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        ElementConfig config = new ElementConfig();
-        config.Load();
-    }
+        ElementConfig elementConfig = new ElementConfig();
+        elementConfig.Load();
 
-    // Update is called once per frame
-    void Update()
-    {
-
+        StarConfig starConfig = new StarConfig();
+        starConfig.Load();
     }
+    
 }
