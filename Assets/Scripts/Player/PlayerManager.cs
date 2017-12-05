@@ -12,8 +12,8 @@ public class PlayerManager
     {
         _player = CreatePlayer();
         _createGalaxy();
-        _galaxies[ 0 ].CreateStar( 1000 );
-        
+        _galaxies[ 0 ].CreateStar( 2 );
+
     }
 
     public PlayerModel CreatePlayer()
@@ -22,6 +22,7 @@ public class PlayerManager
         model.Name = DateTime.Now.Ticks.ToString();
         model.CreatedGalaxies = 0;
         model.Galaxies = new List<GalaxyModel>();
+        _galaxies = new List<Galaxy>();
         return model;
     }
 

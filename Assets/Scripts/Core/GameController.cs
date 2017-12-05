@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-
+    
     // Use this for initialization
     void Start()
     {
-        ElementConfig elementConfig = new ElementConfig();
-        elementConfig.Load();
-
-        StarConfig starConfig = new StarConfig();
-        starConfig.Load();
+        PlayerManager player = new PlayerManager();
+        player.CreatePlayer();
+        Debug.Log( "GameController Start" );
     }
-    
+
 }
