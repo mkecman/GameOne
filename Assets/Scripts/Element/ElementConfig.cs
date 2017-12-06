@@ -5,13 +5,13 @@ using LitJson;
 
 public class ElementConfig
 {
-    public List<ElementModel> elements { get; set; }
+    public List<ElementModel> Elements { get; set; }
 
     internal void Load()
     {
         Debug.Log( "Load Elements" );
 
         TextAsset targetFile = Resources.Load<TextAsset>( "Configs/Elements" );
-        elements = JsonMapper.ToObject<List<ElementModel>>( targetFile.text );
+        Elements = JsonMapper.ToObject<List<ElementModel>>( targetFile.text );
     }
 }

@@ -9,7 +9,6 @@ public class GameController : MonoBehaviour
     void Start()
     {
         PlayerManager player = new PlayerManager();
-        player.CreatePlayer();
         Debug.Log( "GameController Start" );
     }
 

@@ -12,6 +12,7 @@ public class Galaxy
         _galaxy = new GalaxyModel();
         _galaxy.Name = "Galaxy " + Index;
         _galaxy.CreatedStars = 0;
+        _stars = new List<Star>();
         _galaxy.Stars = new List<StarModel>();
     }
 
