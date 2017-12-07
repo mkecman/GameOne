@@ -17,7 +17,7 @@ public class Star
 
     private void GeneratePlanets( double Words )
     {
-        int planetCount = Random.Range( Config.Universe.Data.MinPlanets, Config.Universe.Data.MaxPlanets );
+        int planetCount = Random.Range( Config.Stars.Settings.MinPlanets, Config.Stars.Settings.MaxPlanets );
         for( int index = 0; index < planetCount; index++ )
         {
             PlanetModel tempPlanet = new PlanetModel();
