@@ -14,9 +14,10 @@ public class StarModel
     public double Radius;
     public double Mass;
     public double Luminosity;
-    public double InnerHabitableZone; 
+    public double InnerHabitableZone;
     public double HabitableZone;
     public double OuterHabitableZone;
     public double Lifetime;
     public List<PlanetModel> Planets;
+    public int CreatedPlanets;
 }

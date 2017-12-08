@@ -5,13 +5,13 @@ using LitJson;
 
 public class UniverseConfig
 {
-    public UniverseModel Data { get; set; }
+    public UniverseModel Constants { get; set; }
 
     internal void Load()
     {
         Debug.Log( "Load Universe" );
 
         TextAsset targetFile = Resources.Load<TextAsset>( "Configs/Universe" );
-        Data = JsonMapper.ToObject<UniverseModel>( targetFile.text );
+        Constants = JsonMapper.ToObject<UniverseModel>( targetFile.text );
     }
 }

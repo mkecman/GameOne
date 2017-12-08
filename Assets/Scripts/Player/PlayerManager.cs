@@ -12,7 +12,7 @@ public class PlayerManager
     {
         _player = CreatePlayer();
         _createGalaxy();
-        _galaxies[ 0 ].CreateStar( 2 );
+        _galaxies[ 0 ].CreateStar( 6 );
 
     }
 

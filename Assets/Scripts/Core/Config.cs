@@ -29,14 +29,15 @@ public class Config : MonoBehaviour
 
     private void Init()
     {
+        //has to be loaded first!
+        universeConfig = new UniverseConfig();
+        universeConfig.Load();
+
         starConfig = new StarConfig();
         starConfig.Load();
 
         elementConfig = new ElementConfig();
         elementConfig.Load();
-
-        universeConfig = new UniverseConfig();
-        universeConfig.Load();
     }
 
     public static UniverseConfig Universe
