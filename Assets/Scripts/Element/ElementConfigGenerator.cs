@@ -28,6 +28,7 @@ public class ElementConfigGenerator
             tempElement.Symbol = atoms[ i ].Symbol;
             tempElement.Index = atoms[ i ].Index;
             tempElement.Weight = atoms[ i ].Weight;
+            tempElement.Density = atoms[ i ].Density;
             tempElement.HexColor = atoms[ i ].HexColor;
             tempElement.GroupBlock = atoms[ i ].GroupBlock;
 

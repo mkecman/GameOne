@@ -5,7 +5,8 @@
         "Symbol" : "H",
         "Name"   : "Hydrogen",
         "Weight" : 1.008,
-        "HexColor" : "FFFFFF",
+        "Density" : 0.0,
+        "HexColor" : "#FFFFFF",
         "GroupBlock" : "nonmetal",
         "Modifiers"  : [
             {
@@ -43,7 +44,8 @@
         "Symbol" : "He",
         "Name"   : "Helium",
         "Weight" : 4.003,
-        "HexColor" : "D9FFFF",
+        "Density" : 0.0,
+        "HexColor" : "#D9FFFF",
         "GroupBlock" : "noble gas",
         "Modifiers"  : [
             {
@@ -81,7 +83,8 @@
         "Symbol" : "Li",
         "Name"   : "Lithium",
         "Weight" : 6.941,
-        "HexColor" : "CC80FF",
+        "Density" : 0.535,
+        "HexColor" : "#CC80FF",
         "GroupBlock" : "alkali metal",
         "Modifiers"  : [
             {
@@ -119,7 +122,8 @@
         "Symbol" : "Be",
         "Name"   : "Beryllium",
         "Weight" : 9.012,
-        "HexColor" : "C2FF00",
+        "Density" : 1.848,
+        "HexColor" : "#C2FF00",
         "GroupBlock" : "alkaline earth metal",
         "Modifiers"  : [
             {
@@ -157,7 +161,8 @@
         "Symbol" : "B",
         "Name"   : "Boron",
         "Weight" : 10.811,
-        "HexColor" : "FFB5B5",
+        "Density" : 2.46,
+        "HexColor" : "#FFB5B5",
         "GroupBlock" : "metalloid",
         "Modifiers"  : [
             {
@@ -195,7 +200,8 @@
         "Symbol" : "C",
         "Name"   : "Carbon",
         "Weight" : 12.011,
-        "HexColor" : "909090",
+        "Density" : 2.26,
+        "HexColor" : "#909090",
         "GroupBlock" : "nonmetal",
         "Modifiers"  : [
             {
@@ -233,7 +239,8 @@
         "Symbol" : "N",
         "Name"   : "Nitrogen",
         "Weight" : 14.007,
-        "HexColor" : "3050F8",
+        "Density" : 0.001,
+        "HexColor" : "#3050F8",
         "GroupBlock" : "nonmetal",
         "Modifiers"  : [
             {
@@ -271,7 +278,8 @@
         "Symbol" : "O",
         "Name"   : "Oxygen",
         "Weight" : 15.999,
-        "HexColor" : "FF0D0D",
+        "Density" : 0.001,
+        "HexColor" : "#FF0D0D",
         "GroupBlock" : "nonmetal",
         "Modifiers"  : [
             {
@@ -309,7 +317,8 @@
         "Symbol" : "F",
         "Name"   : "Fluorine",
         "Weight" : 18.998,
-        "HexColor" : "B3E3F5",
+        "Density" : 0.002,
+        "HexColor" : "#B3E3F5",
         "GroupBlock" : "halogen",
         "Modifiers"  : [
             {
@@ -347,7 +356,8 @@
         "Symbol" : "Ne",
         "Name"   : "Neon",
         "Weight" : 20.18,
-        "HexColor" : "B3E3F5",
+        "Density" : 0.001,
+        "HexColor" : "#B3E3F5",
         "GroupBlock" : "noble gas",
         "Modifiers"  : [
             {
@@ -385,7 +395,8 @@
         "Symbol" : "Na",
         "Name"   : "Sodium",
         "Weight" : 22.99,
-        "HexColor" : "AB5CF2",
+        "Density" : 0.968,
+        "HexColor" : "#AB5CF2",
         "GroupBlock" : "alkali metal",
         "Modifiers"  : [
             {
@@ -423,7 +434,8 @@
         "Symbol" : "Mg",
         "Name"   : "Magnesium",
         "Weight" : 24.305,
-        "HexColor" : "8AFF00",
+        "Density" : 1.738,
+        "HexColor" : "#8AFF00",
         "GroupBlock" : "alkaline earth metal",
         "Modifiers"  : [
             {
@@ -461,7 +473,8 @@
         "Symbol" : "Al",
         "Name"   : "Aluminum",
         "Weight" : 26.982,
-        "HexColor" : "BFA6A6",
+        "Density" : 2.7,
+        "HexColor" : "#BFA6A6",
         "GroupBlock" : "metal",
         "Modifiers"  : [
             {
@@ -499,7 +512,8 @@
         "Symbol" : "Si",
         "Name"   : "Silicon",
         "Weight" : 28.086,
-        "HexColor" : "F0C8A0",
+        "Density" : 2.33,
+        "HexColor" : "#F0C8A0",
         "GroupBlock" : "metalloid",
         "Modifiers"  : [
             {
@@ -537,7 +551,8 @@
         "Symbol" : "P",
         "Name"   : "Phosphorus",
         "Weight" : 30.974,
-        "HexColor" : "FF8000",
+        "Density" : 1.823,
+        "HexColor" : "#FF8000",
         "GroupBlock" : "nonmetal",
         "Modifiers"  : [
             {
@@ -575,7 +590,8 @@
         "Symbol" : "S",
         "Name"   : "Sulfur",
         "Weight" : 32.065,
-        "HexColor" : "FFFF30",
+        "Density" : 1.96,
+        "HexColor" : "#FFFF30",
         "GroupBlock" : "nonmetal",
         "Modifiers"  : [
             {
@@ -613,7 +629,8 @@
         "Symbol" : "Cl",
         "Name"   : "Chlorine",
         "Weight" : 35.453,
-        "HexColor" : "1FF01F",
+        "Density" : 0.003,
+        "HexColor" : "#1FF01F",
         "GroupBlock" : "halogen",
         "Modifiers"  : [
             {
@@ -651,7 +668,8 @@
         "Symbol" : "Ar",
         "Name"   : "Argon",
         "Weight" : 39.948,
-        "HexColor" : "80D1E3",
+        "Density" : 0.002,
+        "HexColor" : "#80D1E3",
         "GroupBlock" : "noble gas",
         "Modifiers"  : [
             {
@@ -689,7 +707,8 @@
         "Symbol" : "K",
         "Name"   : "Potassium",
         "Weight" : 39.098,
-        "HexColor" : "8F40D4",
+        "Density" : 0.856,
+        "HexColor" : "#8F40D4",
         "GroupBlock" : "alkali metal",
         "Modifiers"  : [
             {
@@ -727,7 +746,8 @@
         "Symbol" : "Ca",
         "Name"   : "Calcium",
         "Weight" : 40.078,
-        "HexColor" : "3DFF00",
+        "Density" : 1.55,
+        "HexColor" : "#3DFF00",
         "GroupBlock" : "alkaline earth metal",
         "Modifiers"  : [
             {
@@ -765,7 +785,8 @@
         "Symbol" : "Sc",
         "Name"   : "Scandium",
         "Weight" : 44.956,
-        "HexColor" : "E6E6E6",
+        "Density" : 2.985,
+        "HexColor" : "#E6E6E6",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -803,7 +824,8 @@
         "Symbol" : "Ti",
         "Name"   : "Titanium",
         "Weight" : 47.867,
-        "HexColor" : "BFC2C7",
+        "Density" : 4.507,
+        "HexColor" : "#BFC2C7",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -841,7 +863,8 @@
         "Symbol" : "V",
         "Name"   : "Vanadium",
         "Weight" : 50.942,
-        "HexColor" : "A6A6AB",
+        "Density" : 6.11,
+        "HexColor" : "#A6A6AB",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -879,7 +902,8 @@
         "Symbol" : "Cr",
         "Name"   : "Chromium",
         "Weight" : 51.996,
-        "HexColor" : "8A99C7",
+        "Density" : 7.14,
+        "HexColor" : "#8A99C7",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -917,7 +941,8 @@
         "Symbol" : "Mn",
         "Name"   : "Manganese",
         "Weight" : 54.938,
-        "HexColor" : "9C7AC7",
+        "Density" : 7.47,
+        "HexColor" : "#9C7AC7",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -955,7 +980,8 @@
         "Symbol" : "Fe",
         "Name"   : "Iron",
         "Weight" : 55.845,
-        "HexColor" : "E06633",
+        "Density" : 7.874,
+        "HexColor" : "#E06633",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -993,7 +1019,8 @@
         "Symbol" : "Co",
         "Name"   : "Cobalt",
         "Weight" : 58.933,
-        "HexColor" : "F090A0",
+        "Density" : 8.9,
+        "HexColor" : "#F090A0",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -1031,7 +1058,8 @@
         "Symbol" : "Ni",
         "Name"   : "Nickel",
         "Weight" : 58.693,
-        "HexColor" : "50D050",
+        "Density" : 8.908,
+        "HexColor" : "#50D050",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -1069,7 +1097,8 @@
         "Symbol" : "Cu",
         "Name"   : "Copper",
         "Weight" : 63.546,
-        "HexColor" : "C88033",
+        "Density" : 8.92,
+        "HexColor" : "#C88033",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -1107,7 +1136,8 @@
         "Symbol" : "Zn",
         "Name"   : "Zinc",
         "Weight" : 65.38,
-        "HexColor" : "7D80B0",
+        "Density" : 7.14,
+        "HexColor" : "#7D80B0",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -1145,7 +1175,8 @@
         "Symbol" : "Ga",
         "Name"   : "Gallium",
         "Weight" : 69.723,
-        "HexColor" : "C28F8F",
+        "Density" : 5.904,
+        "HexColor" : "#C28F8F",
         "GroupBlock" : "metal",
         "Modifiers"  : [
             {
@@ -1183,7 +1214,8 @@
         "Symbol" : "Ge",
         "Name"   : "Germanium",
         "Weight" : 72.64,
-        "HexColor" : "668F8F",
+        "Density" : 5.323,
+        "HexColor" : "#668F8F",
         "GroupBlock" : "metalloid",
         "Modifiers"  : [
             {
@@ -1221,7 +1253,8 @@
         "Symbol" : "As",
         "Name"   : "Arsenic",
         "Weight" : 74.922,
-        "HexColor" : "BD80E3",
+        "Density" : 5.727,
+        "HexColor" : "#BD80E3",
         "GroupBlock" : "metalloid",
         "Modifiers"  : [
             {
@@ -1259,7 +1292,8 @@
         "Symbol" : "Se",
         "Name"   : "Selenium",
         "Weight" : 78.96,
-        "HexColor" : "FFA100",
+        "Density" : 4.819,
+        "HexColor" : "#FFA100",
         "GroupBlock" : "nonmetal",
         "Modifiers"  : [
             {
@@ -1297,7 +1331,8 @@
         "Symbol" : "Br",
         "Name"   : "Bromine",
         "Weight" : 79.904,
-        "HexColor" : "A62929",
+        "Density" : 3.12,
+        "HexColor" : "#A62929",
         "GroupBlock" : "halogen",
         "Modifiers"  : [
             {
@@ -1335,7 +1370,8 @@
         "Symbol" : "Kr",
         "Name"   : "Krypton",
         "Weight" : 83.798,
-        "HexColor" : "5CB8D1",
+        "Density" : 0.004,
+        "HexColor" : "#5CB8D1",
         "GroupBlock" : "noble gas",
         "Modifiers"  : [
             {
@@ -1373,7 +1409,8 @@
         "Symbol" : "Rb",
         "Name"   : "Rubidium",
         "Weight" : 85.468,
-        "HexColor" : "702EB0",
+        "Density" : 1.532,
+        "HexColor" : "#702EB0",
         "GroupBlock" : "alkali metal",
         "Modifiers"  : [
             {
@@ -1411,7 +1448,8 @@
         "Symbol" : "Sr",
         "Name"   : "Strontium",
         "Weight" : 87.62,
-        "HexColor" : "00FF00",
+        "Density" : 2.63,
+        "HexColor" : "#00FF00",
         "GroupBlock" : "alkaline earth metal",
         "Modifiers"  : [
             {
@@ -1449,7 +1487,8 @@
         "Symbol" : "Y",
         "Name"   : "Yttrium",
         "Weight" : 88.906,
-        "HexColor" : "94FFFF",
+        "Density" : 4.472,
+        "HexColor" : "#94FFFF",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -1487,7 +1526,8 @@
         "Symbol" : "Zr",
         "Name"   : "Zirconium",
         "Weight" : 91.224,
-        "HexColor" : "94E0E0",
+        "Density" : 6.511,
+        "HexColor" : "#94E0E0",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -1525,7 +1565,8 @@
         "Symbol" : "Nb",
         "Name"   : "Niobium",
         "Weight" : 92.906,
-        "HexColor" : "73C2C9",
+        "Density" : 8.57,
+        "HexColor" : "#73C2C9",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -1563,7 +1604,8 @@
         "Symbol" : "Mo",
         "Name"   : "Molybdenum",
         "Weight" : 95.96,
-        "HexColor" : "54B5B5",
+        "Density" : 10.28,
+        "HexColor" : "#54B5B5",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -1601,7 +1643,8 @@
         "Symbol" : "Tc",
         "Name"   : "Technetium",
         "Weight" : 98.0,
-        "HexColor" : "3B9E9E",
+        "Density" : 11.5,
+        "HexColor" : "#3B9E9E",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -1639,7 +1682,8 @@
         "Symbol" : "Ru",
         "Name"   : "Ruthenium",
         "Weight" : 101.07,
-        "HexColor" : "248F8F",
+        "Density" : 12.37,
+        "HexColor" : "#248F8F",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -1677,7 +1721,8 @@
         "Symbol" : "Rh",
         "Name"   : "Rhodium",
         "Weight" : 102.906,
-        "HexColor" : "0A7D8C",
+        "Density" : 12.45,
+        "HexColor" : "#0A7D8C",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -1715,7 +1760,8 @@
         "Symbol" : "Pd",
         "Name"   : "Palladium",
         "Weight" : 106.42,
-        "HexColor" : "698500",
+        "Density" : 12.023,
+        "HexColor" : "#698500",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -1753,7 +1799,8 @@
         "Symbol" : "Ag",
         "Name"   : "Silver",
         "Weight" : 107.868,
-        "HexColor" : "C0C0C0",
+        "Density" : 10.49,
+        "HexColor" : "#C0C0C0",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -1791,7 +1838,8 @@
         "Symbol" : "Cd",
         "Name"   : "Cadmium",
         "Weight" : 112.411,
-        "HexColor" : "FFD98F",
+        "Density" : 8.65,
+        "HexColor" : "#FFD98F",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -1829,7 +1877,8 @@
         "Symbol" : "In",
         "Name"   : "Indium",
         "Weight" : 114.818,
-        "HexColor" : "A67573",
+        "Density" : 7.31,
+        "HexColor" : "#A67573",
         "GroupBlock" : "metal",
         "Modifiers"  : [
             {
@@ -1867,7 +1916,8 @@
         "Symbol" : "Sn",
         "Name"   : "Tin",
         "Weight" : 118.71,
-        "HexColor" : "668080",
+        "Density" : 7.31,
+        "HexColor" : "#668080",
         "GroupBlock" : "metal",
         "Modifiers"  : [
             {
@@ -1905,7 +1955,8 @@
         "Symbol" : "Sb",
         "Name"   : "Antimony",
         "Weight" : 121.76,
-        "HexColor" : "9E63B5",
+        "Density" : 6.697,
+        "HexColor" : "#9E63B5",
         "GroupBlock" : "metalloid",
         "Modifiers"  : [
             {
@@ -1943,7 +1994,8 @@
         "Symbol" : "Te",
         "Name"   : "Tellurium",
         "Weight" : 127.6,
-        "HexColor" : "D47A00",
+        "Density" : 6.24,
+        "HexColor" : "#D47A00",
         "GroupBlock" : "metalloid",
         "Modifiers"  : [
             {
@@ -1981,7 +2033,8 @@
         "Symbol" : "I",
         "Name"   : "Iodine",
         "Weight" : 126.904,
-        "HexColor" : "940094",
+        "Density" : 4.94,
+        "HexColor" : "#940094",
         "GroupBlock" : "halogen",
         "Modifiers"  : [
             {
@@ -2019,7 +2072,8 @@
         "Symbol" : "Xe",
         "Name"   : "Xenon",
         "Weight" : 131.293,
-        "HexColor" : "429EB0",
+        "Density" : 0.006,
+        "HexColor" : "#429EB0",
         "GroupBlock" : "noble gas",
         "Modifiers"  : [
             {
@@ -2057,7 +2111,8 @@
         "Symbol" : "Cs",
         "Name"   : "Cesium",
         "Weight" : 132.905,
-        "HexColor" : "57178F",
+        "Density" : 1.879,
+        "HexColor" : "#57178F",
         "GroupBlock" : "alkali metal",
         "Modifiers"  : [
             {
@@ -2095,7 +2150,8 @@
         "Symbol" : "Ba",
         "Name"   : "Barium",
         "Weight" : 137.327,
-        "HexColor" : "00C900",
+        "Density" : 3.51,
+        "HexColor" : "#00C900",
         "GroupBlock" : "alkaline earth metal",
         "Modifiers"  : [
             {
@@ -2133,7 +2189,8 @@
         "Symbol" : "La",
         "Name"   : "Lanthanum",
         "Weight" : 138.905,
-        "HexColor" : "70D4FF",
+        "Density" : 6.146,
+        "HexColor" : "#70D4FF",
         "GroupBlock" : "lanthanoid",
         "Modifiers"  : [
             {
@@ -2171,7 +2228,8 @@
         "Symbol" : "Ce",
         "Name"   : "Cerium",
         "Weight" : 140.116,
-        "HexColor" : "FFFFC7",
+        "Density" : 6.689,
+        "HexColor" : "#FFFFC7",
         "GroupBlock" : "lanthanoid",
         "Modifiers"  : [
             {
@@ -2209,7 +2267,8 @@
         "Symbol" : "Pr",
         "Name"   : "Praseodymium",
         "Weight" : 140.908,
-        "HexColor" : "D9FFC7",
+        "Density" : 6.64,
+        "HexColor" : "#D9FFC7",
         "GroupBlock" : "lanthanoid",
         "Modifiers"  : [
             {
@@ -2247,7 +2306,8 @@
         "Symbol" : "Nd",
         "Name"   : "Neodymium",
         "Weight" : 144.242,
-        "HexColor" : "C7FFC7",
+        "Density" : 7.01,
+        "HexColor" : "#C7FFC7",
         "GroupBlock" : "lanthanoid",
         "Modifiers"  : [
             {
@@ -2285,7 +2345,8 @@
         "Symbol" : "Pm",
         "Name"   : "Promethium",
         "Weight" : 145.0,
-        "HexColor" : "A3FFC7",
+        "Density" : 7.264,
+        "HexColor" : "#A3FFC7",
         "GroupBlock" : "lanthanoid",
         "Modifiers"  : [
             {
@@ -2323,7 +2384,8 @@
         "Symbol" : "Sm",
         "Name"   : "Samarium",
         "Weight" : 150.36,
-        "HexColor" : "8FFFC7",
+        "Density" : 7.353,
+        "HexColor" : "#8FFFC7",
         "GroupBlock" : "lanthanoid",
         "Modifiers"  : [
             {
@@ -2361,7 +2423,8 @@
         "Symbol" : "Eu",
         "Name"   : "Europium",
         "Weight" : 151.964,
-        "HexColor" : "61FFC7",
+        "Density" : 5.244,
+        "HexColor" : "#61FFC7",
         "GroupBlock" : "lanthanoid",
         "Modifiers"  : [
             {
@@ -2399,7 +2462,8 @@
         "Symbol" : "Gd",
         "Name"   : "Gadolinium",
         "Weight" : 157.25,
-        "HexColor" : "45FFC7",
+        "Density" : 7.901,
+        "HexColor" : "#45FFC7",
         "GroupBlock" : "lanthanoid",
         "Modifiers"  : [
             {
@@ -2437,7 +2501,8 @@
         "Symbol" : "Tb",
         "Name"   : "Terbium",
         "Weight" : 158.925,
-        "HexColor" : "30FFC7",
+        "Density" : 8.219,
+        "HexColor" : "#30FFC7",
         "GroupBlock" : "lanthanoid",
         "Modifiers"  : [
             {
@@ -2475,7 +2540,8 @@
         "Symbol" : "Dy",
         "Name"   : "Dysprosium",
         "Weight" : 162.5,
-        "HexColor" : "1FFFC7",
+        "Density" : 8.551,
+        "HexColor" : "#1FFFC7",
         "GroupBlock" : "lanthanoid",
         "Modifiers"  : [
             {
@@ -2513,7 +2579,8 @@
         "Symbol" : "Ho",
         "Name"   : "Holmium",
         "Weight" : 164.93,
-        "HexColor" : "00FF9C",
+        "Density" : 8.795,
+        "HexColor" : "#00FF9C",
         "GroupBlock" : "lanthanoid",
         "Modifiers"  : [
             {
@@ -2551,7 +2618,8 @@
         "Symbol" : "Er",
         "Name"   : "Erbium",
         "Weight" : 167.259,
-        "HexColor" : "0",
+        "Density" : 9.066,
+        "HexColor" : "#1be400",
         "GroupBlock" : "lanthanoid",
         "Modifiers"  : [
             {
@@ -2589,7 +2657,8 @@
         "Symbol" : "Tm",
         "Name"   : "Thulium",
         "Weight" : 168.934,
-        "HexColor" : "00D452",
+        "Density" : 9.321,
+        "HexColor" : "#00D452",
         "GroupBlock" : "lanthanoid",
         "Modifiers"  : [
             {
@@ -2627,7 +2696,8 @@
         "Symbol" : "Yb",
         "Name"   : "Ytterbium",
         "Weight" : 173.054,
-        "HexColor" : "00BF38",
+        "Density" : 6.57,
+        "HexColor" : "#00BF38",
         "GroupBlock" : "lanthanoid",
         "Modifiers"  : [
             {
@@ -2665,7 +2735,8 @@
         "Symbol" : "Lu",
         "Name"   : "Lutetium",
         "Weight" : 174.967,
-        "HexColor" : "00AB24",
+        "Density" : 9.841,
+        "HexColor" : "#00AB24",
         "GroupBlock" : "lanthanoid",
         "Modifiers"  : [
             {
@@ -2703,7 +2774,8 @@
         "Symbol" : "Hf",
         "Name"   : "Hafnium",
         "Weight" : 178.49,
-        "HexColor" : "4DC2FF",
+        "Density" : 13.31,
+        "HexColor" : "#4DC2FF",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -2741,7 +2813,8 @@
         "Symbol" : "Ta",
         "Name"   : "Tantalum",
         "Weight" : 180.948,
-        "HexColor" : "4DA6FF",
+        "Density" : 16.65,
+        "HexColor" : "#4DA6FF",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -2779,7 +2852,8 @@
         "Symbol" : "W",
         "Name"   : "Tungsten",
         "Weight" : 183.84,
-        "HexColor" : "2194D6",
+        "Density" : 19.25,
+        "HexColor" : "#2194D6",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -2817,7 +2891,8 @@
         "Symbol" : "Re",
         "Name"   : "Rhenium",
         "Weight" : 186.207,
-        "HexColor" : "267DAB",
+        "Density" : 21.02,
+        "HexColor" : "#267DAB",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -2855,7 +2930,8 @@
         "Symbol" : "Os",
         "Name"   : "Osmium",
         "Weight" : 190.23,
-        "HexColor" : "266696",
+        "Density" : 22.61,
+        "HexColor" : "#266696",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -2893,7 +2969,8 @@
         "Symbol" : "Ir",
         "Name"   : "Iridium",
         "Weight" : 192.217,
-        "HexColor" : "175487",
+        "Density" : 22.65,
+        "HexColor" : "#175487",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -2931,7 +3008,8 @@
         "Symbol" : "Pt",
         "Name"   : "Platinum",
         "Weight" : 195.084,
-        "HexColor" : "D0D0E0",
+        "Density" : 21.09,
+        "HexColor" : "#D0D0E0",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -2969,7 +3047,8 @@
         "Symbol" : "Au",
         "Name"   : "Gold",
         "Weight" : 196.967,
-        "HexColor" : "FFD123",
+        "Density" : 19.3,
+        "HexColor" : "#FFD123",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -3007,7 +3086,8 @@
         "Symbol" : "Hg",
         "Name"   : "Mercury",
         "Weight" : 200.59,
-        "HexColor" : "B8B8D0",
+        "Density" : 13.534,
+        "HexColor" : "#B8B8D0",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -3045,7 +3125,8 @@
         "Symbol" : "Tl",
         "Name"   : "Thallium",
         "Weight" : 204.383,
-        "HexColor" : "A6544D",
+        "Density" : 11.85,
+        "HexColor" : "#A6544D",
         "GroupBlock" : "metal",
         "Modifiers"  : [
             {
@@ -3083,7 +3164,8 @@
         "Symbol" : "Pb",
         "Name"   : "Lead",
         "Weight" : 207.2,
-        "HexColor" : "575961",
+        "Density" : 11.34,
+        "HexColor" : "#575961",
         "GroupBlock" : "metal",
         "Modifiers"  : [
             {
@@ -3121,7 +3203,8 @@
         "Symbol" : "Bi",
         "Name"   : "Bismuth",
         "Weight" : 208.98,
-        "HexColor" : "9E4FB5",
+        "Density" : 9.78,
+        "HexColor" : "#9E4FB5",
         "GroupBlock" : "metal",
         "Modifiers"  : [
             {
@@ -3159,7 +3242,8 @@
         "Symbol" : "Po",
         "Name"   : "Polonium",
         "Weight" : 209.0,
-        "HexColor" : "AB5C00",
+        "Density" : 9.196,
+        "HexColor" : "#AB5C00",
         "GroupBlock" : "metalloid",
         "Modifiers"  : [
             {
@@ -3197,7 +3281,8 @@
         "Symbol" : "At",
         "Name"   : "Astatine",
         "Weight" : 210.0,
-        "HexColor" : "754F45",
+        "Density" : 0.1,
+        "HexColor" : "#754F45",
         "GroupBlock" : "halogen",
         "Modifiers"  : [
             {
@@ -3235,7 +3320,8 @@
         "Symbol" : "Rn",
         "Name"   : "Radon",
         "Weight" : 222.0,
-        "HexColor" : "428296",
+        "Density" : 0.01,
+        "HexColor" : "#428296",
         "GroupBlock" : "noble gas",
         "Modifiers"  : [
             {
@@ -3273,7 +3359,8 @@
         "Symbol" : "Fr",
         "Name"   : "Francium",
         "Weight" : 223.0,
-        "HexColor" : "420066",
+        "Density" : 2.0,
+        "HexColor" : "#420066",
         "GroupBlock" : "alkali metal",
         "Modifiers"  : [
             {
@@ -3311,7 +3398,8 @@
         "Symbol" : "Ra",
         "Name"   : "Radium",
         "Weight" : 226.0,
-        "HexColor" : "007D00",
+        "Density" : 5.0,
+        "HexColor" : "#007D00",
         "GroupBlock" : "alkaline earth metal",
         "Modifiers"  : [
             {
@@ -3349,7 +3437,8 @@
         "Symbol" : "Ac",
         "Name"   : "Actinium",
         "Weight" : 227.0,
-        "HexColor" : "70ABFA",
+        "Density" : 10.07,
+        "HexColor" : "#70ABFA",
         "GroupBlock" : "actinoid",
         "Modifiers"  : [
             {
@@ -3387,7 +3476,8 @@
         "Symbol" : "Th",
         "Name"   : "Thorium",
         "Weight" : 232.038,
-        "HexColor" : "00BAFF",
+        "Density" : 11.724,
+        "HexColor" : "#00BAFF",
         "GroupBlock" : "actinoid",
         "Modifiers"  : [
             {
@@ -3425,7 +3515,8 @@
         "Symbol" : "Pa",
         "Name"   : "Protactinium",
         "Weight" : 231.036,
-        "HexColor" : "00A1FF",
+        "Density" : 15.37,
+        "HexColor" : "#00A1FF",
         "GroupBlock" : "actinoid",
         "Modifiers"  : [
             {
@@ -3463,7 +3554,8 @@
         "Symbol" : "U",
         "Name"   : "Uranium",
         "Weight" : 238.029,
-        "HexColor" : "008FFF",
+        "Density" : 19.05,
+        "HexColor" : "#008FFF",
         "GroupBlock" : "actinoid",
         "Modifiers"  : [
             {
@@ -3501,7 +3593,8 @@
         "Symbol" : "Np",
         "Name"   : "Neptunium",
         "Weight" : 237.0,
-        "HexColor" : "0080FF",
+        "Density" : 20.45,
+        "HexColor" : "#0080FF",
         "GroupBlock" : "actinoid",
         "Modifiers"  : [
             {
@@ -3539,7 +3632,8 @@
         "Symbol" : "Pu",
         "Name"   : "Plutonium",
         "Weight" : 244.0,
-        "HexColor" : "006BFF",
+        "Density" : 19.816,
+        "HexColor" : "#006BFF",
         "GroupBlock" : "actinoid",
         "Modifiers"  : [
             {
@@ -3577,7 +3671,8 @@
         "Symbol" : "Am",
         "Name"   : "Americium",
         "Weight" : 243.0,
-        "HexColor" : "545CF2",
+        "Density" : 15.0,
+        "HexColor" : "#545CF2",
         "GroupBlock" : "actinoid",
         "Modifiers"  : [
             {
@@ -3615,7 +3710,8 @@
         "Symbol" : "Cm",
         "Name"   : "Curium",
         "Weight" : 247.0,
-        "HexColor" : "785CE3",
+        "Density" : 13.51,
+        "HexColor" : "#785CE3",
         "GroupBlock" : "actinoid",
         "Modifiers"  : [
             {
@@ -3653,7 +3749,8 @@
         "Symbol" : "Bk",
         "Name"   : "Berkelium",
         "Weight" : 247.0,
-        "HexColor" : "8A4FE3",
+        "Density" : 14.78,
+        "HexColor" : "#8A4FE3",
         "GroupBlock" : "actinoid",
         "Modifiers"  : [
             {
@@ -3691,7 +3788,8 @@
         "Symbol" : "Cf",
         "Name"   : "Californium",
         "Weight" : 251.0,
-        "HexColor" : "A136D4",
+        "Density" : 15.1,
+        "HexColor" : "#A136D4",
         "GroupBlock" : "actinoid",
         "Modifiers"  : [
             {
@@ -3729,7 +3827,8 @@
         "Symbol" : "Es",
         "Name"   : "Einsteinium",
         "Weight" : 252.0,
-        "HexColor" : "B31FD4",
+        "Density" : 15.0,
+        "HexColor" : "#B31FD4",
         "GroupBlock" : "actinoid",
         "Modifiers"  : [
             {
@@ -3767,7 +3866,8 @@
         "Symbol" : "Fm",
         "Name"   : "Fermium",
         "Weight" : 257.0,
-        "HexColor" : "B31FBA",
+        "Density" : 15.0,
+        "HexColor" : "#B31FBA",
         "GroupBlock" : "actinoid",
         "Modifiers"  : [
             {
@@ -3805,7 +3905,8 @@
         "Symbol" : "Md",
         "Name"   : "Mendelevium",
         "Weight" : 258.0,
-        "HexColor" : "B30DA6",
+        "Density" : 15.0,
+        "HexColor" : "#B30DA6",
         "GroupBlock" : "actinoid",
         "Modifiers"  : [
             {
@@ -3843,7 +3944,8 @@
         "Symbol" : "No",
         "Name"   : "Nobelium",
         "Weight" : 259.0,
-        "HexColor" : "BD0D87",
+        "Density" : 15.0,
+        "HexColor" : "#BD0D87",
         "GroupBlock" : "actinoid",
         "Modifiers"  : [
             {
@@ -3881,7 +3983,8 @@
         "Symbol" : "Lr",
         "Name"   : "Lawrencium",
         "Weight" : 262.0,
-        "HexColor" : "C70066",
+        "Density" : 20.0,
+        "HexColor" : "#C70066",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -3919,7 +4022,8 @@
         "Symbol" : "Rf",
         "Name"   : "Rutherfordium",
         "Weight" : 267.0,
-        "HexColor" : "CC0059",
+        "Density" : 20.0,
+        "HexColor" : "#CC0059",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -3957,7 +4061,8 @@
         "Symbol" : "Db",
         "Name"   : "Dubnium",
         "Weight" : 268.0,
-        "HexColor" : "D1004F",
+        "Density" : 20.0,
+        "HexColor" : "#D1004F",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -3995,7 +4100,8 @@
         "Symbol" : "Sg",
         "Name"   : "Seaborgium",
         "Weight" : 271.0,
-        "HexColor" : "D90045",
+        "Density" : 20.0,
+        "HexColor" : "#D90045",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -4033,7 +4139,8 @@
         "Symbol" : "Bh",
         "Name"   : "Bohrium",
         "Weight" : 272.0,
-        "HexColor" : "E00038",
+        "Density" : 20.0,
+        "HexColor" : "#E00038",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -4071,7 +4178,8 @@
         "Symbol" : "Hs",
         "Name"   : "Hassium",
         "Weight" : 270.0,
-        "HexColor" : "E6002E",
+        "Density" : 20.0,
+        "HexColor" : "#E6002E",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -4109,7 +4217,8 @@
         "Symbol" : "Mt",
         "Name"   : "Meitnerium",
         "Weight" : 276.0,
-        "HexColor" : "EB0026",
+        "Density" : 20.0,
+        "HexColor" : "#EB0026",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -4147,7 +4256,8 @@
         "Symbol" : "Ds",
         "Name"   : "Darmstadtium",
         "Weight" : 281.0,
-        "HexColor" : "EB0026",
+        "Density" : 20.0,
+        "HexColor" : "#EB0026",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -4185,7 +4295,8 @@
         "Symbol" : "Rg",
         "Name"   : "Roentgenium",
         "Weight" : 280.0,
-        "HexColor" : "EB0026",
+        "Density" : 20.0,
+        "HexColor" : "#EB0026",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -4223,7 +4334,8 @@
         "Symbol" : "Cn",
         "Name"   : "Copernicium",
         "Weight" : 285.0,
-        "HexColor" : "EB0026",
+        "Density" : 20.0,
+        "HexColor" : "#EB0026",
         "GroupBlock" : "transition metal",
         "Modifiers"  : [
             {
@@ -4261,7 +4373,8 @@
         "Symbol" : "Nh",
         "Name"   : "Nihonium",
         "Weight" : 284.0,
-        "HexColor" : "EB0026",
+        "Density" : 25.0,
+        "HexColor" : "#EB0026",
         "GroupBlock" : "post-transition metal",
         "Modifiers"  : [
             {
@@ -4299,7 +4412,8 @@
         "Symbol" : "Fl",
         "Name"   : "Flerovium",
         "Weight" : 289.0,
-        "HexColor" : "EB0026",
+        "Density" : 25.0,
+        "HexColor" : "#EB0026",
         "GroupBlock" : "post-transition metal",
         "Modifiers"  : [
             {
@@ -4337,7 +4451,8 @@
         "Symbol" : "Mc",
         "Name"   : "Moscovium",
         "Weight" : 288.0,
-        "HexColor" : "EB0026",
+        "Density" : 25.0,
+        "HexColor" : "#EB0026",
         "GroupBlock" : "post-transition metal",
         "Modifiers"  : [
             {
@@ -4375,7 +4490,8 @@
         "Symbol" : "Lv",
         "Name"   : "Livermorium",
         "Weight" : 293.0,
-        "HexColor" : "EB0026",
+        "Density" : 25.0,
+        "HexColor" : "#EB0026",
         "GroupBlock" : "post-transition metal",
         "Modifiers"  : [
             {
@@ -4413,7 +4529,8 @@
         "Symbol" : "Ts",
         "Name"   : "Tennessine",
         "Weight" : 294.0,
-        "HexColor" : "EB0026",
+        "Density" : 25.0,
+        "HexColor" : "#EB0026",
         "GroupBlock" : "post-transition metal",
         "Modifiers"  : [
             {
@@ -4451,7 +4568,8 @@
         "Symbol" : "Og",
         "Name"   : "Oganesson",
         "Weight" : 294.0,
-        "HexColor" : "EB0026",
+        "Density" : 0.1,
+        "HexColor" : "#EB0026",
         "GroupBlock" : "noble gas",
         "Modifiers"  : [
             {

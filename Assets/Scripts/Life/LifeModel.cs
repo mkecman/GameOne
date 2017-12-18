@@ -9,6 +9,6 @@ public class LifeModel
     public string Name;
     public double Population;
     public double Science;
-    public List<int> KnownElements;
+    public int KnownElements;
     public List<WorkedElementModel> WorkingElements;
 }

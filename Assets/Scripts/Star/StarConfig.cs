@@ -25,6 +25,11 @@ public class StarConfig
         return _stars[ (int)Words ];
     }
 
+    internal int StarTypesCount
+    {
+        get { return _stars.Count; }
+    }
+
     internal GeneralStarConfig Settings
     {
         get { return _general; }
@@ -32,7 +37,7 @@ public class StarConfig
 
     private void ConvertUnitsToSI()
     {
-        UniverseModel universe = Config.Universe.Constants;
+        UniverseModel universe = Config.Universe;
         for (int i = 0; i < _stars.Count; i++)
         {
             StarModel star = _stars[i];

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class RandomUtil
 {
-    private static Random random = new Random();
+    private static Random random = new Random( 1 );
 
     private static void SetSeed( int seed = 1 )
     {
@@ -30,7 +30,7 @@ public class RandomUtil
     /// </summary>
     /// <param name="probabilities">Value is output value, Weight is a probability percent</param>
     /// <returns>Random object Value based on probabilities.</returns>
-    public static double GetWeightedValue( List<WeightedPlanetaryRadius> probabilities )
+    public static double GetWeightedValue( List<WeightedValue> probabilities )
     {
         double diceRoll = GetNext();
         double cumulative = 0.0;
@@ -50,7 +50,7 @@ public class RandomUtil
     /// </summary>
     /// <param name="probabilities">Key index is output value, Weight is a probability percent</param>
     /// <returns>Random object Key index based on probabilities.</returns>
-    public static int GetWeightedKey(List<WeightedPlanetaryRadius> probabilities)
+    public static int GetWeightedKey(List<WeightedValue> probabilities)
     {
         double diceRoll = GetNext();
         double cumulative = 0.0;

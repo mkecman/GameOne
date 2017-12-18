@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class WeightedPlanetaryRadius
+[Serializable]
+public class WeightedValue
 {
     public double Value;
     public double Weight;

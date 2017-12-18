@@ -40,14 +40,14 @@ public class Config : MonoBehaviour
         elementConfig.Load();
     }
 
-    public static UniverseConfig Universe
+    public static UniverseModel Universe
     {
-        get { return _instance.universeConfig; }
+        get { return _instance.universeConfig.Constants; }
     }
 
-    public static ElementConfig Elements
+    public static List<ElementModel> Elements
     {
-        get { return _instance.elementConfig; }
+        get { return _instance.elementConfig.Elements; }
     }
 
     public static StarConfig Stars

@@ -8,5 +8,7 @@ public class UniverseModel
     public double SunMassInKilograms;
     public double SunRadiusInMeters;
     public double AUInMeters;
+    public double Boltzmann;
+    public double SolarLuminosity;
 
 }

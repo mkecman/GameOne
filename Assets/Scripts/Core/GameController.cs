@@ -4,12 +4,29 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    PlayerManager _player;
     
-    // Use this for initialization
     void Start()
     {
-        PlayerManager player = new PlayerManager();
+        _player = new PlayerManager();
+        _player.NewPlayer();
+
+        //ElementConfigGenerator generator = new ElementConfigGenerator();
+        //generator.Load();
+
         Debug.Log( "GameController Start" );
+    }
+
+    public void UpdateStep()
+    {
+        _player.UpdateStep( 100 );
+    }
+
+    public void Save()
+    {
+        Log.Save( "test.csv" );
+        Log.Add( "Done" );
+        Log.Out();
     }
 
 }

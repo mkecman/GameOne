@@ -18,6 +18,7 @@ public class StarModel
     public double HabitableZone;
     public double OuterHabitableZone;
     public double Lifetime;
+    public List<WeightedValue> AvailableElements;
     public List<PlanetModel> Planets;
     public int CreatedPlanets;
 }

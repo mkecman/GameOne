@@ -3,6 +3,8 @@
 	"MaxPlanets": 10,
 	"FivePlanetDistancesInAU": [1.007,0.661,1.533,0.434,2.335],
 	"TenPlanetDistancesInAU": [0.847,1.221,0.661,1.533,0.434,2.335,5.417,8.250,19.136,29.144,44.386],
+	"MaxElementsBellCurveMagnifier": 10,
+	"MinPlanetaryRadiusInMeters": 1403173,
 	"PlanetaryRadiusInMeters": 
 	[
 		{"Value":2573710,"Weight":0.05441683294},
@@ -15,5 +17,19 @@
 		{"Value":205182040,"Weight":0.01832033376},
 		{"Value":383197120,"Weight":0.006167241067},
 		{"Value":714920000,"Weight":0.004353346635}
+	],
+	"MinPlanetaryMassInKilograms": 1.898E+24,
+	"PlanetaryMassInKilograms":
+	[
+		{"Value":5.17E+24,"Weight":0.05728960885},
+		{"Value":1.41E+25,"Weight":0.1210983801},
+		{"Value":3.84E+25,"Weight":0.3879889372},
+		{"Value":1.05E+26,"Weight":0.1799683919},
+		{"Value":2.85E+26,"Weight":0.04800474121},
+		{"Value":7.78E+26,"Weight":0.03002765705},
+		{"Value":2.12E+27,"Weight":0.09699723429},
+		{"Value":5.78E+27,"Weight":0.04741209008},
+		{"Value":1.58E+28,"Weight":0.02232319241},
+		{"Value":2.85E+28,"Weight":0.008889766891}
 	]
 }

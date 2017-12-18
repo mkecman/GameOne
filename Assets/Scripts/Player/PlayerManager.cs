@@ -8,12 +8,32 @@ public class PlayerManager
     private List<Galaxy> _galaxies;
     private PlayerModel _player;
 
-    public PlayerManager()
+    public void NewPlayer()
     {
         _player = CreatePlayer();
         _createGalaxy();
-        _galaxies[ 0 ].CreateStar( 6 );
+        
+        _galaxies[ 0 ].CreateStar( 7 );
+        Log.Add( "Population,Science", true );
 
+        /*
+        Log.Add( "Density,Mass,Radius,Gravity,Temperature,Distance", true );
+        for( int j = 0; j < 1; j++ )
+        {
+            for( int i = 0; i < 19; i++ )
+            {
+                _galaxies[ 0 ].CreateStar( i );
+            }
+        }
+        */
+    }
+    
+    internal void UpdateStep( ulong steps )
+    {
+        for( int i = 0; i < _galaxies.Count; i++ )
+        {
+            _galaxies[ i ].UpdateStep( steps );
+        }
     }
 
     public PlayerModel CreatePlayer()
