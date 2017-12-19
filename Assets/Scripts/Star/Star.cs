@@ -9,17 +9,39 @@ public class Star
     private StarModel _star;
     private List<Planet> _planets;
     private List<Planet> _colonizedPlanets;
-    
-    public void CreateStar( double Words, int Index )
+
+    public Star()
     {
-        _star = Config.Stars.Get( Words );
+    }
+    
+    public StarModel New( int Type, int Index )
+    {
+        _star = Config.Stars.Get( Type );
         _star.Name = "Star " + Index;
         _star.AvailableElements = GenerateStarElements( _star.Index );
-        GeneratePlanets( Words );
-
-        _planets[ 0 ].ActivateLife();
+        GeneratePlanets( Type );
         _colonizedPlanets = new List<Planet>();
-        _colonizedPlanets.Add( _planets[ 0 ] );
+
+        //TODO: Remove this
+        ActivateLifeOnPlanet( 0 );
+
+        return _star;
+    }
+
+    public void Load( StarModel starModel )
+    {
+        _star = starModel;
+        _colonizedPlanets = new List<Planet>();
+        for( int i = 0; i < _star.Planets.Count; i++ )
+        {
+            LoadPlanet( _star.Planets[ i ] );
+        }
+    }
+
+    public void ActivateLifeOnPlanet( int planetIndex )
+    {
+        _planets[ planetIndex ].ActivateLife();
+        _colonizedPlanets.Add( _planets[ planetIndex ] );
     }
 
     public void UpdateStep( ulong steps )
@@ -32,10 +54,17 @@ public class Star
             _colonizedPlanets[ i ].UpdateStep( steps );
         }
     }
-
-    public void MoveWorker( int from, int to )
+    
+    private void LoadPlanet( PlanetModel planetModel )
     {
-        _planets[ 0 ].MoveWorker( from, to );
+        Planet planet = new Planet();
+        planet.Load( planetModel );
+        _planets.Add( planet );
+
+        if( planetModel.Life != null )
+        {
+            _colonizedPlanets.Add( planet );
+        }
     }
     
     private void GeneratePlanets( double Words )
@@ -79,7 +108,10 @@ public class Star
             tempPlanet.Temperature -= 273; //convert to Celsius
 
             _star.Planets.Add(tempPlanet);
-            _planets.Add( new Planet( tempPlanet ) );
+
+            Planet planet = new Planet();
+            planet.Load( tempPlanet );
+            _planets.Add( planet );
 
             //Log.Add( tempPlanet.Density + "," + tempPlanet.Mass + "," + tempPlanet.Radius + "," + tempPlanet.Gravity + "," + tempPlanet.Temperature + "," + tempPlanet.Distance + ",", true );
 
@@ -116,9 +148,11 @@ public class Star
             probability = ( 1 / Math.Sqrt( 2 * Math.PI * curve ) ) * Math.Exp( -Math.Pow( ofset - i, 2 ) / ( 2 * curve ) );
             if( probability >= .01 )
             {
-                WeightedValue element = new WeightedValue();
-                element.Value = i;
-                element.Weight = probability;
+                WeightedValue element = new WeightedValue
+                {
+                    Value = i,
+                    Weight = probability
+                };
                 output.Add( element );
             }
         }
@@ -140,9 +174,11 @@ public class Star
             probability = ( 1 / Math.Sqrt( 2 * Math.PI * curve ) ) * Math.Exp( -Math.Pow( ofset - i, 2 ) / ( 2 * curve ) ) * 1000;
             if( probability >= 1 )
             {
-                PlanetElementModel planetElementModel = new PlanetElementModel();
-                planetElementModel.Index = (int)_star.AvailableElements[ i ].Value;
-                planetElementModel.Amount = probability;
+                PlanetElementModel planetElementModel = new PlanetElementModel
+                {
+                    Index = (int)_star.AvailableElements[ i ].Value,
+                    Amount = probability
+                };
 
                 output.Add( planetElementModel );
             }

@@ -7,28 +7,47 @@ public class Galaxy
 {
     private GalaxyModel _galaxy;
     private List<Star> _stars;
-    
-    public void CreateGalaxy( int Index )
+
+    public Galaxy()
     {
-        _galaxy = new GalaxyModel();
-        _galaxy.Name = "Galaxy " + Index;
-        _galaxy.CreatedStars = 0;
-        _galaxy.Stars = new List<StarModel>();
+    }
+    
+    public GalaxyModel New( int Index )
+    {
+        _galaxy = new GalaxyModel
+        {
+            Name = "Galaxy " + Index,
+            CreatedStars = 0,
+            Stars = new List<StarModel>()
+        };
         _stars = new List<Star>();
+        return _galaxy;
     }
 
-    public void CreateStar( double Words )
+    public void Load( GalaxyModel galaxyModel )
+    {
+        _galaxy = galaxyModel;
+        _stars = new List<Star>();
+        for( int i = 0; i < _galaxy.Stars.Count; i++ )
+        {
+            LoadStar( _galaxy.Stars[ i ] );
+        }
+    }
+
+    private void LoadStar( StarModel starModel )
     {
         Star star = new Star();
-        star.CreateStar( Words, _galaxy.CreatedStars );
+        star.Load( starModel );
         _stars.Add( star );
     }
 
-    public void MoveWorker( int from, int to )
+    public void NewStar( int Type )
     {
-        _stars[ 0 ].MoveWorker( from, to );
+        Star star = new Star();
+        _galaxy.Stars.Add( star.New( Type, _galaxy.CreatedStars ) );
+        _stars.Add( star );
     }
-
+    
     internal void UpdateStep( ulong steps )
     {
         for( int i = 0; i < _stars.Count; i++ )
