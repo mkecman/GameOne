@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    PlayerManager _player;
-    
+    public Text from;
+    public Text to;
+    private PlayerManager _player;
+
     void Start()
     {
         _player = new PlayerManager();
@@ -19,7 +22,17 @@ public class GameController : MonoBehaviour
 
     public void UpdateStep()
     {
-        _player.UpdateStep( 100 );
+        _player.UpdateStep( 10 );
+    }
+
+    public void Move()
+    {
+        MoveWorker( int.Parse(from.text), int.Parse( to.text ) );
+    }
+
+    private void MoveWorker( int from, int to )
+    {
+        _player.MoveWorker( from, to );
     }
 
     public void Save()

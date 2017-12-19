@@ -28,24 +28,62 @@ public class Planet
     {
         _life = new LifeModel();
         _life.Name = "Human";
-        _life.Population = 5;
+        _life.Population = 1;
         _life.Science = 1;
-        _life.KnownElements = 1;
+        _life.KnownElements = 2;
         _life.WorkingElements = new List<WorkedElementModel>();
-        _life.WorkingElements.Add( new WorkedElementModel( 0, 4 ) );
-        _life.WorkingElements.Add( new WorkedElementModel( 1, 1 ) );
+        _life.WorkingElements.Add( new WorkedElementModel( 0, 1 ) );
+        _life.WorkingElements.Add( new WorkedElementModel( 1, 0 ) );
 
         _planet.Life = _life;
+    }
+
+    public void MoveWorker( int from, int to )
+    {
+        if( _life.WorkingElements[ from ].Workers > 0 )
+        {
+            _life.WorkingElements[ from ].Workers--;
+            _life.WorkingElements[ to ].Workers++;
+            Debug.Log( "Moved: " + from + " to " + to );
+        }
+        else
+        {
+            Debug.Log( "Not Moved!!!" );
+        }
+        
     }
     
     private void UpdateScience( double value )
     {
-        _life.Science += value;
+        double newScience = _life.Science + value;
+        if( newScience > Config.Elements[ _life.KnownElements ].Weight )
+        {
+            _life.WorkingElements.Add( new WorkedElementModel( _life.KnownElements, 0 ) );
+            _life.KnownElements++;
+        }
+        _life.Science = newScience;
     }
 
     private void UpdatePopulation( double value )
     {
-        _life.Population += value;
+        double newPopulation = _life.Population + value;
+
+        if( Math.Floor( _life.Population ) < Math.Floor( newPopulation ) )
+            _life.WorkingElements[ 0 ].Workers++;
+
+        if( Math.Floor( _life.Population ) > newPopulation )
+        {
+            for( int i = _life.WorkingElements.Count-1; i >= 0; i-- )
+            {
+                if( _life.WorkingElements[ i ].Workers > 0 )
+                {
+                    _life.WorkingElements[ i ].Workers--;
+                    break;
+                }
+            }
+        }
+
+        _life.Population = newPopulation;
     }
 
     internal void UpdateStep( ulong steps )
@@ -62,12 +100,13 @@ public class Planet
         for( int i = 0; i < _life.WorkingElements.Count; i++ )
         {
             WorkedElementModel element = _life.WorkingElements[ i ];
-
-            _updateValues[ ElementModifiers.FOOD ] += getTotalWorkersDelta( element, ElementModifiers.FOOD ) - getTotalPopulationFoodConsumption();
-            _updateValues[ ElementModifiers.SCIENCE ] += getTotalWorkersDelta( element, ElementModifiers.SCIENCE );
-
+            if( element.Workers > 0 )
+            {
+                _updateValues[ ElementModifiers.FOOD ] += getTotalWorkersDelta( element, ElementModifiers.FOOD ) - getTotalPopulationFoodConsumption();
+                _updateValues[ ElementModifiers.SCIENCE ] += getTotalWorkersDelta( element, ElementModifiers.SCIENCE );
+            }
         }
-
+        
         foreach( KeyValuePair<string, double> item in _updateValues )
         {
             if( item.Value != 0 )
@@ -95,7 +134,7 @@ public class Planet
 
     private double getTotalPopulationFoodConsumption()
     {
-        return ( _life.Science / 100 ) * Math.Floor( _life.Population );
+        return ( _life.Science / 150 ) * Math.Floor( _life.Population );
     }
 
     private double getTotalWorkersDelta( WorkedElementModel element, string name )

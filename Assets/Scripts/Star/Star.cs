@@ -32,6 +32,11 @@ public class Star
             _colonizedPlanets[ i ].UpdateStep( steps );
         }
     }
+
+    public void MoveWorker( int from, int to )
+    {
+        _planets[ 0 ].MoveWorker( from, to );
+    }
     
     private void GeneratePlanets( double Words )
     {

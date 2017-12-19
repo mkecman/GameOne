@@ -20,8 +20,13 @@ public class Galaxy
     public void CreateStar( double Words )
     {
         Star star = new Star();
-        star.CreateStar( Words, _galaxy.CreatedStars++ );
+        star.CreateStar( Words, _galaxy.CreatedStars );
         _stars.Add( star );
+    }
+
+    public void MoveWorker( int from, int to )
+    {
+        _stars[ 0 ].MoveWorker( from, to );
     }
 
     internal void UpdateStep( ulong steps )

@@ -27,6 +27,11 @@ public class PlayerManager
         }
         */
     }
+
+    public void MoveWorker( int from, int to )
+    {
+        _galaxies[ 0 ].MoveWorker( from, to );
+    }
     
     internal void UpdateStep( ulong steps )
     {
