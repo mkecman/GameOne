@@ -1,19 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using UniRx;
 
 public class PropertyView : MonoBehaviour
 {
-    public string Property;
+    public Text Property;
+    public Text Value;
 
-    // Use this for initialization
-    void Start()
+    public void SetModel( string property, ReactiveProperty<double> value )
     {
-
+        Property.text = property;
+        value.Subscribe<double>( x => Value.text = x.ToString() ).AddTo(this);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
+        Debug.Log( "enabled" );
+    }
 
+    private void OnDisable()
+    {
+        Debug.Log( "disabled" );
     }
 }

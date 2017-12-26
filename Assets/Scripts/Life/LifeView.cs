@@ -8,16 +8,19 @@ public class LifeView : MonoBehaviour
     public GameObject ElementPrefab;
     public PropertyView Population;
     public PropertyView Science;
-
-    // Use this for initialization
+   
     void OnEnable()
     {
-        LifeModel _life = getModel<LifeModel>();
+        GameModel.Bind<LifeModel>( onLifeModel );
+        Debug.Log( "LifeView OnEnable" );
     }
 
-    private T getModel<T>()
+    private void onLifeModel( LifeModel model )
     {
-        
+        Debug.Log( "onLifeModel:" + model.Name );
+
+        Population.SetModel( ElementModifiers.FOOD, model._Population );
+        Science.SetModel( ElementModifiers.SCIENCE, model._Science );
     }
 
     // Update is called once per frame

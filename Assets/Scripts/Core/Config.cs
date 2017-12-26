@@ -1,16 +1,44 @@
-﻿using System.Collections;
+﻿using LitJson;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Config : MonoBehaviour
 {
-    private static Config _instance;
     public static Config Instance { get { return _instance; } }
-
-    private StarConfig starConfig;
-    private ElementConfig elementConfig;
-    private UniverseConfig universeConfig;
+    private static Config _instance;
+    private Dictionary<string, object> _configs;
     
+    private void Init()
+    {
+        _instance._configs = new Dictionary<string, object>();
+
+        _instance.Load<UniverseConfig>();
+        _instance.Load<StarsConfig>();
+        _instance.Load<ElementConfig>();
+    }
+
+    public static T Get<T>()
+    {
+        string className = typeof( T ).Name;
+        if( _instance._configs.ContainsKey( className ) )
+            return (T)_instance._configs[ className ];
+        else
+            return default( T );
+    }
+
+    private void Load<T>()
+    {
+        string className = typeof( T ).Name;
+        TextAsset configFile = Resources.Load<TextAsset>( "Configs/" + className );
+        if( configFile != null )
+        {
+            _instance._configs.Add( className, JsonMapper.ToObject<T>( configFile.text ) );
+            Debug.Log( "Loaded config: " + className );
+        }
+    }
+
     private void Awake()
     {
         if( _instance != null && _instance != this )
@@ -24,34 +52,7 @@ public class Config : MonoBehaviour
 
         DontDestroyOnLoad( this.gameObject );
         _instance.Init();
-        Debug.Log( "Config Awake" );
+        Debug.Log( "Config Awaken" );
     }
-
-    private void Init()
-    {
-        //has to be loaded first!
-        universeConfig = new UniverseConfig();
-        universeConfig.Load();
-
-        starConfig = new StarConfig();
-        starConfig.Load();
-
-        elementConfig = new ElementConfig();
-        elementConfig.Load();
-    }
-
-    public static UniverseModel Universe
-    {
-        get { return _instance.universeConfig.Constants; }
-    }
-
-    public static List<ElementModel> Elements
-    {
-        get { return _instance.elementConfig.Elements; }
-    }
-
-    public static StarConfig Stars
-    {
-        get { return _instance.starConfig; }
-    }
+    
 }

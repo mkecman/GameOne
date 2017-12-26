@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System;
 
 [Serializable]
-public class GeneralStarConfig
+public class StarsConfig
 {
     public int MinPlanets;
     public int MaxPlanets;
@@ -12,7 +12,8 @@ public class GeneralStarConfig
     public List<double> TenPlanetDistancesInAU;
     public double MinPlanetaryRadiusInMeters;
     public List<WeightedValue> PlanetaryRadiusInMeters;
-    public double MinPlanetaryMassInKilograms;
-    public List<WeightedValue> PlanetaryMassInKilograms;
     public double MaxElementsBellCurveMagnifier;
+    public List<StarModel> Stars;
+
+
 }

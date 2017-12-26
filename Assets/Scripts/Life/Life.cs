@@ -7,6 +7,7 @@ public class Life
 {
     private LifeModel _life;
     private Dictionary<string, double> _updateValues;
+    private List<ElementModel> _elements;
 
     public Life()
     {
@@ -20,8 +21,10 @@ public class Life
             { ElementModifiers.PRESSURE, 0 },
             { ElementModifiers.RADIATION, 0 }
         };
-    }
 
+        _elements = Config.Get<ElementConfig>().Elements;
+    }
+    
     public LifeModel New()
     {
         _life = new LifeModel
@@ -32,10 +35,12 @@ public class Life
             KnownElements = 2,
             WorkingElements = new List<WorkedElementModel>
             {
-                new WorkedElementModel( 0, 1 )
+                new WorkedElementModel( 1, 1 )
             }
         };
 
+        GameModel.Register<LifeModel>( _life );
+        
         return _life;
     }
 
@@ -62,7 +67,8 @@ public class Life
     private void UpdateScience( double value )
     {
         double newScience = _life.Science + value;
-        if( newScience > Config.Elements[ _life.KnownElements ].Weight )
+        double elementWeight = _elements[ _life.KnownElements ].Weight;
+        if( newScience > elementWeight )
         {
             _life.WorkingElements.Add( new WorkedElementModel( _life.KnownElements, 0 ) );
             _life.KnownElements++;
@@ -113,8 +119,7 @@ public class Life
             }
         }
 
-        Debug.Log( _life.Population + "-------------" + _life.Science );
-        Log.Add( _life.Population + "," + _life.Science, true );
+        CSV.Add( _life.Population + "," + _life.Science );
     }
 
     private void UpdateLifeProperty( KeyValuePair<string, double> item )
@@ -137,7 +142,7 @@ public class Life
 
     private double GetTotalWorkersDelta( WorkedElementModel element, string name )
     {
-        return Config.Elements[ element.Index ].Modifier( name ).Delta * element.Workers;
+        return _elements[ element.Index ].Modifier( name ).Delta * element.Workers;
     }
 
     private void ResetUpdateValues()

@@ -1,17 +1,14 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using LitJson;
+﻿using System;
 
+[Serializable]
 public class UniverseConfig
 {
-    public UniverseModel Constants { get; set; }
+    public double G;
+    public double SunLuminosityInWatts;
+    public double SunMassInKilograms;
+    public double SunRadiusInMeters;
+    public double AUInMeters;
+    public double Boltzmann;
+    public double SolarLuminosity;
 
-    internal void Load()
-    {
-        Debug.Log( "Load Universe" );
-
-        TextAsset targetFile = Resources.Load<TextAsset>( "Configs/Universe" );
-        Constants = JsonMapper.ToObject<UniverseModel>( targetFile.text );
-    }
 }

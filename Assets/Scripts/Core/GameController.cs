@@ -5,30 +5,35 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
+using UniRx;
 
 public class GameController : MonoBehaviour
 {
-    public Text from;
-    public Text to;
+    public Clock clock;
     private PlayerManager _player;
 
+    
     void Start()
     {
+
         _player = new PlayerManager();
+
         _player.NewPlayer();
-
         _player.NewGalaxy();
-
+        
+        clock._ElapsedUpdates.Subscribe<long>( x => UpdateStep() ).AddTo(clock);
+        /*
         //ElementConfigGenerator generator = new ElementConfigGenerator();
         //generator.Load();
-
-        Log.Add( "Population,Science", true );
-        Debug.Log( "GameController Start" );
+        */
+            
+        CSV.Add( "Population,Science" );
+        Debug.Log( "GameController Started" );
     }
-
+    
     public void UpdateStep()
     {
-        _player.UpdateStep( 10 );
+        _player.UpdateStep(1);
     }
     
     public void Save()
@@ -39,8 +44,8 @@ public class GameController : MonoBehaviour
         JsonMapper.ToJson( _player.GetPlayer(), jsonWriter );
         File.WriteAllText( Application.persistentDataPath + "-Player.json", sb.ToString() );
 
-        Log.Save( "test.csv" );
-        Log.Add( "Done" );
-        Log.Out();
+        CSV.Save( "test.csv" );
+        CSV.Add( "Done" );
+        CSV.Out();
     }
 }

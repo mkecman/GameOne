@@ -9,14 +9,21 @@ public class Star
     private StarModel _star;
     private List<Planet> _planets;
     private List<Planet> _colonizedPlanets;
+    private StarsConfig _stars;
+    private UniverseConfig _universe;
+    private ElementConfig _elements;
 
     public Star()
     {
+        _stars = Config.Get<StarsConfig>();
+        _universe = Config.Get<UniverseConfig>();
+        _elements = Config.Get<ElementConfig>();
     }
     
     public StarModel New( int Type, int Index )
     {
-        _star = Config.Stars.Get( Type );
+        _star = GameModel.Copy<StarModel>( _stars.Stars[ Type ] );
+        ConvertUnitsToSI();
         _star.Name = "Star " + Index;
         _star.AvailableElements = GenerateStarElements( _star.Index );
         GeneratePlanets( Type );
@@ -31,6 +38,7 @@ public class Star
     public void Load( StarModel starModel )
     {
         _star = starModel;
+        ConvertUnitsToSI();
         _colonizedPlanets = new List<Planet>();
         for( int i = 0; i < _star.Planets.Count; i++ )
         {
@@ -72,8 +80,8 @@ public class Star
         _star.Planets = new List<PlanetModel>();
         _planets = new List<Planet>();
 
-        int planetCount = RandomUtil.FromRangeInt( Config.Stars.Settings.MinPlanets, Config.Stars.Settings.MaxPlanets );
-        planetCount = Config.Stars.Settings.MaxPlanets;
+        int planetCount = RandomUtil.FromRangeInt( _stars.MinPlanets, _stars.MaxPlanets );
+        planetCount = _stars.MaxPlanets;
 
         //Log.Add( "-1,-1,-1,-1,", true );
 
@@ -90,9 +98,9 @@ public class Star
             tempPlanet.Elements = GeneratePlanetElements( index+1, planetCount );
             tempPlanet.Density = CalculateDensity( tempPlanet.Elements );  //( tempPlanet.Mass / tempPlanet.Volume ) / 1000; // value is in g/m3
             tempPlanet.Mass = tempPlanet.Density * tempPlanet.Volume * 1000;
-            tempPlanet.Gravity = ( Config.Universe.G * tempPlanet.Mass ) / Math.Pow( tempPlanet.Radius, 2 );
-            tempPlanet.OrbitalPeriod = 2*Math.PI * Math.Sqrt( Math.Pow( tempPlanet.Distance, 3) / ( _star.Mass * Config.Universe.G ) );
-            tempPlanet.EscapeVelocity = Math.Sqrt( ( 2*Config.Universe.G * tempPlanet.Mass ) / tempPlanet.Radius );
+            tempPlanet.Gravity = ( _universe.G * tempPlanet.Mass ) / Math.Pow( tempPlanet.Radius, 2 );
+            tempPlanet.OrbitalPeriod = 2*Math.PI * Math.Sqrt( Math.Pow( tempPlanet.Distance, 3) / ( _star.Mass * _universe.G ) );
+            tempPlanet.EscapeVelocity = Math.Sqrt( ( 2*_universe.G * tempPlanet.Mass ) / tempPlanet.Radius );
             
             tempPlanet.Pressure = 1;
             tempPlanet.MagneticField = 1;
@@ -103,7 +111,7 @@ public class Star
             double greenhouse = 0;
             
             //temperature in Kelvin
-            double TemperatureFromStar = ( _star.Luminosity * albedo ) / ( 16 * Math.PI * Math.Pow( tempPlanet.Distance, 2 ) * Config.Universe.Boltzmann );
+            double TemperatureFromStar = ( _star.Luminosity * albedo ) / ( 16 * Math.PI * Math.Pow( tempPlanet.Distance, 2 ) * _universe.Boltzmann );
             tempPlanet.Temperature = Math.Pow( ( TemperatureFromStar * ( 1 + ( ( 3 * greenhouse * 0.5841 ) / 4 ) ) / .9 ), 0.25 );
             tempPlanet.Temperature -= 273; //convert to Celsius
 
@@ -127,7 +135,7 @@ public class Star
         int elementsCount = elements.Count;
         for( int i = 0; i < elementsCount; i++ )
         {
-            totalDensity += Config.Elements[ elements[ i ].Index ].Density * elements[ i ].Amount;
+            totalDensity += _elements.Elements[ elements[ i ].Index ].Density * elements[ i ].Amount;
             totalAmount += elements[ i ].Amount;
         }
         
@@ -136,10 +144,10 @@ public class Star
     
     private List<WeightedValue> GenerateStarElements( int index )
     {
-        int ElementCount = Config.Elements.Count;
+        int ElementCount = _elements.Elements.Count;
 
-        double curve = index * ( ElementCount * Config.Stars.Settings.MaxElementsBellCurveMagnifier / Config.Stars.StarTypesCount );
-        double ofset = index * ( ElementCount / Config.Stars.StarTypesCount );
+        double curve = index * ( ElementCount * _stars.MaxElementsBellCurveMagnifier / _stars.Stars.Count );
+        double ofset = index * ( ElementCount / _stars.Stars.Count );
 
         List<WeightedValue> output = new List<WeightedValue>();
         double probability;
@@ -150,7 +158,7 @@ public class Star
             {
                 WeightedValue element = new WeightedValue
                 {
-                    Value = i,
+                    Value = i + 1,
                     Weight = probability
                 };
                 output.Add( element );
@@ -164,7 +172,7 @@ public class Star
     {
         int ElementCount = _star.AvailableElements.Count;
 
-        double curve = index * ( ElementCount * Config.Stars.Settings.MaxElementsBellCurveMagnifier / planetCount );
+        double curve = index * ( ElementCount * _stars.MaxElementsBellCurveMagnifier / planetCount );
         double ofset = index * ( ElementCount / planetCount );
 
         List<PlanetElementModel> output = new List<PlanetElementModel>();
@@ -189,14 +197,9 @@ public class Star
 
     private double GetRadius()
     {
-        return GetRandomWeightedValue( Config.Stars.Settings.MinPlanetaryRadiusInMeters, Config.Stars.Settings.PlanetaryRadiusInMeters );
+        return GetRandomWeightedValue( _stars.MinPlanetaryRadiusInMeters, _stars.PlanetaryRadiusInMeters );
     }
-
-    private double GetMass()
-    {
-        return GetRandomWeightedValue( Config.Stars.Settings.MinPlanetaryMassInKilograms, Config.Stars.Settings.PlanetaryMassInKilograms );
-    }
-
+    
     private double GetRandomWeightedValue( double minValue, List<WeightedValue> values )
     {
         double min;
@@ -214,8 +217,18 @@ public class Star
     private double GetDistance(int index, int planetCount)
     {
         if (planetCount > 5)
-            return Config.Stars.Settings.TenPlanetDistancesInAU[index] * _star.HabitableZone;
+            return _stars.TenPlanetDistancesInAU[index] * _star.HabitableZone;
         else
-            return Config.Stars.Settings.FivePlanetDistancesInAU[index] * _star.HabitableZone;
+            return _stars.FivePlanetDistancesInAU[index] * _star.HabitableZone;
+    }
+
+    private void ConvertUnitsToSI()
+    {
+        _star.Mass               *= _universe.SunMassInKilograms;
+        _star.Radius             *= _universe.SunRadiusInMeters;
+        _star.HabitableZone      *= _universe.AUInMeters;
+        _star.InnerHabitableZone *= _universe.AUInMeters;
+        _star.OuterHabitableZone *= _universe.AUInMeters;
+        _star.Luminosity         *= _universe.SunLuminosityInWatts;
     }
 }

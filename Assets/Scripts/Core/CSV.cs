@@ -3,16 +3,16 @@ using System.Collections;
 using System.Text;
 using System.IO;
 
-public class Log
+public class CSV
 {
     private StringBuilder _sb;
 
-    public Log()
+    public CSV()
     {
         _sb = new StringBuilder();
     }
 
-    public static void Add( string text, bool newLine = false )
+    public static void Add( string text, bool newLine = true )
     {
         Instance._sb.Append( text );
         if( newLine )
@@ -24,10 +24,11 @@ public class Log
         Instance._sb.AppendLine();
     }
 
-    public static void Out()
+    public static void Out( bool clear = false )
     {
         Debug.Log( Instance._sb );
-        Instance._sb.Clear();
+        if( clear )
+            Instance._sb.Clear();
     }
 
     public static void Save( string filename )
@@ -36,13 +37,13 @@ public class Log
         Instance._sb.Clear();
     }
 
-    private static Log instance;
-    public static Log Instance
+    private static CSV instance;
+    public static CSV Instance
     {
         get
         {
             if( instance == null )
-                instance = new Log();
+                instance = new CSV();
             return instance;
         }
     }
