@@ -8,8 +8,8 @@ using System.Collections.Generic;
 [Serializable]
 public class ElementModifierModel
 {
-    internal ReactiveProperty<string> _Property = new ReactiveProperty<string>();
-    public string Property
+    internal ReactiveProperty<ElementModifiers> _Property = new ReactiveProperty<ElementModifiers>();
+    public ElementModifiers Property
     {
         get { return _Property.Value; }
         set { _Property.Value = value; }

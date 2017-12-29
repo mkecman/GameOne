@@ -2,29 +2,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public class Life 
 {
     private LifeModel _life;
-    private Dictionary<string, double> _updateValues;
     private List<ElementModel> _elements;
+
+    private double[] _updateValues;
+    private Action<double>[] _actions;
 
     public Life()
     {
-        _updateValues = new Dictionary<string, double>()
+        _updateValues = new double[ (int)ElementModifiers.Count ];
+        _elements = Config.Get<ElementConfig>().Elements;
+
+        _actions = new Action<double>[ (int)ElementModifiers.Count ]
         {
-            { ElementModifiers.FOOD, 0 },
-            { ElementModifiers.SCIENCE, 0 },
-            { ElementModifiers.WORDS, 0 },
-            { ElementModifiers.TEMPERATURE, 0 },
-            { ElementModifiers.GRAVITY, 0 },
-            { ElementModifiers.PRESSURE, 0 },
-            { ElementModifiers.RADIATION, 0 }
+            UpdatePopulation, UpdateScience, UpdateDummy, UpdateDummy, UpdateDummy, UpdateDummy, UpdateDummy
         };
 
-        _elements = Config.Get<ElementConfig>().Elements;
+        GameMessage.Listen<WorkerMoveMessage>( OnWorkerMove );
     }
-    
+
+    private void OnWorkerMove( WorkerMoveMessage value )
+    {
+        MoveWorker( value.From, value.To );
+    }
+
     public LifeModel New()
     {
         _life = new LifeModel
@@ -32,10 +37,11 @@ public class Life
             Name = "Human",
             Population = 1,
             Science = 4,
-            KnownElements = 2,
+            NextElement = 3,
             WorkingElements = new List<WorkedElementModel>
             {
-                new WorkedElementModel( 1, 1 )
+                new WorkedElementModel( 1, 1 ),
+                new WorkedElementModel( 2, 0 )
             }
         };
 
@@ -51,38 +57,37 @@ public class Life
 
     public void MoveWorker( int from, int to )
     {
-        if( _life.WorkingElements[ from ].Workers > 0 )
+        if( _life._WorkingElements[ from ].Workers > 0 )
         {
-            _life.WorkingElements[ from ].Workers--;
-            _life.WorkingElements[ to ].Workers++;
+            _life._WorkingElements[ from ].Workers--;
+            _life._WorkingElements[ to ].Workers++;
             Debug.Log( "Moved: " + from + " to " + to );
         }
         else
         {
             Debug.Log( "Not Moved!!!" );
         }
-
     }
 
     private void UpdateScience( double value )
     {
         double newScience = _life.Science + value;
-        double elementWeight = _elements[ _life.KnownElements ].Weight;
+        double elementWeight = _elements[ _life.NextElement ].Weight;
         if( newScience > elementWeight )
         {
-            _life.WorkingElements.Add( new WorkedElementModel( _life.KnownElements, 0 ) );
-            _life.KnownElements++;
+            _life._WorkingElements.Add( _life.NextElement, new WorkedElementModel( _life.NextElement, 0 ) );
+            _life.NextElement++;
         }
         _life.Science = newScience;
     }
 
     private void UpdatePopulation( double value )
     {
-        double newPopulation = _life.Population + value;
+        double newPopulation = _life.Population + value - GetTotalPopulationFoodConsumption();
 
         if( Math.Floor( _life.Population ) < Math.Floor( newPopulation ) )
-            _life.WorkingElements[ 0 ].Workers++;
-
+            _life._WorkingElements.First().Value.Workers++;
+        
         if( Math.Floor( _life.Population ) > newPopulation )
         {
             for( int i = _life.WorkingElements.Count - 1; i >= 0; i-- )
@@ -98,62 +103,46 @@ public class Life
         _life.Population = newPopulation;
     }
 
+    private void UpdateDummy( double value )
+    {
+
+    }
+
     public void UpdateStep()
     {
         ResetUpdateValues();
-        for( int i = 0; i < _life.WorkingElements.Count; i++ )
+        foreach( KeyValuePair<int, WorkedElementModel>item in _life._WorkingElements )
         {
-            WorkedElementModel element = _life.WorkingElements[ i ];
-            if( element.Workers > 0 )
+            if( item.Value.Workers > 0 )
             {
-                _updateValues[ ElementModifiers.FOOD ] += GetTotalWorkersDelta( element, ElementModifiers.FOOD ) - GetTotalPopulationFoodConsumption();
-                _updateValues[ ElementModifiers.SCIENCE ] += GetTotalWorkersDelta( element, ElementModifiers.SCIENCE );
+                for( int i = 0; i < (int)ElementModifiers.Count; i++ )
+                {
+                    _updateValues[ i ] += GetTotalWorkersDelta( item.Value, i );
+                }
             }
         }
 
-        foreach( KeyValuePair<string, double> item in _updateValues )
+        for( int i = 0; i < _updateValues.Length; i++ )
         {
-            if( item.Value != 0 )
-            {
-                UpdateLifeProperty( item );
-            }
+            _actions[ i ]( _updateValues[ i ] );
         }
-
+        
         CSV.Add( _life.Population + "," + _life.Science );
     }
-
-    private void UpdateLifeProperty( KeyValuePair<string, double> item )
-    {
-        switch( item.Key )
-        {
-            case ElementModifiers.FOOD:
-                UpdatePopulation( item.Value );
-                break;
-            case ElementModifiers.SCIENCE:
-                UpdateScience( item.Value );
-                break;
-        }
-    }
-
+    
     private double GetTotalPopulationFoodConsumption()
     {
         return ( _life.Science / 500 ) * Math.Floor( _life.Population );
     }
 
-    private double GetTotalWorkersDelta( WorkedElementModel element, string name )
+    private double GetTotalWorkersDelta( WorkedElementModel element, int index )
     {
-        return _elements[ element.Index ].Modifier( name ).Delta * element.Workers;
+        return _elements[ element.Index ]._Modifiers[ index ].Delta * element.Workers;
     }
 
     private void ResetUpdateValues()
     {
-        _updateValues[ ElementModifiers.FOOD ] = 0;
-        _updateValues[ ElementModifiers.SCIENCE ] = 0;
-        _updateValues[ ElementModifiers.WORDS ] = 0;
-        _updateValues[ ElementModifiers.TEMPERATURE ] = 0;
-        _updateValues[ ElementModifiers.GRAVITY ] = 0;
-        _updateValues[ ElementModifiers.PRESSURE ] = 0;
-        _updateValues[ ElementModifiers.RADIATION ] = 0;
+        Array.Clear( _updateValues, 0, _updateValues.Length );
     }
     
     public LifeModel Model

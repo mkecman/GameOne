@@ -9,15 +9,15 @@ public class Clock : MonoBehaviour
 
     [SerializeField, RangeReactiveProperty( 1, 20 )]
     private IntReactiveProperty _UpdatesPerSecond = new IntReactiveProperty();
-    private int _lastUpdatePerSecond; //HACK FOR STUPID INSPECTOR BUG WHICH TRIGGERS VALUE CHANGE ON MOUSE DRAG!
+    private int _lastUpdatePerSecond; //HACK FOR A STUPID INSPECTOR BUG WHICH TRIGGERS VALUE CHANGE ON MOUSE DRAG!
 
-    public ReactiveProperty<long> _ElapsedUpdates = new ReactiveProperty<long>();
-    private CompositeDisposable disposable = new CompositeDisposable();
+    public ReactiveProperty<long> ElapsedUpdates = new ReactiveProperty<long>();
+    private CompositeDisposable disposables = new CompositeDisposable();
 
     public void OnEnable()
     {
         GameModel.Register<Clock>( this );
-        _UpdatesPerSecond.Where(x => x != _lastUpdatePerSecond ).Subscribe<int>( OnUpdatesPerSecondUpdate );
+        _UpdatesPerSecond.Where(x => x != _lastUpdatePerSecond ).Subscribe<int>( OnUpdatesPerSecondUpdate ).AddTo( this );
     }
 
     private void OnUpdatesPerSecondUpdate( int UPS )
@@ -30,12 +30,12 @@ public class Clock : MonoBehaviour
     {
         if( _timer != null )
         {
-            disposable.Clear();
+            disposables.Clear();
             _timer = null;
         }
         
         _timer = Observable.Interval( TimeSpan.FromSeconds( 1 / _UpdatesPerSecond.Value ) );
-        _timer.Subscribe( x => _ElapsedUpdates.Value++ ).AddTo( disposable );
+        _timer.Subscribe( x => ElapsedUpdates.Value++ ).AddTo( disposables );
     }
 
     

@@ -16,11 +16,20 @@ public class LifeModel
         set { _Name.Value = value; }
     }
 
-    internal ReactiveCollection<WorkedElementModel> _WorkingElements = new ReactiveCollection<WorkedElementModel>();
+    private List<WorkedElementModel> _WorkingElementsList;
+    internal ReactiveDictionary<int, WorkedElementModel> _WorkingElements = new ReactiveDictionary<int, WorkedElementModel>();
     public List<WorkedElementModel> WorkingElements
     {
-        get { return _WorkingElements.ToList<WorkedElementModel>(); }
-        set { _WorkingElements = new ReactiveCollection<WorkedElementModel>( value ); }
+        get { return _WorkingElementsList; }
+        set { {
+                _WorkingElements = new ReactiveDictionary<int, WorkedElementModel>( value.ToDictionary( WorkingElementKeySelector ) );
+                _WorkingElementsList = new List<WorkedElementModel>( _WorkingElements.Values );
+            } }
+    }
+
+    private int WorkingElementKeySelector( WorkedElementModel arg )
+    {
+        return arg.Index;
     }
 
     internal ReactiveProperty<double> _Population = new ReactiveProperty<double>();
@@ -37,11 +46,11 @@ public class LifeModel
         set { _Science.Value = value; }
     }
 
-    internal ReactiveProperty<int> _KnownElements = new ReactiveProperty<int>();
-    public int KnownElements
+    internal ReactiveProperty<int> _NextElement = new ReactiveProperty<int>();
+    public int NextElement
     {
-        get { return _KnownElements.Value; }
-        set { _KnownElements.Value = value; }
+        get { return _NextElement.Value; }
+        set { _NextElement.Value = value; }
     }
 
     

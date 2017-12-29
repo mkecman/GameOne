@@ -2,15 +2,18 @@
 using System.Collections;
 using UnityEngine.UI;
 using UniRx;
+using System;
 
 public class PropertyView : MonoBehaviour
 {
     public Text Property;
     public Text Value;
 
-    public void SetModel( string property, ReactiveProperty<double> value )
+    private IDisposable _subscriber;
+
+    public void SetModel( ElementModifiers property, ReactiveProperty<double> value )
     {
-        Property.text = property;
+        Property.text = property.ToString();
         value.Subscribe<double>( x => Value.text = x.ToString() ).AddTo(this);
     }
 

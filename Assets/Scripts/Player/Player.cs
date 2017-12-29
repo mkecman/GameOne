@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UniRx;
 
-public class PlayerManager
+public class Player : MonoBehaviour
 {
     private List<Galaxy> _galaxies;
     private PlayerModel _player;
     private Galaxy _selectedGalaxy;
-
-    public PlayerManager()
-    {
-    }
-
+    
     public void NewPlayer()
     {
         _player = new PlayerModel
@@ -59,5 +53,5 @@ public class PlayerManager
     {
         return _player;
     }
-    
+
 }

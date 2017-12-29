@@ -32,14 +32,14 @@ public class ElementConfigGenerator
             tempElement.HexColor = atoms[ i ].HexColor;
             tempElement.GroupBlock = atoms[ i ].GroupBlock;
 
-            tempElement.Modifiers = new List<ElementModifierModel>();
-            tempElement.Modifiers.Add( CreateModifier( ElementModifiers.FOOD, atoms[ i ].Food ) );
-            tempElement.Modifiers.Add( CreateModifier( ElementModifiers.SCIENCE, atoms[ i ].Science ) );
-            tempElement.Modifiers.Add( CreateModifier( ElementModifiers.WORDS, atoms[ i ].Words ) );
-            tempElement.Modifiers.Add( CreateModifier( ElementModifiers.TEMPERATURE, atoms[ i ].Temperature ) );
-            tempElement.Modifiers.Add( CreateModifier( ElementModifiers.PRESSURE, atoms[ i ].Pressure ) );
-            tempElement.Modifiers.Add( CreateModifier( ElementModifiers.GRAVITY, atoms[ i ].Gravity ) );
-            tempElement.Modifiers.Add( CreateModifier( ElementModifiers.RADIATION, atoms[ i ].Radiation ) );
+            //tempElement.Modifiers = new List<ElementModifierModel>();
+            tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Food, atoms[ i ].Food ) );
+            tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Science, atoms[ i ].Science ) );
+            tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Words, atoms[ i ].Words ) );
+            tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Temperature, atoms[ i ].Temperature ) );
+            tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Pressure, atoms[ i ].Pressure ) );
+            tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Gravity, atoms[ i ].Gravity ) );
+            tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Radiation, atoms[ i ].Radiation ) );
 
             elements.Add( tempElement );
         }
@@ -47,7 +47,7 @@ public class ElementConfigGenerator
         Save();
     }
 
-    internal ElementModifierModel CreateModifier( string Name, double Delta )
+    internal ElementModifierModel CreateModifier( ElementModifiers Name, double Delta )
     {
         ElementModifierModel tempModifier = new ElementModifierModel();
         tempModifier.Property = Name;

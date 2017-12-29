@@ -63,8 +63,8 @@ public class ElementModel
         set { _Modifiers = new ReactiveCollection<ElementModifierModel>( value ); }
     }
 
-    public ElementModifierModel Modifier( string Name )
+    public ElementModifierModel Modifier( ElementModifiers Name )
     {
-        return Modifiers[ ElementModifiers.IntMap[ Name ] ];
+        return _Modifiers[ (int)Name ];
     }
 }
