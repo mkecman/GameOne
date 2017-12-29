@@ -11,6 +11,6 @@ public class ElementModifier : MonoBehaviour
     internal void UpdateModel( ElementModifierModel model )
     {
         Property.text = model.Property.ToString();
-        Value.text = "+" + model.Delta;
+        Value.text = model.Delta.ToString();
     }
 }

@@ -8,13 +8,28 @@ public class PropertyView : MonoBehaviour
 {
     public Text Property;
     public Text Value;
+    public Text Delta;
 
     private IDisposable _subscriber;
+    private double _lastValue;
 
     public void SetModel( ElementModifiers property, ReactiveProperty<double> value )
     {
         Property.text = property.ToString();
-        value.Subscribe<double>( x => Value.text = x.ToString() ).AddTo(this);
+        _lastValue = value.Value;
+        value.Subscribe<double>( _value =>
+        {
+            Value.text = _value.ToString("F3");
+
+            double difference = _value - _lastValue;
+            string sign = "";
+            if( difference > 0 )
+                sign = "+";
+            
+            Delta.text = sign + difference.ToString( "F2" );
+            
+            _lastValue = _value;
+        } ).AddTo(this);
     }
 
     private void OnEnable()
