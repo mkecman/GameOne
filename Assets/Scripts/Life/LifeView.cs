@@ -10,7 +10,8 @@ public class LifeView : GameView
     public GameObject ElementPrefab;
     public PropertyView Population;
     public PropertyView Science;
-   
+    public PropertyView Words;
+
     void OnEnable()
     {
         GameModel.Bind<LifeModel>( onLifeModel );
@@ -23,6 +24,7 @@ public class LifeView : GameView
 
         Population.SetModel( ElementModifiers.Food, model._Population );
         Science.SetModel( ElementModifiers.Science, model._Science );
+        Words.SetModel( ElementModifiers.Words, model._Words );
 
         model._WorkingElements.ObserveAdd().Subscribe( x => AddWorkingElement( x.Value ) ).AddTo( disposables );
 
@@ -30,9 +32,6 @@ public class LifeView : GameView
         {
             AddWorkingElement( item.Value );
         }
-
-        //model._WorkingElements.Add( 2, new WorkedElementModel( 2, 3 ) );
-        //model._WorkingElements.Add( 3, new WorkedElementModel( 3, 5 ) );
     }
     
     private void AddWorkingElement( WorkedElementModel model )

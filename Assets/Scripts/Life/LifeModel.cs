@@ -46,6 +46,14 @@ public class LifeModel
         set { _Science.Value = value; }
     }
 
+    internal ReactiveProperty<double> _Words = new ReactiveProperty<double>();
+    public double Words
+    {
+        get { return _Words.Value; }
+        set { _Words.Value = value; }
+    }
+
+
     internal ReactiveProperty<int> _NextElement = new ReactiveProperty<int>();
     public int NextElement
     {

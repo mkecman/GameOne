@@ -7,8 +7,8 @@ public class Clock : MonoBehaviour
 {
     private UniRx.IObservable<long> _timer;
 
-    [SerializeField, RangeReactiveProperty( 1, 20 )]
-    private IntReactiveProperty _UpdatesPerSecond = new IntReactiveProperty();
+    [SerializeField, RangeReactiveProperty( 100, 1000 )]
+    private IntReactiveProperty _UpdatesPerSecond = new IntReactiveProperty(1000);
     private int _lastUpdatePerSecond; //HACK FOR A STUPID INSPECTOR BUG WHICH TRIGGERS VALUE CHANGE ON MOUSE DRAG!
 
     public ReactiveProperty<long> ElapsedUpdates = new ReactiveProperty<long>();
@@ -17,6 +17,7 @@ public class Clock : MonoBehaviour
     public void OnEnable()
     {
         GameModel.Register<Clock>( this );
+        _UpdatesPerSecond.Value = 1000;
         _UpdatesPerSecond.Where(x => x != _lastUpdatePerSecond ).Subscribe<int>( OnUpdatesPerSecondUpdate ).AddTo( this );
     }
 
@@ -34,7 +35,7 @@ public class Clock : MonoBehaviour
             _timer = null;
         }
         
-        _timer = Observable.Interval( TimeSpan.FromSeconds( 1 / _UpdatesPerSecond.Value ) );
+        _timer = Observable.Interval( TimeSpan.FromMilliseconds( _UpdatesPerSecond.Value ) );
         _timer.Subscribe( x => ElapsedUpdates.Value++ ).AddTo( disposables );
     }
 

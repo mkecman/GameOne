@@ -35,6 +35,11 @@ namespace UniRx
         [NonSerialized]
         bool isDisposed = false;
 
+        public void Subscribe( Func<object, object> p )
+        {
+            throw new NotImplementedException();
+        }
+
 #if !UniRxLibrary
         [SerializeField]
 #endif

@@ -388,6 +388,7 @@ MonoBehaviour:
     type: 2}
   Population: {fileID: 1459967489}
   Science: {fileID: 124531027}
+  Words: {fileID: 672150330}
 --- !u!1 &662024638
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,6 +622,12 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224703786608333738, guid: 0dbb7964ba870c746968f3db5beb239e,
     type: 2}
   m_PrefabInternal: {fileID: 672150328}
+--- !u!114 &672150330 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114503384467561762, guid: 0dbb7964ba870c746968f3db5beb239e,
+    type: 2}
+  m_PrefabInternal: {fileID: 672150328}
+  m_Script: {fileID: 11500000, guid: 20fcde67b10349040b42cd3122ea0dd5, type: 3}
 --- !u!1 &1127403224
 GameObject:
   m_ObjectHideFlags: 0

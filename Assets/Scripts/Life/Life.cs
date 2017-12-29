@@ -14,12 +14,12 @@ public class Life
 
     public Life()
     {
-        _updateValues = new double[ (int)ElementModifiers.Count ];
         _elements = Config.Get<ElementConfig>().Elements;
 
+        _updateValues = new double[ (int)ElementModifiers.Count ];
         _actions = new Action<double>[ (int)ElementModifiers.Count ]
         {
-            UpdatePopulation, UpdateScience, UpdateDummy, UpdateDummy, UpdateDummy, UpdateDummy, UpdateDummy
+            UpdatePopulation, UpdateScience, UpdateWords, UpdateDummy, UpdateDummy, UpdateDummy, UpdateDummy
         };
 
         GameMessage.Listen<WorkerMoveMessage>( OnWorkerMove );
@@ -67,6 +67,11 @@ public class Life
         {
             Debug.Log( "Not Moved!!!" );
         }
+    }
+
+    private void UpdateWords( double value )
+    {
+        _life.Words += value;
     }
 
     private void UpdateScience( double value )
@@ -132,7 +137,7 @@ public class Life
     
     private double GetTotalPopulationFoodConsumption()
     {
-        return ( _life.Science / 500 ) * Math.Floor( _life.Population );
+        return ( _life.Science / 1000 ) * Math.Floor( _life.Population );
     }
 
     private double GetTotalWorkersDelta( WorkedElementModel element, int index )
