@@ -29,7 +29,7 @@ public class Planet
         _planet.Life = _life.New();
     }
 
-    internal void UpdateStep( ulong steps )
+    internal void UpdateStep( int steps )
     {
         for( uint i = 0; i < steps; i++ )
         {

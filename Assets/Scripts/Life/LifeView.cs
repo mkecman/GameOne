@@ -22,9 +22,20 @@ public class LifeView : GameView
     {
         Debug.Log( "onLifeModel:" + model.Name );
 
-        Population.SetModel( ElementModifiers.Food, model._Population );
-        Science.SetModel( ElementModifiers.Science, model._Science );
-        Words.SetModel( ElementModifiers.Words, model._Words );
+        PropertyViewModel propertyModel = new PropertyViewModel();
+        propertyModel.showDelta = true;
+
+        propertyModel.property = ElementModifiers.Food;
+        propertyModel.value = model._Population;
+        Population.UpdateModel( propertyModel );
+
+        propertyModel.property = ElementModifiers.Science;
+        propertyModel.value = model._Science;
+        Science.UpdateModel( propertyModel );
+
+        propertyModel.property = ElementModifiers.Words;
+        propertyModel.value = model._Words;
+        Words.UpdateModel( propertyModel );
 
         model._WorkingElements.ObserveAdd().Subscribe( x => AddWorkingElement( x.Value ) ).AddTo( disposables );
 

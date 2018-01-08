@@ -44,11 +44,11 @@ public class Galaxy
     public void NewStar( int Type )
     {
         Star star = new Star();
-        _galaxy.Stars.Add( star.New( Type, _galaxy.CreatedStars ) );
+        _galaxy._Stars.Add( star.New( Type, _galaxy.CreatedStars ) );
         _stars.Add( star );
     }
     
-    internal void UpdateStep( ulong steps )
+    internal void UpdateStep( int steps )
     {
         for( int i = 0; i < _stars.Count; i++ )
         {

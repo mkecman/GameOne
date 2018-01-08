@@ -13,20 +13,30 @@ public class PropertyView : MonoBehaviour
     private IDisposable _subscriber;
     private double _lastValue;
 
-    public void SetModel( ElementModifiers property, ReactiveProperty<double> value )
+    public void UpdateModel( PropertyViewModel model )
     {
-        Property.text = property.ToString();
-        _lastValue = value.Value;
-        value.Subscribe<double>( _value =>
-        {
-            Value.text = _value.ToString("F3");
+        if( model.propertyLength > 0 )
+            Property.text = model.property.ToString().Substring(0,model.propertyLength);
+        else
+            Property.text = model.property.ToString();
 
-            double difference = _value - _lastValue;
-            string sign = "";
-            if( difference > 0 )
-                sign = "+";
+        _lastValue = model.value.Value;
+        Value.text = model.value.Value.ToString( model.valueFormat );
+        Delta.text = "";
+                
+        model.value.Subscribe<double>( _value =>
+        {
+            Value.text = _value.ToString( model.valueFormat);
+
+            if( model.showDelta )
+            {
+                double difference = _value - _lastValue;
+                string sign = "";
+                if( difference > 0 )
+                    sign = "+";
             
-            Delta.text = sign + difference.ToString( "F2" );
+                Delta.text = sign + difference.ToString( model.deltaFormat );
+            }
             
             _lastValue = _value;
         } ).AddTo(this);
@@ -34,11 +44,11 @@ public class PropertyView : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log( "enabled" );
+        //Debug.Log( "enabled" );
     }
 
     private void OnDisable()
     {
-        Debug.Log( "disabled" );
+        //Debug.Log( "disabled" );
     }
 }

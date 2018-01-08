@@ -77,7 +77,12 @@ public class LifeWorkingElement : GameView
         if( model.Delta != 0 )
         {
             GameObject instance = Instantiate( ModifierPrefab, container );
-            instance.GetComponent<ElementModifier>().UpdateModel( model );
+            PropertyViewModel propertyModel = new PropertyViewModel();
+            propertyModel.property = model.Property;
+            propertyModel.value = model._Delta;
+            propertyModel.propertyLength = 4;
+            propertyModel.valueFormat = "F3";
+            instance.GetComponent<PropertyView>().UpdateModel( propertyModel );
         }
     }
 

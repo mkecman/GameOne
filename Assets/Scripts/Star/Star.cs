@@ -52,7 +52,7 @@ public class Star
         _colonizedPlanets.Add( _planets[ planetIndex ] );
     }
 
-    public void UpdateStep( ulong steps )
+    public void UpdateStep( int steps )
     {
         _star.Lifetime -= steps;
 
@@ -115,7 +115,7 @@ public class Star
             tempPlanet.Temperature = Math.Pow( ( TemperatureFromStar * ( 1 + ( ( 3 * greenhouse * 0.5841 ) / 4 ) ) / .9 ), 0.25 );
             tempPlanet.Temperature -= 273; //convert to Celsius
 
-            _star.Planets.Add(tempPlanet);
+            _star._Planets.Add(tempPlanet);
 
             Planet planet = new Planet();
             planet.Load( tempPlanet );

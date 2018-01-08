@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 
+[ExecuteInEditMode]
 public class GameMessage : MonoBehaviour
 {
     private static GameMessage _instance;

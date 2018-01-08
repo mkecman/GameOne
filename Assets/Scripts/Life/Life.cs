@@ -57,7 +57,7 @@ public class Life
 
     public void MoveWorker( int from, int to )
     {
-        if( _life._WorkingElements[ from ].Workers > 0 )
+        if( _life._WorkingElements[ from ].Workers > 0 && _life._WorkingElements[ to ].Workers < 10 )
         {
             _life._WorkingElements[ from ].Workers--;
             _life._WorkingElements[ to ].Workers++;
@@ -76,32 +76,40 @@ public class Life
 
     private void UpdateScience( double value )
     {
-        double newScience = _life.Science + value;
+        if( _life.NextElement >= _elements.Count )
+            return;
+
+        double newScience = _life.Science + ( value );
         double elementWeight = _elements[ _life.NextElement ].Weight;
         if( newScience > elementWeight )
         {
             _life._WorkingElements.Add( _life.NextElement, new WorkedElementModel( _life.NextElement, 0 ) );
             _life.NextElement++;
         }
+        
         _life.Science = newScience;
     }
 
     private void UpdatePopulation( double value )
     {
         double newPopulation = _life.Population + value - GetTotalPopulationFoodConsumption();
+        int difference = (int)( Math.Floor( newPopulation ) - Math.Floor( _life.Population ) );
 
-        if( Math.Floor( _life.Population ) < Math.Floor( newPopulation ) )
-            _life._WorkingElements.First().Value.Workers++;
-        
-        if( Math.Floor( _life.Population ) > newPopulation )
+        for( int i = 1; i <= _life._WorkingElements.Count; i++ )
         {
-            for( int i = _life.WorkingElements.Count - 1; i >= 0; i-- )
+            while( difference > 0 && _life._WorkingElements[ i ].Workers < 10 )
             {
-                if( _life.WorkingElements[ i ].Workers > 0 )
-                {
-                    _life.WorkingElements[ i ].Workers--;
-                    break;
-                }
+                _life._WorkingElements[ i ].Workers++;
+                difference--;
+            }
+        }
+
+        for( int i = _life._WorkingElements.Count; i > 0; i-- )
+        {
+            while( difference < 0 && _life._WorkingElements[ i ].Workers > 0 )
+            {
+                _life._WorkingElements[ i ].Workers--;
+                difference++;
             }
         }
 
@@ -132,12 +140,12 @@ public class Life
             _actions[ i ]( _updateValues[ i ] );
         }
         
-        CSV.Add( _life.Population + "," + _life.Science );
+        CSV.Add( _life.Population + "," + _life.Science + "," + _life.Words );
     }
     
     private double GetTotalPopulationFoodConsumption()
     {
-        return ( _life.Science / 1000 ) * Math.Floor( _life.Population );
+        return ( _life.Science * 0.001 ) * Math.Floor( _life.Population );
     }
 
     private double GetTotalWorkersDelta( WorkedElementModel element, int index )

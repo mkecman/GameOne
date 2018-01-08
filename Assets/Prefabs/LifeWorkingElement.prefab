@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.853}
+  m_Color: {r: 0.46323532, g: 0.46323532, b: 0.46323532, a: 0.853}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -283,7 +283,7 @@ MonoBehaviour:
   Name: {fileID: 114804802685400290}
   ModifiersFirstGroup: {fileID: 224519072677893126}
   ModifiersSecondGroup: {fileID: 224859576125084270}
-  ModifierPrefab: {fileID: 1620351415349940, guid: db5fcec592d59de4380025605dcfac5c,
+  ModifierPrefab: {fileID: 1099747285453238, guid: 0dbb7964ba870c746968f3db5beb239e,
     type: 2}
   WorkersPanel: {fileID: 224987867111032184}
   WorkersPanelTarget: {fileID: 114674666945087724}

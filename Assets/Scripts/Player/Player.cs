@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     private List<Galaxy> _galaxies;
     private PlayerModel _player;
     private Galaxy _selectedGalaxy;
+
+    public PlayerModel PlayerModel { get { return _player; } }
     
     public void NewPlayer()
     {
@@ -22,7 +24,7 @@ public class Player : MonoBehaviour
     public void NewGalaxy()
     {
         Galaxy galaxy = new Galaxy();
-        _player.Galaxies.Add( galaxy.New( _player.CreatedGalaxies++ ) );
+        _player._Galaxies.Add( galaxy.New( _player.CreatedGalaxies++ ) );
         _galaxies.Add( galaxy );
 
         //TODO: Remove this
@@ -41,7 +43,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    internal void UpdateStep( ulong steps )
+    internal void UpdateStep( int steps )
     {
         for( int i = 0; i < _galaxies.Count; i++ )
         {

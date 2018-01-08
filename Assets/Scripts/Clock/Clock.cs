@@ -7,7 +7,7 @@ public class Clock : MonoBehaviour
 {
     private UniRx.IObservable<long> _timer;
 
-    [SerializeField, RangeReactiveProperty( 100, 1000 )]
+    [SerializeField, RangeReactiveProperty( 10, 1000 )]
     private IntReactiveProperty _UpdatesPerSecond = new IntReactiveProperty(1000);
     private int _lastUpdatePerSecond; //HACK FOR A STUPID INSPECTOR BUG WHICH TRIGGERS VALUE CHANGE ON MOUSE DRAG!
 
