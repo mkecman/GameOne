@@ -3,21 +3,21 @@ using System.Collections;
 using UnityEditor;
 using UnityEditorInternal;
 
-[CustomEditor( typeof( ObjectComponent ) )]
+[CustomEditor( typeof( EObject ) )]
 public class EObjectEditor : Editor
 {
     private ReorderableList list;
     
     public override void OnInspectorGUI()
     {
-        ObjectComponent oc = (ObjectComponent)target;
+        EObject oc = (EObject)target;
 
         serializedObject.Update();
 
 
-        EditorList.Show( serializedObject.FindProperty( "_InputConnections" ), EditorListOption.Buttons | EditorListOption.ListLabel );
-        EditorGUILayout.PropertyField( serializedObject.FindProperty( "_Value" ) );
-        //DrawDefaultInspector();
+        //EEditorUtility.Show( serializedObject.FindProperty( "_InputConnections" ), EEditorUtilityOptions.Buttons | EEditorUtilityOptions.ListLabel );
+        //EditorGUILayout.PropertyField( serializedObject.FindProperty( "_Value" ) );
+        DrawDefaultInspector();
 
         serializedObject.ApplyModifiedProperties();
 
@@ -34,6 +34,10 @@ public class EConnectionsEditor : Editor
         if( GUILayout.Button( "Refresh" ) )
         {
             oc.Refresh();
+        }
+        if( GUILayout.Button( "Redraw" ) )
+        {
+            oc.Redraw();
         }
         DrawDefaultInspector();
         serializedObject.ApplyModifiedProperties();

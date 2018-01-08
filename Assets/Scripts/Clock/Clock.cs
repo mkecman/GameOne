@@ -5,7 +5,7 @@ using System;
 
 public class Clock : MonoBehaviour
 {
-    private UniRx.IObservable<long> _timer;
+    private IObservable<long> _timer;
 
     [SerializeField, RangeReactiveProperty( 10, 1000 )]
     private IntReactiveProperty _UpdatesPerSecond = new IntReactiveProperty(1000);

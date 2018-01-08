@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 
 [CustomPropertyDrawer( typeof( EConnection ) )]
-public class ConnectionDrawer : PropertyDrawer
+public class EConnectionDrawer : PropertyDrawer
 {
 
     public override float GetPropertyHeight( SerializedProperty property, GUIContent label )
@@ -39,8 +39,8 @@ public class ConnectionDrawer : PropertyDrawer
         if( EditorGUI.EndChangeCheck() )
         {
             property.serializedObject.ApplyModifiedProperties();
-            ObjectComponent oc = property.serializedObject.targetObject as ObjectComponent;
-            EConnection connection = EditorList.GetParent( property ) as EConnection;
+            EObject oc = property.serializedObject.targetObject as EObject;
+            EConnection connection = EEditorUtility.GetParent( property ) as EConnection;
             oc.SetConnectionTarget( connection.Index );
         }
         

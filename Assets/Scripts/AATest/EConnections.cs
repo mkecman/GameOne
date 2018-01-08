@@ -2,34 +2,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEditor;
 
 [ExecuteInEditMode]
 public class EConnections : MonoBehaviour
 {
-    public EContainer _eContainer;
+    public GameObject _eContainer;
     public GameObject connectionPrefab;
+    private int _counter = 0;
 
     void Start()
     {
         Debug.Log( "EConnections.Start" );
         GameMessage.Listen<EMessage>( OnEMessage );
-        //Refresh();
+        Redraw();
+    }
+    
+    public void Refresh()
+    {
+        foreach( Transform child in gameObject.transform )
+        {
+            EConnectionComponent cc = child.gameObject.GetComponent<EConnectionComponent>();
+            cc.UpdateConnectionListeners();
+        }
+    }
+
+    public void Redraw()
+    {
+        RemoveConnections();
+        AddConnections();
     }
 
     private void OnEMessage( EMessage value )
     {
-        Refresh();
-    }
-
-    void OnDestroy()
-    {
-        Debug.Log( "EConnections.OnDestroy" );
-        //RemoveConnections();
+        Redraw();
     }
 
     private void RemoveConnections()
     {
-        Debug.Log( "EConnections.RemoveConnections: " + gameObject.transform.childCount );
         GameObject go;
         while( gameObject.transform.childCount != 0 )
         {
@@ -41,10 +51,9 @@ public class EConnections : MonoBehaviour
 
     private void AddConnections()
     {
-        Debug.Log( "EConnections.AddConnections: " );
         foreach( Transform child in _eContainer.transform )
         {
-            ObjectComponent oc = child.gameObject.GetComponent<ObjectComponent>();
+            EObject oc = child.gameObject.GetComponent<EObject>();
             for( int i = 0; i < oc._InputConnections.Count; i++ )
             {
                 AddConnection( oc._InputConnections[ i ] );
@@ -52,16 +61,10 @@ public class EConnections : MonoBehaviour
         }
     }
 
-    public void AddConnection( EConnection connection )
+    private void AddConnection( EConnection connection )
     {
         GameObject connectionInstance = Instantiate( connectionPrefab, gameObject.transform );
-        ConnectionComponent connectionComponent = connectionInstance.GetComponent<ConnectionComponent>();
-        connectionComponent.ConnectionInstance = connection;
-    }
-
-    public void Refresh()
-    {
-        RemoveConnections();
-        AddConnections();
+        EConnectionComponent connectionComponent = connectionInstance.GetComponent<EConnectionComponent>();
+        connectionComponent.Connection = connection;
     }
 }

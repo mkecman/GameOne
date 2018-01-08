@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Linq;
 
 [Flags]
-public enum EditorListOption {
+public enum EEditorUtilityOptions {
 	None = 0,
 	ListSize = 1,
 	ListLabel = 2,
@@ -17,7 +17,7 @@ public enum EditorListOption {
 	All = Default | Buttons
 }
 
-public static class EditorList {
+public static class EEditorUtility {
 
 	private static GUIContent
 		moveButtonContent = new GUIContent("\u21b4", "move down"),
@@ -27,15 +27,15 @@ public static class EditorList {
 
 	private static GUILayoutOption miniButtonWidth = GUILayout.Width(20f);
 
-	public static void Show (SerializedProperty list, EditorListOption options = EditorListOption.Default) {
+	public static void Show (SerializedProperty list, EEditorUtilityOptions options = EEditorUtilityOptions.Default) {
 		if (!list.isArray) {
 			EditorGUILayout.HelpBox(list.name + " is neither an array nor a list!", MessageType.Error);
 			return;
 		}
 
 		bool
-			showListLabel = (options & EditorListOption.ListLabel) != 0,
-			showListSize = (options & EditorListOption.ListSize) != 0;
+			showListLabel = (options & EEditorUtilityOptions.ListLabel) != 0,
+			showListSize = (options & EEditorUtilityOptions.ListSize) != 0;
 
 		if (showListLabel) {
 			EditorGUILayout.PropertyField(list);
@@ -59,10 +59,10 @@ public static class EditorList {
 		}
 	}
 
-	private static void ShowElements (SerializedProperty list, EditorListOption options) {
+	private static void ShowElements (SerializedProperty list, EEditorUtilityOptions options) {
 		bool
-			showElementLabels = (options & EditorListOption.ElementLabels) != 0,
-			showButtons = (options & EditorListOption.Buttons) != 0;
+			showElementLabels = (options & EEditorUtilityOptions.ElementLabels) != 0,
+			showButtons = (options & EEditorUtilityOptions.Buttons) != 0;
         
         for (int i = 0; i < list.arraySize; i++) {
 			if (showButtons) {
@@ -83,14 +83,14 @@ public static class EditorList {
         {
             list.arraySize += 1;
             list.serializedObject.ApplyModifiedProperties();
-            ObjectComponent objectComponent = list.serializedObject.targetObject as ObjectComponent;
+            EObject objectComponent = list.serializedObject.targetObject as EObject;
             objectComponent.AddConnection( 0 );
         }
 	}
 
 	private static void ShowButtons (SerializedProperty list, int index)
     {
-        ObjectComponent objectComponent = list.serializedObject.targetObject as ObjectComponent;
+        EObject objectComponent = list.serializedObject.targetObject as EObject;
 
         if (GUILayout.Button(moveButtonContent, EditorStyles.miniButtonLeft, miniButtonWidth))
         {

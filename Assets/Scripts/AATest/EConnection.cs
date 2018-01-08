@@ -7,8 +7,10 @@ public class EConnection
 {
     public int Index = 0;
     public StringReactiveProperty Formula = new StringReactiveProperty();
-    public StringReactiveProperty SourceName = new StringReactiveProperty();
-    public StringReactiveProperty TargetName = new StringReactiveProperty();
     public DoubleReactiveProperty Delta = new DoubleReactiveProperty();
-    public ObjectComponent Target;
+
+    public StringReactiveProperty SourceName = new StringReactiveProperty();
+    public EObject Source;
+    public StringReactiveProperty TargetName = new StringReactiveProperty();
+    public EObject Target;
 }

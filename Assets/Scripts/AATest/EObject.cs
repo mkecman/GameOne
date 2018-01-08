@@ -1,26 +1,25 @@
-﻿using UnityEngine;
-using System;
-using UniRx;
-using UnityEngine.UI;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Collections;
+using UniRx;
+using UnityEngine;
+using UnityEngine.UI;
 
 [Serializable]
-public class ObjectComponent : MonoBehaviour
+public class EObject : MonoBehaviour
 {
+    public Text NameText;
+    public Text ValueText;
+    public Text DeltaText;
+
     private EMessage message = new EMessage();
+    private Color32 greenColor = new Color( 17, 139, 48, 255 );
+    private Color32 redColor = new Color( 139, 17, 40, 255 );
 
     private void Start()
     {
         Debug.Log( "ObjectComponent.Start" );
-        Observable.Interval( TimeSpan.FromSeconds( 2 ) ).Subscribe( x => SingleUpdate() );
-        //_InputConnections.ObserveEveryValueChanged( _ => _.Count ).Subscribe( _ => { UpdateConnections(); } ).AddTo( this );
-    }
-
-    private void OnValidate()
-    {
-        Debug.Log( "OnValidate" );
+        Observable.Interval( TimeSpan.FromSeconds( 1 ) ).Subscribe( x => SingleUpdate() );
     }
 
     public void AddConnection( int index )
@@ -35,16 +34,14 @@ public class ObjectComponent : MonoBehaviour
     public void RemoveConnection( int index )
     {
         GameMessage.Send<EMessage>( message );
-        //gameObject.GetComponent<Connections>().RemoveConnection( index );
     }
 
     public void SetConnectionTarget( int index )
     {
         _InputConnections[ index ].TargetName.Value = _InputConnections[ index ].Target.name;
         GameMessage.Send<EMessage>( message );
-        //gameObject.GetComponent<Connections>().UpdateConnection( index, _InputConnections[ index ] );
     }
-    
+
     private void SingleUpdate()
     {
         Delta = 0;
@@ -54,8 +51,19 @@ public class ObjectComponent : MonoBehaviour
         }
         Value += Delta;
         PastValues.Add( Value );
+
+        ValueText.text = Value.ToString();
+        string sign = "+";
+        Color color = greenColor;
+        if( Delta < 0 )
+        {
+            sign = "-";
+            color = redColor;
+        }
+        DeltaText.text = sign + Delta;
+        DeltaText.color = color;
     }
-    
+
     /**
      * 
      * PROPERTIES
@@ -96,7 +104,7 @@ public class ObjectComponent : MonoBehaviour
         get { return _StopValue.Value; }
         set { _StopValue.Value = value; }
     }
-    
+
     [SerializeField]
     internal DoubleReactiveProperty _Value = new DoubleReactiveProperty();
     public Double Value
@@ -123,8 +131,8 @@ public class ObjectComponent : MonoBehaviour
 
     [SerializeField]
     public List<EConnection> _InputConnections = new List<EConnection>();
-    
+
     [SerializeField]
     internal List<EConnection> _OutputConnections = new List<EConnection>();
-    
+
 }
