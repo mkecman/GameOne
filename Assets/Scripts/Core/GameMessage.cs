@@ -57,7 +57,7 @@ public class GameMessage : MonoBehaviour
     }
 
     // Use this for initialization
-    void Awake()
+    void Start()
     {
         if( _instance != null && _instance != this )
         {
@@ -69,6 +69,15 @@ public class GameMessage : MonoBehaviour
         }
 
         _instance.Init();
+    }
+
+    void OnEnable()
+    {
+        if( _instance == null )
+        {
+            _instance = this;
+            _instance.Init();
+        }
     }
 
     private void Init()

@@ -1,16 +1,18 @@
 ﻿using System;
 using UniRx;
-using UnityEngine;
 
 [Serializable]
 public class EConnection
 {
     public int Index = 0;
-    public StringReactiveProperty Formula = new StringReactiveProperty();
-    public DoubleReactiveProperty Delta = new DoubleReactiveProperty();
 
-    public StringReactiveProperty SourceName = new StringReactiveProperty();
     public EObject Source;
-    public StringReactiveProperty TargetName = new StringReactiveProperty();
+    public DoubleReactiveProperty SourceDelta = new DoubleReactiveProperty( 0 );
+    public StringReactiveProperty SourceName = new StringReactiveProperty();
+    public StringReactiveProperty SourceFormula = new StringReactiveProperty( "1" );
+
     public EObject Target;
+    public DoubleReactiveProperty TargetDelta = new DoubleReactiveProperty( 0 );
+    public StringReactiveProperty TargetName = new StringReactiveProperty();
+    public StringReactiveProperty TargetFormula = new StringReactiveProperty( "1" );
 }

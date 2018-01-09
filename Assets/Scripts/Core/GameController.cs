@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour
 
     private AI ai = new AI();
 
+    private ClockTickMessage clockTickMessage = new ClockTickMessage();
+
     void Start()
     {
         CSV.Add( "Population,Science,Words" );
@@ -40,11 +42,15 @@ public class GameController : MonoBehaviour
         DateTime start = DateTime.Now;
         //Debug.Log( "start at: " + start.ToString() );
 
+        GameMessage.Send<ClockTickMessage>( clockTickMessage );
+
+        /*
         for( int i = 0; i < steps; i++ )
         {
             Player.UpdateStep( 1 );
             ai.MakeMove();
         }
+        */
         DateTime end = DateTime.Now;
         //Debug.Log( "end in: " + ( end - start ).ToString() );
     }

@@ -15,9 +15,12 @@ public class EObjectEditor : Editor
         serializedObject.Update();
 
 
-        //EEditorUtility.Show( serializedObject.FindProperty( "_InputConnections" ), EEditorUtilityOptions.Buttons | EEditorUtilityOptions.ListLabel );
-        //EditorGUILayout.PropertyField( serializedObject.FindProperty( "_Value" ) );
-        DrawDefaultInspector();
+        EditorGUILayout.PropertyField( serializedObject.FindProperty( "_Name" ) );
+        EditorGUILayout.PropertyField( serializedObject.FindProperty( "_Value" ) );
+        EditorGUILayout.PropertyField( serializedObject.FindProperty( "_Delta" ) );
+        EEditorUtility.Show( serializedObject.FindProperty( "_TargetConnections" ), EEditorUtilityOptions.Buttons | EEditorUtilityOptions.ListLabel );
+        EEditorUtility.Show( serializedObject.FindProperty( "_SourceConnections" ), EEditorUtilityOptions.ListLabel );
+        //DrawDefaultInspector();
 
         serializedObject.ApplyModifiedProperties();
 

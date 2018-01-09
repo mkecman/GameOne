@@ -2,7 +2,7 @@
 using UniRx;
 using UnityEngine;
 
-public class EMessage
+public class EMessageRedrawAllConnections
 {
     
 }

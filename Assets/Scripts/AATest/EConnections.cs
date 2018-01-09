@@ -9,12 +9,11 @@ public class EConnections : MonoBehaviour
 {
     public GameObject _eContainer;
     public GameObject connectionPrefab;
-    private int _counter = 0;
 
     void Start()
     {
         Debug.Log( "EConnections.Start" );
-        GameMessage.Listen<EMessage>( OnEMessage );
+        GameMessage.Listen<EMessageRedrawAllConnections>( OnEMessage );
         Redraw();
     }
     
@@ -33,7 +32,7 @@ public class EConnections : MonoBehaviour
         AddConnections();
     }
 
-    private void OnEMessage( EMessage value )
+    private void OnEMessage( EMessageRedrawAllConnections value )
     {
         Redraw();
     }
@@ -54,9 +53,9 @@ public class EConnections : MonoBehaviour
         foreach( Transform child in _eContainer.transform )
         {
             EObject oc = child.gameObject.GetComponent<EObject>();
-            for( int i = 0; i < oc._InputConnections.Count; i++ )
+            for( int i = 0; i < oc._TargetConnections.Count; i++ )
             {
-                AddConnection( oc._InputConnections[ i ] );
+                AddConnection( oc._TargetConnections[ i ] );
             }
         }
     }

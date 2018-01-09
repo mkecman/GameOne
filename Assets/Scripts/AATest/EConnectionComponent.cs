@@ -1,28 +1,51 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Data;
 using UniRx;
 using UnityEngine.UI;
 using UnityEditor;
+using System.Text.RegularExpressions;
+using System.Linq;
 
 [ExecuteInEditMode]
 public class EConnectionComponent : GameView
 {
     public EConnection Connection;
+    public RawImage rawImage;
+    public Text SourceDeltaText;
+    public Text TargetDeltaText;
 
     private GameObject _source;
     private GameObject _target;
     private RectTransform _rectTransform;
+    private double _newSourceValue;
+    private double _newTargetValue;
 
-    
+
     void Start()
     {
+        GameMessage.Listen<ClockTickMessage>( Process );
         UpdateConnectionListeners();
     }
 
     private void Update()
     {
         UpdatePosition();
+    }
+
+    private void Process( ClockTickMessage message )
+    {
+        _newSourceValue = getFormulaValue( Connection.SourceFormula.Value );
+        Connection.SourceDelta.Value = _newSourceValue - Connection.Source.Value;
+        _newTargetValue = getFormulaValue( Connection.TargetFormula.Value );
+        Connection.TargetDelta.Value = _newTargetValue - Connection.Target.Value;
+
+        Connection.Source.Delta = _newSourceValue - Connection.Source.Value;
+        Connection.Target.Delta = _newTargetValue - Connection.Target.Value;
+
+        Connection.Source.Value = _newSourceValue;
+        Connection.Target.Value = _newTargetValue;
     }
 
     public void UpdateConnectionListeners()
@@ -40,34 +63,53 @@ public class EConnectionComponent : GameView
             Connection.Source = _source.GetComponent<EObject>();
             Connection.Target = _target.GetComponent<EObject>();
 
-            Connection.Target._Value.Subscribe( _ => OnDataChanged() ).AddTo( disposables );
-            Connection.Formula.Subscribe( _ => OnDataChanged() ).AddTo( disposables );
-            Connection.Delta.Subscribe( _ => OnDeltaUpdate() ).AddTo( disposables );
+            //Connection.Target._Value.Throttle( TimeSpan.FromSeconds( 2 ) ).Subscribe( _ => OnDataChanged() ).AddTo( disposables );
+            Connection.SourceFormula.Subscribe( _ => Connection.SourceDelta.Value = getFormulaValue( _ ) - Connection.Source.Value ).AddTo( disposables );
+            Connection.TargetFormula.Subscribe( _ => Connection.TargetDelta.Value = getFormulaValue( _ ) - Connection.Target.Value ).AddTo( disposables );
+
+            Connection.SourceDelta.Subscribe( _ => OnDeltaUpdate() ).AddTo( disposables );
+            Connection.TargetDelta.Subscribe( _ => OnDeltaUpdate() ).AddTo( disposables );
         }
     }
     
-    private void OnDataChanged()
+    private double getFormulaValue( string formula )
     {
-        int formulaValue = 1;
+        double formulaValue = 0;
         
         try
         {
-            formulaValue = Int32.Parse( Connection.Formula.Value );
-        }
-        catch( FormatException e )
-        {
+            formula = formula.Replace( "SourceDelta", Connection.SourceDelta.Value.ToString() );
+            formula = formula.Replace( "TargetDelta", Connection.TargetDelta.Value.ToString() );
 
+            var distinct = Regex.Matches( formula, "[^0123456789.()*/%+-]+" ).OfType<Match>().Select( _ => _.Value).Distinct();
+            GameObject go;
+            foreach( string item in distinct )
+            {
+                go = GameObject.Find( item );
+                if( go == null )
+                    throw new Exception( "Can't find EObject: " + item );
+
+                formula = formula.Replace( item, go.GetComponent<EObject>().Value.ToString() );
+            }
+        formulaValue = Convert.ToDouble( new DataTable().Compute( formula, null ) );
         }
-        
-        Connection.Delta.Value = Connection.Target.Value * formulaValue;
+        catch( Exception e )
+        {
+            Debug.LogWarning( e.Message );
+        }
+
+        return formulaValue;
     }
     
     private void OnDeltaUpdate()
     {
-       if( Connection.Delta.Value > 0 )
-            gameObject.GetComponent<RawImage>().color = new Color32( 141, 255, 156, 255 );
+       if( Connection.TargetDelta.Value > 0 )
+            rawImage.color = new Color32( 141, 255, 156, 255 );
        else
-            gameObject.GetComponent<RawImage>().color = new Color32( 255, 141, 141, 255 );
+            rawImage.color = new Color32( 255, 141, 141, 255 );
+
+        SourceDeltaText.text = Connection.SourceDelta.Value.ToString( "F2" );
+        TargetDeltaText.text = Connection.TargetDelta.Value.ToString( "F2" );
     }
 
     private void Awake()
@@ -77,11 +119,16 @@ public class EConnectionComponent : GameView
     
     private void UpdatePosition( float lineWidth = 20f )
     {
-        Vector3 differenceVector = _target.transform.position - _source.transform.position;
-        _rectTransform.sizeDelta = new Vector2( lineWidth, differenceVector.magnitude );
-        float angle = Mathf.Atan2( differenceVector.x, differenceVector.y ) * Mathf.Rad2Deg;
-        _rectTransform.rotation = Quaternion.Euler( 0, 0, -angle );
-        _rectTransform.position = _source.transform.position;
+        if( _source != null && _target != null )
+        {
+            Vector3 differenceVector = _source.transform.position - _target.transform.position;
+            _rectTransform.sizeDelta = new Vector2( lineWidth, differenceVector.magnitude );
+            float angle = Mathf.Atan2( differenceVector.x, differenceVector.y ) * Mathf.Rad2Deg;
+            _rectTransform.rotation = Quaternion.Euler( 0, 0, -angle );
+            _rectTransform.position = _target.transform.position;
+            SourceDeltaText.transform.rotation = Quaternion.Euler( 0, 0, angle / 90 );
+            TargetDeltaText.transform.rotation = Quaternion.Euler( 0, 0, angle / 90 );
+        }
     }
 
     private void OnDestroy()
@@ -95,7 +142,6 @@ public class EConnectionComponent : GameView
             _target = null;
             _rectTransform = null;
         }
-        
     }
 
 }

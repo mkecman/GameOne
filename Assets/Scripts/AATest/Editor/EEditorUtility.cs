@@ -88,7 +88,7 @@ public static class EEditorUtility {
         }
 	}
 
-	private static void ShowButtons (SerializedProperty list, int index)
+	private static void ShowButtons (SerializedProperty list, int index )
     {
         EObject objectComponent = list.serializedObject.targetObject as EObject;
 
@@ -112,7 +112,7 @@ public static class EEditorUtility {
 				list.DeleteArrayElementAtIndex(index);
 			}
             list.serializedObject.ApplyModifiedProperties();
-            objectComponent.RemoveConnection( index );
+            objectComponent.RemoveConnection();
         }
 	}
     

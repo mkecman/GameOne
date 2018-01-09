@@ -5,65 +5,67 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
-[Serializable]
+[Serializable, ExecuteInEditMode]
 public class EObject : MonoBehaviour
 {
     public Text NameText;
     public Text ValueText;
     public Text DeltaText;
 
-    private EMessage message = new EMessage();
-    private Color32 greenColor = new Color( 17, 139, 48, 255 );
-    private Color32 redColor = new Color( 139, 17, 40, 255 );
+    private EMessageRedrawAllConnections message = new EMessageRedrawAllConnections();
+    private Color32 greenColor = new Color32( 17, 139, 48, 255 );
+    private Color32 redColor = new Color32( 139, 17, 40, 255 );
 
     private void Start()
     {
         Debug.Log( "ObjectComponent.Start" );
-        Observable.Interval( TimeSpan.FromSeconds( 1 ) ).Subscribe( x => SingleUpdate() );
+        _Name.Subscribe( _ => { NameText.text = _; gameObject.name = _; } );
+        _Value.Subscribe( _ => ValueText.text = _.ToString( "F2" ) );
+        _Delta.Subscribe( _ => UpdateDeltaText() );
     }
 
     public void AddConnection( int index )
     {
-        EConnection connection = _InputConnections[ index ];
+        EConnection connection = _TargetConnections[ index ];
         connection.Index = index;
-        connection.Formula.Value = "1";
+        connection.SourceFormula.Value = gameObject.name + "-1";
         connection.SourceName.Value = gameObject.name;
-        GameMessage.Send<EMessage>( message );
+        connection.Source = this;
+        GameMessage.Send<EMessageRedrawAllConnections>( message );
+    }
+    
+    public void RemoveConnection()
+    {
+        GameMessage.Send<EMessageRedrawAllConnections>( message );
     }
 
-    public void RemoveConnection( int index )
+    public void RemoveConnectionTarget( EConnection connection  )
     {
-        GameMessage.Send<EMessage>( message );
+        if( connection.Target != null && connection.Target._SourceConnections.Contains( connection ) )
+            connection.Target._SourceConnections.Remove( connection );
     }
 
-    public void SetConnectionTarget( int index )
+    public void SetConnectionTarget( EConnection connection )
     {
-        _InputConnections[ index ].TargetName.Value = _InputConnections[ index ].Target.name;
-        GameMessage.Send<EMessage>( message );
+        connection.TargetName.Value = connection.Target.name;
+        connection.TargetFormula.Value = connection.Target.name + "+1";
+        connection.Target._SourceConnections.Add( connection );
+        GameMessage.Send<EMessageRedrawAllConnections>( message );
     }
-
-    private void SingleUpdate()
+    
+    private void UpdateDeltaText()
     {
-        Delta = 0;
-        for( int i = 0; i < _InputConnections.Count; i++ )
-        {
-            Delta += _InputConnections[ i ].Delta.Value;
-        }
-        Value += Delta;
-        PastValues.Add( Value );
-
-        ValueText.text = Value.ToString();
         string sign = "+";
         Color color = greenColor;
         if( Delta < 0 )
         {
-            sign = "-";
+            sign = "";
             color = redColor;
         }
-        DeltaText.text = sign + Delta;
+        DeltaText.text = sign + Delta.ToString( "F2" );
         DeltaText.color = color;
     }
-
+    
     /**
      * 
      * PROPERTIES
@@ -130,9 +132,9 @@ public class EObject : MonoBehaviour
     }
 
     [SerializeField]
-    public List<EConnection> _InputConnections = new List<EConnection>();
+    public List<EConnection> _SourceConnections = new List<EConnection>();
 
     [SerializeField]
-    internal List<EConnection> _OutputConnections = new List<EConnection>();
+    public List<EConnection> _TargetConnections = new List<EConnection>();
 
 }
