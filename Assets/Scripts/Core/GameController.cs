@@ -42,15 +42,13 @@ public class GameController : MonoBehaviour
         DateTime start = DateTime.Now;
         //Debug.Log( "start at: " + start.ToString() );
 
-        GameMessage.Send<ClockTickMessage>( clockTickMessage );
-
-        /*
         for( int i = 0; i < steps; i++ )
         {
-            Player.UpdateStep( 1 );
-            ai.MakeMove();
+            //Player.UpdateStep( 1 );
+            //ai.MakeMove();
+            GameMessage.Send<ClockTickMessage>( clockTickMessage );
         }
-        */
+        
         DateTime end = DateTime.Now;
         //Debug.Log( "end in: " + ( end - start ).ToString() );
     }

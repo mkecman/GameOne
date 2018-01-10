@@ -125,12 +125,7 @@ public class EObject : MonoBehaviour
 
     [SerializeField]
     internal ReactiveCollection<double> _PastValues = new ReactiveCollection<double>();
-    public List<double> PastValues
-    {
-        get { return _PastValues.ToList<double>(); }
-        set { _PastValues = new ReactiveCollection<double>( value ); }
-    }
-
+    
     [SerializeField]
     public List<EConnection> _SourceConnections = new List<EConnection>();
 

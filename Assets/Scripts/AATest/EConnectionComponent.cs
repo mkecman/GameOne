@@ -37,15 +37,18 @@ public class EConnectionComponent : GameView
     private void Process( ClockTickMessage message )
     {
         _newSourceValue = getFormulaValue( Connection.SourceFormula.Value );
-        Connection.SourceDelta.Value = _newSourceValue - Connection.Source.Value;
+        Connection.SourceDelta.Value = -( Connection.Source.Value - _newSourceValue );
         _newTargetValue = getFormulaValue( Connection.TargetFormula.Value );
-        Connection.TargetDelta.Value = _newTargetValue - Connection.Target.Value;
+        Connection.TargetDelta.Value = -( Connection.Target.Value - _newTargetValue );
 
-        Connection.Source.Delta = _newSourceValue - Connection.Source.Value;
-        Connection.Target.Delta = _newTargetValue - Connection.Target.Value;
+        Connection.Source.Delta = -( Connection.Source.Value - _newSourceValue );
+        Connection.Target.Delta = -( Connection.Target.Value - _newTargetValue );
 
         Connection.Source.Value = _newSourceValue;
         Connection.Target.Value = _newTargetValue;
+
+        Connection.Source._PastValues.Add( _newSourceValue );
+        Connection.Target._PastValues.Add( _newTargetValue );
     }
 
     public void UpdateConnectionListeners()
@@ -64,8 +67,8 @@ public class EConnectionComponent : GameView
             Connection.Target = _target.GetComponent<EObject>();
 
             //Connection.Target._Value.Throttle( TimeSpan.FromSeconds( 2 ) ).Subscribe( _ => OnDataChanged() ).AddTo( disposables );
-            Connection.SourceFormula.Subscribe( _ => Connection.SourceDelta.Value = getFormulaValue( _ ) - Connection.Source.Value ).AddTo( disposables );
-            Connection.TargetFormula.Subscribe( _ => Connection.TargetDelta.Value = getFormulaValue( _ ) - Connection.Target.Value ).AddTo( disposables );
+            Connection.SourceFormula.Subscribe( _ => Connection.SourceDelta.Value = -( Connection.Source.Value - getFormulaValue( _ ) ) ).AddTo( disposables );
+            Connection.TargetFormula.Subscribe( _ => Connection.TargetDelta.Value = -( Connection.Target.Value - getFormulaValue( _ ) ) ).AddTo( disposables );
 
             Connection.SourceDelta.Subscribe( _ => OnDeltaUpdate() ).AddTo( disposables );
             Connection.TargetDelta.Subscribe( _ => OnDeltaUpdate() ).AddTo( disposables );
