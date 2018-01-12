@@ -1,123 +1,158 @@
-﻿using UnityEditor;
-using UnityEngine;
-using System;
+﻿using System;
 using System.Collections;
-using System.Reflection;
 using System.Linq;
+using System.Reflection;
+using UnityEditor;
+using UnityEngine;
 
 [Flags]
-public enum EEditorUtilityOptions {
-	None = 0,
-	ListSize = 1,
-	ListLabel = 2,
-	ElementLabels = 4,
-	Buttons = 8,
-	Default = ListSize | ListLabel | ElementLabels,
-	NoElementLabels = ListSize | ListLabel,
-	All = Default | Buttons
+public enum EEditorUtilityOptions
+{
+    None = 0,
+    ListSize = 1,
+    ListLabel = 2,
+    ElementLabels = 4,
+    Buttons = 8,
+    Default = ListSize | ListLabel | ElementLabels,
+    NoElementLabels = ListSize | ListLabel,
+    All = Default | Buttons
 }
 
-public static class EEditorUtility {
+public static class EEditorUtility
+{
 
-	private static GUIContent
-		moveButtonContent = new GUIContent("\u21b4", "move down"),
-		duplicateButtonContent = new GUIContent("+", "duplicate"),
-		deleteButtonContent = new GUIContent("-", "delete"),
-		addButtonContent = new GUIContent("+", "add element");
+    private static GUIContent
+        moveUpButtonContent = new GUIContent( "\u2191", "move up" ),
+        moveDownButtonContent = new GUIContent( "\u2193", "move down" ),
+        duplicateButtonContent = new GUIContent( "+", "duplicate" ),
+        deleteButtonContent = new GUIContent( "-", "delete" ),
+        addButtonContent = new GUIContent( "+", "add element" );
 
-	private static GUILayoutOption miniButtonWidth = GUILayout.Width(20f);
+    private static GUILayoutOption miniButtonWidth = GUILayout.Width( 20f );
 
-	public static void Show (SerializedProperty list, EEditorUtilityOptions options = EEditorUtilityOptions.Default) {
-		if (!list.isArray) {
-			EditorGUILayout.HelpBox(list.name + " is neither an array nor a list!", MessageType.Error);
-			return;
-		}
+    public static void Show( SerializedProperty list, EEditorUtilityOptions options = EEditorUtilityOptions.Default )
+    {
+        if( !list.isArray )
+        {
+            EditorGUILayout.HelpBox( list.name + " is neither an array nor a list!", MessageType.Error );
+            return;
+        }
 
-		bool
-			showListLabel = (options & EEditorUtilityOptions.ListLabel) != 0,
-			showListSize = (options & EEditorUtilityOptions.ListSize) != 0;
+        bool
+            showListLabel = ( options & EEditorUtilityOptions.ListLabel ) != 0,
+            showListSize = ( options & EEditorUtilityOptions.ListSize ) != 0;
 
-		if (showListLabel) {
-			EditorGUILayout.PropertyField(list);
-			EditorGUI.indentLevel += 1;
-		}
-        if (!showListLabel || list.isExpanded) {
-            
-            SerializedProperty size = list.FindPropertyRelative("Array.size");
-			if (showListSize) {
-				EditorGUILayout.PropertyField(size);
-			}
-			if (size.hasMultipleDifferentValues) {
-				EditorGUILayout.HelpBox("Not showing lists with different sizes.", MessageType.Info);
-			}
-			else {
-                ShowElements( list, options);
-			}
-		}
-		if (showListLabel) {
-			EditorGUI.indentLevel -= 1;
-		}
-	}
+        if( showListLabel )
+        {
+            EditorGUILayout.PropertyField( list );
+            EditorGUI.indentLevel += 1;
+        }
+        if( !showListLabel || list.isExpanded )
+        {
 
-	private static void ShowElements (SerializedProperty list, EEditorUtilityOptions options) {
-		bool
-			showElementLabels = (options & EEditorUtilityOptions.ElementLabels) != 0,
-			showButtons = (options & EEditorUtilityOptions.Buttons) != 0;
-        
-        for (int i = 0; i < list.arraySize; i++) {
-			if (showButtons) {
-				EditorGUILayout.BeginHorizontal();
-			}
-			if (showElementLabels) {
-				EditorGUILayout.PropertyField(list.GetArrayElementAtIndex(i));
-			}
-			else {
-				EditorGUILayout.PropertyField(list.GetArrayElementAtIndex(i), GUIContent.none);
-			}
-			if (showButtons) {
-				ShowButtons(list, i);
-				EditorGUILayout.EndHorizontal();
-			}
-		}
-		if (showButtons && list.arraySize == 0 && GUILayout.Button(addButtonContent, EditorStyles.miniButton))
+            SerializedProperty size = list.FindPropertyRelative( "Array.size" );
+            if( showListSize )
+            {
+                EditorGUILayout.PropertyField( size );
+            }
+            if( size.hasMultipleDifferentValues )
+            {
+                EditorGUILayout.HelpBox( "Not showing lists with different sizes.", MessageType.Info );
+            }
+            else
+            {
+                ShowElements( list, options );
+            }
+        }
+        if( showListLabel )
+        {
+            EditorGUI.indentLevel -= 1;
+        }
+    }
+
+    private static void ShowElements( SerializedProperty list, EEditorUtilityOptions options )
+    {
+        bool
+            showElementLabels = ( options & EEditorUtilityOptions.ElementLabels ) != 0,
+            showButtons = ( options & EEditorUtilityOptions.Buttons ) != 0;
+
+        for( int i = 0; i < list.arraySize; i++ )
+        {
+            if( showButtons )
+            {
+                EditorGUILayout.BeginHorizontal();
+            }
+            if( showElementLabels )
+            {
+                EditorGUILayout.PropertyField( list.GetArrayElementAtIndex( i ) );
+            }
+            else
+            {
+                EditorGUILayout.PropertyField( list.GetArrayElementAtIndex( i ), GUIContent.none );
+            }
+            if( showButtons )
+            {
+                ShowButtons( list, i );
+                EditorGUILayout.EndHorizontal();
+            }
+        }
+        if( showButtons && list.arraySize == 0 && GUILayout.Button( addButtonContent, EditorStyles.miniButton ) )
         {
             list.arraySize += 1;
             list.serializedObject.ApplyModifiedProperties();
-            EObject objectComponent = list.serializedObject.targetObject as EObject;
+            ENode objectComponent = list.serializedObject.targetObject as ENode;
             objectComponent.AddConnection( 0 );
         }
-	}
+    }
 
-	private static void ShowButtons (SerializedProperty list, int index )
+    private static void ShowButtons( SerializedProperty list, int index )
     {
-        EObject objectComponent = list.serializedObject.targetObject as EObject;
+        ENode objectComponent = list.serializedObject.targetObject as ENode;
 
-        if (GUILayout.Button(moveButtonContent, EditorStyles.miniButtonLeft, miniButtonWidth))
+        if( GUILayout.Button( moveUpButtonContent, EditorStyles.miniButtonLeft, miniButtonWidth ) )
         {
-            list.MoveArrayElement(index, index + 1);
+            int size = list.arraySize;
+            list.InsertArrayElementAtIndex( size );
+            list.MoveArrayElement( index - 1, size );
+            list.MoveArrayElement( index, index - 1 );
+            list.MoveArrayElement( size, index );
+            list.DeleteArrayElementAtIndex( size );
+
+            list.serializedObject.ApplyModifiedProperties();
+        }
+        if( GUILayout.Button( moveDownButtonContent, EditorStyles.miniButtonLeft, miniButtonWidth ) )
+        {
+            int size = list.arraySize;
+            list.InsertArrayElementAtIndex( size );
+            list.MoveArrayElement( index + 1, size );
+            list.MoveArrayElement( index, index + 1 );
+            list.MoveArrayElement( size, index );
+            list.DeleteArrayElementAtIndex( size );
+
+            list.serializedObject.ApplyModifiedProperties();
+            //objectComponent.AddConnection( index + 1 );
+        }
+        if( GUILayout.Button( duplicateButtonContent, EditorStyles.miniButtonMid, miniButtonWidth ) )
+        {
+            list.InsertArrayElementAtIndex( index );
             list.serializedObject.ApplyModifiedProperties();
             objectComponent.AddConnection( index + 1 );
         }
-		if (GUILayout.Button(duplicateButtonContent, EditorStyles.miniButtonMid, miniButtonWidth))
+        if( GUILayout.Button( deleteButtonContent, EditorStyles.miniButtonRight, miniButtonWidth ) )
         {
-			list.InsertArrayElementAtIndex(index);
-            list.serializedObject.ApplyModifiedProperties();
-            objectComponent.AddConnection( index + 1 );
-		}
-		if (GUILayout.Button(deleteButtonContent, EditorStyles.miniButtonRight, miniButtonWidth))
-        {
-			int oldSize = list.arraySize;
-			list.DeleteArrayElementAtIndex(index);
-			if (list.arraySize == oldSize) {
-				list.DeleteArrayElementAtIndex(index);
-			}
+            int oldSize = list.arraySize;
+            list.DeleteArrayElementAtIndex( index );
+            if( list.arraySize == oldSize )
+            {
+                list.DeleteArrayElementAtIndex( index );
+            }
             list.serializedObject.ApplyModifiedProperties();
             objectComponent.RemoveConnection();
         }
-	}
-    
-     public static object GetParent( SerializedProperty prop )
-     {
+    }
+
+    public static object GetParent( SerializedProperty prop )
+    {
         var path = prop.propertyPath.Replace( ".Array.data[", "[" );
         object obj = prop.serializedObject.targetObject;
         var elements = path.Split( '.' );

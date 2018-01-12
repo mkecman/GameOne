@@ -6,51 +6,67 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [Serializable, ExecuteInEditMode]
-public class EObject : MonoBehaviour
+public class ENode : MonoBehaviour
 {
     public Text NameText;
     public Text ValueText;
     public Text DeltaText;
 
-    private EMessageRedrawAllConnections message = new EMessageRedrawAllConnections();
+    private EEdgesRedrawAll message = new EEdgesRedrawAll();
     private Color32 greenColor = new Color32( 17, 139, 48, 255 );
     private Color32 redColor = new Color32( 139, 17, 40, 255 );
+    
 
     private void Start()
     {
         Debug.Log( "ObjectComponent.Start" );
+
+        _PastValues.Add( 0 );
         _Name.Subscribe( _ => { NameText.text = _; gameObject.name = _; } );
         _Value.Subscribe( _ => ValueText.text = _.ToString( "F2" ) );
         _Delta.Subscribe( _ => UpdateDeltaText() );
+
+        GameMessage.Listen<ClockTickMessage>( OnClockTickMessage );
     }
 
+    private void OnClockTickMessage( ClockTickMessage value )
+    {
+        for( int i = 0; i < _TargetConnections.Count; i++ )
+        {
+            _TargetConnections[ i ].Process();
+        }
+
+        Delta = -( _PastValues[ _PastValues.Count - 1 ] - Value );
+        _PastValues.Add( Value );
+    }
+    
     public void AddConnection( int index )
     {
-        EConnection connection = _TargetConnections[ index ];
+        EEdge connection = _TargetConnections[ index ];
         connection.Index = index;
         connection.SourceFormula.Value = gameObject.name + "-1";
         connection.SourceName.Value = gameObject.name;
         connection.Source = this;
-        GameMessage.Send<EMessageRedrawAllConnections>( message );
+        GameMessage.Send<EEdgesRedrawAll>( message );
     }
     
     public void RemoveConnection()
     {
-        GameMessage.Send<EMessageRedrawAllConnections>( message );
+        GameMessage.Send<EEdgesRedrawAll>( message );
     }
 
-    public void RemoveConnectionTarget( EConnection connection  )
+    public void RemoveConnectionTarget( EEdge connection  )
     {
         if( connection.Target != null && connection.Target._SourceConnections.Contains( connection ) )
             connection.Target._SourceConnections.Remove( connection );
     }
 
-    public void SetConnectionTarget( EConnection connection )
+    public void SetConnectionTarget( EEdge connection )
     {
         connection.TargetName.Value = connection.Target.name;
         connection.TargetFormula.Value = connection.Target.name + "+1";
         connection.Target._SourceConnections.Add( connection );
-        GameMessage.Send<EMessageRedrawAllConnections>( message );
+        GameMessage.Send<EEdgesRedrawAll>( message );
     }
     
     private void UpdateDeltaText()
@@ -108,6 +124,23 @@ public class EObject : MonoBehaviour
     }
 
     [SerializeField]
+    internal DoubleReactiveProperty _MinValue = new DoubleReactiveProperty(0);
+    public Double MinValue
+    {
+        get { return _MinValue.Value; }
+        set { _MinValue.Value = value; }
+    }
+
+    [SerializeField]
+    internal DoubleReactiveProperty _MaxValue = new DoubleReactiveProperty(1000);
+    public Double MaxValue
+    {
+        get { return _MaxValue.Value; }
+        set { _MaxValue.Value = value; }
+    }
+
+
+    [SerializeField]
     internal DoubleReactiveProperty _Value = new DoubleReactiveProperty();
     public Double Value
     {
@@ -127,9 +160,9 @@ public class EObject : MonoBehaviour
     internal ReactiveCollection<double> _PastValues = new ReactiveCollection<double>();
     
     [SerializeField]
-    public List<EConnection> _SourceConnections = new List<EConnection>();
+    public List<EEdge> _SourceConnections = new List<EEdge>();
 
     [SerializeField]
-    public List<EConnection> _TargetConnections = new List<EConnection>();
+    public List<EEdge> _TargetConnections = new List<EEdge>();
 
 }

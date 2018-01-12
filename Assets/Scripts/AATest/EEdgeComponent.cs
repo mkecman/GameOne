@@ -9,9 +9,9 @@ using System.Text.RegularExpressions;
 using System.Linq;
 
 [ExecuteInEditMode]
-public class EConnectionComponent : GameView
+public class EEdgeComponent : GameView
 {
-    public EConnection Connection;
+    public EEdge Connection;
     public RawImage rawImage;
     public Text SourceDeltaText;
     public Text TargetDeltaText;
@@ -19,13 +19,9 @@ public class EConnectionComponent : GameView
     private GameObject _source;
     private GameObject _target;
     private RectTransform _rectTransform;
-    private double _newSourceValue;
-    private double _newTargetValue;
-
-
+    
     void Start()
     {
-        GameMessage.Listen<ClockTickMessage>( Process );
         UpdateConnectionListeners();
     }
 
@@ -33,24 +29,7 @@ public class EConnectionComponent : GameView
     {
         UpdatePosition();
     }
-
-    private void Process( ClockTickMessage message )
-    {
-        _newSourceValue = getFormulaValue( Connection.SourceFormula.Value );
-        Connection.SourceDelta.Value = -( Connection.Source.Value - _newSourceValue );
-        _newTargetValue = getFormulaValue( Connection.TargetFormula.Value );
-        Connection.TargetDelta.Value = -( Connection.Target.Value - _newTargetValue );
-
-        Connection.Source.Delta = -( Connection.Source.Value - _newSourceValue );
-        Connection.Target.Delta = -( Connection.Target.Value - _newTargetValue );
-
-        Connection.Source.Value = _newSourceValue;
-        Connection.Target.Value = _newTargetValue;
-
-        Connection.Source._PastValues.Add( _newSourceValue );
-        Connection.Target._PastValues.Add( _newTargetValue );
-    }
-
+    
     public void UpdateConnectionListeners()
     {
         disposables.Clear();
@@ -63,46 +42,19 @@ public class EConnectionComponent : GameView
         _target = GameObject.Find( Connection.TargetName.Value );
         if( _source != null && _target != null )
         {
-            Connection.Source = _source.GetComponent<EObject>();
-            Connection.Target = _target.GetComponent<EObject>();
+            Connection.Source = _source.GetComponent<ENode>();
+            Connection.Target = _target.GetComponent<ENode>();
 
             //Connection.Target._Value.Throttle( TimeSpan.FromSeconds( 2 ) ).Subscribe( _ => OnDataChanged() ).AddTo( disposables );
-            Connection.SourceFormula.Subscribe( _ => Connection.SourceDelta.Value = -( Connection.Source.Value - getFormulaValue( _ ) ) ).AddTo( disposables );
-            Connection.TargetFormula.Subscribe( _ => Connection.TargetDelta.Value = -( Connection.Target.Value - getFormulaValue( _ ) ) ).AddTo( disposables );
+            Connection.SourceFormula.Subscribe( _ => Connection.SourceDelta.Value = -( Connection.Source.Value - Connection.GetFormulaValue( _ ) ) ).AddTo( disposables );
+            Connection.TargetFormula.Subscribe( _ => Connection.TargetDelta.Value = -( Connection.Target.Value - Connection.GetFormulaValue( _ ) ) ).AddTo( disposables );
 
             Connection.SourceDelta.Subscribe( _ => OnDeltaUpdate() ).AddTo( disposables );
             Connection.TargetDelta.Subscribe( _ => OnDeltaUpdate() ).AddTo( disposables );
         }
     }
     
-    private double getFormulaValue( string formula )
-    {
-        double formulaValue = 0;
-        
-        try
-        {
-            formula = formula.Replace( "SourceDelta", Connection.SourceDelta.Value.ToString() );
-            formula = formula.Replace( "TargetDelta", Connection.TargetDelta.Value.ToString() );
-
-            var distinct = Regex.Matches( formula, "[^0123456789.()*/%+-]+" ).OfType<Match>().Select( _ => _.Value).Distinct();
-            GameObject go;
-            foreach( string item in distinct )
-            {
-                go = GameObject.Find( item );
-                if( go == null )
-                    throw new Exception( "Can't find EObject: " + item );
-
-                formula = formula.Replace( item, go.GetComponent<EObject>().Value.ToString() );
-            }
-        formulaValue = Convert.ToDouble( new DataTable().Compute( formula, null ) );
-        }
-        catch( Exception e )
-        {
-            Debug.LogWarning( e.Message );
-        }
-
-        return formulaValue;
-    }
+    
     
     private void OnDeltaUpdate()
     {

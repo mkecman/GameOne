@@ -34,7 +34,7 @@ public class SimplestPlot : MonoBehaviour
         PhaseSpace = 2
     }
     private Texture2D PlotTexture;
-    private Image PlotImage;
+    public Image PlotImage;
     private Vector2 TextureResolution = new Vector2(100, 100);
     private float StartPosX;
     private float StartPosY;
@@ -51,7 +51,9 @@ public class SimplestPlot : MonoBehaviour
     public bool AxesVisible = true;
 
     // PLot variables
+    [HideInInspector]
     public List<SeriesClass> SeriesPlotY;
+    [HideInInspector]
     public float[] SeriesPlotX;
     public List<DistributionClass> DistributionPlot;
     private List<float[]> ActualDistribution;
@@ -65,8 +67,9 @@ public class SimplestPlot : MonoBehaviour
     // Use this for initialization
     public void Start()
     {
-        PlotImage = GetComponent<Image>();
-        if (PlotImage == null) throw new Exception("Simplest plot needs an image component in the same GameObject in order to work.");
+        //PlotImage = GetComponent<Image>();
+        Debug.Log( "SimplestPlot Start" );
+        //if (PlotImage == null) throw new Exception("Simplest plot needs an image component in the same GameObject in order to work.");
 
         SeriesPlotY = new List<SeriesClass>();
         DistributionPlot = new List<DistributionClass>();

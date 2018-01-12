@@ -5,15 +5,15 @@ using System;
 using UnityEditor;
 
 [ExecuteInEditMode]
-public class EConnections : MonoBehaviour
+public class EEdges : MonoBehaviour
 {
-    public GameObject _eContainer;
-    public GameObject connectionPrefab;
+    public GameObject Container;
+    public GameObject ConnectionPrefab;
 
     void Start()
     {
         Debug.Log( "EConnections.Start" );
-        GameMessage.Listen<EMessageRedrawAllConnections>( OnEMessage );
+        GameMessage.Listen<EEdgesRedrawAll>( OnEMessage );
         Redraw();
     }
     
@@ -21,7 +21,7 @@ public class EConnections : MonoBehaviour
     {
         foreach( Transform child in gameObject.transform )
         {
-            EConnectionComponent cc = child.gameObject.GetComponent<EConnectionComponent>();
+            EEdgeComponent cc = child.gameObject.GetComponent<EEdgeComponent>();
             cc.UpdateConnectionListeners();
         }
     }
@@ -32,7 +32,7 @@ public class EConnections : MonoBehaviour
         AddConnections();
     }
 
-    private void OnEMessage( EMessageRedrawAllConnections value )
+    private void OnEMessage( EEdgesRedrawAll value )
     {
         Redraw();
     }
@@ -50,9 +50,9 @@ public class EConnections : MonoBehaviour
 
     private void AddConnections()
     {
-        foreach( Transform child in _eContainer.transform )
+        foreach( Transform child in Container.transform )
         {
-            EObject oc = child.gameObject.GetComponent<EObject>();
+            ENode oc = child.gameObject.GetComponent<ENode>();
             for( int i = 0; i < oc._TargetConnections.Count; i++ )
             {
                 AddConnection( oc._TargetConnections[ i ] );
@@ -60,10 +60,10 @@ public class EConnections : MonoBehaviour
         }
     }
 
-    private void AddConnection( EConnection connection )
+    private void AddConnection( EEdge connection )
     {
-        GameObject connectionInstance = Instantiate( connectionPrefab, gameObject.transform );
-        EConnectionComponent connectionComponent = connectionInstance.GetComponent<EConnectionComponent>();
+        GameObject connectionInstance = Instantiate( ConnectionPrefab, gameObject.transform );
+        EEdgeComponent connectionComponent = connectionInstance.GetComponent<EEdgeComponent>();
         connectionComponent.Connection = connection;
     }
 }

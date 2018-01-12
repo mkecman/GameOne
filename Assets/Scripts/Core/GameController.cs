@@ -34,6 +34,7 @@ public class GameController : MonoBehaviour
         generator.Load();
         /**/
 
+        clock.ElapsedUpdates.Subscribe<long>( x => UpdateStep( 1 ) ).AddTo( clock );
         Debug.Log( "GameController Started" );
     }
 

@@ -3,14 +3,12 @@ using System.Collections;
 using UnityEditor;
 using UnityEditorInternal;
 
-[CustomEditor( typeof( EObject ) )]
-public class EObjectEditor : Editor
+[CustomEditor( typeof( ENode ) )]
+public class ENodeEditor : Editor
 {
-    private ReorderableList list;
-    
     public override void OnInspectorGUI()
     {
-        EObject oc = (EObject)target;
+        ENode oc = (ENode)target;
 
         serializedObject.Update();
 
@@ -18,6 +16,8 @@ public class EObjectEditor : Editor
         EditorGUILayout.PropertyField( serializedObject.FindProperty( "_Name" ) );
         EditorGUILayout.PropertyField( serializedObject.FindProperty( "_Value" ) );
         EditorGUILayout.PropertyField( serializedObject.FindProperty( "_Delta" ) );
+        EditorGUILayout.PropertyField( serializedObject.FindProperty( "_MinValue" ) );
+        EditorGUILayout.PropertyField( serializedObject.FindProperty( "_MaxValue" ) );
         EEditorUtility.Show( serializedObject.FindProperty( "_TargetConnections" ), EEditorUtilityOptions.Buttons | EEditorUtilityOptions.ListLabel );
         EEditorUtility.Show( serializedObject.FindProperty( "_SourceConnections" ), EEditorUtilityOptions.ListLabel );
         //DrawDefaultInspector();
@@ -27,12 +27,12 @@ public class EObjectEditor : Editor
     }
 }
 
-[CustomEditor( typeof( EConnections ) )]
-public class EConnectionsEditor : Editor
+[CustomEditor( typeof( EEdges ) )]
+public class EEdgesEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        EConnections oc = (EConnections)target;
+        EEdges oc = (EEdges)target;
         serializedObject.Update();
         if( GUILayout.Button( "Refresh" ) )
         {

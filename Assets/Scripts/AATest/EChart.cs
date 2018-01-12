@@ -17,6 +17,7 @@ public class EChart : MonoBehaviour
 
     void Start()
     {
+        Debug.Log( "EChart Start" );
         chart = GetComponent<SimplestPlot>();
 
         MyRandom = new System.Random();
@@ -26,14 +27,10 @@ public class EChart : MonoBehaviour
         chart.SetResolution( new Vector2( 300, 300 ) );
         chart.BackGroundColor = new Color( 0.1f, 0.1f, 0.1f, 0.4f );
         chart.TextColor = Color.yellow;
-        //for( int Cnt = 0; Cnt < 2; Cnt++ )
-        //{
         chart.SeriesPlotY.Add( new SimplestPlot.SeriesClass() );
         chart.SeriesPlotY[ 0 ].MyColor = Color.white;
-        //}
 
         Resolution = chart.GetResolution();
-        
     }
 
     // Update is called once per frame
@@ -52,12 +49,13 @@ public class EChart : MonoBehaviour
         GameObject go = GameObject.Find( PropertyName );
         if( go != null )
         {
-            EObject eObject = go.GetComponent<EObject>();
+            ENode eObject = go.GetComponent<ENode>();
             int count = eObject._PastValues.Count;
+            int nextIndex;
             for( int i = 0; i < DataPoints; i++ )
             {
-                XValues[ i ] = i;
-                int nextIndex = ( count - DataPoints ) + i;
+                nextIndex = ( count - DataPoints ) + i;
+                XValues[ i ] = nextIndex;
                 if( nextIndex < count && nextIndex >= 0 )
                     Y1Values[ i ] = Convert.ToSingle( eObject._PastValues[ nextIndex ] );
                 else
