@@ -14,6 +14,7 @@ public class EChart : MonoBehaviour
     private float[] Y1Values;
 
     private Vector2 Resolution;
+    
 
     void Start()
     {

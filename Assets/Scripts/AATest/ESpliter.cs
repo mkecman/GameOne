@@ -13,7 +13,7 @@ public class ESpliter : MonoBehaviour
 
     private bool _ignoreSliderChanges = false;
 
-    // Use this for initialization
+
     void OnEnable()
     {
         if( Values.Count == 0 )
@@ -22,7 +22,7 @@ public class ESpliter : MonoBehaviour
             double count = Node._TargetConnections.Count;
             double startValue = 1;
             double splitValue = Math.Round( startValue / count, 2, MidpointRounding.AwayFromZero );
-            double remainder = ( startValue % count ) / 100;
+            double remainder = ( (100*startValue) % count ) / 100;
 
             _ignoreSliderChanges = true;
             for( int i = 0; i < count; i++ )
