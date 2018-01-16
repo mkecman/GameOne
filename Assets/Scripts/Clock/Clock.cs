@@ -17,7 +17,7 @@ public class Clock : MonoBehaviour
     public void OnEnable()
     {
         GameModel.Register<Clock>( this );
-        _UpdatesPerSecond.Value = 1000;
+        //_UpdatesPerSecond.Value = 1000;
         _UpdatesPerSecond.Where(x => x != _lastUpdatePerSecond ).Subscribe<int>( OnUpdatesPerSecondUpdate ).AddTo( this );
     }
 

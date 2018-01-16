@@ -11,8 +11,13 @@ public class ENodeEditor : Editor
         ENode oc = (ENode)target;
 
         serializedObject.Update();
-
-
+        GUIContent addButtonContent = new GUIContent( "PROCESS" );
+        if( GUILayout.Button( addButtonContent, EditorStyles.miniButton ) )
+        {
+            oc.Process();
+        }
+         
+        EditorGUILayout.PropertyField( serializedObject.FindProperty( "_AutoTrigger" ) );
         EditorGUILayout.PropertyField( serializedObject.FindProperty( "_Name" ) );
         EditorGUILayout.PropertyField( serializedObject.FindProperty( "_Value" ) );
         EditorGUILayout.PropertyField( serializedObject.FindProperty( "_Delta" ) );

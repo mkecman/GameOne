@@ -47,6 +47,8 @@ public class ESpliter : MonoBehaviour
             for( int i = 0; i < Values.Count; i++ )
             {
                 ESpliterSlider ess = Values[ i ];
+                ess.Edge = Node._TargetConnections[ i ];
+                Debug.Log( ess.Edge.TargetFormula );
                 ess.Value.Subscribe( _ => OnSliderValueChanged( ess ) ).AddTo( this );
             }
             _ignoreSliderChanges = false;
@@ -55,6 +57,7 @@ public class ESpliter : MonoBehaviour
 
     private void OnSliderValueChanged( ESpliterSlider slider )
     {
+        Debug.Log( slider.Edge.Index + "==" + slider.Value + "; TFormula: " + slider.Edge.TargetFormula );
         if( !_ignoreSliderChanges )
         {
             _ignoreSliderChanges = true;

@@ -51,8 +51,8 @@ public class EEdge
 
         try
         {
-            formula = formula.Replace( "SourceDelta", SourceDelta.Value.ToString() );
-            formula = formula.Replace( "TargetDelta", TargetDelta.Value.ToString() );
+            formula = formula.Replace( "_SourceDelta_", SourceDelta.Value.ToString() );
+            formula = formula.Replace( "_TargetDelta_", TargetDelta.Value.ToString() );
 
             var distinct = Regex.Matches( formula, "[^0123456789.()*/%+-]+" ).OfType<Match>().Select( _ => _.Value ).Distinct();
             GameObject go;

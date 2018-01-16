@@ -26,10 +26,11 @@ public class ENode : MonoBehaviour
         _Value.Subscribe( _ => ValueText.text = _.ToString( "F2" ) );
         _Delta.Subscribe( _ => UpdateDeltaText() );
 
-        GameMessage.Listen<ClockTickMessage>( OnClockTickMessage );
+        if( AutoTrigger )
+            GameMessage.Listen<ClockTickMessage>( Process );
     }
 
-    private void OnClockTickMessage( ClockTickMessage value )
+    public void Process( ClockTickMessage value = null )
     {
         for( int i = 0; i < _TargetConnections.Count; i++ )
         {
@@ -90,6 +91,15 @@ public class ENode : MonoBehaviour
      * */
 
     public Image Logo;
+
+    [SerializeField]
+    internal BoolReactiveProperty _AutoTrigger = new BoolReactiveProperty( true );
+    public bool AutoTrigger
+    {
+        get { return _AutoTrigger.Value; }
+        set { _AutoTrigger.Value = value; }
+    }
+
 
     [SerializeField]
     internal StringReactiveProperty _Name = new StringReactiveProperty();
