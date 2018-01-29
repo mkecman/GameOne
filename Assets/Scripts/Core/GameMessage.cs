@@ -6,10 +6,9 @@ using System.Collections.Generic;
 [ExecuteInEditMode]
 public class GameMessage : MonoBehaviour
 {
-    private static GameMessage _instance;
-    public static GameMessage Instance { get { return _instance; } }
     public delegate void MessageDelegate<T>( T value );
 
+    private static GameMessage _instance;
     private Dictionary<string, object> _messages;
     
     public static void Listen<T>( MessageDelegate<T> handler )
@@ -83,6 +82,6 @@ public class GameMessage : MonoBehaviour
     private void Init()
     {
         _instance._messages = new Dictionary<string, object>();
-        Debug.Log( "GameMessage Awaken" );
+        Debug.Log( "GameMessage Init" );
     }
 }

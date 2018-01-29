@@ -155,6 +155,8 @@ MonoBehaviour:
   ValueText: {fileID: 114914262477240322}
   DeltaText: {fileID: 114970180554648080}
   Logo: {fileID: 0}
+  _AutoTrigger:
+    value: 1
   _Name:
     value: Property Name
   _Description:
@@ -163,12 +165,16 @@ MonoBehaviour:
     value: 0
   _StopValue:
     value: 0
+  _MinValue:
+    value: 0
+  _MaxValue:
+    value: 100
   _Value:
     value: 0
   _Delta:
     value: 0
-  _InputConnections: []
-  _OutputConnections: []
+  _SourceConnections: []
+  _TargetConnections: []
 --- !u!114 &114914262477240322
 MonoBehaviour:
   m_ObjectHideFlags: 1
