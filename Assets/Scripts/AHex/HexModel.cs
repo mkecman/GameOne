@@ -4,6 +4,6 @@ using System.Collections;
 public class HexModel
 {
     public int X, Y;
-    public double Altitude;
-
+    public float Altitude;
+    public float SeaLevel;
 }

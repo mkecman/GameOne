@@ -6,41 +6,53 @@ using System;
 public class Hex : MonoBehaviour
 {
     public HexModel Model;
+    public GameObject Gas;
+    public GameObject Liquid;
+    public GameObject Solid;
 
     public void SetModel( HexModel model )
     {
         this.Model = model;
+
+        SetHeight( Solid, Model.Altitude );
         SetAltitudeColor();
+        SetLiquidAltitude();
+        SetClouds();
+    }
+
+    private void SetClouds()
+    {
+        Gas.transform.position = new Vector3( Gas.transform.position.x, 0.9f, Gas.transform.position.z );
+        Gas.GetComponent<MeshRenderer>().material.color = new Color32( 255, 255, 255, (byte)RandomUtil.FromRangeInt(0,130) );
+    }
+
+    private void SetLiquidAltitude()
+    {
+        if( Model.SeaLevel < Model.Altitude )
+        {
+            Liquid.SetActive( false );
+            return;
+        }
+        Liquid.transform.position = new Vector3( Liquid.transform.position.x, Model.Altitude+0.05f, Liquid.transform.position.z );
+        SetHeight( Liquid, Model.SeaLevel - Model.Altitude );
     }
 
     private void SetAltitudeColor()
     {
-        byte colorIncrement = (byte)Math.Round( 255 * Model.Altitude, 0);
-        GetComponent<MeshRenderer>().material.color = new Color32( colorIncrement, colorIncrement, colorIncrement, 255 );
-    }
-
-    private void OnMouseDown()
-    {
-        Debug.Log( "Pushing Down" );
-        Push( -.5f );
-    }
-    private void OnMouseUp()
-    {
-        Debug.Log( "Pushing Up" );
-        Push( .5f );
+        byte colorIncrement = (byte)(255 * Model.Altitude);
+        Solid.GetComponent<MeshRenderer>().material.color = new Color32( (byte)(colorIncrement+50), colorIncrement, colorIncrement, 255 );
     }
     
-    public void Push( float value )
+    private void SetHeight( GameObject target, float height )
     {
-        Mesh tileMesh = GetComponent<MeshFilter>().mesh;
-        Vector3[] verts = tileMesh.vertices;
+        Mesh mesh = target.GetComponent<MeshFilter>().mesh;
+        Vector3[] verts = mesh.vertices;
         for( int q = 0; q < verts.Length; ++q )
         {
-           if( verts[ q ].z < 0 )
-            verts[ q ].z += value;
+            if( verts[ q ].y > 0 )
+                verts[ q ].y = height;
         }
-        tileMesh.vertices = verts;
-        tileMesh.RecalculateNormals();
-        //altitude += value;
+        mesh.vertices = verts;
+        mesh.RecalculateNormals();
     }
 }
