@@ -16,8 +16,8 @@ public class Hex : MonoBehaviour
 
         SetHeight( Solid, Model.Altitude );
         SetAltitudeColor();
-        SetLiquidAltitude();
-        SetClouds();
+        //SetLiquidAltitude();
+        //SetClouds();
     }
 
     private void SetClouds()
@@ -39,8 +39,10 @@ public class Hex : MonoBehaviour
 
     private void SetAltitudeColor()
     {
-        byte colorIncrement = (byte)(255 * Model.Altitude);
-        Solid.GetComponent<MeshRenderer>().material.color = new Color32( (byte)(colorIncrement+50), colorIncrement, colorIncrement, 255 );
+        Solid.GetComponent<MeshRenderer>().material.color = Model.Color;
+        //byte colorIncrement = (byte)(255 * Model.Altitude);
+        //Solid.GetComponent<MeshRenderer>().material.color = new Color32( (byte)(colorIncrement+50), colorIncrement, colorIncrement, 255 );
+        //Solid.GetComponent<MeshRenderer>().material.color = Color.Lerp( Color.red, Color.blue, Model.Altitude );
     }
     
     private void SetHeight( GameObject target, float height )

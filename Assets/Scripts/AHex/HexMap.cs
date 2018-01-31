@@ -6,9 +6,15 @@ using UnityEngine;
 public class HexMap : MonoBehaviour
 {
     public GameObject HexagonPrefab;
+    public GameObject Ocean;
+
+    public Gradient ColorGradient;
+
+    [ Header( "Size Values" )]
     public IntReactiveProperty width = new IntReactiveProperty( 64 );
     public IntReactiveProperty height = new IntReactiveProperty( 40 );
 
+    [Header( "Terrain Values" )]
     [RangeReactiveProperty( 1, 10 )]
     public IntReactiveProperty ExtrudeLevel = new IntReactiveProperty( 2 );
     [RangeReactiveProperty( 0, 1 )]
@@ -18,7 +24,6 @@ public class HexMap : MonoBehaviour
     [RangeReactiveProperty( 0.1f, 2 )]
     public DoubleReactiveProperty TerrainFrequency = new DoubleReactiveProperty( 0.1 );
     public IntReactiveProperty Seed = new IntReactiveProperty( 0 );
-
     [RangeReactiveProperty( 0, 4 )]
     public IntReactiveProperty _FractalType = new IntReactiveProperty( 0 );
     [RangeReactiveProperty( 0, 4 )]
@@ -54,10 +59,18 @@ public class HexMap : MonoBehaviour
                                            TerrainFrequency.Value,
                                            Seed.Value );
 
-        //CellularGenerator generator = new CellularGenerator();
-        //generator.Seed = 1;
-        //ImplicitCellular HeightMap = new ImplicitCellular( generator );
-        
+        // Heat Map
+        ImplicitGradient gradient = new ImplicitGradient( 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1 );
+        ImplicitFractal heatFractal = new ImplicitFractal( (FractalType)_FractalType.Value,
+                                           (BasisType)_BasisType.Value,
+                                           (InterpolationType)_InterpolationType.Value,
+                                           TerrainOctaves.Value,
+                                           TerrainFrequency.Value,
+                                           Seed.Value );
+        ImplicitCombiner HeatMap = new ImplicitCombiner( CombinerType.MULTIPLY );
+        HeatMap.AddSource( gradient );
+        HeatMap.AddSource( heatFractal );
+
         for( int x = 0; x < mapModel.Width; x++ )
         {
             for( int y = 0; y < mapModel.Height; y++ )
@@ -80,6 +93,7 @@ public class HexMap : MonoBehaviour
                 float nw = y1 + Mathf.Sin( t * 2 * Mathf.PI ) * dy / ( 2 * Mathf.PI );
 
                 float heightValue = (float)Math.Round((HeightMap.Get( nx, ny, nz, nw ) + 1) / 2, 1);
+                //float heightValue = (float)Math.Round( ( HeightMap.Get( nx, ny, nz, nw ) + .25f), 1 );
                 //float heatValue = (float)HeatMap.Get( nx, ny, nz, nw );
                 //float moistureValue = (float)MoistureMap.Get( nx, ny, nz, nw );
 
@@ -100,13 +114,14 @@ public class HexMap : MonoBehaviour
                     MoistureData.Min = moistureValue;
                     */
                 mapModel.heightMap.Table[ x, y ] = heightValue;
+                mapModel.colorMap.Table[ x, y ] = ColorGradient.Evaluate( heightValue );
                 
                 //HeatData.Data[ x, y ] = heatValue;
                 //MoistureData.Data[ x, y ] = moistureValue;
                 
             }
         }
-        Debug.Log( mapModel.heightMap.Min + ":::" + mapModel.heightMap.Max );
+        Debug.Log( mapModel.heightMap.Min + "::" + mapModel.heightMap.Max );
     }
 
     private void DrawTiles()
@@ -136,6 +151,7 @@ public class HexMap : MonoBehaviour
                 model.X = x;
                 model.Y = y;
                 model.Altitude = mapModel.heightMap.Table[ x, y ];
+                model.Color = mapModel.colorMap.Table[ x, y ];
                 model.SeaLevel = (float)SeaLevel.Value;
                 hex_go.GetComponent<Hex>().SetModel( model );
 
@@ -146,6 +162,9 @@ public class HexMap : MonoBehaviour
                 hex_go.isStatic = true;
             }
         }
+
+        Ocean.transform.localScale = new Vector3( (mapModel.Width * xOffset)+1, 1, (mapModel.Height * zOffset)+1 );
+        Ocean.transform.position = new Vector3( (mapModel.Width*xOffset)/2, -.6f + ( 1.2f * (float)SeaLevel.Value ), ((mapModel.Height*zOffset)/2)-0.5f );
     }
 
     void ReDraw()

@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GridModel 
+public class GridModel<T>
 {
-    public float[,] Table;
+    public T[,] Table;
     public int Width;
     public int Height;
     public float Min;
@@ -11,7 +11,7 @@ public class GridModel
 
     public GridModel( int width, int height )
     {
-        Table = new float[ width, height ];
+        Table = new T[ width, height ];
         Width = width;
         Height = height;
         Min = float.MaxValue;
