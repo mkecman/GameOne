@@ -10,6 +10,7 @@ public class Hex : MonoBehaviour
     public GameObject Gas;
     public GameObject Liquid;
     public GameObject Solid;
+    public GameObject UnitPrefab;
 
     public void SetModel( HexModel model )
     {
@@ -20,6 +21,25 @@ public class Hex : MonoBehaviour
         SetSymbol();
         //SetLiquidAltitude();
         //SetClouds();
+    }
+
+    private void OnMouseEnter()
+    {
+        Solid.GetComponent<MeshRenderer>().material.color = Color.magenta;
+    }
+
+    private void OnMouseExit()
+    {
+        SetColor();
+    }
+
+    private void OnMouseDown()
+    {
+        GameObject unit = (GameObject)Instantiate(
+                    UnitPrefab,
+                    new Vector3( transform.position.x, Model.Altitude, transform.position.z ),
+                    Quaternion.identity );
+        unit.transform.SetParent( this.transform );
     }
 
     private void SetSymbol()
@@ -50,5 +70,6 @@ public class Hex : MonoBehaviour
         }
         mesh.vertices = verts;
         mesh.RecalculateNormals();
+        GetComponent<MeshCollider>().sharedMesh = mesh;
     }
 }
