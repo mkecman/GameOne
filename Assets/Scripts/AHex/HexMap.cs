@@ -8,15 +8,14 @@ public class HexMap : MonoBehaviour
     public GameObject HexagonPrefab;
     public GameObject Ocean;
 
-    public Gradient ColorGradient;
+    public Gradient TerrainGradient;
+    public Gradient LiquidGradient;
 
     [ Header( "Size Values" )]
     public IntReactiveProperty width = new IntReactiveProperty( 64 );
     public IntReactiveProperty height = new IntReactiveProperty( 40 );
 
-    [Header( "Terrain Values" )]
-    [RangeReactiveProperty( 1, 10 )]
-    public IntReactiveProperty ExtrudeLevel = new IntReactiveProperty( 2 );
+    [Header( "Terrain Map Values" )]
     [RangeReactiveProperty( 0, 1 )]
     public DoubleReactiveProperty SeaLevel = new DoubleReactiveProperty( 0 );
     [ RangeReactiveProperty( 1, 10 )]
@@ -31,6 +30,20 @@ public class HexMap : MonoBehaviour
     [RangeReactiveProperty( 0, 3 )]
     public IntReactiveProperty _InterpolationType = new IntReactiveProperty( 0 );
 
+    [Header( "Heat Map Values" )]
+    [RangeReactiveProperty( 1, 10 )]
+    public IntReactiveProperty HeatOctaves = new IntReactiveProperty( 1 );
+    [RangeReactiveProperty( 0.1f, 2 )]
+    public DoubleReactiveProperty HeatFrequency = new DoubleReactiveProperty( 0.1 );
+    public IntReactiveProperty HeatSeed = new IntReactiveProperty( 0 );
+    [RangeReactiveProperty( 0, 4 )]
+    public IntReactiveProperty _HeatFractalType = new IntReactiveProperty( 0 );
+    [RangeReactiveProperty( 0, 4 )]
+    public IntReactiveProperty _HeatBasisType = new IntReactiveProperty( 0 );
+    [RangeReactiveProperty( 0, 3 )]
+    public IntReactiveProperty _HeatInterpolationType = new IntReactiveProperty( 0 );
+    
+
     private HexMapModel mapModel;
     
     // Use this for initialization
@@ -44,7 +57,14 @@ public class HexMap : MonoBehaviour
         _FractalType.Subscribe( _ => ReDraw() );
         _BasisType.Subscribe( _ => ReDraw() );
         _InterpolationType.Subscribe( _ => ReDraw() );
-        ExtrudeLevel.Subscribe( _ => ReDraw() );
+
+        HeatOctaves.Subscribe( _ => ReDraw() );
+        HeatFrequency.Subscribe( _ => ReDraw() );
+        HeatSeed.Subscribe( _ => ReDraw() );
+        _HeatFractalType.Subscribe( _ => ReDraw() );
+        _HeatBasisType.Subscribe( _ => ReDraw() );
+        _HeatInterpolationType.Subscribe( _ => ReDraw() );
+
         SeaLevel.Subscribe( _ => ReDraw() );
     }
     
@@ -60,17 +80,17 @@ public class HexMap : MonoBehaviour
                                            Seed.Value );
 
         // Heat Map
-        ImplicitGradient gradient = new ImplicitGradient( 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1 );
-        ImplicitFractal heatFractal = new ImplicitFractal( (FractalType)_FractalType.Value,
-                                           (BasisType)_BasisType.Value,
-                                           (InterpolationType)_InterpolationType.Value,
-                                           TerrainOctaves.Value,
-                                           TerrainFrequency.Value,
-                                           Seed.Value );
-        ImplicitCombiner HeatMap = new ImplicitCombiner( CombinerType.MULTIPLY );
+        ImplicitGradient gradient = new ImplicitGradient( 1,1,0,1,1,1,1,1,1,1,1,1 );
+        ImplicitFractal heatFractal = new ImplicitFractal( (FractalType)_HeatFractalType.Value,
+                                           (BasisType)_HeatBasisType.Value,
+                                           (InterpolationType)_HeatInterpolationType.Value,
+                                           HeatOctaves.Value,
+                                           HeatFrequency.Value,
+                                           HeatSeed.Value );
+        ImplicitCombiner HeatMap = new ImplicitCombiner( CombinerType.AVERAGE );
         HeatMap.AddSource( gradient );
-        HeatMap.AddSource( heatFractal );
-
+        HeatMap.AddSource( HeightMap );
+        
         for( int x = 0; x < mapModel.Width; x++ )
         {
             for( int y = 0; y < mapModel.Height; y++ )
@@ -92,9 +112,8 @@ public class HexMap : MonoBehaviour
                 float nz = x1 + Mathf.Sin( s * 2 * Mathf.PI ) * dx / ( 2 * Mathf.PI );
                 float nw = y1 + Mathf.Sin( t * 2 * Mathf.PI ) * dy / ( 2 * Mathf.PI );
 
-                float heightValue = (float)Math.Round((HeightMap.Get( nx, ny, nz, nw ) + 1) / 2, 1);
-                //float heightValue = (float)Math.Round( ( HeightMap.Get( nx, ny, nz, nw ) + .25f), 1 );
-                //float heatValue = (float)HeatMap.Get( nx, ny, nz, nw );
+                float heightValue = (float)Math.Round(HeightMap.Get( nx, ny, nz, nw ), 1);
+                float heatValue = (float)Math.Round( HeatMap.Get( nx, ny, nz, nw ), 1 );
                 //float moistureValue = (float)MoistureMap.Get( nx, ny, nz, nw );
 
                 // keep track of the max and min values found
@@ -102,26 +121,38 @@ public class HexMap : MonoBehaviour
                     mapModel.heightMap.Max = heightValue;
                 if( heightValue < mapModel.heightMap.Min )
                     mapModel.heightMap.Min = heightValue;
+                
+                if( heatValue > mapModel.heatMap.Max )
+                    mapModel.heatMap.Max = heatValue;
+                if( heatValue < mapModel.heatMap.Min )
+                    mapModel.heatMap.Min = heatValue;
                 /*
-                if( heatValue > HeatData.Max )
-                    HeatData.Max = heatValue;
-                if( heatValue < HeatData.Min )
-                    HeatData.Min = heatValue;
-
                 if( moistureValue > MoistureData.Max )
                     MoistureData.Max = moistureValue;
                 if( moistureValue < MoistureData.Min )
                     MoistureData.Min = moistureValue;
                     */
                 mapModel.heightMap.Table[ x, y ] = heightValue;
-                mapModel.colorMap.Table[ x, y ] = ColorGradient.Evaluate( heightValue );
-                
-                //HeatData.Data[ x, y ] = heatValue;
+                mapModel.heatMap.Table[ x, y ] = heatValue;
                 //MoistureData.Data[ x, y ] = moistureValue;
-                
             }
         }
-        Debug.Log( mapModel.heightMap.Min + "::" + mapModel.heightMap.Max );
+
+        //Normalize Ranges to 0-1
+        for( int x = 0; x < mapModel.Width; x++ )
+        {
+            for( int y = 0; y < mapModel.Height; y++ )
+            {
+                mapModel.heightMap.Table[ x, y ] = Mathf.InverseLerp( mapModel.heightMap.Min, mapModel.heightMap.Max, mapModel.heightMap.Table[ x, y ] );
+                mapModel.heatMap.Table[ x, y ] = Mathf.InverseLerp( mapModel.heatMap.Min, mapModel.heatMap.Max, mapModel.heatMap.Table[ x, y ] );
+                //mapModel.colorMap.Table[ x, y ] = ColorGradient.Evaluate( mapModel.heightMap.Table[ x, y ] - ( 1f * mapModel.heatMap.Table[ x, y ] ) );
+                if( mapModel.heightMap.Table[ x, y ] >= SeaLevel.Value )
+                    mapModel.colorMap.Table[ x, y ] = TerrainGradient.Evaluate( (float)( mapModel.heatMap.Table[ x, y ] - SeaLevel.Value ) );
+                else
+                    mapModel.colorMap.Table[ x, y ] = LiquidGradient.Evaluate( (float)( mapModel.heatMap.Table[ x, y ] + SeaLevel.Value ) );
+            }
+        }
+        
     }
 
     private void DrawTiles()
@@ -142,7 +173,7 @@ public class HexMap : MonoBehaviour
                 
                 GameObject hex_go = (GameObject)Instantiate( 
                     HexagonPrefab, 
-                    new Vector3( xPos, 0, y * zOffset ), 
+                    new Vector3( xPos, -0.1f, y * zOffset ), 
                     Quaternion.identity );
 
                 hex_go.name = "Hex_" + x + "_" + y;
@@ -164,14 +195,14 @@ public class HexMap : MonoBehaviour
         }
 
         Ocean.transform.localScale = new Vector3( (mapModel.Width * xOffset)+1, 1, (mapModel.Height * zOffset)+1 );
-        Ocean.transform.position = new Vector3( (mapModel.Width*xOffset)/2, -.6f + ( 1.2f * (float)SeaLevel.Value ), ((mapModel.Height*zOffset)/2)-0.5f );
+        Ocean.transform.position = new Vector3( (mapModel.Width*xOffset)/2, -.65f + ( 1.3f * (float)SeaLevel.Value ), ((mapModel.Height*zOffset)/2)-0.5f );
     }
 
     void ReDraw()
     {
-        RemoveAllChildren();
-        GenerateMap();
-        DrawTiles();
+            RemoveAllChildren();
+            GenerateMap();
+            DrawTiles();
     }
 
     private void RemoveAllChildren()

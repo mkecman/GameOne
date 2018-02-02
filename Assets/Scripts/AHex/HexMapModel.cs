@@ -4,6 +4,7 @@ using System.Collections;
 public class HexMapModel
 {
     public GridModel<float> heightMap;
+    public GridModel<float> heatMap;
     public GridModel<Color> colorMap;
     public int Width;
     public int Height;
@@ -14,5 +15,6 @@ public class HexMapModel
         Height = height;
         heightMap = new GridModel<float>( width, height );
         colorMap = new GridModel<Color>( width, height );
+        heatMap = new GridModel<float>( width, height );
     }
 }
