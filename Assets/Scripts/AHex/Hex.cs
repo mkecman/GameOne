@@ -6,6 +6,7 @@ using System;
 public class Hex : MonoBehaviour
 {
     public HexModel Model;
+    public TextMesh SymbolText;
     public GameObject Gas;
     public GameObject Liquid;
     public GameObject Solid;
@@ -16,8 +17,15 @@ public class Hex : MonoBehaviour
 
         SetHeight( Solid, Model.Altitude );
         SetColor();
+        SetSymbol();
         //SetLiquidAltitude();
         //SetClouds();
+    }
+
+    private void SetSymbol()
+    {
+        SymbolText.text = Model.Element.Symbol;
+        SymbolText.gameObject.transform.position = new Vector3( SymbolText.gameObject.transform.position.x, Model.Altitude + .01f, SymbolText.gameObject.transform.position.z );
     }
 
     private void SetClouds()
