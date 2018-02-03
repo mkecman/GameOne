@@ -43,18 +43,31 @@ public class HexMap : MonoBehaviour
     public IntReactiveProperty _HeatBasisType = new IntReactiveProperty( 0 );
     [RangeReactiveProperty( 0, 3 )]
     public IntReactiveProperty _HeatInterpolationType = new IntReactiveProperty( 0 );
-
-    public float jedan = 1;
-    public float dva = 0.5f;
-
+    
     private HexMapModel mapModel;
     private List<ElementModel> _elements;
+
+    private HexConfig _hexConfig;
+    private bool _canRedraw = false;
 
     // Use this for initialization
     private void Start()
     {
         _elements = Config.Get<ElementConfig>().Elements;
+        _hexConfig = Config.Get<HexConfig>();
+        GameMessage.Listen<ClockTickMessage>( OnClockTick );
+        AddSubscribers();
+        ReDraw();
+    }
 
+    private void OnClockTick( ClockTickMessage value )
+    {
+        
+    }
+
+    private void AddSubscribers()
+    {
+        _canRedraw = false;
         width.Subscribe( _ => ReDraw() );
         height.Subscribe( _ => ReDraw() );
         TerrainOctaves.Subscribe( _ => ReDraw() );
@@ -72,6 +85,7 @@ public class HexMap : MonoBehaviour
         _HeatInterpolationType.Subscribe( _ => ReDraw() );
 
         SeaLevel.Subscribe( _ => ReDraw() );
+        _canRedraw = true;
     }
 
     private void GenerateMap()
@@ -86,7 +100,7 @@ public class HexMap : MonoBehaviour
                                            Seed.Value );
 
         // Heat Map
-        ImplicitGradient gradient = new ImplicitGradient( 1, 1, jedan, dva, 1, 1, 1, 1, 1, 1, 1, 1 );
+        ImplicitGradient gradient = new ImplicitGradient( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1 );
         ImplicitFractal heatFractal = new ImplicitFractal( (FractalType)_HeatFractalType.Value,
                                            (BasisType)_HeatBasisType.Value,
                                            (InterpolationType)_HeatInterpolationType.Value,
@@ -165,23 +179,22 @@ public class HexMap : MonoBehaviour
 
     private void DrawTiles()
     {
-        float xOffset = 0.866f;
-        float zOffset = 0.749f;
+        
 
         for( int x = 0; x < mapModel.Width; x++ )
         {
             for( int y = 0; y < mapModel.Height; y++ )
             {
-                float xPos = x * xOffset;
+                float xPos = x * _hexConfig.xOffset;
                 // Are we on an odd row?
                 if( y % 2 == 1 )
                 {
-                    xPos += xOffset / 2f;
+                    xPos += _hexConfig.xOffset / 2f;
                 }
 
                 GameObject hex_go = (GameObject)Instantiate(
                     HexagonPrefab,
-                    new Vector3( xPos, -0.1f, y * zOffset ),
+                    new Vector3( xPos, -0.1f, y * _hexConfig.zOffset ),
                     Quaternion.identity );
 
                 hex_go.name = "Hex_" + x + "_" + y;
@@ -202,15 +215,20 @@ public class HexMap : MonoBehaviour
             }
         }
 
-        Ocean.transform.localScale = new Vector3( ( mapModel.Width * xOffset ) + 1, 1, ( mapModel.Height * zOffset ) + 1 );
-        Ocean.transform.position = new Vector3( ( mapModel.Width * xOffset ) / 2, -.65f + ( 1.3f * (float)SeaLevel.Value ), ( ( mapModel.Height * zOffset ) / 2 ) - 0.5f );
+        Ocean.transform.localScale = new Vector3( ( mapModel.Width * _hexConfig.xOffset ) + 1, 1, ( mapModel.Height * _hexConfig.zOffset ) + 1 );
+        Ocean.transform.position = new Vector3( ( mapModel.Width * _hexConfig.xOffset ) / 2, -.65f + ( 1.3f * (float)SeaLevel.Value ), ( ( mapModel.Height * _hexConfig.zOffset ) / 2 ) - 0.5f );
     }
 
     void ReDraw()
     {
-        RemoveAllChildren();
-        GenerateMap();
-        DrawTiles();
+        if( _canRedraw )
+        {
+            Debug.Log( "REDRAWING MAP!" );
+            RemoveAllChildren();
+            GenerateMap();
+            DrawTiles();
+            GameModel.Register<HexMapModel>( mapModel );
+        }
     }
 
     private void RemoveAllChildren()

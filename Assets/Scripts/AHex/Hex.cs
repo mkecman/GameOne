@@ -10,7 +10,6 @@ public class Hex : MonoBehaviour
     public GameObject Gas;
     public GameObject Liquid;
     public GameObject Solid;
-    public GameObject UnitPrefab;
 
     public void SetModel( HexModel model )
     {
@@ -35,11 +34,7 @@ public class Hex : MonoBehaviour
 
     private void OnMouseDown()
     {
-        GameObject unit = (GameObject)Instantiate(
-                    UnitPrefab,
-                    new Vector3( transform.position.x, Model.Altitude, transform.position.z ),
-                    Quaternion.identity );
-        unit.transform.SetParent( this.transform );
+        GameMessage.Send<UnitMoveMessage>( new UnitMoveMessage( Model.X, Model.Y ) );
     }
 
     private void SetSymbol()

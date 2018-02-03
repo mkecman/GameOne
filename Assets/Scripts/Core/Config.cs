@@ -17,6 +17,7 @@ public class Config : MonoBehaviour
         _instance.Load<UniverseConfig>();
         _instance.Load<StarsConfig>();
         _instance.Load<ElementConfig>();
+        _instance.Load<HexConfig>();
     }
 
     public static T Get<T>()
@@ -34,6 +35,8 @@ public class Config : MonoBehaviour
         TextAsset configFile = Resources.Load<TextAsset>( "Configs/" + className );
         if( configFile != null )
         {
+            JsonMapper.RegisterExporter<float>( ( obj, writer ) => writer.Write( Convert.ToDouble( obj ) ) );
+            JsonMapper.RegisterImporter<double, float>( input => Convert.ToSingle( input ) );
             _instance._configs.Add( className, JsonMapper.ToObject<T>( configFile.text ) );
             Debug.Log( "Loaded config: " + className );
         }

@@ -49,6 +49,7 @@ public class GameController : MonoBehaviour
             //Player.UpdateStep( 1 );
             //ai.MakeMove();
             GameMessage.Send<ClockTickMessage>( clockTickMessage );
+            clockTickMessage.elapsedTicksSinceStart++;
         }
         
         DateTime end = DateTime.Now;
