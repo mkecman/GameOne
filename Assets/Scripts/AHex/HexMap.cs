@@ -48,7 +48,6 @@ public class HexMap : MonoBehaviour
     private List<ElementModel> _elements;
 
     private HexConfig _hexConfig;
-    private bool _canRedraw = false;
 
     // Use this for initialization
     private void Start()
@@ -67,25 +66,15 @@ public class HexMap : MonoBehaviour
 
     private void AddSubscribers()
     {
-        _canRedraw = false;
-        width.Subscribe( _ => ReDraw() );
-        height.Subscribe( _ => ReDraw() );
-        TerrainOctaves.Subscribe( _ => ReDraw() );
-        TerrainFrequency.Subscribe( _ => ReDraw() );
-        Seed.Subscribe( _ => ReDraw() );
-        _FractalType.Subscribe( _ => ReDraw() );
-        _BasisType.Subscribe( _ => ReDraw() );
-        _InterpolationType.Subscribe( _ => ReDraw() );
-
-        HeatOctaves.Subscribe( _ => ReDraw() );
-        HeatFrequency.Subscribe( _ => ReDraw() );
-        HeatSeed.Subscribe( _ => ReDraw() );
-        _HeatFractalType.Subscribe( _ => ReDraw() );
-        _HeatBasisType.Subscribe( _ => ReDraw() );
-        _HeatInterpolationType.Subscribe( _ => ReDraw() );
-
-        SeaLevel.Subscribe( _ => ReDraw() );
-        _canRedraw = true;
+        width.Skip( 1 ).Subscribe( _ => ReDraw() );
+        height.Skip( 1 ).Subscribe( _ => ReDraw() );
+        TerrainOctaves.Skip( 1 ).Subscribe( _ => ReDraw() );
+        TerrainFrequency.Skip( 1 ).Subscribe( _ => ReDraw() );
+        Seed.Skip( 1 ).Subscribe( _ => ReDraw() );
+        _FractalType.Skip( 1 ).Subscribe( _ => ReDraw() );
+        _BasisType.Skip( 1 ).Subscribe( _ => ReDraw() );
+        _InterpolationType.Skip( 1 ).Subscribe( _ => ReDraw() );
+        SeaLevel.Skip( 1 ).Subscribe( _ => ReDraw() );
     }
 
     private void GenerateMap()
@@ -132,7 +121,7 @@ public class HexMap : MonoBehaviour
                 float nz = x1 + Mathf.Sin( s * 2 * Mathf.PI ) * dx / ( 2 * Mathf.PI );
                 float nw = y1 + Mathf.Sin( t * 2 * Mathf.PI ) * dy / ( 2 * Mathf.PI );
 
-                float heightValue = (float)Math.Round( HeightMap.Get( nx, ny, nz, nw ), 2 );
+                float heightValue = (float)Math.Round( HeightMap.Get( nx, ny, nz, nw ), 1 );
                 float heatValue = (float)Math.Round( HeatMap.Get( nx, ny, nz, nw ), 2 );
                 //float moistureValue = (float)MoistureMap.Get( nx, ny, nz, nw );
 
@@ -171,7 +160,7 @@ public class HexMap : MonoBehaviour
                 else
                     mapModel.colorMap.Table[ x, y ] = LiquidGradient.Evaluate( (float)( mapModel.heatMap.Table[ x, y ] + SeaLevel.Value ) );
 
-                mapModel.elementMap.Table[ x, y ] = _elements[ (int)Math.Round( ( _elements.Count - 1 ) * mapModel.heatMap.Table[ x, y ], 0 ) ];
+                mapModel.elementMap.Table[ x, y ] = _elements[ (int)Math.Round( ( _elements.Count - 2 ) * mapModel.heatMap.Table[ x, y ], 0 ) + 1 ];
             }
         }
 
@@ -185,16 +174,9 @@ public class HexMap : MonoBehaviour
         {
             for( int y = 0; y < mapModel.Height; y++ )
             {
-                float xPos = x * _hexConfig.xOffset;
-                // Are we on an odd row?
-                if( y % 2 == 1 )
-                {
-                    xPos += _hexConfig.xOffset / 2f;
-                }
-
                 GameObject hex_go = (GameObject)Instantiate(
                     HexagonPrefab,
-                    new Vector3( xPos, -0.1f, y * _hexConfig.zOffset ),
+                    new Vector3( HexMapHelper.GetXPosition(x,y), -0.1f, HexMapHelper.GetZPosition( y ) ),
                     Quaternion.identity );
 
                 hex_go.name = "Hex_" + x + "_" + y;
@@ -203,8 +185,11 @@ public class HexMap : MonoBehaviour
                 model.X = x;
                 model.Y = y;
                 model.Altitude = mapModel.heightMap.Table[ x, y ];
+                model.Temperature = mapModel.heatMap.Table[ x, y ];
                 model.Color = mapModel.colorMap.Table[ x, y ];
                 model.Element = mapModel.elementMap.Table[ x, y ];
+                mapModel.hexMap.Table[ x, y ] = model;
+
                 hex_go.GetComponent<Hex>().SetModel( model );
 
                 // For a cleaner hierachy, parent this hex to the map
@@ -221,14 +206,11 @@ public class HexMap : MonoBehaviour
 
     void ReDraw()
     {
-        if( _canRedraw )
-        {
-            Debug.Log( "REDRAWING MAP!" );
-            RemoveAllChildren();
-            GenerateMap();
-            DrawTiles();
-            GameModel.Register<HexMapModel>( mapModel );
-        }
+        Debug.Log( "REDRAWING MAP!" );
+        RemoveAllChildren();
+        GenerateMap();
+        DrawTiles();
+        GameModel.Register<HexMapModel>( mapModel );
     }
 
     private void RemoveAllChildren()

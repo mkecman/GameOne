@@ -22,12 +22,12 @@ public class GameController : MonoBehaviour
     {
         CSV.Add( "Population,Science,Words" );
         
-        /*
+        
         Player.NewPlayer();
         Player.NewGalaxy();
+        /*
         ai.SetPlayer( Player.PlayerModel );
         clock.ElapsedUpdates.Subscribe<long>( x => UpdateStep(1) ).AddTo( clock );
-        
         _Steps.Subscribe( x => UpdateStep( x ) );
 
         /*

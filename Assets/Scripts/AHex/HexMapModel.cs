@@ -3,6 +3,8 @@ using System.Collections;
 
 public class HexMapModel
 {
+    public GridModel<HexModel> hexMap;
+
     public GridModel<float> heightMap;
     public GridModel<float> heatMap;
     public GridModel<Color> colorMap;
@@ -14,9 +16,11 @@ public class HexMapModel
     {
         Width = width;
         Height = height;
+        hexMap = new GridModel<HexModel>( width, height );
         heightMap = new GridModel<float>( width, height );
         colorMap = new GridModel<Color>( width, height );
         heatMap = new GridModel<float>( width, height );
         elementMap = new GridModel<ElementModel>( width, height );
+
     }
 }

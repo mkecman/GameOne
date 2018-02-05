@@ -39,6 +39,14 @@ public class LifeModel
         set { _Population.Value = value; }
     }
 
+    [SerializeField]
+    internal DoubleReactiveProperty _Food = new DoubleReactiveProperty();
+    public Double Food
+    {
+        get { return _Food.Value; }
+        set { _Food.Value = value; }
+    }
+
     internal ReactiveProperty<double> _Science = new ReactiveProperty<double>();
     public double Science
     {

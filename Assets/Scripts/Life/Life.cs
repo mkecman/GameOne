@@ -45,7 +45,7 @@ public class Life
             }
         };
 
-        GameModel.Register<LifeModel>( _life );
+        GameModel.Register( _life );
         
         return _life;
     }
