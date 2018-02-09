@@ -11,7 +11,7 @@ public class HexModel
     public float Humidity;
     public float Radiation;
     public float TotalScore;
-    public Color[] Color;
+    public Color[] Colors = new Color[7];
     public ElementModel Element;
     public UnitModel Unit;
 

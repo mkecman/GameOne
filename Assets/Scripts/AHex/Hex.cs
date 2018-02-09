@@ -69,7 +69,7 @@ public class Hex : MonoBehaviour
 
     private void SetColor()
     {
-        Solid.GetComponent<MeshRenderer>().material.color = Model.Color[ (int)Model.Lens ];
+        Solid.GetComponent<MeshRenderer>().material.color = Model.Colors[ (int)Model.Lens ];
     }
 
     private void SetHeight( GameObject target, float height )

@@ -9,7 +9,7 @@ public class Units : MonoBehaviour
     private List<UnitModel> _units;
     private GridModel<Unit> _unitMap;
 
-    private HexMapModel _hexMapModel;
+    private GridModel<HexModel> _hexMapModel;
     private List<HexModel> _markedHexes;
 
     private LifeModel _life;
@@ -27,7 +27,7 @@ public class Units : MonoBehaviour
     {
         _units = new List<UnitModel>();
         _markedHexes = new List<HexModel>();
-        GameModel.Bind<HexMapModel>( OnHexMapModelChange );
+        GameModel.Bind<GridModel<HexModel>>( OnHexMapModelChange );
         GameModel.Bind<LifeModel>( OnLifeModelChange );
         GameMessage.Listen<HexClickedMessage>( OnHexClickedMessage );
         GameMessage.Listen<ClockTickMessage>( OnClockTick );
@@ -49,7 +49,7 @@ public class Units : MonoBehaviour
         for( int i = 0; i < _units.Count; i++ )
         {
             um = _units[ i ];
-            em = _hexMapModel.ElementMap.Table[ um.X, um.Y ];
+            em = _hexMapModel.Table[ um.X, um.Y ].Element;
             food += em.Modifier( ElementModifiers.Food ).Delta;
             science += em.Modifier( ElementModifiers.Science ).Delta;
             words += em.Modifier( ElementModifiers.Words ).Delta;
@@ -65,7 +65,7 @@ public class Units : MonoBehaviour
         int x = value.Hex.X;
         int y = value.Hex.Y;
 
-        if( _selectedUnit != null && _hexMapModel.HexMap.Table[x,y].isMarked.Value == true )
+        if( _selectedUnit != null && _hexMapModel.Table[ x, y ].isMarked.Value == true )
         {
             MoveUnit( x, y );
             SelectUnit( x, y );
@@ -129,8 +129,8 @@ public class Units : MonoBehaviour
         {
             if( _unitMap.Table[ x, y ] == null )
             {
-                _hexMapModel.HexMap.Table[ x, y ].isMarked.Value = true;
-                _markedHexes.Add( _hexMapModel.HexMap.Table[ x, y ] );
+                _hexMapModel.Table[ x, y ].isMarked.Value = true;
+                _markedHexes.Add( _hexMapModel.Table[ x, y ] );
             }
         }
     }
@@ -143,7 +143,7 @@ public class Units : MonoBehaviour
         _markedHexes.Clear();
     }
 
-    private void OnHexMapModelChange( HexMapModel value )
+    private void OnHexMapModelChange( GridModel<HexModel> value )
     {
         RemoveAllChildren();
         _hexMapModel = value;
@@ -158,7 +158,7 @@ public class Units : MonoBehaviour
 
         GameObject unitGO = (GameObject)Instantiate(
                     UnitPrefab,
-                    new Vector3( HexMapHelper.GetXPosition( x, y ), _hexMapModel.AltitudeMap.Table[ x, y ], HexMapHelper.GetZPosition( y ) ),
+                    new Vector3( HexMapHelper.GetXPosition( x, y ), _hexMapModel.Table[ x, y ].Altitude, HexMapHelper.GetZPosition( y ) ),
                     Quaternion.identity );
         unitGO.transform.SetParent( this.transform );
         UnitModel um = new UnitModel( x, y );
@@ -175,7 +175,7 @@ public class Units : MonoBehaviour
         _unitMap.Table[ xTo, yTo ] = _selectedUnit;
         _selectedUnit.Model.X = xTo;
         _selectedUnit.Model.Y = yTo;
-        _selectedUnit.transform.position = new Vector3( HexMapHelper.GetXPosition( xTo, yTo ), _hexMapModel.AltitudeMap.Table[ xTo, yTo ], HexMapHelper.GetZPosition( yTo ) );
+        _selectedUnit.transform.position = new Vector3( HexMapHelper.GetXPosition( xTo, yTo ), _hexMapModel.Table[ xTo, yTo ].Altitude, HexMapHelper.GetZPosition( yTo ) );
     }
 
     private void RemoveAllChildren()

@@ -31,16 +31,23 @@ public class HexMap : MonoBehaviour
 
 
     private LifeModel _lifeModel;
-    private HexMapModel mapModel;
+    private GridModel<HexModel> mapModel;
     private List<ElementModel> _elements;
 
     private HexConfig _hexConfig;
-    
+    private Vector2[] Ranges = new Vector2[ 7 ];
+
     // Use this for initialization
     private void Start()
     {
         _elements = Config.Get<ElementConfig>().Elements;
         _hexConfig = Config.Get<HexConfig>();
+        Vector2 defaultRange = new Vector2( float.MaxValue, float.MinValue );
+        for( int i = 0; i < 7; i++ )
+        {
+            Ranges[ i ] = defaultRange;
+        }
+        //Ranges[ HexMapLens.Altitude ] = 
         GameModel.Bind<LifeModel>( OnLifeModelChange );
     }
 
@@ -52,7 +59,7 @@ public class HexMap : MonoBehaviour
 
     private void GenerateMap()
     {
-        mapModel = new HexMapModel( width.Value, height.Value );
+        mapModel = new GridModel<HexModel>( width.Value, height.Value );
         // Generate AltitudeMap
         ImplicitFractal AltitudeMap = GetFractal( AltitudeFractal );
 
@@ -73,10 +80,20 @@ public class HexMap : MonoBehaviour
         // Generate RadiationMap
         ImplicitFractal RadiationMap = GetFractal( RadiationFractal );
 
+        HexModel hex;
+
         for( int x = 0; x < mapModel.Width; x++ )
         {
             for( int y = 0; y < mapModel.Height; y++ )
             {
+                hex = new HexModel
+                {
+                    X = x,
+                    Y = y,
+                    Lens = Lens
+                };
+                mapModel.Table[ x, y ] = hex;
+
                 // WRAP ON BOTH AXIS
                 // Noise range
                 float x1 = 0, x2 = 2;
@@ -100,19 +117,18 @@ public class HexMap : MonoBehaviour
                 float humidity = (float)HumidityMap.Get( nx, ny, nz, nw );
                 float radiation = (float)RadiationMap.Get( nx, ny, nz, nw );
 
-                // keep track of the max and min values found
-                SetMinMax( altitude, mapModel.AltitudeMap );
-                SetMinMax( temperature, mapModel.TemperatureMap );
-                SetMinMax( pressure, mapModel.PressureMap );
-                SetMinMax( humidity, mapModel.HumidityMap );
-                SetMinMax( radiation, mapModel.RadiationMap );
-                
-                mapModel.AltitudeMap.Table[ x, y ] = altitude;
-                mapModel.TemperatureMap.Table[ x, y ] = temperature;
-                mapModel.PressureMap.Table[ x, y ] = pressure;
-                mapModel.HumidityMap.Table[ x, y ] = humidity;
-                mapModel.RadiationMap.Table[ x, y ] = radiation;
+                hex.Altitude = altitude;
+                hex.Temperature = temperature;
+                hex.Pressure = pressure;
+                hex.Humidity = humidity;
+                hex.Radiation = radiation;
 
+                // keep track of the max and min values found
+                SetMinMax( altitude, HexMapLens.Altitude );
+                SetMinMax( temperature, HexMapLens.Temperature );
+                SetMinMax( pressure, HexMapLens.Pressure );
+                SetMinMax( humidity, HexMapLens.Humidity );
+                SetMinMax( radiation, HexMapLens.Radiation );
             }
         }
 
@@ -121,34 +137,36 @@ public class HexMap : MonoBehaviour
         {
             for( int y = 0; y < mapModel.Height; y++ )
             {
-                Normalize( mapModel.AltitudeMap, x, y );
-                Normalize( mapModel.TemperatureMap, x, y );
-                Normalize( mapModel.PressureMap, x, y );
-                Normalize( mapModel.HumidityMap, x, y );
-                Normalize( mapModel.RadiationMap, x, y );
-                
-                if( mapModel.AltitudeMap.Table[ x, y ] >= SeaLevel.Value )
-                    mapModel.ColorMap.Table[ x, y ] = TerrainGradient.Evaluate( (float)( ( 1 - mapModel.TemperatureMap.Table[ x, y ] ) * ( 1 - SeaLevel.Value ) ) );
-                else
-                    mapModel.ColorMap.Table[ x, y ] = LiquidGradient.Evaluate( (float)( ( 1 - mapModel.TemperatureMap.Table[ x, y ] ) + SeaLevel.Value ) );
+                hex = mapModel.Table[ x, y ];
 
-                mapModel.ElementMap.Table[ x, y ] = _elements[ (int)Math.Round( ( _elements.Count - 2 ) * mapModel.TemperatureMap.Table[ x, y ], 0 ) + 1 ];
+                hex.Altitude = Normalize( HexMapLens.Altitude, hex.Altitude );
+                hex.Temperature = Normalize( HexMapLens.Temperature, hex.Temperature );
+                hex.Pressure = Normalize( HexMapLens.Pressure, hex.Pressure );
+                hex.Humidity = Normalize( HexMapLens.Humidity, hex.Humidity );
+                hex.Radiation = Normalize( HexMapLens.Radiation, hex.Radiation );
+                
+                if( hex.Altitude >= SeaLevel.Value )
+                    hex.Colors[ (int)HexMapLens.Normal ] = TerrainGradient.Evaluate( (float)( ( 1 - hex.Temperature ) * ( 1 - SeaLevel.Value ) ) );
+                else
+                    hex.Colors[ (int)HexMapLens.Normal ] = LiquidGradient.Evaluate( (float)( ( 1 - hex.Temperature ) + SeaLevel.Value ) );
+
+                hex.Element = _elements[ (int)Math.Round( ( _elements.Count - 2 ) * hex.Temperature, 0 ) + 1 ];
             }
         }
 
     }
 
-    private void Normalize( GridModel<float> map, int x, int y )
+    private float Normalize( HexMapLens lens, float value )
     {
-        map.Table[ x, y ] = (float)Math.Round( Mathf.InverseLerp( map.Min, map.Max, map.Table[ x, y ] ), 2 );
+        return (float)Math.Round( Mathf.InverseLerp( Ranges[ (int)lens ].x, Ranges[ (int)lens ].y, value ), 2 );
     }
-
-    private void SetMinMax( float value, GridModel<float> map )
+        
+    private void SetMinMax( float value, HexMapLens lens )
     {
-        if( value > map.Max )
-            map.Max = value;
-        if( value < map.Min )
-            map.Min = value;
+        if( value > Ranges[ (int)lens ].y )
+            Ranges[ (int)lens ].y = value;
+        if( value < Ranges[ (int)lens ].x )
+            Ranges[ (int)lens ].x = value;
     }
 
     private void DrawTiles()
@@ -163,29 +181,8 @@ public class HexMap : MonoBehaviour
                     Quaternion.identity );
 
                 hex_go.name = "Hex_" + x + "_" + y;
-                // Make sure the hex is aware of its place on the map
-                HexModel model = new HexModel();
-                model.X = x;
-                model.Y = y;
-                model.Altitude = mapModel.AltitudeMap.Table[ x, y ];
-                model.Temperature = mapModel.TemperatureMap.Table[ x, y ];
-                model.Pressure = mapModel.PressureMap.Table[ x, y ];
-                model.Humidity = mapModel.HumidityMap.Table[ x, y ];
-                model.Radiation = mapModel.RadiationMap.Table[ x, y ];
-                model.Color = mapModel.ColorMap.Table[ x, y ];
-                model.Element = mapModel.ElementMap.Table[ x, y ];
-                model.TotalScore = ( _lifeModel.TemperatureBC.GetValueAt( model.Temperature ) +
-                                     _lifeModel.PressureBC.GetValueAt( model.Pressure ) +
-                                     _lifeModel.HumidityBC.GetValueAt( model.Humidity ) +
-                                     _lifeModel.RadiationBC.GetValueAt( model.Radiation ) ) / 4;
-                model.Lens = Lens;
-                mapModel.HexMap.Table[ x, y ] = model;
-
-                hex_go.GetComponent<Hex>().SetModel( model );
-
-                // For a cleaner hierachy, parent this hex to the map
+                hex_go.GetComponent<Hex>().SetModel( mapModel.Table[ x, y ] );
                 hex_go.transform.SetParent( this.transform );
-
                 // TODO: Quill needs to explain different optimization later...
                 hex_go.isStatic = true;
             }
@@ -201,7 +198,7 @@ public class HexMap : MonoBehaviour
         RemoveAllChildren();
         GenerateMap();
         DrawTiles();
-        GameModel.Register<HexMapModel>( mapModel );
+        GameModel.Register( mapModel );
     }
 
     private void RemoveAllChildren()
