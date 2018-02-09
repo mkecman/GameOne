@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using System;
+using UniRx;
 using UnityEngine;
 
 public class Hex : MonoBehaviour
@@ -9,22 +10,21 @@ public class Hex : MonoBehaviour
     public GameObject Liquid;
     public GameObject Solid;
 
-    private HexClickedMessage _HexClickedMessage = new HexClickedMessage( 0, 0 );
-
+    private HexClickedMessage _HexClickedMessage;
+    
     public void SetModel( HexModel model )
     {
         this.Model = model;
-        _HexClickedMessage.X = Model.X;
-        _HexClickedMessage.Y = Model.Y;
+        _HexClickedMessage = new HexClickedMessage( model );
 
         SetHeight( Solid, Model.Altitude );
-
         Model.isMarked.Subscribe( _ => UpdateMarkedColor( _ ) ).AddTo( this );
-        //SetColor();
+
         SetSymbol();
-        //SetLiquidAltitude();
         //SetClouds();
     }
+
+
 
     private void UpdateMarkedColor( bool isMarked )
     {
@@ -64,12 +64,12 @@ public class Hex : MonoBehaviour
     private void SetClouds()
     {
         Gas.transform.position = new Vector3( Gas.transform.position.x, 0.9f, Gas.transform.position.z );
-        Gas.GetComponent<MeshRenderer>().material.color = new Color32( 255, 255, 255, (byte)RandomUtil.FromRangeInt( 0, 255 ) );
+        Gas.GetComponent<MeshRenderer>().material.color = new Color32( 255, 255, 255, (byte)(Model.Humidity * 255) );
     }
 
     private void SetColor()
     {
-        Solid.GetComponent<MeshRenderer>().material.color = Model.Color;
+        Solid.GetComponent<MeshRenderer>().material.color = Model.Color[ (int)Model.Lens ];
     }
 
     private void SetHeight( GameObject target, float height )

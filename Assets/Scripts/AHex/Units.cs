@@ -49,7 +49,7 @@ public class Units : MonoBehaviour
         for( int i = 0; i < _units.Count; i++ )
         {
             um = _units[ i ];
-            em = _hexMapModel.elementMap.Table[ um.X, um.Y ];
+            em = _hexMapModel.ElementMap.Table[ um.X, um.Y ];
             food += em.Modifier( ElementModifiers.Food ).Delta;
             science += em.Modifier( ElementModifiers.Science ).Delta;
             words += em.Modifier( ElementModifiers.Words ).Delta;
@@ -62,10 +62,10 @@ public class Units : MonoBehaviour
     
     private void OnHexClickedMessage( HexClickedMessage value )
     {
-        int x = value.X;
-        int y = value.Y;
+        int x = value.Hex.X;
+        int y = value.Hex.Y;
 
-        if( _selectedUnit != null && _hexMapModel.hexMap.Table[x,y].isMarked.Value == true )
+        if( _selectedUnit != null && _hexMapModel.HexMap.Table[x,y].isMarked.Value == true )
         {
             MoveUnit( x, y );
             SelectUnit( x, y );
@@ -129,8 +129,8 @@ public class Units : MonoBehaviour
         {
             if( _unitMap.Table[ x, y ] == null )
             {
-                _hexMapModel.hexMap.Table[ x, y ].isMarked.Value = true;
-                _markedHexes.Add( _hexMapModel.hexMap.Table[ x, y ] );
+                _hexMapModel.HexMap.Table[ x, y ].isMarked.Value = true;
+                _markedHexes.Add( _hexMapModel.HexMap.Table[ x, y ] );
             }
         }
     }
@@ -158,7 +158,7 @@ public class Units : MonoBehaviour
 
         GameObject unitGO = (GameObject)Instantiate(
                     UnitPrefab,
-                    new Vector3( HexMapHelper.GetXPosition( x, y ), _hexMapModel.heightMap.Table[ x, y ], HexMapHelper.GetZPosition( y ) ),
+                    new Vector3( HexMapHelper.GetXPosition( x, y ), _hexMapModel.AltitudeMap.Table[ x, y ], HexMapHelper.GetZPosition( y ) ),
                     Quaternion.identity );
         unitGO.transform.SetParent( this.transform );
         UnitModel um = new UnitModel( x, y );
@@ -175,7 +175,7 @@ public class Units : MonoBehaviour
         _unitMap.Table[ xTo, yTo ] = _selectedUnit;
         _selectedUnit.Model.X = xTo;
         _selectedUnit.Model.Y = yTo;
-        _selectedUnit.transform.position = new Vector3( HexMapHelper.GetXPosition( xTo, yTo ), _hexMapModel.heightMap.Table[ xTo, yTo ], HexMapHelper.GetZPosition( yTo ) );
+        _selectedUnit.transform.position = new Vector3( HexMapHelper.GetXPosition( xTo, yTo ), _hexMapModel.AltitudeMap.Table[ xTo, yTo ], HexMapHelper.GetZPosition( yTo ) );
     }
 
     private void RemoveAllChildren()

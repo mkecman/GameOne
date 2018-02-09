@@ -3,12 +3,15 @@ using System.Collections;
 
 public class HexMapModel
 {
-    public GridModel<HexModel> hexMap;
+    public GridModel<HexModel> HexMap;
 
-    public GridModel<float> heightMap;
-    public GridModel<float> heatMap;
-    public GridModel<Color> colorMap;
-    public GridModel<ElementModel> elementMap;
+    public GridModel<float> AltitudeMap;
+    public GridModel<float> TemperatureMap;
+    public GridModel<float> PressureMap;
+    public GridModel<float> HumidityMap;
+    public GridModel<float> RadiationMap;
+    public GridModel<Color> ColorMap;
+    public GridModel<ElementModel> ElementMap;
     public int Width;
     public int Height;
 
@@ -16,11 +19,14 @@ public class HexMapModel
     {
         Width = width;
         Height = height;
-        hexMap = new GridModel<HexModel>( width, height );
-        heightMap = new GridModel<float>( width, height );
-        colorMap = new GridModel<Color>( width, height );
-        heatMap = new GridModel<float>( width, height );
-        elementMap = new GridModel<ElementModel>( width, height );
+        HexMap = new GridModel<HexModel>( width, height );
+        AltitudeMap = new GridModel<float>( width, height );
+        TemperatureMap = new GridModel<float>( width, height );
+        PressureMap = new GridModel<float>( width, height );
+        HumidityMap = new GridModel<float>( width, height );
+        RadiationMap = new GridModel<float>( width, height );
+        ColorMap = new GridModel<Color>( width, height );
+        ElementMap = new GridModel<ElementModel>( width, height );
 
     }
 }

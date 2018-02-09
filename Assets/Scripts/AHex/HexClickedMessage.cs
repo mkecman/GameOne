@@ -3,11 +3,10 @@ using System.Collections;
 
 public class HexClickedMessage
 {
-    public int X;
-    public int Y;
-    public HexClickedMessage( int x, int y )
+    public HexModel Hex;
+
+    public HexClickedMessage( HexModel hex )
     {
-        this.X = x;
-        this.Y = y;
+        this.Hex = hex;
     }
 }
