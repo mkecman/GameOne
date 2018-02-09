@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
+using UniRx;
 
 public class HexTileInfoPanelView : MonoBehaviour
 {
@@ -11,10 +13,13 @@ public class HexTileInfoPanelView : MonoBehaviour
     public UIPropertyView Radiation;
     public UIPropertyView TotalBonus;
 
+    public Button AddUnitButton;
+
     // Use this for initialization
     void Start()
     {
         GameMessage.Listen<HexClickedMessage>( OnHexClicked );
+        AddUnitButton.OnClickAsObservable().Subscribe( _ => { GameMessage.Send<UnitMessage>( new UnitMessage( UnitMessageType.Add, 15, 15 ) ); } );
     }
 
     private void OnHexClicked( HexClickedMessage value )

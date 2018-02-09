@@ -37,12 +37,14 @@ public class LifeView : GameView
         propertyModel.value = model._Words;
         Words.UpdateModel( propertyModel );
 
+        /*
         model._WorkingElements.ObserveAdd().Subscribe( x => AddWorkingElement( x.Value ) ).AddTo( disposables );
 
         foreach( KeyValuePair<int, WorkedElementModel> item in model._WorkingElements )
         {
             AddWorkingElement( item.Value );
         }
+        */
     }
     
     private void AddWorkingElement( WorkedElementModel model )

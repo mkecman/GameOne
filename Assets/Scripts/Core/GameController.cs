@@ -44,9 +44,10 @@ public class GameController : MonoBehaviour
         DateTime start = DateTime.Now;
         //Debug.Log( "start at: " + start.ToString() );
 
+        Player.UpdateStep( steps );
+
         for( int i = 0; i < steps; i++ )
         {
-            //Player.UpdateStep( 1 );
             //ai.MakeMove();
             GameMessage.Send<ClockTickMessage>( clockTickMessage );
             clockTickMessage.elapsedTicksSinceStart++;
@@ -61,7 +62,7 @@ public class GameController : MonoBehaviour
         StringBuilder sb = new StringBuilder();
         JsonWriter jsonWriter = new JsonWriter( sb );
         jsonWriter.PrettyPrint = true;
-        JsonMapper.ToJson( Player.GetPlayer(), jsonWriter );
+        JsonMapper.ToJson( Player.PlayerModel, jsonWriter );
         File.WriteAllText( Application.persistentDataPath + "-Player.json", sb.ToString() );
 
         CSV.Save( "test.csv" );

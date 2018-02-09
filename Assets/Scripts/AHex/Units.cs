@@ -1,44 +1,30 @@
-﻿using System;
+﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public class Units : MonoBehaviour
+public class Units
 {
-    public GameObject UnitPrefab;
-
-    private List<UnitModel> _units;
-    private GridModel<Unit> _unitMap;
-
+    private LifeModel _life;
     private GridModel<HexModel> _hexMapModel;
+    
+    private GridModel<UnitModel> _unitMap;
+    private UnitModel _selectedUnit;
+    
     private List<HexModel> _markedHexes;
 
-    private LifeModel _life;
-
-    private Unit _selectedUnit;
-
-    private void Update()
+    public void Load( PlanetModel planet )
     {
-        if( Input.GetKeyDown( KeyCode.Space ) )
-            AddUnit( Mathf.RoundToInt( _hexMapModel.Width / 2 ), Mathf.RoundToInt( _hexMapModel.Height / 2 ) );
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-        _units = new List<UnitModel>();
+        _hexMapModel = planet.Map;
+        _life = planet.Life;
+        _unitMap = new GridModel<UnitModel>( planet.Map.Width, planet.Map.Height );
         _markedHexes = new List<HexModel>();
-        GameModel.Bind<GridModel<HexModel>>( OnHexMapModelChange );
-        GameModel.Bind<LifeModel>( OnLifeModelChange );
+
         GameMessage.Listen<HexClickedMessage>( OnHexClickedMessage );
-        GameMessage.Listen<ClockTickMessage>( OnClockTick );
+        GameMessage.Listen<UnitMessage>( OnUnitMessage );
     }
-
-    private void OnLifeModelChange( LifeModel value )
-    {
-        _life = value;
-    }
-
-    private void OnClockTick( ClockTickMessage value )
+    
+    public void UpdateStep()
     {
         double food = 0;
         double science = 0;
@@ -46,10 +32,10 @@ public class Units : MonoBehaviour
 
         UnitModel um;
         ElementModel em;
-        for( int i = 0; i < _units.Count; i++ )
+        for( int i = 0; i < _life.Units.Count; i++ )
         {
-            um = _units[ i ];
-            em = _hexMapModel.Table[ um.X, um.Y ].Element;
+            um = _life.Units[ i ];
+            em = _hexMapModel.Table[ um.X.Value, um.Y.Value ].Element;
             food += em.Modifier( ElementModifiers.Food ).Delta;
             science += em.Modifier( ElementModifiers.Science ).Delta;
             words += em.Modifier( ElementModifiers.Words ).Delta;
@@ -59,7 +45,34 @@ public class Units : MonoBehaviour
         _life.Science += science;
         _life.Words += words;
     }
-    
+
+    private void OnUnitMessage( UnitMessage value )
+    {
+        if( value.Type == UnitMessageType.Add )
+            AddUnit( value.X, value.Y );
+        else
+            MoveUnit( value.X, value.Y );
+    }
+
+    private void AddUnit( int x, int y )
+    {
+        if( _unitMap.Table[ x, y ] != null )
+            return;
+        
+        UnitModel um = new UnitModel( x, y, _hexMapModel.Table[ x, y ].Altitude );
+        _unitMap.Table[ x, y ] = um;
+        _life.Units.Add( um );
+    }
+
+    private void MoveUnit( int xTo, int yTo )
+    {
+        _unitMap.Table[ _selectedUnit.X.Value, _selectedUnit.Y.Value ] = null;
+        _unitMap.Table[ xTo, yTo ] = _selectedUnit;
+        _selectedUnit.Altitude.Value = _hexMapModel.Table[ xTo, yTo ].Altitude;
+        _selectedUnit.X.Value = xTo;
+        _selectedUnit.Y.Value = yTo;
+    }
+
     private void OnHexClickedMessage( HexClickedMessage value )
     {
         int x = value.Hex.X;
@@ -87,7 +100,7 @@ public class Units : MonoBehaviour
         if( _selectedUnit != null )
         {
             UnmarkHexes();
-            _selectedUnit.Model.isSelected.Value = false;
+            _selectedUnit.isSelected.Value = false;
         }
     }
 
@@ -95,7 +108,7 @@ public class Units : MonoBehaviour
     {
         DeselectUnit();
         _selectedUnit = _unitMap.Table[ x, y ];
-        _selectedUnit.Model.isSelected.Value = true;
+        _selectedUnit.isSelected.Value = true;
         MarkMoveHexes( x, y );
     }
 
@@ -122,7 +135,7 @@ public class Units : MonoBehaviour
             CheckAndMark( x + 1, y - 1 );
         }
     }
-    
+
     private void CheckAndMark( int x, int y )
     {
         if( x >= 0 && y >= 0 && x < _hexMapModel.Width && y < _hexMapModel.Height )
@@ -141,51 +154,5 @@ public class Units : MonoBehaviour
             _markedHexes[ i ].isMarked.Value = false;
 
         _markedHexes.Clear();
-    }
-
-    private void OnHexMapModelChange( GridModel<HexModel> value )
-    {
-        RemoveAllChildren();
-        _hexMapModel = value;
-        _unitMap = new GridModel<Unit>( _hexMapModel.Width, _hexMapModel.Height );
-        AddUnit( Mathf.RoundToInt( _hexMapModel.Width / 2 ), Mathf.RoundToInt( _hexMapModel.Height / 2 ) );
-    }
-    
-    private void AddUnit( int x, int y )
-    {
-        if( _unitMap.Table[ x, y ] != null )
-            return;
-
-        GameObject unitGO = (GameObject)Instantiate(
-                    UnitPrefab,
-                    new Vector3( HexMapHelper.GetXPosition( x, y ), _hexMapModel.Table[ x, y ].Altitude, HexMapHelper.GetZPosition( y ) ),
-                    Quaternion.identity );
-        unitGO.transform.SetParent( this.transform );
-        UnitModel um = new UnitModel( x, y );
-        Unit u = unitGO.GetComponent<Unit>();
-        u.SetModel( um );
-
-        _unitMap.Table[ x, y ] = u;
-        _units.Add( um );
-    }
-
-    private void MoveUnit( int xTo, int yTo )
-    {
-        _unitMap.Table[ _selectedUnit.Model.X, _selectedUnit.Model.Y ] = null;
-        _unitMap.Table[ xTo, yTo ] = _selectedUnit;
-        _selectedUnit.Model.X = xTo;
-        _selectedUnit.Model.Y = yTo;
-        _selectedUnit.transform.position = new Vector3( HexMapHelper.GetXPosition( xTo, yTo ), _hexMapModel.Table[ xTo, yTo ].Altitude, HexMapHelper.GetZPosition( yTo ) );
-    }
-
-    private void RemoveAllChildren()
-    {
-        GameObject go;
-        while( gameObject.transform.childCount != 0 )
-        {
-            go = gameObject.transform.GetChild( 0 ).gameObject;
-            go.transform.SetParent( null );
-            DestroyImmediate( go );
-        }
     }
 }

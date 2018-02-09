@@ -16,7 +16,7 @@ public class GradientTexture : MonoBehaviour
     void Start()
     {
         GameMessage.Listen<HexClickedMessage>( OnHexClicked );
-        GameModel.Bind<LifeModel>( OnLifeModelChange );
+        GameModel.Bind<PlanetModel>( OnPlanetModelChange );
     }
 
     private void OnHexClicked( HexClickedMessage value )
@@ -45,21 +45,21 @@ public class GradientTexture : MonoBehaviour
         MatchText.text = (int)Math.Round( _BellCurve.GetValueAt( xPos ) * 100, 0 ) + "%";
     }
 
-    private void OnLifeModelChange( LifeModel value )
+    private void OnPlanetModelChange( PlanetModel value )
     {
         switch( Lens )
         {
             case HexMapLens.Temperature:
-                _BellCurve = value.TemperatureBC;
+                _BellCurve = value.Life.TemperatureBC;
                 break;
             case HexMapLens.Pressure:
-                _BellCurve = value.PressureBC;
+                _BellCurve = value.Life.PressureBC;
                 break;
             case HexMapLens.Humidity:
-                _BellCurve = value.HumidityBC;
+                _BellCurve = value.Life.HumidityBC;
                 break;
             case HexMapLens.Radiation:
-                _BellCurve = value.RadiationBC;
+                _BellCurve = value.Life.RadiationBC;
                 break;
             default:
                 break;

@@ -4,14 +4,16 @@ using UniRx;
 
 public class UnitModel
 {
-    public int X;
-    public int Y;
+    public IntReactiveProperty X = new IntReactiveProperty();
+    public IntReactiveProperty Y = new IntReactiveProperty();
+    public FloatReactiveProperty Altitude = new FloatReactiveProperty();
     public int MoveRange = 1;
     public BoolReactiveProperty isSelected = new BoolReactiveProperty( false );
 
-    public UnitModel( int x, int y )
+    public UnitModel( int x, int y, float altitude )
     {
-        this.X = x;
-        this.Y = y;
+        X.Value = x;
+        Y.Value = y;
+        Altitude.Value = altitude;
     }
 }

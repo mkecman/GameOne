@@ -8,8 +8,8 @@ public class HexMapEditor : Editor
     public override void OnInspectorGUI()
     {
         HexMap map = (HexMap)target;
-        if( GUILayout.Button( "Redraw" ) )
-            map.ReDraw();
+        if( GUILayout.Button( "Regenerate" ) )
+            map.Regenerate();
             
         DrawDefaultInspector();
     }

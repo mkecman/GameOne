@@ -15,12 +15,12 @@ public class HUDPanelView : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        GameModel.Bind<LifeModel>( OnLifeModelChange );
+        GameModel.Bind<PlanetModel>( OnPlanetModelChange );
     }
 
-    private void OnLifeModelChange( LifeModel value )
+    private void OnPlanetModelChange( PlanetModel value )
     {
-        _life = value;
+        _life = value.Life;
         _life._Population.Subscribe( _ => Population.SetValue( _.ToString() ) );
         _life._Food.Subscribe( _ => Food.SetValue( _.ToString() ) );
         _life._Science.Subscribe( _ => Science.SetValue( _.ToString() ) );

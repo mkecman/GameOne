@@ -8,14 +8,15 @@ using System.Linq;
 [Serializable]
 public class PlanetModel
 {
+    public LifeModel Life;
+    public GridModel<HexModel> Map;
+
     internal ReactiveProperty<string> _Name = new ReactiveProperty<string>();
     public string Name
     {
         get { return _Name.Value; }
         set { _Name.Value = value; }
     }
-    
-    public LifeModel Life;
 
     internal ReactiveCollection<PlanetElementModel> _Elements = new ReactiveCollection<PlanetElementModel>();
     public List<PlanetElementModel> Elements

@@ -43,6 +43,7 @@ public class AI
 
     internal void MakeMove()
     {
+        /*
         if( _life.Population < _lastPopulation )
         {
             for( int j = 0; j < 10; j++ )
@@ -116,9 +117,9 @@ public class AI
                     Debug.Log( "Science: " + message2.From + " => " + message2.To );
                     GameMessage.Send<WorkerMoveMessage>( message2 );
                 }
-                */
+                /*
             }
         }
-        _lastPopulation = _life.Population;
+        _lastPopulation = _life.Population;*/
     }
 }

@@ -5,32 +5,39 @@ using System;
 
 public class Galaxy
 {
-    private GalaxyModel _galaxy;
+    private GalaxyModel _model;
     private List<Star> _stars;
-
-    public Galaxy()
-    {
-    }
     
     public GalaxyModel New( int Index )
     {
-        _galaxy = new GalaxyModel
+        _model = new GalaxyModel
         {
             Name = "Galaxy " + Index,
             CreatedStars = 0,
             Stars = new List<StarModel>()
         };
         _stars = new List<Star>();
-        return _galaxy;
+
+        //TODO: Remove this
+        NewStar( 7 );
+
+        return _model;
+    }
+
+    private void NewStar( int Type )
+    {
+        Star star = new Star();
+        _model._Stars.Add( star.New( Type, _model.CreatedStars ) );
+        _stars.Add( star );
     }
 
     public void Load( GalaxyModel galaxyModel )
     {
-        _galaxy = galaxyModel;
+        _model = galaxyModel;
         _stars = new List<Star>();
-        for( int i = 0; i < _galaxy.Stars.Count; i++ )
+        for( int i = 0; i < _model.Stars.Count; i++ )
         {
-            LoadStar( _galaxy.Stars[ i ] );
+            LoadStar( _model.Stars[ i ] );
         }
     }
 
@@ -38,13 +45,6 @@ public class Galaxy
     {
         Star star = new Star();
         star.Load( starModel );
-        _stars.Add( star );
-    }
-
-    public void NewStar( int Type )
-    {
-        Star star = new Star();
-        _galaxy._Stars.Add( star.New( Type, _galaxy.CreatedStars ) );
         _stars.Add( star );
     }
     
