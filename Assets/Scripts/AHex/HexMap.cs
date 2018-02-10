@@ -38,6 +38,17 @@ public class HexMap : MonoBehaviour
         GameMessage.Send<PlanetRegenerateMessage>( new PlanetRegenerateMessage() );
     }
 
+    public void ChangeLens()
+    {
+        for( int x = 0; x < mapModel.Width; x++ )
+        {
+            for( int y = 0; y < mapModel.Height; y++ )
+            {
+                mapModel.Table[ x, y ].Lens = this.Lens;
+            }
+        }
+    }
+
     // Use this for initialization
     private void Start()
     {

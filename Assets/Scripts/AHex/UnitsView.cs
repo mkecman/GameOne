@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
-public class UnitsView : MonoBehaviour
+public class UnitsView : GameView
 {
     public GameObject UnitPrefab;
     private LifeModel _life;
@@ -18,7 +18,12 @@ public class UnitsView : MonoBehaviour
     {
         RemoveAllChildren();
         _life = value.Life;
-        _life.Units.ObserveAdd().Subscribe( _ => AddUnit( _.Value ) ).AddTo( this );
+        for( int i = 0; i < _life.Units.Count; i++ )
+        {
+            AddUnit( _life.Units[ i ] );
+        }
+        disposables.Clear();
+        _life.Units.ObserveAdd().Subscribe( _ => AddUnit( _.Value ) ).AddTo( disposables );
     }
     
     private void AddUnit( UnitModel unit )

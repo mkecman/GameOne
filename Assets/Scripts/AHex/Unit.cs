@@ -3,7 +3,7 @@ using System.Collections;
 using UniRx;
 using System;
 
-public class Unit : MonoBehaviour
+public class Unit : GameView
 {
     public MeshRenderer meshRenderer;
 
@@ -14,9 +14,11 @@ public class Unit : MonoBehaviour
     {
         Model = unitModel;
         _originalColor = meshRenderer.material.color;
-        Model.isSelected.Subscribe( _ => SetSelectedState( _ ) ).AddTo( this );
-        Model.X.Subscribe( _ => UpdatePosition() ).AddTo( this );
-        Model.Y.Subscribe( _ => UpdatePosition() ).AddTo( this );
+
+        disposables.Clear();
+        Model.isSelected.Subscribe( _ => SetSelectedState( _ ) ).AddTo( disposables );
+        Model.X.Subscribe( _ => UpdatePosition() ).AddTo( disposables );
+        Model.Y.Subscribe( _ => UpdatePosition() ).AddTo( disposables );
     }
 
     private void UpdatePosition()

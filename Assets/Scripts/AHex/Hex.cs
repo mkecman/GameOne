@@ -2,7 +2,7 @@
 using UniRx;
 using UnityEngine;
 
-public class Hex : MonoBehaviour
+public class Hex : GameView
 {
     public HexModel Model;
     public TextMesh SymbolText;
@@ -18,7 +18,10 @@ public class Hex : MonoBehaviour
         _HexClickedMessage = new HexClickedMessage( model );
 
         SetHeight( Solid, Model.Altitude );
-        Model.isMarked.Subscribe( _ => UpdateMarkedColor( _ ) ).AddTo( this );
+
+        disposables.Clear();
+        Model.isMarked.Skip(1).Subscribe( _ => UpdateMarkedColor( _ ) ).AddTo( disposables );
+        Model.ObserveEveryValueChanged( _ => _.Lens ).Subscribe( _ => SetColor() ).AddTo( disposables );
 
         SetSymbol();
         //SetClouds();

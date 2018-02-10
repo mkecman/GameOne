@@ -22,6 +22,15 @@ public class Units
 
         GameMessage.Listen<HexClickedMessage>( OnHexClickedMessage );
         GameMessage.Listen<UnitMessage>( OnUnitMessage );
+
+        int x, y;
+        for( int i = 0; i < _life.Units.Count; i++ )
+        {
+            x = _life.Units[ i ].X.Value;
+            y = _life.Units[ i ].Y.Value;
+            _unitMap.Table[ x, y ] = _life.Units[ i ];
+            _life.Units[ i ].Altitude.Value = _hexMapModel.Table[ x, y ].Altitude;
+        }
     }
     
     public void UpdateStep()
@@ -62,6 +71,7 @@ public class Units
         UnitModel um = new UnitModel( x, y, _hexMapModel.Table[ x, y ].Altitude );
         _unitMap.Table[ x, y ] = um;
         _life.Units.Add( um );
+        SelectUnit( x, y );
     }
 
     private void MoveUnit( int xTo, int yTo )

@@ -24,13 +24,11 @@ public class Planet
 
         GameMessage.Listen<PlanetRegenerateMessage>( OnRegenerateMessage );
     }
-
+    
     private void OnRegenerateMessage( PlanetRegenerateMessage value )
     {
         _model.Map = _hexMapGenerator.Generate();
-        GameModel.Register( _model );
-        ActivateLife();
-        //Load( _model );
+        Load( _model );
     }
 
     public PlanetModel New( StarModel star, int index, int planetCount )
@@ -65,7 +63,7 @@ public class Planet
 
         _model.Map = _hexMapGenerator.Generate();
 
-        //TODO: Remove this!!!
+        //TODO: Remove this!!! or maybe not?
         GameModel.Register( _model );
 
         return _model;
@@ -79,6 +77,8 @@ public class Planet
             _life = new Life();
             _life.Load( _model );
         }
+        //TODO: Remove this!!! or maybe not?
+        GameModel.Register( _model );
     }
 
     public void ActivateLife()
