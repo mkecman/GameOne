@@ -45,9 +45,9 @@ public class LifeModel
     }
 
     public BellCurve TemperatureBC = new BellCurve( 1, 0.39f, 0.2f );
-    public BellCurve PressureBC = new BellCurve( 1, 0.66f, 0.05f );
-    public BellCurve HumidityBC = new BellCurve( 1, .85f, 0.05f );
-    public BellCurve RadiationBC = new BellCurve( 1, 0.18f, 0.05f );
+    public BellCurve PressureBC = new BellCurve( 1, 0.66f, 0.2f );
+    public BellCurve HumidityBC = new BellCurve( 1, .85f, 0.2f );
+    public BellCurve RadiationBC = new BellCurve( 1, 0.18f, 0.2f );
 
     public ReactiveCollection<UnitModel> Units = new ReactiveCollection<UnitModel>();
 

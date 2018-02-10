@@ -8,7 +8,12 @@ public class BellCurve
     public FloatReactiveProperty Position = new FloatReactiveProperty( 0 );
     public FloatReactiveProperty Range = new FloatReactiveProperty( 0.1f );
 
-    public BellCurve( float amplitude, float position, float range )
+    public BellCurve()
+    {
+
+    }
+
+    public BellCurve( float amplitude = 1, float position = 0, float range = 0.1f )
     {
         Amplitude.Value = amplitude;
         Position.Value = position;

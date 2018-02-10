@@ -114,12 +114,15 @@ public class HexMapGenerator
                 hex.Humidity = Normalize( HexMapLens.Humidity, hex.Humidity );
                 hex.Radiation = Normalize( HexMapLens.Radiation, hex.Radiation );
 
+                /*
                 if( hex.Altitude >= m.SeaLevel.Value )
                     //hex.Colors[ (int)HexMapLens.Normal ] = TerrainGradient.Evaluate( (float)( ( 1 - hex.Temperature ) / ( 1 - SeaLevel.Value ) ) );
                     hex.Colors[ (int)HexMapLens.Normal ] = m.TerrainGradient.Evaluate( (float)( ( 1 / ( 1 - m.SeaLevel.Value ) ) * ( 1 - hex.Temperature ) ) );
                 else
                     hex.Colors[ (int)HexMapLens.Normal ] = m.LiquidGradient.Evaluate( (float)( ( 1 - hex.Temperature ) + m.SeaLevel.Value ) );
+                    */
 
+                hex.Colors[ (int)HexMapLens.Normal ] = m.TerrainGradient.Evaluate( 1 - hex.Temperature );
                 hex.Colors[ (int)HexMapLens.Altitude ] = Color.Lerp( Color.red, Color.green, hex.Altitude );
 
                 hex.Colors[ (int)HexMapLens.Temperature ] = Color.red;
@@ -130,7 +133,7 @@ public class HexMapGenerator
                 hex.TotalScore = 0;
                 hex.Colors[ (int)HexMapLens.TotalScore ] = Color.red;
 
-                hex.Element = _elements[ (int)Math.Round( ( _elements.Count - 2 ) * ( 1 - hex.TotalScore ), 0 ) + 1 ];
+                hex.Element = _elements[ (int)Math.Round( ( _elements.Count - 2 ) * RandomUtil.FromRange(0,1), 0 ) + 1 ];
             }
         }
 

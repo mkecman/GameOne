@@ -92,26 +92,17 @@ public class StarModel
         set { _Lifetime.Value = value; }
     }
 
-    internal ReactiveProperty<int> _CreatedPlanets = new ReactiveProperty<int>();
-    public int CreatedPlanets
+    internal ReactiveProperty<int> _PlanetsCount = new ReactiveProperty<int>();
+    public int PlanetsCount
     {
-        get { return _CreatedPlanets.Value; }
-        set { _CreatedPlanets.Value = value; }
+        get { return _PlanetsCount.Value; }
+        set { _PlanetsCount.Value = value; }
     }
     
     internal ReactiveCollection<WeightedValue> _AvailableElements = new ReactiveCollection<WeightedValue>();
-    public List<WeightedValue> AvailableElements
-    {
-        get { return _AvailableElements.ToList<WeightedValue>(); }
-        set { _AvailableElements = new ReactiveCollection<WeightedValue>( value ); }
-    }
-
+    
     internal ReactiveCollection<PlanetModel> _Planets = new ReactiveCollection<PlanetModel>();
-    public List<PlanetModel> Planets
-    {
-        get { return _Planets.ToList<PlanetModel>(); }
-        set { _Planets = new ReactiveCollection<PlanetModel>( value ); }
-    }
+    
 
 
 }

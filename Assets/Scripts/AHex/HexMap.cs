@@ -12,7 +12,7 @@ public class HexMap : MonoBehaviour
     public GameObject Ocean;
 
     public Gradient TerrainGradient;
-    public Gradient LiquidGradient;
+    public Color LiquidColor;
 
     [Header( "Size Values" )]
     public IntReactiveProperty width = new IntReactiveProperty( 64 );
@@ -35,7 +35,7 @@ public class HexMap : MonoBehaviour
 
     public void Regenerate()
     {
-        GameMessage.Send<PlanetRegenerateMessage>( new PlanetRegenerateMessage() );
+        GameMessage.Send( new PlanetGenerateMessage() );
     }
 
     public void ChangeLens()
@@ -90,6 +90,7 @@ public class HexMap : MonoBehaviour
 
         Ocean.transform.localScale = new Vector3( ( mapModel.Width * _hexConfig.xOffset ) + 1, 1, ( mapModel.Height * _hexConfig.zOffset ) + 1 );
         Ocean.transform.position = new Vector3( ( mapModel.Width * _hexConfig.xOffset ) / 2, -.65f + ( 1.3f * (float)SeaLevel.Value ), ( ( mapModel.Height * _hexConfig.zOffset ) / 2 ) - 0.5f );
+        Ocean.GetComponent<MeshRenderer>().material.color = LiquidColor;
     }
     
     private void RemoveAllChildren()

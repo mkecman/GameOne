@@ -22,10 +22,10 @@ public class Planet
         _elementsConfig = Config.Get<ElementConfig>();
         _hexMapGenerator = new HexMapGenerator();
 
-        GameMessage.Listen<PlanetRegenerateMessage>( OnRegenerateMessage );
+        GameMessage.Listen<PlanetGenerateMessage>( OnRegenerateMessage );
     }
     
-    private void OnRegenerateMessage( PlanetRegenerateMessage value )
+    private void OnRegenerateMessage( PlanetGenerateMessage value )
     {
         _model.Map = _hexMapGenerator.Generate();
         Load( _model );
@@ -35,14 +35,14 @@ public class Planet
     {
         _star = star;
         _model = new PlanetModel();
-        _model.Name = "Planet" + star.CreatedPlanets++;
+        _model.Name = "Planet" + star.PlanetsCount++;
 
         _model.Distance = GetDistance( index, planetCount );
         _model.Radius = GetRadius();
         _model.Volume = 1.333 * Math.PI * Math.Pow( _model.Radius, 3 );
 
-        _model.Elements = GeneratePlanetElements( index + 1, planetCount );
-        _model.Density = CalculateDensity( _model.Elements );  //( tempPlanet.Mass / tempPlanet.Volume ) / 1000; // value is in g/m3
+        //_model.Elements = GeneratePlanetElements( index + 1, planetCount );
+        //_model.Density = CalculateDensity( _model.Elements );  //( tempPlanet.Mass / tempPlanet.Volume ) / 1000; // value is in g/m3
         _model.Mass = _model.Density * _model.Volume * 1000;
         _model.Gravity = ( _universeConfig.G * _model.Mass ) / Math.Pow( _model.Radius, 2 );
         _model.OrbitalPeriod = 2 * Math.PI * Math.Sqrt( Math.Pow( _model.Distance, 3 ) / ( star.Mass * _universeConfig.G ) );
@@ -108,7 +108,7 @@ public class Planet
 
     private List<PlanetElementModel> GeneratePlanetElements( double index, double planetCount )
     {
-        int ElementCount = _star.AvailableElements.Count;
+        int ElementCount = 0;//_star.AvailableElements.Count;
 
         double curve = index * ( ElementCount * _starsConfig.MaxElementsBellCurveMagnifier / planetCount );
         double ofset = index * ( ElementCount / planetCount );
@@ -122,7 +122,8 @@ public class Planet
             {
                 PlanetElementModel planetElementModel = new PlanetElementModel
                 {
-                    Index = (int)_star.AvailableElements[ i ].Value,
+                    //Index = (int)_star.AvailableElements[ i ].Value,
+                    Index = 0,
                     Amount = probability
                 };
 

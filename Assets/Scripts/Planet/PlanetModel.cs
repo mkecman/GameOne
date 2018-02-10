@@ -18,13 +18,17 @@ public class PlanetModel
         set { _Name.Value = value; }
     }
 
-    internal ReactiveCollection<PlanetElementModel> _Elements = new ReactiveCollection<PlanetElementModel>();
-    public List<PlanetElementModel> Elements
+    [SerializeField]
+    internal IntReactiveProperty _Index = new IntReactiveProperty();
+    public int Index
     {
-        get { return _Elements.ToList<PlanetElementModel>(); }
-        set { _Elements = new ReactiveCollection<PlanetElementModel>( value ); }
+        get { return _Index.Value; }
+        set { _Index.Value = value; }
     }
 
+
+    internal ReactiveCollection<PlanetElementModel> _Elements = new ReactiveCollection<PlanetElementModel>();
+    
     internal ReactiveProperty<double> _Distance = new ReactiveProperty<double>();
     public double Distance
     {

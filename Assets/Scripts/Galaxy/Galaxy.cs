@@ -13,8 +13,7 @@ public class Galaxy
         _model = new GalaxyModel
         {
             Name = "Galaxy " + Index,
-            CreatedStars = 0,
-            Stars = new List<StarModel>()
+            CreatedStars = 0
         };
         _stars = new List<Star>();
 
@@ -35,10 +34,12 @@ public class Galaxy
     {
         _model = galaxyModel;
         _stars = new List<Star>();
+/*
         for( int i = 0; i < _model.Stars.Count; i++ )
         {
             LoadStar( _model.Stars[ i ] );
         }
+        */
     }
 
     private void LoadStar( StarModel starModel )

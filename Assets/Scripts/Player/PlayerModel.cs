@@ -8,27 +8,19 @@ using System.Linq;
 [Serializable]
 public class PlayerModel
 {
-    internal ReactiveProperty<string> _Name = new ReactiveProperty<string>();
+    internal StringReactiveProperty _Name = new StringReactiveProperty();
     public string Name
     {
         get { return _Name.Value; }
         set { _Name.Value = value; }
     }
 
-    internal ReactiveProperty<int> _CreatedGalaxies = new ReactiveProperty<int>();
+    internal IntReactiveProperty _CreatedGalaxies = new IntReactiveProperty();
     public int CreatedGalaxies
     {
         get { return _CreatedGalaxies.Value; }
         set { _CreatedGalaxies.Value = value; }
     }
 
-    public Clock Clock;
-
     internal ReactiveCollection<GalaxyModel> _Galaxies = new ReactiveCollection<GalaxyModel>();
-    public List<GalaxyModel> Galaxies
-    {
-        get { return _Galaxies.ToList<GalaxyModel>(); }
-        set { _Galaxies = new ReactiveCollection<GalaxyModel>( value ); }
-    }
-    
 }

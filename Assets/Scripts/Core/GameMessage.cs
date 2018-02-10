@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class GameMessage : MonoBehaviour
 {
     public delegate void MessageDelegate<T>( T value );
@@ -56,8 +56,9 @@ public class GameMessage : MonoBehaviour
     }
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
+        /*
         if( _instance != null && _instance != this )
         {
             //Destroy( this.gameObject );
@@ -66,19 +67,11 @@ public class GameMessage : MonoBehaviour
         {
             _instance = this;
         }
-
+        */
+        _instance = this;
         _instance.Init();
     }
-
-    void OnEnable()
-    {
-        if( _instance == null )
-        {
-            _instance = this;
-            _instance.Init();
-        }
-    }
-
+    
     private void Init()
     {
         _instance._messages = new Dictionary<string, object>();

@@ -15,8 +15,7 @@ public class Player : MonoBehaviour
         _model = new PlayerModel
         {
             Name = DateTime.Now.Ticks.ToString(),
-            CreatedGalaxies = 0,
-            Galaxies = new List<GalaxyModel>()
+            CreatedGalaxies = 0
         };
         _galaxies = new List<Galaxy>();
     }
@@ -33,10 +32,10 @@ public class Player : MonoBehaviour
     {
         _model = player;
         _galaxies = new List<Galaxy>();
-        for( int i = 0; i < _model.Galaxies.Count; i++ )
+        for( int i = 0; i < _model._Galaxies.Count; i++ )
         {
             Galaxy galaxy = new Galaxy();
-            galaxy.Load( _model.Galaxies[ i ] );
+            galaxy.Load( _model._Galaxies[ i ] );
             _galaxies.Add( galaxy );
         }
     }

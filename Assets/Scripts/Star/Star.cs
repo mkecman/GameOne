@@ -26,7 +26,7 @@ public class Star
         _model = GameModel.Copy<StarModel>( _starsConfig.Stars[ Type ] );
         ConvertUnitsToSI();
         _model.Name = "Star " + Index;
-        _model.AvailableElements = GenerateStarElements( _model.Index );
+        //_model.AvailableElements = GenerateStarElements( _model.Index );
         GeneratePlanets( Type );
         _colonizedPlanets = new List<Planet>();
 
@@ -41,10 +41,12 @@ public class Star
         _model = starModel;
         ConvertUnitsToSI();
         _colonizedPlanets = new List<Planet>();
+        /*
         for( int i = 0; i < _model.Planets.Count; i++ )
         {
             LoadPlanet( _model.Planets[ i ] );
         }
+        */
     }
 
     public void ActivateLifeOnPlanet( int planetIndex )
@@ -78,7 +80,7 @@ public class Star
     
     private void GeneratePlanets( double Words )
     {
-        _model.Planets = new List<PlanetModel>();
+        //_model.Planets = new List<PlanetModel>();
         _planets = new List<Planet>();
 
         int planetCount = RandomUtil.FromRangeInt( _starsConfig.MinPlanets, _starsConfig.MaxPlanets );

@@ -6,14 +6,14 @@ using System.Linq;
 [Serializable]
 public class GalaxyModel
 {
-    internal ReactiveProperty<string> _Name = new ReactiveProperty<string>();
+    internal StringReactiveProperty _Name = new StringReactiveProperty();
     public string Name
     {
         get { return _Name.Value; }
         set { _Name.Value = value; }
     }
 
-    internal ReactiveProperty<int> _CreatedStars = new ReactiveProperty<int>();
+    internal IntReactiveProperty _CreatedStars = new IntReactiveProperty();
     public int CreatedStars
     {
         get { return _CreatedStars.Value; }
@@ -21,10 +21,5 @@ public class GalaxyModel
     }
 
     internal ReactiveCollection<StarModel> _Stars = new ReactiveCollection<StarModel>();
-    public List<StarModel> Stars
-    {
-        get { return _Stars.ToList<StarModel>(); }
-        set { _Stars = new ReactiveCollection<StarModel>( value ); }
-    }
 }
 
