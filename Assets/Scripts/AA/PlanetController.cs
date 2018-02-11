@@ -113,7 +113,7 @@ public class PlanetController : AbstractController
 
     private double GetRadius()
     {
-        return GetRandomWeightedValue( _starsConfig.MinPlanetaryRadiusInMeters, _starsConfig.PlanetaryRadiusInMeters );
+        return RandomUtil.GetRandomWeightedValue( _starsConfig.MinPlanetaryRadiusInMeters, _starsConfig.PlanetaryRadiusInMeters );
     }
 
     private double GetDistance( int index, int planetCount )
@@ -124,17 +124,4 @@ public class PlanetController : AbstractController
             return _starsConfig.FivePlanetDistancesInAU[ index ] * _star.HabitableZone;
     }
 
-    private double GetRandomWeightedValue( double minValue, List<WeightedValue> values )
-    {
-        double min;
-        int key = RandomUtil.GetWeightedKey( values );
-        if( key == 0 )
-            min = minValue;
-        else
-            min = values[ key - 1 ].Value;
-
-        double max = values[ key ].Value;
-
-        return RandomUtil.FromRange( min, max );
-    }
 }

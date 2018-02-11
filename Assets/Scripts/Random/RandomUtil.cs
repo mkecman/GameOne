@@ -64,4 +64,18 @@ public class RandomUtil
         }
         return 0;
     }
+
+    public static double GetRandomWeightedValue( double minValue, List<WeightedValue> values )
+    {
+        double min;
+        int key = GetWeightedKey( values );
+        if( key == 0 )
+            min = minValue;
+        else
+            min = values[ key - 1 ].Value;
+
+        double max = values[ key ].Value;
+
+        return FromRange( min, max );
+    }
 }
