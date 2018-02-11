@@ -1,15 +1,19 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UniRx;
+using UnityEngine.EventSystems;
 
-public class GradientTexture : MonoBehaviour
+public class GradientTexture : MonoBehaviour, IPointerClickHandler
 {
     public HexMapLens Lens;
     public RawImage TargetImage;
     public RawImage TileValue;
     public Text PropertyText;
     public Text MatchText;
-    public Button EvolveButton;
+
+    public Color GreenColor;
+    public Color RedColor;
 
     private BellCurve _BellCurve = new BellCurve( 1, 0.39f, 0.15f );
 
@@ -19,6 +23,8 @@ public class GradientTexture : MonoBehaviour
         GameModel.Bind<PlanetModel>( OnPlanetModelChange );
     }
 
+    
+    
     private void OnHexClicked( HexClickedMessage value )
     {
         float xPos = 0;
@@ -77,16 +83,16 @@ public class GradientTexture : MonoBehaviour
         var texture = new Texture2D( width, height );
         var pixels = new Color[ width * height ];
         Color[] _gradient = new Color[ 100 ];
+        
         for( int i = 0; i < 100; i++ )
         {
-            _gradient[ i ] = Color.Lerp( Color.red, Color.green, _BellCurve.GetValueAt( i / 100f ) );
+            _gradient[ i ] = Color.Lerp( RedColor ,GreenColor, _BellCurve.GetValueAt( i / 100f ) );
         }
 
         for( var x = 0; x < width; x++ )
         {
             for( var y = 0; y < height; y++ )
             {
-                //Set color range, 0 = black, 1 = white
                 pixels[ x + y * width ] = _gradient[ (int)( ( (float)x / width ) * 100f ) ];
             }
         }
@@ -95,5 +101,10 @@ public class GradientTexture : MonoBehaviour
         texture.wrapMode = TextureWrapMode.Clamp;
         texture.Apply();
         return texture;
+    }
+
+    public void OnPointerClick( PointerEventData eventData )
+    {
+        Debug.Log( PropertyText.text );
     }
 }
