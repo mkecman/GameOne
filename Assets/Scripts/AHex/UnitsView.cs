@@ -11,7 +11,7 @@ public class UnitsView : GameView
     // Use this for initialization
     void Start()
     {
-        GameModel.Bind<PlanetModel>( OnPlanetModelChange );
+        GameModel.HandleGet<PlanetModel>( OnPlanetModelChange );
     }
 
     private void OnPlanetModelChange( PlanetModel value )

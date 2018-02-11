@@ -15,16 +15,7 @@ public class GameController : MonoBehaviour
     private LifeController _life;
     private UnitController _unit;
 
-
     public Clock clock;
-//  public Player Player;
-    
-    [SerializeField]
-    private IntReactiveProperty _Steps = new IntReactiveProperty( 100 );
-
-    private AI ai = new AI();
-
-    private ClockTickMessage clockTickMessage = new ClockTickMessage();
 
     private void Awake()
     {
@@ -34,6 +25,15 @@ public class GameController : MonoBehaviour
         _planet = new PlanetController();
         _life = new LifeController();
         _unit = new UnitController();
+
+        GameModel.Set( _player );
+        GameModel.Set( _galaxy );
+        GameModel.Set( _star );
+        GameModel.Set( _planet );
+        GameModel.Set( _life );
+        GameModel.Set( _unit );
+
+        GameCommand.Register( new PlanetGenerateCommand() );
     }
 
     void Start()
@@ -45,8 +45,6 @@ public class GameController : MonoBehaviour
         /**/
 
         StartNewGame();
-
-        GameMessage.Listen<PlanetGenerateMessage>( OnPlanetGenerate );
 
         clock.ElapsedUpdates.Subscribe<long>( x => UpdateStep( 1 ) ).AddTo( clock );
         Debug.Log( "GameController Started" );
@@ -67,31 +65,18 @@ public class GameController : MonoBehaviour
         _life.New( _planet.SelectedPlanet );
         _unit.Load( _planet.SelectedPlanet );
 
-        GameModel.Register( _planet.SelectedPlanet );
+        GameModel.Set( _planet.SelectedPlanet );
     }
-
-    private void OnPlanetGenerate( PlanetGenerateMessage value )
-    {
-        LifeModel life = _planet.SelectedPlanet.Life;
-        _planet.Generate( _planet.SelectedPlanet.Index );
-        _planet.SelectedPlanet.Life = life;
-        _life.Load( _planet.SelectedPlanet );
-        _unit.Load( _planet.SelectedPlanet );
-        GameModel.Register( _planet.SelectedPlanet );
-    }
-
+    
     public void UpdateStep( int steps )
     {
         DateTime start = DateTime.Now;
         //Debug.Log( "start at: " + start.ToString() );
 
-        //Player.UpdateStep( steps );
-
         for( int i = 0; i < steps; i++ )
         {
-            //ai.MakeMove();
-            GameMessage.Send( clockTickMessage );
-            clockTickMessage.elapsedTicksSinceStart++;
+            GameMessage.Send( clock.message );
+            clock.message.elapsedTicksSinceStart++;
         }
         
         DateTime end = DateTime.Now;
@@ -103,7 +88,7 @@ public class GameController : MonoBehaviour
         StringBuilder sb = new StringBuilder();
         JsonWriter jsonWriter = new JsonWriter( sb );
         jsonWriter.PrettyPrint = true;
-        //JsonMapper.ToJson( Player.PlayerModel, jsonWriter );
+        JsonMapper.ToJson( _player.Model, jsonWriter );
         File.WriteAllText( Application.persistentDataPath + "-Player.json", sb.ToString() );
 
         CSV.Save( "test.csv" );

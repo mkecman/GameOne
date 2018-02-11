@@ -21,16 +21,8 @@ public class Planet
         _universeConfig = Config.Get<UniverseConfig>();
         _elementsConfig = Config.Get<ElementConfig>();
         _hexMapGenerator = new HexMapGenerator();
-
-        GameMessage.Listen<PlanetGenerateMessage>( OnRegenerateMessage );
     }
     
-    private void OnRegenerateMessage( PlanetGenerateMessage value )
-    {
-        _model.Map = _hexMapGenerator.Generate();
-        Load( _model );
-    }
-
     public PlanetModel New( StarModel star, int index, int planetCount )
     {
         _star = star;
@@ -64,7 +56,7 @@ public class Planet
         _model.Map = _hexMapGenerator.Generate();
 
         //TODO: Remove this!!! or maybe not?
-        GameModel.Register( _model );
+        GameModel.Set( _model );
 
         return _model;
     }
@@ -78,7 +70,7 @@ public class Planet
             _life.Load( _model );
         }
         //TODO: Remove this!!! or maybe not?
-        GameModel.Register( _model );
+        GameModel.Set( _model );
     }
 
     public void ActivateLife()

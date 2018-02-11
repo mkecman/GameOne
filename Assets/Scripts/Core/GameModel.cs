@@ -13,7 +13,7 @@ public class GameModel : MonoBehaviour
     private Dictionary<string, object> _models;
     private Dictionary<string, object> _binding;
     
-    public static void Register<T>( T value )
+    public static void Set<T>( T value )
     {
         string className = typeof( T ).Name;
 
@@ -29,7 +29,7 @@ public class GameModel : MonoBehaviour
         }
     }
     
-    public static void Bind<T>( ModelDelegate<T> handler )
+    public static void HandleGet<T>( ModelDelegate<T> handler )
     {
         string className = typeof( T ).Name;
         ModelDelegate<T> modelDelegate;
@@ -50,7 +50,16 @@ public class GameModel : MonoBehaviour
             handler( (T)_instance._models[ className ] );
     }
 
-    public static void StopListen<T>( ModelDelegate<T> handler )
+    public static T Get<T>()
+    {
+        string className = typeof( T ).Name;
+        if( _instance._models.ContainsKey( className ) )
+            return (T)_instance._models[ className ];
+
+        return default(T);
+    }
+
+    public static void Remove<T>( ModelDelegate<T> handler )
     {
         string className = typeof( T ).Name;
 
@@ -83,7 +92,7 @@ public class GameModel : MonoBehaviour
         {
             _instance = this;
         }
-
+        _instance = this;
         _instance.Init();
     }
 

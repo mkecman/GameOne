@@ -14,7 +14,7 @@ public class LifeView : GameView
 
     void OnEnable()
     {
-        GameModel.Bind<LifeModel>( onLifeModel );
+        GameModel.HandleGet<LifeModel>( onLifeModel );
         Debug.Log( "LifeView OnEnable" );
     }
     

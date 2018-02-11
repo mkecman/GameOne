@@ -20,7 +20,7 @@ public class GradientTexture : MonoBehaviour, IPointerClickHandler
     void Start()
     {
         GameMessage.Listen<HexClickedMessage>( OnHexClicked );
-        GameModel.Bind<PlanetModel>( OnPlanetModelChange );
+        GameModel.HandleGet<PlanetModel>( OnPlanetModelChange );
     }
 
     

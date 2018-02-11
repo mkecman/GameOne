@@ -35,7 +35,7 @@ public class HexMap : MonoBehaviour
 
     public void Regenerate()
     {
-        GameMessage.Send( new PlanetGenerateMessage() );
+        GameCommand.Execute<PlanetGenerateCommand>();
     }
 
     public void ChangeLens()
@@ -53,7 +53,7 @@ public class HexMap : MonoBehaviour
     private void Start()
     {
         _hexConfig = Config.Get<HexConfig>();
-        GameModel.Bind<PlanetModel>( OnPlanetModelChange );
+        GameModel.HandleGet<PlanetModel>( OnPlanetModelChange );
     }
 
     private void OnPlanetModelChange( PlanetModel value )
