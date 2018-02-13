@@ -122,8 +122,8 @@ public class HexMapGenerator
                     hex.Colors[ (int)HexMapLens.Normal ] = m.LiquidGradient.Evaluate( (float)( ( 1 - hex.Temperature ) + m.SeaLevel.Value ) );
                     */
 
-                hex.Colors[ (int)HexMapLens.Normal ] = m.TerrainGradient.Evaluate( 1 - hex.Temperature );
-                hex.Colors[ (int)HexMapLens.Altitude ] = Color.Lerp( Color.red, Color.green, hex.Altitude );
+                hex.Colors[ (int)HexMapLens.Normal ] = m.TerrainGradient.Evaluate( (float)(1 - hex.Temperature) );
+                hex.Colors[ (int)HexMapLens.Altitude ] = Color.Lerp( Color.red, Color.green, (float)hex.Altitude );
 
                 hex.Colors[ (int)HexMapLens.Temperature ] = Color.red;
                 hex.Colors[ (int)HexMapLens.Pressure ] = Color.red;
@@ -139,9 +139,9 @@ public class HexMapGenerator
 
     }
 
-    private float Normalize( HexMapLens lens, float value )
+    private double Normalize( HexMapLens lens, double value )
     {
-        return (float)Math.Round( Mathf.InverseLerp( Ranges[ (int)lens ].x, Ranges[ (int)lens ].y, value ), 2 );
+        return Math.Round( Mathf.InverseLerp( Ranges[ (int)lens ].x, Ranges[ (int)lens ].y, (float)value ), 2 );
     }
 
     private void SetMinMax( float value, HexMapLens lens )

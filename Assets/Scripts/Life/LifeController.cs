@@ -15,9 +15,15 @@ public class LifeController : AbstractController
         _selectedLife = new LifeModel
         {
             Name = "Human",
+            ClimbLevel = 0.25,
             Population = 1,
-            Science = 4
+            Food = 20
         };
+
+        int unitX = (int)( _planet.Map.Width / 2 );
+        int unitY = (int)( _planet.Map.Height / 2 );
+        _selectedLife.Units.Add( new UnitModel( unitX, unitY, _planet.Map.Table[ unitX, unitY ].Altitude ) );
+
         _planet.Life = _selectedLife;
         UpdatePlanetMapColors();
     }
@@ -47,8 +53,8 @@ public class LifeController : AbstractController
                 hex.Colors[ (int)HexMapLens.Humidity ] = Color.Lerp( Color.red, Color.green, humidityBonus );
                 hex.Colors[ (int)HexMapLens.Radiation ] = Color.Lerp( Color.red, Color.green, radiationBonus );
 
-                hex.TotalScore = ( temperatureBonus + pressureBonus + humidityBonus + radiationBonus ) / 4;
-                hex.Colors[ (int)HexMapLens.TotalScore ] = Color.Lerp( Color.red, Color.green, hex.TotalScore );
+                hex.TotalScore = Math.Round( ( temperatureBonus + pressureBonus + humidityBonus + radiationBonus ) / 4, 2 );
+                hex.Colors[ (int)HexMapLens.TotalScore ] = Color.Lerp( Color.red, Color.green, (float)hex.TotalScore );
             }
         }
     }

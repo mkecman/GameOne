@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UniRx;
+using System;
 
 public class BellCurve
 {
@@ -20,8 +21,8 @@ public class BellCurve
         Range.Value = range;
     }
 
-    public float GetValueAt( float time )
+    public float GetValueAt( double time )
     {
-        return Amplitude.Value * Mathf.Exp( -Mathf.Pow( time - Position.Value, 2 ) / ( 2 * Mathf.Pow( Range.Value, 2 ) ) );
+        return (float)( Amplitude.Value * Math.Exp( -Math.Pow( time - Position.Value, 2 ) / ( 2 * Math.Pow( Range.Value, 2 ) ) ) );
     }
 }

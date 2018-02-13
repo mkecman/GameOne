@@ -33,7 +33,7 @@ public class UnitsView : GameView
 
         GameObject unitGO = (GameObject)Instantiate(
                     UnitPrefab,
-                    new Vector3( HexMapHelper.GetXPosition( x, y ), unit.Altitude.Value, HexMapHelper.GetZPosition( y ) ),
+                    new Vector3( HexMapHelper.GetXPosition( x, y ), (float)unit.Altitude.Value, HexMapHelper.GetZPosition( y ) ),
                     Quaternion.identity );
         unitGO.transform.SetParent( this.transform );
         Unit u = unitGO.GetComponent<Unit>();

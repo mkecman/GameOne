@@ -1,17 +1,30 @@
 {
-	"Elements":
-	[
-		{
-			"Index" : 0,
-			"Symbol" : "",
-			"Name"   : "DUMMY",
-			"Weight" : 0,
-			"Density" : 0,
-			"HexColor" : "#000000",
-			"GroupBlock" : "",
-			"Modifiers"  : []
-		},
-		{
+"Elements":
+[
+    {
+        "Index" : 1,
+        "Symbol" : "D",
+        "Name"   : "Dummy",
+        "Weight" : 0.0,
+        "Density" : 0.0,
+        "HexColor" : "#000000",
+        "GroupBlock" : "none",
+        "Modifiers"  : [
+            {
+                "Property" : 0,
+                "Delta"    : 0.0
+            },
+            {
+                "Property" : 1,
+                "Delta"    : 0.0
+            },
+            {
+                "Property" : 2,
+                "Delta"    : 0.0
+            }
+        ]
+    },
+    {
         "Index" : 1,
         "Symbol" : "H",
         "Name"   : "Hydrogen",
@@ -22,7 +35,7 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.18
+                "Delta"    : 0.0
             },
             {
                 "Property" : 1,
@@ -30,23 +43,7 @@
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             }
         ]
     },
@@ -61,31 +58,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.03
+                "Delta"    : 0.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.02
+                "Delta"    : 0.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             }
         ]
     },
@@ -104,27 +85,11 @@
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.02
+                "Delta"    : 0.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             }
         ]
     },
@@ -143,27 +108,11 @@
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.01
+                "Delta"    : 0.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.0
+                "Delta"    : 4.0
             }
         ]
     },
@@ -182,26 +131,10 @@
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 6,
                 "Delta"    : 0.0
             }
         ]
@@ -217,31 +150,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.12
+                "Delta"    : 0.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             }
         ]
     },
@@ -256,31 +173,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.18
+                "Delta"    : 0.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             }
         ]
     },
@@ -295,31 +196,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.07
+                "Delta"    : 0.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.02
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.01
+                "Delta"    : 3.0
             }
         ]
     },
@@ -338,27 +223,11 @@
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.03
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.02
+                "Delta"    : 4.0
             }
         ]
     },
@@ -377,27 +246,11 @@
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.02
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 4,
                 "Delta"    : 0.0
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.01
             }
         ]
     },
@@ -416,27 +269,11 @@
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.01
+                "Delta"    : 1.0
             }
         ]
     },
@@ -451,31 +288,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.07
+                "Delta"    : 0.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             }
         ]
     },
@@ -490,31 +311,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.16
+                "Delta"    : 0.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             }
         ]
     },
@@ -529,31 +334,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.11
+                "Delta"    : 0.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.03
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.01
+                "Delta"    : 4.0
             }
         ]
     },
@@ -572,27 +361,11 @@
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.05
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
                 "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.02
             }
         ]
     },
@@ -611,27 +384,11 @@
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.04
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.03
+                "Delta"    : 1.0
             }
         ]
     },
@@ -650,27 +407,11 @@
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.03
+                "Delta"    : 2.0
             }
         ]
     },
@@ -685,31 +426,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.02
+                "Delta"    : 0.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.02
+                "Delta"    : 3.0
             }
         ]
     },
@@ -724,31 +449,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.14
+                "Delta"    : 0.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.01
+                "Delta"    : 4.0
             }
         ]
     },
@@ -763,30 +472,14 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.13
-            },
-            {
-                "Property" : 1,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 2,
                 "Delta"    : 0.0
             },
             {
-                "Property" : 3,
-                "Delta"    : 0.02
+                "Property" : 1,
+                "Delta"    : 4.0
             },
             {
-                "Property" : 4,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 6,
+                "Property" : 2,
                 "Delta"    : 0.0
             }
         ]
@@ -806,27 +499,11 @@
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.05
+                "Delta"    : 4.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             }
         ]
     },
@@ -845,27 +522,11 @@
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.05
+                "Delta"    : 4.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.02
+                "Delta"    : 2.0
             }
         ]
     },
@@ -884,27 +545,11 @@
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.02
+                "Delta"    : 4.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.05
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.03
+                "Delta"    : 3.0
             }
         ]
     },
@@ -923,27 +568,11 @@
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 4.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.04
+                "Delta"    : 4.0
             }
         ]
     },
@@ -958,7 +587,7 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.11
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
@@ -966,23 +595,7 @@
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 4,
                 "Delta"    : 0.0
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.03
             }
         ]
     },
@@ -997,31 +610,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.13
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.02
+                "Delta"    : 0.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.02
+                "Delta"    : 1.0
             }
         ]
     },
@@ -1036,31 +633,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.04
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.06
+                "Delta"    : 0.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             }
         ]
     },
@@ -1075,31 +656,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.07
+                "Delta"    : 0.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.05
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             }
         ]
     },
@@ -1114,31 +679,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 2,
-                "Delta"    : 0.05
-            },
-            {
-                "Property" : 3,
                 "Delta"    : 0.0
             },
             {
-                "Property" : 4,
-                "Delta"    : 0.05
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.02
+                "Property" : 2,
+                "Delta"    : 4.0
             }
         ]
     },
@@ -1153,31 +702,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 3,
                 "Delta"    : 0.0
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.04
             }
         ]
     },
@@ -1192,31 +725,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.07
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.05
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.05
+                "Delta"    : 1.0
             }
         ]
     },
@@ -1231,31 +748,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.13
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.01
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.05
+                "Delta"    : 2.0
             }
         ]
     },
@@ -1270,31 +771,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.07
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.05
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.03
+                "Delta"    : 3.0
             }
         ]
     },
@@ -1309,31 +794,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.08
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.05
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.05
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.01
+                "Delta"    : 4.0
             }
         ]
     },
@@ -1348,30 +817,14 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.06
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 6,
                 "Delta"    : 0.0
             }
         ]
@@ -1387,31 +840,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.01
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.05
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.01
+                "Delta"    : 1.0
             }
         ]
     },
@@ -1426,31 +863,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.04
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.04
+                "Delta"    : 2.0
             }
         ]
     },
@@ -1465,31 +886,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.12
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.06
+                "Delta"    : 3.0
             }
         ]
     },
@@ -1504,31 +909,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.09
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.05
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.06
+                "Delta"    : 4.0
             }
         ]
     },
@@ -1543,31 +932,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.09
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
                 "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.05
             }
         ]
     },
@@ -1582,31 +955,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.08
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.02
+                "Delta"    : 1.0
             }
         ]
     },
@@ -1621,31 +978,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.03
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.08
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.05
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             }
         ]
     },
@@ -1660,31 +1001,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.01
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.08
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.01
+                "Delta"    : 3.0
             }
         ]
     },
@@ -1699,31 +1024,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.1
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.05
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.03
+                "Delta"    : 4.0
             }
         ]
     },
@@ -1738,31 +1047,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.11
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.04
+                "Delta"    : 4.0
             },
             {
                 "Property" : 2,
                 "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.06
             }
         ]
     },
@@ -1777,31 +1070,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.02
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.09
+                "Delta"    : 4.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.08
+                "Delta"    : 1.0
             }
         ]
     },
@@ -1816,31 +1093,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.09
+                "Delta"    : 4.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.07
+                "Delta"    : 2.0
             }
         ]
     },
@@ -1855,31 +1116,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.05
+                "Delta"    : 4.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.08
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.04
+                "Delta"    : 3.0
             }
         ]
     },
@@ -1894,31 +1139,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 4.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.1
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.01
+                "Delta"    : 4.0
             }
         ]
     },
@@ -1933,7 +1162,7 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.08
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
@@ -1941,22 +1170,6 @@
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.08
-            },
-            {
-                "Property" : 6,
                 "Delta"    : 0.0
             }
         ]
@@ -1972,31 +1185,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.11
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 2,
                 "Delta"    : 0.0
             },
             {
-                "Property" : 3,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.08
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.02
+                "Property" : 2,
+                "Delta"    : 1.0
             }
         ]
     },
@@ -2011,31 +1208,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.05
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.09
+                "Delta"    : 0.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.08
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.06
+                "Delta"    : 2.0
             }
         ]
     },
@@ -2050,31 +1231,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.11
-            },
-            {
-                "Property" : 2,
                 "Delta"    : 0.0
             },
             {
-                "Property" : 3,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.05
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.09
+                "Property" : 2,
+                "Delta"    : 3.0
             }
         ]
     },
@@ -2089,31 +1254,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 2,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 5,
                 "Delta"    : 0.0
             },
             {
-                "Property" : 6,
-                "Delta"    : 0.09
+                "Property" : 2,
+                "Delta"    : 4.0
             }
         ]
     },
@@ -2128,31 +1277,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.01
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.1
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.09
-            },
-            {
-                "Property" : 4,
                 "Delta"    : 0.0
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.06
             }
         ]
     },
@@ -2167,31 +1300,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.05
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.08
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.09
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.02
+                "Delta"    : 1.0
             }
         ]
     },
@@ -2206,31 +1323,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.11
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.01
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.05
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.09
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             }
         ]
     },
@@ -2245,31 +1346,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.07
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.08
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.09
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.09
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.01
+                "Delta"    : 3.0
             }
         ]
     },
@@ -2284,31 +1369,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.12
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.1
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.05
+                "Delta"    : 4.0
             }
         ]
     },
@@ -2323,31 +1392,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.1
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.05
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.08
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.09
+                "Delta"    : 0.0
             }
         ]
     },
@@ -2362,31 +1415,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.03
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.11
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.05
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.1
+                "Delta"    : 1.0
             }
         ]
     },
@@ -2401,31 +1438,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.02
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.1
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.09
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.08
+                "Delta"    : 2.0
             }
         ]
     },
@@ -2440,31 +1461,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.09
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.11
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.04
+                "Delta"    : 3.0
             }
         ]
     },
@@ -2479,31 +1484,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.08
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.07
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.09
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.1
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.01
+                "Delta"    : 4.0
             }
         ]
     },
@@ -2518,30 +1507,14 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.12
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.09
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.11
-            },
-            {
-                "Property" : 6,
                 "Delta"    : 0.0
             }
         ]
@@ -2557,31 +1530,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.12
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.11
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.08
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.04
+                "Delta"    : 1.0
             }
         ]
     },
@@ -2596,31 +1553,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.05
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.11
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.1
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.08
+                "Delta"    : 2.0
             }
         ]
     },
@@ -2635,31 +1576,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.12
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.11
+                "Delta"    : 3.0
             }
         ]
     },
@@ -2674,31 +1599,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.08
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.09
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.11
+                "Delta"    : 4.0
             }
         ]
     },
@@ -2713,31 +1622,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.09
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.05
+                "Delta"    : 4.0
             },
             {
                 "Property" : 2,
                 "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.12
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.05
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.06
             }
         ]
     },
@@ -2752,31 +1645,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.03
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.12
+                "Delta"    : 4.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.11
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.1
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.02
+                "Delta"    : 1.0
             }
         ]
     },
@@ -2791,31 +1668,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.14
+                "Delta"    : 4.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.08
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.12
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             }
         ]
     },
@@ -2830,31 +1691,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.08
+                "Delta"    : 4.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.1
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.12
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.11
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.02
+                "Delta"    : 3.0
             }
         ]
     },
@@ -2869,31 +1714,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.01
+                "Delta"    : 4.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.13
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.12
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.07
+                "Delta"    : 4.0
             }
         ]
     },
@@ -2908,7 +1737,7 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.06
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
@@ -2916,23 +1745,7 @@
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.1
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.08
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.12
+                "Delta"    : 0.0
             }
         ]
     },
@@ -2947,31 +1760,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.09
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 2,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 5,
                 "Delta"    : 0.0
             },
             {
-                "Property" : 6,
-                "Delta"    : 0.13
+                "Property" : 2,
+                "Delta"    : 1.0
             }
         ]
     },
@@ -2986,31 +1783,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.05
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.11
+                "Delta"    : 0.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.12
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.09
+                "Delta"    : 2.0
             }
         ]
     },
@@ -3025,31 +1806,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.15
-            },
-            {
-                "Property" : 2,
                 "Delta"    : 0.0
             },
             {
-                "Property" : 3,
-                "Delta"    : 0.13
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.09
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.04
+                "Property" : 2,
+                "Delta"    : 3.0
             }
         ]
     },
@@ -3064,31 +1829,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.11
+                "Delta"    : 0.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.08
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.1
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.13
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.0
+                "Delta"    : 4.0
             }
         ]
     },
@@ -3103,31 +1852,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.03
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.14
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.12
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.13
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.01
+                "Delta"    : 0.0
             }
         ]
     },
@@ -3142,31 +1875,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.03
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.12
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.14
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.09
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.06
+                "Delta"    : 1.0
             }
         ]
     },
@@ -3181,31 +1898,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.09
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.01
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.11
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.11
+                "Delta"    : 2.0
             }
         ]
     },
@@ -3220,31 +1921,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.07
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.1
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.14
+                "Delta"    : 3.0
             }
         ]
     },
@@ -3259,31 +1944,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.16
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.12
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.12
+                "Delta"    : 4.0
             }
         ]
     },
@@ -3298,31 +1967,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.14
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.14
-            },
-            {
-                "Property" : 4,
                 "Delta"    : 0.0
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.07
             }
         ]
     },
@@ -3337,31 +1990,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.06
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.14
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.12
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.13
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.01
+                "Delta"    : 1.0
             }
         ]
     },
@@ -3376,31 +2013,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.01
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.15
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.1
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.15
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             }
         ]
     },
@@ -3415,31 +2036,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.08
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.15
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.12
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.04
+                "Delta"    : 3.0
             }
         ]
     },
@@ -3454,31 +2059,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.08
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.08
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.14
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.1
+                "Delta"    : 4.0
             }
         ]
     },
@@ -3493,31 +2082,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.02
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.16
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
                 "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.09
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.15
             }
         ]
     },
@@ -3532,31 +2105,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.16
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.1
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.15
+                "Delta"    : 1.0
             }
         ]
     },
@@ -3571,31 +2128,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.09
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.13
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.15
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.05
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.1
+                "Delta"    : 2.0
             }
         ]
     },
@@ -3610,31 +2151,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.16
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.15
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.11
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.03
+                "Delta"    : 3.0
             }
         ]
     },
@@ -3649,31 +2174,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.06
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.1
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.1
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.09
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.16
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.0
+                "Delta"    : 4.0
             }
         ]
     },
@@ -3688,31 +2197,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.08
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.06
+                "Delta"    : 4.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.15
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.15
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.02
+                "Delta"    : 0.0
             }
         ]
     },
@@ -3727,31 +2220,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.04
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.15
+                "Delta"    : 4.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.16
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.09
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.08
+                "Delta"    : 1.0
             }
         ]
     },
@@ -3766,31 +2243,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.18
+                "Delta"    : 4.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.12
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.14
+                "Delta"    : 2.0
             }
         ]
     },
@@ -3805,31 +2266,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.12
+                "Delta"    : 4.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.12
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.08
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.05
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.17
+                "Delta"    : 3.0
             }
         ]
     },
@@ -3844,31 +2289,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 3.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.02
+                "Delta"    : 4.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.17
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.15
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.13
+                "Delta"    : 4.0
             }
         ]
     },
@@ -3883,7 +2312,7 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.04
+                "Delta"    : 4.0
             },
             {
                 "Property" : 1,
@@ -3891,23 +2320,7 @@
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.14
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.17
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.1
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.06
+                "Delta"    : 0.0
             }
         ]
     },
@@ -3922,31 +2335,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.08
+                "Delta"    : 4.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.03
+                "Delta"    : 0.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.13
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.16
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.01
+                "Delta"    : 1.0
             }
         ]
     },
@@ -3961,31 +2358,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.05
+                "Delta"    : 4.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.13
-            },
-            {
-                "Property" : 2,
                 "Delta"    : 0.0
             },
             {
-                "Property" : 3,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.14
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.17
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.01
+                "Property" : 2,
+                "Delta"    : 2.0
             }
         ]
     },
@@ -4000,31 +2381,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 4.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.19
-            },
-            {
-                "Property" : 2,
                 "Delta"    : 0.0
             },
             {
-                "Property" : 3,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.17
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.13
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.06
+                "Property" : 2,
+                "Delta"    : 3.0
             }
         ]
     },
@@ -4039,31 +2404,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 4.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.16
+                "Delta"    : 0.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.09
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.15
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.05
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.13
+                "Delta"    : 4.0
             }
         ]
     },
@@ -4078,31 +2427,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 4.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.05
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.18
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.09
-            },
-            {
-                "Property" : 5,
                 "Delta"    : 0.0
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.18
             }
         ]
     },
@@ -4117,31 +2450,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.02
+                "Delta"    : 4.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.16
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.13
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.01
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.16
+                "Delta"    : 1.0
             }
         ]
     },
@@ -4156,31 +2473,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.07
+                "Delta"    : 4.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.01
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.18
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.1
+                "Delta"    : 2.0
             }
         ]
     },
@@ -4195,31 +2496,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.07
+                "Delta"    : 4.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.11
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.16
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.15
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.03
+                "Delta"    : 3.0
             }
         ]
     },
@@ -4234,31 +2519,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.01
+                "Delta"    : 4.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.2
+                "Delta"    : 1.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.1
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.12
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.18
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.0
+                "Delta"    : 4.0
             }
         ]
     },
@@ -4273,31 +2542,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 4.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.19
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.07
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.03
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.18
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.16
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.04
+                "Delta"    : 0.0
             }
         ]
     },
@@ -4312,31 +2565,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 4.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.09
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.17
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.18
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.09
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.11
+                "Delta"    : 1.0
             }
         ]
     },
@@ -4351,31 +2588,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 4.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.19
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.12
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.18
+                "Delta"    : 2.0
             }
         ]
     },
@@ -4390,31 +2611,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.06
+                "Delta"    : 4.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.0
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.11
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.11
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.05
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.19
+                "Delta"    : 3.0
             }
         ]
     },
@@ -4429,31 +2634,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.07
+                "Delta"    : 4.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.09
+                "Delta"    : 2.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.18
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.05
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.13
+                "Delta"    : 4.0
             }
         ]
     },
@@ -4468,31 +2657,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.03
+                "Delta"    : 4.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.19
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
                 "Delta"    : 0.0
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.19
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.02
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.13
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.05
             }
         ]
     },
@@ -4507,31 +2680,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 4.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.21
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.04
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.14
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.09
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.19
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.0
+                "Delta"    : 1.0
             }
         ]
     },
@@ -4546,31 +2703,15 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 4.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.13
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.15
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.06
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.17
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.19
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.02
+                "Delta"    : 2.0
             }
         ]
     },
@@ -4585,33 +2726,17 @@
         "Modifiers"  : [
             {
                 "Property" : 0,
-                "Delta"    : 0.0
+                "Delta"    : 4.0
             },
             {
                 "Property" : 1,
-                "Delta"    : 0.02
+                "Delta"    : 3.0
             },
             {
                 "Property" : 2,
-                "Delta"    : 0.2
-            },
-            {
-                "Property" : 3,
-                "Delta"    : 0.0
-            },
-            {
-                "Property" : 4,
-                "Delta"    : 0.2
-            },
-            {
-                "Property" : 5,
-                "Delta"    : 0.13
-            },
-            {
-                "Property" : 6,
-                "Delta"    : 0.09
+                "Delta"    : 3.0
             }
         ]
     }
-	]
+]
 }

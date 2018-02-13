@@ -4,17 +4,14 @@ using UnityEngine.UI;
 using UniRx;
 using UnityEngine.EventSystems;
 
-public class GradientTexture : MonoBehaviour, IPointerClickHandler
+public class ResistanceGraph : MonoBehaviour, IPointerClickHandler
 {
     public HexMapLens Lens;
-    public RawImage TargetImage;
+    public BellCurveTexture Gradient;
     public RawImage TileValue;
     public Text PropertyText;
     public Text MatchText;
-
-    public Color GreenColor;
-    public Color RedColor;
-
+    
     private BellCurve _BellCurve = new BellCurve( 1, 0.39f, 0.15f );
 
     void Start()
@@ -23,11 +20,9 @@ public class GradientTexture : MonoBehaviour, IPointerClickHandler
         GameModel.HandleGet<PlanetModel>( OnPlanetModelChange );
     }
 
-    
-    
     private void OnHexClicked( HexClickedMessage value )
     {
-        float xPos = 0;
+        double xPos = 0;
         switch( Lens )
         {
             case HexMapLens.Temperature:
@@ -46,7 +41,7 @@ public class GradientTexture : MonoBehaviour, IPointerClickHandler
                 break;
         }
         RectTransform rectTransform = TileValue.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2( ( xPos - 0.5f ) * TargetImage.texture.width, 0 );
+        rectTransform.anchoredPosition = new Vector2( ( (float)xPos - 0.5f ) * Gradient.Width, 0 );
         
         MatchText.text = (int)Math.Round( _BellCurve.GetValueAt( xPos ) * 100, 0 ) + "%";
     }
@@ -71,37 +66,13 @@ public class GradientTexture : MonoBehaviour, IPointerClickHandler
                 break;
         }
 
-        RectTransform rectTransform = TargetImage.GetComponent<RectTransform>();
-        TargetImage.texture = GetTexture( (int)rectTransform.rect.width, (int)rectTransform.rect.height );
-
+        Gradient.Draw( _BellCurve );
+        
         PropertyText.text = Lens.ToString();
         MatchText.text = "0%";
     }
 
-    public Texture2D GetTexture( int width, int height )
-    {
-        var texture = new Texture2D( width, height );
-        var pixels = new Color[ width * height ];
-        Color[] _gradient = new Color[ 100 ];
-        
-        for( int i = 0; i < 100; i++ )
-        {
-            _gradient[ i ] = Color.Lerp( RedColor ,GreenColor, _BellCurve.GetValueAt( i / 100f ) );
-        }
-
-        for( var x = 0; x < width; x++ )
-        {
-            for( var y = 0; y < height; y++ )
-            {
-                pixels[ x + y * width ] = _gradient[ (int)( ( (float)x / width ) * 100f ) ];
-            }
-        }
-
-        texture.SetPixels( pixels );
-        texture.wrapMode = TextureWrapMode.Clamp;
-        texture.Apply();
-        return texture;
-    }
+    
 
     public void OnPointerClick( PointerEventData eventData )
     {

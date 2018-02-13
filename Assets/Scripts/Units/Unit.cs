@@ -23,7 +23,7 @@ public class Unit : GameView
 
     private void UpdatePosition()
     {
-        transform.position = new Vector3( HexMapHelper.GetXPosition( Model.X.Value, Model.Y.Value ), Model.Altitude.Value, HexMapHelper.GetZPosition( Model.Y.Value ) );
+        transform.position = new Vector3( HexMapHelper.GetXPosition( Model.X.Value, Model.Y.Value ), (float)Model.Altitude.Value, HexMapHelper.GetZPosition( Model.Y.Value ) );
     }
 
     private void SetSelectedState( bool isSelected )

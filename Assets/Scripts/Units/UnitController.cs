@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 public class UnitController : AbstractController
@@ -13,6 +11,9 @@ public class UnitController : AbstractController
 
     private List<HexModel> _markedHexes;
 
+    private UnitPaymentService _pay;
+    private bool _isInAddMode;
+
     public void Load( PlanetModel planet )
     {
         _hexMapModel = planet.Map;
@@ -23,6 +24,9 @@ public class UnitController : AbstractController
         GameMessage.Listen<HexClickedMessage>( OnHexClickedMessage );
         GameMessage.Listen<UnitMessage>( OnUnitMessage );
         GameMessage.Listen<ClockTickMessage>( OnClockTick );
+
+        if( _pay == null )
+            _pay = GameModel.Get<UnitPaymentService>();
 
         int x, y;
         for( int i = 0; i < _life.Units.Count; i++ )
@@ -57,16 +61,38 @@ public class UnitController : AbstractController
         }
 
         _life.Food += food;
+        _life.FoodDelta = food;
         _life.Science += science;
+        _life.ScienceDelta = science;
         _life.Words += words;
+        _life.WordsDelta = words;
     }
 
     private void OnUnitMessage( UnitMessage value )
     {
         if( value.Type == UnitMessageType.Add )
-            AddUnit( value.X, value.Y );
+        {
+            if( _isInAddMode )
+            {
+                _isInAddMode = false;
+                DeselectUnit();
+            }
+            else
+            if( _pay.BuyAddUnit( false ) )
+            {
+                //AddUnit( value.X, value.Y );
+                DeselectUnit();
+                for( int i = 0; i < _life.Units.Count; i++ )
+                {
+                    MarkNeighborHexes( _life.Units[ i ] );
+                }
+                _isInAddMode = true;
+            }
+        }
         else
-            MoveUnit( value.X, value.Y );
+        {
+
+        }
     }
 
     private void AddUnit( int x, int y )
@@ -95,10 +121,26 @@ public class UnitController : AbstractController
         int x = value.Hex.X;
         int y = value.Hex.Y;
 
+        if( _isInAddMode )
+        {
+            if( _hexMapModel.Table[ x, y ].isMarked.Value == true )
+            {
+                if( _pay.BuyAddUnit() )
+                {
+                    AddUnit( x, y );
+                    _isInAddMode = false;
+                }
+            }
+            return;
+        }
+
         if( _selectedUnit != null && _hexMapModel.Table[ x, y ].isMarked.Value == true )
         {
-            MoveUnit( x, y );
-            SelectUnit( x, y );
+            if( _pay.BuyMoveUnit() )
+            {
+                MoveUnit( x, y );
+                SelectUnit( x, y );
+            }
         }
 
         //Unit is in the clicked tile
@@ -114,10 +156,11 @@ public class UnitController : AbstractController
 
     private void DeselectUnit()
     {
+        UnmarkHexes();
         if( _selectedUnit != null )
         {
-            UnmarkHexes();
             _selectedUnit.isSelected.Value = false;
+            _selectedUnit = null;
         }
     }
 
@@ -126,38 +169,42 @@ public class UnitController : AbstractController
         DeselectUnit();
         _selectedUnit = _unitMap.Table[ x, y ];
         _selectedUnit.isSelected.Value = true;
-        MarkMoveHexes( x, y );
+        _hexMapModel.Table[ x, y ].isExplored.Value = true;
+        MarkNeighborHexes( _selectedUnit );
     }
 
-    private void MarkMoveHexes( int x, int y )
+    private void MarkNeighborHexes( UnitModel unit )
     {
-        UnmarkHexes();
+        int x = unit.X.Value;
+        int y = unit.Y.Value;
 
-        CheckAndMark( x, y + 1 );
+        CheckAndMark( x, y + 1, unit );
 
-        CheckAndMark( x - 1, y );
-        CheckAndMark( x, y );
-        CheckAndMark( x + 1, y );
+        CheckAndMark( x - 1, y, unit );
+        CheckAndMark( x, y, unit );
+        CheckAndMark( x + 1, y, unit );
 
-        CheckAndMark( x, y - 1 );
+        CheckAndMark( x, y - 1, unit );
 
         if( y % 2 == 0 )
         {
-            CheckAndMark( x - 1, y + 1 );
-            CheckAndMark( x - 1, y - 1 );
+            CheckAndMark( x - 1, y + 1, unit );
+            CheckAndMark( x - 1, y - 1, unit );
         }
         else
         {
-            CheckAndMark( x + 1, y + 1 );
-            CheckAndMark( x + 1, y - 1 );
+            CheckAndMark( x + 1, y + 1, unit );
+            CheckAndMark( x + 1, y - 1, unit );
         }
     }
 
-    private void CheckAndMark( int x, int y )
+    private void CheckAndMark( int x, int y, UnitModel unit )
     {
         if( x >= 0 && y >= 0 && x < _hexMapModel.Width && y < _hexMapModel.Height )
         {
-            if( _unitMap.Table[ x, y ] == null )
+            _hexMapModel.Table[ x, y ].isExplored.Value = true;
+            if( _unitMap.Table[ x, y ] == null &&
+                Math.Abs( _hexMapModel.Table[ x, y ].Altitude - unit.Altitude.Value ) <= _life.ClimbLevel ) //check if it can climb
             {
                 _hexMapModel.Table[ x, y ].isMarked.Value = true;
                 _markedHexes.Add( _hexMapModel.Table[ x, y ] );

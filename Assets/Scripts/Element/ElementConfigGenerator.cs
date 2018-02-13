@@ -17,7 +17,7 @@ public class ElementConfigGenerator
     {
         Debug.Log( "Load" );
 
-        TextAsset targetFile = Resources.Load<TextAsset>( "Configs/Atoms" );
+        TextAsset targetFile = Resources.Load<TextAsset>( "Configs/AtomsJSON" );
         atoms = JsonMapper.ToObject<List<JSONAtomModel>>( targetFile.text );
         
         elements = new List<ElementModel>();
@@ -36,10 +36,10 @@ public class ElementConfigGenerator
             tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Food, atoms[ i ].Food ) );
             tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Science, atoms[ i ].Science ) );
             tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Words, atoms[ i ].Words ) );
-            tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Temperature, atoms[ i ].Temperature ) );
+            /*tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Temperature, atoms[ i ].Temperature ) );
             tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Pressure, atoms[ i ].Pressure ) );
             tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Gravity, atoms[ i ].Gravity ) );
-            tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Radiation, atoms[ i ].Radiation ) );
+            tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Radiation, atoms[ i ].Radiation ) );*/
 
             elements.Add( tempElement );
         }
@@ -61,8 +61,8 @@ public class ElementConfigGenerator
         JsonWriter writer = new JsonWriter( sb );
         writer.PrettyPrint = true;
         JsonMapper.ToJson( elements, writer );
-        File.WriteAllText( Application.persistentDataPath + "-Elements.json", sb.ToString() );
-        Debug.Log( Application.persistentDataPath + "-Elements.json" );
+        File.WriteAllText( Application.persistentDataPath + "-ElementConfig.json", sb.ToString() );
+        Debug.Log( Application.persistentDataPath + "-ElementConfig.json" );
     }
     
 }

@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     private PlanetController _planet;
     private LifeController _life;
     private UnitController _unit;
-
+    private UnitPaymentService _unitPayment;
     public Clock clock;
 
     private void Awake()
@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour
         _planet = new PlanetController();
         _life = new LifeController();
         _unit = new UnitController();
+        _unitPayment = new UnitPaymentService();
 
         GameModel.Set( _player );
         GameModel.Set( _galaxy );
@@ -32,6 +33,7 @@ public class GameController : MonoBehaviour
         GameModel.Set( _planet );
         GameModel.Set( _life );
         GameModel.Set( _unit );
+        GameModel.Set( _unitPayment );
 
         GameCommand.Register( new PlanetGenerateCommand() );
     }
