@@ -6,13 +6,13 @@ using UnityEngine.EventSystems;
 
 public class ResistanceGraph : MonoBehaviour, IPointerClickHandler
 {
-    public HexMapLens Lens;
+    public R Lens;
     public BellCurveTexture Gradient;
     public RawImage TileValue;
     public Text PropertyText;
     public Text MatchText;
     
-    private BellCurve _BellCurve = new BellCurve( 1, 0.39f, 0.15f );
+    private BellCurve _BellCurve = new BellCurve( .01f, 0f, 0.01f );
 
     void Start()
     {
@@ -22,24 +22,8 @@ public class ResistanceGraph : MonoBehaviour, IPointerClickHandler
 
     private void OnHexClicked( HexClickedMessage value )
     {
-        double xPos = 0;
-        switch( Lens )
-        {
-            case HexMapLens.Temperature:
-                xPos = value.Hex.Temperature;
-                break;
-            case HexMapLens.Pressure:
-                xPos = value.Hex.Pressure;
-                break;
-            case HexMapLens.Humidity:
-                xPos = value.Hex.Humidity;
-                break;
-            case HexMapLens.Radiation:
-                xPos = value.Hex.Radiation;
-                break;
-            default:
-                break;
-        }
+        double xPos =  value.Hex.Props[ Lens ].Value;
+
         RectTransform rectTransform = TileValue.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = new Vector2( ( (float)xPos - 0.5f ) * Gradient.Width, 0 );
         
@@ -48,31 +32,12 @@ public class ResistanceGraph : MonoBehaviour, IPointerClickHandler
 
     private void OnPlanetModelChange( PlanetModel value )
     {
-        switch( Lens )
-        {
-            case HexMapLens.Temperature:
-                _BellCurve = value.Life.TemperatureBC;
-                break;
-            case HexMapLens.Pressure:
-                _BellCurve = value.Life.PressureBC;
-                break;
-            case HexMapLens.Humidity:
-                _BellCurve = value.Life.HumidityBC;
-                break;
-            case HexMapLens.Radiation:
-                _BellCurve = value.Life.RadiationBC;
-                break;
-            default:
-                break;
-        }
-
+        _BellCurve = value.Life.Resistance[ Lens ];
         Gradient.Draw( _BellCurve );
         
         PropertyText.text = Lens.ToString();
         MatchText.text = "0%";
     }
-
-    
 
     public void OnPointerClick( PointerEventData eventData )
     {

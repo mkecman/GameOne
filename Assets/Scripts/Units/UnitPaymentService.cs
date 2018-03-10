@@ -16,24 +16,29 @@ public class UnitPaymentService : AbstractController
         _life = value.Life;
     }
 
+    public int GetAddUnitPrice()
+    {
+        return (int)( Math.Pow( 1.3, _life.Props[ R.Population ].Value ) * 1 );
+    }
+
     public bool BuyAddUnit( bool spendCurrency = true )
     {
-        return Deduct( (int)( _life.Population * 4 ) * 10, spendCurrency );
+        return Deduct( GetAddUnitPrice(), spendCurrency );
     }
 
     public bool BuyMoveUnit( bool spendCurrency = true )
     {
-        return Deduct( 20, spendCurrency );
+        return Deduct( 1, spendCurrency );
     }
     
     private bool Deduct( int price, bool spendCurrency )
     {
-        if( _life.Food >= price )
+        if( _life.Props[R.Energy].Value >= price )
         {
             if( spendCurrency )
             {
-                _life.Food -= price;
-                _life.FoodDelta = -price;
+                _life.Props[ R.Energy ].Value -= price;
+                _life.Props[ R.Energy ].Delta = -price;
             }
             return true;
         }

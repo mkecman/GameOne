@@ -34,7 +34,7 @@ public class UnitController : AbstractController
             x = _life.Units[ i ].X.Value;
             y = _life.Units[ i ].Y.Value;
             _unitMap.Table[ x, y ] = _life.Units[ i ];
-            _life.Units[ i ].Altitude.Value = _hexMapModel.Table[ x, y ].Altitude;
+            _life.Units[ i ].Altitude.Value = _hexMapModel.Table[ x, y ].Props[ R.Altitude ].Value;
         }
     }
 
@@ -47,25 +47,29 @@ public class UnitController : AbstractController
     {
         double food = 0;
         double science = 0;
-        double words = 0;
+        double minerals = 0;
 
         UnitModel um;
-        ElementModel em;
+        HexModel hm;
         for( int i = 0; i < _life.Units.Count; i++ )
         {
             um = _life.Units[ i ];
-            em = _hexMapModel.Table[ um.X.Value, um.Y.Value ].Element;
-            food += em.Modifier( ElementModifiers.Food ).Delta;
-            science += em.Modifier( ElementModifiers.Science ).Delta;
-            words += em.Modifier( ElementModifiers.Words ).Delta;
+            hm = _hexMapModel.Table[ um.X.Value, um.Y.Value ];
+            food += hm.Props[ R.Energy].Value;
+            science += hm.Props[ R.Science ].Value;
+            minerals += hm.Props[ R.Minerals ].Value;
         }
 
-        _life.Food += food;
-        _life.FoodDelta = food;
-        _life.Science += science;
-        _life.ScienceDelta = science;
-        _life.Words += words;
-        _life.WordsDelta = words;
+        food = food - ( _life.Props[ R.Population ].Value * 2 );
+
+        _life.Props[ R.Energy ].Value += food;
+        _life.Props[ R.Energy ].Delta = food;
+
+        _life.Props[ R.Science ].Value += science;
+        _life.Props[ R.Science ].Delta = science;
+
+        _life.Props[ R.Minerals ].Value += minerals;
+        _life.Props[ R.Minerals ].Delta = minerals;
     }
 
     private void OnUnitMessage( UnitMessage value )
@@ -100,10 +104,10 @@ public class UnitController : AbstractController
         if( _unitMap.Table[ x, y ] != null )
             return;
 
-        UnitModel um = new UnitModel( x, y, _hexMapModel.Table[ x, y ].Altitude );
+        UnitModel um = new UnitModel( x, y, _hexMapModel.Table[ x, y ].Props[ R.Altitude ].Value );
         _unitMap.Table[ x, y ] = um;
         _life.Units.Add( um );
-        _life.Population++;
+        _life.Props[ R.Population ].Value++;
         SelectUnit( x, y );
     }
 
@@ -111,7 +115,7 @@ public class UnitController : AbstractController
     {
         _unitMap.Table[ _selectedUnit.X.Value, _selectedUnit.Y.Value ] = null;
         _unitMap.Table[ xTo, yTo ] = _selectedUnit;
-        _selectedUnit.Altitude.Value = _hexMapModel.Table[ xTo, yTo ].Altitude;
+        _selectedUnit.Altitude.Value = _hexMapModel.Table[ xTo, yTo ].Props[ R.Altitude].Value;
         _selectedUnit.X.Value = xTo;
         _selectedUnit.Y.Value = yTo;
     }
@@ -204,7 +208,7 @@ public class UnitController : AbstractController
         {
             _hexMapModel.Table[ x, y ].isExplored.Value = true;
             if( _unitMap.Table[ x, y ] == null &&
-                Math.Abs( _hexMapModel.Table[ x, y ].Altitude - unit.Altitude.Value ) <= _life.ClimbLevel ) //check if it can climb
+                Math.Abs( _hexMapModel.Table[ x, y ].Props[ R.Altitude ].Value - unit.Altitude.Value ) <= _life.ClimbLevel ) //check if it can climb
             {
                 _hexMapModel.Table[ x, y ].isMarked.Value = true;
                 _markedHexes.Add( _hexMapModel.Table[ x, y ] );

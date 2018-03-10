@@ -3,6 +3,7 @@ using System.Collections;
 using AccidentalNoise;
 using System;
 using System.Collections.Generic;
+using UniRx;
 
 public class HexMapGenerator
 {
@@ -86,18 +87,12 @@ public class HexMapGenerator
                 float humidity = (float)HumidityMap.Get( nx, ny, nz, nw );
                 float radiation = (float)RadiationMap.Get( nx, ny, nz, nw );
 
-                hex.Altitude = altitude;
-                hex.Temperature = temperature;
-                hex.Pressure = pressure;
-                hex.Humidity = humidity;
-                hex.Radiation = radiation;
-
                 // keep track of the max and min values found
-                SetMinMax( altitude, HexMapLens.Altitude );
-                SetMinMax( temperature, HexMapLens.Temperature );
-                SetMinMax( pressure, HexMapLens.Pressure );
-                SetMinMax( humidity, HexMapLens.Humidity );
-                SetMinMax( radiation, HexMapLens.Radiation );
+                SetInitialHexValue( hex, R.Altitude, altitude );
+                SetInitialHexValue( hex, R.Temperature, temperature );
+                SetInitialHexValue( hex, R.Pressure, pressure );
+                SetInitialHexValue( hex, R.Humidity, humidity );
+                SetInitialHexValue( hex, R.Radiation, radiation );
             }
         }
 
@@ -107,13 +102,14 @@ public class HexMapGenerator
             for( int y = 0; y < _map.Height; y++ )
             {
                 hex = _map.Table[ x, y ];
+                SetHex( hex, R.Altitude );
+                hex.Props[ R.Altitude ].Value *= 2;
 
-                hex.Altitude = Normalize( HexMapLens.Altitude, hex.Altitude );
-                hex.Temperature = Normalize( HexMapLens.Temperature, hex.Temperature );
-                hex.Pressure = Normalize( HexMapLens.Pressure, hex.Pressure );
-                hex.Humidity = Normalize( HexMapLens.Humidity, hex.Humidity );
-                hex.Radiation = Normalize( HexMapLens.Radiation, hex.Radiation );
-
+                SetHex( hex, R.Temperature );
+                SetHex( hex, R.Pressure );
+                SetHex( hex, R.Humidity );
+                SetHex( hex, R.Radiation );
+                
                 /*
                 if( hex.Altitude >= m.SeaLevel.Value )
                     //hex.Colors[ (int)HexMapLens.Normal ] = TerrainGradient.Evaluate( (float)( ( 1 - hex.Temperature ) / ( 1 - SeaLevel.Value ) ) );
@@ -122,30 +118,25 @@ public class HexMapGenerator
                     hex.Colors[ (int)HexMapLens.Normal ] = m.LiquidGradient.Evaluate( (float)( ( 1 - hex.Temperature ) + m.SeaLevel.Value ) );
                     */
 
-                hex.Colors[ (int)HexMapLens.Normal ] = m.TerrainGradient.Evaluate( (float)(1 - hex.Temperature) );
-                hex.Colors[ (int)HexMapLens.Altitude ] = Color.Lerp( Color.red, Color.green, (float)hex.Altitude );
+                hex.Props[ R.Default ].Color = m.TerrainGradient.Evaluate( (float)(1 - hex.Props[ R.Temperature ].Value ) );
 
-                hex.Colors[ (int)HexMapLens.Temperature ] = Color.red;
-                hex.Colors[ (int)HexMapLens.Pressure ] = Color.red;
-                hex.Colors[ (int)HexMapLens.Humidity ] = Color.red;
-                hex.Colors[ (int)HexMapLens.Radiation ] = Color.red;
-
-                hex.TotalScore = 0;
-                hex.Colors[ (int)HexMapLens.TotalScore ] = Color.red;
-
-                hex.Element = _elements[ (int)Math.Round( ( _elements.Count - 2 ) * RandomUtil.FromRange(0,1), 0 ) + 1 ];
+                hex.Props[ R.HexScore ].Value = 0;
+                hex.Props[ R.HexScore ].Color = Color.red;
             }
         }
-
     }
 
-    private double Normalize( HexMapLens lens, double value )
+    private void SetHex( HexModel hex, R type )
     {
-        return Math.Round( Mathf.InverseLerp( Ranges[ (int)lens ].x, Ranges[ (int)lens ].y, (float)value ), 2 );
+        //normalize value to be between 0 - 1
+        hex.Props[ type ].Value = Math.Round( Mathf.InverseLerp( Ranges[ (int)type ].x, Ranges[ (int)type ].y, (float)hex.Props[ type ].Value ), 2 );
+        hex.Props[ type ].Color = Color.Lerp( Color.red, Color.green, (float)hex.Props[ type ].Value );
     }
-
-    private void SetMinMax( float value, HexMapLens lens )
+    
+    private void SetInitialHexValue( HexModel hex, R lens, float value )
     {
+        hex.Props[ lens ].Value = value;
+
         if( value > Ranges[ (int)lens ].y )
             Ranges[ (int)lens ].y = value;
         if( value < Ranges[ (int)lens ].x )

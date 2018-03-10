@@ -21,10 +21,10 @@ public class HUDPanelView : MonoBehaviour
     private void OnPlanetModelChange( PlanetModel value )
     {
         _life = value.Life;
-        _life._Population.Subscribe( _ => Population.SetValue( _ ) );
-        _life._Food.Subscribe( _ => Food.SetValue( _, _life.FoodDelta ) );
-        _life._Science.Subscribe( _ => Science.SetValue( _, _life.ScienceDelta ) );
-        _life._Words.Subscribe( _ => Words.SetValue( _, _life.WordsDelta ) );
+        _life.Props[ R.Population ]._Value.Subscribe( _ => Population.SetValue( _ ) );
+        _life.Props[ R.Energy ]._Value.Subscribe( _ => Food.SetValue( _, _life.Props[ R.Energy ].Delta ) );
+        _life.Props[ R.Science ]._Value.Subscribe( _ => Science.SetValue( _, _life.Props[ R.Science ].Delta ) );
+        _life.Props[ R.Minerals ]._Value.Subscribe( _ => Words.SetValue( _, _life.Props[ R.Minerals ].Delta ) );
     }
     
 }

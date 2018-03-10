@@ -11,7 +11,7 @@ public class HexTileInfoPanelView : MonoBehaviour
     public UIPropertyView Pressure;
     public UIPropertyView Humidity;
     public UIPropertyView Radiation;
-    public UIPropertyView TotalBonus;
+    public UIPropertyView HexScore;
     
     // Use this for initialization
     void Start()
@@ -22,18 +22,13 @@ public class HexTileInfoPanelView : MonoBehaviour
     private void OnHexClicked( HexClickedMessage value )
     {
         HexModel hex = value.Hex;
-        Altitude.SetValue( hex.Altitude );
-        Temperature.SetValue( hex.Temperature );
-        Pressure.SetValue( hex.Pressure );
-        Humidity.SetValue( hex.Humidity );
-        Radiation.SetValue( hex.Radiation );
-        TotalBonus.SetValue( hex.TotalScore );
-
-        /*
-        Food.SetValue( _hexMapModel.HexMap.Table[ value.X, value.Y ].Element.Modifier(ElementModifiers.Food).Delta.ToString() );
-        Science.SetValue( _hexMapModel.HexMap.Table[ value.X, value.Y ].Element.Modifier( ElementModifiers.Science ).Delta.ToString() );
-        Words.SetValue( _hexMapModel.HexMap.Table[ value.X, value.Y ].Element.Modifier( ElementModifiers.Words ).Delta.ToString() );
-        */
+        Altitude.SetValue( hex.Props[ R.Altitude ].Value );
+        Temperature.SetValue( hex.Props[ R.Temperature ].Value );
+        Pressure.SetValue( hex.Props[ R.Pressure ].Value );
+        Humidity.SetValue( hex.Props[ R.Humidity ].Value );
+        Radiation.SetValue( hex.Props[ R.Radiation ].Value );
+        HexScore.SetValue( hex.Props[ R.HexScore ].Value );
+        
     }
     
 }

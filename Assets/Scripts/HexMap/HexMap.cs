@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public class HexMap : MonoBehaviour
 {
-    public HexMapLens Lens;
+    public R Lens;
 
     public GameObject HexagonPrefab;
     public GameObject Ocean;
@@ -105,15 +105,4 @@ public class HexMap : MonoBehaviour
     }
 
     
-}
-
-public enum HexMapLens
-{
-    Normal,
-    Altitude,
-    Temperature,
-    Pressure,
-    Humidity,
-    Radiation,
-    TotalScore
 }

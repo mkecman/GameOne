@@ -17,7 +17,7 @@ public class Hex : GameView
         this.Model = model;
         _HexClickedMessage = new HexClickedMessage( model );
 
-        SetHeight( Solid, Model.Altitude );
+        SetHeight( Solid, Model.Props[ R.Altitude ].Value );
 
         disposables.Clear();
         Model.isMarked.Skip( 1 ).Subscribe( _ => UpdateMarkedColor( _ ) ).AddTo( disposables );
@@ -58,50 +58,36 @@ public class Hex : GameView
     private void SetClouds()
     {
         Gas.transform.position = new Vector3( Gas.transform.position.x, 0.9f, Gas.transform.position.z );
-        Gas.GetComponent<MeshRenderer>().material.color = new Color32( 255, 255, 255, (byte)(Model.Humidity * 255) );
+        Gas.GetComponent<MeshRenderer>().material.color = new Color32( 255, 255, 255, (byte)(Model.Props[ R.Humidity ].Value * 255) );
     }
 
     private void SetColor()
     {
-        Solid.GetComponent<MeshRenderer>().material.color = Model.Colors[ (int)Model.Lens ];
+        Solid.GetComponent<MeshRenderer>().material.color = Model.Props[ Model.Lens ].Color;
     }
 
     private void SetSymbol()
     {
+        /*
         if( !Model.isExplored.Value )
             return;
-
+            */
         switch( Model.Lens )
         {
-            case HexMapLens.Normal:
-                SymbolText.text = "<color=\"#007800\">" + Model.Element.Modifier( ElementModifiers.Food ).Delta + "</color> <color=\"#000ff0\">" + Model.Element.Modifier( ElementModifiers.Science ).Delta + "</color>\n<color=\"#ff0000\">" + Model.Element.Modifier( ElementModifiers.Words ).Delta + "</color>";
-                break;
-            case HexMapLens.Altitude:
-                SymbolText.text = Math.Round( Model.Altitude, 2 ).ToString(); //Show altitude;
-                break;
-            case HexMapLens.Temperature:
-                SymbolText.text = Math.Round( Model.Temperature, 2 ).ToString();
-                break;
-            case HexMapLens.Pressure:
-                SymbolText.text = Math.Round( Model.Pressure, 2 ).ToString();
-                break;
-            case HexMapLens.Humidity:
-                SymbolText.text = Math.Round( Model.Humidity, 2 ).ToString();
-                break;
-            case HexMapLens.Radiation:
-                SymbolText.text = Math.Round( Model.Radiation, 2 ).ToString();
-                break;
-            case HexMapLens.TotalScore:
-                SymbolText.text = Math.Round( Model.TotalScore, 2 ).ToString();
+            case R.Default:
+                SymbolText.text = "<color=\"#007800\">" + Model.Props[R.Energy].Value + "</color> <color=\"#000ff0\">" + Model.Props[ R.Science ].Value + "</color>\n<color=\"#ff0000\">" + Model.Props[ R.Minerals ].Value + "</color>";
+                //SymbolText.text = "<color=\"#007800\">" + (int)Model.Element.Weight + "</color>\n<color=\"#ff0000\">" + ( Model.TotalScore * 100 ) + "%</color>";
+                //SymbolText.text = Math.Round( Model.TotalScore * Model.Element.Weight, 2 ).ToString() + "";
                 break;
             default:
+                SymbolText.text = Math.Round( Model.Props[ Model.Lens ].Value, 2 ).ToString();
                 break;
         }
 
         //SymbolText.text = Model.Element.Symbol;
         //SymbolText.text = Model.X + "," + Model.Y; //Show coordinates;
 
-        SymbolText.gameObject.transform.position = new Vector3( SymbolText.gameObject.transform.position.x, (float)Model.Altitude + .01f, SymbolText.gameObject.transform.position.z );
+        SymbolText.gameObject.transform.position = new Vector3( SymbolText.gameObject.transform.position.x, (float)Model.Props[ R.Altitude ].Value + .01f, SymbolText.gameObject.transform.position.z );
     }
 
     private void SetHeight( GameObject target, double height )

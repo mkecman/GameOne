@@ -119,5 +119,14 @@ public class PlanetModel
         get { return _EscapeVelocity.Value; }
         set { _EscapeVelocity.Value = value; }
     }
-    
+
+    [SerializeField]
+    internal DoubleReactiveProperty _TotalEnergyValue = new DoubleReactiveProperty();
+    public double TotalEnergyValue
+    {
+        get { return _TotalEnergyValue.Value; }
+        set { _TotalEnergyValue.Value = value; }
+    }
+
+
 }
