@@ -45,31 +45,35 @@ public class UnitController : AbstractController
 
     private void UpdateStep()
     {
-        double food = 0;
-        double science = 0;
-        double minerals = 0;
-
         UnitModel um;
         HexModel hm;
+        RDictionary<double> values = new RDictionary<double>();
+
         for( int i = 0; i < _life.Units.Count; i++ )
         {
             um = _life.Units[ i ];
             hm = _hexMapModel.Table[ um.X.Value, um.Y.Value ];
-            food += hm.Props[ R.Energy].Value;
-            science += hm.Props[ R.Science ].Value;
-            minerals += hm.Props[ R.Minerals ].Value;
+            values[ R.Energy ] += hm.Props[ R.Energy].Value + um.AbilitiesDelta[ R.Energy ];
+            values[ R.Science ] += hm.Props[ R.Science ].Value;
+            values[ R.Minerals ] += hm.Props[ R.Minerals ].Value;
+
+            values[ R.Temperature ] += um.AbilitiesDelta[ R.Temperature ];
+            values[ R.Pressure ] += um.AbilitiesDelta[ R.Pressure ];
+            values[ R.Humidity ] += um.AbilitiesDelta[ R.Humidity ];
+            values[ R.Radiation ] += um.AbilitiesDelta[ R.Radiation ];
+
         }
 
-        food = food - ( _life.Props[ R.Population ].Value * 2 );
+        //food = food - ( _life.Props[ R.Population ].Value * 2 );
 
-        _life.Props[ R.Energy ].Value += food;
-        _life.Props[ R.Energy ].Delta = food;
+        _life.Props[ R.Energy ].Value += values[ R.Energy ];
+        _life.Props[ R.Energy ].Delta = values[ R.Energy ];
 
-        _life.Props[ R.Science ].Value += science;
-        _life.Props[ R.Science ].Delta = science;
+        _life.Props[ R.Science ].Value += values[ R.Science ];
+        _life.Props[ R.Science ].Delta = values[ R.Science ];
 
-        _life.Props[ R.Minerals ].Value += minerals;
-        _life.Props[ R.Minerals ].Delta = minerals;
+        _life.Props[ R.Minerals ].Value += values[ R.Minerals ];
+        _life.Props[ R.Minerals ].Delta = values[ R.Minerals ];
     }
 
     private void OnUnitMessage( UnitMessage value )

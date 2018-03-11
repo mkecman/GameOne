@@ -18,6 +18,8 @@ public class Config : MonoBehaviour
         _instance.Load<StarsConfig>();
         _instance.Load<ElementConfig>();
         _instance.Load<HexConfig>();
+        _instance.Load<AbilityConfig>();
+        Get<AbilityConfig>().Setup();
     }
 
     public static T Get<T>()

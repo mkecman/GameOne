@@ -1,0 +1,12 @@
+{
+"AbilitiesJSON":
+    [
+        {
+            "Index" : 0,
+            "Name"   : "Dummy",
+            "UnlockCost" : 0,
+            "Increases"  : [ 0,1,2,3,4,5 ],
+            "Decreases"  : [ 0,1,2,3,4,5 ]
+        }
+    ]
+}

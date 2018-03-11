@@ -19,7 +19,7 @@ public class HexModel
 
     public R Lens;
 
-    public Dictionary<R, Resource> Props = new Dictionary<R, Resource>();
+    public RDictionary<Resource> Props = new RDictionary<Resource>();
 
     public HexModel()
     {
@@ -34,11 +34,10 @@ public class HexModel
         AddProp( R.Energy );
         AddProp( R.Science );
         AddProp( R.Minerals );
-
     }
 
     private void AddProp( R prop )
     {
-        Props.Add( prop, new Resource( prop, 0 ) );
+        Props.Set( prop, new Resource( prop, 0 ) );
     }
 }

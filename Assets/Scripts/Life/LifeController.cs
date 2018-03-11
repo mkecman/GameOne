@@ -14,7 +14,7 @@ public class LifeController : AbstractController
         _selectedLife = new LifeModel
         {
             Name = "Human",
-            ClimbLevel = 0.18
+            ClimbLevel = 0.41
         };
         _selectedLife.Props[ R.Energy ].Value = 500;
         _selectedLife.Props[ R.Population ].Value = 1;
