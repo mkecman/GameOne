@@ -9,20 +9,19 @@ public class UIPropertyView : MonoBehaviour
     public Text Delta;
 
     public Color GreenColor, RedColor;
-
-    private void Start()
-    {
-        Property.text = gameObject.name;
-    }
-
+    
     public void SetProperty( string propertyName )
     {
         Property.text = propertyName;
     }
     
-    public void SetValue( double value, double delta = double.MaxValue )
+    public void SetValue( double value = double.MaxValue, double delta = double.MaxValue )
     {
-        Value.text = value.ToString();
+        if( value == double.MaxValue )
+            Value.text = "";
+        else
+            Value.text = value.ToString();
+
         if ( delta == double.MaxValue )
         {
             Delta.text = "";
@@ -37,7 +36,7 @@ public class UIPropertyView : MonoBehaviour
         else
         {
             Delta.color = RedColor;
-            Delta.text = "-";
+            Delta.text = "";
         }
         Delta.text += delta.ToString();
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using UniRx;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Hex : GameView
 {
@@ -40,7 +41,8 @@ public class Hex : GameView
 
     private void OnMouseDown()
     {
-        GameMessage.Send<HexClickedMessage>( _HexClickedMessage );
+        if( !EventSystem.current.IsPointerOverGameObject() )
+            GameMessage.Send( _HexClickedMessage );
     }
 
     /*

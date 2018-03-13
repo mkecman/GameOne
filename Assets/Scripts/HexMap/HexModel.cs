@@ -38,6 +38,6 @@ public class HexModel
 
     private void AddProp( R prop )
     {
-        Props.Set( prop, new Resource( prop, 0 ) );
+        Props[ prop ] = new Resource( prop, 0 );
     }
 }

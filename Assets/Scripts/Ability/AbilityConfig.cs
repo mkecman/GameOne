@@ -6,30 +6,31 @@ public class AbilityConfig
 {
     public List<AbilityJSON> AbilitiesJSON;
 
-    public List<Ability> Abilities;
+    public List<AbilityData> Abilities;
 
     public void Setup()
     {
+        Abilities = new List<AbilityData>();
         AbilityJSON abilityJSON;
-        Ability ability;
+        AbilityData ability;
+
         for( int i = 0; i < AbilitiesJSON.Count; i++ )
         {
             abilityJSON = AbilitiesJSON[ i ];
-            ability = new Ability
+            ability = new AbilityData
             {
                 Index = abilityJSON.Index,
                 Name = abilityJSON.Name,
                 UnlockCost = abilityJSON.UnlockCost
             };
 
-            for( int j = 0; j < abilityJSON.Increases.Count; j++ )
+            for( int j = 0; j < abilityJSON.Effects.Count; j++ )
             {
-                ability.Increases.Set( (R)j, abilityJSON.Increases[ j ] );
+                if( abilityJSON.Effects[ j ] != 0 )
+                    ability.Effects.Add( (R)j, abilityJSON.Effects[ j ] );
             }
-            for( int j = 0; j < abilityJSON.Decreases.Count; j++ )
-            {
-                ability.Decreases.Set( (R)j, abilityJSON.Decreases[ j ] );
-            }
+            
+            Abilities.Add( ability );
         }
     }
 }

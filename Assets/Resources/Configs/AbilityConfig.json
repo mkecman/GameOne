@@ -1,12 +1,1766 @@
 {
 "AbilitiesJSON":
-    [
-        {
-            "Index" : 0,
-            "Name"   : "Dummy",
-            "UnlockCost" : 0,
-            "Increases"  : [ 0,1,2,3,4,5 ],
-            "Decreases"  : [ 0,1,2,3,4,5 ]
-        }
-    ]
+
+[
+    {
+        "Index" : 0,
+        "Name"  : "Ability 0",
+        "UnlockCost" : 10,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 1,
+        "Name"  : "Ability 1",
+        "UnlockCost" : 10,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 2,
+        "Name"  : "Ability 2",
+        "UnlockCost" : 10,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 3,
+        "Name"  : "Ability 3",
+        "UnlockCost" : 10,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 4,
+        "Name"  : "Ability 4",
+        "UnlockCost" : 10,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 5,
+        "Name"  : "Ability 5",
+        "UnlockCost" : 10,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 6,
+        "Name"  : "Ability 6",
+        "UnlockCost" : 10,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 7,
+        "Name"  : "Ability 7",
+        "UnlockCost" : 10,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 8,
+        "Name"  : "Ability 8",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 9,
+        "Name"  : "Ability 9",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 10,
+        "Name"  : "Ability 10",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 11,
+        "Name"  : "Ability 11",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 12,
+        "Name"  : "Ability 12",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            -0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 13,
+        "Name"  : "Ability 13",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 14,
+        "Name"  : "Ability 14",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 15,
+        "Name"  : "Ability 15",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 16,
+        "Name"  : "Ability 16",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 17,
+        "Name"  : "Ability 17",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 18,
+        "Name"  : "Ability 18",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 19,
+        "Name"  : "Ability 19",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 20,
+        "Name"  : "Ability 20",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 21,
+        "Name"  : "Ability 21",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 22,
+        "Name"  : "Ability 22",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 23,
+        "Name"  : "Ability 23",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 24,
+        "Name"  : "Ability 24",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 25,
+        "Name"  : "Ability 25",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 26,
+        "Name"  : "Ability 26",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 27,
+        "Name"  : "Ability 27",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            -0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 28,
+        "Name"  : "Ability 28",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 29,
+        "Name"  : "Ability 29",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 30,
+        "Name"  : "Ability 30",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 31,
+        "Name"  : "Ability 31",
+        "UnlockCost" : 20,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 32,
+        "Name"  : "Ability 32",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 33,
+        "Name"  : "Ability 33",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            -0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 34,
+        "Name"  : "Ability 34",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 35,
+        "Name"  : "Ability 35",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.01,
+            0.0,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 36,
+        "Name"  : "Ability 36",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 37,
+        "Name"  : "Ability 37",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            -0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 38,
+        "Name"  : "Ability 38",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 39,
+        "Name"  : "Ability 39",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 40,
+        "Name"  : "Ability 40",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            -0.01,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 41,
+        "Name"  : "Ability 41",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            -0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 42,
+        "Name"  : "Ability 42",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            -0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 43,
+        "Name"  : "Ability 43",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            -0.01,
+            0.0,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 44,
+        "Name"  : "Ability 44",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            -0.01,
+            -0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 45,
+        "Name"  : "Ability 45",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            -0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 46,
+        "Name"  : "Ability 46",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 47,
+        "Name"  : "Ability 47",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 48,
+        "Name"  : "Ability 48",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            -0.01,
+            0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 49,
+        "Name"  : "Ability 49",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            -0.01,
+            -0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 50,
+        "Name"  : "Ability 50",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 51,
+        "Name"  : "Ability 51",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            -0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 52,
+        "Name"  : "Ability 52",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 53,
+        "Name"  : "Ability 53",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            -0.01,
+            0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 54,
+        "Name"  : "Ability 54",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            -0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 55,
+        "Name"  : "Ability 55",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            -0.01,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 56,
+        "Name"  : "Ability 56",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 57,
+        "Name"  : "Ability 57",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            -0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 58,
+        "Name"  : "Ability 58",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.01,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 59,
+        "Name"  : "Ability 59",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.01,
+            0.0,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 60,
+        "Name"  : "Ability 60",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            -0.01,
+            0.0,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 61,
+        "Name"  : "Ability 61",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            -0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 62,
+        "Name"  : "Ability 62",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            -0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 63,
+        "Name"  : "Ability 63",
+        "UnlockCost" : 30,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.01,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 64,
+        "Name"  : "Ability 64",
+        "UnlockCost" : 40,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.01,
+            0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 65,
+        "Name"  : "Ability 65",
+        "UnlockCost" : 40,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.01,
+            -0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 66,
+        "Name"  : "Ability 66",
+        "UnlockCost" : 40,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.01,
+            -0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 67,
+        "Name"  : "Ability 67",
+        "UnlockCost" : 40,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            -0.01,
+            0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 68,
+        "Name"  : "Ability 68",
+        "UnlockCost" : 40,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            -0.01,
+            0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 69,
+        "Name"  : "Ability 69",
+        "UnlockCost" : 40,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            -0.01,
+            -0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 70,
+        "Name"  : "Ability 70",
+        "UnlockCost" : 40,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            -0.01,
+            0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 71,
+        "Name"  : "Ability 71",
+        "UnlockCost" : 40,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            -0.01,
+            0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 72,
+        "Name"  : "Ability 72",
+        "UnlockCost" : 40,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            -0.01,
+            -0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 73,
+        "Name"  : "Ability 73",
+        "UnlockCost" : 40,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.01,
+            -0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 74,
+        "Name"  : "Ability 74",
+        "UnlockCost" : 40,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.01,
+            -0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 75,
+        "Name"  : "Ability 75",
+        "UnlockCost" : 40,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.01,
+            0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 76,
+        "Name"  : "Ability 76",
+        "UnlockCost" : 40,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 77,
+        "Name"  : "Ability 77",
+        "UnlockCost" : 40,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            -0.01,
+            -0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 78,
+        "Name"  : "Ability 78",
+        "UnlockCost" : 40,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            -0.01,
+            -0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 79,
+        "Name"  : "Ability 79",
+        "UnlockCost" : 40,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    }
+]
 }

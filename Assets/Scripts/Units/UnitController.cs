@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 public class UnitController : AbstractController
 {
+    public UnitModel SelectedUnit { get { return _selectedUnit; } }
+
     private LifeModel _life;
     private GridModel<HexModel> _hexMapModel;
 
@@ -13,6 +15,8 @@ public class UnitController : AbstractController
 
     private UnitPaymentService _pay;
     private bool _isInAddMode;
+
+    private RDictionary<double> _updateValues = new RDictionary<double>( true );
 
     public void Load( PlanetModel planet )
     {
@@ -47,33 +51,31 @@ public class UnitController : AbstractController
     {
         UnitModel um;
         HexModel hm;
-        RDictionary<double> values = new RDictionary<double>();
+        _updateValues.SetAll( 0 );
 
         for( int i = 0; i < _life.Units.Count; i++ )
         {
             um = _life.Units[ i ];
             hm = _hexMapModel.Table[ um.X.Value, um.Y.Value ];
-            values[ R.Energy ] += hm.Props[ R.Energy].Value + um.AbilitiesDelta[ R.Energy ];
-            values[ R.Science ] += hm.Props[ R.Science ].Value;
-            values[ R.Minerals ] += hm.Props[ R.Minerals ].Value;
+            _updateValues[ R.Energy ] += hm.Props[ R.Energy].Value + um.AbilitiesDelta[ R.Energy ];
+            _updateValues[ R.Science ] += hm.Props[ R.Science ].Value;
+            _updateValues[ R.Minerals ] += hm.Props[ R.Minerals ].Value;
 
-            values[ R.Temperature ] += um.AbilitiesDelta[ R.Temperature ];
-            values[ R.Pressure ] += um.AbilitiesDelta[ R.Pressure ];
-            values[ R.Humidity ] += um.AbilitiesDelta[ R.Humidity ];
-            values[ R.Radiation ] += um.AbilitiesDelta[ R.Radiation ];
+            hm.Props[ R.Temperature ].Value += um.AbilitiesDelta[ R.Temperature ];
+            hm.Props[ R.Pressure ].Value += um.AbilitiesDelta[ R.Pressure ];
+            hm.Props[ R.Humidity ].Value += um.AbilitiesDelta[ R.Humidity ];
+            hm.Props[ R.Radiation ].Value += um.AbilitiesDelta[ R.Radiation ];
 
         }
 
-        //food = food - ( _life.Props[ R.Population ].Value * 2 );
+        _life.Props[ R.Energy ].Value += _updateValues[ R.Energy ];
+        _life.Props[ R.Energy ].Delta = _updateValues[ R.Energy ];
 
-        _life.Props[ R.Energy ].Value += values[ R.Energy ];
-        _life.Props[ R.Energy ].Delta = values[ R.Energy ];
+        _life.Props[ R.Science ].Value += _updateValues[ R.Science ];
+        _life.Props[ R.Science ].Delta = _updateValues[ R.Science ];
 
-        _life.Props[ R.Science ].Value += values[ R.Science ];
-        _life.Props[ R.Science ].Delta = values[ R.Science ];
-
-        _life.Props[ R.Minerals ].Value += values[ R.Minerals ];
-        _life.Props[ R.Minerals ].Delta = values[ R.Minerals ];
+        _life.Props[ R.Minerals ].Value += _updateValues[ R.Minerals ];
+        _life.Props[ R.Minerals ].Delta = _updateValues[ R.Minerals ];
     }
 
     private void OnUnitMessage( UnitMessage value )
@@ -169,6 +171,7 @@ public class UnitController : AbstractController
         {
             _selectedUnit.isSelected.Value = false;
             _selectedUnit = null;
+            GameModel.Set( _selectedUnit );
         }
     }
 
@@ -179,6 +182,7 @@ public class UnitController : AbstractController
         _selectedUnit.isSelected.Value = true;
         _hexMapModel.Table[ x, y ].isExplored.Value = true;
         MarkNeighborHexes( _selectedUnit );
+        GameModel.Set( _selectedUnit );
     }
 
     private void MarkNeighborHexes( UnitModel unit )

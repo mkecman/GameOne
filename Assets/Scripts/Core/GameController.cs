@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
     private LifeController _life;
     private UnitController _unit;
     private UnitPaymentService _unitPayment;
+    private AbilityController _abilityController;
     public Clock clock;
 
     private void Awake()
@@ -26,6 +27,7 @@ public class GameController : MonoBehaviour
         _life = new LifeController();
         _unit = new UnitController();
         _unitPayment = new UnitPaymentService();
+        _abilityController = new AbilityController();
 
         GameModel.Set( _player );
         GameModel.Set( _galaxy );
@@ -34,14 +36,15 @@ public class GameController : MonoBehaviour
         GameModel.Set( _life );
         GameModel.Set( _unit );
         GameModel.Set( _unitPayment );
-
+        GameModel.Set( _abilityController );
+        
         GameCommand.Register( new PlanetGenerateCommand() );
     }
 
     void Start()
     {
-        CSV.Add( "Population,Science,Words" );
         /*
+        CSV.Add( "Population,Science,Words" );
         ElementConfigGenerator generator = new ElementConfigGenerator();
         generator.Load();
         /**/

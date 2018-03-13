@@ -4,7 +4,7 @@ using System;
 using UnityEngine.UI;
 using UniRx;
 
-public class HexTileInfoPanelView : MonoBehaviour
+public class HexTileInfoPanelView : GameView
 {
     public UIPropertyView Altitude;
     public UIPropertyView Temperature;
@@ -17,18 +17,26 @@ public class HexTileInfoPanelView : MonoBehaviour
     void Start()
     {
         GameMessage.Listen<HexClickedMessage>( OnHexClicked );
+        Altitude.SetProperty( R.Altitude.ToString() );
+        Temperature.SetProperty( R.Temperature.ToString() );
+        Pressure.SetProperty( R.Pressure.ToString() );
+        Humidity.SetProperty( R.Humidity.ToString() );
+        Radiation.SetProperty( R.Radiation.ToString() );
+        HexScore.SetProperty( R.HexScore.ToString() );
     }
 
     private void OnHexClicked( HexClickedMessage value )
     {
         HexModel hex = value.Hex;
-        Altitude.SetValue( hex.Props[ R.Altitude ].Value );
-        Temperature.SetValue( hex.Props[ R.Temperature ].Value );
-        Pressure.SetValue( hex.Props[ R.Pressure ].Value );
-        Humidity.SetValue( hex.Props[ R.Humidity ].Value );
-        Radiation.SetValue( hex.Props[ R.Radiation ].Value );
-        HexScore.SetValue( hex.Props[ R.HexScore ].Value );
-        
+
+        disposables.Clear();
+
+        hex.Props[ R.Altitude ]._Value.Subscribe( _ => Altitude.SetValue( _ ) ).AddTo( disposables );
+        hex.Props[ R.Temperature ]._Value.Subscribe( _ => Temperature.SetValue( _ ) ).AddTo( disposables );
+        hex.Props[ R.Pressure ]._Value.Subscribe( _ => Pressure.SetValue( _ ) ).AddTo( disposables );
+        hex.Props[ R.Humidity ]._Value.Subscribe( _ => Humidity.SetValue( _ ) ).AddTo( disposables );
+        hex.Props[ R.Radiation ]._Value.Subscribe( _ => Radiation.SetValue( _ ) ).AddTo( disposables );
+        hex.Props[ R.HexScore ]._Value.Subscribe( _ => HexScore.SetValue( _ ) ).AddTo( disposables );
     }
     
 }

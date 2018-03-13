@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class CameraController : MonoBehaviour
 {
@@ -8,11 +9,24 @@ public class CameraController : MonoBehaviour
     
     private Vector3 _oldPosition;
     private Vector3 _viewportOrigin;
+    private bool _enabled = true;
 
+    private void Start()
+    {
+        GameMessage.Listen<CameraControlMessage>( OnCameraControlChange );
+    }
+
+    private void OnCameraControlChange( CameraControlMessage value )
+    {
+        _enabled = value.Enable;
+    }
 
     // Update is called once per frame
     void Update()
     {
+        if( !_enabled )
+            return;
+
         if( Input.GetKey( KeyCode.W ) )
             gameObject.transform.Translate( Vector3.forward * MovementSpeed );
         if( Input.GetKey( KeyCode.A ) )
