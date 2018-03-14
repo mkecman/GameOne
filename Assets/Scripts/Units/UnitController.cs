@@ -67,7 +67,7 @@ public class UnitController : AbstractController
             hm.Props[ R.Radiation ].Value += um.AbilitiesDelta[ R.Radiation ];
 
         }
-
+        
         _life.Props[ R.Energy ].Value += _updateValues[ R.Energy ];
         _life.Props[ R.Energy ].Delta = _updateValues[ R.Energy ];
 

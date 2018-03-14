@@ -10,6 +10,7 @@ public class Hex : GameView
     public GameObject Gas;
     public GameObject Liquid;
     public GameObject Solid;
+    public Gradient DefaultColorGradient;
 
     private HexClickedMessage _HexClickedMessage;
 
@@ -24,12 +25,18 @@ public class Hex : GameView
         Model.isMarked.Skip( 1 ).Subscribe( _ => UpdateMarkedColor( _ ) ).AddTo( disposables );
         Model.ObserveEveryValueChanged( _ => _.Lens ).Subscribe( _ => { SetColor(); SetSymbol(); } ).AddTo( disposables );
 
+        Model.Props[ R.Temperature ]._Value.Subscribe( _ => OnTemperatureChange() ).AddTo( disposables );
+
         Model.isExplored.Subscribe( _ => SetSymbol() ).AddTo( disposables );
         //SetSymbol();
         //SetClouds();
     }
 
-
+    private void OnTemperatureChange()
+    {
+        Model.Props[ R.Default ].Color = DefaultColorGradient.Evaluate( (float)( 1 - Model.Props[ R.Temperature ].Value ) );
+        SetColor();
+    }
 
     private void UpdateMarkedColor( bool isMarked )
     {
