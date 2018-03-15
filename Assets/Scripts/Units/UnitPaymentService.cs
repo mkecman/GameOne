@@ -18,7 +18,7 @@ public class UnitPaymentService : AbstractController
 
     public int GetAddUnitPrice()
     {
-        return (int)( Math.Pow( 1.3, _life.Props[ R.Population ].Value ) * 1 );
+        return (int)( Math.Pow( 1.3, _life.Props[ R.Population ].Value ) * 20 );
     }
 
     public bool BuyAddUnit( bool spendCurrency = true )
@@ -28,7 +28,7 @@ public class UnitPaymentService : AbstractController
 
     public bool BuyMoveUnit( bool spendCurrency = true )
     {
-        return Deduct( 1, spendCurrency );
+        return Deduct( 20, spendCurrency );
     }
     
     private bool Deduct( int price, bool spendCurrency )

@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
     private UnitController _unit;
     private UnitPaymentService _unitPayment;
     private AbilityController _abilityController;
+    private AbilityPaymentService _abilityPayment;
     public Clock clock;
 
     private void Awake()
@@ -27,6 +28,10 @@ public class GameController : MonoBehaviour
         _life = new LifeController();
         _unit = new UnitController();
         _unitPayment = new UnitPaymentService();
+
+        _abilityPayment = new AbilityPaymentService();
+        GameModel.Set( _abilityPayment );
+
         _abilityController = new AbilityController();
 
         GameModel.Set( _player );

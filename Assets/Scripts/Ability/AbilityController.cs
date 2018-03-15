@@ -8,9 +8,13 @@ public class AbilityController : AbstractController
     private UnitModel _unit;
     private AbilityData _selectedAbility;
     private List<AbilityData> _abilitiesConfig;
+    private AbilityPaymentService _pay;
 
     public AbilityController()
     {
+        if( _pay == null )
+            _pay = GameModel.Get<AbilityPaymentService>();
+
         GameMessage.Listen<AbilityMessage>( OnAbilityMessage );
         
         GameModel.HandleGet<UnitModel>( OnUnitChange );
@@ -59,17 +63,20 @@ public class AbilityController : AbstractController
 
     private void UnlockAbility( int index )
     {
-        if( !_unit.Abilities.ContainsKey( index ) )
-            _unit.Abilities.Add( index, AbilityState.UNLOCKED );
-        else
+        //If already active, return to the unlocked state
+        if( _unit.Abilities.ContainsKey( index ) && _unit.Abilities[ index ] == AbilityState.ACTIVE )
         {
-            if( _unit.Abilities[ index ] == AbilityState.ACTIVE )
-                foreach( KeyValuePair<R, double> item in _abilitiesConfig[ index ].Effects )
-                {
-                    _unit.AbilitiesDelta[ item.Key ] -= item.Value;
-                }
-
+            foreach( KeyValuePair<R, double> item in _abilitiesConfig[ index ].Effects )
+            {
+                _unit.AbilitiesDelta[ item.Key ] -= item.Value;
+            }
             _unit.Abilities[ index ] = AbilityState.UNLOCKED;
+        }
+        
+        //if this ability hasnt been unlocked and the player can unlock it
+        if( !_unit.Abilities.ContainsKey( index ) && _pay.BuyUnlockAbility( index ) )
+        {
+            _unit.Abilities.Add( index, AbilityState.UNLOCKED );
         }
     }
 

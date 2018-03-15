@@ -19,15 +19,17 @@ public class AbilityInfoPanel : GameView
     private Text _activateButtonText;
     private AbilityData _ability;
     private AbilityMessage _abilityMessage;
+    private AbilityPaymentService _abilityPayment;
 
     // Use this for initialization
     void Start()
     {
+        _abilityPayment = GameModel.Get<AbilityPaymentService>();
+        _abilityMessage = new AbilityMessage( AbilityState.UNLOCKED, 0 );
+
         _activateButtonText = ActivateButton.GetComponentInChildren<Text>();
         GameModel.HandleGet<AbilityData>( OnAbilityChange );
         GameModel.HandleGet<UnitModel>( OnSelectedUnitChange );
-
-        _abilityMessage = new AbilityMessage( AbilityState.UNLOCKED, 0 );
 
         UnlockButton.OnClickAsObservable().Subscribe( _ => OnUnlockButtonClick() );
         ActivateButton.OnClickAsObservable().Subscribe( _ => OnActivateButtonClick() );
@@ -62,6 +64,7 @@ public class AbilityInfoPanel : GameView
         _ability = value;
         _abilityMessage.Index = _ability.Index;
         NameText.text = _ability.Name;
+        DescriptionText.text = "PRICE: " + _abilityPayment.GetUnlockAbilityPrice( _ability.Index );
 
         RemoveAllChildren( IncreaseEffectsGrid );
         RemoveAllChildren( DecreaseEffectsGrid );

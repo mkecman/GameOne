@@ -118,7 +118,7 @@ public class HexMapGenerator
                     hex.Colors[ (int)HexMapLens.Normal ] = m.LiquidGradient.Evaluate( (float)( ( 1 - hex.Temperature ) + m.SeaLevel.Value ) );
                     */
 
-                hex.Props[ R.Default ].Color = m.TerrainGradient.Evaluate( (float)(1 - hex.Props[ R.Temperature ].Value ) );
+                hex.Props[ R.Default ].Color = m.TerrainGradient.Evaluate( (float)( hex.Props[ R.Temperature ].Value ) );
 
                 hex.Props[ R.HexScore ].Value = 0;
                 hex.Props[ R.HexScore ].Color = Color.red;

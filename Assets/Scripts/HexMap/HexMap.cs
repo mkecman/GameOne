@@ -11,7 +11,12 @@ public class HexMap : MonoBehaviour
     public GameObject HexagonPrefab;
     public GameObject Ocean;
 
+
+
     public Gradient TerrainGradient;
+
+
+
     public Color LiquidColor;
 
     [Header( "Size Values" )]

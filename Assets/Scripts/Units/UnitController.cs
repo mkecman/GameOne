@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class UnitController : AbstractController
 {
@@ -58,7 +59,7 @@ public class UnitController : AbstractController
             um = _life.Units[ i ];
             hm = _hexMapModel.Table[ um.X.Value, um.Y.Value ];
             _updateValues[ R.Energy ] += hm.Props[ R.Energy].Value + um.AbilitiesDelta[ R.Energy ];
-            _updateValues[ R.Science ] += hm.Props[ R.Science ].Value;
+            _updateValues[ R.Science ] += hm.Props[ R.Science ].Value + um.AbilitiesDelta[ R.Science ];
             _updateValues[ R.Minerals ] += hm.Props[ R.Minerals ].Value;
 
             hm.Props[ R.Temperature ].Value += um.AbilitiesDelta[ R.Temperature ];
@@ -66,8 +67,27 @@ public class UnitController : AbstractController
             hm.Props[ R.Humidity ].Value += um.AbilitiesDelta[ R.Humidity ];
             hm.Props[ R.Radiation ].Value += um.AbilitiesDelta[ R.Radiation ];
 
+            float temperatureBonus = _life.Resistance[ R.Temperature ].GetValueAt( hm.Props[ R.Temperature ].Value );
+            float pressureBonus = _life.Resistance[ R.Pressure ].GetValueAt( hm.Props[ R.Pressure ].Value );
+            float humidityBonus = _life.Resistance[ R.Humidity ].GetValueAt( hm.Props[ R.Humidity ].Value );
+            float radiationBonus = _life.Resistance[ R.Radiation ].GetValueAt( hm.Props[ R.Radiation ].Value );
+
+            //hm.Props[ R.Temperature ].Color = Color.Lerp( Color.red, Color.green, temperatureBonus );
+            //hm.Props[ R.Pressure ].Color = Color.Lerp( Color.red, Color.green, pressureBonus );
+            //hm.Props[ R.Humidity ].Color = Color.Lerp( Color.red, Color.green, humidityBonus );
+            //hm.Props[ R.Radiation ].Color = Color.Lerp( Color.red, Color.green, radiationBonus );
+
+            hm.Props[ R.Energy ].Value = Math.Round( ( temperatureBonus + humidityBonus ) * 1.74, 0 ); // * 1.74 for range 0-3
+            //hm.Props[ R.Energy ].Color = Color.Lerp( Color.red, Color.green, (float)hm.Props[ R.Energy ].Value / 10 );
+
+            hm.Props[ R.Science ].Value = Math.Round( ( pressureBonus + radiationBonus ) * 1.74, 0 );
+            //hm.Props[ R.Science ].Color = Color.Lerp( Color.red, Color.green, (float)hm.Props[ R.Science ].Value / 10 );
+
+            hm.Props[ R.Minerals ].Value = 0; //Math.Round( ( temperatureBonus + radiationBonus ) * 1.74, 0 );
+            //hm.Props[ R.Minerals ].Color = Color.Lerp( Color.red, Color.green, (float)hm.Props[ R.Minerals ].Value / 10 );
+
         }
-        
+
         _life.Props[ R.Energy ].Value += _updateValues[ R.Energy ];
         _life.Props[ R.Energy ].Delta = _updateValues[ R.Energy ];
 

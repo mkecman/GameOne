@@ -11,6 +11,7 @@ public class Hex : GameView
     public GameObject Liquid;
     public GameObject Solid;
     public Gradient DefaultColorGradient;
+    public Gradient DefaultColorGradient2;
 
     private HexClickedMessage _HexClickedMessage;
 
@@ -26,16 +27,30 @@ public class Hex : GameView
         Model.ObserveEveryValueChanged( _ => _.Lens ).Subscribe( _ => { SetColor(); SetSymbol(); } ).AddTo( disposables );
 
         Model.Props[ R.Temperature ]._Value.Subscribe( _ => OnTemperatureChange() ).AddTo( disposables );
+        Model.Props[ R.Humidity ]._Value.Subscribe( _ => OnTemperatureChange() ).AddTo( disposables );
 
         Model.isExplored.Subscribe( _ => SetSymbol() ).AddTo( disposables );
+
+        OnTemperatureChange();
+
         //SetSymbol();
         //SetClouds();
     }
 
     private void OnTemperatureChange()
     {
-        Model.Props[ R.Default ].Color = DefaultColorGradient.Evaluate( (float)( 1 - Model.Props[ R.Temperature ].Value ) );
+        Model.Props[ R.Default ].Color = Color.Lerp(
+            DefaultColorGradient.Evaluate( (float)( Model.Props[ R.Temperature ].Value ) ),
+            DefaultColorGradient2.Evaluate( (float)( Model.Props[ R.Humidity ].Value ) ),
+            0.5f );
+        /*
+        Model.Props[ R.Default ].Color = Color.Lerp( 
+            DefaultColorGradient.Evaluate( (float)( Model.Props[ R.Temperature ].Value ) ), 
+            DefaultColorGradient2.Evaluate( (float)( Model.Props[ R.Humidity ].Value ) ), 
+            0.5f );
+        */
         SetColor();
+        SetSymbol();
     }
 
     private void UpdateMarkedColor( bool isMarked )
@@ -77,14 +92,17 @@ public class Hex : GameView
 
     private void SetSymbol()
     {
-        /*
+        /**/
         if( !Model.isExplored.Value )
             return;
-            */
+            /**/
         switch( Model.Lens )
         {
             case R.Default:
-                SymbolText.text = "<color=\"#007800\">" + Model.Props[R.Energy].Value + "</color> <color=\"#000ff0\">" + Model.Props[ R.Science ].Value + "</color>\n<color=\"#ff0000\">" + Model.Props[ R.Minerals ].Value + "</color>";
+                SymbolText.text = "<color=\"#007800\">" + Model.Props[R.Energy].Value 
+                    + "</color> <color=\"#000ff0\">" + Model.Props[ R.Science ].Value
+                    + "</color>\n<color=\"#ff0000\">" + Model.Props[ R.Minerals ].Value
+                    + "</color>";
                 //SymbolText.text = "<color=\"#007800\">" + (int)Model.Element.Weight + "</color>\n<color=\"#ff0000\">" + ( Model.TotalScore * 100 ) + "%</color>";
                 //SymbolText.text = Math.Round( Model.TotalScore * Model.Element.Weight, 2 ).ToString() + "";
                 break;

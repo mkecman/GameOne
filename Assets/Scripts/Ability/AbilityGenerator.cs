@@ -37,6 +37,8 @@ public class AbilityGenerator : MonoBehaviour
                         ability.Increases[ (int)propertyMap[ list[ j ] ] ] = 0.01;
                 }
             }
+            
+
             _tempAbilities.Add( ability );
         }
 
@@ -76,7 +78,8 @@ public class AbilityGenerator : MonoBehaviour
             }
             _tempAbilities[ i ].Increases = new List<double>();
             _tempAbilities[ i ].Decreases = new List<double>();
-            _tempAbilities[ i ].UnlockCost = price*10;
+            _tempAbilities[ i ].UnlockCost = price;
+            _tempAbilities[ i ].Effects[ (int)R.Science ] = -2 * price;
         }
 
         _tempAbilities.Sort( Comparison );

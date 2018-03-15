@@ -17,10 +17,11 @@ public class LifeController : AbstractController
             ClimbLevel = 0.41
         };
         _selectedLife.Props[ R.Energy ].Value = 500;
+        _selectedLife.Props[ R.Science ].Value = 0;
         _selectedLife.Props[ R.Population ].Value = 1;
 
-        int unitX = (int)( _planet.Map.Width / 2 );
-        int unitY = (int)( _planet.Map.Height / 2 );
+        int unitX = (int)( _planet.Map.Width / 2 ) + 2;
+        int unitY = (int)( _planet.Map.Height / 2 ) + 2;
         _selectedLife.Units.Add( new UnitModel( unitX, unitY, _planet.Map.Table[ unitX, unitY ].Props[ R.Altitude ].Value ) );
 
         _planet.Life = _selectedLife;
@@ -59,19 +60,19 @@ public class LifeController : AbstractController
                 hex.Props[ R.Humidity ].Color = Color.Lerp( Color.red, Color.green, humidityBonus );
                 hex.Props[ R.Radiation ].Color = Color.Lerp( Color.red, Color.green, radiationBonus );
 
-                hex.Props[ R.Energy ].Value = Math.Round( ( temperatureBonus + humidityBonus ) * 1.74, 0 );
-                hex.Props[ R.Energy ].Color = Color.Lerp( Color.red, Color.green, (float)hex.Props[ R.Energy ].Value / 10 );
+                hex.Props[ R.Energy ].Value = Math.Round( ( temperatureBonus + humidityBonus ) * 1.74, 0 ); // * 1.74 for range 0-3
+                hex.Props[ R.Energy ].Color = Color.Lerp( Color.red, Color.green, (float)hex.Props[ R.Energy ].Value / 3 );
 
-                hex.Props[ R.Science ].Value = Math.Round( ( ( 1 - temperatureBonus ) + ( 1 - radiationBonus ) ) * 1.74, 0 );
-                hex.Props[ R.Science ].Color = Color.Lerp( Color.red, Color.green, (float)hex.Props[ R.Science ].Value / 10 );
+                hex.Props[ R.Science ].Value = Math.Round( ( pressureBonus + radiationBonus ) * 1.74, 0 );
+                hex.Props[ R.Science ].Color = Color.Lerp( Color.red, Color.green, (float)hex.Props[ R.Science ].Value / 3 );
 
-                hex.Props[ R.Minerals ].Value = Math.Round( ( temperatureBonus + radiationBonus ) * 1.74, 0 );
+                hex.Props[ R.Minerals ].Value = 0;//Math.Round( ( temperatureBonus + radiationBonus ) * 1.74, 0 );
                 hex.Props[ R.Minerals ].Color = Color.Lerp( Color.red, Color.green, (float)hex.Props[ R.Minerals ].Value / 10 );
 
                 //hex.TotalScore = Math.Round( ( temperatureBonus + pressureBonus + humidityBonus + radiationBonus ) / 4, 2 );
                 hex.Props[ R.HexScore ].Value = Math.Round( ( hex.Props[ R.Energy ].Value + hex.Props[ R.Science ].Value + hex.Props[ R.Minerals ].Value ) / 10, 2 );
                 hex.Props[ R.HexScore ].Color = Color.Lerp( Color.red, Color.green, (float)hex.Props[ R.HexScore ].Value );
-
+                
                 foodTiles[ (int)hex.Props[ R.Energy ].Value ]++;
                 scienceTiles[ (int)hex.Props[ R.Science ].Value ]++;
                 wordsTiles[ (int)hex.Props[ R.Minerals ].Value ]++;
