@@ -31,6 +31,7 @@ public class AbilityPaymentService : AbstractController
 
     private bool Deduct( int price, bool spendCurrency )
     {
+        return true;
         if( _life.Props[ R.Science ].Value >= price )
         {
             if( spendCurrency )

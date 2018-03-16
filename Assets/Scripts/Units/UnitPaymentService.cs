@@ -33,6 +33,7 @@ public class UnitPaymentService : AbstractController
     
     private bool Deduct( int price, bool spendCurrency )
     {
+        return true;
         if( _life.Props[R.Energy].Value >= price )
         {
             if( spendCurrency )
