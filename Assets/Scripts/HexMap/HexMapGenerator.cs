@@ -23,7 +23,7 @@ public class HexMapGenerator
         {
             Ranges[ i ] = defaultRange;
         }
-
+        
         GenerateMap( hexMap );
         return _map;
     }
@@ -83,13 +83,14 @@ public class HexMapGenerator
 
                 float altitude = (float)AltitudeMap.Get( nx, ny, nz, nw );
                 float temperature = (float)( 1 - TemperatureMap.Get( nx, ny, nz, nw ) );
+                float equador = (float)( gradient.Get( nx, ny, nz, nw ) );
                 float pressure = (float)PressureMap.Get( nx, ny, nz, nw );
                 float humidity = (float)HumidityMap.Get( nx, ny, nz, nw );
                 float radiation = (float)RadiationMap.Get( nx, ny, nz, nw );
 
                 // keep track of the max and min values found
                 SetInitialHexValue( hex, R.Altitude, altitude );
-                SetInitialHexValue( hex, R.Temperature, temperature );
+                SetInitialHexValue( hex, R.Temperature, ( 1 - altitude ) * equador  );
                 SetInitialHexValue( hex, R.Pressure, pressure );
                 SetInitialHexValue( hex, R.Humidity, humidity );
                 SetInitialHexValue( hex, R.Radiation, radiation );

@@ -7,23 +7,23 @@ public class Unit : GameView
 {
     public MeshRenderer meshRenderer;
 
-    private UnitModel Model;
+    private UnitModel _model;
     private Color _originalColor;
-
+    
     public void SetModel( UnitModel unitModel )
     {
-        Model = unitModel;
+        _model = unitModel;
         _originalColor = meshRenderer.material.color;
 
         disposables.Clear();
-        Model.isSelected.Subscribe( _ => SetSelectedState( _ ) ).AddTo( disposables );
-        Model.X.Subscribe( _ => UpdatePosition() ).AddTo( disposables );
-        Model.Y.Subscribe( _ => UpdatePosition() ).AddTo( disposables );
+        _model.isSelected.Subscribe( _ => SetSelectedState( _ ) ).AddTo( disposables );
+        _model._X.Subscribe( _ => UpdatePosition() ).AddTo( disposables );
+        _model._Y.Subscribe( _ => UpdatePosition() ).AddTo( disposables );
     }
 
     private void UpdatePosition()
     {
-        transform.position = new Vector3( HexMapHelper.GetXPosition( Model.X.Value, Model.Y.Value ), (float)Model.Altitude.Value, HexMapHelper.GetZPosition( Model.Y.Value ) );
+        transform.position = _model.Position;
     }
 
     private void SetSelectedState( bool isSelected )
@@ -32,5 +32,12 @@ public class Unit : GameView
             meshRenderer.material.color = Color.red;
         else
             meshRenderer.material.color = _originalColor;
+    }
+
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+
+        _model = null;
     }
 }

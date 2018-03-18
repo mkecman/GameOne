@@ -6,7 +6,7 @@ public class GameView : MonoBehaviour
 {
     internal CompositeDisposable disposables = new CompositeDisposable();
 
-    private void OnDestroy()
+    public virtual void OnDestroy()
     {
         disposables.Dispose();
         disposables = null;

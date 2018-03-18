@@ -7,8 +7,6 @@ using UniRx;
 public class UnitsControlPanel : GameView
 {
     public Button AddUnitButton;
-    public Button EvolveButton;
-    public GameObject EvolvePanel;
 
     private PlanetModel _planet;
 
@@ -20,15 +18,6 @@ public class UnitsControlPanel : GameView
         _unitPaymentService = GameModel.Get<UnitPaymentService>();
         GameModel.HandleGet<PlanetModel>( OnPlanetModelChange );
         AddUnitButton.OnClickAsObservable().Subscribe( _ => { GameMessage.Send<UnitMessage>( new UnitMessage( UnitMessageType.Add, 10, 10 ) ); } ).AddTo( disposables );
-        EvolveButton.OnClickAsObservable().Subscribe( _ => SetEvolvePanel() ).AddTo( disposables );
-    }
-
-    private void SetEvolvePanel()
-    {
-        if( EvolvePanel.activeSelf )
-            EvolvePanel.SetActive( false );
-        else
-            EvolvePanel.SetActive( true );
     }
 
     private void OnPlanetModelChange( PlanetModel value )

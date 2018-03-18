@@ -55,5 +55,6 @@ public enum R
     Minerals,
     HexScore,
     Population,
+    Health,
     Count
 }

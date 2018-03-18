@@ -29,6 +29,7 @@ public class UnitController : AbstractController
         GameMessage.Listen<HexClickedMessage>( OnHexClickedMessage );
         GameMessage.Listen<UnitMessage>( OnUnitMessage );
         GameMessage.Listen<ClockTickMessage>( OnClockTick );
+        GameMessage.Listen<ResistanceUpgradeMessage>( OnResistanceUpgrade );
 
         if( _pay == null )
             _pay = GameModel.Get<UnitPaymentService>();
@@ -36,11 +37,19 @@ public class UnitController : AbstractController
         int x, y;
         for( int i = 0; i < _life.Units.Count; i++ )
         {
-            x = _life.Units[ i ].X.Value;
-            y = _life.Units[ i ].Y.Value;
+            x = _life.Units[ i ].X;
+            y = _life.Units[ i ].Y;
             _unitMap.Table[ x, y ] = _life.Units[ i ];
-            _life.Units[ i ].Altitude.Value = _hexMapModel.Table[ x, y ].Props[ R.Altitude ].Value;
+            _life.Units[ i ].Props[R.Altitude].Value = _hexMapModel.Table[ x, y ].Props[ R.Altitude ].Value;
         }
+    }
+
+    private void OnResistanceUpgrade( ResistanceUpgradeMessage value )
+    {
+        if( _selectedUnit.Resistance[ value.Type ].ChangePosition( value.Delta ) )
+            _selectedUnit.AbilitiesDelta[ R.Science ].Value -= 1;
+        else
+            _selectedUnit.AbilitiesDelta[ R.Science ].Value += 1;
     }
 
     private void OnClockTick( ClockTickMessage value )
@@ -57,35 +66,25 @@ public class UnitController : AbstractController
         for( int i = 0; i < _life.Units.Count; i++ )
         {
             um = _life.Units[ i ];
-            hm = _hexMapModel.Table[ um.X.Value, um.Y.Value ];
-            _updateValues[ R.Energy ] += hm.Props[ R.Energy].Value + um.AbilitiesDelta[ R.Energy ];
-            _updateValues[ R.Science ] += hm.Props[ R.Science ].Value + um.AbilitiesDelta[ R.Science ];
+            hm = _hexMapModel.Table[ um.X, um.Y ];
+
+            um.Props[ R.Health ].Value -= 1 - hm.Props[ R.HexScore ].Value;
+            if( um.Props[ R.Health ].Value <= 0 )
+            {
+                RemoveUnit( um );
+                continue;
+            }
+
+            _updateValues[ R.Energy ] += hm.Props[ R.Energy].Value + um.AbilitiesDelta[ R.Energy ].Value;
+            _updateValues[ R.Science ] += hm.Props[ R.Science ].Value + um.AbilitiesDelta[ R.Science ].Value;
             _updateValues[ R.Minerals ] += hm.Props[ R.Minerals ].Value;
 
-            hm.Props[ R.Temperature ].Value += um.AbilitiesDelta[ R.Temperature ];
-            hm.Props[ R.Pressure ].Value += um.AbilitiesDelta[ R.Pressure ];
-            hm.Props[ R.Humidity ].Value += um.AbilitiesDelta[ R.Humidity ];
-            hm.Props[ R.Radiation ].Value += um.AbilitiesDelta[ R.Radiation ];
+            hm.Props[ R.Temperature ].Value += um.AbilitiesDelta[ R.Temperature ].Value;
+            hm.Props[ R.Pressure ].Value += um.AbilitiesDelta[ R.Pressure ].Value;
+            hm.Props[ R.Humidity ].Value += um.AbilitiesDelta[ R.Humidity ].Value;
+            hm.Props[ R.Radiation ].Value += um.AbilitiesDelta[ R.Radiation ].Value;
 
-            float temperatureBonus = _life.Resistance[ R.Temperature ].GetValueAt( hm.Props[ R.Temperature ].Value );
-            float pressureBonus = _life.Resistance[ R.Pressure ].GetValueAt( hm.Props[ R.Pressure ].Value );
-            float humidityBonus = _life.Resistance[ R.Humidity ].GetValueAt( hm.Props[ R.Humidity ].Value );
-            float radiationBonus = _life.Resistance[ R.Radiation ].GetValueAt( hm.Props[ R.Radiation ].Value );
-
-            //hm.Props[ R.Temperature ].Color = Color.Lerp( Color.red, Color.green, temperatureBonus );
-            //hm.Props[ R.Pressure ].Color = Color.Lerp( Color.red, Color.green, pressureBonus );
-            //hm.Props[ R.Humidity ].Color = Color.Lerp( Color.red, Color.green, humidityBonus );
-            //hm.Props[ R.Radiation ].Color = Color.Lerp( Color.red, Color.green, radiationBonus );
-
-            hm.Props[ R.Energy ].Value = Math.Round( ( temperatureBonus + humidityBonus ) * 1.74, 0 ); // * 1.74 for range 0-3
-            //hm.Props[ R.Energy ].Color = Color.Lerp( Color.red, Color.green, (float)hm.Props[ R.Energy ].Value / 10 );
-
-            hm.Props[ R.Science ].Value = Math.Round( ( pressureBonus + radiationBonus ) * 1.74, 0 );
-            //hm.Props[ R.Science ].Color = Color.Lerp( Color.red, Color.green, (float)hm.Props[ R.Science ].Value / 10 );
-
-            hm.Props[ R.Minerals ].Value = 0; //Math.Round( ( temperatureBonus + radiationBonus ) * 1.74, 0 );
-            //hm.Props[ R.Minerals ].Color = Color.Lerp( Color.red, Color.green, (float)hm.Props[ R.Minerals ].Value / 10 );
-
+            GameCommand.Execute<HexUpdateCommand>( um.Resistance, hm );
         }
 
         _life.Props[ R.Energy ].Value += _updateValues[ R.Energy ];
@@ -137,13 +136,23 @@ public class UnitController : AbstractController
         SelectUnit( x, y );
     }
 
+    private void RemoveUnit( UnitModel um )
+    {
+        if( _selectedUnit == um )
+            DeselectUnit();
+
+        _life.Units.Remove( um );
+        _unitMap.Table[ um.X, um.Y ] = null;
+        _life.Props[ R.Population ].Value--;
+    }
+
     private void MoveUnit( int xTo, int yTo )
     {
-        _unitMap.Table[ _selectedUnit.X.Value, _selectedUnit.Y.Value ] = null;
+        _unitMap.Table[ _selectedUnit.X, _selectedUnit.Y ] = null;
         _unitMap.Table[ xTo, yTo ] = _selectedUnit;
-        _selectedUnit.Altitude.Value = _hexMapModel.Table[ xTo, yTo ].Props[ R.Altitude].Value;
-        _selectedUnit.X.Value = xTo;
-        _selectedUnit.Y.Value = yTo;
+        _selectedUnit.Props[R.Altitude].Value = _hexMapModel.Table[ xTo, yTo ].Props[ R.Altitude].Value;
+        _selectedUnit.X = xTo;
+        _selectedUnit.Y = yTo;
     }
 
     private void OnHexClickedMessage( HexClickedMessage value )
@@ -207,8 +216,8 @@ public class UnitController : AbstractController
 
     private void MarkNeighborHexes( UnitModel unit )
     {
-        int x = unit.X.Value;
-        int y = unit.Y.Value;
+        int x = unit.X;
+        int y = unit.Y;
 
         CheckAndMark( x, y + 1, unit );
 
@@ -236,7 +245,7 @@ public class UnitController : AbstractController
         {
             _hexMapModel.Table[ x, y ].isExplored.Value = true;
             if( _unitMap.Table[ x, y ] == null &&
-                Math.Abs( _hexMapModel.Table[ x, y ].Props[ R.Altitude ].Value - unit.Altitude.Value ) <= _life.ClimbLevel ) //check if it can climb
+                Math.Abs( _hexMapModel.Table[ x, y ].Props[ R.Altitude ].Value - unit.Props[ R.Altitude ].Value ) <= _life.ClimbLevel ) //check if it can climb
             {
                 _hexMapModel.Table[ x, y ].isMarked.Value = true;
                 _markedHexes.Add( _hexMapModel.Table[ x, y ] );

@@ -57,7 +57,7 @@ public class AbilityController : AbstractController
 
         foreach( KeyValuePair<R, double> item in _abilitiesConfig[ index ].Effects )
         {
-            _unit.AbilitiesDelta[ item.Key ] += item.Value;
+            _unit.AbilitiesDelta[ item.Key ].Value += item.Value;
         }
     }
 
@@ -68,7 +68,7 @@ public class AbilityController : AbstractController
         {
             foreach( KeyValuePair<R, double> item in _abilitiesConfig[ index ].Effects )
             {
-                _unit.AbilitiesDelta[ item.Key ] -= item.Value;
+                _unit.AbilitiesDelta[ item.Key ].Value -= item.Value;
             }
             _unit.Abilities[ index ] = AbilityState.UNLOCKED;
         }

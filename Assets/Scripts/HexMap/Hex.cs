@@ -26,18 +26,17 @@ public class Hex : GameView
         Model.isMarked.Skip( 1 ).Subscribe( _ => UpdateMarkedColor( _ ) ).AddTo( disposables );
         Model.ObserveEveryValueChanged( _ => _.Lens ).Subscribe( _ => { SetColor(); SetSymbol(); } ).AddTo( disposables );
 
-        Model.Props[ R.Temperature ]._Value.Subscribe( _ => OnTemperatureChange() ).AddTo( disposables );
-        Model.Props[ R.Humidity ]._Value.Subscribe( _ => OnTemperatureChange() ).AddTo( disposables );
-
+        Model.Props[ R.HexScore ]._Value.Subscribe( _ => OnHexScoreChange() ).AddTo( disposables );
+        
         Model.isExplored.Subscribe( _ => SetSymbol() ).AddTo( disposables );
 
-        OnTemperatureChange();
+        OnHexScoreChange();
 
         //SetSymbol();
         //SetClouds();
     }
 
-    private void OnTemperatureChange()
+    private void OnHexScoreChange()
     {
         Model.Props[ R.Default ].Color = Color.Lerp(
             DefaultColorGradient.Evaluate( (float)( Model.Props[ R.Temperature ].Value ) ),
@@ -92,26 +91,19 @@ public class Hex : GameView
 
     private void SetSymbol()
     {
-        /**/
+        /*
         if( !Model.isExplored.Value )
             return;
-            /**/
-        switch( Model.Lens )
-        {
-            case R.Default:
-                SymbolText.text = "<color=\"#007800\">" + Model.Props[R.Energy].Value 
+            */
+
+        if( Model.Lens == R.Default )
+            SymbolText.text = "<color=\"#007800\">" + Model.Props[ R.Energy ].Value
                     + "</color> <color=\"#000ff0\">" + Model.Props[ R.Science ].Value
                     + "</color>\n<color=\"#ff0000\">" + Model.Props[ R.Minerals ].Value
                     + "</color>";
-                //SymbolText.text = "<color=\"#007800\">" + (int)Model.Element.Weight + "</color>\n<color=\"#ff0000\">" + ( Model.TotalScore * 100 ) + "%</color>";
-                //SymbolText.text = Math.Round( Model.TotalScore * Model.Element.Weight, 2 ).ToString() + "";
-                break;
-            default:
-                SymbolText.text = Math.Round( Model.Props[ Model.Lens ].Value, 2 ).ToString();
-                break;
-        }
-
-        //SymbolText.text = Model.Element.Symbol;
+        else
+            SymbolText.text = Math.Round( Model.Props[ Model.Lens ].Value, 2 ).ToString();
+        
         //SymbolText.text = Model.X + "," + Model.Y; //Show coordinates;
 
         SymbolText.gameObject.transform.position = new Vector3( SymbolText.gameObject.transform.position.x, (float)Model.Props[ R.Altitude ].Value + .01f, SymbolText.gameObject.transform.position.z );

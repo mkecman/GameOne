@@ -28,7 +28,7 @@ public class GameMessage : MonoBehaviour
             _instance._messages[ className ] = messageDelegate;
         }
     }
-
+    
     public static void StopListen<T>( MessageDelegate<T> handler )
     {
         string className = typeof( T ).Name;
