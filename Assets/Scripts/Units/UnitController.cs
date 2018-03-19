@@ -18,6 +18,7 @@ public class UnitController : AbstractController
     private bool _isInAddMode;
 
     private RDictionary<double> _updateValues = new RDictionary<double>( true );
+    private HexUpdateCommand _hexUpdateCommand;
 
     public void Load( PlanetModel planet )
     {
@@ -33,6 +34,8 @@ public class UnitController : AbstractController
 
         if( _pay == null )
             _pay = GameModel.Get<UnitPaymentService>();
+        if( _hexUpdateCommand == null )
+            _hexUpdateCommand = GameModel.Get<HexUpdateCommand>();
 
         int x, y;
         for( int i = 0; i < _life.Units.Count; i++ )
@@ -84,7 +87,7 @@ public class UnitController : AbstractController
             hm.Props[ R.Humidity ].Value += um.AbilitiesDelta[ R.Humidity ].Value;
             hm.Props[ R.Radiation ].Value += um.AbilitiesDelta[ R.Radiation ].Value;
 
-            GameCommand.Execute<HexUpdateCommand>( um.Resistance, hm );
+            _hexUpdateCommand.Execute( um.Resistance, hm );
         }
 
         _life.Props[ R.Energy ].Value += _updateValues[ R.Energy ];

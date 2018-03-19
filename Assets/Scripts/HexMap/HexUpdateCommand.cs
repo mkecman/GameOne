@@ -2,17 +2,19 @@
 using System.Collections;
 using System;
 
-public class HexUpdateCommand : ICommand
+public class HexUpdateCommand
 {
-    public void Execute( object[] data )
-    {
-        RDictionary<BellCurve> Resistance = data[ 0 ] as RDictionary<BellCurve>;
-        HexModel hex = data[ 1 ] as HexModel;
+    private float temperatureBonus;
+    private float pressureBonus;
+    private float humidityBonus;
+    private float radiationBonus;
 
-        float temperatureBonus = Resistance[ R.Temperature ].GetValueAt( hex.Props[ R.Temperature ].Value );
-        float pressureBonus = Resistance[ R.Pressure ].GetValueAt( hex.Props[ R.Pressure ].Value );
-        float humidityBonus = Resistance[ R.Humidity ].GetValueAt( hex.Props[ R.Humidity ].Value );
-        float radiationBonus = Resistance[ R.Radiation ].GetValueAt( hex.Props[ R.Radiation ].Value );
+    public void Execute( RDictionary<BellCurve> Resistance, HexModel hex )
+    {
+        temperatureBonus = Resistance[ R.Temperature ].GetValueAt( hex.Props[ R.Temperature ].Value );
+        pressureBonus = Resistance[ R.Pressure ].GetValueAt( hex.Props[ R.Pressure ].Value );
+        humidityBonus = Resistance[ R.Humidity ].GetValueAt( hex.Props[ R.Humidity ].Value );
+        radiationBonus = Resistance[ R.Radiation ].GetValueAt( hex.Props[ R.Radiation ].Value );
 
         hex.Props[ R.Temperature ].Color = Color.Lerp( Color.red, Color.green, temperatureBonus );
         hex.Props[ R.Pressure ].Color = Color.Lerp( Color.red, Color.green, pressureBonus );
@@ -28,7 +30,6 @@ public class HexUpdateCommand : ICommand
         hex.Props[ R.Minerals ].Value = 0;//Math.Round( ( temperatureBonus + radiationBonus ) * 1.74, 0 );
         hex.Props[ R.Minerals ].Color = Color.Lerp( Color.red, Color.green, (float)hex.Props[ R.Minerals ].Value / 10 );
 
-        //hex.TotalScore = Math.Round( ( temperatureBonus + pressureBonus + humidityBonus + radiationBonus ) / 4, 2 );
         hex.Props[ R.HexScore ].Value = Math.Round( ( temperatureBonus + pressureBonus + humidityBonus + radiationBonus ) / 4, 2 );
         hex.Props[ R.HexScore ].Color = Color.Lerp( Color.red, Color.green, (float)hex.Props[ R.HexScore ].Value );
     }

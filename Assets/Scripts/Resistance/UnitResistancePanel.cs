@@ -29,14 +29,18 @@ public class UnitResistancePanel : GameView
 
     private void OnUnitChange( UnitModel value )
     {
-        _selectedUnit = value;
-        Temperature.SetUnit( _selectedUnit );
-        Humidity.SetUnit( _selectedUnit );
-        Pressure.SetUnit( _selectedUnit );
-        Radiation.SetUnit( _selectedUnit );
-
         disposables.Clear();
-        _selectedUnit.AbilitiesDelta[ R.Science ].Subscribe( _ => ScienceCost.text = _.ToString() ).AddTo( disposables );
+        _selectedUnit = value;
+
+        if( _selectedUnit != null )
+        {
+            Temperature.SetUnit( _selectedUnit );
+            Humidity.SetUnit( _selectedUnit );
+            Pressure.SetUnit( _selectedUnit );
+            Radiation.SetUnit( _selectedUnit );
+            
+            _selectedUnit.AbilitiesDelta[ R.Science ].Subscribe( _ => ScienceCost.text = _.ToString() ).AddTo( disposables );
+        }
     }
     
 }

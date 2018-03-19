@@ -21,6 +21,8 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
+        GameModel.Set( new HexUpdateCommand() );
+
         _player = new PlayerController();
         _galaxy = new GalaxyController();
         _star = new StarController();

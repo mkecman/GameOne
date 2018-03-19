@@ -7,6 +7,12 @@ public class LifeController : AbstractController
 
     private PlanetModel _planet;
     private LifeModel _selectedLife;
+    HexUpdateCommand _hexUpdateCommand;
+
+    public LifeController()
+    {
+        _hexUpdateCommand = GameModel.Get<HexUpdateCommand>();
+    }
 
     public void New( PlanetModel planet )
     {
@@ -17,7 +23,7 @@ public class LifeController : AbstractController
             ClimbLevel = 0.99
         };
         _selectedLife.Props[ R.Energy ].Value = 500;
-        _selectedLife.Props[ R.Science ].Value = 0;
+        _selectedLife.Props[ R.Science ].Value = 500;
         _selectedLife.Props[ R.Population ].Value = 1;
 
         int unitX = (int)( _planet.Map.Width / 2 ) + 2;
@@ -42,15 +48,14 @@ public class LifeController : AbstractController
         int[] foodTiles = new int[] { 0, 0, 0, 0, 0, 0 };
         int[] scienceTiles = new int[] { 0, 0, 0, 0, 0, 0 };
         int[] wordsTiles = new int[] { 0, 0, 0, 0, 0, 0 };
-
-
+        
         for( int x = 0; x < _planet.Map.Width; x++ )
         {
             for( int y = 0; y < _planet.Map.Height; y++ )
             {
                 hex = _planet.Map.Table[ x, y ];
 
-                GameCommand.Execute<HexUpdateCommand>( _selectedLife.Resistance, hex );
+                _hexUpdateCommand.Execute( _selectedLife.Resistance, hex );
 
                 foodTiles[ (int)hex.Props[ R.Energy ].Value ]++;
                 scienceTiles[ (int)hex.Props[ R.Science ].Value ]++;
