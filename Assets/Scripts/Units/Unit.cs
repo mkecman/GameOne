@@ -2,6 +2,7 @@
 using System.Collections;
 using UniRx;
 using System;
+using UnityEngine.EventSystems;
 
 public class Unit : GameView
 {
@@ -20,7 +21,7 @@ public class Unit : GameView
         _model._X.Subscribe( _ => UpdatePosition() ).AddTo( disposables );
         _model._Y.Subscribe( _ => UpdatePosition() ).AddTo( disposables );
     }
-
+    
     private void UpdatePosition()
     {
         transform.position = _model.Position;

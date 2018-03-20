@@ -9,7 +9,6 @@ public class HexMapGenerator
 {
     private GridModel<HexModel> _map;
     private Vector2[] Ranges = new Vector2[ 7 ];
-    private List<ElementModel> _elements;
 
     public GridModel<HexModel> Generate()
     {
@@ -17,7 +16,6 @@ public class HexMapGenerator
         HexMap hexMap = go.GetComponent<HexMap>();
         _map = new GridModel<HexModel>( hexMap.width.Value, hexMap.height.Value );
 
-        _elements = Config.Get<ElementConfig>().Elements;
         Vector2 defaultRange = new Vector2( float.MaxValue, float.MinValue );
         for( int i = 0; i < 7; i++ )
         {

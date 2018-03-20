@@ -59,7 +59,7 @@ public class GameModel : MonoBehaviour
         return default(T);
     }
 
-    public static void Remove<T>( ModelDelegate<T> handler )
+    public static void RemoveHandle<T>( ModelDelegate<T> handler )
     {
         string className = typeof( T ).Name;
 

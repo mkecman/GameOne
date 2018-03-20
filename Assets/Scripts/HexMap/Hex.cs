@@ -91,10 +91,10 @@ public class Hex : GameView
 
     private void SetSymbol()
     {
-        /*
+        /**/
         if( !Model.isExplored.Value )
             return;
-            */
+            /**/
 
         if( Model.Lens == R.Default )
             SymbolText.text = "<color=\"#007800\">" + Model.Props[ R.Energy ].Value

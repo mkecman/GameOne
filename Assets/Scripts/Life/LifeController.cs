@@ -29,6 +29,7 @@ public class LifeController : AbstractController
         int unitX = (int)( _planet.Map.Width / 2 ) + 2;
         int unitY = (int)( _planet.Map.Height / 2 ) + 2;
         _selectedLife.Units.Add( new UnitModel( unitX, unitY, _planet.Map.Table[ unitX, unitY ].Props[ R.Altitude ].Value ) );
+        _planet.Map.Table[ unitX, unitY ].Unit = _selectedLife.Units[ 0 ];
 
         _planet.Life = _selectedLife;
         UpdatePlanetMapColors();

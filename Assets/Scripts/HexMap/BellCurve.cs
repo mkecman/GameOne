@@ -1,7 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
 using UniRx;
-using System;
 
 public class BellCurve
 {
@@ -9,7 +7,7 @@ public class BellCurve
     public FloatReactiveProperty Position = new FloatReactiveProperty( 0 );
     public FloatReactiveProperty Range = new FloatReactiveProperty( 0.1f );
 
-    public IntReactiveProperty Level = new IntReactiveProperty(0);
+    public DoubleReactiveProperty Consumption = new DoubleReactiveProperty( 0 );
 
     private float _defaultPosition;
 
@@ -31,7 +29,7 @@ public class BellCurve
         return (float)( Amplitude.Value * Math.Exp( -Math.Pow( time - Position.Value, 2 ) / ( 2 * Math.Pow( Range.Value, 2 ) ) ) );
     }
 
-    public bool ChangePosition( float delta )
+    public bool ChangePosition( float delta, double consumption )
     {
         Position.Value += delta;
         bool increase = false;
@@ -40,24 +38,24 @@ public class BellCurve
         {
             if( Position.Value > _defaultPosition )
             {
-                Level.Value++;
+                Consumption.Value += consumption;
                 increase = true;
             }
             if( Position.Value < _defaultPosition )
-                Level.Value--;
+                Consumption.Value -= consumption;
         }
 
         if( delta < 0 )
         {
             if( Position.Value > _defaultPosition )
-                Level.Value--;
+                Consumption.Value -= consumption;
             if( Position.Value < _defaultPosition )
             {
-                Level.Value++;
+                Consumption.Value += consumption;
                 increase = true;
             }
         }
         return increase;
     }
-    
+
 }

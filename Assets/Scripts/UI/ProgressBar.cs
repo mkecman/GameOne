@@ -9,13 +9,13 @@ public class ProgressBar : MonoBehaviour
     private float _maxValue = 100f;
 
     private RectTransform _fillRect;
-    private Image _fillImage;
+    //private Image _fillImage;
     private float _width;
 
     void Awake()
     {
         _fillRect = Fill.GetComponent<RectTransform>();
-        _fillImage = Fill.GetComponent<Image>();
+        //_fillImage = Fill.GetComponent<Image>();
     }
 
     private void Start()
@@ -77,7 +77,7 @@ public class ProgressBar : MonoBehaviour
 
     private void OnDestroy()
     {
-        _fillImage = null;
+        //_fillImage = null;
         _fillRect = null;
     }
 }

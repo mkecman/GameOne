@@ -15,11 +15,17 @@ public class UnitResistancePanel : GameView
 
     private UnitModel _selectedUnit;
 
-    // Use this for initialization
-    void Start()
+    void OnEnable()
     {
         GameModel.HandleGet<UnitModel>( OnUnitChange );
         OkButton.onClick.AddListener( OnOkButtonClick );
+        Debug.Log( "OnEnable" );
+    }
+
+    void OnDisable()
+    {
+        GameModel.RemoveHandle<UnitModel>( OnUnitChange );
+        OkButton.onClick.RemoveListener( OnOkButtonClick );
     }
 
     private void OnOkButtonClick()

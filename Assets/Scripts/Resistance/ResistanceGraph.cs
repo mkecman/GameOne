@@ -18,40 +18,42 @@ public class ResistanceGraph : GameView, IPointerClickHandler
 
     void Start()
     {
-        _tileValueRectTransform = TileValue.GetComponent<RectTransform>();
-        GameMessage.Listen<HexClickedMessage>( OnHexClicked );
-        GameModel.HandleGet<UnitModel>( OnUnitModelChange );
-
         PropertyText.text = Lens.ToString();
-        MatchText.text = "0%";
+    }
+
+    void OnEnable()
+    {
+        if( _tileValueRectTransform == null )
+            _tileValueRectTransform = TileValue.GetComponent<RectTransform>();
+
+        GameModel.HandleGet<HexModel>( OnHexModelChange );
+    }
+
+    void OnDisable()
+    {
+        GameModel.RemoveHandle<HexModel>( OnHexModelChange );
+    }
+    
+    private void OnHexModelChange( HexModel value )
+    {
+        disposables.Clear();
+
+        if( value != null && value.Unit != null )
+        {
+            _hexModel = value;
+            _selectedUnit = value.Unit;
+
+            _hexModel.Props[ Lens ]._Value.Subscribe( _ => UpdateView() ).AddTo( disposables );
+
+            //delay subscription to wait for BellCurveTexture Gradient to initialize
+            _selectedUnit.Resistance[ Lens ].Position.DelaySubscription( TimeSpan.FromTicks(1) ).Subscribe( _ => { Gradient.Draw( _selectedUnit.Resistance[ Lens ] ); UpdateView(); } ).AddTo( disposables );
+        }
     }
     
     private void UpdateView()
     {
         _tileValueRectTransform.anchoredPosition = new Vector2( ( (float)_hexModel.Props[ Lens ].Value - 0.5f ) * Gradient.Width, 0 );
         MatchText.text = (int)Math.Round( _selectedUnit.Resistance[ Lens ].GetValueAt( _hexModel.Props[ Lens ].Value ) * 100, 0 ) + "%";
-    }
-
-    private void OnHexClicked( HexClickedMessage value )
-    {
-        _hexModel = value.Hex;
-        UpdateSubscription();
-    }
-
-    private void OnUnitModelChange( UnitModel value )
-    {
-        _selectedUnit = value;
-        UpdateSubscription();
-    }
-
-    private void UpdateSubscription()
-    {
-        disposables.Clear();
-        if( _hexModel != null && _selectedUnit != null )
-        {
-            _hexModel.Props[ Lens ]._Value.Subscribe( _ => UpdateView() ).AddTo( disposables );
-            _selectedUnit.Resistance[ Lens ].Position.Subscribe( _ => { Gradient.Draw( _selectedUnit.Resistance[ Lens ] ); UpdateView(); } ).AddTo( disposables );
-        }
     }
 
     public void OnPointerClick( PointerEventData eventData )

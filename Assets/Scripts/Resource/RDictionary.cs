@@ -37,7 +37,7 @@ public class RDictionary<T>
         {
             for( int i = 0; i < (int)R.Count; i++ )
             {
-                Values.Add( (R)i, getConstructor<T>()() );
+                Values.Add( (R)i, GetConstructor()() );
             }
         }
     }
@@ -52,7 +52,7 @@ public class RDictionary<T>
         Values = Values.ToDictionary( p => p.Key, p => value );
     }
 
-    private Func<T> getConstructor<T>()
+    private Func<T> GetConstructor()
     {
         System.Reflection.ConstructorInfo constructor = ( typeof( T ) ).GetConstructor( System.Type.EmptyTypes );
         if( ReferenceEquals( constructor, null ) )

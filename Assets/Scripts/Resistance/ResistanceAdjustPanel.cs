@@ -38,7 +38,7 @@ public class ResistanceAdjustPanel : GameView
         _selectedUnit = value;
         if( _selectedUnit != null )
         {
-            _selectedUnit.Resistance[ ResistanceGraph.Lens ].Level.Subscribe( _ => ScienceCostText.text = _.ToString() ).AddTo( disposables );
+            _selectedUnit.Resistance[ ResistanceGraph.Lens ].Consumption.Subscribe( _ => ScienceCostText.text = _.ToString() ).AddTo( disposables );
             IncreaseButton.OnClickAsObservable().Subscribe( _ => OnIncreaseButtonClick() ).AddTo( disposables );
             DecreaseButton.OnClickAsObservable().Subscribe( _ => OnDecreaseButtonClick() ).AddTo( disposables );
         }
