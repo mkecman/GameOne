@@ -8,24 +8,39 @@ public class HexMap : MonoBehaviour
 {
     public R Lens;
 
-    public GameObject HexagonPrefab;
-    public GameObject Ocean;
+    [Header( "Planetary properties" )]
+    [RangeReactiveProperty( 0, 1 )]
+    public DoubleReactiveProperty Temperature = new DoubleReactiveProperty( 0 );
 
+    [RangeReactiveProperty( 0, 1 )]
+    public DoubleReactiveProperty TemperatureVariation = new DoubleReactiveProperty( 0 );
 
+    [RangeReactiveProperty( 0, 1 )]
+    public DoubleReactiveProperty Pressure = new DoubleReactiveProperty( 0 );
 
-    public Gradient TerrainGradient;
+    [RangeReactiveProperty( 0, 1 )]
+    public DoubleReactiveProperty PressureVariation = new DoubleReactiveProperty( 0 );
 
+    [RangeReactiveProperty( 0, 1 )]
+    public DoubleReactiveProperty Humidity = new DoubleReactiveProperty( 0 );
 
+    [RangeReactiveProperty( 0, 1 )]
+    public DoubleReactiveProperty HumidityVariation = new DoubleReactiveProperty( 0 );
 
-    public Color LiquidColor;
+    [RangeReactiveProperty( 0, 1 )]
+    public DoubleReactiveProperty Radiation = new DoubleReactiveProperty( 0 );
+
+    [RangeReactiveProperty( 0, 1 )]
+    public DoubleReactiveProperty RadiationVariation = new DoubleReactiveProperty( 0 );
 
     [Header( "Size Values" )]
     public IntReactiveProperty width = new IntReactiveProperty( 64 );
     public IntReactiveProperty height = new IntReactiveProperty( 40 );
 
-    [Header( "Liquid Level" )]
+    [Header( "Liquid" )]
     [RangeReactiveProperty( 0, 1 )]
-    public DoubleReactiveProperty SeaLevel = new DoubleReactiveProperty( 0 );
+    public DoubleReactiveProperty LiquidLevel = new DoubleReactiveProperty( 0 );
+    public Color LiquidColor;
 
     [Header( "Maps" )]
     public FractalModel AltitudeFractal;
@@ -34,13 +49,18 @@ public class HexMap : MonoBehaviour
     public FractalModel HumidityFractal;
     public FractalModel RadiationFractal;
 
+    [Header( "Objects" )]
+    public GameObject HexagonPrefab;
+    public GameObject Ocean;
+
     private GridModel<HexModel> mapModel;
     
     private HexConfig _hexConfig;
 
+
     public void Regenerate()
     {
-        GameCommand.Execute<PlanetGenerateCommand>();
+        GameModel.Get<PlanetGenerateCommand>().Execute( this );
     }
 
     public void ChangeLens()
@@ -94,7 +114,7 @@ public class HexMap : MonoBehaviour
         }
 
         Ocean.transform.localScale = new Vector3( ( mapModel.Width * _hexConfig.xOffset ) + 1, 1, ( mapModel.Height * _hexConfig.zOffset ) + 1 );
-        Ocean.transform.position = new Vector3( ( mapModel.Width * _hexConfig.xOffset ) / 2, -.65f + ( 1.3f * (float)SeaLevel.Value ), ( ( mapModel.Height * _hexConfig.zOffset ) / 2 ) - 0.5f );
+        Ocean.transform.position = new Vector3( ( mapModel.Width * _hexConfig.xOffset ) / 2, -.65f + ( 1.3f * (float)LiquidLevel.Value ), ( ( mapModel.Height * _hexConfig.zOffset ) / 2 ) - 0.5f );
         Ocean.GetComponent<MeshRenderer>().material.color = LiquidColor;
     }
     

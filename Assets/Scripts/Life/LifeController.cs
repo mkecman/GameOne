@@ -29,7 +29,6 @@ public class LifeController : AbstractController
         int unitX = (int)( _planet.Map.Width / 2 ) + 2;
         int unitY = (int)( _planet.Map.Height / 2 ) + 2;
         _selectedLife.Units.Add( new UnitModel( unitX, unitY, _planet.Map.Table[ unitX, unitY ].Props[ R.Altitude ].Value ) );
-        _planet.Map.Table[ unitX, unitY ].Unit = _selectedLife.Units[ 0 ];
 
         _planet.Life = _selectedLife;
         UpdatePlanetMapColors();
@@ -41,6 +40,7 @@ public class LifeController : AbstractController
         _selectedLife = _planet.Life;
         UpdatePlanetMapColors();
     }
+    
 
     private void UpdatePlanetMapColors()
     {
@@ -49,7 +49,10 @@ public class LifeController : AbstractController
         int[] foodTiles = new int[] { 0, 0, 0, 0, 0, 0 };
         int[] scienceTiles = new int[] { 0, 0, 0, 0, 0, 0 };
         int[] wordsTiles = new int[] { 0, 0, 0, 0, 0, 0 };
-        
+        double totalEnergy = 0;
+        double totalScience = 0;
+        double totalMinerals = 0;
+
         for( int x = 0; x < _planet.Map.Width; x++ )
         {
             for( int y = 0; y < _planet.Map.Height; y++ )
@@ -58,15 +61,18 @@ public class LifeController : AbstractController
 
                 _hexUpdateCommand.Execute( _selectedLife.Resistance, hex );
 
+                totalEnergy += hex.Props[ R.Energy ].Value;
+                totalScience += hex.Props[ R.Science ].Value;
+                totalMinerals += hex.Props[ R.Minerals ].Value;
+
                 foodTiles[ (int)hex.Props[ R.Energy ].Value ]++;
                 scienceTiles[ (int)hex.Props[ R.Science ].Value ]++;
                 wordsTiles[ (int)hex.Props[ R.Minerals ].Value ]++;
             }
         }
 
-        double totalEnergy = 0;
-        double totalScience = 0;
-        double totalMinerals = 0;
+        Debug.Log( "Energy: " + totalEnergy + "::: Science: " + totalScience + "::: Minerals: " + totalMinerals );
+        
         for( int i = 0; i < 6; i++ )
         {
             totalEnergy += i * foodTiles[ i ];
@@ -74,6 +80,5 @@ public class LifeController : AbstractController
             totalMinerals += i * wordsTiles[ i ];
         }
 
-        Debug.Log( "Energy: " + totalEnergy + "::: Science: " + totalScience + "::: Minerals: " + totalMinerals );
     }
 }

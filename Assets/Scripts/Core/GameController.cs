@@ -8,6 +8,9 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    public Clock clock;
+    public BoolReactiveProperty IsDebug = new BoolReactiveProperty();
+
     private PlayerController _player;
     private GalaxyController _galaxy;
     private StarController _star;
@@ -17,10 +20,12 @@ public class GameController : MonoBehaviour
     private UnitPaymentService _unitPayment;
     private AbilityController _abilityController;
     private AbilityPaymentService _abilityPayment;
-    public Clock clock;
 
     private void Awake()
     {
+        GameModel.Set( new GameDebug() );
+        IsDebug.Subscribe( _ => GameModel.Get<GameDebug>().isActive = _ );
+
         GameModel.Set( new HexUpdateCommand() );
 
         _player = new PlayerController();
@@ -45,7 +50,7 @@ public class GameController : MonoBehaviour
         GameModel.Set( _unitPayment );
         GameModel.Set( _abilityController );
         
-        GameCommand.Register( new PlanetGenerateCommand() );
+        GameModel.Set( new PlanetGenerateCommand() );
     }
 
     void Start()
@@ -75,9 +80,11 @@ public class GameController : MonoBehaviour
 
         _planet.New( _star.SelectedStar, 0 );
         _life.New( _planet.SelectedPlanet );
-        _unit.Load( _planet.SelectedPlanet );
 
-        GameModel.Set( _planet.SelectedPlanet );
+        GameObject go = GameObject.Find( "Map" );
+        HexMap hexMap = go.GetComponent<HexMap>();
+        GameModel.Get<PlanetGenerateCommand>().Execute( hexMap );
+        
     }
     
     public void UpdateStep( int steps )

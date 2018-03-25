@@ -41,13 +41,13 @@ public class BellCurve
                 Consumption.Value += consumption;
                 increase = true;
             }
-            if( Position.Value < _defaultPosition )
+            if( Position.Value <= _defaultPosition )
                 Consumption.Value -= consumption;
         }
 
         if( delta < 0 )
         {
-            if( Position.Value > _defaultPosition )
+            if( Position.Value >= _defaultPosition )
                 Consumption.Value -= consumption;
             if( Position.Value < _defaultPosition )
             {

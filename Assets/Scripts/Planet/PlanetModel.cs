@@ -8,6 +8,15 @@ using System.Linq;
 [Serializable]
 public class PlanetModel
 {
+    public PlanetModel()
+    {
+        Props.Add( R.Altitude, new PlanetProperty( 0.5, 1 ) );
+        Props.Add( R.Temperature, new PlanetProperty( 0, 0 ) );
+        Props.Add( R.Pressure, new PlanetProperty( 0, 0 ) );
+        Props.Add( R.Humidity, new PlanetProperty( 0, 0 ) );
+        Props.Add( R.Radiation, new PlanetProperty( 0, 0 ) );
+    }
+
     public LifeModel Life;
     public GridModel<HexModel> Map;
 
@@ -26,6 +35,7 @@ public class PlanetModel
         set { _Index.Value = value; }
     }
 
+    public RDictionary<PlanetProperty> Props = new RDictionary<PlanetProperty>();
 
     internal ReactiveCollection<PlanetElementModel> _Elements = new ReactiveCollection<PlanetElementModel>();
     
@@ -77,14 +87,7 @@ public class PlanetModel
         get { return _Gravity.Value; }
         set { _Gravity.Value = value; }
     }
-
-    internal ReactiveProperty<double> _Temperature = new ReactiveProperty<double>();
-    public double Temperature
-    {
-        get { return _Temperature.Value; }
-        set { _Temperature.Value = value; }
-    }
-
+    
     internal ReactiveProperty<double> _Pressure = new ReactiveProperty<double>();
     public double Pressure
     {
@@ -119,6 +122,15 @@ public class PlanetModel
         get { return _EscapeVelocity.Value; }
         set { _EscapeVelocity.Value = value; }
     }
+
+    [SerializeField]
+    internal DoubleReactiveProperty _LiquidLevel = new DoubleReactiveProperty();
+    public double LiquidLevel
+    {
+        get { return _LiquidLevel.Value; }
+        set { _LiquidLevel.Value = value; }
+    }
+
 
     [SerializeField]
     internal DoubleReactiveProperty _TotalEnergyValue = new DoubleReactiveProperty();

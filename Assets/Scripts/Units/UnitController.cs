@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using System.Linq;
 
 public class UnitController : AbstractController
 {
@@ -15,9 +17,11 @@ public class UnitController : AbstractController
 
     private UnitPaymentService _pay;
     private bool _isInAddMode;
+    private bool _isAddingUnit;
 
     private RDictionary<double> _updateValues = new RDictionary<double>( true );
     private HexUpdateCommand _hexUpdateCommand;
+    private GameDebug _debug;
 
     public void Load( PlanetModel planet )
     {
@@ -34,18 +38,54 @@ public class UnitController : AbstractController
             _pay = GameModel.Get<UnitPaymentService>();
         if( _hexUpdateCommand == null )
             _hexUpdateCommand = GameModel.Get<HexUpdateCommand>();
+        if( _debug == null )
+            _debug = GameModel.Get<GameDebug>();
 
+        UnitModel um;
         for( int i = 0; i < _life.Units.Count; i++ )
-            _life.Units[ i ].Props[R.Altitude].Value = _hexMapModel.Table[ _life.Units[ i ].X, _life.Units[ i ].Y ].Props[ R.Altitude ].Value;
+        {
+            um = _life.Units[ i ];
+            um.Props[ R.Altitude ].Value = _hexMapModel.Table[ um.X, um.Y ].Props[ R.Altitude ].Value;
+            um.Y = um.Y; //update position vector3
+            _hexMapModel.Table[ um.X, um.Y ].Unit = um;
+        }
 
+        //_life.Props[ R.Energy ]._Value.Where( _ => _ > _pay.GetAddUnitPrice() && !_isAddingUnit ).Subscribe( _ => AddRandomUnit() );
+    }
+    
+    private void AddRandomUnit()
+    {
+        DeselectUnit();
+        for( int i = 0; i < _life.Units.Count; i++ )
+        {
+            MarkNeighborHexes( _life.Units[ i ] );
+        }
+        HexModel _hex;
+        double max = 0;
+        int x = 0, y = 0;
+        for( int i = 0; i < _markedHexes.Count; i++ )
+        {
+            _hex = _markedHexes[ i ];
+            if( _hex.Props[ R.Energy ].Value > max ) //find highest food output
+            {
+                max = _hex.Props[ R.Energy ].Value;
+                x = _hex.X;
+                y = _hex.Y;
+            }
+        }
+
+        _isAddingUnit = true;
+        if( _pay.BuyAddUnit() )
+            AddUnit( x, y );
+        _isAddingUnit = false;
     }
 
     private void OnResistanceUpgrade( ResistanceUpgradeMessage value )
     {
-        if( _selectedUnit.Resistance[ value.Type ].ChangePosition( value.Delta, 0.5 ) )
-            _selectedUnit.AbilitiesDelta[ R.Science ].Value -= 0.5;
+        if( _selectedUnit.Resistance[ value.Type ].ChangePosition( value.Delta, 0.1 ) )
+            _selectedUnit.AbilitiesDelta[ R.Science ].Value -= 0.1;
         else
-            _selectedUnit.AbilitiesDelta[ R.Science ].Value += 0.5;
+            _selectedUnit.AbilitiesDelta[ R.Science ].Value += 0.1;
     }
 
     private void OnClockTick( ClockTickMessage value )
@@ -138,7 +178,7 @@ public class UnitController : AbstractController
             DeselectUnit();
 
         _life.Units.Remove( um );
-        _hexMapModel.Table[ um.X, um.Y ] = null;
+        _hexMapModel.Table[ um.X, um.Y ].Unit = null;
         _life.Props[ R.Population ].Value--;
     }
 

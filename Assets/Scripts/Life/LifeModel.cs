@@ -33,9 +33,9 @@ public class LifeModel
         Props.Add( R.Science, new Resource( R.Science, 0 ) );
         Props.Add( R.Minerals, new Resource( R.Minerals, 0 ) );
 
-        Resistance.Add( R.Temperature, new BellCurve( 1, 0.36f, 0.15f ) );
-        Resistance.Add( R.Pressure, new BellCurve( 1, 0.64f, 0.15f ) );
+        Resistance.Add( R.Temperature, new BellCurve( 1, 0.33f, 0.06f ) );
+        Resistance.Add( R.Pressure, new BellCurve( 1, 0.64f, 0.1f ) );
         Resistance.Add( R.Humidity, new BellCurve( 1, 1f, 0.2f ) );
-        Resistance.Add( R.Radiation, new BellCurve( 1, 0f, 0.2f ) );
+        Resistance.Add( R.Radiation, new BellCurve( 1, 0f, 0.1f ) );
     }
 }

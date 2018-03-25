@@ -24,6 +24,7 @@ public class GameMessage : MonoBehaviour
         else
         {
             messageDelegate = (MessageDelegate<T>)_instance._messages[ className ];
+            messageDelegate -= handler; //remove handler in case it's already added
             messageDelegate += handler;
             _instance._messages[ className ] = messageDelegate;
         }

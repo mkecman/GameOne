@@ -17,7 +17,9 @@ public class UnitsControlPanel : GameView
     {
         _unitPaymentService = GameModel.Get<UnitPaymentService>();
         GameModel.HandleGet<PlanetModel>( OnPlanetModelChange );
-        AddUnitButton.OnClickAsObservable().Subscribe( _ => { GameMessage.Send<UnitMessage>( new UnitMessage( UnitMessageType.Add, 10, 10 ) ); } ).AddTo( disposables );
+        AddUnitButton.OnClickAsObservable().Subscribe( _ => 
+        {
+            GameMessage.Send<UnitMessage>( new UnitMessage( UnitMessageType.Add, 10, 10 ) ); } ).AddTo( disposables );
     }
 
     private void OnPlanetModelChange( PlanetModel value )

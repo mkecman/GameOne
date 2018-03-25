@@ -10,46 +10,56 @@ public class Hex : GameView
     public GameObject Gas;
     public GameObject Liquid;
     public GameObject Solid;
-    public Gradient DefaultColorGradient;
-    public Gradient DefaultColorGradient2;
+    public Gradient Gradient1;
+    public Gradient Gradient2;
+    public Gradient Gradient3;
+    public Gradient Gradient4;
 
     private HexClickedMessage _HexClickedMessage;
+    private GameDebug _debug;
 
     public void SetModel( HexModel model )
     {
         this.Model = model;
         _HexClickedMessage = new HexClickedMessage( model );
+        _debug = GameModel.Get<GameDebug>();
 
         SetHeight( Solid, Model.Props[ R.Altitude ].Value );
 
         disposables.Clear();
-        Model.isMarked.Skip( 1 ).Subscribe( _ => UpdateMarkedColor( _ ) ).AddTo( disposables );
         Model.ObserveEveryValueChanged( _ => _.Lens ).Subscribe( _ => { SetColor(); SetSymbol(); } ).AddTo( disposables );
 
         Model.Props[ R.HexScore ]._Value.Subscribe( _ => OnHexScoreChange() ).AddTo( disposables );
         
+        Model.isMarked.Skip( 1 ).Subscribe( _ => UpdateMarkedColor( _ ) ).AddTo( disposables );
         Model.isExplored.Subscribe( _ => SetSymbol() ).AddTo( disposables );
 
         OnHexScoreChange();
-
-        //SetSymbol();
-        //SetClouds();
     }
 
     private void OnHexScoreChange()
     {
-        Model.Props[ R.Default ].Color = Color.Lerp(
-            DefaultColorGradient.Evaluate( (float)( Model.Props[ R.Temperature ].Value ) ),
-            DefaultColorGradient2.Evaluate( (float)( Model.Props[ R.Humidity ].Value ) ),
-            0.5f );
-        /*
-        Model.Props[ R.Default ].Color = Color.Lerp( 
-            DefaultColorGradient.Evaluate( (float)( Model.Props[ R.Temperature ].Value ) ), 
-            DefaultColorGradient2.Evaluate( (float)( Model.Props[ R.Humidity ].Value ) ), 
-            0.5f );
-        */
+        Model.Props[ R.Default ].Color = (
+            Gradient1.Evaluate( (float)( Model.Props[ R.Temperature ].Value ) ) +
+            Gradient2.Evaluate( (float)( Model.Props[ R.Pressure ].Value ) ) +
+            Gradient3.Evaluate( (float)( Model.Props[ R.Humidity ].Value ) ) +
+            Gradient4.Evaluate( (float)( Model.Props[ R.Radiation ].Value ) ) 
+            ) / 4;
+
+        Color temp = Gradient1.Evaluate( (float)( Model.Props[ R.Temperature ].Value ) );
+        temp = AddColor( temp, Gradient2.Evaluate( (float)( Model.Props[ R.Pressure ].Value ) ) );
+        temp = AddColor( temp, Gradient3.Evaluate( (float)( Model.Props[ R.Humidity ].Value ) ) );
+        temp = AddColor( temp, Gradient4.Evaluate( (float)( Model.Props[ R.Radiation ].Value ) ) );
+
+        Model.Props[ R.Default ].Color = temp;
+
         SetColor();
         SetSymbol();
+    }
+
+    private Color AddColor( Color original, Color addition )
+    {
+        return Color.Lerp( original, addition, addition.a );
     }
 
     private void UpdateMarkedColor( bool isMarked )
@@ -92,14 +102,14 @@ public class Hex : GameView
     private void SetSymbol()
     {
         /**/
-        if( !Model.isExplored.Value )
+        if( !_debug.isActive && !Model.isExplored.Value )
             return;
             /**/
 
         if( Model.Lens == R.Default )
-            SymbolText.text = "<color=\"#007800\">" + Model.Props[ R.Energy ].Value
-                    + "</color> <color=\"#000ff0\">" + Model.Props[ R.Science ].Value
-                    + "</color>\n<color=\"#ff0000\">" + Model.Props[ R.Minerals ].Value
+            SymbolText.text = "<color=\"#007800\">" + Math.Round( Model.Props[ R.Energy ].Value * 100, 0 ).ToString()
+                    + "</color> <color=\"#000ff0\">" + Math.Round( Model.Props[ R.Science ].Value * 100, 0 ).ToString()
+                    + "</color>\n<color=\"#ff0000\">" + Math.Round( Model.Props[ R.Minerals ].Value * 100, 0 ).ToString()
                     + "</color>";
         else
             SymbolText.text = Math.Round( Model.Props[ Model.Lens ].Value, 2 ).ToString();

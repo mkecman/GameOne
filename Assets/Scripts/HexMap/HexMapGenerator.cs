@@ -9,9 +9,11 @@ public class HexMapGenerator
 {
     private GridModel<HexModel> _map;
     private Vector2[] Ranges = new Vector2[ 7 ];
+    private PlanetModel _planetModel;
 
-    public GridModel<HexModel> Generate()
+    public GridModel<HexModel> Generate( PlanetModel planetModel )
     {
+        _planetModel = planetModel;
         GameObject go = GameObject.Find( "Map" );
         HexMap hexMap = go.GetComponent<HexMap>();
         _map = new GridModel<HexModel>( hexMap.width.Value, hexMap.height.Value );
@@ -38,8 +40,8 @@ public class HexMapGenerator
         TemperatureMap.AddSource( AltitudeMap );
 
         // Generate PressureMap
-        ImplicitCombiner PressureMap = new ImplicitCombiner( CombinerType.MULTIPLY );
-        PressureMap.AddSource( gradient );
+        ImplicitCombiner PressureMap = new ImplicitCombiner( CombinerType.AVERAGE );
+        //PressureMap.AddSource( AltitudeMap );
         PressureMap.AddSource( GetFractal( m.PressureFractal ) );
 
         // Generate HumidityMap
@@ -85,13 +87,13 @@ public class HexMapGenerator
                 float pressure = (float)PressureMap.Get( nx, ny, nz, nw );
                 float humidity = (float)HumidityMap.Get( nx, ny, nz, nw );
                 float radiation = (float)RadiationMap.Get( nx, ny, nz, nw );
-
+                
                 // keep track of the max and min values found
                 SetInitialHexValue( hex, R.Altitude, altitude );
-                SetInitialHexValue( hex, R.Temperature, ( 1 - altitude ) * equador  );
-                SetInitialHexValue( hex, R.Pressure, pressure );
-                SetInitialHexValue( hex, R.Humidity, humidity );
-                SetInitialHexValue( hex, R.Radiation, radiation );
+                SetInitialHexValue( hex, R.Temperature, temperature );
+                SetInitialHexValue( hex, R.Humidity, ( humidity - ( temperature * 0.3f ) ) );
+                SetInitialHexValue( hex, R.Pressure, ( (1-humidity)+(1-altitude)+(1-temperature) ) / 3 );
+                SetInitialHexValue( hex, R.Radiation, ( radiation + equador ) /2 );
             }
         }
 
@@ -101,26 +103,32 @@ public class HexMapGenerator
             for( int y = 0; y < _map.Height; y++ )
             {
                 hex = _map.Table[ x, y ];
+
                 SetHex( hex, R.Altitude );
-                hex.Props[ R.Altitude ].Value *= 2;
+                if( hex.Props[R.Altitude].Value < _planetModel.LiquidLevel )
+                {
+                    SetInitialHexValue( hex, R.Humidity, (float)hex.Props[ R.Humidity ].Value + 0.5f );
+                    SetInitialHexValue( hex, R.Pressure, (float)hex.Props[ R.Pressure ].Value + 0.5f );
+                    SetInitialHexValue( hex, R.Radiation, (float)hex.Props[ R.Radiation ].Value - 0.5f );
+                    if( hex.Props[R.Temperature].Value > 0.33 )
+                    {
+                        SetInitialHexValue( hex, R.Temperature, (float)(hex.Props[ R.Temperature ].Value - ( hex.Props[ R.Temperature ].Value * 0.5f ) ) );
+                    }
+                    else
+                    {
+                        SetInitialHexValue( hex, R.Temperature, (float)( hex.Props[ R.Temperature ].Value + ( hex.Props[ R.Temperature ].Value * 0.5f ) ) );
+                    }
+                }
 
                 SetHex( hex, R.Temperature );
                 SetHex( hex, R.Pressure );
                 SetHex( hex, R.Humidity );
                 SetHex( hex, R.Radiation );
                 
-                /*
-                if( hex.Altitude >= m.SeaLevel.Value )
-                    //hex.Colors[ (int)HexMapLens.Normal ] = TerrainGradient.Evaluate( (float)( ( 1 - hex.Temperature ) / ( 1 - SeaLevel.Value ) ) );
-                    hex.Colors[ (int)HexMapLens.Normal ] = m.TerrainGradient.Evaluate( (float)( ( 1 / ( 1 - m.SeaLevel.Value ) ) * ( 1 - hex.Temperature ) ) );
-                else
-                    hex.Colors[ (int)HexMapLens.Normal ] = m.LiquidGradient.Evaluate( (float)( ( 1 - hex.Temperature ) + m.SeaLevel.Value ) );
-                    */
-
-                hex.Props[ R.Default ].Color = m.TerrainGradient.Evaluate( (float)( hex.Props[ R.Temperature ].Value ) );
-
                 hex.Props[ R.HexScore ].Value = 0;
                 hex.Props[ R.HexScore ].Color = Color.red;
+
+                //hex.Props[ R.Altitude ].Value *= 2;
             }
         }
     }
@@ -129,7 +137,16 @@ public class HexMapGenerator
     {
         //normalize value to be between 0 - 1
         hex.Props[ type ].Value = Math.Round( Mathf.InverseLerp( Ranges[ (int)type ].x, Ranges[ (int)type ].y, (float)hex.Props[ type ].Value ), 2 );
+
+        //add variation to properties based on planet values
+        hex.Props[ type ].Value = Math.Round( Clamp( ( ( hex.Props[ type ].Value - 0.5f ) * _planetModel.Props[ type ].Variation ) + _planetModel.Props[ type ].Value ), 2 );
+
         hex.Props[ type ].Color = Color.Lerp( Color.red, Color.green, (float)hex.Props[ type ].Value );
+    }
+
+    private double Clamp( double value )
+    {
+        return Math.Min( Math.Max( value, 0 ), 1 );
     }
     
     private void SetInitialHexValue( HexModel hex, R lens, float value )

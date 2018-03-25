@@ -64,10 +64,16 @@ public class PlanetController : AbstractController
 
         //temperature in Kelvin
         double TemperatureFromStar = ( _star.Luminosity * albedo ) / ( 16 * Math.PI * Math.Pow( _selectedPlanet.Distance, 2 ) * _universeConfig.Boltzmann );
-        _selectedPlanet.Temperature = Math.Pow( ( TemperatureFromStar * ( 1 + ( ( 3 * greenhouse * 0.5841 ) / 4 ) ) / .9 ), 0.25 );
-        _selectedPlanet.Temperature -= 273; //convert to Celsius
+        _selectedPlanet.Props[ R.Temperature ].Value = Math.Pow( ( TemperatureFromStar * ( 1 + ( ( 3 * greenhouse * 0.5841 ) / 4 ) ) / .9 ), 0.25 );
+        _selectedPlanet.Props[ R.Temperature ].Value -= 273; //convert to Celsius
 
-        _selectedPlanet.Map = _hexMapGenerator.Generate();
+        _selectedPlanet.Map = _hexMapGenerator.Generate( _selectedPlanet );
+    }
+
+    public void GenerateFromModel( PlanetModel planetModel )
+    {
+        planetModel.Map = _hexMapGenerator.Generate( planetModel );
+        _selectedPlanet = planetModel;
     }
 
     private double CalculateDensity( ReactiveCollection<PlanetElementModel> elements )

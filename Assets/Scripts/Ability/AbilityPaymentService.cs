@@ -7,11 +7,13 @@ public class AbilityPaymentService : AbstractController
 {
     private LifeModel _life;
     private List<AbilityData> _abilitiesConfig;
+    private GameDebug _debug;
 
     public AbilityPaymentService()
     {
         GameModel.HandleGet<PlanetModel>( OnPlanetModelChange );
         _abilitiesConfig = Config.Get<AbilityConfig>().Abilities;
+        _debug = GameModel.Get<GameDebug>();
     }
 
     private void OnPlanetModelChange( PlanetModel value )
@@ -21,7 +23,7 @@ public class AbilityPaymentService : AbstractController
 
     public int GetUnlockAbilityPrice( int index )
     {
-        return (int)( Math.Pow( 1.3, _abilitiesConfig[ index ].UnlockCost ) * 100 );
+        return (int)( _abilitiesConfig[ index ].UnlockCost * 50 );
     }
 
     public bool BuyUnlockAbility( int index, bool spendCurrency = true )
@@ -31,6 +33,12 @@ public class AbilityPaymentService : AbstractController
 
     private bool Deduct( int price, bool spendCurrency )
     {
+        if( _debug.isActive )
+        {
+            price = (int)_life.Props[ R.Science ].Value - 1;
+            spendCurrency = false;
+        }
+
         if( _life.Props[ R.Science ].Value >= price )
         {
             if( spendCurrency )
