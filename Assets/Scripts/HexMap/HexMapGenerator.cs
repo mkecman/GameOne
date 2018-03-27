@@ -128,7 +128,7 @@ public class HexMapGenerator
                 hex.Props[ R.HexScore ].Value = 0;
                 hex.Props[ R.HexScore ].Color = Color.red;
 
-                //hex.Props[ R.Altitude ].Value *= 2;
+                hex.Props[ R.Altitude ].Value *= 2;
             }
         }
     }

@@ -96,7 +96,12 @@ public class Hex : GameView
 
     private void SetColor()
     {
-        Solid.GetComponent<MeshRenderer>().material.color = Model.Props[ Model.Lens ].Color;
+        /**/
+        if( Model.isExplored.Value || _debug.isActive )
+            Solid.GetComponent<MeshRenderer>().material.color = Model.Props[ Model.Lens ].Color;
+        else
+            Solid.GetComponent<MeshRenderer>().material.color = Color.gray;
+        /**/
     }
 
     private void SetSymbol()
