@@ -5,14 +5,9 @@ using UniRx;
 public class HexModel
 {
     public int X, Y;
-    //public double Altitude;
-    //public double Temperature;
-    //public double Pressure;
-    //public double Humidity;
-    //public double Radiation;
-    //public double TotalScore;
-    //public ElementModel Element;
+    
     public UnitModel Unit;
+    public BuildingModel Building;
 
     public BoolReactiveProperty isMarked = new BoolReactiveProperty( false );
     public BoolReactiveProperty isExplored = new BoolReactiveProperty( false );

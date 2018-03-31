@@ -1,11 +1,11 @@
 {
-"AbilitiesJSON":
-
+"BuildingList":
 [
     {
         "Index" : 0,
-        "Name"  : "Ability 0",
-        "UnlockCost" : 1,
+        "Name"  : "Building 0",
+        "UnlockCost" : 60,
+        "BuildCost"  : 30,
         "Effects"    : [
             0.0,
             0.0,
@@ -14,7 +14,8 @@
             0.0,
             -0.01,
             0.0,
-            -2.0,
+            0.0,
+            -0.6,
             0.0,
             0.0,
             0.0
@@ -26,17 +27,19 @@
     },
     {
         "Index" : 1,
-        "Name"  : "Ability 1",
-        "UnlockCost" : 1,
+        "Name"  : "Building 1",
+        "UnlockCost" : 70,
+        "BuildCost"  : 35,
         "Effects"    : [
             0.0,
             0.0,
             0.0,
-            0.01,
+            -0.01,
             0.0,
             0.0,
             0.0,
-            -2.0,
+            0.0,
+            -0.7,
             0.0,
             0.0,
             0.0
@@ -48,17 +51,19 @@
     },
     {
         "Index" : 2,
-        "Name"  : "Ability 2",
-        "UnlockCost" : 1,
+        "Name"  : "Building 2",
+        "UnlockCost" : 80,
+        "BuildCost"  : 40,
         "Effects"    : [
-            0.0,
             0.0,
             0.0,
             0.0,
             0.0,
             0.01,
             0.0,
-            -2.0,
+            0.0,
+            0.0,
+            -0.8,
             0.0,
             0.0,
             0.0
@@ -70,17 +75,19 @@
     },
     {
         "Index" : 3,
-        "Name"  : "Ability 3",
-        "UnlockCost" : 1,
+        "Name"  : "Building 3",
+        "UnlockCost" : 100,
+        "BuildCost"  : 50,
         "Effects"    : [
-            0.0,
-            0.0,
             0.0,
             0.0,
             0.01,
             0.0,
             0.0,
-            -2.0,
+            0.0,
+            0.0,
+            0.0,
+            -1.0,
             0.0,
             0.0,
             0.0
@@ -92,17 +99,19 @@
     },
     {
         "Index" : 4,
-        "Name"  : "Ability 4",
-        "UnlockCost" : 1,
+        "Name"  : "Building 4",
+        "UnlockCost" : 120,
+        "BuildCost"  : 60,
         "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
             0.0,
             0.0,
             0.01,
             0.0,
             0.0,
-            0.0,
-            0.0,
-            -2.0,
+            -1.2,
             0.0,
             0.0,
             0.0
@@ -114,17 +123,19 @@
     },
     {
         "Index" : 5,
-        "Name"  : "Ability 5",
-        "UnlockCost" : 1,
+        "Name"  : "Building 5",
+        "UnlockCost" : 130,
+        "BuildCost"  : 65,
         "Effects"    : [
+            0.0,
             0.0,
             0.0,
             -0.01,
             0.0,
+            -0.01,
             0.0,
             0.0,
-            0.0,
-            -2.0,
+            -1.3,
             0.0,
             0.0,
             0.0
@@ -136,17 +147,19 @@
     },
     {
         "Index" : 6,
-        "Name"  : "Ability 6",
-        "UnlockCost" : 1,
+        "Name"  : "Building 6",
+        "UnlockCost" : 140,
+        "BuildCost"  : 70,
         "Effects"    : [
             0.0,
             0.0,
             0.0,
             0.0,
+            0.01,
             -0.01,
             0.0,
             0.0,
-            -2.0,
+            -1.4,
             0.0,
             0.0,
             0.0
@@ -158,13 +171,183 @@
     },
     {
         "Index" : 7,
-        "Name"  : "Ability 7",
-        "UnlockCost" : 1,
+        "Name"  : "Building 7",
+        "UnlockCost" : 150,
+        "BuildCost"  : 75,
         "Effects"    : [
             0.0,
             0.0,
             0.0,
             -0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            -1.5,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 8,
+        "Name"  : "Building 8",
+        "UnlockCost" : 150,
+        "BuildCost"  : 75,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -1.5,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 9,
+        "Name"  : "Building 9",
+        "UnlockCost" : 160,
+        "BuildCost"  : 80,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            0.0,
+            -1.6,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 10,
+        "Name"  : "Building 10",
+        "UnlockCost" : 160,
+        "BuildCost"  : 80,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            -1.6,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 11,
+        "Name"  : "Building 11",
+        "UnlockCost" : 170,
+        "BuildCost"  : 85,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -1.7,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 12,
+        "Name"  : "Building 12",
+        "UnlockCost" : 180,
+        "BuildCost"  : 90,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            -1.8,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 13,
+        "Name"  : "Building 13",
+        "UnlockCost" : 190,
+        "BuildCost"  : 95,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            -1.9,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 14,
+        "Name"  : "Building 14",
+        "UnlockCost" : 200,
+        "BuildCost"  : 100,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            0.0,
             0.0,
             0.0,
             0.0,
@@ -179,172 +362,20 @@
         ]
     },
     {
-        "Index" : 8,
-        "Name"  : "Ability 8",
-        "UnlockCost" : 2,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            -0.01,
-            0.0,
-            0.0,
-            0.0,
-            -4.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 9,
-        "Name"  : "Ability 9",
-        "UnlockCost" : 2,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.01,
-            0.0,
-            -0.01,
-            0.0,
-            -4.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 10,
-        "Name"  : "Ability 10",
-        "UnlockCost" : 2,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.01,
-            0.01,
-            0.0,
-            -4.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 11,
-        "Name"  : "Ability 11",
-        "UnlockCost" : 2,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.0,
-            0.01,
-            0.0,
-            0.0,
-            -4.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 12,
-        "Name"  : "Ability 12",
-        "UnlockCost" : 2,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            -0.01,
-            0.01,
-            0.0,
-            0.0,
-            -4.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 13,
-        "Name"  : "Ability 13",
-        "UnlockCost" : 2,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.01,
-            -0.01,
-            0.0,
-            -4.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 14,
-        "Name"  : "Ability 14",
-        "UnlockCost" : 2,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.01,
-            0.0,
-            0.0,
-            0.0,
-            -4.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
         "Index" : 15,
-        "Name"  : "Ability 15",
-        "UnlockCost" : 2,
+        "Name"  : "Building 15",
+        "UnlockCost" : 200,
+        "BuildCost"  : 100,
         "Effects"    : [
             0.0,
             0.0,
-            0.01,
             0.0,
             0.0,
             0.01,
+            0.01,
             0.0,
-            -4.0,
+            0.0,
+            -2.0,
             0.0,
             0.0,
             0.0
@@ -356,17 +387,19 @@
     },
     {
         "Index" : 16,
-        "Name"  : "Ability 16",
-        "UnlockCost" : 2,
+        "Name"  : "Building 16",
+        "UnlockCost" : 210,
+        "BuildCost"  : 105,
         "Effects"    : [
             0.0,
             0.0,
-            0.01,
             0.0,
+            -0.01,
+            0.01,
             -0.01,
             0.0,
             0.0,
-            -4.0,
+            -2.1,
             0.0,
             0.0,
             0.0
@@ -378,17 +411,19 @@
     },
     {
         "Index" : 17,
-        "Name"  : "Ability 17",
-        "UnlockCost" : 2,
+        "Name"  : "Building 17",
+        "UnlockCost" : 210,
+        "BuildCost"  : 105,
         "Effects"    : [
+            0.0,
             0.0,
             0.0,
             0.01,
             0.0,
-            0.0,
             -0.01,
             0.0,
-            -4.0,
+            0.0,
+            -2.1,
             0.0,
             0.0,
             0.0
@@ -400,17 +435,19 @@
     },
     {
         "Index" : 18,
-        "Name"  : "Ability 18",
-        "UnlockCost" : 2,
+        "Name"  : "Building 18",
+        "UnlockCost" : 220,
+        "BuildCost"  : 110,
         "Effects"    : [
             0.0,
             0.0,
             0.01,
             0.0,
+            0.0,
             0.01,
             0.0,
             0.0,
-            -4.0,
+            -2.2,
             0.0,
             0.0,
             0.0
@@ -422,17 +459,19 @@
     },
     {
         "Index" : 19,
-        "Name"  : "Ability 19",
-        "UnlockCost" : 2,
+        "Name"  : "Building 19",
+        "UnlockCost" : 220,
+        "BuildCost"  : 110,
         "Effects"    : [
             0.0,
             0.0,
             0.0,
-            0.01,
             0.0,
-            0.01,
+            -0.01,
+            -0.01,
             0.0,
-            -4.0,
+            0.0,
+            -2.2,
             0.0,
             0.0,
             0.0
@@ -444,17 +483,19 @@
     },
     {
         "Index" : 20,
-        "Name"  : "Ability 20",
-        "UnlockCost" : 2,
+        "Name"  : "Building 20",
+        "UnlockCost" : 230,
+        "BuildCost"  : 115,
         "Effects"    : [
             0.0,
             0.0,
-            -0.01,
+            0.0,
+            0.01,
             0.01,
             0.0,
             0.0,
             0.0,
-            -4.0,
+            -2.3,
             0.0,
             0.0,
             0.0
@@ -466,17 +507,19 @@
     },
     {
         "Index" : 21,
-        "Name"  : "Ability 21",
-        "UnlockCost" : 2,
+        "Name"  : "Building 21",
+        "UnlockCost" : 230,
+        "BuildCost"  : 115,
         "Effects"    : [
-            0.0,
             0.0,
             0.0,
             0.01,
             -0.01,
             0.0,
+            -0.01,
             0.0,
-            -4.0,
+            0.0,
+            -2.3,
             0.0,
             0.0,
             0.0
@@ -488,17 +531,19 @@
     },
     {
         "Index" : 22,
-        "Name"  : "Ability 22",
-        "UnlockCost" : 2,
+        "Name"  : "Building 22",
+        "UnlockCost" : 230,
+        "BuildCost"  : 115,
         "Effects"    : [
             0.0,
             0.0,
             0.0,
-            0.01,
-            0.01,
+            -0.01,
+            -0.01,
             0.0,
             0.0,
-            -4.0,
+            0.0,
+            -2.3,
             0.0,
             0.0,
             0.0
@@ -510,17 +555,19 @@
     },
     {
         "Index" : 23,
-        "Name"  : "Ability 23",
-        "UnlockCost" : 2,
+        "Name"  : "Building 23",
+        "UnlockCost" : 240,
+        "BuildCost"  : 120,
         "Effects"    : [
             0.0,
             0.0,
-            0.0,
-            -0.01,
-            0.0,
             0.01,
             0.0,
-            -4.0,
+            0.01,
+            -0.01,
+            0.0,
+            0.0,
+            -2.4,
             0.0,
             0.0,
             0.0
@@ -532,17 +579,19 @@
     },
     {
         "Index" : 24,
-        "Name"  : "Ability 24",
-        "UnlockCost" : 2,
+        "Name"  : "Building 24",
+        "UnlockCost" : 250,
+        "BuildCost"  : 125,
         "Effects"    : [
             0.0,
             0.0,
-            -0.01,
+            0.01,
+            0.01,
             0.0,
             0.0,
-            -0.01,
             0.0,
-            -4.0,
+            0.0,
+            -2.5,
             0.0,
             0.0,
             0.0
@@ -554,17 +603,19 @@
     },
     {
         "Index" : 25,
-        "Name"  : "Ability 25",
-        "UnlockCost" : 2,
+        "Name"  : "Building 25",
+        "UnlockCost" : 250,
+        "BuildCost"  : 125,
         "Effects"    : [
             0.0,
             0.0,
+            0.01,
             -0.01,
+            0.01,
             0.0,
-            -0.01,
             0.0,
             0.0,
-            -4.0,
+            -2.5,
             0.0,
             0.0,
             0.0
@@ -576,17 +627,19 @@
     },
     {
         "Index" : 26,
-        "Name"  : "Ability 26",
-        "UnlockCost" : 2,
+        "Name"  : "Building 26",
+        "UnlockCost" : 260,
+        "BuildCost"  : 130,
         "Effects"    : [
             0.0,
             0.0,
+            -0.01,
             0.0,
             0.0,
             -0.01,
-            -0.01,
             0.0,
-            -4.0,
+            0.0,
+            -2.6,
             0.0,
             0.0,
             0.0
@@ -598,17 +651,19 @@
     },
     {
         "Index" : 27,
-        "Name"  : "Ability 27",
-        "UnlockCost" : 2,
+        "Name"  : "Building 27",
+        "UnlockCost" : 260,
+        "BuildCost"  : 130,
         "Effects"    : [
             0.0,
             0.0,
+            0.01,
             0.0,
             -0.01,
-            -0.01,
             0.0,
             0.0,
-            -4.0,
+            0.0,
+            -2.6,
             0.0,
             0.0,
             0.0
@@ -620,17 +675,19 @@
     },
     {
         "Index" : 28,
-        "Name"  : "Ability 28",
-        "UnlockCost" : 2,
+        "Name"  : "Building 28",
+        "UnlockCost" : 270,
+        "BuildCost"  : 135,
         "Effects"    : [
             0.0,
             0.0,
             0.0,
-            0.0,
-            -0.01,
             0.01,
             0.0,
-            -4.0,
+            0.01,
+            0.0,
+            0.0,
+            -2.7,
             0.0,
             0.0,
             0.0
@@ -642,17 +699,19 @@
     },
     {
         "Index" : 29,
-        "Name"  : "Ability 29",
-        "UnlockCost" : 2,
+        "Name"  : "Building 29",
+        "UnlockCost" : 270,
+        "BuildCost"  : 135,
         "Effects"    : [
             0.0,
             0.0,
+            0.0,
             -0.01,
-            -0.01,
+            0.01,
+            0.01,
             0.0,
             0.0,
-            0.0,
-            -4.0,
+            -2.7,
             0.0,
             0.0,
             0.0
@@ -664,17 +723,19 @@
     },
     {
         "Index" : 30,
-        "Name"  : "Ability 30",
-        "UnlockCost" : 2,
+        "Name"  : "Building 30",
+        "UnlockCost" : 270,
+        "BuildCost"  : 135,
         "Effects"    : [
             0.0,
             0.0,
             -0.01,
+            -0.01,
             0.0,
             0.0,
-            0.01,
             0.0,
-            -4.0,
+            0.0,
+            -2.7,
             0.0,
             0.0,
             0.0
@@ -686,15 +747,665 @@
     },
     {
         "Index" : 31,
-        "Name"  : "Ability 31",
-        "UnlockCost" : 2,
+        "Name"  : "Building 31",
+        "UnlockCost" : 280,
+        "BuildCost"  : 140,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            -2.8,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 32,
+        "Name"  : "Building 32",
+        "UnlockCost" : 280,
+        "BuildCost"  : 140,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.01,
+            0.01,
+            0.0,
+            0.0,
+            -2.8,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 33,
+        "Name"  : "Building 33",
+        "UnlockCost" : 290,
+        "BuildCost"  : 145,
         "Effects"    : [
             0.0,
             0.0,
             0.0,
             -0.01,
+            -0.01,
+            -0.01,
+            0.0,
+            0.0,
+            -2.9,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 34,
+        "Name"  : "Building 34",
+        "UnlockCost" : 290,
+        "BuildCost"  : 145,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            -0.01,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            -2.9,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 35,
+        "Name"  : "Building 35",
+        "UnlockCost" : 290,
+        "BuildCost"  : 145,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.01,
+            -0.01,
+            0.0,
+            0.0,
+            -2.9,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 36,
+        "Name"  : "Building 36",
+        "UnlockCost" : 300,
+        "BuildCost"  : 150,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.01,
+            0.01,
+            0.0,
+            0.0,
+            -3.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 37,
+        "Name"  : "Building 37",
+        "UnlockCost" : 310,
+        "BuildCost"  : 155,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            -3.1,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 38,
+        "Name"  : "Building 38",
+        "UnlockCost" : 310,
+        "BuildCost"  : 155,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            -0.01,
+            0.01,
+            -0.01,
+            0.0,
+            0.0,
+            -3.1,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 39,
+        "Name"  : "Building 39",
+        "UnlockCost" : 310,
+        "BuildCost"  : 155,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.01,
             0.0,
             -0.01,
+            0.0,
+            0.0,
+            -3.1,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 40,
+        "Name"  : "Building 40",
+        "UnlockCost" : 320,
+        "BuildCost"  : 160,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            -0.01,
+            -0.01,
+            0.0,
+            0.0,
+            -3.2,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 41,
+        "Name"  : "Building 41",
+        "UnlockCost" : 320,
+        "BuildCost"  : 160,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            -3.2,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 42,
+        "Name"  : "Building 42",
+        "UnlockCost" : 330,
+        "BuildCost"  : 165,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            -0.01,
+            0.0,
+            -0.01,
+            0.0,
+            0.0,
+            -3.3,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 43,
+        "Name"  : "Building 43",
+        "UnlockCost" : 330,
+        "BuildCost"  : 165,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            -0.01,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            -3.3,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 44,
+        "Name"  : "Building 44",
+        "UnlockCost" : 330,
+        "BuildCost"  : 165,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            -3.3,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 45,
+        "Name"  : "Building 45",
+        "UnlockCost" : 340,
+        "BuildCost"  : 170,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            0.01,
+            -0.01,
+            0.0,
+            0.0,
+            -3.4,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 46,
+        "Name"  : "Building 46",
+        "UnlockCost" : 350,
+        "BuildCost"  : 175,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            0.01,
+            0.01,
+            0.0,
+            0.0,
+            -3.5,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 47,
+        "Name"  : "Building 47",
+        "UnlockCost" : 350,
+        "BuildCost"  : 175,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -3.5,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 48,
+        "Name"  : "Building 48",
+        "UnlockCost" : 350,
+        "BuildCost"  : 175,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            -0.01,
+            0.01,
+            0.0,
+            0.0,
+            0.0,
+            -3.5,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 49,
+        "Name"  : "Building 49",
+        "UnlockCost" : 350,
+        "BuildCost"  : 175,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            -0.01,
+            -0.01,
+            0.01,
+            0.0,
+            0.0,
+            -3.5,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 50,
+        "Name"  : "Building 50",
+        "UnlockCost" : 360,
+        "BuildCost"  : 180,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            -0.01,
+            0.0,
+            0.0,
+            0.0,
+            -3.6,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 51,
+        "Name"  : "Building 51",
+        "UnlockCost" : 370,
+        "BuildCost"  : 185,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            -0.01,
+            0.01,
+            0.01,
+            0.0,
+            0.0,
+            -3.7,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 52,
+        "Name"  : "Building 52",
+        "UnlockCost" : 370,
+        "BuildCost"  : 185,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.01,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            -3.7,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 53,
+        "Name"  : "Building 53",
+        "UnlockCost" : 370,
+        "BuildCost"  : 185,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.0,
+            0.01,
+            -0.01,
+            -0.01,
+            0.0,
+            0.0,
+            -3.7,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 54,
+        "Name"  : "Building 54",
+        "UnlockCost" : 380,
+        "BuildCost"  : 190,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.0,
+            -0.01,
+            0.01,
+            0.0,
+            0.0,
+            -3.8,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 55,
+        "Name"  : "Building 55",
+        "UnlockCost" : 390,
+        "BuildCost"  : 195,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            -0.01,
+            -0.01,
+            -0.01,
+            0.0,
+            0.0,
+            -3.9,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 56,
+        "Name"  : "Building 56",
+        "UnlockCost" : 390,
+        "BuildCost"  : 195,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            -0.01,
+            0.0,
+            0.01,
+            0.0,
+            0.0,
+            -3.9,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 57,
+        "Name"  : "Building 57",
+        "UnlockCost" : 390,
+        "BuildCost"  : 195,
+        "Effects"    : [
+            0.0,
+            0.0,
+            0.01,
+            0.01,
+            0.01,
+            -0.01,
+            0.0,
+            0.0,
+            -3.9,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "Increases"  : [
+        ],
+        "Decreases"  : [
+        ]
+    },
+    {
+        "Index" : 58,
+        "Name"  : "Building 58",
+        "UnlockCost" : 400,
+        "BuildCost"  : 200,
+        "Effects"    : [
+            0.0,
+            0.0,
+            -0.01,
+            0.0,
+            0.01,
+            0.01,
+            0.0,
             0.0,
             -4.0,
             0.0,
@@ -707,612 +1418,20 @@
         ]
     },
     {
-        "Index" : 32,
-        "Name"  : "Ability 32",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.01,
-            0.01,
-            -0.01,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 33,
-        "Name"  : "Ability 33",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.0,
-            -0.01,
-            -0.01,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 34,
-        "Name"  : "Ability 34",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.01,
-            0.01,
-            0.0,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 35,
-        "Name"  : "Ability 35",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.01,
-            0.0,
-            -0.01,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 36,
-        "Name"  : "Ability 36",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.01,
-            0.01,
-            0.01,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 37,
-        "Name"  : "Ability 37",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            -0.01,
-            0.01,
-            0.0,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 38,
-        "Name"  : "Ability 38",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.0,
-            0.01,
-            -0.01,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 39,
-        "Name"  : "Ability 39",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.0,
-            0.01,
-            0.01,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 40,
-        "Name"  : "Ability 40",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            -0.01,
-            0.0,
-            0.01,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 41,
-        "Name"  : "Ability 41",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.0,
-            -0.01,
-            0.01,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 42,
-        "Name"  : "Ability 42",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            -0.01,
-            -0.01,
-            0.0,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 43,
-        "Name"  : "Ability 43",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            -0.01,
-            0.0,
-            -0.01,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 44,
-        "Name"  : "Ability 44",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            -0.01,
-            -0.01,
-            -0.01,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 45,
-        "Name"  : "Ability 45",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.0,
-            -0.01,
-            -0.01,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 46,
-        "Name"  : "Ability 46",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.01,
-            -0.01,
-            0.0,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 47,
-        "Name"  : "Ability 47",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.0,
-            0.01,
-            0.01,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 48,
-        "Name"  : "Ability 48",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            -0.01,
-            0.01,
-            0.01,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 49,
-        "Name"  : "Ability 49",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            -0.01,
-            -0.01,
-            0.01,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 50,
-        "Name"  : "Ability 50",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.01,
-            0.01,
-            0.0,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 51,
-        "Name"  : "Ability 51",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            -0.01,
-            0.01,
-            0.0,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 52,
-        "Name"  : "Ability 52",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.0,
-            0.01,
-            -0.01,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 53,
-        "Name"  : "Ability 53",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            -0.01,
-            0.01,
-            -0.01,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 54,
-        "Name"  : "Ability 54",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.0,
-            -0.01,
-            0.01,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 55,
-        "Name"  : "Ability 55",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            -0.01,
-            0.0,
-            0.01,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 56,
-        "Name"  : "Ability 56",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.01,
-            -0.01,
-            0.0,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 57,
-        "Name"  : "Ability 57",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.01,
-            -0.01,
-            0.01,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 58,
-        "Name"  : "Ability 58",
-        "UnlockCost" : 3,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.01,
-            0.0,
-            0.01,
-            0.0,
-            -6.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
         "Index" : 59,
-        "Name"  : "Ability 59",
-        "UnlockCost" : 3,
+        "Name"  : "Building 59",
+        "UnlockCost" : 410,
+        "BuildCost"  : 205,
         "Effects"    : [
             0.0,
             0.0,
-            -0.01,
             0.01,
-            0.0,
+            0.01,
             -0.01,
             0.0,
-            -6.0,
+            0.0,
+            0.0,
+            -4.1,
             0.0,
             0.0,
             0.0
@@ -1324,17 +1443,19 @@
     },
     {
         "Index" : 60,
-        "Name"  : "Ability 60",
-        "UnlockCost" : 3,
+        "Name"  : "Building 60",
+        "UnlockCost" : 410,
+        "BuildCost"  : 205,
         "Effects"    : [
             0.0,
             0.0,
             -0.01,
             -0.01,
-            0.0,
+            0.01,
             -0.01,
             0.0,
-            -6.0,
+            0.0,
+            -4.1,
             0.0,
             0.0,
             0.0
@@ -1346,17 +1467,19 @@
     },
     {
         "Index" : 61,
-        "Name"  : "Ability 61",
-        "UnlockCost" : 3,
+        "Name"  : "Building 61",
+        "UnlockCost" : 410,
+        "BuildCost"  : 205,
         "Effects"    : [
             0.0,
             0.0,
             -0.01,
-            -0.01,
+            0.01,
+            0.0,
             -0.01,
             0.0,
             0.0,
-            -6.0,
+            -4.1,
             0.0,
             0.0,
             0.0
@@ -1368,17 +1491,19 @@
     },
     {
         "Index" : 62,
-        "Name"  : "Ability 62",
-        "UnlockCost" : 3,
+        "Name"  : "Building 62",
+        "UnlockCost" : 420,
+        "BuildCost"  : 210,
         "Effects"    : [
             0.0,
             0.0,
+            -0.01,
             0.0,
-            0.01,
             -0.01,
             -0.01,
             0.0,
-            -6.0,
+            0.0,
+            -4.2,
             0.0,
             0.0,
             0.0
@@ -1390,17 +1515,19 @@
     },
     {
         "Index" : 63,
-        "Name"  : "Ability 63",
-        "UnlockCost" : 3,
+        "Name"  : "Building 63",
+        "UnlockCost" : 430,
+        "BuildCost"  : 215,
         "Effects"    : [
             0.0,
             0.0,
-            0.01,
-            0.01,
+            -0.01,
+            -0.01,
+            -0.01,
             0.0,
-            0.01,
             0.0,
-            -6.0,
+            0.0,
+            -4.3,
             0.0,
             0.0,
             0.0
@@ -1412,17 +1539,19 @@
     },
     {
         "Index" : 64,
-        "Name"  : "Ability 64",
-        "UnlockCost" : 4,
+        "Name"  : "Building 64",
+        "UnlockCost" : 430,
+        "BuildCost"  : 215,
         "Effects"    : [
             0.0,
             0.0,
-            0.01,
-            0.01,
+            0.0,
             0.01,
             -0.01,
+            0.01,
             0.0,
-            -8.0,
+            0.0,
+            -4.3,
             0.0,
             0.0,
             0.0
@@ -1434,17 +1563,19 @@
     },
     {
         "Index" : 65,
-        "Name"  : "Ability 65",
-        "UnlockCost" : 4,
+        "Name"  : "Building 65",
+        "UnlockCost" : 430,
+        "BuildCost"  : 215,
         "Effects"    : [
             0.0,
             0.0,
+            -0.01,
             0.01,
             0.01,
-            -0.01,
-            -0.01,
             0.0,
-            -8.0,
+            0.0,
+            0.0,
+            -4.3,
             0.0,
             0.0,
             0.0
@@ -1456,17 +1587,19 @@
     },
     {
         "Index" : 66,
-        "Name"  : "Ability 66",
-        "UnlockCost" : 4,
+        "Name"  : "Building 66",
+        "UnlockCost" : 450,
+        "BuildCost"  : 225,
         "Effects"    : [
             0.0,
             0.0,
             0.01,
             0.01,
-            -0.01,
+            0.01,
             0.01,
             0.0,
-            -8.0,
+            0.0,
+            -4.5,
             0.0,
             0.0,
             0.0
@@ -1478,17 +1611,19 @@
     },
     {
         "Index" : 67,
-        "Name"  : "Ability 67",
-        "UnlockCost" : 4,
+        "Name"  : "Building 67",
+        "UnlockCost" : 450,
+        "BuildCost"  : 225,
         "Effects"    : [
             0.0,
             0.0,
             0.01,
             -0.01,
-            0.01,
+            -0.01,
             0.01,
             0.0,
-            -8.0,
+            0.0,
+            -4.5,
             0.0,
             0.0,
             0.0
@@ -1500,17 +1635,19 @@
     },
     {
         "Index" : 68,
-        "Name"  : "Ability 68",
-        "UnlockCost" : 4,
+        "Name"  : "Building 68",
+        "UnlockCost" : 470,
+        "BuildCost"  : 235,
         "Effects"    : [
             0.0,
             0.0,
-            0.01,
             -0.01,
             0.01,
-            -0.01,
             0.0,
-            -8.0,
+            0.01,
+            0.0,
+            0.0,
+            -4.7,
             0.0,
             0.0,
             0.0
@@ -1522,17 +1659,19 @@
     },
     {
         "Index" : 69,
-        "Name"  : "Ability 69",
-        "UnlockCost" : 4,
+        "Name"  : "Building 69",
+        "UnlockCost" : 470,
+        "BuildCost"  : 235,
         "Effects"    : [
             0.0,
             0.0,
-            -0.01,
-            -0.01,
-            -0.01,
             0.01,
+            0.01,
+            -0.01,
+            -0.01,
             0.0,
-            -8.0,
+            0.0,
+            -4.7,
             0.0,
             0.0,
             0.0
@@ -1544,17 +1683,19 @@
     },
     {
         "Index" : 70,
-        "Name"  : "Ability 70",
-        "UnlockCost" : 4,
+        "Name"  : "Building 70",
+        "UnlockCost" : 470,
+        "BuildCost"  : 235,
         "Effects"    : [
             0.0,
             0.0,
             -0.01,
             -0.01,
             0.01,
-            -0.01,
+            0.01,
             0.0,
-            -8.0,
+            0.0,
+            -4.7,
             0.0,
             0.0,
             0.0
@@ -1566,17 +1707,19 @@
     },
     {
         "Index" : 71,
-        "Name"  : "Ability 71",
-        "UnlockCost" : 4,
+        "Name"  : "Building 71",
+        "UnlockCost" : 480,
+        "BuildCost"  : 240,
         "Effects"    : [
             0.0,
             0.0,
             -0.01,
+            0.0,
             -0.01,
             0.01,
-            0.01,
             0.0,
-            -8.0,
+            0.0,
+            -4.8,
             0.0,
             0.0,
             0.0
@@ -1588,8 +1731,9 @@
     },
     {
         "Index" : 72,
-        "Name"  : "Ability 72",
-        "UnlockCost" : 4,
+        "Name"  : "Building 72",
+        "UnlockCost" : 490,
+        "BuildCost"  : 245,
         "Effects"    : [
             0.0,
             0.0,
@@ -1598,7 +1742,8 @@
             -0.01,
             -0.01,
             0.0,
-            -8.0,
+            0.0,
+            -4.9,
             0.0,
             0.0,
             0.0
@@ -1610,17 +1755,19 @@
     },
     {
         "Index" : 73,
-        "Name"  : "Ability 73",
-        "UnlockCost" : 4,
+        "Name"  : "Building 73",
+        "UnlockCost" : 490,
+        "BuildCost"  : 245,
         "Effects"    : [
             0.0,
             0.0,
             -0.01,
             0.01,
-            -0.01,
+            0.01,
             -0.01,
             0.0,
-            -8.0,
+            0.0,
+            -4.9,
             0.0,
             0.0,
             0.0
@@ -1632,17 +1779,19 @@
     },
     {
         "Index" : 74,
-        "Name"  : "Ability 74",
-        "UnlockCost" : 4,
+        "Name"  : "Building 74",
+        "UnlockCost" : 510,
+        "BuildCost"  : 255,
         "Effects"    : [
             0.0,
             0.0,
             -0.01,
             0.01,
             -0.01,
-            0.01,
             0.0,
-            -8.0,
+            0.0,
+            0.0,
+            -5.1,
             0.0,
             0.0,
             0.0
@@ -1654,17 +1803,19 @@
     },
     {
         "Index" : 75,
-        "Name"  : "Ability 75",
-        "UnlockCost" : 4,
+        "Name"  : "Building 75",
+        "UnlockCost" : 530,
+        "BuildCost"  : 265,
         "Effects"    : [
             0.0,
             0.0,
-            -0.01,
             0.01,
             0.01,
             -0.01,
+            0.01,
             0.0,
-            -8.0,
+            0.0,
+            -5.3,
             0.0,
             0.0,
             0.0
@@ -1676,8 +1827,9 @@
     },
     {
         "Index" : 76,
-        "Name"  : "Ability 76",
-        "UnlockCost" : 4,
+        "Name"  : "Building 76",
+        "UnlockCost" : 550,
+        "BuildCost"  : 275,
         "Effects"    : [
             0.0,
             0.0,
@@ -1686,7 +1838,8 @@
             0.01,
             0.01,
             0.0,
-            -8.0,
+            0.0,
+            -5.5,
             0.0,
             0.0,
             0.0
@@ -1698,17 +1851,19 @@
     },
     {
         "Index" : 77,
-        "Name"  : "Ability 77",
-        "UnlockCost" : 4,
+        "Name"  : "Building 77",
+        "UnlockCost" : 550,
+        "BuildCost"  : 275,
         "Effects"    : [
             0.0,
             0.0,
+            -0.01,
+            -0.01,
+            -0.01,
             0.01,
-            -0.01,
-            -0.01,
-            -0.01,
             0.0,
-            -8.0,
+            0.0,
+            -5.5,
             0.0,
             0.0,
             0.0
@@ -1720,17 +1875,19 @@
     },
     {
         "Index" : 78,
-        "Name"  : "Ability 78",
-        "UnlockCost" : 4,
+        "Name"  : "Building 78",
+        "UnlockCost" : 570,
+        "BuildCost"  : 285,
         "Effects"    : [
             0.0,
             0.0,
+            -0.01,
             0.01,
             -0.01,
             -0.01,
-            0.01,
             0.0,
-            -8.0,
+            0.0,
+            -5.7,
             0.0,
             0.0,
             0.0
@@ -1742,17 +1899,19 @@
     },
     {
         "Index" : 79,
-        "Name"  : "Ability 79",
-        "UnlockCost" : 4,
+        "Name"  : "Building 79",
+        "UnlockCost" : 630,
+        "BuildCost"  : 315,
         "Effects"    : [
             0.0,
             0.0,
+            -0.01,
             0.01,
-            0.01,
-            0.01,
+            -0.01,
             0.01,
             0.0,
-            -8.0,
+            0.0,
+            -6.3,
             0.0,
             0.0,
             0.0

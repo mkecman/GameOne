@@ -18,8 +18,8 @@ public class GameController : MonoBehaviour
     private LifeController _life;
     private UnitController _unit;
     private UnitPaymentService _unitPayment;
-    private AbilityController _abilityController;
-    private AbilityPaymentService _abilityPayment;
+    private BuildingController _abilityController;
+    private BuildingPaymentService _abilityPayment;
 
     private void Awake()
     {
@@ -36,10 +36,10 @@ public class GameController : MonoBehaviour
         _unit = new UnitController();
         _unitPayment = new UnitPaymentService();
 
-        _abilityPayment = new AbilityPaymentService();
+        _abilityPayment = new BuildingPaymentService();
         GameModel.Set( _abilityPayment );
 
-        _abilityController = new AbilityController();
+        _abilityController = new BuildingController();
 
         GameModel.Set( _player );
         GameModel.Set( _galaxy );

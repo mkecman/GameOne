@@ -29,16 +29,18 @@ public class HexUpdateCommand
         hex.Props[ R.Radiation ].Color = Color.Lerp( Color.red, Color.green, radiationBonus );
         /**/
 
-        hex.Props[ R.Energy ].Value = Math.Round( ( temperatureBonus + humidityBonus ) /2, 2 ); // * 1.74 for range 0-3
-        hex.Props[ R.Energy ].Color = Color.Lerp( Color.red, Color.green, (float)hex.Props[ R.Energy ].Value / 1 );
-
-        hex.Props[ R.Science ].Value = Math.Round( ( pressureBonus + radiationBonus ) / 2, 2 );
-        hex.Props[ R.Science ].Color = Color.Lerp( Color.red, Color.green, (float)hex.Props[ R.Science ].Value / 1 );
-
-        hex.Props[ R.Minerals ].Value = Math.Round( 1 - bc.GetValueAt( hex.Props[ R.Altitude ].Value / 2 ), 2 );
-        hex.Props[ R.Minerals ].Color = Color.Lerp( Color.red, Color.green, (float)hex.Props[ R.Minerals ].Value / 1 );
-
         hex.Props[ R.HexScore ].Value = Math.Round( ( temperatureBonus + pressureBonus + humidityBonus + radiationBonus ) / 4, 2 );
         hex.Props[ R.HexScore ].Color = Color.Lerp( Color.red, Color.green, (float)hex.Props[ R.HexScore ].Value );
+
+
+        hex.Props[ R.Energy ].Value = Math.Round( ( temperatureBonus + humidityBonus ), 0 ); // * 1.74 for range 0-3
+        hex.Props[ R.Energy ].Color = Color.Lerp( Color.red, Color.green, (float)hex.Props[ R.Energy ].Value / 1 );
+
+        hex.Props[ R.Science ].Value = Math.Round( ( pressureBonus + radiationBonus ) , 0 );
+        hex.Props[ R.Science ].Color = Color.Lerp( Color.red, Color.green, (float)hex.Props[ R.Science ].Value / 1 );
+
+        hex.Props[ R.Minerals ].Value = Math.Round( ( ( 1 - bc.GetValueAt( hex.Props[ R.Altitude ].Value / 2 )) * 2), 0 );
+        hex.Props[ R.Minerals ].Color = Color.Lerp( Color.red, Color.green, (float)hex.Props[ R.Minerals ].Value / 1 );
+
     }
 }

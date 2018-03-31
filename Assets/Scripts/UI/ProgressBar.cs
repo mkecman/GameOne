@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class ProgressBar : MonoBehaviour
 {
     public GameObject Fill;
-
+    
     private float _value = 0f;
     private float _maxValue = 100f;
 

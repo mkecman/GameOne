@@ -16,7 +16,7 @@ public class HexTileInfoPanelView : GameView
     // Use this for initialization
     void Start()
     {
-        GameMessage.Listen<HexClickedMessage>( OnHexClicked );
+        GameModel.HandleGet<HexModel>( OnHexChange );
         Altitude.SetProperty( R.Altitude.ToString() );
         Temperature.SetProperty( R.Temperature.ToString() );
         Pressure.SetProperty( R.Pressure.ToString() );
@@ -25,10 +25,8 @@ public class HexTileInfoPanelView : GameView
         HexScore.SetProperty( R.HexScore.ToString() );
     }
 
-    private void OnHexClicked( HexClickedMessage value )
+    private void OnHexChange( HexModel hex )
     {
-        HexModel hex = value.Hex;
-
         disposables.Clear();
 
         hex.Props[ R.Altitude ]._Value.Subscribe( _ => Altitude.SetValue( _ ) ).AddTo( disposables );

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LifeController : AbstractController
@@ -7,7 +8,7 @@ public class LifeController : AbstractController
 
     private PlanetModel _planet;
     private LifeModel _selectedLife;
-    HexUpdateCommand _hexUpdateCommand;
+    private HexUpdateCommand _hexUpdateCommand;
 
     public LifeController()
     {
@@ -25,6 +26,7 @@ public class LifeController : AbstractController
         _selectedLife.Props[ R.Energy ].Value = 500;
         _selectedLife.Props[ R.Science ].Value = 500;
         _selectedLife.Props[ R.Population ].Value = 1;
+        _selectedLife.BuildingsState = GameModel.Copy( Config.Get<BuildingConfig>().Buildings );
 
         int unitX = (int)( _planet.Map.Width / 2 ) + 2;
         int unitY = (int)( _planet.Map.Height / 2 ) + 2;

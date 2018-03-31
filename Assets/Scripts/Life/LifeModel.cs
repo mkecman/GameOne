@@ -25,6 +25,9 @@ public class LifeModel
     public RDictionary<Resource> Props = new RDictionary<Resource>();
 
     public ReactiveCollection<UnitModel> Units = new ReactiveCollection<UnitModel>();
+    public ReactiveCollection<BuildingModel> Buildings = new ReactiveCollection<BuildingModel>();
+
+    public List<BuildingModel> BuildingsState = new List<BuildingModel>();
 
     public LifeModel()
     {

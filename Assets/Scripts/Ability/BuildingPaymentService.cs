@@ -3,16 +3,16 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 
-public class AbilityPaymentService : AbstractController
+public class BuildingPaymentService : AbstractController
 {
     private LifeModel _life;
-    private List<AbilityData> _abilitiesConfig;
+    private List<BuildingModel> _abilitiesConfig;
     private GameDebug _debug;
 
-    public AbilityPaymentService()
+    public BuildingPaymentService()
     {
         GameModel.HandleGet<PlanetModel>( OnPlanetModelChange );
-        _abilitiesConfig = Config.Get<AbilityConfig>().Abilities;
+        _abilitiesConfig = Config.Get<BuildingConfig>().Buildings;
         _debug = GameModel.Get<GameDebug>();
     }
 
@@ -23,10 +23,20 @@ public class AbilityPaymentService : AbstractController
 
     public int GetUnlockAbilityPrice( int index )
     {
-        return (int)( _abilitiesConfig[ index ].UnlockCost * 50 );
+        return (int)( _abilitiesConfig[ index ].UnlockCost * 1 );
+    }
+
+    public int GetBuildPrice( int index )
+    {
+        return (int)( _abilitiesConfig[ index ].BuildCost * 1 );
     }
 
     public bool BuyUnlockAbility( int index, bool spendCurrency = true )
+    {
+        return Deduct( GetUnlockAbilityPrice( index ), spendCurrency );
+    }
+
+    public bool BuyBuild( int index, bool spendCurrency = true )
     {
         return Deduct( GetUnlockAbilityPrice( index ), spendCurrency );
     }

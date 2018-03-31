@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -17,6 +18,8 @@ public class Hex : GameView
 
     private HexClickedMessage _HexClickedMessage;
     private GameDebug _debug;
+
+    private StringBuilder labelSB = new StringBuilder();
 
     public void SetModel( HexModel model )
     {
@@ -109,13 +112,20 @@ public class Hex : GameView
         /**/
         if( !_debug.isActive && !Model.isExplored.Value )
             return;
-            /**/
+        /**/
 
         if( Model.Lens == R.Default )
-            SymbolText.text = "<color=\"#007800\">" + Math.Round( Model.Props[ R.Energy ].Value * 100, 0 ).ToString()
-                    + "</color> <color=\"#000ff0\">" + Math.Round( Model.Props[ R.Science ].Value * 100, 0 ).ToString()
-                    + "</color>\n<color=\"#ff0000\">" + Math.Round( Model.Props[ R.Minerals ].Value * 100, 0 ).ToString()
-                    + "</color>";
+        {
+            labelSB.Clear();
+            if( Model.Props[ R.Energy ].Value > 0 )
+                labelSB.Append( "<color=\"#007800\">" + Math.Round( Model.Props[ R.Energy ].Value, 0 ).ToString() +"</color>");
+            if( Model.Props[ R.Science ].Value > 0 )
+                labelSB.Append( "<color=\"#000ff0\">" + Math.Round( Model.Props[ R.Science ].Value, 0 ).ToString() + "</color>" );
+            if( Model.Props[ R.Minerals ].Value > 0 )
+                labelSB.Append( "<color=\"#ff0000\">" + Math.Round( Model.Props[ R.Minerals ].Value, 0 ).ToString() + "</color>" );
+
+            SymbolText.text = labelSB.ToString();
+        }
         else
             SymbolText.text = Math.Round( Model.Props[ Model.Lens ].Value, 2 ).ToString();
         

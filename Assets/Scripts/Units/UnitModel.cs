@@ -31,7 +31,7 @@ public class UnitModel
     
     public BoolReactiveProperty isSelected = new BoolReactiveProperty( false );
 
-    public Dictionary<int, AbilityState> Abilities = new Dictionary<int, AbilityState>();
+    public Dictionary<int, BuildingState> Abilities = new Dictionary<int, BuildingState>();
 
     public RDictionary<DoubleReactiveProperty> AbilitiesDelta = new RDictionary<DoubleReactiveProperty>( true );
 
@@ -54,9 +54,9 @@ public class UnitModel
         Resistance.Add( R.Humidity, new BellCurve( 1, 1f, 0.2f ) );
         Resistance.Add( R.Radiation, new BellCurve( 1, 0f, 0.1f ) );
 
-        //AbilitiesDelta[ R.Energy ].Value = -1;
+        AbilitiesDelta[ R.Energy ].Value = -.5;
 
-        Abilities.Add( 0, AbilityState.UNLOCKED );
+        Abilities.Add( 0, BuildingState.UNLOCKED );
     }
 
     public UnitModel() { }

@@ -104,16 +104,19 @@ public class UnitController : AbstractController
             um = _life.Units[ i ];
             hm = _hexMapModel.Table[ um.X, um.Y ];
 
+            /*
             um.Props[ R.Health ].Value -= 1 - hm.Props[ R.HexScore ].Value;
             if( um.Props[ R.Health ].Value <= 0 )
             {
                 RemoveUnit( um );
                 continue;
             }
+            */
+            um.Props[ R.Health ].Value = hm.Props[ R.HexScore ].Value;
 
-            _updateValues[ R.Energy ] += hm.Props[ R.Energy].Value + um.AbilitiesDelta[ R.Energy ].Value;
-            _updateValues[ R.Science ] += hm.Props[ R.Science ].Value + um.AbilitiesDelta[ R.Science ].Value;
-            _updateValues[ R.Minerals ] += hm.Props[ R.Minerals ].Value;
+            _updateValues[ R.Energy ] += ( hm.Props[ R.Energy ].Value * um.Props[ R.Health ].Value ) + um.AbilitiesDelta[ R.Energy ].Value;
+            _updateValues[ R.Science ] += ( hm.Props[ R.Science ].Value * um.Props[ R.Health ].Value ) + um.AbilitiesDelta[ R.Science ].Value;
+            _updateValues[ R.Minerals ] += hm.Props[ R.Minerals ].Value * um.Props[ R.Health ].Value;
 
             hm.Props[ R.Temperature ].Value += um.AbilitiesDelta[ R.Temperature ].Value;
             hm.Props[ R.Pressure ].Value += um.AbilitiesDelta[ R.Pressure ].Value;
@@ -240,7 +243,7 @@ public class UnitController : AbstractController
         {
             _selectedUnit.isSelected.Value = false;
             _selectedUnit = null;
-            GameModel.Set( _selectedUnit );
+            GameModel.Set<UnitModel>( _selectedUnit );
         }
     }
 
@@ -251,7 +254,7 @@ public class UnitController : AbstractController
         _selectedUnit.isSelected.Value = true;
         _hexMapModel.Table[ x, y ].isExplored.Value = true;
         MarkNeighborHexes( _selectedUnit );
-        GameModel.Set( _selectedUnit );
+        GameModel.Set<UnitModel>( _selectedUnit );
     }
 
     private void MarkNeighborHexes( UnitModel unit )

@@ -1,17 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class AbilityJSON
+public class BuildingJSON
 {
     public int Index;
     public string Name;
     public int UnlockCost;
+    public int BuildCost;
 
     public List<double> Effects;
     public List<double> Increases;
     public List<double> Decreases;
 
-    public AbilityJSON()
+    public BuildingJSON()
     {
         Effects = new List<double>();
         Increases = new List<double>();
