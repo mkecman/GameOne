@@ -5,10 +5,14 @@ using System;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using UniRx;
+using System.Linq;
 
 public class BuildingUnlockView : GameView, IPointerClickHandler
 {
-    public UIPropertyView AbilityUnlockCostText;
+    public UIPropertyView Name;
+    public UIPropertyView UnlockPrice;
+    public UIPropertyView BuildPrice;
+    public UIPropertyView MaintenancePrice;
     public Transform EffectsGrid;
     public Outline Outline;
     public Image BackgroundImage;
@@ -18,11 +22,10 @@ public class BuildingUnlockView : GameView, IPointerClickHandler
 
     void Start()
     {
-        GameMessage.Listen<BuildingUnlockSelected>( OnBuildingUnlockSelected );
-        Debug.Log( "UNLOCK VIEW START" );
+        GameMessage.Listen<BuildingUnlockMessage>( OnBuildingUnlockSelected );
     }
 
-    private void OnBuildingUnlockSelected( BuildingUnlockSelected value )
+    private void OnBuildingUnlockSelected( BuildingUnlockMessage value )
     {
         if( _building.Index == value.Index )
             Outline.enabled = true;
@@ -32,7 +35,7 @@ public class BuildingUnlockView : GameView, IPointerClickHandler
 
     public void OnPointerClick( PointerEventData eventData )
     {
-        GameMessage.Send<BuildingUnlockSelected>( new BuildingUnlockSelected( _building.Index ) );
+        GameMessage.Send<BuildingUnlockMessage>( new BuildingUnlockMessage( _building.Index ) );
         //GameMessage.Send( new BuildingMessage( BuildingState.SELECTED, _building.Index ) );
     }
 
@@ -49,12 +52,23 @@ public class BuildingUnlockView : GameView, IPointerClickHandler
         disposables.Clear();
         _building._State.Subscribe( _ => SetState() ).AddTo( disposables );
 
-        AbilityUnlockCostText.SetProperty( ability.Name );
-        AbilityUnlockCostText.SetValue( ability.UnlockCost );
+        Name.SetProperty( ability.Name );
+        UnlockPrice.SetProperty( "Unlock (Science):" );
+        UnlockPrice.SetValue( Double.MaxValue, -ability.UnlockCost );
+        BuildPrice.SetProperty( "Build (Minerals):" );
+        BuildPrice.SetValue( Double.MaxValue, -ability.BuildCost );
+        MaintenancePrice.SetProperty( "Maintenance (Minerals):" );
+        MaintenancePrice.SetValue( Double.MaxValue, ability.Effects[ R.Minerals.ToString() ] );
 
-        foreach( KeyValuePair<string, double> item in _building.Effects )
+        var list = _building.Effects.Keys.ToList();
+        list.Sort();
+
+        foreach( var key in list )
         {
-            AddEffect( effectPrefab, item.Key, item.Value );
+            if( key == R.Minerals.ToString() )
+                continue;
+
+            AddEffect( effectPrefab, key, _building.Effects[ key ] );
         }
     }
 

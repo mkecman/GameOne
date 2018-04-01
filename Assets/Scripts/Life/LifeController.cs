@@ -25,6 +25,7 @@ public class LifeController : AbstractController
         };
         _selectedLife.Props[ R.Energy ].Value = 500;
         _selectedLife.Props[ R.Science ].Value = 500;
+        _selectedLife.Props[ R.Minerals ].Value = 500;
         _selectedLife.Props[ R.Population ].Value = 1;
         _selectedLife.BuildingsState = GameModel.Copy( Config.Get<BuildingConfig>().Buildings );
 
@@ -63,8 +64,8 @@ public class LifeController : AbstractController
 
                 _hexUpdateCommand.Execute( _selectedLife.Resistance, hex );
 
-                totalEnergy += hex.Props[ R.Energy ].Value;
-                totalScience += hex.Props[ R.Science ].Value;
+                totalEnergy += hex.Props[ R.Temperature ].Value;
+                totalScience += hex.Props[ R.Humidity ].Value;
                 totalMinerals += hex.Props[ R.Minerals ].Value;
 
                 foodTiles[ (int)hex.Props[ R.Energy ].Value ]++;
@@ -73,7 +74,7 @@ public class LifeController : AbstractController
             }
         }
 
-        Debug.Log( "Energy: " + totalEnergy + "::: Science: " + totalScience + "::: Minerals: " + totalMinerals );
+        Debug.Log( "Temperature: " + totalEnergy + "::: Humidity: " + totalScience + "::: Minerals: " + totalMinerals );
         
         for( int i = 0; i < 6; i++ )
         {

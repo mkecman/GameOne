@@ -19,21 +19,22 @@ public class BuildingUnlockPanel : GameView
     private void OnEnable()
     {
         GameMessage.Send( new CameraControlMessage( false ) );
-        GameMessage.Listen<BuildingUnlockSelected>( OnBuildingChange );
+        GameMessage.Listen<BuildingUnlockMessage>( OnBuildingChange );
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
+        OnBuildingChange( new BuildingUnlockMessage( _abilityMessage.Index ) );
     }
 
     private void OnDisable()
     {
         GameMessage.Send( new CameraControlMessage( true ) );
-        GameMessage.StopListen<BuildingUnlockSelected>( OnBuildingChange );
+        GameMessage.StopListen<BuildingUnlockMessage>( OnBuildingChange );
         GameModel.RemoveHandle<PlanetModel>( OnPlanetChange );
     }
 
     // Use this for initialization
     void Awake()
     {
-        _abilityMessage = new BuildingMessage( BuildingState.UNLOCKED, 0 );
+        _abilityMessage = new BuildingMessage( BuildingState.LOCKED, 0 );
         UnlockButton.OnClickAsObservable().Subscribe( _ => OnUnlockButtonClick() );
         BuildButton.OnClickAsObservable().Subscribe( _ => OnBuildButtonClick() );
     }
@@ -51,7 +52,7 @@ public class BuildingUnlockPanel : GameView
         gameObject.SetActive( false );
     }
 
-    private void OnBuildingChange( BuildingUnlockSelected value )
+    private void OnBuildingChange( BuildingUnlockMessage value )
     {
         _abilityMessage.Index = value.Index;
         HexModel hexModel = GameModel.Get<HexModel>();
@@ -74,7 +75,6 @@ public class BuildingUnlockPanel : GameView
     {
         if( value.Life != _life )
         {
-            disposables.Clear();
             _life = value.Life;
             RemoveAllChildren( Container );
             for( int i = 0; i < _life.BuildingsState.Count; i++ )

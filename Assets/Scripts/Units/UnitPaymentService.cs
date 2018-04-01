@@ -46,7 +46,7 @@ public class UnitPaymentService : AbstractController
             if( spendCurrency )
             {
                 _life.Props[ R.Energy ].Value -= price;
-                _life.Props[ R.Energy ].Delta = -price;
+                //_life.Props[ R.Energy ].Delta = -price;
             }
             return true;
         }

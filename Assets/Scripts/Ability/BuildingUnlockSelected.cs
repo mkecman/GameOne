@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BuildingUnlockSelected
+public class BuildingUnlockMessage
 {
     public int Index;
 
-    public BuildingUnlockSelected( int index )
+    public BuildingUnlockMessage( int index )
     {
         Index = index;
     }

@@ -10,6 +10,7 @@ public class BuildingModel
     public int BuildCost;
     public int X;
     public int Y;
+    public double Altitude;
 
     public Dictionary<string, double> Effects = new Dictionary<string, double>();
 

@@ -1,8 +1,8 @@
 ﻿using System;
-using UnityEngine;
-using UnityEngine.UI;
 using UniRx;
+using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ResistanceGraph : GameView, IPointerClickHandler
 {
@@ -15,6 +15,7 @@ public class ResistanceGraph : GameView, IPointerClickHandler
     private RectTransform _tileValueRectTransform;
     private UnitModel _selectedUnit;
     private HexModel _hexModel;
+    private LifeModel _life;
 
     void Start()
     {
@@ -26,34 +27,56 @@ public class ResistanceGraph : GameView, IPointerClickHandler
         if( _tileValueRectTransform == null )
             _tileValueRectTransform = TileValue.GetComponent<RectTransform>();
 
+        GameModel.HandleGet<PlanetModel>( OnPlanetModel );
         GameModel.HandleGet<HexModel>( OnHexModelChange );
     }
 
     void OnDisable()
     {
+        GameModel.RemoveHandle<PlanetModel>( OnPlanetModel );
         GameModel.RemoveHandle<HexModel>( OnHexModelChange );
     }
-    
+
+    private void OnPlanetModel( PlanetModel value )
+    {
+        _life = value.Life;
+    }
+
     private void OnHexModelChange( HexModel value )
     {
         disposables.Clear();
 
-        if( value != null && value.Unit != null )
+        if( value != null )
         {
             _hexModel = value;
-            _selectedUnit = value.Unit;
+            _hexModel.Props[ Lens ]._Value.DelayFrame( 1 ).Subscribe( _ => UpdateView() ).AddTo( disposables );
 
-            _hexModel.Props[ Lens ]._Value.Subscribe( _ => UpdateView() ).AddTo( disposables );
-
-            //delay subscription to wait for BellCurveTexture Gradient to initialize
-            _selectedUnit.Resistance[ Lens ].Position.DelaySubscription( TimeSpan.FromTicks(1) ).Subscribe( _ => { Gradient.Draw( _selectedUnit.Resistance[ Lens ] ); UpdateView(); } ).AddTo( disposables );
+            if( value.Unit != null )
+            {
+                _selectedUnit = value.Unit;
+                //delay subscription to wait for BellCurveTexture Gradient to initialize
+                _selectedUnit.Resistance[ Lens ].Position.DelayFrame( 1 ).Subscribe( _ => { UpdateView(); } ).AddTo( disposables );
+            }
+            else
+                _selectedUnit = null;
         }
+        else
+            _hexModel = null;
     }
-    
+
     private void UpdateView()
     {
-        _tileValueRectTransform.anchoredPosition = new Vector2( ( (float)_hexModel.Props[ Lens ].Value - 0.5f ) * Gradient.Width, 0 );
-        MatchText.text = (int)Math.Round( _selectedUnit.Resistance[ Lens ].GetValueAt( _hexModel.Props[ Lens ].Value ) * 100, 0 ) + "%";
+        if( _selectedUnit != null )
+            UpdateWith( _selectedUnit.Resistance[ Lens ], _hexModel.Props[ Lens ].Value );
+        else
+            UpdateWith( _life.Resistance[ Lens ], _hexModel.Props[ Lens ].Value );
+    }
+
+    private void UpdateWith( BellCurve bellCurve, double value )
+    {
+        Gradient.Draw( bellCurve );
+        _tileValueRectTransform.anchoredPosition = new Vector2( ( (float)value - 0.5f ) * Gradient.Width, 0 );
+        MatchText.text = (int)Math.Round( bellCurve.GetValueAt( value ) * 100, 0 ) + "%";
     }
 
     public void OnPointerClick( PointerEventData eventData )

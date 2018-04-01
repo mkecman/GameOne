@@ -86,6 +86,8 @@ public class UnitController : AbstractController
             _selectedUnit.AbilitiesDelta[ R.Science ].Value -= 0.1;
         else
             _selectedUnit.AbilitiesDelta[ R.Science ].Value += 0.1;
+
+        UpdateHexAndHealth( _selectedUnit.Resistance, _hexMapModel.Table[ _selectedUnit.X, _selectedUnit.Y ] );
     }
 
     private void OnClockTick( ClockTickMessage value )
@@ -112,28 +114,31 @@ public class UnitController : AbstractController
                 continue;
             }
             */
-            um.Props[ R.Health ].Value = hm.Props[ R.HexScore ].Value;
+            //Moved to when a unit is moved onto a new hexmodel
+            //um.Props[ R.Health ].Value = hm.Props[ R.HexScore ].Value;
 
             _updateValues[ R.Energy ] += ( hm.Props[ R.Energy ].Value * um.Props[ R.Health ].Value ) + um.AbilitiesDelta[ R.Energy ].Value;
             _updateValues[ R.Science ] += ( hm.Props[ R.Science ].Value * um.Props[ R.Health ].Value ) + um.AbilitiesDelta[ R.Science ].Value;
-            _updateValues[ R.Minerals ] += hm.Props[ R.Minerals ].Value * um.Props[ R.Health ].Value;
+            _updateValues[ R.Minerals ] += ( hm.Props[ R.Minerals ].Value * um.Props[ R.Health ].Value ) + um.AbilitiesDelta[R.Minerals].Value;
 
+            /* Moved to BuildingController
             hm.Props[ R.Temperature ].Value += um.AbilitiesDelta[ R.Temperature ].Value;
             hm.Props[ R.Pressure ].Value += um.AbilitiesDelta[ R.Pressure ].Value;
             hm.Props[ R.Humidity ].Value += um.AbilitiesDelta[ R.Humidity ].Value;
             hm.Props[ R.Radiation ].Value += um.AbilitiesDelta[ R.Radiation ].Value;
-
             _hexUpdateCommand.Execute( um.Resistance, hm );
+            */
+
         }
 
         _life.Props[ R.Energy ].Value += _updateValues[ R.Energy ];
-        _life.Props[ R.Energy ].Delta = _updateValues[ R.Energy ];
+        //_life.Props[ R.Energy ].Delta = _updateValues[ R.Energy ];
 
         _life.Props[ R.Science ].Value += _updateValues[ R.Science ];
-        _life.Props[ R.Science ].Delta = _updateValues[ R.Science ];
+        //_life.Props[ R.Science ].Delta = _updateValues[ R.Science ];
 
         _life.Props[ R.Minerals ].Value += _updateValues[ R.Minerals ];
-        _life.Props[ R.Minerals ].Delta = _updateValues[ R.Minerals ];
+        //_life.Props[ R.Minerals ].Delta = _updateValues[ R.Minerals ];
     }
 
     private void OnUnitMessage( UnitMessage value )
@@ -173,6 +178,7 @@ public class UnitController : AbstractController
         _life.Units.Add( um );
         _life.Props[ R.Population ].Value++;
         SelectUnit( x, y );
+        UpdateHexAndHealth( _selectedUnit.Resistance, _hexMapModel.Table[ x, y ] );
     }
 
     private void RemoveUnit( UnitModel um )
@@ -187,13 +193,26 @@ public class UnitController : AbstractController
 
     private void MoveUnit( int xTo, int yTo )
     {
-        _hexMapModel.Table[ _selectedUnit.X, _selectedUnit.Y ].Unit = null;
+        HexModel hexModel = _hexMapModel.Table[ _selectedUnit.X, _selectedUnit.Y ];
+        if( hexModel.Building != null )
+            hexModel.Building.State = BuildingState.INACTIVE;
 
+        hexModel.Unit = null;
+        _hexUpdateCommand.Execute( _life.Resistance, hexModel );
+        
         _hexMapModel.Table[ xTo, yTo ].Unit = _selectedUnit;
 
         _selectedUnit.Props[R.Altitude].Value = _hexMapModel.Table[ xTo, yTo ].Props[ R.Altitude].Value;
         _selectedUnit.X = xTo;
         _selectedUnit.Y = yTo;
+
+        UpdateHexAndHealth( _selectedUnit.Resistance, _hexMapModel.Table[ xTo, yTo ] );
+    }
+    
+    private void UpdateHexAndHealth( RDictionary<BellCurve> resistance, HexModel hexModel )
+    {
+        _hexUpdateCommand.Execute( resistance, hexModel );
+        _selectedUnit.Props[ R.Health ].Value = hexModel.Props[ R.HexScore ].Value;
     }
 
     private void OnHexClickedMessage( HexClickedMessage value )

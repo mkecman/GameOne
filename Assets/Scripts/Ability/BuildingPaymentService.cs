@@ -21,40 +21,45 @@ public class BuildingPaymentService : AbstractController
         _life = value.Life;
     }
 
-    public int GetUnlockAbilityPrice( int index )
+    public double GetUnlockPrice( int index )
     {
-        return (int)( _abilitiesConfig[ index ].UnlockCost * 1 );
+        return _abilitiesConfig[ index ].UnlockCost * 1;
     }
 
-    public int GetBuildPrice( int index )
+    public double GetBuildPrice( int index )
     {
-        return (int)( _abilitiesConfig[ index ].BuildCost * 1 );
+        return _abilitiesConfig[ index ].BuildCost * 1;
     }
 
-    public bool BuyUnlockAbility( int index, bool spendCurrency = true )
+    public bool BuyUnlock( int index, bool spendCurrency = true )
     {
-        return Deduct( GetUnlockAbilityPrice( index ), spendCurrency );
+        return Deduct( GetUnlockPrice( index ), spendCurrency, R.Science );
     }
 
     public bool BuyBuild( int index, bool spendCurrency = true )
     {
-        return Deduct( GetUnlockAbilityPrice( index ), spendCurrency );
+        return Deduct( GetUnlockPrice( index ), spendCurrency, R.Minerals );
     }
 
-    private bool Deduct( int price, bool spendCurrency )
+    public bool BuyMaintenance( double price, bool spendCurrency = true )
+    {
+        return Deduct( price, spendCurrency, R.Minerals );
+    }
+
+    private bool Deduct( double price, bool spendCurrency, R currency )
     {
         if( _debug.isActive )
         {
-            price = (int)_life.Props[ R.Science ].Value - 1;
+            price = _life.Props[ currency ].Value - 1;
             spendCurrency = false;
         }
 
-        if( _life.Props[ R.Science ].Value >= price )
+        if( _life.Props[ currency ].Value >= price )
         {
             if( spendCurrency )
             {
-                _life.Props[ R.Science ].Value -= price;
-                _life.Props[ R.Science ].Delta = -price;
+                _life.Props[ currency ].Value -= price;
+                //_life.Props[ currency ].Delta = -price;
             }
             return true;
         }

@@ -95,7 +95,7 @@ public class BuildingInfoPanel : GameView
         _abilityMessage.Y = _building.Y;
 
         NameText.text = _building.Name;
-        DescriptionText.text = "PRICE: " + _pay.GetUnlockAbilityPrice( _building.Index );
+        DescriptionText.text = "PRICE: " + _pay.GetUnlockPrice( _building.Index );
 
         RemoveAllChildren( EffectsGrid );
         RemoveAllChildren( MaintenanceGrid );

@@ -13,7 +13,7 @@ public class BellCurveTexture : MonoBehaviour
     public int Height;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         RectTransform rectTransform = rawImage.GetComponent<RectTransform>();
         Width = (int)rectTransform.rect.width;

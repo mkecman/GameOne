@@ -19,7 +19,6 @@ public class UnitResistancePanel : GameView
     {
         GameModel.HandleGet<UnitModel>( OnUnitChange );
         OkButton.onClick.AddListener( OnOkButtonClick );
-        Debug.Log( "OnEnable" );
     }
 
     void OnDisable()
