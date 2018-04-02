@@ -1,4 +1,4 @@
-﻿using LitJson;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +8,7 @@ using UnityEngine;
 public class BuildingGenerator : MonoBehaviour
 {
     private List<R> propertyMap = new List<R>() { R.Default, R.Temperature, R.Pressure, R.Humidity, R.Radiation, R.Temperature, R.Pressure, R.Humidity, R.Radiation };
-    private RDictionary<BuildingPrice> _prices = new RDictionary<BuildingPrice>();
+    private Dictionary<R,BuildingPrice> _prices = new Dictionary<R,BuildingPrice>();
 
 
     void Start()
@@ -25,69 +25,73 @@ public class BuildingGenerator : MonoBehaviour
     public void GetCombination( List<int> list )
     {
         //MAKE COMBINATIONS
-        List<BuildingJSON> buildings = new List<BuildingJSON>();
+        List<BuildingEffect> buildingsEffects = new List<BuildingEffect>();
+
         double count = Math.Pow( 2, list.Count );
-        BuildingJSON building;
+        BuildingEffect buildingEffect;
         for( int i = 1; i <= count - 1; i++ )
         {
             string str = Convert.ToString( i, 2 ).PadLeft( list.Count, '0' );
-            building = new BuildingJSON();
+            buildingEffect = new BuildingEffect();
             for( int j = 0; j < str.Length; j++ )
             {
                 if( str[ j ] == '1' )
                 {
                     if( list[ j ] > 4 )
                     {
-                        building.Decreases[ (int)propertyMap[ list[ j ] ] ] = -0.01;
+                        buildingEffect.Decreases[ (int)propertyMap[ list[ j ] ] ] = -0.01;
                     }
                     else
-                        building.Increases[ (int)propertyMap[ list[ j ] ] ] = 0.01;
+                        buildingEffect.Increases[ (int)propertyMap[ list[ j ] ] ] = 0.01;
                 }
             }
 
 
-            buildings.Add( building );
+            buildingsEffects.Add( buildingEffect );
         }
 
         //FILTER CONFLICTING BUILDINGS
-        List<BuildingJSON> deleteList = new List<BuildingJSON>();
-        for( int i = 0; i < buildings.Count; i++ )
+        List<BuildingEffect> deleteList = new List<BuildingEffect>();
+        for( int i = 0; i < buildingsEffects.Count; i++ )
         {
-            building = buildings[ i ];
-            for( int j = 0; j < building.Increases.Count; j++ )
+            buildingEffect = buildingsEffects[ i ];
+            for( int j = 0; j < buildingEffect.Increases.Count; j++ )
             {
-                if( building.Increases[ j ] != 0 && building.Decreases[ j ] != 0 )
-                    deleteList.Add( building );
+                if( buildingEffect.Increases[ j ] != 0 && buildingEffect.Decreases[ j ] != 0 )
+                    deleteList.Add( buildingEffect );
 
             }
         }
         for( int i = 0; i < deleteList.Count; i++ )
         {
-            buildings.Remove( deleteList[ i ] );
+            buildingsEffects.Remove( deleteList[ i ] );
         }
 
         //SET PRICE
-        for( int i = 0; i < buildings.Count; i++ )
+        List<BuildingModel> buildings = new List<BuildingModel>();
+        for( int i = 0; i < buildingsEffects.Count; i++ )
         {
+            buildings.Add( new BuildingModel() );
+
             int price = 0;
-            for( int j = 0; j < buildings[ i ].Increases.Count; j++ )
+            for( int j = 0; j < buildingsEffects[ i ].Increases.Count; j++ )
             {
-                if( buildings[ i ].Increases[ j ] != 0 )
+                if( buildingsEffects[ i ].Increases[ j ] != 0 )
                 {
-                    buildings[ i ].Effects[ j ] = buildings[ i ].Increases[ j ];
+                    buildings[ i ].Effects.Add( (R)j, buildingsEffects[ i ].Increases[ j ] );
                     price += GetPrice( j, true );
                 }
-                if( buildings[ i ].Decreases[ j ] != 0 )
+                if( buildingsEffects[ i ].Decreases[ j ] != 0 )
                 {
-                    buildings[ i ].Effects[ j ] = buildings[ i ].Decreases[ j ];
+                    buildings[ i ].Effects.Add( (R)j, buildingsEffects[ i ].Decreases[ j ] );
                     price += GetPrice( j, false );
                 }
             }
-            buildings[ i ].Increases = new List<double>();
-            buildings[ i ].Decreases = new List<double>();
+
             buildings[ i ].UnlockCost = price;
             buildings[ i ].BuildCost = price / 2;
-            buildings[ i ].Effects[ (int)R.Minerals ] = -1 * ( (double)price / 100 );
+            buildings[ i ].Effects.Add( R.Minerals, -1 * ( (double)price / 100 ) );
+            buildings[ i ].State = BuildingState.LOCKED;
         }
 
         //SORT BY PRICE
@@ -100,11 +104,10 @@ public class BuildingGenerator : MonoBehaviour
 
 
         //SAVE TO FILE
-        StringBuilder sb = new StringBuilder();
-        JsonWriter jsonWriter = new JsonWriter( sb );
-        jsonWriter.PrettyPrint = true;
-        JsonMapper.ToJson( buildings, jsonWriter );
-        File.WriteAllText( Application.persistentDataPath + "-Buildings.json", sb.ToString() );
+        File.WriteAllText( 
+            Application.persistentDataPath + "-Buildings.json",
+            JsonConvert.SerializeObject( buildings )
+            );
 
         Debug.Log( "DONE Generating Buildings" );
     }
@@ -117,7 +120,7 @@ public class BuildingGenerator : MonoBehaviour
             return _prices[ (R)property ].Decrease;
     }
 
-    private int Comparison( BuildingJSON x, BuildingJSON y )
+    private int Comparison( BuildingModel x, BuildingModel y )
     {
         if( x.UnlockCost > y.UnlockCost )
             return 1;
@@ -127,6 +130,23 @@ public class BuildingGenerator : MonoBehaviour
             return -1;
 
         return 0;
+    }
+}
+
+public class BuildingEffect
+{
+    public List<double> Increases;
+    public List<double> Decreases;
+
+    public BuildingEffect()
+    {
+        Increases = new List<double>();
+        Decreases = new List<double>();
+        for( int i = 0; i < (int)R.Count; i++ )
+        {
+            Increases.Add( 0 );
+            Decreases.Add( 0 );
+        }
     }
 }
 

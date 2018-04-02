@@ -14,7 +14,7 @@ public class HexModel
 
     public R Lens;
 
-    public RDictionary<Resource> Props = new RDictionary<Resource>();
+    public Dictionary<R,Resource> Props = new Dictionary<R,Resource>();
 
     public HexModel()
     {

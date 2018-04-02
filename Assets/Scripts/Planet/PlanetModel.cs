@@ -35,9 +35,9 @@ public class PlanetModel
         set { _Index.Value = value; }
     }
 
-    public RDictionary<PlanetProperty> Props = new RDictionary<PlanetProperty>();
+    public Dictionary<R,PlanetProperty> Props = new Dictionary<R,PlanetProperty>();
 
-    internal ReactiveCollection<PlanetElementModel> _Elements = new ReactiveCollection<PlanetElementModel>();
+    public ReactiveCollection<PlanetElementModel> _Elements = new ReactiveCollection<PlanetElementModel>();
     
     internal ReactiveProperty<double> _Distance = new ReactiveProperty<double>();
     public double Distance

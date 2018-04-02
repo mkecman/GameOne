@@ -21,8 +21,8 @@ public class LifeModel
         set { _ClimbLevel.Value = value; }
     }
 
-    public RDictionary<BellCurve> Resistance = new RDictionary<BellCurve>();
-    public RDictionary<Resource> Props = new RDictionary<Resource>();
+    public Dictionary<R,BellCurve> Resistance = new Dictionary<R, BellCurve>();
+    public Dictionary<R, Resource> Props = new Dictionary<R, Resource>();
 
     public ReactiveCollection<UnitModel> Units = new ReactiveCollection<UnitModel>();
     public ReactiveCollection<BuildingModel> Buildings = new ReactiveCollection<BuildingModel>();

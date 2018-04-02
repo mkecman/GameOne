@@ -10,9 +10,14 @@ public class GalaxyController : AbstractController
     private ReactiveCollection<GalaxyModel> _galaxies;
     private GalaxyModel _selectedGalaxy;
 
-    internal void Load( ReactiveCollection<GalaxyModel> galaxies )
+    internal void SetModel( ReactiveCollection<GalaxyModel> galaxies )
     {
         _galaxies = galaxies;
+    }
+
+    internal void Load( int index )
+    {
+        _selectedGalaxy = _galaxies[ index ];
     }
 
     internal void New()

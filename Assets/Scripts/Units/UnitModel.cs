@@ -33,13 +33,13 @@ public class UnitModel
 
     public Dictionary<int, BuildingState> Abilities = new Dictionary<int, BuildingState>();
 
-    public RDictionary<DoubleReactiveProperty> AbilitiesDelta = new RDictionary<DoubleReactiveProperty>( true );
+    public Dictionary<R, DoubleReactiveProperty> AbilitiesDelta = new Dictionary<R,DoubleReactiveProperty>();
 
-    public RDictionary<BellCurve> Resistance = new RDictionary<BellCurve>();
+    public Dictionary<R, BellCurve> Resistance = new Dictionary<R,BellCurve>();
 
-    public RDictionary<Resource> Props = new RDictionary<Resource>();
+    public Dictionary<R,Resource> Props = new Dictionary<R,Resource>();
 
-    public Vector3 Position = new Vector3();
+    internal Vector3 Position = new Vector3();
 
     public UnitModel( int x, int y, double altitude )
     {
@@ -54,7 +54,9 @@ public class UnitModel
         Resistance.Add( R.Humidity, new BellCurve( 1, 1f, 0.2f ) );
         Resistance.Add( R.Radiation, new BellCurve( 1, 0f, 0.1f ) );
 
-        AbilitiesDelta[ R.Energy ].Value = -.5;
+        AbilitiesDelta.Add( R.Energy, new DoubleReactiveProperty( -.5) );
+        AbilitiesDelta.Add( R.Science, new DoubleReactiveProperty() );
+        AbilitiesDelta.Add( R.Minerals, new DoubleReactiveProperty() );
 
         Abilities.Add( 0, BuildingState.UNLOCKED );
     }

@@ -19,9 +19,16 @@ public class UnitController : AbstractController
     private bool _isInAddMode;
     private bool _isAddingUnit;
 
-    private RDictionary<double> _updateValues = new RDictionary<double>( true );
+    private Dictionary<R,double> _updateValues = new Dictionary<R,double>();
     private HexUpdateCommand _hexUpdateCommand;
     private GameDebug _debug;
+
+    public UnitController()
+    {
+        _updateValues.Add( R.Energy, 0 );
+        _updateValues.Add( R.Science, 0 );
+        _updateValues.Add( R.Minerals, 0 );
+    }
 
     public void Load( PlanetModel planet )
     {
@@ -45,9 +52,9 @@ public class UnitController : AbstractController
         for( int i = 0; i < _life.Units.Count; i++ )
         {
             um = _life.Units[ i ];
-            um.Props[ R.Altitude ].Value = _hexMapModel.Table[ um.X, um.Y ].Props[ R.Altitude ].Value;
+            um.Props[ R.Altitude ].Value = _hexMapModel.Table[ um.X ][ um.Y ].Props[ R.Altitude ].Value; //not sure if this is needed? only if regenerating planets, but keeping units
             um.Y = um.Y; //update position vector3
-            _hexMapModel.Table[ um.X, um.Y ].Unit = um;
+            _hexMapModel.Table[ um.X ][ um.Y ].Unit = um;
         }
 
         //_life.Props[ R.Energy ]._Value.Where( _ => _ > _pay.GetAddUnitPrice() && !_isAddingUnit ).Subscribe( _ => AddRandomUnit() );
@@ -87,7 +94,7 @@ public class UnitController : AbstractController
         else
             _selectedUnit.AbilitiesDelta[ R.Science ].Value += 0.1;
 
-        UpdateHexAndHealth( _selectedUnit.Resistance, _hexMapModel.Table[ _selectedUnit.X, _selectedUnit.Y ] );
+        UpdateHexAndHealth( _selectedUnit.Resistance, _hexMapModel.Table[ _selectedUnit.X ][ _selectedUnit.Y ] );
     }
 
     private void OnClockTick( ClockTickMessage value )
@@ -99,12 +106,14 @@ public class UnitController : AbstractController
     {
         UnitModel um;
         HexModel hm;
-        _updateValues.SetAll( 0 );
+        _updateValues[ R.Energy ] = 0;
+        _updateValues[ R.Science ] = 0;
+        _updateValues[ R.Minerals ] = 0;
 
         for( int i = 0; i < _life.Units.Count; i++ )
         {
             um = _life.Units[ i ];
-            hm = _hexMapModel.Table[ um.X, um.Y ];
+            hm = _hexMapModel.Table[ um.X ][ um.Y ];
 
             /*
             um.Props[ R.Health ].Value -= 1 - hm.Props[ R.HexScore ].Value;
@@ -170,15 +179,15 @@ public class UnitController : AbstractController
 
     private void AddUnit( int x, int y )
     {
-        if( _hexMapModel.Table[ x, y ].Unit != null )
+        if( _hexMapModel.Table[ x ][ y ].Unit != null )
             return;
 
-        UnitModel um = new UnitModel( x, y, _hexMapModel.Table[ x, y ].Props[ R.Altitude ].Value );
-        _hexMapModel.Table[ x, y ].Unit = um;
+        UnitModel um = new UnitModel( x, y, _hexMapModel.Table[ x ][ y ].Props[ R.Altitude ].Value );
+        _hexMapModel.Table[ x ][ y ].Unit = um;
         _life.Units.Add( um );
         _life.Props[ R.Population ].Value++;
         SelectUnit( x, y );
-        UpdateHexAndHealth( _selectedUnit.Resistance, _hexMapModel.Table[ x, y ] );
+        UpdateHexAndHealth( _selectedUnit.Resistance, _hexMapModel.Table[ x ][ y ] );
     }
 
     private void RemoveUnit( UnitModel um )
@@ -187,29 +196,29 @@ public class UnitController : AbstractController
             DeselectUnit();
 
         _life.Units.Remove( um );
-        _hexMapModel.Table[ um.X, um.Y ].Unit = null;
+        _hexMapModel.Table[ um.X ][ um.Y ].Unit = null;
         _life.Props[ R.Population ].Value--;
     }
 
     private void MoveUnit( int xTo, int yTo )
     {
-        HexModel hexModel = _hexMapModel.Table[ _selectedUnit.X, _selectedUnit.Y ];
+        HexModel hexModel = _hexMapModel.Table[ _selectedUnit.X ][ _selectedUnit.Y ];
         if( hexModel.Building != null )
             hexModel.Building.State = BuildingState.INACTIVE;
 
         hexModel.Unit = null;
         _hexUpdateCommand.Execute( _life.Resistance, hexModel );
         
-        _hexMapModel.Table[ xTo, yTo ].Unit = _selectedUnit;
+        _hexMapModel.Table[ xTo ][ yTo ].Unit = _selectedUnit;
 
-        _selectedUnit.Props[R.Altitude].Value = _hexMapModel.Table[ xTo, yTo ].Props[ R.Altitude].Value;
+        _selectedUnit.Props[R.Altitude].Value = _hexMapModel.Table[ xTo ][ yTo ].Props[ R.Altitude].Value;
         _selectedUnit.X = xTo;
         _selectedUnit.Y = yTo;
 
-        UpdateHexAndHealth( _selectedUnit.Resistance, _hexMapModel.Table[ xTo, yTo ] );
+        UpdateHexAndHealth( _selectedUnit.Resistance, _hexMapModel.Table[ xTo ][ yTo ] );
     }
     
-    private void UpdateHexAndHealth( RDictionary<BellCurve> resistance, HexModel hexModel )
+    private void UpdateHexAndHealth( Dictionary<R,BellCurve> resistance, HexModel hexModel )
     {
         _hexUpdateCommand.Execute( resistance, hexModel );
         _selectedUnit.Props[ R.Health ].Value = hexModel.Props[ R.HexScore ].Value;
@@ -222,7 +231,7 @@ public class UnitController : AbstractController
 
         if( _isInAddMode )
         {
-            if( _hexMapModel.Table[ x, y ].isMarked.Value == true )
+            if( _hexMapModel.Table[ x ][ y ].isMarked.Value == true )
             {
                 if( _pay.BuyAddUnit() )
                 {
@@ -233,7 +242,7 @@ public class UnitController : AbstractController
             return;
         }
 
-        if( _selectedUnit != null && _hexMapModel.Table[ x, y ].isMarked.Value == true )
+        if( _selectedUnit != null && _hexMapModel.Table[ x ][ y ].isMarked.Value == true )
         {
             if( _pay.BuyMoveUnit() )
             {
@@ -243,7 +252,7 @@ public class UnitController : AbstractController
         }
 
         //Unit is in the clicked tile
-        if( _hexMapModel.Table[ x, y ].Unit != null )
+        if( _hexMapModel.Table[ x ][ y ].Unit != null )
         {
             SelectUnit( x, y );
         }
@@ -269,9 +278,9 @@ public class UnitController : AbstractController
     private void SelectUnit( int x, int y )
     {
         DeselectUnit();
-        _selectedUnit = _hexMapModel.Table[ x, y ].Unit;
+        _selectedUnit = _hexMapModel.Table[ x ][ y ].Unit;
         _selectedUnit.isSelected.Value = true;
-        _hexMapModel.Table[ x, y ].isExplored.Value = true;
+        _hexMapModel.Table[ x ][ y ].isExplored.Value = true;
         MarkNeighborHexes( _selectedUnit );
         GameModel.Set<UnitModel>( _selectedUnit );
     }
@@ -305,12 +314,12 @@ public class UnitController : AbstractController
     {
         if( x >= 0 && y >= 0 && x < _hexMapModel.Width && y < _hexMapModel.Height )
         {
-            _hexMapModel.Table[ x, y ].isExplored.Value = true;
-            if( _hexMapModel.Table[ x, y ].Unit == null &&
-                Math.Abs( _hexMapModel.Table[ x, y ].Props[ R.Altitude ].Value - unit.Props[ R.Altitude ].Value ) <= _life.ClimbLevel ) //check if it can climb
+            _hexMapModel.Table[ x ][ y ].isExplored.Value = true;
+            if( _hexMapModel.Table[ x ][ y ].Unit == null &&
+                Math.Abs( _hexMapModel.Table[ x ][ y ].Props[ R.Altitude ].Value - unit.Props[ R.Altitude ].Value ) <= _life.ClimbLevel ) //check if it can climb
             {
-                _hexMapModel.Table[ x, y ].isMarked.Value = true;
-                _markedHexes.Add( _hexMapModel.Table[ x, y ] );
+                _hexMapModel.Table[ x ][ y ].isMarked.Value = true;
+                _markedHexes.Add( _hexMapModel.Table[ x ][ y ] );
             }
         }
     }

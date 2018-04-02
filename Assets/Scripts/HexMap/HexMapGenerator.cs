@@ -62,7 +62,7 @@ public class HexMapGenerator
                     Y = y,
                     Lens = m.Lens
                 };
-                _map.Table[ x, y ] = hex;
+                _map.Table[ x ][ y ] = hex;
 
                 // WRAP ON BOTH AXIS
                 // Noise range
@@ -102,7 +102,7 @@ public class HexMapGenerator
         {
             for( int y = 0; y < _map.Height; y++ )
             {
-                hex = _map.Table[ x, y ];
+                hex = _map.Table[ x ][ y ];
 
                 SetHex( hex, R.Altitude );
                 if( hex.Props[R.Altitude].Value < _planetModel.LiquidLevel )

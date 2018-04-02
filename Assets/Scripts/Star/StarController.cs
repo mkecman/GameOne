@@ -21,9 +21,14 @@ public class StarController : AbstractController
         _elementsConfig = Config.Get<ElementConfig>();
     }
 
-    internal void Load( ReactiveCollection<StarModel> stars )
+    internal void SetModel( ReactiveCollection<StarModel> stars )
     {
         _stars = stars;
+    }
+
+    internal void Load( int index )
+    {
+        _selectedStar = _stars[ index ];
     }
 
     internal void New( int type, int index )

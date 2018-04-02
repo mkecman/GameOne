@@ -20,6 +20,6 @@ public class GalaxyModel
         set { _CreatedStars.Value = value; }
     }
 
-    internal ReactiveCollection<StarModel> _Stars = new ReactiveCollection<StarModel>();
+    public ReactiveCollection<StarModel> _Stars = new ReactiveCollection<StarModel>();
 }
 

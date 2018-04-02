@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using UniRx;
+using System.Collections.Generic;
 
 public class HUDPanelView : GameView
 {
@@ -13,8 +14,8 @@ public class HUDPanelView : GameView
     private LifeModel _life;
     private double _lastEnergy;
 
-    private RDictionary<UIPropertyView> Props = new RDictionary<UIPropertyView>();
-    private RDictionary<double> LastProps = new RDictionary<double>();
+    private Dictionary<R,UIPropertyView> Props = new Dictionary<R,UIPropertyView>();
+    private Dictionary<R,double> LastProps = new Dictionary<R,double>();
 
     // Use this for initialization
     void Start()

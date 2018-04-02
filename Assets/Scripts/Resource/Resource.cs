@@ -33,7 +33,7 @@ public class Resource
 
     [SerializeField]
     internal ReactiveProperty<Color> _Color = new ReactiveProperty<Color>();
-    public Color Color
+    internal Color Color
     {
         get { return _Color.Value; }
         set { _Color.Value = value; }

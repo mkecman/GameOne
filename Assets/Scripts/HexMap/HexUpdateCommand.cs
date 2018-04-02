@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 public class HexUpdateCommand
 {
@@ -11,7 +12,7 @@ public class HexUpdateCommand
 
     private BellCurve altitudeBellCurve = new BellCurve( 1, 0.5f, 0.25f );
 
-    public void Execute( RDictionary<BellCurve> Resistance, HexModel hex )
+    public void Execute( Dictionary<R,BellCurve> Resistance, HexModel hex )
     {
         temperatureBonus = Resistance[ R.Temperature ].GetValueAt( hex.Props[ R.Temperature ].Value );
         pressureBonus = Resistance[ R.Pressure ].GetValueAt( hex.Props[ R.Pressure ].Value );

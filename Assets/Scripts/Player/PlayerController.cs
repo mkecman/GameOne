@@ -4,7 +4,7 @@ using System;
 
 public class PlayerController : AbstractController
 {
-    public PlayerModel Model { get { return _model; } }
+    public PlayerModel Model { get { return _model; } set { _model = value; } }
 
     private PlayerModel _model;
 

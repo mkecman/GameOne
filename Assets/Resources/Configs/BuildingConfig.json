@@ -1,1925 +1,1261 @@
 {
-"BuildingList":
+"Buildings":
 [
-    {
-        "Index" : 0,
-        "Name"  : "Building 0",
-        "UnlockCost" : 60,
-        "BuildCost"  : 30,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            -0.01,
-            0.0,
-            0.0,
-            -0.6,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 1,
-        "Name"  : "Building 1",
-        "UnlockCost" : 70,
-        "BuildCost"  : 35,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            -0.01,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            -0.7,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 2,
-        "Name"  : "Building 2",
-        "UnlockCost" : 80,
-        "BuildCost"  : 40,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.01,
-            0.0,
-            0.0,
-            0.0,
-            -0.8,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 3,
-        "Name"  : "Building 3",
-        "UnlockCost" : 100,
-        "BuildCost"  : 50,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            -1.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 4,
-        "Name"  : "Building 4",
-        "UnlockCost" : 120,
-        "BuildCost"  : 60,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.01,
-            0.0,
-            0.0,
-            -1.2,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 5,
-        "Name"  : "Building 5",
-        "UnlockCost" : 130,
-        "BuildCost"  : 65,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            -0.01,
-            0.0,
-            -0.01,
-            0.0,
-            0.0,
-            -1.3,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 6,
-        "Name"  : "Building 6",
-        "UnlockCost" : 140,
-        "BuildCost"  : 70,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.01,
-            -0.01,
-            0.0,
-            0.0,
-            -1.4,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 7,
-        "Name"  : "Building 7",
-        "UnlockCost" : 150,
-        "BuildCost"  : 75,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            -0.01,
-            0.01,
-            0.0,
-            0.0,
-            0.0,
-            -1.5,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 8,
-        "Name"  : "Building 8",
-        "UnlockCost" : 150,
-        "BuildCost"  : 75,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.01,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            -1.5,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 9,
-        "Name"  : "Building 9",
-        "UnlockCost" : 160,
-        "BuildCost"  : 80,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.0,
-            0.0,
-            -0.01,
-            0.0,
-            0.0,
-            -1.6,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 10,
-        "Name"  : "Building 10",
-        "UnlockCost" : 160,
-        "BuildCost"  : 80,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            -0.01,
-            0.0,
-            0.0,
-            0.0,
-            -1.6,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 11,
-        "Name"  : "Building 11",
-        "UnlockCost" : 170,
-        "BuildCost"  : 85,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            -0.01,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            -1.7,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 12,
-        "Name"  : "Building 12",
-        "UnlockCost" : 180,
-        "BuildCost"  : 90,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.0,
-            0.01,
-            0.0,
-            0.0,
-            0.0,
-            -1.8,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 13,
-        "Name"  : "Building 13",
-        "UnlockCost" : 190,
-        "BuildCost"  : 95,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            -0.01,
-            0.0,
-            0.01,
-            0.0,
-            0.0,
-            -1.9,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 14,
-        "Name"  : "Building 14",
-        "UnlockCost" : 200,
-        "BuildCost"  : 100,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            -2.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 15,
-        "Name"  : "Building 15",
-        "UnlockCost" : 200,
-        "BuildCost"  : 100,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.01,
-            0.01,
-            0.0,
-            0.0,
-            -2.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 16,
-        "Name"  : "Building 16",
-        "UnlockCost" : 210,
-        "BuildCost"  : 105,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            -0.01,
-            0.01,
-            -0.01,
-            0.0,
-            0.0,
-            -2.1,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 17,
-        "Name"  : "Building 17",
-        "UnlockCost" : 210,
-        "BuildCost"  : 105,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.01,
-            0.0,
-            -0.01,
-            0.0,
-            0.0,
-            -2.1,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 18,
-        "Name"  : "Building 18",
-        "UnlockCost" : 220,
-        "BuildCost"  : 110,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.0,
-            0.0,
-            0.01,
-            0.0,
-            0.0,
-            -2.2,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 19,
-        "Name"  : "Building 19",
-        "UnlockCost" : 220,
-        "BuildCost"  : 110,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            -0.01,
-            -0.01,
-            0.0,
-            0.0,
-            -2.2,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 20,
-        "Name"  : "Building 20",
-        "UnlockCost" : 230,
-        "BuildCost"  : 115,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.01,
-            0.01,
-            0.0,
-            0.0,
-            0.0,
-            -2.3,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 21,
-        "Name"  : "Building 21",
-        "UnlockCost" : 230,
-        "BuildCost"  : 115,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            -0.01,
-            0.0,
-            -0.01,
-            0.0,
-            0.0,
-            -2.3,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 22,
-        "Name"  : "Building 22",
-        "UnlockCost" : 230,
-        "BuildCost"  : 115,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            -0.01,
-            -0.01,
-            0.0,
-            0.0,
-            0.0,
-            -2.3,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 23,
-        "Name"  : "Building 23",
-        "UnlockCost" : 240,
-        "BuildCost"  : 120,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.0,
-            0.01,
-            -0.01,
-            0.0,
-            0.0,
-            -2.4,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 24,
-        "Name"  : "Building 24",
-        "UnlockCost" : 250,
-        "BuildCost"  : 125,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.01,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            -2.5,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 25,
-        "Name"  : "Building 25",
-        "UnlockCost" : 250,
-        "BuildCost"  : 125,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            -0.01,
-            0.01,
-            0.0,
-            0.0,
-            0.0,
-            -2.5,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 26,
-        "Name"  : "Building 26",
-        "UnlockCost" : 260,
-        "BuildCost"  : 130,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.0,
-            0.0,
-            -0.01,
-            0.0,
-            0.0,
-            -2.6,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 27,
-        "Name"  : "Building 27",
-        "UnlockCost" : 260,
-        "BuildCost"  : 130,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.0,
-            -0.01,
-            0.0,
-            0.0,
-            0.0,
-            -2.6,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 28,
-        "Name"  : "Building 28",
-        "UnlockCost" : 270,
-        "BuildCost"  : 135,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.01,
-            0.0,
-            0.01,
-            0.0,
-            0.0,
-            -2.7,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 29,
-        "Name"  : "Building 29",
-        "UnlockCost" : 270,
-        "BuildCost"  : 135,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            -0.01,
-            0.01,
-            0.01,
-            0.0,
-            0.0,
-            -2.7,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 30,
-        "Name"  : "Building 30",
-        "UnlockCost" : 270,
-        "BuildCost"  : 135,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            -0.01,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            -2.7,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 31,
-        "Name"  : "Building 31",
-        "UnlockCost" : 280,
-        "BuildCost"  : 140,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.0,
-            0.01,
-            0.0,
-            0.0,
-            0.0,
-            -2.8,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 32,
-        "Name"  : "Building 32",
-        "UnlockCost" : 280,
-        "BuildCost"  : 140,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            -0.01,
-            0.01,
-            0.0,
-            0.0,
-            -2.8,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 33,
-        "Name"  : "Building 33",
-        "UnlockCost" : 290,
-        "BuildCost"  : 145,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            -0.01,
-            -0.01,
-            -0.01,
-            0.0,
-            0.0,
-            -2.9,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 34,
-        "Name"  : "Building 34",
-        "UnlockCost" : 290,
-        "BuildCost"  : 145,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            -0.01,
-            0.0,
-            0.01,
-            0.0,
-            0.0,
-            -2.9,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 35,
-        "Name"  : "Building 35",
-        "UnlockCost" : 290,
-        "BuildCost"  : 145,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.01,
-            0.01,
-            -0.01,
-            0.0,
-            0.0,
-            -2.9,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 36,
-        "Name"  : "Building 36",
-        "UnlockCost" : 300,
-        "BuildCost"  : 150,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.0,
-            0.01,
-            0.01,
-            0.0,
-            0.0,
-            -3.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 37,
-        "Name"  : "Building 37",
-        "UnlockCost" : 310,
-        "BuildCost"  : 155,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.01,
-            -0.01,
-            0.0,
-            0.0,
-            0.0,
-            -3.1,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 38,
-        "Name"  : "Building 38",
-        "UnlockCost" : 310,
-        "BuildCost"  : 155,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            -0.01,
-            0.01,
-            -0.01,
-            0.0,
-            0.0,
-            -3.1,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 39,
-        "Name"  : "Building 39",
-        "UnlockCost" : 310,
-        "BuildCost"  : 155,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.01,
-            0.0,
-            -0.01,
-            0.0,
-            0.0,
-            -3.1,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 40,
-        "Name"  : "Building 40",
-        "UnlockCost" : 320,
-        "BuildCost"  : 160,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.0,
-            -0.01,
-            -0.01,
-            0.0,
-            0.0,
-            -3.2,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 41,
-        "Name"  : "Building 41",
-        "UnlockCost" : 320,
-        "BuildCost"  : 160,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.0,
-            0.0,
-            0.01,
-            0.0,
-            0.0,
-            -3.2,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 42,
-        "Name"  : "Building 42",
-        "UnlockCost" : 330,
-        "BuildCost"  : 165,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            -0.01,
-            0.0,
-            -0.01,
-            0.0,
-            0.0,
-            -3.3,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 43,
-        "Name"  : "Building 43",
-        "UnlockCost" : 330,
-        "BuildCost"  : 165,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            -0.01,
-            -0.01,
-            0.0,
-            0.0,
-            0.0,
-            -3.3,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 44,
-        "Name"  : "Building 44",
-        "UnlockCost" : 330,
-        "BuildCost"  : 165,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.01,
-            0.01,
-            0.0,
-            0.0,
-            0.0,
-            -3.3,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 45,
-        "Name"  : "Building 45",
-        "UnlockCost" : 340,
-        "BuildCost"  : 170,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.0,
-            0.01,
-            -0.01,
-            0.0,
-            0.0,
-            -3.4,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 46,
-        "Name"  : "Building 46",
-        "UnlockCost" : 350,
-        "BuildCost"  : 175,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.01,
-            0.01,
-            0.01,
-            0.0,
-            0.0,
-            -3.5,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 47,
-        "Name"  : "Building 47",
-        "UnlockCost" : 350,
-        "BuildCost"  : 175,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.01,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            -3.5,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 48,
-        "Name"  : "Building 48",
-        "UnlockCost" : 350,
-        "BuildCost"  : 175,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            -0.01,
-            0.01,
-            0.0,
-            0.0,
-            0.0,
-            -3.5,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 49,
-        "Name"  : "Building 49",
-        "UnlockCost" : 350,
-        "BuildCost"  : 175,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            -0.01,
-            -0.01,
-            0.01,
-            0.0,
-            0.0,
-            -3.5,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 50,
-        "Name"  : "Building 50",
-        "UnlockCost" : 360,
-        "BuildCost"  : 180,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.0,
-            -0.01,
-            0.0,
-            0.0,
-            0.0,
-            -3.6,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 51,
-        "Name"  : "Building 51",
-        "UnlockCost" : 370,
-        "BuildCost"  : 185,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            -0.01,
-            0.01,
-            0.01,
-            0.0,
-            0.0,
-            -3.7,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 52,
-        "Name"  : "Building 52",
-        "UnlockCost" : 370,
-        "BuildCost"  : 185,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.01,
-            0.0,
-            0.01,
-            0.0,
-            0.0,
-            -3.7,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 53,
-        "Name"  : "Building 53",
-        "UnlockCost" : 370,
-        "BuildCost"  : 185,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.01,
-            -0.01,
-            -0.01,
-            0.0,
-            0.0,
-            -3.7,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 54,
-        "Name"  : "Building 54",
-        "UnlockCost" : 380,
-        "BuildCost"  : 190,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.0,
-            -0.01,
-            0.01,
-            0.0,
-            0.0,
-            -3.8,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 55,
-        "Name"  : "Building 55",
-        "UnlockCost" : 390,
-        "BuildCost"  : 195,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            -0.01,
-            -0.01,
-            -0.01,
-            0.0,
-            0.0,
-            -3.9,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 56,
-        "Name"  : "Building 56",
-        "UnlockCost" : 390,
-        "BuildCost"  : 195,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            -0.01,
-            0.0,
-            0.01,
-            0.0,
-            0.0,
-            -3.9,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 57,
-        "Name"  : "Building 57",
-        "UnlockCost" : 390,
-        "BuildCost"  : 195,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.01,
-            0.01,
-            -0.01,
-            0.0,
-            0.0,
-            -3.9,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 58,
-        "Name"  : "Building 58",
-        "UnlockCost" : 400,
-        "BuildCost"  : 200,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.0,
-            0.01,
-            0.01,
-            0.0,
-            0.0,
-            -4.0,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 59,
-        "Name"  : "Building 59",
-        "UnlockCost" : 410,
-        "BuildCost"  : 205,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.01,
-            -0.01,
-            0.0,
-            0.0,
-            0.0,
-            -4.1,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 60,
-        "Name"  : "Building 60",
-        "UnlockCost" : 410,
-        "BuildCost"  : 205,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            -0.01,
-            0.01,
-            -0.01,
-            0.0,
-            0.0,
-            -4.1,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 61,
-        "Name"  : "Building 61",
-        "UnlockCost" : 410,
-        "BuildCost"  : 205,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.01,
-            0.0,
-            -0.01,
-            0.0,
-            0.0,
-            -4.1,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 62,
-        "Name"  : "Building 62",
-        "UnlockCost" : 420,
-        "BuildCost"  : 210,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.0,
-            -0.01,
-            -0.01,
-            0.0,
-            0.0,
-            -4.2,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 63,
-        "Name"  : "Building 63",
-        "UnlockCost" : 430,
-        "BuildCost"  : 215,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            -0.01,
-            -0.01,
-            0.0,
-            0.0,
-            0.0,
-            -4.3,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 64,
-        "Name"  : "Building 64",
-        "UnlockCost" : 430,
-        "BuildCost"  : 215,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.0,
-            0.01,
-            -0.01,
-            0.01,
-            0.0,
-            0.0,
-            -4.3,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 65,
-        "Name"  : "Building 65",
-        "UnlockCost" : 430,
-        "BuildCost"  : 215,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.01,
-            0.01,
-            0.0,
-            0.0,
-            0.0,
-            -4.3,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 66,
-        "Name"  : "Building 66",
-        "UnlockCost" : 450,
-        "BuildCost"  : 225,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.01,
-            0.01,
-            0.01,
-            0.0,
-            0.0,
-            -4.5,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 67,
-        "Name"  : "Building 67",
-        "UnlockCost" : 450,
-        "BuildCost"  : 225,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            -0.01,
-            -0.01,
-            0.01,
-            0.0,
-            0.0,
-            -4.5,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 68,
-        "Name"  : "Building 68",
-        "UnlockCost" : 470,
-        "BuildCost"  : 235,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.01,
-            0.0,
-            0.01,
-            0.0,
-            0.0,
-            -4.7,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 69,
-        "Name"  : "Building 69",
-        "UnlockCost" : 470,
-        "BuildCost"  : 235,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.01,
-            -0.01,
-            -0.01,
-            0.0,
-            0.0,
-            -4.7,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 70,
-        "Name"  : "Building 70",
-        "UnlockCost" : 470,
-        "BuildCost"  : 235,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            -0.01,
-            0.01,
-            0.01,
-            0.0,
-            0.0,
-            -4.7,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 71,
-        "Name"  : "Building 71",
-        "UnlockCost" : 480,
-        "BuildCost"  : 240,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.0,
-            -0.01,
-            0.01,
-            0.0,
-            0.0,
-            -4.8,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 72,
-        "Name"  : "Building 72",
-        "UnlockCost" : 490,
-        "BuildCost"  : 245,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            -0.01,
-            -0.01,
-            -0.01,
-            0.0,
-            0.0,
-            -4.9,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 73,
-        "Name"  : "Building 73",
-        "UnlockCost" : 490,
-        "BuildCost"  : 245,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.01,
-            0.01,
-            -0.01,
-            0.0,
-            0.0,
-            -4.9,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 74,
-        "Name"  : "Building 74",
-        "UnlockCost" : 510,
-        "BuildCost"  : 255,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.01,
-            -0.01,
-            0.0,
-            0.0,
-            0.0,
-            -5.1,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 75,
-        "Name"  : "Building 75",
-        "UnlockCost" : 530,
-        "BuildCost"  : 265,
-        "Effects"    : [
-            0.0,
-            0.0,
-            0.01,
-            0.01,
-            -0.01,
-            0.01,
-            0.0,
-            0.0,
-            -5.3,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 76,
-        "Name"  : "Building 76",
-        "UnlockCost" : 550,
-        "BuildCost"  : 275,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.01,
-            0.01,
-            0.01,
-            0.0,
-            0.0,
-            -5.5,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 77,
-        "Name"  : "Building 77",
-        "UnlockCost" : 550,
-        "BuildCost"  : 275,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            -0.01,
-            -0.01,
-            0.01,
-            0.0,
-            0.0,
-            -5.5,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 78,
-        "Name"  : "Building 78",
-        "UnlockCost" : 570,
-        "BuildCost"  : 285,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.01,
-            -0.01,
-            -0.01,
-            0.0,
-            0.0,
-            -5.7,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    },
-    {
-        "Index" : 79,
-        "Name"  : "Building 79",
-        "UnlockCost" : 630,
-        "BuildCost"  : 315,
-        "Effects"    : [
-            0.0,
-            0.0,
-            -0.01,
-            0.01,
-            -0.01,
-            0.01,
-            0.0,
-            0.0,
-            -6.3,
-            0.0,
-            0.0,
-            0.0
-        ],
-        "Increases"  : [
-        ],
-        "Decreases"  : [
-        ]
-    }
+  {
+    "Index": 0,
+    "Name": "Building 0",
+    "UnlockCost": 60,
+    "BuildCost": 30,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Radiation": -0.01,
+      "Minerals": -0.6
+    },
+    "State": 0
+  },
+  {
+    "Index": 1,
+    "Name": "Building 1",
+    "UnlockCost": 70,
+    "BuildCost": 35,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Pressure": -0.01,
+      "Minerals": -0.7
+    },
+    "State": 0
+  },
+  {
+    "Index": 2,
+    "Name": "Building 2",
+    "UnlockCost": 80,
+    "BuildCost": 40,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Humidity": 0.01,
+      "Minerals": -0.8
+    },
+    "State": 0
+  },
+  {
+    "Index": 3,
+    "Name": "Building 3",
+    "UnlockCost": 100,
+    "BuildCost": 50,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Minerals": -1.0
+    },
+    "State": 0
+  },
+  {
+    "Index": 4,
+    "Name": "Building 4",
+    "UnlockCost": 120,
+    "BuildCost": 60,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Radiation": 0.01,
+      "Minerals": -1.2
+    },
+    "State": 0
+  },
+  {
+    "Index": 5,
+    "Name": "Building 5",
+    "UnlockCost": 130,
+    "BuildCost": 65,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Pressure": -0.01,
+      "Radiation": -0.01,
+      "Minerals": -1.3
+    },
+    "State": 0
+  },
+  {
+    "Index": 6,
+    "Name": "Building 6",
+    "UnlockCost": 140,
+    "BuildCost": 70,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Humidity": 0.01,
+      "Radiation": -0.01,
+      "Minerals": -1.4
+    },
+    "State": 0
+  },
+  {
+    "Index": 7,
+    "Name": "Building 7",
+    "UnlockCost": 150,
+    "BuildCost": 75,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Pressure": -0.01,
+      "Humidity": 0.01,
+      "Minerals": -1.5
+    },
+    "State": 0
+  },
+  {
+    "Index": 8,
+    "Name": "Building 8",
+    "UnlockCost": 150,
+    "BuildCost": 75,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Pressure": 0.01,
+      "Minerals": -1.5
+    },
+    "State": 0
+  },
+  {
+    "Index": 9,
+    "Name": "Building 9",
+    "UnlockCost": 160,
+    "BuildCost": 80,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Radiation": -0.01,
+      "Minerals": -1.6
+    },
+    "State": 0
+  },
+  {
+    "Index": 10,
+    "Name": "Building 10",
+    "UnlockCost": 160,
+    "BuildCost": 80,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Humidity": -0.01,
+      "Minerals": -1.6
+    },
+    "State": 0
+  },
+  {
+    "Index": 11,
+    "Name": "Building 11",
+    "UnlockCost": 170,
+    "BuildCost": 85,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Pressure": -0.01,
+      "Minerals": -1.7
+    },
+    "State": 0
+  },
+  {
+    "Index": 12,
+    "Name": "Building 12",
+    "UnlockCost": 180,
+    "BuildCost": 90,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Humidity": 0.01,
+      "Minerals": -1.8
+    },
+    "State": 0
+  },
+  {
+    "Index": 13,
+    "Name": "Building 13",
+    "UnlockCost": 190,
+    "BuildCost": 95,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Pressure": -0.01,
+      "Radiation": 0.01,
+      "Minerals": -1.9
+    },
+    "State": 0
+  },
+  {
+    "Index": 14,
+    "Name": "Building 14",
+    "UnlockCost": 200,
+    "BuildCost": 100,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Minerals": -2.0
+    },
+    "State": 0
+  },
+  {
+    "Index": 15,
+    "Name": "Building 15",
+    "UnlockCost": 200,
+    "BuildCost": 100,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Humidity": 0.01,
+      "Radiation": 0.01,
+      "Minerals": -2.0
+    },
+    "State": 0
+  },
+  {
+    "Index": 16,
+    "Name": "Building 16",
+    "UnlockCost": 210,
+    "BuildCost": 105,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Pressure": -0.01,
+      "Humidity": 0.01,
+      "Radiation": -0.01,
+      "Minerals": -2.1
+    },
+    "State": 0
+  },
+  {
+    "Index": 17,
+    "Name": "Building 17",
+    "UnlockCost": 210,
+    "BuildCost": 105,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Pressure": 0.01,
+      "Radiation": -0.01,
+      "Minerals": -2.1
+    },
+    "State": 0
+  },
+  {
+    "Index": 18,
+    "Name": "Building 18",
+    "UnlockCost": 220,
+    "BuildCost": 110,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Radiation": 0.01,
+      "Minerals": -2.2
+    },
+    "State": 0
+  },
+  {
+    "Index": 19,
+    "Name": "Building 19",
+    "UnlockCost": 220,
+    "BuildCost": 110,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Humidity": -0.01,
+      "Radiation": -0.01,
+      "Minerals": -2.2
+    },
+    "State": 0
+  },
+  {
+    "Index": 20,
+    "Name": "Building 20",
+    "UnlockCost": 230,
+    "BuildCost": 115,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Pressure": 0.01,
+      "Humidity": 0.01,
+      "Minerals": -2.3
+    },
+    "State": 0
+  },
+  {
+    "Index": 21,
+    "Name": "Building 21",
+    "UnlockCost": 230,
+    "BuildCost": 115,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Pressure": -0.01,
+      "Radiation": -0.01,
+      "Minerals": -2.3
+    },
+    "State": 0
+  },
+  {
+    "Index": 22,
+    "Name": "Building 22",
+    "UnlockCost": 230,
+    "BuildCost": 115,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Pressure": -0.01,
+      "Humidity": -0.01,
+      "Minerals": -2.3
+    },
+    "State": 0
+  },
+  {
+    "Index": 23,
+    "Name": "Building 23",
+    "UnlockCost": 240,
+    "BuildCost": 120,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Humidity": 0.01,
+      "Radiation": -0.01,
+      "Minerals": -2.4
+    },
+    "State": 0
+  },
+  {
+    "Index": 24,
+    "Name": "Building 24",
+    "UnlockCost": 250,
+    "BuildCost": 125,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Pressure": 0.01,
+      "Minerals": -2.5
+    },
+    "State": 0
+  },
+  {
+    "Index": 25,
+    "Name": "Building 25",
+    "UnlockCost": 250,
+    "BuildCost": 125,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Pressure": -0.01,
+      "Humidity": 0.01,
+      "Minerals": -2.5
+    },
+    "State": 0
+  },
+  {
+    "Index": 26,
+    "Name": "Building 26",
+    "UnlockCost": 260,
+    "BuildCost": 130,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Radiation": -0.01,
+      "Minerals": -2.6
+    },
+    "State": 0
+  },
+  {
+    "Index": 27,
+    "Name": "Building 27",
+    "UnlockCost": 260,
+    "BuildCost": 130,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Humidity": -0.01,
+      "Minerals": -2.6
+    },
+    "State": 0
+  },
+  {
+    "Index": 28,
+    "Name": "Building 28",
+    "UnlockCost": 270,
+    "BuildCost": 135,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Pressure": 0.01,
+      "Radiation": 0.01,
+      "Minerals": -2.7
+    },
+    "State": 0
+  },
+  {
+    "Index": 29,
+    "Name": "Building 29",
+    "UnlockCost": 270,
+    "BuildCost": 135,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Pressure": -0.01,
+      "Humidity": 0.01,
+      "Radiation": 0.01,
+      "Minerals": -2.7
+    },
+    "State": 0
+  },
+  {
+    "Index": 30,
+    "Name": "Building 30",
+    "UnlockCost": 270,
+    "BuildCost": 135,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Pressure": -0.01,
+      "Minerals": -2.7
+    },
+    "State": 0
+  },
+  {
+    "Index": 31,
+    "Name": "Building 31",
+    "UnlockCost": 280,
+    "BuildCost": 140,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Humidity": 0.01,
+      "Minerals": -2.8
+    },
+    "State": 0
+  },
+  {
+    "Index": 32,
+    "Name": "Building 32",
+    "UnlockCost": 280,
+    "BuildCost": 140,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Humidity": -0.01,
+      "Radiation": 0.01,
+      "Minerals": -2.8
+    },
+    "State": 0
+  },
+  {
+    "Index": 33,
+    "Name": "Building 33",
+    "UnlockCost": 290,
+    "BuildCost": 145,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Pressure": -0.01,
+      "Humidity": -0.01,
+      "Radiation": -0.01,
+      "Minerals": -2.9
+    },
+    "State": 0
+  },
+  {
+    "Index": 34,
+    "Name": "Building 34",
+    "UnlockCost": 290,
+    "BuildCost": 145,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Pressure": -0.01,
+      "Radiation": 0.01,
+      "Minerals": -2.9
+    },
+    "State": 0
+  },
+  {
+    "Index": 35,
+    "Name": "Building 35",
+    "UnlockCost": 290,
+    "BuildCost": 145,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Pressure": 0.01,
+      "Humidity": 0.01,
+      "Radiation": -0.01,
+      "Minerals": -2.9
+    },
+    "State": 0
+  },
+  {
+    "Index": 36,
+    "Name": "Building 36",
+    "UnlockCost": 300,
+    "BuildCost": 150,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Humidity": 0.01,
+      "Radiation": 0.01,
+      "Minerals": -3.0
+    },
+    "State": 0
+  },
+  {
+    "Index": 37,
+    "Name": "Building 37",
+    "UnlockCost": 310,
+    "BuildCost": 155,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Pressure": 0.01,
+      "Humidity": -0.01,
+      "Minerals": -3.1
+    },
+    "State": 0
+  },
+  {
+    "Index": 38,
+    "Name": "Building 38",
+    "UnlockCost": 310,
+    "BuildCost": 155,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Pressure": -0.01,
+      "Humidity": 0.01,
+      "Radiation": -0.01,
+      "Minerals": -3.1
+    },
+    "State": 0
+  },
+  {
+    "Index": 39,
+    "Name": "Building 39",
+    "UnlockCost": 310,
+    "BuildCost": 155,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Pressure": 0.01,
+      "Radiation": -0.01,
+      "Minerals": -3.1
+    },
+    "State": 0
+  },
+  {
+    "Index": 40,
+    "Name": "Building 40",
+    "UnlockCost": 320,
+    "BuildCost": 160,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Humidity": -0.01,
+      "Radiation": -0.01,
+      "Minerals": -3.2
+    },
+    "State": 0
+  },
+  {
+    "Index": 41,
+    "Name": "Building 41",
+    "UnlockCost": 320,
+    "BuildCost": 160,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Radiation": 0.01,
+      "Minerals": -3.2
+    },
+    "State": 0
+  },
+  {
+    "Index": 42,
+    "Name": "Building 42",
+    "UnlockCost": 330,
+    "BuildCost": 165,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Pressure": -0.01,
+      "Radiation": -0.01,
+      "Minerals": -3.3
+    },
+    "State": 0
+  },
+  {
+    "Index": 43,
+    "Name": "Building 43",
+    "UnlockCost": 330,
+    "BuildCost": 165,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Pressure": -0.01,
+      "Humidity": -0.01,
+      "Minerals": -3.3
+    },
+    "State": 0
+  },
+  {
+    "Index": 44,
+    "Name": "Building 44",
+    "UnlockCost": 330,
+    "BuildCost": 165,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Pressure": 0.01,
+      "Humidity": 0.01,
+      "Minerals": -3.3
+    },
+    "State": 0
+  },
+  {
+    "Index": 45,
+    "Name": "Building 45",
+    "UnlockCost": 340,
+    "BuildCost": 170,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Humidity": 0.01,
+      "Radiation": -0.01,
+      "Minerals": -3.4
+    },
+    "State": 0
+  },
+  {
+    "Index": 46,
+    "Name": "Building 46",
+    "UnlockCost": 350,
+    "BuildCost": 175,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Pressure": 0.01,
+      "Humidity": 0.01,
+      "Radiation": 0.01,
+      "Minerals": -3.5
+    },
+    "State": 0
+  },
+  {
+    "Index": 47,
+    "Name": "Building 47",
+    "UnlockCost": 350,
+    "BuildCost": 175,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Pressure": 0.01,
+      "Minerals": -3.5
+    },
+    "State": 0
+  },
+  {
+    "Index": 48,
+    "Name": "Building 48",
+    "UnlockCost": 350,
+    "BuildCost": 175,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Pressure": -0.01,
+      "Humidity": 0.01,
+      "Minerals": -3.5
+    },
+    "State": 0
+  },
+  {
+    "Index": 49,
+    "Name": "Building 49",
+    "UnlockCost": 350,
+    "BuildCost": 175,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Pressure": -0.01,
+      "Humidity": -0.01,
+      "Radiation": 0.01,
+      "Minerals": -3.5
+    },
+    "State": 0
+  },
+  {
+    "Index": 50,
+    "Name": "Building 50",
+    "UnlockCost": 360,
+    "BuildCost": 180,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Humidity": -0.01,
+      "Minerals": -3.6
+    },
+    "State": 0
+  },
+  {
+    "Index": 51,
+    "Name": "Building 51",
+    "UnlockCost": 370,
+    "BuildCost": 185,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Pressure": -0.01,
+      "Humidity": 0.01,
+      "Radiation": 0.01,
+      "Minerals": -3.7
+    },
+    "State": 0
+  },
+  {
+    "Index": 52,
+    "Name": "Building 52",
+    "UnlockCost": 370,
+    "BuildCost": 185,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Pressure": 0.01,
+      "Radiation": 0.01,
+      "Minerals": -3.7
+    },
+    "State": 0
+  },
+  {
+    "Index": 53,
+    "Name": "Building 53",
+    "UnlockCost": 370,
+    "BuildCost": 185,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Pressure": 0.01,
+      "Humidity": -0.01,
+      "Radiation": -0.01,
+      "Minerals": -3.7
+    },
+    "State": 0
+  },
+  {
+    "Index": 54,
+    "Name": "Building 54",
+    "UnlockCost": 380,
+    "BuildCost": 190,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Humidity": -0.01,
+      "Radiation": 0.01,
+      "Minerals": -3.8
+    },
+    "State": 0
+  },
+  {
+    "Index": 55,
+    "Name": "Building 55",
+    "UnlockCost": 390,
+    "BuildCost": 195,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Pressure": -0.01,
+      "Humidity": -0.01,
+      "Radiation": -0.01,
+      "Minerals": -3.9
+    },
+    "State": 0
+  },
+  {
+    "Index": 56,
+    "Name": "Building 56",
+    "UnlockCost": 390,
+    "BuildCost": 195,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Pressure": -0.01,
+      "Radiation": 0.01,
+      "Minerals": -3.9
+    },
+    "State": 0
+  },
+  {
+    "Index": 57,
+    "Name": "Building 57",
+    "UnlockCost": 390,
+    "BuildCost": 195,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Pressure": 0.01,
+      "Humidity": 0.01,
+      "Radiation": -0.01,
+      "Minerals": -3.9
+    },
+    "State": 0
+  },
+  {
+    "Index": 58,
+    "Name": "Building 58",
+    "UnlockCost": 400,
+    "BuildCost": 200,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Humidity": 0.01,
+      "Radiation": 0.01,
+      "Minerals": -4.0
+    },
+    "State": 0
+  },
+  {
+    "Index": 59,
+    "Name": "Building 59",
+    "UnlockCost": 410,
+    "BuildCost": 205,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Pressure": 0.01,
+      "Humidity": -0.01,
+      "Minerals": -4.1
+    },
+    "State": 0
+  },
+  {
+    "Index": 60,
+    "Name": "Building 60",
+    "UnlockCost": 410,
+    "BuildCost": 205,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Pressure": -0.01,
+      "Humidity": 0.01,
+      "Radiation": -0.01,
+      "Minerals": -4.1
+    },
+    "State": 0
+  },
+  {
+    "Index": 61,
+    "Name": "Building 61",
+    "UnlockCost": 410,
+    "BuildCost": 205,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Pressure": 0.01,
+      "Radiation": -0.01,
+      "Minerals": -4.1
+    },
+    "State": 0
+  },
+  {
+    "Index": 62,
+    "Name": "Building 62",
+    "UnlockCost": 420,
+    "BuildCost": 210,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Humidity": -0.01,
+      "Radiation": -0.01,
+      "Minerals": -4.2
+    },
+    "State": 0
+  },
+  {
+    "Index": 63,
+    "Name": "Building 63",
+    "UnlockCost": 430,
+    "BuildCost": 215,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Pressure": -0.01,
+      "Humidity": -0.01,
+      "Minerals": -4.3
+    },
+    "State": 0
+  },
+  {
+    "Index": 64,
+    "Name": "Building 64",
+    "UnlockCost": 430,
+    "BuildCost": 215,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Pressure": 0.01,
+      "Humidity": -0.01,
+      "Radiation": 0.01,
+      "Minerals": -4.3
+    },
+    "State": 0
+  },
+  {
+    "Index": 65,
+    "Name": "Building 65",
+    "UnlockCost": 430,
+    "BuildCost": 215,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Pressure": 0.01,
+      "Humidity": 0.01,
+      "Minerals": -4.3
+    },
+    "State": 0
+  },
+  {
+    "Index": 66,
+    "Name": "Building 66",
+    "UnlockCost": 450,
+    "BuildCost": 225,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Pressure": 0.01,
+      "Humidity": 0.01,
+      "Radiation": 0.01,
+      "Minerals": -4.5
+    },
+    "State": 0
+  },
+  {
+    "Index": 67,
+    "Name": "Building 67",
+    "UnlockCost": 450,
+    "BuildCost": 225,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Pressure": -0.01,
+      "Humidity": -0.01,
+      "Radiation": 0.01,
+      "Minerals": -4.5
+    },
+    "State": 0
+  },
+  {
+    "Index": 68,
+    "Name": "Building 68",
+    "UnlockCost": 470,
+    "BuildCost": 235,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Pressure": 0.01,
+      "Radiation": 0.01,
+      "Minerals": -4.7
+    },
+    "State": 0
+  },
+  {
+    "Index": 69,
+    "Name": "Building 69",
+    "UnlockCost": 470,
+    "BuildCost": 235,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Pressure": 0.01,
+      "Humidity": -0.01,
+      "Radiation": -0.01,
+      "Minerals": -4.7
+    },
+    "State": 0
+  },
+  {
+    "Index": 70,
+    "Name": "Building 70",
+    "UnlockCost": 470,
+    "BuildCost": 235,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Pressure": -0.01,
+      "Humidity": 0.01,
+      "Radiation": 0.01,
+      "Minerals": -4.7
+    },
+    "State": 0
+  },
+  {
+    "Index": 71,
+    "Name": "Building 71",
+    "UnlockCost": 480,
+    "BuildCost": 240,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Humidity": -0.01,
+      "Radiation": 0.01,
+      "Minerals": -4.8
+    },
+    "State": 0
+  },
+  {
+    "Index": 72,
+    "Name": "Building 72",
+    "UnlockCost": 490,
+    "BuildCost": 245,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Pressure": -0.01,
+      "Humidity": -0.01,
+      "Radiation": -0.01,
+      "Minerals": -4.9
+    },
+    "State": 0
+  },
+  {
+    "Index": 73,
+    "Name": "Building 73",
+    "UnlockCost": 490,
+    "BuildCost": 245,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Pressure": 0.01,
+      "Humidity": 0.01,
+      "Radiation": -0.01,
+      "Minerals": -4.9
+    },
+    "State": 0
+  },
+  {
+    "Index": 74,
+    "Name": "Building 74",
+    "UnlockCost": 510,
+    "BuildCost": 255,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Pressure": 0.01,
+      "Humidity": -0.01,
+      "Minerals": -5.1
+    },
+    "State": 0
+  },
+  {
+    "Index": 75,
+    "Name": "Building 75",
+    "UnlockCost": 530,
+    "BuildCost": 265,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": 0.01,
+      "Pressure": 0.01,
+      "Humidity": -0.01,
+      "Radiation": 0.01,
+      "Minerals": -5.3
+    },
+    "State": 0
+  },
+  {
+    "Index": 76,
+    "Name": "Building 76",
+    "UnlockCost": 550,
+    "BuildCost": 275,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Pressure": 0.01,
+      "Humidity": 0.01,
+      "Radiation": 0.01,
+      "Minerals": -5.5
+    },
+    "State": 0
+  },
+  {
+    "Index": 77,
+    "Name": "Building 77",
+    "UnlockCost": 550,
+    "BuildCost": 275,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Pressure": -0.01,
+      "Humidity": -0.01,
+      "Radiation": 0.01,
+      "Minerals": -5.5
+    },
+    "State": 0
+  },
+  {
+    "Index": 78,
+    "Name": "Building 78",
+    "UnlockCost": 570,
+    "BuildCost": 285,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Pressure": 0.01,
+      "Humidity": -0.01,
+      "Radiation": -0.01,
+      "Minerals": -5.7
+    },
+    "State": 0
+  },
+  {
+    "Index": 79,
+    "Name": "Building 79",
+    "UnlockCost": 630,
+    "BuildCost": 315,
+    "X": 0,
+    "Y": 0,
+    "Altitude": 0.0,
+    "Effects": {
+      "Temperature": -0.01,
+      "Pressure": 0.01,
+      "Humidity": -0.01,
+      "Radiation": 0.01,
+      "Minerals": -6.3
+    },
+    "State": 0
+  }
 ]
 }

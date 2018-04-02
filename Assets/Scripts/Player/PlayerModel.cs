@@ -22,5 +22,5 @@ public class PlayerModel
         set { _CreatedGalaxies.Value = value; }
     }
 
-    internal ReactiveCollection<GalaxyModel> _Galaxies = new ReactiveCollection<GalaxyModel>();
+    public ReactiveCollection<GalaxyModel> _Galaxies = new ReactiveCollection<GalaxyModel>();
 }

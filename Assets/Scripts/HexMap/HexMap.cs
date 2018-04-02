@@ -69,7 +69,7 @@ public class HexMap : MonoBehaviour
         {
             for( int y = 0; y < mapModel.Height; y++ )
             {
-                mapModel.Table[ x, y ].Lens = this.Lens;
+                mapModel.Table[ x ][ y ].Lens = this.Lens;
             }
         }
     }
@@ -106,7 +106,7 @@ public class HexMap : MonoBehaviour
                     Quaternion.identity );
 
                 hex_go.name = "Hex_" + x + "_" + y;
-                hex_go.GetComponent<Hex>().SetModel( mapModel.Table[ x, y ] );
+                hex_go.GetComponent<Hex>().SetModel( mapModel.Table[ x ][ y ] );
                 hex_go.transform.SetParent( this.transform );
                 // TODO: Quill needs to explain different optimization later...
                 hex_go.isStatic = true;

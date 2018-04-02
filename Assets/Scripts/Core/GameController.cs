@@ -1,5 +1,6 @@
-﻿using LitJson;
+﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Text;
@@ -61,21 +62,20 @@ public class GameController : MonoBehaviour
         generator.Load();
         /**/
 
-        StartNewGame();
-
-        clock.ElapsedUpdates.Subscribe<long>( x => UpdateStep( 1 ) ).AddTo( clock );
+        //StartNewGame();
         Debug.Log( "GameController Started" );
     }
     
-    private void StartNewGame()
+    public void StartNewGame()
     {
         _player.New();
 
-        _galaxy.Load( _player.Model._Galaxies );
+        _galaxy.SetModel( _player.Model._Galaxies );
         _galaxy.New();
+
         _player.Model.CreatedGalaxies++;
 
-        _star.Load( _galaxy.SelectedGalaxy._Stars );
+        _star.SetModel( _galaxy.SelectedGalaxy._Stars );
         _star.New( 7, _galaxy.SelectedGalaxy.CreatedStars++ );
 
         _planet.New( _star.SelectedStar, 0 );
@@ -84,9 +84,45 @@ public class GameController : MonoBehaviour
         GameObject go = GameObject.Find( "Map" );
         HexMap hexMap = go.GetComponent<HexMap>();
         GameModel.Get<PlanetGenerateCommand>().Execute( hexMap );
-        
+
+        clock.ElapsedUpdates.Subscribe<long>( x => UpdateStep( 1 ) ).AddTo( clock ); //start the game ticking
     }
     
+    public void Load()
+    {
+        _player.Model = JsonConvert.DeserializeObject<PlayerModel>( File.ReadAllText( Application.persistentDataPath + "-Player.json" ) );
+
+        _galaxy.SetModel( _player.Model._Galaxies );
+        _galaxy.Load( 0 );
+
+        _star.SetModel( _galaxy.SelectedGalaxy._Stars );
+        _star.Load( 0 );
+
+        _planet.Load( _star.SelectedStar, 0 );
+        _life.Load( _planet.SelectedPlanet );
+
+        GameModel.Set<PlanetModel>( _planet.SelectedPlanet );
+
+        _unit.Load( _planet.SelectedPlanet );
+
+        clock.ElapsedUpdates.Subscribe<long>( x => UpdateStep( 1 ) ).AddTo( clock );
+    }
+
+    public void Save()
+    {
+        File.WriteAllText( 
+            Application.persistentDataPath + "-Player.json",
+            JsonConvert.SerializeObject( _player.Model ) 
+            );
+        Debug.Log( "Saved game" );
+
+        /*
+        CSV.Save( "test.csv" );
+        CSV.Add( "Done" );
+        CSV.Out();
+        */
+    }
+
     public void UpdateStep( int steps )
     {
         DateTime start = DateTime.Now;
@@ -97,21 +133,8 @@ public class GameController : MonoBehaviour
             GameMessage.Send( clock.message );
             clock.message.elapsedTicksSinceStart++;
         }
-        
+
         DateTime end = DateTime.Now;
         //Debug.Log( "end in: " + ( end - start ).ToString() );
-    }
-
-    public void Save()
-    {
-        StringBuilder sb = new StringBuilder();
-        JsonWriter jsonWriter = new JsonWriter( sb );
-        jsonWriter.PrettyPrint = true;
-        JsonMapper.ToJson( _player.Model, jsonWriter );
-        File.WriteAllText( Application.persistentDataPath + "-Player.json", sb.ToString() );
-
-        CSV.Save( "test.csv" );
-        CSV.Add( "Done" );
-        CSV.Out();
     }
 }

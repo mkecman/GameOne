@@ -1,4 +1,4 @@
-﻿using LitJson;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -37,9 +37,7 @@ public class Config : MonoBehaviour
         TextAsset configFile = Resources.Load<TextAsset>( "Configs/" + className );
         if( configFile != null )
         {
-            JsonMapper.RegisterExporter<float>( ( obj, writer ) => writer.Write( Convert.ToDouble( obj ) ) );
-            JsonMapper.RegisterImporter<double, float>( input => Convert.ToSingle( input ) );
-            _instance._configs.Add( className, JsonMapper.ToObject<T>( configFile.text ) );
+            _instance._configs.Add( className, JsonConvert.DeserializeObject<T>( configFile.text ) );
             Debug.Log( "Loaded config: " + className );
         }
     }

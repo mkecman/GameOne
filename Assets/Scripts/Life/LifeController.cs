@@ -31,7 +31,7 @@ public class LifeController : AbstractController
 
         int unitX = (int)( _planet.Map.Width / 2 ) + 2;
         int unitY = (int)( _planet.Map.Height / 2 ) + 2;
-        _selectedLife.Units.Add( new UnitModel( unitX, unitY, _planet.Map.Table[ unitX, unitY ].Props[ R.Altitude ].Value ) );
+        _selectedLife.Units.Add( new UnitModel( unitX, unitY, _planet.Map.Table[ unitX ][ unitY ].Props[ R.Altitude ].Value ) );
 
         _planet.Life = _selectedLife;
         UpdatePlanetMapColors();
@@ -60,7 +60,7 @@ public class LifeController : AbstractController
         {
             for( int y = 0; y < _planet.Map.Height; y++ )
             {
-                hex = _planet.Map.Table[ x, y ];
+                hex = _planet.Map.Table[ x ][ y ];
 
                 _hexUpdateCommand.Execute( _selectedLife.Resistance, hex );
 

@@ -100,15 +100,15 @@ public class BuildingInfoPanel : GameView
         RemoveAllChildren( EffectsGrid );
         RemoveAllChildren( MaintenanceGrid );
 
-        foreach( KeyValuePair<string, double> item in _building.Effects )
+        foreach( KeyValuePair<R, double> item in _building.Effects )
         {
-            if( item.Key == R.Minerals.ToString() )
-                AddEffect( MaintenanceGrid, R.Minerals.ToString(), item.Value );
+            if( item.Key == R.Minerals )
+                AddEffect( MaintenanceGrid, R.Minerals, item.Value );
             else
             if( item.Value < 0 )
                 AddEffect( EffectsGrid, item.Key, item.Value );
         }
-        foreach( KeyValuePair<string, double> item in _building.Effects )
+        foreach( KeyValuePair<R, double> item in _building.Effects )
         {
             if( item.Value > 0 )
                 AddEffect( EffectsGrid, item.Key, item.Value );
@@ -144,11 +144,11 @@ public class BuildingInfoPanel : GameView
         }
     }
 
-    private void AddEffect( Transform container, string type, double value )
+    private void AddEffect( Transform container, R type, double value )
     {
         GameObject go = Instantiate( EffectPrefab, container );
         UIPropertyView uipv = go.GetComponent<UIPropertyView>();
-        uipv.SetProperty( type );
+        uipv.SetProperty( type.ToString() );
         uipv.SetValue( double.MaxValue, value );
     }
 

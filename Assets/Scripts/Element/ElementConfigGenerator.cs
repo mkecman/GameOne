@@ -5,8 +5,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using UniRx;
 using System.Reflection;
-using LitJson;
 using System.Text;
+using Newtonsoft.Json;
 
 public class ElementConfigGenerator
 {
@@ -18,7 +18,7 @@ public class ElementConfigGenerator
         Debug.Log( "Load" );
 
         TextAsset targetFile = Resources.Load<TextAsset>( "Configs/AtomsJSON" );
-        atoms = JsonMapper.ToObject<List<JSONAtomModel>>( targetFile.text );
+        atoms = JsonConvert.DeserializeObject<List<JSONAtomModel>>( targetFile.text );
         
         elements = new List<ElementModel>();
         for( int i = 0; i < atoms.Count; i++ )
@@ -57,11 +57,7 @@ public class ElementConfigGenerator
     
     internal void Save()
     {
-        StringBuilder sb = new StringBuilder();
-        JsonWriter writer = new JsonWriter( sb );
-        writer.PrettyPrint = true;
-        JsonMapper.ToJson( elements, writer );
-        File.WriteAllText( Application.persistentDataPath + "-ElementConfig.json", sb.ToString() );
+        File.WriteAllText( Application.persistentDataPath + "-ElementConfig.json", JsonConvert.SerializeObject( elements ) );
         Debug.Log( Application.persistentDataPath + "-ElementConfig.json" );
     }
     

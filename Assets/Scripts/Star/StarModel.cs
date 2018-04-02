@@ -99,9 +99,9 @@ public class StarModel
         set { _PlanetsCount.Value = value; }
     }
     
-    internal ReactiveCollection<WeightedValue> _AvailableElements = new ReactiveCollection<WeightedValue>();
-    
-    internal ReactiveCollection<PlanetModel> _Planets = new ReactiveCollection<PlanetModel>();
+    public ReactiveCollection<WeightedValue> _AvailableElements = new ReactiveCollection<WeightedValue>();
+
+    public ReactiveCollection<PlanetModel> _Planets = new ReactiveCollection<PlanetModel>();
     
 
 

@@ -4,12 +4,11 @@ using System.Collections.Generic;
 [Serializable]
 public class BuildingConfig
 {
-    public List<BuildingJSON> BuildingList;
-
     public List<BuildingModel> Buildings;
 
     public void Setup()
     {
+        /*
         Buildings = new List<BuildingModel>();
         BuildingJSON bJson;
         BuildingModel building;
@@ -28,10 +27,11 @@ public class BuildingConfig
             for( int j = 0; j < bJson.Effects.Count; j++ )
             {
                 if( bJson.Effects[ j ] != 0 )
-                    building.Effects.Add( ((R)j).ToString(), bJson.Effects[ j ] );
+                    building.Effects.Add( (R)j, bJson.Effects[ j ] );
             }
             
             Buildings.Add( building );
         }
+        */
     }
 }

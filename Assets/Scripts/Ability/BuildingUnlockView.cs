@@ -58,25 +58,25 @@ public class BuildingUnlockView : GameView, IPointerClickHandler
         BuildPrice.SetProperty( "Build (Minerals):" );
         BuildPrice.SetValue( Double.MaxValue, -ability.BuildCost );
         MaintenancePrice.SetProperty( "Maintenance (Minerals):" );
-        MaintenancePrice.SetValue( Double.MaxValue, ability.Effects[ R.Minerals.ToString() ] );
+        MaintenancePrice.SetValue( Double.MaxValue, ability.Effects[ R.Minerals ] );
 
         var list = _building.Effects.Keys.ToList();
         list.Sort();
 
         foreach( var key in list )
         {
-            if( key == R.Minerals.ToString() )
+            if( key == R.Minerals )
                 continue;
 
             AddEffect( effectPrefab, key, _building.Effects[ key ] );
         }
     }
 
-    private void AddEffect( GameObject prefab, string type, double value )
+    private void AddEffect( GameObject prefab, R type, double value )
     {
         GameObject go = Instantiate( prefab, EffectsGrid );
         UIPropertyView uipv = go.GetComponent<UIPropertyView>();
-        uipv.SetProperty( type );
+        uipv.SetProperty( type.ToString() );
         uipv.SetValue( double.MaxValue, value );
     }
 }

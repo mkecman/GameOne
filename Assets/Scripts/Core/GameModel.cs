@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
-using LitJson;
+using Newtonsoft.Json;
 
 public class GameModel : MonoBehaviour
 {
@@ -78,7 +78,7 @@ public class GameModel : MonoBehaviour
 
     public static T Copy<T>( T data )
     {
-        return JsonMapper.ToObject<T>( JsonMapper.ToJson( data ) );
+        return JsonConvert.DeserializeObject<T>( JsonConvert.SerializeObject( data ) );
     }
 
     // Use this for initialization

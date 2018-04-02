@@ -10,22 +10,30 @@ public class BuildingController : AbstractController
     private BuildingModel bm;
     private int hexCount;
 
-    private RDictionary<double> tempProps = new RDictionary<double>( true );
+    private Dictionary<R,double> tempProps = new Dictionary<R,double>();
 
     public BuildingController()
     {
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
+        tempProps.Add( R.Temperature, 0 );
+        tempProps.Add( R.Pressure, 0 );
+        tempProps.Add( R.Humidity, 0 );
+        tempProps.Add( R.Radiation, 0 );
     }
 
     private void OnClockTick( ClockTickMessage value )
     {
-        tempProps.SetAll( 0 );
+        tempProps[ R.Temperature ] = 0;
+        tempProps[ R.Pressure ] = 0;
+        tempProps[ R.Humidity ] = 0;
+        tempProps[ R.Radiation ] = 0;
+
         for( int i = 0; i < _planet.Life.Buildings.Count; i++ )
         {
             bm = _planet.Life.Buildings[ i ];
             if( bm.State == BuildingState.ACTIVE )
             {
-                if( _pay.BuyMaintenance( - bm.Effects[ R.Minerals.ToString() ] ) )
+                if( _pay.BuyMaintenance( - bm.Effects[ R.Minerals ] ) )
                 {
                     CollectEffectValue( R.Temperature, tempProps, bm.Effects );
                     CollectEffectValue( R.Pressure, tempProps, bm.Effects );
@@ -49,7 +57,7 @@ public class BuildingController : AbstractController
         {
             for( int height = 0; height < _planet.Map.Height; height++ )
             {
-                hm = _planet.Map.Table[ width, height ];
+                hm = _planet.Map.Table[ width ][ height ];
                 hm.Props[ R.Temperature ].Value += tempProps[ R.Temperature ];
                 hm.Props[ R.Pressure ].Value += tempProps[ R.Pressure ];
                 hm.Props[ R.Humidity ].Value += tempProps[ R.Humidity ];
@@ -65,10 +73,10 @@ public class BuildingController : AbstractController
         }
     }
 
-    private void CollectEffectValue( R type, RDictionary<double> tempProps, Dictionary<string, double> effects )
+    private void CollectEffectValue( R type, Dictionary<R,double> tempProps, Dictionary<R, double> effects )
     {
-        if( effects.ContainsKey( type.ToString() ) )
-            tempProps[ type ] += effects[ type.ToString() ];
+        if( effects.ContainsKey( type ) )
+            tempProps[ type ] += effects[ type ];
     }
 
     private void OnBuildingMessage( BuildingMessage value )
@@ -115,28 +123,28 @@ public class BuildingController : AbstractController
             building.State = BuildingState.ACTIVE;
             building.X = x;
             building.Y = y;
-            building.Altitude = _planet.Map.Table[ x, y ].Props[ R.Altitude ].Value;
+            building.Altitude = _planet.Map.Table[ x ][ y ].Props[ R.Altitude ].Value;
             _planet.Life.Buildings.Add( building );
-            _planet.Map.Table[ x, y ].Building = building;
-            GameModel.Set<HexModel>( _planet.Map.Table[ x, y ] );
+            _planet.Map.Table[ x ][ y ].Building = building;
+            GameModel.Set<HexModel>( _planet.Map.Table[ x ][ y ] );
         }
     }
 
     private void Demolish( int x, int y )
     {
-        _planet.Life.Buildings.Remove( _planet.Map.Table[ x, y ].Building );
-        _planet.Map.Table[ x, y ].Building = null;
-        GameModel.Set<HexModel>( _planet.Map.Table[ x, y ] );
+        _planet.Life.Buildings.Remove( _planet.Map.Table[ x ][ y ].Building );
+        _planet.Map.Table[ x ][ y ].Building = null;
+        GameModel.Set<HexModel>( _planet.Map.Table[ x ][ y ] );
     }
 
     private void Activate( int x, int y )
     {
-        _planet.Map.Table[ x, y ].Building.State = BuildingState.ACTIVE;
+        _planet.Map.Table[ x ][ y ].Building.State = BuildingState.ACTIVE;
     }
 
     private void Deactivate( int x, int y )
     {
-        _planet.Map.Table[ x, y ].Building.State = BuildingState.INACTIVE;
+        _planet.Map.Table[ x ][ y ].Building.State = BuildingState.INACTIVE;
     }
 
     private void Unlock( int index )
@@ -152,6 +160,13 @@ public class BuildingController : AbstractController
     {
         _planet = value;
         hexCount = _planet.Map.Width * _planet.Map.Height;
+
+        BuildingModel building;
+        for( int i = 0; i < _planet.Life.Buildings.Count; i++ )
+        {
+            building = _planet.Life.Buildings[ i ];
+            _planet.Map.Table[ building.X ][ building.Y ].Building = building;
+        }
 
         if( _pay == null )
             _pay = GameModel.Get<BuildingPaymentService>();
