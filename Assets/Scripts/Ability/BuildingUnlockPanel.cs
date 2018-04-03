@@ -73,18 +73,14 @@ public class BuildingUnlockPanel : GameView
 
     private void OnPlanetChange( PlanetModel value )
     {
-        if( value.Life != _life )
+        _life = value.Life;
+        RemoveAllChildren( Container );
+        for( int i = 0; i < _life.BuildingsState.Count; i++ )
         {
-            _life = value.Life;
-            RemoveAllChildren( Container );
-            for( int i = 0; i < _life.BuildingsState.Count; i++ )
-            {
-                GameObject ability_go = Instantiate( AbilityUnlockPrefab, Container );
-                BuildingUnlockView abilityUnlockView = ability_go.GetComponent<BuildingUnlockView>();
-                abilityUnlockView.Setup( _life.BuildingsState[ i ], EffectPrefab );
-            }
+            GameObject ability_go = Instantiate( AbilityUnlockPrefab, Container );
+            BuildingUnlockView abilityUnlockView = ability_go.GetComponent<BuildingUnlockView>();
+            abilityUnlockView.Setup( _life.BuildingsState[ i ], EffectPrefab );
         }
-            
     }
 
     private void RemoveAllChildren( Transform transform )

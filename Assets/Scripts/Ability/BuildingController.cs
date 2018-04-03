@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-public class BuildingController : AbstractController
+public class BuildingController : AbstractController, IGameInit
 {
     private PlanetModel _planet;
     private BuildingPaymentService _pay;
@@ -12,13 +12,33 @@ public class BuildingController : AbstractController
 
     private Dictionary<R,double> tempProps = new Dictionary<R,double>();
 
-    public BuildingController()
+    public void Init()
     {
-        GameModel.HandleGet<PlanetModel>( OnPlanetChange );
         tempProps.Add( R.Temperature, 0 );
         tempProps.Add( R.Pressure, 0 );
         tempProps.Add( R.Humidity, 0 );
         tempProps.Add( R.Radiation, 0 );
+
+        _pay = GameModel.Get<BuildingPaymentService>();
+        _hexUpdateCommand = GameModel.Get<HexUpdateCommand>();
+
+        GameModel.HandleGet<PlanetModel>( OnPlanetChange );
+    }
+
+    private void OnPlanetChange( PlanetModel value )
+    {
+        _planet = value;
+        hexCount = _planet.Map.Width * _planet.Map.Height;
+        
+        BuildingModel building;
+        for( int i = 0; i < _planet.Life.Buildings.Count; i++ )
+        {
+            building = _planet.Life.Buildings[ i ];
+            _planet.Map.Table[ building.X ][ building.Y ].Building = building;
+        }
+        
+        GameMessage.Listen<ClockTickMessage>( OnClockTick );
+        GameMessage.Listen<BuildingMessage>( OnBuildingMessage );
     }
 
     private void OnClockTick( ClockTickMessage value )
@@ -156,26 +176,6 @@ public class BuildingController : AbstractController
         }
     }
 
-    private void OnPlanetChange( PlanetModel value )
-    {
-        _planet = value;
-        hexCount = _planet.Map.Width * _planet.Map.Height;
-
-        BuildingModel building;
-        for( int i = 0; i < _planet.Life.Buildings.Count; i++ )
-        {
-            building = _planet.Life.Buildings[ i ];
-            _planet.Map.Table[ building.X ][ building.Y ].Building = building;
-        }
-
-        if( _pay == null )
-            _pay = GameModel.Get<BuildingPaymentService>();
-
-        if( _hexUpdateCommand == null )
-            _hexUpdateCommand = GameModel.Get<HexUpdateCommand>();
-
-        GameMessage.Listen<ClockTickMessage>( OnClockTick );
-        GameMessage.Listen<BuildingMessage>( OnBuildingMessage );
-    }
+    
 
 }

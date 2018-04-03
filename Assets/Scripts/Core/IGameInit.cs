@@ -1,0 +1,4 @@
+﻿interface IGameInit
+{
+    void Init();
+}

@@ -3,43 +3,50 @@ using System.Collections;
 using System;
 using UniRx;
 
-public class StarController : AbstractController
+public class StarController : AbstractController, IGameInit
 {
     public StarModel SelectedStar { get { return _selectedStar; } }
 
     private ReactiveCollection<StarModel> _stars;
     private StarModel _selectedStar;
+    private GalaxyModel _galaxy;
 
     private StarsConfig _starsConfig;
     private UniverseConfig _universeConfig;
     private ElementConfig _elementsConfig;
 
-    public StarController()
+    public void Init()
     {
         _starsConfig = Config.Get<StarsConfig>();
         _universeConfig = Config.Get<UniverseConfig>();
         _elementsConfig = Config.Get<ElementConfig>();
+        GameModel.HandleGet<GalaxyModel>( OnGalaxyChange );
     }
 
-    internal void SetModel( ReactiveCollection<StarModel> stars )
+    private void OnGalaxyChange( GalaxyModel value )
     {
-        _stars = stars;
+        _galaxy = value;
+        _stars = value._Stars;
     }
-
+    
     internal void Load( int index )
     {
         _selectedStar = _stars[ index ];
+        GameModel.Set<StarModel>( _selectedStar );
     }
 
-    internal void New( int type, int index )
+    internal void New( int type )
     {
         _selectedStar = GameModel.Copy( _starsConfig.Stars[ type ] );
         ConvertUnitsToSI();
-        _selectedStar.Name = "Star" + index;
-        _selectedStar._AvailableElements = GenerateStarElements( index );
+        _selectedStar.Name = "Star" + _galaxy.CreatedStars;
+        _selectedStar._AvailableElements = GenerateStarElements( _galaxy.CreatedStars );
         _selectedStar.PlanetsCount = RandomUtil.FromRangeInt( _starsConfig.MinPlanets, _starsConfig.MaxPlanets );
         _selectedStar.PlanetsCount = 1;
         _stars.Add( _selectedStar );
+
+        _galaxy.CreatedStars++;
+        GameModel.Set<StarModel>( _selectedStar );
     }
 
     private void ConvertUnitsToSI()

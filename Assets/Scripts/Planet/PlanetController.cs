@@ -4,7 +4,7 @@ using UniRx;
 using System;
 using System.Collections.Generic;
 
-public class PlanetController : AbstractController
+public class PlanetController : AbstractController, IGameInit
 {
     public PlanetModel SelectedPlanet { get { return _selectedPlanet; } }
 
@@ -16,28 +16,42 @@ public class PlanetController : AbstractController
     private ElementConfig _elementsConfig;
     private HexMapGenerator _hexMapGenerator;
 
-    public PlanetController()
+    public void Init()
     {
         _starsConfig = Config.Get<StarsConfig>();
         _universeConfig = Config.Get<UniverseConfig>();
         _elementsConfig = Config.Get<ElementConfig>();
         _hexMapGenerator = new HexMapGenerator();
-    }
-    
-    public void Load( StarModel star, int index )
-    {
-        _star = star;
-        _selectedPlanet = _star._Planets[ index ];
+
+        GameModel.HandleGet<StarModel>( OnStarChange );
     }
 
-    public void New( StarModel star, int index )
+    private void OnStarChange( StarModel value )
     {
-        _star = star;
+        _star = value;
+    }
+
+    public void Load( int index )
+    {
+        _selectedPlanet = _star._Planets[ index ];
+        GameModel.Set<PlanetModel>( _selectedPlanet );
+    }
+
+    public void New( int index )
+    {
         Generate( index );
         _star._Planets.Add( _selectedPlanet );
+        _star.PlanetsCount++;
+        GameModel.Set<PlanetModel>( _selectedPlanet );
     }
 
-    public void Generate( int index )
+    public void GenerateFromModel( PlanetModel planetModel )
+    {
+        planetModel.Map = _hexMapGenerator.Generate( planetModel );
+        _selectedPlanet = planetModel;
+    }
+
+    private void Generate( int index )
     {
         _selectedPlanet = new PlanetModel();
         _selectedPlanet.Name = "Planet " + index;
@@ -69,13 +83,7 @@ public class PlanetController : AbstractController
 
         _selectedPlanet.Map = _hexMapGenerator.Generate( _selectedPlanet );
     }
-
-    public void GenerateFromModel( PlanetModel planetModel )
-    {
-        planetModel.Map = _hexMapGenerator.Generate( planetModel );
-        _selectedPlanet = planetModel;
-    }
-
+    
     private double CalculateDensity( ReactiveCollection<PlanetElementModel> elements )
     {
         double totalDensity = 0;

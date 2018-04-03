@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 
-public class HexUpdateCommand
+public class HexUpdateCommand : IGameInit
 {
     private float temperatureBonus;
     private float pressureBonus;
@@ -11,6 +11,8 @@ public class HexUpdateCommand
     private float radiationBonus;
 
     private BellCurve altitudeBellCurve = new BellCurve( 1, 0.5f, 0.25f );
+
+    public void Init() { }
 
     public void Execute( Dictionary<R,BellCurve> Resistance, HexModel hex )
     {

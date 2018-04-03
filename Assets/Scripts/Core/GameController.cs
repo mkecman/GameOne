@@ -1,9 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
-using System.Text;
 using UniRx;
 using UnityEngine;
 
@@ -17,43 +15,35 @@ public class GameController : MonoBehaviour
     private StarController _star;
     private PlanetController _planet;
     private LifeController _life;
-    private UnitController _unit;
-    private UnitPaymentService _unitPayment;
-    private BuildingController _abilityController;
-    private BuildingPaymentService _abilityPayment;
+    
+    private List<IGameInit> _gameControllers;
 
     private void Awake()
     {
         GameModel.Set( new GameDebug() );
         IsDebug.Subscribe( _ => GameModel.Get<GameDebug>().isActive = _ );
 
-        GameModel.Set( new HexUpdateCommand() );
+        _gameControllers = new List<IGameInit>();
 
-        _player = new PlayerController();
-        _galaxy = new GalaxyController();
-        _star = new StarController();
-        _planet = new PlanetController();
-        _life = new LifeController();
-        _unit = new UnitController();
-        _unitPayment = new UnitPaymentService();
+        _player                         = AddController<PlayerController>();
+        _galaxy                         = AddController<GalaxyController>();
+        _star                           = AddController<StarController>();
+        _planet                         = AddController<PlanetController>();
+        _life                           = AddController<LifeController>();
 
-        _abilityPayment = new BuildingPaymentService();
-        GameModel.Set( _abilityPayment );
+        AddController<UnitController>();
+        AddController<UnitPaymentService>();
+        AddController<BuildingController>();
+        AddController<BuildingPaymentService>();
+        AddController<HexUpdateCommand>();
+        AddController<PlanetGenerateCommand>();
 
-        _abilityController = new BuildingController();
-
-        GameModel.Set( _player );
-        GameModel.Set( _galaxy );
-        GameModel.Set( _star );
-        GameModel.Set( _planet );
-        GameModel.Set( _life );
-        GameModel.Set( _unit );
-        GameModel.Set( _unitPayment );
-        GameModel.Set( _abilityController );
-        
-        GameModel.Set( new PlanetGenerateCommand() );
+        for( int i = 0; i < _gameControllers.Count; i++ )
+        {
+            _gameControllers[ i ].Init();
+        }
     }
-
+    
     void Start()
     {
         /*
@@ -65,21 +55,14 @@ public class GameController : MonoBehaviour
         //StartNewGame();
         Debug.Log( "GameController Started" );
     }
-    
+
     public void StartNewGame()
     {
         _player.New();
-
-        _galaxy.SetModel( _player.Model._Galaxies );
         _galaxy.New();
-
-        _player.Model.CreatedGalaxies++;
-
-        _star.SetModel( _galaxy.SelectedGalaxy._Stars );
-        _star.New( 7, _galaxy.SelectedGalaxy.CreatedStars++ );
-
-        _planet.New( _star.SelectedStar, 0 );
-        _life.New( _planet.SelectedPlanet );
+        _star.New( 7 );
+        _planet.New( 0 );
+        _life.New();
 
         GameObject go = GameObject.Find( "Map" );
         HexMap hexMap = go.GetComponent<HexMap>();
@@ -87,32 +70,23 @@ public class GameController : MonoBehaviour
 
         clock.ElapsedUpdates.Subscribe<long>( x => UpdateStep( 1 ) ).AddTo( clock ); //start the game ticking
     }
-    
+
     public void Load()
     {
         _player.Model = JsonConvert.DeserializeObject<PlayerModel>( File.ReadAllText( Application.persistentDataPath + "-Player.json" ) );
 
-        _galaxy.SetModel( _player.Model._Galaxies );
         _galaxy.Load( 0 );
-
-        _star.SetModel( _galaxy.SelectedGalaxy._Stars );
         _star.Load( 0 );
-
-        _planet.Load( _star.SelectedStar, 0 );
-        _life.Load( _planet.SelectedPlanet );
-
-        GameModel.Set<PlanetModel>( _planet.SelectedPlanet );
-
-        _unit.Load( _planet.SelectedPlanet );
+        _planet.Load( 0 );
 
         clock.ElapsedUpdates.Subscribe<long>( x => UpdateStep( 1 ) ).AddTo( clock );
     }
 
     public void Save()
     {
-        File.WriteAllText( 
+        File.WriteAllText(
             Application.persistentDataPath + "-Player.json",
-            JsonConvert.SerializeObject( _player.Model ) 
+            JsonConvert.SerializeObject( _player.Model )
             );
         Debug.Log( "Saved game" );
 
@@ -136,5 +110,13 @@ public class GameController : MonoBehaviour
 
         DateTime end = DateTime.Now;
         //Debug.Log( "end in: " + ( end - start ).ToString() );
+    }
+
+    private T AddController<T>() where T : new()
+    {
+        T controller = new T();
+        _gameControllers.Add( controller as IGameInit );
+        GameModel.Set( controller );
+        return controller;
     }
 }

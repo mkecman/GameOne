@@ -6,8 +6,8 @@ public class HexModel
 {
     public int X, Y;
     
-    public UnitModel Unit;
-    public BuildingModel Building;
+    internal UnitModel Unit;
+    internal BuildingModel Building;
 
     public BoolReactiveProperty isMarked = new BoolReactiveProperty( false );
     public BoolReactiveProperty isExplored = new BoolReactiveProperty( false );

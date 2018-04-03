@@ -84,7 +84,7 @@ public class HexMapGenerator
                 float altitude = (float)AltitudeMap.Get( nx, ny, nz, nw );
                 float temperature = (float)( 1 - TemperatureMap.Get( nx, ny, nz, nw ) );
                 float equador = (float)( gradient.Get( nx, ny, nz, nw ) );
-                float pressure = (float)PressureMap.Get( nx, ny, nz, nw );
+                //float pressure = (float)PressureMap.Get( nx, ny, nz, nw );
                 float humidity = (float)HumidityMap.Get( nx, ny, nz, nw );
                 float radiation = (float)RadiationMap.Get( nx, ny, nz, nw );
                 

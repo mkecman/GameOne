@@ -4,7 +4,7 @@ using UnityEngine;
 using UniRx;
 using System.Linq;
 
-public class UnitController : AbstractController
+public class UnitController : AbstractController, IGameInit
 {
     public UnitModel SelectedUnit { get { return _selectedUnit; } }
 
@@ -23,30 +23,29 @@ public class UnitController : AbstractController
     private HexUpdateCommand _hexUpdateCommand;
     private GameDebug _debug;
 
-    public UnitController()
+    public void Init()
     {
         _updateValues.Add( R.Energy, 0 );
         _updateValues.Add( R.Science, 0 );
         _updateValues.Add( R.Minerals, 0 );
+
+        _pay = GameModel.Get<UnitPaymentService>();
+        _hexUpdateCommand = GameModel.Get<HexUpdateCommand>();
+        _debug = GameModel.Get<GameDebug>();
+
+        GameModel.HandleGet<PlanetModel>( OnPlanetChange );
     }
 
-    public void Load( PlanetModel planet )
+    private void OnPlanetChange( PlanetModel value )
     {
-        _hexMapModel = planet.Map;
-        _life = planet.Life;
+        _hexMapModel = value.Map;
+        _life = value.Life;
         _markedHexes = new List<HexModel>();
 
         GameMessage.Listen<HexClickedMessage>( OnHexClickedMessage );
         GameMessage.Listen<UnitMessage>( OnUnitMessage );
         GameMessage.Listen<ClockTickMessage>( OnClockTick );
         GameMessage.Listen<ResistanceUpgradeMessage>( OnResistanceUpgrade );
-
-        if( _pay == null )
-            _pay = GameModel.Get<UnitPaymentService>();
-        if( _hexUpdateCommand == null )
-            _hexUpdateCommand = GameModel.Get<HexUpdateCommand>();
-        if( _debug == null )
-            _debug = GameModel.Get<GameDebug>();
 
         UnitModel um;
         for( int i = 0; i < _life.Units.Count; i++ )

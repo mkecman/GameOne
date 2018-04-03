@@ -79,4 +79,11 @@ public class BuildingUnlockView : GameView, IPointerClickHandler
         uipv.SetProperty( type.ToString() );
         uipv.SetValue( double.MaxValue, value );
     }
+
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+        _building = null;
+        GameMessage.StopListen<BuildingUnlockMessage>( OnBuildingUnlockSelected );
+    }
 }

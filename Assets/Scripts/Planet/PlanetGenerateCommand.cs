@@ -1,17 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlanetGenerateCommand
+public class PlanetGenerateCommand : IGameInit
 {
     PlanetController _planet;
-    LifeController _life;
-    UnitController _unit;
 
-    public PlanetGenerateCommand()
+    public void Init()
     {
         _planet = GameModel.Get<PlanetController>();
-        _life = GameModel.Get<LifeController>();
-        _unit = GameModel.Get<UnitController>();
     }
 
     public void Execute( HexMap map )
@@ -35,10 +31,6 @@ public class PlanetGenerateCommand
         _planet.GenerateFromModel( _planet.SelectedPlanet );
         /////////
         _planet.SelectedPlanet.Life = life;
-        _life.Load( _planet.SelectedPlanet );
         GameModel.Set<PlanetModel>( _planet.SelectedPlanet );
-
-        _unit.Load( _planet.SelectedPlanet );
-
     }
 }

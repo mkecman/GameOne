@@ -2,12 +2,12 @@
 using System.Collections;
 using System;
 
-public class UnitPaymentService : AbstractController
+public class UnitPaymentService : AbstractController, IGameInit
 {
     private LifeModel _life;
     private GameDebug _debug;
 
-    public UnitPaymentService()
+    public void Init()
     {
         GameModel.HandleGet<PlanetModel>( OnPlanetModelChange );
         _debug = GameModel.Get<GameDebug>();

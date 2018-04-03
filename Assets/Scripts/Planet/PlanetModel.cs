@@ -17,7 +17,7 @@ public class PlanetModel
         Props.Add( R.Radiation, new PlanetProperty( 0, 0 ) );
     }
 
-    public LifeModel Life;
+    public LifeModel Life = new LifeModel();
     public GridModel<HexModel> Map;
 
     internal ReactiveProperty<string> _Name = new ReactiveProperty<string>();

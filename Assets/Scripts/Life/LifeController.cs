@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LifeController : AbstractController
+public class LifeController : AbstractController, IGameInit
 {
     public LifeModel SelectedLife { get { return _selectedLife; } }
 
@@ -10,19 +10,24 @@ public class LifeController : AbstractController
     private LifeModel _selectedLife;
     private HexUpdateCommand _hexUpdateCommand;
 
-    public LifeController()
+    public void Init()
     {
         _hexUpdateCommand = GameModel.Get<HexUpdateCommand>();
+        GameModel.HandleGet<PlanetModel>( OnPlanetChange );
     }
 
-    public void New( PlanetModel planet )
+    private void OnPlanetChange( PlanetModel value )
     {
-        _planet = planet;
-        _selectedLife = new LifeModel
-        {
-            Name = "Human",
-            ClimbLevel = 0.99
-        };
+        _planet = value;
+        _selectedLife = _planet.Life;
+        UpdatePlanetMapColors();
+    }
+
+    public void New()
+    {
+        _selectedLife.Name = "Human";
+        _selectedLife.ClimbLevel = 0.99;
+        
         _selectedLife.Props[ R.Energy ].Value = 500;
         _selectedLife.Props[ R.Science ].Value = 500;
         _selectedLife.Props[ R.Minerals ].Value = 500;
@@ -36,15 +41,7 @@ public class LifeController : AbstractController
         _planet.Life = _selectedLife;
         UpdatePlanetMapColors();
     }
-
-    public void Load( PlanetModel planet )
-    {
-        _planet = planet;
-        _selectedLife = _planet.Life;
-        UpdatePlanetMapColors();
-    }
     
-
     private void UpdatePlanetMapColors()
     {
         HexModel hex;

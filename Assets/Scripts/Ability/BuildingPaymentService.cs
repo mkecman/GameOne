@@ -3,17 +3,18 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 
-public class BuildingPaymentService : AbstractController
+public class BuildingPaymentService : AbstractController, IGameInit
 {
     private LifeModel _life;
-    private List<BuildingModel> _abilitiesConfig;
+    private List<BuildingModel> _buildingConfig;
     private GameDebug _debug;
 
-    public BuildingPaymentService()
+    public void Init()
     {
-        GameModel.HandleGet<PlanetModel>( OnPlanetModelChange );
-        _abilitiesConfig = Config.Get<BuildingConfig>().Buildings;
+        _buildingConfig = Config.Get<BuildingConfig>().Buildings;
         _debug = GameModel.Get<GameDebug>();
+
+        GameModel.HandleGet<PlanetModel>( OnPlanetModelChange );
     }
 
     private void OnPlanetModelChange( PlanetModel value )
@@ -23,12 +24,12 @@ public class BuildingPaymentService : AbstractController
 
     public double GetUnlockPrice( int index )
     {
-        return _abilitiesConfig[ index ].UnlockCost * 1;
+        return _buildingConfig[ index ].UnlockCost * 1;
     }
 
     public double GetBuildPrice( int index )
     {
-        return _abilitiesConfig[ index ].BuildCost * 1;
+        return _buildingConfig[ index ].BuildCost * 1;
     }
 
     public bool BuyUnlock( int index, bool spendCurrency = true )
