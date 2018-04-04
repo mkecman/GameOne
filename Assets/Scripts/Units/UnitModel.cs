@@ -41,7 +41,7 @@ public class UnitModel
 
     internal Vector3 Position = new Vector3();
 
-    public UnitModel( int x, int y, double altitude )
+    public UnitModel( int x, int y, double altitude, Dictionary<R, BellCurve> resistance )
     {
         Props.Add( R.Altitude, new Resource( R.Altitude, altitude ) );
         Props.Add( R.Health, new Resource( R.Health, 100 ) );
@@ -49,11 +49,8 @@ public class UnitModel
         X = x;
         Y = y;
 
-        Resistance.Add( R.Temperature, new BellCurve( 1, 0.33f, 0.06f ) );
-        Resistance.Add( R.Pressure, new BellCurve( 1, 0.64f, 0.1f ) );
-        Resistance.Add( R.Humidity, new BellCurve( 1, 1f, 0.2f ) );
-        Resistance.Add( R.Radiation, new BellCurve( 1, 0f, 0.1f ) );
-
+        Resistance = resistance;
+        
         AbilitiesDelta.Add( R.Energy, new DoubleReactiveProperty( -.5) );
         AbilitiesDelta.Add( R.Science, new DoubleReactiveProperty() );
         AbilitiesDelta.Add( R.Minerals, new DoubleReactiveProperty() );

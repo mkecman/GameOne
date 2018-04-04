@@ -20,7 +20,7 @@ public class LifeModel
         get { return _ClimbLevel.Value; }
         set { _ClimbLevel.Value = value; }
     }
-
+    
     public Dictionary<R,BellCurve> Resistance = new Dictionary<R, BellCurve>();
     public Dictionary<R, Resource> Props = new Dictionary<R, Resource>();
 
@@ -35,10 +35,5 @@ public class LifeModel
         Props.Add( R.Energy, new Resource( R.Energy, 0 ) );
         Props.Add( R.Science, new Resource( R.Science, 0 ) );
         Props.Add( R.Minerals, new Resource( R.Minerals, 0 ) );
-
-        Resistance.Add( R.Temperature, new BellCurve( 1, 0.33f, 0.06f ) );
-        Resistance.Add( R.Pressure, new BellCurve( 1, 0.64f, 0.1f ) );
-        Resistance.Add( R.Humidity, new BellCurve( 1, 1f, 0.2f ) );
-        Resistance.Add( R.Radiation, new BellCurve( 1, 0f, 0.1f ) );
     }
 }

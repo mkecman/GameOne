@@ -18,6 +18,7 @@ public class Config : MonoBehaviour
         _instance.Load<StarsConfig>();
         _instance.Load<ElementConfig>();
         _instance.Load<HexConfig>();
+        _instance.Load<BellCurveConfig>();
         _instance.Load<BuildingConfig>();
         Get<BuildingConfig>().Setup();
     }

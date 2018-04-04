@@ -22,6 +22,7 @@ public class UnitController : AbstractController, IGameInit
     private Dictionary<R,double> _updateValues = new Dictionary<R,double>();
     private HexUpdateCommand _hexUpdateCommand;
     private GameDebug _debug;
+    private Dictionary<R, BellCurve> _bellCurves;
 
     public void Init()
     {
@@ -32,6 +33,7 @@ public class UnitController : AbstractController, IGameInit
         _pay = GameModel.Get<UnitPaymentService>();
         _hexUpdateCommand = GameModel.Get<HexUpdateCommand>();
         _debug = GameModel.Get<GameDebug>();
+        _bellCurves = Config.Get<BellCurveConfig>();
 
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
     }
@@ -88,8 +90,8 @@ public class UnitController : AbstractController, IGameInit
 
     private void OnResistanceUpgrade( ResistanceUpgradeMessage value )
     {
-        if( _selectedUnit.Resistance[ value.Type ].ChangePosition( value.Delta, 0.1 ) )
-            _selectedUnit.AbilitiesDelta[ R.Science ].Value -= 0.1;
+        if( _selectedUnit.Resistance[ value.Type ].ChangePosition( value.Delta ) )
+            _selectedUnit.AbilitiesDelta[ R.Science ].Value -= 0.1; //TODO: Converto to int to avoid precision issues
         else
             _selectedUnit.AbilitiesDelta[ R.Science ].Value += 0.1;
 
@@ -181,7 +183,7 @@ public class UnitController : AbstractController, IGameInit
         if( _hexMapModel.Table[ x ][ y ].Unit != null )
             return;
 
-        UnitModel um = new UnitModel( x, y, _hexMapModel.Table[ x ][ y ].Props[ R.Altitude ].Value );
+        UnitModel um = new UnitModel( x, y, _hexMapModel.Table[ x ][ y ].Props[ R.Altitude ].Value, GameModel.Copy( _bellCurves ) );
         _hexMapModel.Table[ x ][ y ].Unit = um;
         _life.Units.Add( um );
         _life.Props[ R.Population ].Value++;

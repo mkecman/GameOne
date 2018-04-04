@@ -8,10 +8,12 @@ public class LifeController : AbstractController, IGameInit
 
     private PlanetModel _planet;
     private LifeModel _selectedLife;
+    private Dictionary<R, BellCurve> _bellCurves;
     private HexUpdateCommand _hexUpdateCommand;
 
     public void Init()
     {
+        _bellCurves = Config.Get<BellCurveConfig>();
         _hexUpdateCommand = GameModel.Get<HexUpdateCommand>();
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
     }
@@ -20,7 +22,8 @@ public class LifeController : AbstractController, IGameInit
     {
         _planet = value;
         _selectedLife = _planet.Life;
-        UpdatePlanetMapColors();
+        if( _selectedLife.Resistance.Count > 0 )
+            UpdatePlanetMapColors();
     }
 
     public void New()
@@ -33,10 +36,11 @@ public class LifeController : AbstractController, IGameInit
         _selectedLife.Props[ R.Minerals ].Value = 500;
         _selectedLife.Props[ R.Population ].Value = 1;
         _selectedLife.BuildingsState = GameModel.Copy( Config.Get<BuildingConfig>().Buildings );
+        _selectedLife.Resistance = GameModel.Copy( _bellCurves );
 
         int unitX = (int)( _planet.Map.Width / 2 ) + 2;
         int unitY = (int)( _planet.Map.Height / 2 ) + 2;
-        _selectedLife.Units.Add( new UnitModel( unitX, unitY, _planet.Map.Table[ unitX ][ unitY ].Props[ R.Altitude ].Value ) );
+        _selectedLife.Units.Add( new UnitModel( unitX, unitY, _planet.Map.Table[ unitX ][ unitY ].Props[ R.Altitude ].Value, GameModel.Copy( _bellCurves ) ) );
 
         _planet.Life = _selectedLife;
         UpdatePlanetMapColors();

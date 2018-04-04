@@ -10,7 +10,7 @@ public class HexUpdateCommand : IGameInit
     private float humidityBonus;
     private float radiationBonus;
 
-    private BellCurve altitudeBellCurve = new BellCurve( 1, 0.5f, 0.25f );
+    private BellCurve altitudeBellCurve = new BellCurve( 100, 50, 25 );
 
     public void Init() { }
 
