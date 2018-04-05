@@ -1,8 +1,8 @@
-﻿using System;
+﻿using PsiPhi;
+using System;
 using System.Collections.Generic;
-using UnityEngine;
-using UniRx;
 using System.Linq;
+using UnityEngine;
 
 public class UnitController : AbstractController, IGameInit
 {
@@ -19,7 +19,7 @@ public class UnitController : AbstractController, IGameInit
     private bool _isInAddMode;
     private bool _isAddingUnit;
 
-    private Dictionary<R,double> _updateValues = new Dictionary<R,double>();
+    private Dictionary<R, double> _updateValues = new Dictionary<R, double>();
     private HexUpdateCommand _hexUpdateCommand;
     private GameDebug _debug;
     private Dictionary<R, BellCurve> _bellCurves;
@@ -60,7 +60,7 @@ public class UnitController : AbstractController, IGameInit
 
         //_life.Props[ R.Energy ]._Value.Where( _ => _ > _pay.GetAddUnitPrice() && !_isAddingUnit ).Subscribe( _ => AddRandomUnit() );
     }
-    
+
     private void AddRandomUnit()
     {
         DeselectUnit();
@@ -90,16 +90,15 @@ public class UnitController : AbstractController, IGameInit
 
     private void OnResistanceUpgrade( ResistanceUpgradeMessage value )
     {
+        double delta = 0.1;
         if( _selectedUnit.Resistance[ value.Type ].ChangePosition( value.Delta ) )
-            _selectedUnit.AbilitiesDelta[ R.Science ].Value -= 0.1; 
-        else
-            _selectedUnit.AbilitiesDelta[ R.Science ].Value += 0.1;
+            delta = -0.1;
 
-        _selectedUnit.AbilitiesDelta[ R.Science ].Value = Math.Round( _selectedUnit.AbilitiesDelta[ R.Science ].Value, 2 );
-        
+        _selectedUnit.AbilitiesDelta[ R.Science ].Value = _selectedUnit.AbilitiesDelta[ R.Science ].Value.SafeSum( delta );
+
         UpdateHexAndHealth( _selectedUnit.Resistance, _hexMapModel.Table[ _selectedUnit.X ][ _selectedUnit.Y ] );
     }
-    
+
     private void OnClockTick( ClockTickMessage value )
     {
         UpdateStep();
@@ -131,7 +130,7 @@ public class UnitController : AbstractController, IGameInit
 
             _updateValues[ R.Energy ] += ( hm.Props[ R.Energy ].Value * um.Props[ R.Health ].Value ) + um.AbilitiesDelta[ R.Energy ].Value;
             _updateValues[ R.Science ] += ( hm.Props[ R.Science ].Value * um.Props[ R.Health ].Value ) + um.AbilitiesDelta[ R.Science ].Value;
-            _updateValues[ R.Minerals ] += ( hm.Props[ R.Minerals ].Value * um.Props[ R.Health ].Value ) + um.AbilitiesDelta[R.Minerals].Value;
+            _updateValues[ R.Minerals ] += ( hm.Props[ R.Minerals ].Value * um.Props[ R.Health ].Value ) + um.AbilitiesDelta[ R.Minerals ].Value;
 
             /* Moved to BuildingController
             hm.Props[ R.Temperature ].Value += um.AbilitiesDelta[ R.Temperature ].Value;
@@ -211,17 +210,17 @@ public class UnitController : AbstractController, IGameInit
 
         hexModel.Unit = null;
         _hexUpdateCommand.Execute( _life.Resistance, hexModel );
-        
+
         _hexMapModel.Table[ xTo ][ yTo ].Unit = _selectedUnit;
 
-        _selectedUnit.Props[R.Altitude].Value = _hexMapModel.Table[ xTo ][ yTo ].Props[ R.Altitude].Value;
+        _selectedUnit.Props[ R.Altitude ].Value = _hexMapModel.Table[ xTo ][ yTo ].Props[ R.Altitude ].Value;
         _selectedUnit.X = xTo;
         _selectedUnit.Y = yTo;
 
         UpdateHexAndHealth( _selectedUnit.Resistance, _hexMapModel.Table[ xTo ][ yTo ] );
     }
-    
-    private void UpdateHexAndHealth( Dictionary<R,BellCurve> resistance, HexModel hexModel )
+
+    private void UpdateHexAndHealth( Dictionary<R, BellCurve> resistance, HexModel hexModel )
     {
         _hexUpdateCommand.Execute( resistance, hexModel );
         _selectedUnit.Props[ R.Health ].Value = hexModel.Props[ R.HexScore ].Value;

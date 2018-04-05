@@ -22,13 +22,13 @@ public class ResistanceAdjustPanel : GameView
 
     private void OnDecreaseButtonClick()
     {
-        _resistanceMessage.Delta = -1;
+        _resistanceMessage.Delta = -.01f;
         GameMessage.Send( _resistanceMessage );
     }
 
     private void OnIncreaseButtonClick()
     {
-        _resistanceMessage.Delta = 1;
+        _resistanceMessage.Delta = .01f;
         GameMessage.Send( _resistanceMessage );
     }
 

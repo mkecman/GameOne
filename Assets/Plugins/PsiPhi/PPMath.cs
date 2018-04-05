@@ -2,8 +2,18 @@
 
 namespace PsiPhi
 {
-    public static class DoubleExtension
+    public static class PPMath
     {
+        public static double SafeSum( this double value1, double value2, int decimals = 2 )
+        {
+            return Math.Round( value1 + value2, decimals );
+        }
+
+        public static float Sum( this float value1, float value2, int decimals = 2 )
+        {
+            return (float)Math.Round( value1 + value2, decimals );
+        }
+
         public static bool AlmostEqualTo( this double value1, double value2, double precision = 0.000001 )
         {
             return Math.Abs( value1 - value2 ) < precision;

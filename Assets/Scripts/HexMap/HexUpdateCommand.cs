@@ -10,8 +10,6 @@ public class HexUpdateCommand : IGameInit
     private float humidityBonus;
     private float radiationBonus;
 
-    private BellCurve altitudeBellCurve = new BellCurve( 100, 50, 25 );
-
     public void Init() { }
 
     public void Execute( Dictionary<R,BellCurve> Resistance, HexModel hex )
@@ -38,7 +36,7 @@ public class HexUpdateCommand : IGameInit
         hex.Props[ R.Science ].Value = Math.Round( ( pressureBonus + radiationBonus ) , 0 );
         hex.Props[ R.Science ].Color = Color.Lerp( Color.red, Color.green, (float)hex.Props[ R.Science ].Value / 1 );
 
-        hex.Props[ R.Minerals ].Value = Math.Round( ( ( 1 - altitudeBellCurve.GetValueAt( hex.Props[ R.Altitude ].Value / 2 )) * 2), 0 );
+        hex.Props[ R.Minerals ].Value = Math.Round( ( ( 1 - Resistance[ R.Altitude ].GetValueAt( hex.Props[ R.Altitude ].Value / 2 )) * 2), 0 );
         hex.Props[ R.Minerals ].Color = Color.Lerp( Color.red, Color.green, (float)hex.Props[ R.Minerals ].Value / 1 );
 
         hex.Props[ R.HexScore ].Value = Math.Round( ( temperatureBonus + pressureBonus + humidityBonus + radiationBonus ) / 4, 2 );

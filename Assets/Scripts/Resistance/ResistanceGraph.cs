@@ -55,7 +55,7 @@ public class ResistanceGraph : GameView, IPointerClickHandler
             {
                 _selectedUnit = value.Unit;
                 //delay subscription to wait for BellCurveTexture Gradient to initialize
-                _selectedUnit.Resistance[ Lens ].Position.DelayFrame( 1 ).Subscribe( _ => { UpdateView(); } ).AddTo( disposables );
+                _selectedUnit.Resistance[ Lens ].Consumption.DelayFrame( 1 ).Subscribe( _ => { UpdateView(); } ).AddTo( disposables );
             }
             else
                 _selectedUnit = null;

@@ -36,9 +36,9 @@ public class BellCurveTexture : MonoBehaviour
             gradient[ i ] = Color.Lerp( RedColor, GreenColor, bellCurve.GetValueAt( i / 100f ) );
         }
 
-        for( var x = 0; x < width; x++ )
+        for( int x = 0; x < width; x++ )
         {
-            for( var y = 0; y < height; y++ )
+            for( int y = 0; y < height; y++ )
             {
                 pixels[ x + y * width ] = gradient[ (int)( ( (float)x / width ) * 100f ) ];
             }
