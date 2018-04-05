@@ -72,10 +72,10 @@ public class ResistanceGraph : GameView, IPointerClickHandler
             UpdateWith( _life.Resistance[ Lens ], _hexModel.Props[ Lens ].Value );
     }
 
-    private void UpdateWith( BellCurve bellCurve, double value )
+    private void UpdateWith( BellCurve bellCurve, float value )
     {
         Gradient.Draw( bellCurve );
-        _tileValueRectTransform.anchoredPosition = new Vector2( ( (float)value - 0.5f ) * Gradient.Width, 0 );
+        _tileValueRectTransform.anchoredPosition = new Vector2( ( value - 0.5f ) * Gradient.Width, 0 );
         MatchText.text = (int)Math.Round( bellCurve.GetValueAt( value ) * 100, 0 ) + "%";
     }
 

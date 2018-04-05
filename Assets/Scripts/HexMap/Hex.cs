@@ -43,16 +43,16 @@ public class Hex : GameView
     private void OnHexScoreChange()
     {
         Model.Props[ R.Default ].Color = (
-            Gradient1.Evaluate( (float)( Model.Props[ R.Temperature ].Value ) ) +
-            Gradient2.Evaluate( (float)( Model.Props[ R.Pressure ].Value ) ) +
-            Gradient3.Evaluate( (float)( Model.Props[ R.Humidity ].Value ) ) +
-            Gradient4.Evaluate( (float)( Model.Props[ R.Radiation ].Value ) ) 
+            Gradient1.Evaluate( Model.Props[ R.Temperature ].Value ) +
+            Gradient2.Evaluate( Model.Props[ R.Pressure ].Value ) +
+            Gradient3.Evaluate( Model.Props[ R.Humidity ].Value ) +
+            Gradient4.Evaluate( Model.Props[ R.Radiation ].Value ) 
             ) / 4;
 
-        Color temp = Gradient1.Evaluate( (float)( Model.Props[ R.Temperature ].Value ) );
-        temp = AddColor( temp, Gradient2.Evaluate( (float)( Model.Props[ R.Pressure ].Value ) ) );
-        temp = AddColor( temp, Gradient3.Evaluate( (float)( Model.Props[ R.Humidity ].Value ) ) );
-        temp = AddColor( temp, Gradient4.Evaluate( (float)( Model.Props[ R.Radiation ].Value ) ) );
+        Color temp = Gradient1.Evaluate( Model.Props[ R.Temperature ].Value );
+        temp = AddColor( temp, Gradient2.Evaluate( Model.Props[ R.Pressure ].Value ) );
+        temp = AddColor( temp, Gradient3.Evaluate( Model.Props[ R.Humidity ].Value ) );
+        temp = AddColor( temp, Gradient4.Evaluate( Model.Props[ R.Radiation ].Value ) );
 
         Model.Props[ R.Default ].Color = temp;
 
@@ -131,17 +131,17 @@ public class Hex : GameView
         
         //SymbolText.text = Model.X + "," + Model.Y; //Show coordinates;
 
-        SymbolText.gameObject.transform.position = new Vector3( SymbolText.gameObject.transform.position.x, (float)Model.Props[ R.Altitude ].Value + .01f, SymbolText.gameObject.transform.position.z );
+        SymbolText.gameObject.transform.position = new Vector3( SymbolText.gameObject.transform.position.x, Model.Props[ R.Altitude ].Value + .01f, SymbolText.gameObject.transform.position.z );
     }
 
-    private void SetHeight( GameObject target, double height )
+    private void SetHeight( GameObject target, float height )
     {
         Mesh mesh = target.GetComponent<MeshFilter>().mesh;
         Vector3[] verts = mesh.vertices;
         for( int q = 0; q < verts.Length; ++q )
         {
             if( verts[ q ].y > 0 )
-                verts[ q ].y = (float)height + 0.1f;
+                verts[ q ].y = height + 0.1f;
         }
         mesh.vertices = verts;
         mesh.RecalculateNormals();

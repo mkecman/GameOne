@@ -9,7 +9,7 @@
       "HasValue": true
     },
     "Range": {
-      "Value": 0.06,
+      "Value": 0.1,
       "HasValue": true
     },
     "Consumption": {
@@ -27,7 +27,7 @@
       "HasValue": true
     },
     "Range": {
-      "Value": 0.2,
+      "Value": 0.1,
       "HasValue": true
     },
     "Consumption": {
@@ -63,7 +63,7 @@
       "HasValue": true
     },
     "Range": {
-      "Value": 0.15,
+      "Value": 0.1,
       "HasValue": true
     },
     "Consumption": {

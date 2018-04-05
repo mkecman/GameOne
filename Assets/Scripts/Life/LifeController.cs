@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class LifeController : AbstractController, IGameInit
@@ -30,7 +29,7 @@ public class LifeController : AbstractController, IGameInit
     {
         _selectedLife.Name = "Human";
         _selectedLife.ClimbLevel = 0.99;
-        
+
         _selectedLife.Props[ R.Energy ].Value = 500;
         _selectedLife.Props[ R.Science ].Value = 500;
         _selectedLife.Props[ R.Minerals ].Value = 500;
@@ -45,7 +44,7 @@ public class LifeController : AbstractController, IGameInit
         _planet.Life = _selectedLife;
         UpdatePlanetMapColors();
     }
-    
+
     private void UpdatePlanetMapColors()
     {
         HexModel hex;
@@ -53,9 +52,9 @@ public class LifeController : AbstractController, IGameInit
         int[] foodTiles = new int[] { 0, 0, 0, 0, 0, 0 };
         int[] scienceTiles = new int[] { 0, 0, 0, 0, 0, 0 };
         int[] wordsTiles = new int[] { 0, 0, 0, 0, 0, 0 };
-        double totalEnergy = 0;
-        double totalScience = 0;
-        double totalMinerals = 0;
+        float totalEnergy = 0;
+        float totalScience = 0;
+        float totalMinerals = 0;
 
         for( int x = 0; x < _planet.Map.Width; x++ )
         {
@@ -65,8 +64,8 @@ public class LifeController : AbstractController, IGameInit
 
                 _hexUpdateCommand.Execute( _selectedLife.Resistance, hex );
 
-                totalEnergy += hex.Props[ R.Temperature ].Value;
-                totalScience += hex.Props[ R.Humidity ].Value;
+                totalEnergy += hex.Props[ R.Energy ].Value;
+                totalScience += hex.Props[ R.Science ].Value;
                 totalMinerals += hex.Props[ R.Minerals ].Value;
 
                 foodTiles[ (int)hex.Props[ R.Energy ].Value ]++;
@@ -75,8 +74,8 @@ public class LifeController : AbstractController, IGameInit
             }
         }
 
-        Debug.Log( "Temperature: " + totalEnergy + "::: Humidity: " + totalScience + "::: Minerals: " + totalMinerals );
-        
+        Debug.Log( "Energy: " + totalEnergy + "::: Science: " + totalScience + "::: Minerals: " + totalMinerals );
+
         for( int i = 0; i < 6; i++ )
         {
             totalEnergy += i * foodTiles[ i ];

@@ -1,9 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
-using System;
+﻿using System.Collections.Generic;
 using UniRx;
-using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildingInfoPanel : GameView
 {
@@ -20,7 +18,7 @@ public class BuildingInfoPanel : GameView
     public Color Activated;
     public Color Deactivated;
     public Image BackgroundImage;
-    
+
     private HexModel _hex;
     private BuildingModel _building;
 
@@ -52,19 +50,19 @@ public class BuildingInfoPanel : GameView
         }
         else
             if( _hex.Building != null )
-            {
-                SetBuilding( _hex );
-                BuildPanel.SetActive( false );
-            }
+        {
+            SetBuilding( _hex );
+            BuildPanel.SetActive( false );
+        }
+        else
+        {
+            _building = null;
+            BuildPanel.SetActive( true );
+            if( _hex.Unit == null )
+                BuildButton.interactable = false;
             else
-            {
-                _building = null;
-                BuildPanel.SetActive( true );
-                if( _hex.Unit == null )
-                    BuildButton.interactable = false;
-                else
-                    BuildButton.interactable = true;
-            }
+                BuildButton.interactable = true;
+        }
     }
 
     private void OnDemolishButtonClick()
@@ -82,7 +80,7 @@ public class BuildingInfoPanel : GameView
 
         GameMessage.Send( _abilityMessage );
     }
-    
+
     private void SetBuilding( HexModel hex )
     {
         disposables.Clear();
@@ -100,7 +98,7 @@ public class BuildingInfoPanel : GameView
         RemoveAllChildren( EffectsGrid );
         RemoveAllChildren( MaintenanceGrid );
 
-        foreach( KeyValuePair<R, double> item in _building.Effects )
+        foreach( KeyValuePair<R, float> item in _building.Effects )
         {
             if( item.Key == R.Minerals )
                 AddEffect( MaintenanceGrid, R.Minerals, item.Value );
@@ -108,7 +106,7 @@ public class BuildingInfoPanel : GameView
             if( item.Value < 0 )
                 AddEffect( EffectsGrid, item.Key, item.Value );
         }
-        foreach( KeyValuePair<R, double> item in _building.Effects )
+        foreach( KeyValuePair<R, float> item in _building.Effects )
         {
             if( item.Value > 0 )
                 AddEffect( EffectsGrid, item.Key, item.Value );
@@ -144,12 +142,12 @@ public class BuildingInfoPanel : GameView
         }
     }
 
-    private void AddEffect( Transform container, R type, double value )
+    private void AddEffect( Transform container, R type, float value )
     {
         GameObject go = Instantiate( EffectPrefab, container );
         UIPropertyView uipv = go.GetComponent<UIPropertyView>();
         uipv.SetProperty( type.ToString() );
-        uipv.SetValue( double.MaxValue, value );
+        uipv.SetValue( float.MaxValue, value );
     }
 
     private void RemoveAllChildren( Transform transform )

@@ -54,11 +54,11 @@ public class BuildingUnlockView : GameView, IPointerClickHandler
 
         Name.SetProperty( ability.Name );
         UnlockPrice.SetProperty( "Unlock (Science):" );
-        UnlockPrice.SetValue( Double.MaxValue, -ability.UnlockCost );
+        UnlockPrice.SetValue( float.MaxValue, -ability.UnlockCost );
         BuildPrice.SetProperty( "Build (Minerals):" );
-        BuildPrice.SetValue( Double.MaxValue, -ability.BuildCost );
+        BuildPrice.SetValue( float.MaxValue, -ability.BuildCost );
         MaintenancePrice.SetProperty( "Maintenance (Minerals):" );
-        MaintenancePrice.SetValue( Double.MaxValue, ability.Effects[ R.Minerals ] );
+        MaintenancePrice.SetValue( float.MaxValue, ability.Effects[ R.Minerals ] );
 
         var list = _building.Effects.Keys.ToList();
         list.Sort();
@@ -72,12 +72,12 @@ public class BuildingUnlockView : GameView, IPointerClickHandler
         }
     }
 
-    private void AddEffect( GameObject prefab, R type, double value )
+    private void AddEffect( GameObject prefab, R type, float value )
     {
         GameObject go = Instantiate( prefab, EffectsGrid );
         UIPropertyView uipv = go.GetComponent<UIPropertyView>();
         uipv.SetProperty( type.ToString() );
-        uipv.SetValue( double.MaxValue, value );
+        uipv.SetValue( float.MaxValue, value );
     }
 
     public override void OnDestroy()

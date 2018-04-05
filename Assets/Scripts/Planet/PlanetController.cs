@@ -59,35 +59,35 @@ public class PlanetController : AbstractController, IGameInit
 
         _selectedPlanet.Distance = GetDistance( index, _star.PlanetsCount );
         _selectedPlanet.Radius = GetRadius();
-        _selectedPlanet.Volume = 1.333 * Math.PI * Math.Pow( _selectedPlanet.Radius, 3 );
+        _selectedPlanet.Volume = 1.333f * Mathf.PI * Mathf.Pow( _selectedPlanet.Radius, 3 );
 
         _selectedPlanet._Elements = GeneratePlanetElements( index + 1, _star.PlanetsCount );
         _selectedPlanet.Density = CalculateDensity( _selectedPlanet._Elements );  //( tempPlanet.Mass / tempPlanet.Volume ) / 1000; // value is in g/m3
         _selectedPlanet.Mass = _selectedPlanet.Density * _selectedPlanet.Volume * 1000;
-        _selectedPlanet.Gravity = ( _universeConfig.G * _selectedPlanet.Mass ) / Math.Pow( _selectedPlanet.Radius, 2 );
-        _selectedPlanet.OrbitalPeriod = 2 * Math.PI * Math.Sqrt( Math.Pow( _selectedPlanet.Distance, 3 ) / ( _star.Mass * _universeConfig.G ) );
-        _selectedPlanet.EscapeVelocity = Math.Sqrt( ( 2 * _universeConfig.G * _selectedPlanet.Mass ) / _selectedPlanet.Radius );
+        _selectedPlanet.Gravity = ( _universeConfig.G * _selectedPlanet.Mass ) / Mathf.Pow( _selectedPlanet.Radius, 2 );
+        _selectedPlanet.OrbitalPeriod = 2 * Mathf.PI * Mathf.Sqrt( Mathf.Pow( _selectedPlanet.Distance, 3 ) / ( _star.Mass * _universeConfig.G ) );
+        _selectedPlanet.EscapeVelocity = Mathf.Sqrt( ( 2 * _universeConfig.G * _selectedPlanet.Mass ) / _selectedPlanet.Radius );
 
         _selectedPlanet.Pressure = 1;
         _selectedPlanet.MagneticField = 1;
 
-        _selectedPlanet.AlbedoSurface = 0.2;
-        _selectedPlanet.AlbedoClouds = 0.7;
-        double albedo = 1 - ( ( 1 - _selectedPlanet.AlbedoSurface ) * ( 1 - _selectedPlanet.AlbedoClouds ) );
-        double greenhouse = 0;
+        _selectedPlanet.AlbedoSurface = 0.2f;
+        _selectedPlanet.AlbedoClouds = 0.7f;
+        float albedo = 1 - ( ( 1 - _selectedPlanet.AlbedoSurface ) * ( 1 - _selectedPlanet.AlbedoClouds ) );
+        float greenhouse = 0;
 
         //temperature in Kelvin
-        double TemperatureFromStar = ( _star.Luminosity * albedo ) / ( 16 * Math.PI * Math.Pow( _selectedPlanet.Distance, 2 ) * _universeConfig.Boltzmann );
-        _selectedPlanet.Props[ R.Temperature ].Value = Math.Pow( ( TemperatureFromStar * ( 1 + ( ( 3 * greenhouse * 0.5841 ) / 4 ) ) / .9 ), 0.25 );
+        float TemperatureFromStar = ( _star.Luminosity * albedo ) / ( 16 * Mathf.PI * Mathf.Pow( _selectedPlanet.Distance, 2 ) * _universeConfig.Boltzmann );
+        _selectedPlanet.Props[ R.Temperature ].Value = Mathf.Pow( ( TemperatureFromStar * ( 1 + ( ( 3 * greenhouse * 0.5841f ) / 4 ) ) / .9f ), 0.25f );
         _selectedPlanet.Props[ R.Temperature ].Value -= 273; //convert to Celsius
 
         _selectedPlanet.Map = _hexMapGenerator.Generate( _selectedPlanet );
     }
     
-    private double CalculateDensity( ReactiveCollection<PlanetElementModel> elements )
+    private float CalculateDensity( ReactiveCollection<PlanetElementModel> elements )
     {
-        double totalDensity = 0;
-        double totalAmount = 0;
+        float totalDensity = 0;
+        float totalAmount = 0;
         int elementsCount = elements.Count;
         for( int i = 0; i < elementsCount; i++ )
         {
@@ -98,18 +98,18 @@ public class PlanetController : AbstractController, IGameInit
         return totalDensity / totalAmount;
     }
 
-    private ReactiveCollection<PlanetElementModel> GeneratePlanetElements( double index, double planetCount )
+    private ReactiveCollection<PlanetElementModel> GeneratePlanetElements( float index, float planetCount )
     {
         int ElementCount = _star._AvailableElements.Count;
 
-        double curve = index * ( ElementCount * _starsConfig.MaxElementsBellCurveMagnifier / planetCount );
-        double ofset = index * ( ElementCount / planetCount );
+        float curve = index * ( ElementCount * _starsConfig.MaxElementsBellCurveMagnifier / planetCount );
+        float ofset = index * ( ElementCount / planetCount );
 
         ReactiveCollection<PlanetElementModel> output = new ReactiveCollection<PlanetElementModel>();
-        double probability;
+        float probability;
         for( int i = 0; i < ElementCount; i++ )
         {
-            probability = ( 1 / Math.Sqrt( 2 * Math.PI * curve ) ) * Math.Exp( -Math.Pow( ofset - i, 2 ) / ( 2 * curve ) ) * 1000;
+            probability = ( 1 / Mathf.Sqrt( 2 * Mathf.PI * curve ) ) * Mathf.Exp( -Mathf.Pow( ofset - i, 2 ) / ( 2 * curve ) ) * 1000;
             if( probability >= 1 )
             {
                 PlanetElementModel planetElementModel = new PlanetElementModel
@@ -125,12 +125,12 @@ public class PlanetController : AbstractController, IGameInit
         return output;
     }
 
-    private double GetRadius()
+    private float GetRadius()
     {
         return RandomUtil.GetRandomWeightedValue( _starsConfig.MinPlanetaryRadiusInMeters, _starsConfig.PlanetaryRadiusInMeters );
     }
 
-    private double GetDistance( int index, int planetCount )
+    private float GetDistance( int index, int planetCount )
     {
         if( planetCount > 5 )
             return _starsConfig.TenPlanetDistancesInAU[ index ] * _star.HabitableZone;

@@ -10,12 +10,12 @@ public class RandomUtil
         random = new Random( seed );
     }
 
-    public static double GetNext()
+    public static float GetNext()
     {
-        return random.NextDouble();
+        return (float)random.NextDouble();
     }
 
-    public static double FromRange( double min, double max )
+    public static float FromRange( float min, float max )
     {
         return GetNext() * ( max - min ) + min;
     }
@@ -30,10 +30,10 @@ public class RandomUtil
     /// </summary>
     /// <param name="probabilities">Value is output value, Weight is a probability percent</param>
     /// <returns>Random object Value based on probabilities.</returns>
-    public static double GetWeightedValue( List<WeightedValue> probabilities )
+    public static float GetWeightedValue( List<WeightedValue> probabilities )
     {
-        double diceRoll = GetNext();
-        double cumulative = 0.0;
+        float diceRoll = GetNext();
+        float cumulative = 0.0f;
         for (int i = 0; i < probabilities.Count; i++)
         {
             cumulative += probabilities[i].Weight;
@@ -52,8 +52,8 @@ public class RandomUtil
     /// <returns>Random object Key index based on probabilities.</returns>
     public static int GetWeightedKey(List<WeightedValue> probabilities)
     {
-        double diceRoll = GetNext();
-        double cumulative = 0.0;
+        float diceRoll = GetNext();
+        float cumulative = 0.0f;
         for (int i = 0; i < probabilities.Count; i++)
         {
             cumulative += probabilities[i].Weight;
@@ -65,16 +65,16 @@ public class RandomUtil
         return 0;
     }
 
-    public static double GetRandomWeightedValue( double minValue, List<WeightedValue> values )
+    public static float GetRandomWeightedValue( float minValue, List<WeightedValue> values )
     {
-        double min;
+        float min;
         int key = GetWeightedKey( values );
         if( key == 0 )
             min = minValue;
         else
             min = values[ key - 1 ].Value;
 
-        double max = values[ key ].Value;
+        float max = values[ key ].Value;
 
         return FromRange( min, max );
     }

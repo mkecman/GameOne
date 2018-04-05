@@ -22,12 +22,12 @@ public class BuildingPaymentService : AbstractController, IGameInit
         _life = value.Life;
     }
 
-    public double GetUnlockPrice( int index )
+    public float GetUnlockPrice( int index )
     {
         return _buildingConfig[ index ].UnlockCost * 1;
     }
 
-    public double GetBuildPrice( int index )
+    public float GetBuildPrice( int index )
     {
         return _buildingConfig[ index ].BuildCost * 1;
     }
@@ -42,12 +42,12 @@ public class BuildingPaymentService : AbstractController, IGameInit
         return Deduct( GetUnlockPrice( index ), spendCurrency, R.Minerals );
     }
 
-    public bool BuyMaintenance( double price, bool spendCurrency = true )
+    public bool BuyMaintenance( float price, bool spendCurrency = true )
     {
         return Deduct( price, spendCurrency, R.Minerals );
     }
 
-    private bool Deduct( double price, bool spendCurrency, R currency )
+    private bool Deduct( float price, bool spendCurrency, R currency )
     {
         if( _debug.isActive )
         {

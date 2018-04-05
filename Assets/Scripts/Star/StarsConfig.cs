@@ -8,11 +8,11 @@ public class StarsConfig
 {
     public int MinPlanets;
     public int MaxPlanets;
-    public List<double> FivePlanetDistancesInAU;
-    public List<double> TenPlanetDistancesInAU;
-    public double MinPlanetaryRadiusInMeters;
+    public List<float> FivePlanetDistancesInAU;
+    public List<float> TenPlanetDistancesInAU;
+    public float MinPlanetaryRadiusInMeters;
     public List<WeightedValue> PlanetaryRadiusInMeters;
-    public double MaxElementsBellCurveMagnifier;
+    public float MaxElementsBellCurveMagnifier;
     public List<StarModel> Stars;
 
 

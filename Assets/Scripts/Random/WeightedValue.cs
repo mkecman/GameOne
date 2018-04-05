@@ -1,20 +1,18 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
+﻿using System;
 using UniRx;
 
 [Serializable]
 public class WeightedValue
 {
-    internal ReactiveProperty<double> _Weight = new ReactiveProperty<double>();
-    public double Weight
+    internal FloatReactiveProperty _Weight = new FloatReactiveProperty();
+    public float Weight
     {
         get { return _Weight.Value; }
         set { _Weight.Value = value; }
     }
 
-    internal ReactiveProperty<double> _Value = new ReactiveProperty<double>();
-    public double Value
+    internal FloatReactiveProperty _Value = new FloatReactiveProperty();
+    public float Value
     {
         get { return _Value.Value; }
         set { _Value.Value = value; }

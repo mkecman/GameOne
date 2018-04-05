@@ -14,42 +14,42 @@ public class ElementModel
         set { _Index.Value = value; }
     }
 
-    internal ReactiveProperty<string> _Symbol = new ReactiveProperty<string>();
+    internal StringReactiveProperty _Symbol = new StringReactiveProperty();
     public string Symbol
     {
         get { return _Symbol.Value; }
         set { _Symbol.Value = value; }
     }
 
-    internal ReactiveProperty<string> _Name = new ReactiveProperty<string>();
+    internal StringReactiveProperty _Name = new StringReactiveProperty();
     public string Name
     {
         get { return _Name.Value; }
         set { _Name.Value = value; }
     }
 
-    internal ReactiveProperty<double> _Weight = new ReactiveProperty<double>();
-    public double Weight
+    internal FloatReactiveProperty _Weight = new FloatReactiveProperty();
+    public float Weight
     {
         get { return _Weight.Value; }
         set { _Weight.Value = value; }
     }
 
-    internal ReactiveProperty<double> _Density = new ReactiveProperty<double>();
-    public double Density
+    internal FloatReactiveProperty _Density = new FloatReactiveProperty();
+    public float Density
     {
         get { return _Density.Value; }
         set { _Density.Value = value; }
     }
 
-    internal ReactiveProperty<string> _HexColor = new ReactiveProperty<string>();
+    internal StringReactiveProperty _HexColor = new StringReactiveProperty();
     public string HexColor
     {
         get { return _HexColor.Value; }
         set { _HexColor.Value = value; }
     }
 
-    internal ReactiveProperty<string> _GroupBlock = new ReactiveProperty<string>();
+    internal StringReactiveProperty _GroupBlock = new StringReactiveProperty();
     public string GroupBlock
     {
         get { return _GroupBlock.Value; }

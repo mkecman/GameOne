@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using UniRx;
 using System.Collections.Generic;
+using PsiPhi;
 
 public class HUDPanelView : GameView
 {
@@ -12,10 +13,9 @@ public class HUDPanelView : GameView
     public UIPropertyView Words;
 
     private LifeModel _life;
-    private double _lastEnergy;
 
     private Dictionary<R,UIPropertyView> Props = new Dictionary<R,UIPropertyView>();
-    private Dictionary<R,double> LastProps = new Dictionary<R,double>();
+    private Dictionary<R,float> LastProps = new Dictionary<R,float>();
 
     // Use this for initialization
     void Start()
@@ -64,7 +64,7 @@ public class HUDPanelView : GameView
 
     private void UpdateProperty( R type )
     {
-        Props[ type ].SetValue( Math.Round( _life.Props[ type ].Value, 2 ), Math.Round( _life.Props[ type ].Value - LastProps[ type ], 2 ) );
+        Props[ type ].SetValue( PPMath.Round( _life.Props[ type ].Value, 2 ), PPMath.Round( _life.Props[ type ].Value - LastProps[ type ], 2 ) );
         LastProps[ type ] = _life.Props[ type ].Value;
     }
     

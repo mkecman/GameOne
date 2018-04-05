@@ -27,7 +27,7 @@ public class BuildingGenerator : MonoBehaviour
         //MAKE COMBINATIONS
         List<BuildingEffect> buildingsEffects = new List<BuildingEffect>();
 
-        double count = Math.Pow( 2, list.Count );
+        int count = (int)Math.Pow( 2, list.Count );
         BuildingEffect buildingEffect;
         for( int i = 1; i <= count - 1; i++ )
         {
@@ -39,10 +39,10 @@ public class BuildingGenerator : MonoBehaviour
                 {
                     if( list[ j ] > 4 )
                     {
-                        buildingEffect.Decreases[ (int)propertyMap[ list[ j ] ] ] = -0.01;
+                        buildingEffect.Decreases[ (int)propertyMap[ list[ j ] ] ] = -0.01f;
                     }
                     else
-                        buildingEffect.Increases[ (int)propertyMap[ list[ j ] ] ] = 0.01;
+                        buildingEffect.Increases[ (int)propertyMap[ list[ j ] ] ] = 0.01f;
                 }
             }
 
@@ -90,7 +90,7 @@ public class BuildingGenerator : MonoBehaviour
 
             buildings[ i ].UnlockCost = price;
             buildings[ i ].BuildCost = price / 2;
-            buildings[ i ].Effects.Add( R.Minerals, -1 * ( (double)price / 100 ) );
+            buildings[ i ].Effects.Add( R.Minerals, -1 * ( price / 100 ) );
             buildings[ i ].State = BuildingState.LOCKED;
         }
 
@@ -135,13 +135,13 @@ public class BuildingGenerator : MonoBehaviour
 
 public class BuildingEffect
 {
-    public List<double> Increases;
-    public List<double> Decreases;
+    public List<float> Increases;
+    public List<float> Decreases;
 
     public BuildingEffect()
     {
-        Increases = new List<double>();
-        Decreases = new List<double>();
+        Increases = new List<float>();
+        Decreases = new List<float>();
         for( int i = 0; i < (int)R.Count; i++ )
         {
             Increases.Add( 0 );

@@ -25,7 +25,7 @@ public class HealthBar : GameView
         disposables.Clear();
         _unitModel = um;
 
-        _unitModel.Props[ R.Health ]._Value.Subscribe( _ => ProgressBar.Value = (float)_ * 100f ).AddTo( disposables );
+        _unitModel.Props[ R.Health ]._Value.Subscribe( _ => ProgressBar.Value = _ * 100f ).AddTo( disposables );
     }
 
     private void Update()

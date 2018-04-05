@@ -10,7 +10,7 @@ public class BuildingController : AbstractController, IGameInit
     private BuildingModel bm;
     private int hexCount;
 
-    private Dictionary<R,double> tempProps = new Dictionary<R,double>();
+    private Dictionary<R,float> tempProps = new Dictionary<R, float>();
 
     public void Init()
     {
@@ -93,7 +93,7 @@ public class BuildingController : AbstractController, IGameInit
         }
     }
 
-    private void CollectEffectValue( R type, Dictionary<R,double> tempProps, Dictionary<R, double> effects )
+    private void CollectEffectValue( R type, Dictionary<R, float> tempProps, Dictionary<R, float> effects )
     {
         if( effects.ContainsKey( type ) )
             tempProps[ type ] += effects[ type ];

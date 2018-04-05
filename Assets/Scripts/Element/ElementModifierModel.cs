@@ -1,9 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
 using UniRx;
-using System.Linq;
-using System;
-using System.Collections.Generic;
 
 [Serializable]
 public class ElementModifierModel
@@ -15,8 +11,8 @@ public class ElementModifierModel
         set { _Property.Value = value; }
     }
 
-    internal ReactiveProperty<double> _Delta = new ReactiveProperty<double>();
-    public double Delta
+    internal FloatReactiveProperty _Delta = new FloatReactiveProperty();
+    public float Delta
     {
         get { return _Delta.Value; }
         set { _Delta.Value = value; }

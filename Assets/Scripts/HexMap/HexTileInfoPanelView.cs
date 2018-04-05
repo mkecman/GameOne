@@ -29,12 +29,12 @@ public class HexTileInfoPanelView : GameView
     {
         disposables.Clear();
 
-        hex.Props[ R.Altitude ]._Value.Subscribe( _ => Altitude.SetValue( Math.Round( _, 2 ) ) ).AddTo( disposables );
-        hex.Props[ R.Temperature ]._Value.Subscribe( _ => Temperature.SetValue( Math.Round( ( _ * 873 ) - 273, 2 ) ) ).AddTo( disposables );
-        hex.Props[ R.Pressure ]._Value.Subscribe( _ => Pressure.SetValue( Math.Round( _, 2 ) ) ).AddTo( disposables );
-        hex.Props[ R.Humidity ]._Value.Subscribe( _ => Humidity.SetValue( Math.Round( _, 2 ) ) ).AddTo( disposables );
-        hex.Props[ R.Radiation ]._Value.Subscribe( _ => Radiation.SetValue( Math.Round( _, 2 ) ) ).AddTo( disposables );
-        hex.Props[ R.HexScore ]._Value.Subscribe( _ => HexScore.SetValue( Math.Round( _, 2 ) ) ).AddTo( disposables );
+        hex.Props[ R.Altitude ]._Value.Subscribe( _ => Altitude.SetValue( _ ) ).AddTo( disposables );
+        hex.Props[ R.Temperature ]._Value.Subscribe( _ => Temperature.SetValue( ( _ * 873 ) - 273 ) ).AddTo( disposables );
+        hex.Props[ R.Pressure ]._Value.Subscribe( _ => Pressure.SetValue( _ ) ).AddTo( disposables );
+        hex.Props[ R.Humidity ]._Value.Subscribe( _ => Humidity.SetValue( _ ) ).AddTo( disposables );
+        hex.Props[ R.Radiation ]._Value.Subscribe( _ => Radiation.SetValue( _ ) ).AddTo( disposables );
+        hex.Props[ R.HexScore ]._Value.Subscribe( _ => HexScore.SetValue( _ ) ).AddTo( disposables );
     }
     
 }

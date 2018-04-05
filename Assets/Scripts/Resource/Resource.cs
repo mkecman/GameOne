@@ -4,7 +4,7 @@ using UniRx;
 
 public class Resource
 {
-    public Resource( R type, double value, double delta = 0, Color? color = null )
+    public Resource( R type, float value, float delta = 0, Color? color = null )
     {
         Type = type;
         Value = value;
@@ -16,16 +16,16 @@ public class Resource
     internal R Type = R.Temperature;
     
     [SerializeField]
-    internal DoubleReactiveProperty _Value = new DoubleReactiveProperty();
-    public double Value
+    internal FloatReactiveProperty _Value = new FloatReactiveProperty();
+    public float Value
     {
         get { return _Value.Value; }
         set { _Value.Value = value; }
     }
 
     [SerializeField]
-    internal DoubleReactiveProperty _Delta = new DoubleReactiveProperty();
-    public double Delta
+    internal FloatReactiveProperty _Delta = new FloatReactiveProperty();
+    public float Delta
     {
         get { return _Delta.Value; }
         set { _Delta.Value = value; }

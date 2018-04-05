@@ -1,7 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
-using UniRx;
+﻿using UniRx;
+using UnityEngine;
 
 public class Building : GameView
 {
@@ -11,7 +9,7 @@ public class Building : GameView
 
     internal void SetModel( BuildingModel model )
     {
-        transform.position = new Vector3( HexMapHelper.GetXPosition( model.X, model.Y ), (float)model.Altitude, HexMapHelper.GetZPosition( model.Y ) );
+        transform.position = new Vector3( HexMapHelper.GetXPosition( model.X, model.Y ), model.Altitude, HexMapHelper.GetZPosition( model.Y ) );
         model._State.Subscribe( _ => SetState( _ ) ).AddTo( disposables );
     }
 

@@ -10,28 +10,28 @@ public class HexMap : MonoBehaviour
 
     [Header( "Planetary properties" )]
     [RangeReactiveProperty( 0, 1 )]
-    public DoubleReactiveProperty Temperature = new DoubleReactiveProperty( 0 );
+    public FloatReactiveProperty Temperature = new FloatReactiveProperty( 0 );
 
     [RangeReactiveProperty( 0, 1 )]
-    public DoubleReactiveProperty TemperatureVariation = new DoubleReactiveProperty( 0 );
+    public FloatReactiveProperty TemperatureVariation = new FloatReactiveProperty( 0 );
 
     [RangeReactiveProperty( 0, 1 )]
-    public DoubleReactiveProperty Pressure = new DoubleReactiveProperty( 0 );
+    public FloatReactiveProperty Pressure = new FloatReactiveProperty( 0 );
 
     [RangeReactiveProperty( 0, 1 )]
-    public DoubleReactiveProperty PressureVariation = new DoubleReactiveProperty( 0 );
+    public FloatReactiveProperty PressureVariation = new FloatReactiveProperty( 0 );
 
     [RangeReactiveProperty( 0, 1 )]
-    public DoubleReactiveProperty Humidity = new DoubleReactiveProperty( 0 );
+    public FloatReactiveProperty Humidity = new FloatReactiveProperty( 0 );
 
     [RangeReactiveProperty( 0, 1 )]
-    public DoubleReactiveProperty HumidityVariation = new DoubleReactiveProperty( 0 );
+    public FloatReactiveProperty HumidityVariation = new FloatReactiveProperty( 0 );
 
     [RangeReactiveProperty( 0, 1 )]
-    public DoubleReactiveProperty Radiation = new DoubleReactiveProperty( 0 );
+    public FloatReactiveProperty Radiation = new FloatReactiveProperty( 0 );
 
     [RangeReactiveProperty( 0, 1 )]
-    public DoubleReactiveProperty RadiationVariation = new DoubleReactiveProperty( 0 );
+    public FloatReactiveProperty RadiationVariation = new FloatReactiveProperty( 0 );
 
     [Header( "Size Values" )]
     public IntReactiveProperty width = new IntReactiveProperty( 64 );
@@ -39,7 +39,7 @@ public class HexMap : MonoBehaviour
 
     [Header( "Liquid" )]
     [RangeReactiveProperty( 0, 1 )]
-    public DoubleReactiveProperty LiquidLevel = new DoubleReactiveProperty( 0 );
+    public FloatReactiveProperty LiquidLevel = new FloatReactiveProperty( 0 );
     public Color LiquidColor;
 
     [Header( "Maps" )]
@@ -114,7 +114,7 @@ public class HexMap : MonoBehaviour
         }
 
         Ocean.transform.localScale = new Vector3( ( mapModel.Width * _hexConfig.xOffset ) + 1, 1, ( mapModel.Height * _hexConfig.zOffset ) + 1 );
-        Ocean.transform.position = new Vector3( ( mapModel.Width * _hexConfig.xOffset ) / 2, -.65f + ( 1.3f * (float)LiquidLevel.Value ), ( ( mapModel.Height * _hexConfig.zOffset ) / 2 ) - 0.5f );
+        Ocean.transform.position = new Vector3( ( mapModel.Width * _hexConfig.xOffset ) / 2, -.65f + ( 1.3f * LiquidLevel.Value ), ( ( mapModel.Height * _hexConfig.zOffset ) / 2 ) - 0.5f );
         Ocean.GetComponent<MeshRenderer>().material.color = LiquidColor;
     }
     

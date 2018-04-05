@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 public class UnitController : AbstractController, IGameInit
 {
@@ -19,7 +18,7 @@ public class UnitController : AbstractController, IGameInit
     private bool _isInAddMode;
     private bool _isAddingUnit;
 
-    private Dictionary<R, double> _updateValues = new Dictionary<R, double>();
+    private Dictionary<R, float> _updateValues = new Dictionary<R, float>();
     private HexUpdateCommand _hexUpdateCommand;
     private GameDebug _debug;
     private Dictionary<R, BellCurve> _bellCurves;
@@ -69,7 +68,7 @@ public class UnitController : AbstractController, IGameInit
             MarkNeighborHexes( _life.Units[ i ] );
         }
         HexModel _hex;
-        double max = 0;
+        float max = 0;
         int x = 0, y = 0;
         for( int i = 0; i < _markedHexes.Count; i++ )
         {
@@ -90,11 +89,11 @@ public class UnitController : AbstractController, IGameInit
 
     private void OnResistanceUpgrade( ResistanceUpgradeMessage value )
     {
-        double delta = 0.1;
+        float delta = 0.1f;
         if( _selectedUnit.Resistance[ value.Type ].ChangePosition( value.Delta ) )
-            delta = -0.1;
+            delta = -0.1f;
 
-        _selectedUnit.AbilitiesDelta[ R.Science ].Value = _selectedUnit.AbilitiesDelta[ R.Science ].Value.SafeSum( delta );
+        _selectedUnit.AbilitiesDelta[ R.Science ].Value = _selectedUnit.AbilitiesDelta[ R.Science ].Value.Sum( delta );
 
         UpdateHexAndHealth( _selectedUnit.Resistance, _hexMapModel.Table[ _selectedUnit.X ][ _selectedUnit.Y ] );
     }

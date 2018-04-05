@@ -1,12 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
+﻿using System;
 using UniRx;
 
 [Serializable]
 public class PlanetElementModel
 {
-    internal ReactiveProperty<int> _Index = new ReactiveProperty<int>();
+    internal IntReactiveProperty _Index = new IntReactiveProperty();
     public int Index
     {
         get { return _Index.Value; }
@@ -14,8 +12,8 @@ public class PlanetElementModel
     }
 
 
-    internal ReactiveProperty<double> _Amount = new ReactiveProperty<double>();
-    public double Amount
+    internal FloatReactiveProperty _Amount = new FloatReactiveProperty();
+    public float Amount
     {
         get { return _Amount.Value; }
         set { _Amount.Value = value; }

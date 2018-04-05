@@ -11,9 +11,9 @@ public class BuildingModel
 
     public int X;
     public int Y;
-    public double Altitude;
+    public float Altitude;
 
-    public Dictionary<R, double> Effects = new Dictionary<R, double>();
+    public Dictionary<R, float> Effects = new Dictionary<R, float>();
 
     [SerializeField]
     internal ReactiveProperty<BuildingState> _State = new ReactiveProperty<BuildingState>();

@@ -29,9 +29,9 @@ namespace PsiPhi
             return value1 < value2 || value1.AlmostEqualTo( value2, precision );
         }
 
-        public static void Round( this double value, int decimals = 2 )
+        public static float Round( float value, int decimals = 2 )
         {
-            value = Math.Round( value, decimals );
+            return (float)Math.Round( value, decimals );
         }
     }
 }

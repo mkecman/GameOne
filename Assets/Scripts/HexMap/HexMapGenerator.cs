@@ -1,9 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
-using AccidentalNoise;
-using System;
-using System.Collections.Generic;
-using UniRx;
+﻿using AccidentalNoise;
+using PsiPhi;
+using UnityEngine;
 
 public class HexMapGenerator
 {
@@ -23,7 +20,7 @@ public class HexMapGenerator
         {
             Ranges[ i ] = defaultRange;
         }
-        
+
         GenerateMap( hexMap );
         return _map;
     }
@@ -72,8 +69,8 @@ public class HexMapGenerator
                 float dy = y2 - y1;
 
                 // Sample noise at smaller intervals
-                float s = x / (float)_map.Width;
-                float t = y / (float)_map.Height;
+                float s = (float)x / _map.Width;
+                float t = (float)y / _map.Height;
 
                 // Calculate our 4D coordinates
                 float nx = x1 + Mathf.Cos( s * 2 * Mathf.PI ) * dx / ( 2 * Mathf.PI );
@@ -84,16 +81,16 @@ public class HexMapGenerator
                 float altitude = (float)AltitudeMap.Get( nx, ny, nz, nw );
                 float temperature = (float)( 1 - TemperatureMap.Get( nx, ny, nz, nw ) );
                 float equador = (float)( gradient.Get( nx, ny, nz, nw ) );
-                //float pressure = (float)PressureMap.Get( nx, ny, nz, nw );
+                //float pressure = PressureMap.Get( nx, ny, nz, nw );
                 float humidity = (float)HumidityMap.Get( nx, ny, nz, nw );
                 float radiation = (float)RadiationMap.Get( nx, ny, nz, nw );
-                
+
                 // keep track of the max and min values found
                 SetInitialHexValue( hex, R.Altitude, altitude );
                 SetInitialHexValue( hex, R.Temperature, temperature );
                 SetInitialHexValue( hex, R.Humidity, ( humidity - ( temperature * 0.3f ) ) );
-                SetInitialHexValue( hex, R.Pressure, ( (1-humidity)+(1-altitude)+(1-temperature) ) / 3 );
-                SetInitialHexValue( hex, R.Radiation, ( radiation + equador ) /2 );
+                SetInitialHexValue( hex, R.Pressure, ( ( 1 - humidity ) + ( 1 - altitude ) + ( 1 - temperature ) ) / 3 );
+                SetInitialHexValue( hex, R.Radiation, ( radiation + equador ) / 2 );
             }
         }
 
@@ -105,18 +102,18 @@ public class HexMapGenerator
                 hex = _map.Table[ x ][ y ];
 
                 SetHex( hex, R.Altitude );
-                if( hex.Props[R.Altitude].Value < _planetModel.LiquidLevel )
+                if( hex.Props[ R.Altitude ].Value < _planetModel.LiquidLevel )
                 {
-                    SetInitialHexValue( hex, R.Humidity, (float)hex.Props[ R.Humidity ].Value + 0.5f );
-                    SetInitialHexValue( hex, R.Pressure, (float)hex.Props[ R.Pressure ].Value + 0.5f );
-                    SetInitialHexValue( hex, R.Radiation, (float)hex.Props[ R.Radiation ].Value - 0.5f );
-                    if( hex.Props[R.Temperature].Value > 0.33 )
+                    SetInitialHexValue( hex, R.Humidity, hex.Props[ R.Humidity ].Value + 0.5f );
+                    SetInitialHexValue( hex, R.Pressure, hex.Props[ R.Pressure ].Value + 0.5f );
+                    SetInitialHexValue( hex, R.Radiation, hex.Props[ R.Radiation ].Value - 0.5f );
+                    if( hex.Props[ R.Temperature ].Value > 0.33 )
                     {
-                        SetInitialHexValue( hex, R.Temperature, (float)(hex.Props[ R.Temperature ].Value - ( hex.Props[ R.Temperature ].Value * 0.5f ) ) );
+                        SetInitialHexValue( hex, R.Temperature, ( hex.Props[ R.Temperature ].Value - ( hex.Props[ R.Temperature ].Value * 0.5f ) ) );
                     }
                     else
                     {
-                        SetInitialHexValue( hex, R.Temperature, (float)( hex.Props[ R.Temperature ].Value + ( hex.Props[ R.Temperature ].Value * 0.5f ) ) );
+                        SetInitialHexValue( hex, R.Temperature, ( hex.Props[ R.Temperature ].Value + ( hex.Props[ R.Temperature ].Value * 0.5f ) ) );
                     }
                 }
 
@@ -124,7 +121,7 @@ public class HexMapGenerator
                 SetHex( hex, R.Pressure );
                 SetHex( hex, R.Humidity );
                 SetHex( hex, R.Radiation );
-                
+
                 hex.Props[ R.HexScore ].Value = 0;
                 hex.Props[ R.HexScore ].Color = Color.red;
 
@@ -136,19 +133,14 @@ public class HexMapGenerator
     private void SetHex( HexModel hex, R type )
     {
         //normalize value to be between 0 - 1
-        hex.Props[ type ].Value = Math.Round( Mathf.InverseLerp( Ranges[ (int)type ].x, Ranges[ (int)type ].y, (float)hex.Props[ type ].Value ), 2 );
+        hex.Props[ type ].Value = Mathf.InverseLerp( Ranges[ (int)type ].x, Ranges[ (int)type ].y, hex.Props[ type ].Value );
 
         //add variation to properties based on planet values
-        hex.Props[ type ].Value = Math.Round( Clamp( ( ( hex.Props[ type ].Value - 0.5f ) * _planetModel.Props[ type ].Variation ) + _planetModel.Props[ type ].Value ), 2 );
+        hex.Props[ type ].Value = PPMath.Round( Mathf.Clamp( ( ( hex.Props[ type ].Value - 0.5f ) * _planetModel.Props[ type ].Variation ) + _planetModel.Props[ type ].Value, 0, 1 ), 2 );
 
-        hex.Props[ type ].Color = Color.Lerp( Color.red, Color.green, (float)hex.Props[ type ].Value );
+        hex.Props[ type ].Color = Color.Lerp( Color.red, Color.green, hex.Props[ type ].Value );
     }
 
-    private double Clamp( double value )
-    {
-        return Math.Min( Math.Max( value, 0 ), 1 );
-    }
-    
     private void SetInitialHexValue( HexModel hex, R lens, float value )
     {
         hex.Props[ lens ].Value = value;

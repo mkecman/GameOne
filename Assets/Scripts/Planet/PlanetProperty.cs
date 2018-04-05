@@ -4,10 +4,10 @@ using UniRx;
 
 public class PlanetProperty
 {
-    public double Value;
-    public double Variation;
+    public float Value;
+    public float Variation;
 
-    public PlanetProperty( double value, double variation )
+    public PlanetProperty( float value, float variation )
     {
         Value = value;
         Variation = variation;

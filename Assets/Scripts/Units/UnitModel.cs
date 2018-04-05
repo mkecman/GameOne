@@ -11,7 +11,7 @@ public class UnitModel
         get { return _X.Value; }
         set {
                 Position.x = HexMapHelper.GetXPosition( value, Y );
-                Position.y = (float)Props[ R.Altitude ].Value;
+                Position.y = Props[ R.Altitude ].Value;
                 _X.Value = value;
             }
     }
@@ -23,7 +23,7 @@ public class UnitModel
         get { return _Y.Value; }
         set {
                 Position.x = HexMapHelper.GetXPosition( X, value );
-                Position.y = (float)Props[ R.Altitude ].Value;
+                Position.y = Props[ R.Altitude ].Value;
                 Position.z = HexMapHelper.GetZPosition( value );
                 _Y.Value = value;
             }
@@ -33,7 +33,7 @@ public class UnitModel
 
     public Dictionary<int, BuildingState> Abilities = new Dictionary<int, BuildingState>();
 
-    public Dictionary<R, DoubleReactiveProperty> AbilitiesDelta = new Dictionary<R,DoubleReactiveProperty>();
+    public Dictionary<R, FloatReactiveProperty> AbilitiesDelta = new Dictionary<R, FloatReactiveProperty>();
 
     public Dictionary<R, BellCurve> Resistance = new Dictionary<R,BellCurve>();
 
@@ -41,7 +41,7 @@ public class UnitModel
 
     internal Vector3 Position = new Vector3();
 
-    public UnitModel( int x, int y, double altitude, Dictionary<R, BellCurve> resistance )
+    public UnitModel( int x, int y, float altitude, Dictionary<R, BellCurve> resistance )
     {
         Props.Add( R.Altitude, new Resource( R.Altitude, altitude ) );
         Props.Add( R.Health, new Resource( R.Health, 100 ) );
@@ -51,9 +51,9 @@ public class UnitModel
 
         Resistance = resistance;
         
-        AbilitiesDelta.Add( R.Energy, new DoubleReactiveProperty( -.5) );
-        AbilitiesDelta.Add( R.Science, new DoubleReactiveProperty() );
-        AbilitiesDelta.Add( R.Minerals, new DoubleReactiveProperty() );
+        AbilitiesDelta.Add( R.Energy, new FloatReactiveProperty( -.5f) );
+        AbilitiesDelta.Add( R.Science, new FloatReactiveProperty() );
+        AbilitiesDelta.Add( R.Minerals, new FloatReactiveProperty() );
 
         Abilities.Add( 0, BuildingState.UNLOCKED );
     }

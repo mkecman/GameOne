@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
 public class UIPropertyView : MonoBehaviour
@@ -9,20 +8,20 @@ public class UIPropertyView : MonoBehaviour
     public Text Delta;
 
     public Color GreenColor, RedColor;
-    
+
     public void SetProperty( string propertyName )
     {
         Property.text = propertyName;
     }
-    
-    public void SetValue( double value = double.MaxValue, double delta = double.MaxValue )
+
+    public void SetValue( float value = float.MaxValue, float delta = float.MaxValue )
     {
-        if( value == double.MaxValue )
+        if( value == float.MaxValue )
             Value.text = "";
         else
-            Value.text = value.ToString();
+            Value.text = value.ToString( "F2" );
 
-        if ( delta == double.MaxValue )
+        if( delta == float.MaxValue )
         {
             Delta.text = "";
             return;
@@ -38,6 +37,6 @@ public class UIPropertyView : MonoBehaviour
             Delta.color = RedColor;
             Delta.text = "";
         }
-        Delta.text += delta.ToString();
+        Delta.text += delta.ToString( "F2" );
     }
 }

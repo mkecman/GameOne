@@ -1,25 +1,20 @@
-﻿using System;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using UnityEngine;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using UniRx;
-using System.Reflection;
-using System.Text;
-using Newtonsoft.Json;
+using System.IO;
+using UnityEngine;
 
 public class ElementConfigGenerator
 {
     public List<JSONAtomModel> atoms;
     public List<ElementModel> elements;
-    
+
     internal void Load()
     {
         Debug.Log( "Load" );
 
         TextAsset targetFile = Resources.Load<TextAsset>( "Configs/AtomsJSON" );
         atoms = JsonConvert.DeserializeObject<List<JSONAtomModel>>( targetFile.text );
-        
+
         elements = new List<ElementModel>();
         for( int i = 0; i < atoms.Count; i++ )
         {
@@ -47,18 +42,18 @@ public class ElementConfigGenerator
         Save();
     }
 
-    internal ElementModifierModel CreateModifier( ElementModifiers Name, double Delta )
+    internal ElementModifierModel CreateModifier( ElementModifiers Name, float Delta )
     {
         ElementModifierModel tempModifier = new ElementModifierModel();
         tempModifier.Property = Name;
         tempModifier.Delta = Delta;
         return tempModifier;
     }
-    
+
     internal void Save()
     {
         File.WriteAllText( Application.persistentDataPath + "-ElementConfig.json", JsonConvert.SerializeObject( elements ) );
         Debug.Log( Application.persistentDataPath + "-ElementConfig.json" );
     }
-    
+
 }

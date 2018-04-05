@@ -63,14 +63,14 @@ public class StarController : AbstractController, IGameInit
     {
         int ElementCount = _elementsConfig.Elements.Count;
 
-        double curve = index * ( ElementCount * _starsConfig.MaxElementsBellCurveMagnifier / _starsConfig.Stars.Count );
-        double ofset = index * ( ElementCount / _starsConfig.Stars.Count );
+        float curve = index * ( ElementCount * _starsConfig.MaxElementsBellCurveMagnifier / _starsConfig.Stars.Count );
+        float ofset = index * ( ElementCount / _starsConfig.Stars.Count );
 
         ReactiveCollection<WeightedValue> output = new ReactiveCollection<WeightedValue>();
-        double probability;
+        float probability;
         for( int i = 0; i < ElementCount; i++ )
         {
-            probability = ( 1 / Math.Sqrt( 2 * Math.PI * curve ) ) * Math.Exp( -Math.Pow( ofset - i, 2 ) / ( 2 * curve ) );
+            probability = ( 1 / Mathf.Sqrt( 2 * Mathf.PI * curve ) ) * Mathf.Exp( -Mathf.Pow( ofset - i, 2 ) / ( 2 * curve ) );
             if( probability >= .01 )
             {
                 WeightedValue element = new WeightedValue

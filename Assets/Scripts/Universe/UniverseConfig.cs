@@ -3,12 +3,12 @@
 [Serializable]
 public class UniverseConfig
 {
-    public double G;
-    public double SunLuminosityInWatts;
-    public double SunMassInKilograms;
-    public double SunRadiusInMeters;
-    public double AUInMeters;
-    public double Boltzmann;
-    public double SolarLuminosity;
+    public float G;
+    public float SunLuminosityInWatts;
+    public float SunMassInKilograms;
+    public float SunRadiusInMeters;
+    public float AUInMeters;
+    public float Boltzmann;
+    public float SolarLuminosity;
 
 }

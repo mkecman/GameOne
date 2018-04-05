@@ -7,16 +7,16 @@ public class JSONAtomModel
     public int Index;
     public string Name;
     public string Symbol;
-    public double Density;
-    public double Weight;
+    public float Density;
+    public float Weight;
     public string HexColor;
     public string GroupBlock;
-    public double Food;
-    public double Science;
-    public double Words;
-    public double Temperature;
-    public double Pressure;
-    public double Radiation;
-    public double Gravity;
+    public float Food;
+    public float Science;
+    public float Words;
+    public float Temperature;
+    public float Pressure;
+    public float Radiation;
+    public float Gravity;
 
 }

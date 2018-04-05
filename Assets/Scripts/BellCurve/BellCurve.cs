@@ -21,9 +21,9 @@ public class BellCurve
         Range.Value = range;
     }
 
-    public float GetValueAt( double time )
+    public float GetValueAt( float time )
     {
-        return Amplitude.Value * Mathf.Exp( -Mathf.Pow( (float)time - Position.Value, 2 ) / ( 2 * Mathf.Pow( Range.Value, 2 ) ) );
+        return Amplitude.Value * Mathf.Exp( -Mathf.Pow( time - Position.Value, 2 ) / ( 2 * Mathf.Pow( Range.Value, 2 ) ) );
     }
 
     public bool ChangePosition( float delta )
@@ -32,7 +32,7 @@ public class BellCurve
         if( _defaultPosition == float.MaxValue )
             _defaultPosition = Position.Value;
 
-        Position.Value = (float)Math.Round( Position.Value + delta, 2 );
+        Position.Value = PPMath.Round( Position.Value + delta, 2 );
         bool increase = false;
 
 
@@ -58,7 +58,6 @@ public class BellCurve
             }
         }
 
-        Debug.Log( Position.Value + "::" + _defaultPosition + ":::incr=" + increase );
         return increase;
     }
 
