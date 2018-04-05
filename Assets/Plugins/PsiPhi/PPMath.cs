@@ -18,5 +18,10 @@ namespace PsiPhi
         {
             return value1 < value2 || value1.AlmostEqualTo( value2, precision );
         }
+
+        public static void Round( this double value, int decimals = 2 )
+        {
+            value = Math.Round( value, decimals );
+        }
     }
 }

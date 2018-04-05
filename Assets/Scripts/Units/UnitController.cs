@@ -91,13 +91,15 @@ public class UnitController : AbstractController, IGameInit
     private void OnResistanceUpgrade( ResistanceUpgradeMessage value )
     {
         if( _selectedUnit.Resistance[ value.Type ].ChangePosition( value.Delta ) )
-            _selectedUnit.AbilitiesDelta[ R.Science ].Value -= 0.1; //TODO: Converto to int to avoid precision issues
+            _selectedUnit.AbilitiesDelta[ R.Science ].Value -= 0.1; 
         else
             _selectedUnit.AbilitiesDelta[ R.Science ].Value += 0.1;
 
+        _selectedUnit.AbilitiesDelta[ R.Science ].Value = Math.Round( _selectedUnit.AbilitiesDelta[ R.Science ].Value, 2 );
+        
         UpdateHexAndHealth( _selectedUnit.Resistance, _hexMapModel.Table[ _selectedUnit.X ][ _selectedUnit.Y ] );
     }
-
+    
     private void OnClockTick( ClockTickMessage value )
     {
         UpdateStep();
