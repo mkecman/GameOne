@@ -19,6 +19,8 @@ public class PlanetModel
 
     public LifeModel Life = new LifeModel();
     public GridModel<HexModel> Map;
+    public Dictionary<R, PlanetProperty> Props = new Dictionary<R, PlanetProperty>();
+    public ReactiveCollection<PlanetElementModel> _Elements = new ReactiveCollection<PlanetElementModel>();
 
     internal StringReactiveProperty _Name = new StringReactiveProperty();
     public string Name
@@ -34,10 +36,6 @@ public class PlanetModel
         get { return _Index.Value; }
         set { _Index.Value = value; }
     }
-
-    public Dictionary<R,PlanetProperty> Props = new Dictionary<R,PlanetProperty>();
-
-    public ReactiveCollection<PlanetElementModel> _Elements = new ReactiveCollection<PlanetElementModel>();
     
     internal FloatReactiveProperty _Distance = new FloatReactiveProperty();
     public float Distance

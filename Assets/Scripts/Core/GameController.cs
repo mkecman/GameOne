@@ -37,6 +37,7 @@ public class GameController : MonoBehaviour
         AddController<BuildingPaymentService>();
         AddController<HexUpdateCommand>();
         AddController<PlanetGenerateCommand>();
+        AddController<PlanetPropsUpdateCommand>();
 
         for( int i = 0; i < _gameControllers.Count; i++ )
         {
@@ -52,7 +53,7 @@ public class GameController : MonoBehaviour
         generator.Load();
         /**/
 
-        //StartNewGame();
+        StartNewGame();
         Debug.Log( "GameController Started" );
     }
 

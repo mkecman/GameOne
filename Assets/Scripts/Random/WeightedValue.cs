@@ -18,4 +18,11 @@ public class WeightedValue
         set { _Value.Value = value; }
     }
 
+    public WeightedValue() { }
+    public WeightedValue( float value, float weight )
+    {
+        Value = value;
+        Weight = weight;
+    }
+
 }

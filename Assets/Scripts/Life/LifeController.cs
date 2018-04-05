@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using PsiPhi;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LifeController : AbstractController, IGameInit
@@ -55,7 +56,7 @@ public class LifeController : AbstractController, IGameInit
         float totalEnergy = 0;
         float totalScience = 0;
         float totalMinerals = 0;
-
+        
         for( int x = 0; x < _planet.Map.Width; x++ )
         {
             for( int y = 0; y < _planet.Map.Height; y++ )
@@ -71,9 +72,11 @@ public class LifeController : AbstractController, IGameInit
                 foodTiles[ (int)hex.Props[ R.Energy ].Value ]++;
                 scienceTiles[ (int)hex.Props[ R.Science ].Value ]++;
                 wordsTiles[ (int)hex.Props[ R.Minerals ].Value ]++;
+
+                
             }
         }
-
+        
         Debug.Log( "Energy: " + totalEnergy + "::: Science: " + totalScience + "::: Minerals: " + totalMinerals );
 
         for( int i = 0; i < 6; i++ )

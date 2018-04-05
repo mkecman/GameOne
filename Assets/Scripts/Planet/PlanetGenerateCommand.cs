@@ -31,6 +31,8 @@ public class PlanetGenerateCommand : IGameInit
         _planet.GenerateFromModel( _planet.SelectedPlanet );
         /////////
         _planet.SelectedPlanet.Life = life;
+
+        GameModel.Get<PlanetPropsUpdateCommand>().Execute();
         GameModel.Set<PlanetModel>( _planet.SelectedPlanet );
     }
 }

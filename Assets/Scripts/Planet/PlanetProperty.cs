@@ -1,11 +1,21 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections.Generic;
 using UniRx;
+using UnityEngine;
 
 public class PlanetProperty
 {
     public float Value;
     public float Variation;
+    public List<WeightedValue> HexDistribution;
+
+    [SerializeField]
+    internal FloatReactiveProperty _AvgValue = new FloatReactiveProperty();
+    public float AvgValue
+    {
+        get { return _AvgValue.Value; }
+        set { _AvgValue.Value = value; }
+    }
+
 
     public PlanetProperty( float value, float variation )
     {

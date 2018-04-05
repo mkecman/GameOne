@@ -11,6 +11,7 @@ public class BuildingController : AbstractController, IGameInit
     private int hexCount;
 
     private Dictionary<R,float> tempProps = new Dictionary<R, float>();
+    private int _counter;
 
     public void Init()
     {
@@ -43,11 +44,15 @@ public class BuildingController : AbstractController, IGameInit
 
     private void OnClockTick( ClockTickMessage value )
     {
+        if( _planet.Life.Buildings.Count == 0 )
+            return;
+
         tempProps[ R.Temperature ] = 0;
         tempProps[ R.Pressure ] = 0;
         tempProps[ R.Humidity ] = 0;
         tempProps[ R.Radiation ] = 0;
 
+        bool buildingsActive = false;
         for( int i = 0; i < _planet.Life.Buildings.Count; i++ )
         {
             bm = _planet.Life.Buildings[ i ];
@@ -59,6 +64,7 @@ public class BuildingController : AbstractController, IGameInit
                     CollectEffectValue( R.Pressure, tempProps, bm.Effects );
                     CollectEffectValue( R.Humidity, tempProps, bm.Effects );
                     CollectEffectValue( R.Radiation, tempProps, bm.Effects );
+                    buildingsActive = true;
                 }
                 else
                 {
@@ -67,6 +73,9 @@ public class BuildingController : AbstractController, IGameInit
 
             }
         }
+
+        if( !buildingsActive )
+            return;
 
         tempProps[ R.Temperature ] /= hexCount;
         tempProps[ R.Pressure ] /= hexCount;
@@ -91,6 +100,13 @@ public class BuildingController : AbstractController, IGameInit
                     _hexUpdateCommand.Execute( _planet.Life.Resistance, hm );
             }
         }
+
+        if( _counter >= 30 )
+        {
+            _counter = 0;
+            GameModel.Get<PlanetPropsUpdateCommand>().Execute();
+        }
+        _counter++;
     }
 
     private void CollectEffectValue( R type, Dictionary<R, float> tempProps, Dictionary<R, float> effects )

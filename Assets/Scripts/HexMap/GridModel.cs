@@ -3,6 +3,7 @@
     public T[][] Table;
     public int Width;
     public int Height;
+    public int Count;
     public float Min;
     public float Max;
 
@@ -15,6 +16,7 @@
         }
         Width = width;
         Height = height;
+        Count = Width * Height;
         Min = float.MaxValue;
         Max = float.MinValue;
     }
