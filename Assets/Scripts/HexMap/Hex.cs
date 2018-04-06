@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using UniRx;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class Hex : GameView
 {
-    public HexModel Model;
+    public HexModel _model;
     public TextMesh SymbolText;
     public GameObject Gas;
     public GameObject Liquid;
@@ -18,43 +19,49 @@ public class Hex : GameView
 
     private HexClickedMessage _HexClickedMessage;
     private GameDebug _debug;
-
+    private List<ElementModel> _elements;
     private StringBuilder labelSB = new StringBuilder();
+
+    private void Awake()
+    {
+        _HexClickedMessage = new HexClickedMessage( null );
+        _debug = GameModel.Get<GameDebug>();
+        _elements = GameConfig.Get<ElementConfig>().Elements;
+    }
 
     public void SetModel( HexModel model )
     {
-        this.Model = model;
-        _HexClickedMessage = new HexClickedMessage( model );
-        _debug = GameModel.Get<GameDebug>();
+        this._model = model;
+        _HexClickedMessage.Hex = _model;
 
-        SetHeight( Solid, Model.Props[ R.Altitude ].Value );
+        SetHeight( Solid, _model.Props[ R.Altitude ].Value );
 
         disposables.Clear();
-        Model.ObserveEveryValueChanged( _ => _.Lens ).Subscribe( _ => { SetColor(); SetSymbol(); } ).AddTo( disposables );
+        _model.ObserveEveryValueChanged( _ => _.Lens ).Subscribe( _ => { SetColor(); SetSymbol(); } ).AddTo( disposables );
 
-        Model.Props[ R.HexScore ]._Value.Subscribe( _ => OnHexScoreChange() ).AddTo( disposables );
+        _model.Props[ R.HexScore ]._Value.Subscribe( _ => OnHexScoreChange() ).AddTo( disposables );
         
-        Model.isMarked.Skip( 1 ).Subscribe( _ => UpdateMarkedColor( _ ) ).AddTo( disposables );
-        Model.isExplored.Subscribe( _ => SetSymbol() ).AddTo( disposables );
+        _model.isMarked.Skip( 1 ).Subscribe( _ => UpdateMarkedColor( _ ) ).AddTo( disposables );
+        _model.isExplored.Subscribe( _ => SetSymbol() ).AddTo( disposables );
 
         OnHexScoreChange();
     }
 
     private void OnHexScoreChange()
     {
-        Model.Props[ R.Default ].Color = (
-            Gradient1.Evaluate( Model.Props[ R.Temperature ].Value ) +
-            Gradient2.Evaluate( Model.Props[ R.Pressure ].Value ) +
-            Gradient3.Evaluate( Model.Props[ R.Humidity ].Value ) +
-            Gradient4.Evaluate( Model.Props[ R.Radiation ].Value ) 
+        _model.Props[ R.Default ].Color = (
+            Gradient1.Evaluate( _model.Props[ R.Temperature ].Value ) +
+            Gradient2.Evaluate( _model.Props[ R.Pressure ].Value ) +
+            Gradient3.Evaluate( _model.Props[ R.Humidity ].Value ) +
+            Gradient4.Evaluate( _model.Props[ R.Radiation ].Value ) 
             ) / 4;
 
-        Color temp = Gradient1.Evaluate( Model.Props[ R.Temperature ].Value );
-        temp = AddColor( temp, Gradient2.Evaluate( Model.Props[ R.Pressure ].Value ) );
-        temp = AddColor( temp, Gradient3.Evaluate( Model.Props[ R.Humidity ].Value ) );
-        temp = AddColor( temp, Gradient4.Evaluate( Model.Props[ R.Radiation ].Value ) );
+        Color temp = Gradient1.Evaluate( _model.Props[ R.Temperature ].Value );
+        temp = AddColor( temp, Gradient2.Evaluate( _model.Props[ R.Pressure ].Value ) );
+        temp = AddColor( temp, Gradient3.Evaluate( _model.Props[ R.Humidity ].Value ) );
+        temp = AddColor( temp, Gradient4.Evaluate( _model.Props[ R.Radiation ].Value ) );
 
-        Model.Props[ R.Default ].Color = temp;
+        _model.Props[ R.Default ].Color = temp;
 
         SetColor();
         SetSymbol();
@@ -94,14 +101,14 @@ public class Hex : GameView
     private void SetClouds()
     {
         Gas.transform.position = new Vector3( Gas.transform.position.x, 0.9f, Gas.transform.position.z );
-        Gas.GetComponent<MeshRenderer>().material.color = new Color32( 255, 255, 255, (byte)(Model.Props[ R.Humidity ].Value * 255) );
+        Gas.GetComponent<MeshRenderer>().material.color = new Color32( 255, 255, 255, (byte)(_model.Props[ R.Humidity ].Value * 255) );
     }
 
     private void SetColor()
     {
         /**/
-        if( Model.isExplored.Value || _debug.isActive )
-            Solid.GetComponent<MeshRenderer>().material.color = Model.Props[ Model.Lens ].Color;
+        if( _model.isExplored.Value || _debug.isActive )
+            Solid.GetComponent<MeshRenderer>().material.color = _model.Props[ _model.Lens ].Color;
         else
             Solid.GetComponent<MeshRenderer>().material.color = Color.gray;
         /**/
@@ -110,13 +117,17 @@ public class Hex : GameView
     private void SetSymbol()
     {
         /**/
-        if( !_debug.isActive && !Model.isExplored.Value )
+        if( !_debug.isActive && !_model.isExplored.Value )
             return;
         /**/
 
-        if( Model.Lens == R.Default )
+        if( _model.Lens == R.Default )
         {
+            SymbolText.text = Math.Round( _model.Props[ R.Minerals ].Value, 0 ).ToString();
+            //SymbolText.text = _elements[ (int)_model.Props[ R.Element ].Value ].Symbol;
+            /*
             labelSB.Clear();
+            
             if( Model.Props[ R.Energy ].Value > 0 )
                 labelSB.Append( "<color=\"#007800\">" + Math.Round( Model.Props[ R.Energy ].Value, 0 ).ToString() +"</color>");
             if( Model.Props[ R.Science ].Value > 0 )
@@ -125,13 +136,14 @@ public class Hex : GameView
                 labelSB.Append( "<color=\"#ff0000\">" + Math.Round( Model.Props[ R.Minerals ].Value, 0 ).ToString() + "</color>" );
 
             SymbolText.text = labelSB.ToString();
+            */
         }
         else
-            SymbolText.text = Math.Round( Model.Props[ Model.Lens ].Value, 2 ).ToString();
+            SymbolText.text = Math.Round( _model.Props[ _model.Lens ].Value, 2 ).ToString();
         
         //SymbolText.text = Model.X + "," + Model.Y; //Show coordinates;
 
-        SymbolText.gameObject.transform.position = new Vector3( SymbolText.gameObject.transform.position.x, Model.Props[ R.Altitude ].Value + .01f, SymbolText.gameObject.transform.position.z );
+        SymbolText.gameObject.transform.position = new Vector3( SymbolText.gameObject.transform.position.x, _model.Props[ R.Altitude ].Value + .01f, SymbolText.gameObject.transform.position.z );
     }
 
     private void SetHeight( GameObject target, float height )

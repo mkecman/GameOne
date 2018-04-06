@@ -56,5 +56,6 @@ public enum R
     HexScore,
     Population,
     Health,
+    Element,
     Count
 }

@@ -18,9 +18,9 @@ public class PlanetController : AbstractController, IGameInit
 
     public void Init()
     {
-        _starsConfig = Config.Get<StarsConfig>();
-        _universeConfig = Config.Get<UniverseConfig>();
-        _elementsConfig = Config.Get<ElementConfig>();
+        _starsConfig = GameConfig.Get<StarsConfig>();
+        _universeConfig = GameConfig.Get<UniverseConfig>();
+        _elementsConfig = GameConfig.Get<ElementConfig>();
         _hexMapGenerator = new HexMapGenerator();
 
         GameModel.HandleGet<StarModel>( OnStarChange );

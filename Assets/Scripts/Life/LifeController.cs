@@ -13,7 +13,7 @@ public class LifeController : AbstractController, IGameInit
 
     public void Init()
     {
-        _bellCurves = Config.Get<BellCurveConfig>();
+        _bellCurves = GameConfig.Get<BellCurveConfig>();
         _hexUpdateCommand = GameModel.Get<HexUpdateCommand>();
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
     }
@@ -35,7 +35,7 @@ public class LifeController : AbstractController, IGameInit
         _selectedLife.Props[ R.Science ].Value = 500;
         _selectedLife.Props[ R.Minerals ].Value = 500;
         _selectedLife.Props[ R.Population ].Value = 1;
-        _selectedLife.BuildingsState = GameModel.Copy( Config.Get<BuildingConfig>().Buildings );
+        _selectedLife.BuildingsState = GameModel.Copy( GameConfig.Get<BuildingConfig>().Buildings );
         _selectedLife.Resistance = GameModel.Copy( _bellCurves );
 
         int unitX = (int)( _planet.Map.Width / 2 ) + 2;
@@ -71,7 +71,7 @@ public class LifeController : AbstractController, IGameInit
 
                 foodTiles[ (int)hex.Props[ R.Energy ].Value ]++;
                 scienceTiles[ (int)hex.Props[ R.Science ].Value ]++;
-                wordsTiles[ (int)hex.Props[ R.Minerals ].Value ]++;
+                //wordsTiles[ (int)hex.Props[ R.Minerals ].Value ]++;
 
                 
             }

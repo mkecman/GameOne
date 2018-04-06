@@ -33,7 +33,7 @@ public class UnitController : AbstractController, IGameInit
         _pay = GameModel.Get<UnitPaymentService>();
         _hexUpdateCommand = GameModel.Get<HexUpdateCommand>();
         _debug = GameModel.Get<GameDebug>();
-        _bellCurves = Config.Get<BellCurveConfig>();
+        _bellCurves = GameConfig.Get<BellCurveConfig>();
 
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
     }

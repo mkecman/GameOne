@@ -4,10 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Config : MonoBehaviour
+public class GameConfig : MonoBehaviour
 {
-    public static Config Instance { get { return _instance; } }
-    private static Config _instance;
+    public static GameConfig Instance { get { return _instance; } }
+    private static GameConfig _instance;
     private Dictionary<string, object> _configs;
     
     private void Init()

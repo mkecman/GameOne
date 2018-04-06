@@ -17,9 +17,9 @@ public class StarController : AbstractController, IGameInit
 
     public void Init()
     {
-        _starsConfig = Config.Get<StarsConfig>();
-        _universeConfig = Config.Get<UniverseConfig>();
-        _elementsConfig = Config.Get<ElementConfig>();
+        _starsConfig = GameConfig.Get<StarsConfig>();
+        _universeConfig = GameConfig.Get<UniverseConfig>();
+        _elementsConfig = GameConfig.Get<ElementConfig>();
         GameModel.HandleGet<GalaxyModel>( OnGalaxyChange );
     }
 
@@ -40,7 +40,7 @@ public class StarController : AbstractController, IGameInit
         _selectedStar = GameModel.Copy( _starsConfig.Stars[ type ] );
         ConvertUnitsToSI();
         _selectedStar.Name = "Star" + _galaxy.CreatedStars;
-        _selectedStar._AvailableElements = GenerateStarElements( _galaxy.CreatedStars );
+        _selectedStar._AvailableElements = GenerateStarElements( _galaxy.CreatedStars + 1 );
         _selectedStar.PlanetsCount = RandomUtil.FromRangeInt( _starsConfig.MinPlanets, _starsConfig.MaxPlanets );
         _selectedStar.PlanetsCount = 1;
         _stars.Add( _selectedStar );

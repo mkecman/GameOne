@@ -29,6 +29,8 @@ public class HexModel
         AddProp( R.Energy );
         AddProp( R.Science );
         AddProp( R.Minerals );
+
+        AddProp( R.Element );
     }
 
     private void AddProp( R prop )

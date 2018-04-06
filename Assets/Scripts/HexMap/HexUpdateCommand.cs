@@ -17,8 +17,12 @@ public class HexUpdateCommand : IGameInit
     private Resource science;
     private Resource minerals;
     private Resource hexScore;
+    private List<ElementModel> _elements;
 
-    public void Init() { }
+    public void Init()
+    {
+        _elements = GameConfig.Get<ElementConfig>().Elements;
+    }
 
     public void Execute( Dictionary<R, BellCurve> Resistance, HexModel hex )
     {
@@ -49,16 +53,17 @@ public class HexUpdateCommand : IGameInit
         radiation.Color = Color.Lerp( Color.red, Color.green, radiationBonus );
         /**/
 
-        energy.Value = PPMath.Round( ( temperatureBonus + humidityBonus )*2, 0 ); // * 1.74 for range 0-3
+        energy.Value = PPMath.Round( ( temperatureBonus + humidityBonus ), 0 ); // * 1.74 for range 0-3
         energy.Color = Color.Lerp( Color.red, Color.green, energy.Value / 1 );
 
         science.Value = PPMath.Round( ( pressureBonus + radiationBonus ), 0 );
         science.Color = Color.Lerp( Color.red, Color.green, science.Value / 1 );
 
-        minerals.Value = PPMath.Round( ( ( 1 - Resistance[ R.Altitude ].GetValueAt( hex.Props[ R.Altitude ].Value / 2 ) ) * 2 ), 0 );
-        minerals.Color = Color.Lerp( Color.red, Color.green, minerals.Value / 1 );
-
         hexScore.Value = PPMath.Round( ( temperatureBonus + pressureBonus + humidityBonus + radiationBonus ) / 4, 2 );
         hexScore.Color = Color.Lerp( Color.red, Color.green, hexScore.Value );
+
+        minerals.Value = _elements[ (int)( ( (1-hexScore.Value) * _elements.Count ) - 1 ) ].Weight;
+        //minerals.Value = PPMath.Round( ( ( 1 - Resistance[ R.Altitude ].GetValueAt( hex.Props[ R.Altitude ].Value / 2 ) ) * 2 ), 0 );
+        minerals.Color = Color.Lerp( Color.red, Color.green, minerals.Value / 100 );
     }
 }

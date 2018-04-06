@@ -122,6 +122,8 @@ public class HexMapGenerator
                 SetHex( hex, R.Humidity );
                 SetHex( hex, R.Radiation );
 
+                //hex.Props[ R.Element ].Value = _planetModel._Elements[ RandomUtil.FromRangeInt( 0, _planetModel._Elements.Count ) ].Index;
+
                 hex.Props[ R.HexScore ].Value = 0;
                 hex.Props[ R.HexScore ].Color = Color.red;
 

@@ -11,7 +11,7 @@ public class BuildingPaymentService : AbstractController, IGameInit
 
     public void Init()
     {
-        _buildingConfig = Config.Get<BuildingConfig>().Buildings;
+        _buildingConfig = GameConfig.Get<BuildingConfig>().Buildings;
         _debug = GameModel.Get<GameDebug>();
 
         GameModel.HandleGet<PlanetModel>( OnPlanetModelChange );

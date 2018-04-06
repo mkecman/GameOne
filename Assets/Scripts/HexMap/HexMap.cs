@@ -77,7 +77,7 @@ public class HexMap : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        _hexConfig = Config.Get<HexConfig>();
+        _hexConfig = GameConfig.Get<HexConfig>();
         GameModel.HandleGet<PlanetModel>( OnPlanetModelChange );
     }
 
