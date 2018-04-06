@@ -10,6 +10,9 @@ public class GameController : MonoBehaviour
     public Clock clock;
     public BoolReactiveProperty IsDebug = new BoolReactiveProperty();
 
+    public int UpdateSteps = 360;
+    public BoolReactiveProperty RunSteps = new BoolReactiveProperty();
+
     private PlayerController _player;
     private GalaxyController _galaxy;
     private StarController _star;
@@ -22,6 +25,7 @@ public class GameController : MonoBehaviour
     {
         GameModel.Set( new GameDebug() );
         IsDebug.Subscribe( _ => GameModel.Get<GameDebug>().isActive = _ );
+        RunSteps.Where( _ => _ == true ).Subscribe( _ => StopwatchSteps( UpdateSteps ) );
 
         _gameControllers = new List<IGameInit>();
 
@@ -53,7 +57,8 @@ public class GameController : MonoBehaviour
         generator.Load();
         /**/
 
-        StartNewGame();
+        //StartNewGame();
+        Load();
         Debug.Log( "GameController Started" );
     }
 
@@ -98,19 +103,24 @@ public class GameController : MonoBehaviour
         */
     }
 
-    public void UpdateStep( int steps )
+    private void StopwatchSteps( int steps )
     {
-        //DateTime start = DateTime.Now;
+        DateTime start = DateTime.Now;
         //Debug.Log( "start at: " + start.ToString() );
 
+        UpdateStep( steps );
+
+        DateTime end = DateTime.Now;
+        Debug.Log( "end in: " + ( end - start ).ToString() );
+    }
+
+    public void UpdateStep( int steps )
+    {
         for( int i = 0; i < steps; i++ )
         {
             GameMessage.Send( clock.message );
             clock.message.elapsedTicksSinceStart++;
         }
-
-        //DateTime end = DateTime.Now;
-        //Debug.Log( "end in: " + ( end - start ).ToString() );
     }
 
     private T AddController<T>() where T : new()
