@@ -19,7 +19,7 @@ public class UIPropertyView : MonoBehaviour
         if( value == float.MaxValue )
             Value.text = "";
         else
-            Value.text = value.ToString( "F2" );
+            Value.text = value.ToString( "#.##" );
 
         if( delta == float.MaxValue )
         {
@@ -37,6 +37,6 @@ public class UIPropertyView : MonoBehaviour
             Delta.color = RedColor;
             Delta.text = "";
         }
-        Delta.text += delta.ToString( "F2" );
+        Delta.text += delta.ToString( "#.##" );
     }
 }

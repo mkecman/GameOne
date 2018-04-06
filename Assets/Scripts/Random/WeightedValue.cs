@@ -2,7 +2,7 @@
 using UniRx;
 
 [Serializable]
-public class WeightedValue
+public class WeightedValue2
 {
     internal FloatReactiveProperty _Weight = new FloatReactiveProperty();
     public float Weight
@@ -18,11 +18,23 @@ public class WeightedValue
         set { _Value.Value = value; }
     }
 
-    public WeightedValue() { }
-    public WeightedValue( float value, float weight )
+    public WeightedValue2() { }
+    public WeightedValue2( float value, float weight )
     {
         Value = value;
         Weight = weight;
     }
 
+}
+
+public struct WeightedValue
+{
+    public float Weight;
+    public float Value;
+
+    public WeightedValue( float value, float weight )
+    {
+        Value = value;
+        Weight = weight;
+    }
 }

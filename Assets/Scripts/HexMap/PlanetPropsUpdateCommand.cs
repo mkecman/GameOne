@@ -10,6 +10,8 @@ public class PlanetPropsUpdateCommand : IGameInit
     private Dictionary<R, List<WeightedValue>> _weightsList;
     private Dictionary<R, float> _totalValues;
 
+    private WeightedValue _weightedValue;
+
     public void Init()
     {
         _planetController = GameModel.Get<PlanetController>();
@@ -65,8 +67,12 @@ public class PlanetPropsUpdateCommand : IGameInit
 
     private void AddInitialValue( R type, float key )
     {
+
         if( _weights[ type ].ContainsKey( key ) )
-            _weights[ type ][ key ].Weight += 1;
+        {
+            _weightedValue = _weights[ type ][ key ];
+            _weightedValue.Weight += 1;
+        }
         else
             _weights[ type ].Add( key, new WeightedValue( key, 1 ) );
 
@@ -75,16 +81,15 @@ public class PlanetPropsUpdateCommand : IGameInit
 
     private void CreateList( R type, float key )
     {
-        WeightedValue wv;
         if( _weights[ type ].ContainsKey( key ) )
         {
-            wv = _weights[ type ][ key ];
-            wv.Weight = _weights[ type ][ key ].Weight / _weights[ type ].Count;
+            _weightedValue = _weights[ type ][ key ];
+            _weightedValue.Weight = _weights[ type ][ key ].Weight / _weights[ type ].Count;
         }
         else
-            wv = new WeightedValue( key, 0 );
+            _weightedValue = new WeightedValue( key, 0 );
 
-        _weightsList[ type ].Add( wv );
+        _weightsList[ type ].Add( _weightedValue );
     }
 
     private void SetValues( R type )

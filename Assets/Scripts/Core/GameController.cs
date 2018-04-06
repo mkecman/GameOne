@@ -100,7 +100,7 @@ public class GameController : MonoBehaviour
 
     public void UpdateStep( int steps )
     {
-        DateTime start = DateTime.Now;
+        //DateTime start = DateTime.Now;
         //Debug.Log( "start at: " + start.ToString() );
 
         for( int i = 0; i < steps; i++ )
@@ -109,7 +109,7 @@ public class GameController : MonoBehaviour
             clock.message.elapsedTicksSinceStart++;
         }
 
-        DateTime end = DateTime.Now;
+        //DateTime end = DateTime.Now;
         //Debug.Log( "end in: " + ( end - start ).ToString() );
     }
 
