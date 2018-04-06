@@ -42,9 +42,9 @@ public class CameraController : MonoBehaviour
             gameObject.transform.Translate( Vector3.down * MovementSpeed );
 
         if( Input.GetAxis( "Mouse ScrollWheel" ) > 0 )
-            gameObject.transform.Translate( Vector3.up * MovementSpeed * 3 );
+            gameObject.transform.Translate( Vector3.up * MovementSpeed * 10 );
         if( Input.GetAxis( "Mouse ScrollWheel" ) < 0 )
-            gameObject.transform.Translate( Vector3.down * MovementSpeed  * 3 );
+            gameObject.transform.Translate( Vector3.down * MovementSpeed  * 10 );
 
         if( Input.GetMouseButtonDown( 0 ) )
         {

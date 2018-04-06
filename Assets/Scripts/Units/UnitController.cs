@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class UnitController : AbstractController, IGameInit
 {
@@ -89,9 +90,9 @@ public class UnitController : AbstractController, IGameInit
 
     private void OnResistanceUpgrade( ResistanceUpgradeMessage value )
     {
-        float delta = 0.1f;
+        float delta = Mathf.Abs( value.Delta );
         if( _selectedUnit.Resistance[ value.Type ].ChangePosition( value.Delta ) )
-            delta = -0.1f;
+            delta = -delta;
 
         _selectedUnit.AbilitiesDelta[ R.Science ].Value = _selectedUnit.AbilitiesDelta[ R.Science ].Value.Sum( delta );
 

@@ -76,7 +76,7 @@ public class PlanetPropsUpdateCommand : IGameInit
 
     private void AddInitialValue( R type, int key )
     {
-        _weightsList[ type ][ key ].Weight += .05f;
+        _weightsList[ type ][ key ].Weight = PPMath.Round( _weightsList[ type ][ key ].Weight + .05f );
         _totalValues[ type ] += key;
     }
 

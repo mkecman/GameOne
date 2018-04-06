@@ -49,7 +49,7 @@ public class HexUpdateCommand : IGameInit
         radiation.Color = Color.Lerp( Color.red, Color.green, radiationBonus );
         /**/
 
-        energy.Value = PPMath.Round( ( temperatureBonus + humidityBonus ), 0 ); // * 1.74 for range 0-3
+        energy.Value = PPMath.Round( ( temperatureBonus + humidityBonus )*2, 0 ); // * 1.74 for range 0-3
         energy.Color = Color.Lerp( Color.red, Color.green, energy.Value / 1 );
 
         science.Value = PPMath.Round( ( pressureBonus + radiationBonus ), 0 );

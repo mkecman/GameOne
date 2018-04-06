@@ -6,7 +6,7 @@ public class PlanetProperty
 {
     public float Value;
     public float Variation;
-    public List<WeightedValue> HexDistribution;
+    internal List<WeightedValue> HexDistribution;
 
     [SerializeField]
     internal FloatReactiveProperty _AvgValue = new FloatReactiveProperty();
