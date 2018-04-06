@@ -34,6 +34,7 @@ public class PlanetController : AbstractController, IGameInit
     public void Load( int index )
     {
         _selectedPlanet = _star._Planets[ index ];
+        GameModel.Get<PlanetPropsUpdateCommand>().Execute();
         GameModel.Set<PlanetModel>( _selectedPlanet );
     }
 

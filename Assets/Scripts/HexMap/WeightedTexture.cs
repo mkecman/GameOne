@@ -12,41 +12,44 @@ public class WeightedTexture : MonoBehaviour
     public int Width;
     public int Height;
 
+    private Texture2D _texture;
+    private Color[] _gradient;
+    private Color[] _pixels;
+
     // Use this for initialization
     void Awake()
     {
         RectTransform rectTransform = rawImage.GetComponent<RectTransform>();
         Width = (int)rectTransform.rect.width;
         Height = (int)rectTransform.rect.height;
+        _texture = new Texture2D( Width, Height );
+        _gradient = new Color[ 100 ];
+        _pixels = new Color[ Width * Height ];
     }
 
     public void Draw( List<WeightedValue> weights )
     {
-        rawImage.texture = GetTexture( Width, Height, weights );
+        rawImage.texture = GetTexture( weights );
     }
 
-    private Texture2D GetTexture( int width, int height, List<WeightedValue> weights )
+    private Texture2D GetTexture( List<WeightedValue> weights )
     {
-        var texture = new Texture2D( width, height );
-        var pixels = new Color[ width * height ];
-        Color[] gradient = new Color[ 100 ];
-
         for( int i = 0; i < 100; i++ )
         {
-            gradient[ i ] = Color.Lerp( RedColor, GreenColor, weights[ i ].Weight );
+            _gradient[ i ] = Color.Lerp( RedColor, GreenColor, weights[ i ].Weight );
         }
 
-        for( int x = 0; x < width; x++ )
+        for( int x = 0; x < Width; x++ )
         {
-            for( int y = 0; y < height; y++ )
+            for( int y = 0; y < Height; y++ )
             {
-                pixels[ x + y * width ] = gradient[ (int)( ( (float)x / width ) * 100f ) ];
+                _pixels[ x + y * Width ] = _gradient[ (int)( ( (float)x / Width ) * 100f ) ];
             }
         }
 
-        texture.SetPixels( pixels );
-        texture.wrapMode = TextureWrapMode.Clamp;
-        texture.Apply();
-        return texture;
+        _texture.SetPixels( _pixels );
+        _texture.wrapMode = TextureWrapMode.Clamp;
+        _texture.Apply();
+        return _texture;
     }
 }

@@ -47,7 +47,7 @@ public class PlanetPropGraph : GameView, IPointerClickHandler
         {
             Texture.Draw( _planet.Props[ Lens ].HexDistribution );
             _tileValueRectTransform.anchoredPosition = new Vector2( ( _planet.Props[ Lens ].AvgValue - 0.5f ) * Texture.Width, 0 );
-            MatchText.text = _planet.Props[ Lens ].AvgValue.ToString( "F2" );
+            MatchText.text = _planet.Props[ Lens ].AvgValue.ToString( "N2" );
         }
     }
 

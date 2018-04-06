@@ -27,7 +27,8 @@ public class WeightedValue2
 
 }
 
-public struct WeightedValue
+[Serializable]
+public class WeightedValue
 {
     public float Weight;
     public float Value;

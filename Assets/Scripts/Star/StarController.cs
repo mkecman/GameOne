@@ -73,11 +73,7 @@ public class StarController : AbstractController, IGameInit
             probability = ( 1 / Mathf.Sqrt( 2 * Mathf.PI * curve ) ) * Mathf.Exp( -Mathf.Pow( ofset - i, 2 ) / ( 2 * curve ) );
             if( probability >= .01 )
             {
-                WeightedValue element = new WeightedValue
-                {
-                    Value = i + 1,
-                    Weight = probability
-                };
+                WeightedValue element = new WeightedValue( i + 1, probability );
                 output.Add( element );
             }
         }

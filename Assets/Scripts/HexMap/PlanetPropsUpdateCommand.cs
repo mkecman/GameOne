@@ -1,34 +1,35 @@
 ﻿using PsiPhi;
 using System.Collections.Generic;
 using System;
+using UnityEngine;
 
 public class PlanetPropsUpdateCommand : IGameInit
 {
     private PlanetController _planetController;
     private PlanetModel _planet;
-    private Dictionary<R, Dictionary<float, WeightedValue>> _weights;
+
     private Dictionary<R, List<WeightedValue>> _weightsList;
     private Dictionary<R, float> _totalValues;
-
-    private WeightedValue _weightedValue;
+    private HexModel hex;
 
     public void Init()
     {
         _planetController = GameModel.Get<PlanetController>();
+
+        _weightsList = new Dictionary<R, List<WeightedValue>>();
+        _totalValues = new Dictionary<R, float>();
+
+        InitializeDictionaries( R.Temperature );
+        InitializeDictionaries( R.Pressure );
+        InitializeDictionaries( R.Humidity );
+        InitializeDictionaries( R.Radiation );
     }
 
     public void Execute()
     {
         _planet = _planetController.SelectedPlanet;
-        _weights = new Dictionary<R, Dictionary<float, WeightedValue>>();
-        _weightsList = new Dictionary<R, List<WeightedValue>>();
-        _totalValues = new Dictionary<R, float>();
-        InitializeDictionaries( R.Temperature );
-        InitializeDictionaries( R.Pressure );
-        InitializeDictionaries( R.Humidity );
-        InitializeDictionaries( R.Radiation );
 
-        HexModel hex;
+        Reset();
 
         for( int x = 0; x < _planet.Map.Width; x++ )
         {
@@ -36,65 +37,52 @@ public class PlanetPropsUpdateCommand : IGameInit
             {
                 hex = _planet.Map.Table[ x ][ y ];
 
-                AddInitialValue( R.Temperature, PPMath.Round( hex.Props[ R.Temperature ].Value ) );
-                AddInitialValue( R.Pressure, PPMath.Round( hex.Props[ R.Pressure ].Value ) );
-                AddInitialValue( R.Humidity, PPMath.Round( hex.Props[ R.Humidity ].Value ) );
-                AddInitialValue( R.Radiation, PPMath.Round( hex.Props[ R.Radiation ].Value ) );
+                AddInitialValue( R.Temperature, Mathf.RoundToInt( hex.Props[ R.Temperature ].Value * 100 ) );
+                AddInitialValue( R.Pressure, Mathf.RoundToInt( hex.Props[ R.Pressure ].Value * 100 ) );
+                AddInitialValue( R.Humidity, Mathf.RoundToInt( hex.Props[ R.Humidity ].Value * 100 ) );
+                AddInitialValue( R.Radiation, Mathf.RoundToInt( hex.Props[ R.Radiation ].Value * 100 ) );
             }
         }
-
-        for( int i = 0; i < 100; i++ )
-        {
-            float key = PPMath.Round( i / 100f );
-            CreateList( R.Temperature, key );
-            CreateList( R.Pressure, key );
-            CreateList( R.Humidity, key );
-            CreateList( R.Radiation, key );
-        }
-
+        
         SetValues( R.Temperature );
         SetValues( R.Pressure );
         SetValues( R.Humidity );
         SetValues( R.Radiation );
     }
 
+    private void Reset()
+    {
+        for( int i = 0; i < 100; i++ )
+        {
+            _weightsList[ R.Temperature ][ i ].Weight = 0;
+            _weightsList[ R.Pressure ][ i ].Weight = 0;
+            _weightsList[ R.Humidity ][ i ].Weight = 0;
+            _weightsList[ R.Radiation ][ i ].Weight = 0;
+        }
+        _totalValues[ R.Temperature ] = 0;
+        _totalValues[ R.Pressure ] = 0;
+        _totalValues[ R.Humidity ] = 0;
+        _totalValues[ R.Radiation ] = 0;
+    }
+    
     private void InitializeDictionaries( R type )
     {
-        _weights.Add( type, new Dictionary<float, WeightedValue>() );
         _weightsList.Add( type, new List<WeightedValue>() );
+        for( int i = 0; i < 100; i++ )
+            _weightsList[ type ].Add( new WeightedValue( PPMath.Round( i / 100f ), 0 ) );
+
         _totalValues.Add( type, 0 );
     }
 
-    private void AddInitialValue( R type, float key )
+    private void AddInitialValue( R type, int key )
     {
-
-        if( _weights[ type ].ContainsKey( key ) )
-        {
-            _weightedValue = _weights[ type ][ key ];
-            _weightedValue.Weight += 1;
-        }
-        else
-            _weights[ type ].Add( key, new WeightedValue( key, 1 ) );
-
+        _weightsList[ type ][ key ].Weight += .05f;
         _totalValues[ type ] += key;
-    }
-
-    private void CreateList( R type, float key )
-    {
-        if( _weights[ type ].ContainsKey( key ) )
-        {
-            _weightedValue = _weights[ type ][ key ];
-            _weightedValue.Weight = _weights[ type ][ key ].Weight / _weights[ type ].Count;
-        }
-        else
-            _weightedValue = new WeightedValue( key, 0 );
-
-        _weightsList[ type ].Add( _weightedValue );
     }
 
     private void SetValues( R type )
     {
         _planet.Props[ type ].HexDistribution = _weightsList[ type ];
-        _planet.Props[ type ].AvgValue = _totalValues[ type ] / _planet.Map.Count;
+        _planet.Props[ type ].AvgValue = ( _totalValues[ type ] / 100f ) / _planet.Map.Count;
     }
 }

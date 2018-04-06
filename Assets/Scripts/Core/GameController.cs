@@ -58,7 +58,7 @@ public class GameController : MonoBehaviour
         /**/
 
         //StartNewGame();
-        Load();
+        //Load();
         Debug.Log( "GameController Started" );
     }
 
