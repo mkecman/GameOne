@@ -17,7 +17,7 @@ public class BuildingsView : GameView
 
     private void OnPlanetModelChange( PlanetModel value )
     {
-        RemoveAllChildren();
+        RemoveAllChildren( gameObject.transform );
 
         _buildingsGO = new Dictionary<BuildingModel, GameObject>();
         _life = value.Life;
@@ -49,15 +49,5 @@ public class BuildingsView : GameView
         u.SetModel( model );
         _buildingsGO.Add( model, unitGO );
     }
-
-    private void RemoveAllChildren()
-    {
-        GameObject go;
-        while( gameObject.transform.childCount != 0 )
-        {
-            go = gameObject.transform.GetChild( 0 ).gameObject;
-            go.transform.SetParent( null );
-            DestroyImmediate( go );
-        }
-    }
+    
 }

@@ -1,10 +1,12 @@
-﻿using AccidentalNoise;
+﻿using System.Collections.Generic;
+using AccidentalNoise;
 using PsiPhi;
 using UnityEngine;
 
 public class HexMapGenerator
 {
     private GridModel<HexModel> _map;
+    private List<ElementModel> _elements;
     private Vector2[] Ranges = new Vector2[ 7 ];
     private PlanetModel _planetModel;
 
@@ -14,6 +16,7 @@ public class HexMapGenerator
         GameObject go = GameObject.Find( "Map" );
         HexMap hexMap = go.GetComponent<HexMap>();
         _map = new GridModel<HexModel>( hexMap.width.Value, hexMap.height.Value );
+        _elements = GameConfig.Get<ElementConfig>().Elements;
 
         Vector2 defaultRange = new Vector2( float.MaxValue, float.MinValue );
         for( int i = 0; i < 7; i++ )
@@ -122,7 +125,8 @@ public class HexMapGenerator
                 SetHex( hex, R.Humidity );
                 SetHex( hex, R.Radiation );
 
-                //hex.Props[ R.Element ].Value = _planetModel._Elements[ RandomUtil.FromRangeInt( 0, _planetModel._Elements.Count ) ].Index;
+                hex.Props[ R.Element ].Value = _planetModel._Elements[ RandomUtil.FromRangeInt( 0, _planetModel._Elements.Count ) ].Index;
+                hex.Props[ R.Minerals ].Value = (int)_elements[ (int)hex.Props[ R.Element ].Value ].Weight;
 
                 hex.Props[ R.HexScore ].Value = 0;
                 hex.Props[ R.HexScore ].Color = Color.red;

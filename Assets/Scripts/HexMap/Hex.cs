@@ -62,6 +62,7 @@ public class Hex : GameView
         temp = AddColor( temp, Gradient4.Evaluate( _model.Props[ R.Radiation ].Value ) );
 
         _model.Props[ R.Default ].Color = temp;
+        _model.Props[ R.Element ].Color = temp;
 
         SetColor();
         SetSymbol();
@@ -123,8 +124,8 @@ public class Hex : GameView
 
         if( _model.Lens == R.Default )
         {
-            SymbolText.text = Math.Round( _model.Props[ R.Minerals ].Value, 0 ).ToString();
-            //SymbolText.text = _elements[ (int)_model.Props[ R.Element ].Value ].Symbol;
+            //SymbolText.text = Math.Round( _model.Props[ R.Minerals ].Value, 0 ).ToString();
+            SymbolText.text = _elements[ (int)_model.Props[ R.Element ].Value ].Symbol;
             /*
             labelSB.Clear();
             
@@ -138,6 +139,9 @@ public class Hex : GameView
             SymbolText.text = labelSB.ToString();
             */
         }
+        else
+        if( _model.Lens == R.Element )
+            SymbolText.text = ( (int)_elements[ (int)_model.Props[ R.Element ].Value ].Weight).ToString();
         else
             SymbolText.text = Math.Round( _model.Props[ _model.Lens ].Value, 2 ).ToString();
         

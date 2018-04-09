@@ -15,15 +15,12 @@ public class ProgressBar : MonoBehaviour
     void Awake()
     {
         _fillRect = Fill.GetComponent<RectTransform>();
-        //_fillImage = Fill.GetComponent<Image>();
-    }
-
-    private void Start()
-    {
         _width = gameObject.GetComponent<RectTransform>().rect.width;
         SetFill();
-    }
 
+        //_fillImage = Fill.GetComponent<Image>();
+    }
+    
     public float Value
     {
         set
@@ -31,11 +28,13 @@ public class ProgressBar : MonoBehaviour
             if( value == _value )
                 return;
 
-            /*if( value < 0 )
+            /*
+            if( value < 0 )
                 _value = 0;
             if( value > _maxValue )
                 _value = _maxValue;
-            if( value >= 0 && value <= _maxValue )*/
+            */
+            //if( value >= 0 && value <= _maxValue )
             _value = value;
 
             SetFill();

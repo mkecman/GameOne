@@ -62,7 +62,7 @@ public class HexUpdateCommand : IGameInit
         hexScore.Value = PPMath.Round( ( temperatureBonus + pressureBonus + humidityBonus + radiationBonus ) / 4, 2 );
         hexScore.Color = Color.Lerp( Color.red, Color.green, hexScore.Value );
 
-        minerals.Value = _elements[ (int)( ( (1-hexScore.Value) * _elements.Count ) - 1 ) ].Weight;
+        //minerals.Value = _elements[ (int)( ( (1-hexScore.Value) * _elements.Count ) - 1 ) ].Weight;
         //minerals.Value = PPMath.Round( ( ( 1 - Resistance[ R.Altitude ].GetValueAt( hex.Props[ R.Altitude ].Value / 2 ) ) * 2 ), 0 );
         minerals.Color = Color.Lerp( Color.red, Color.green, minerals.Value / 100 );
     }

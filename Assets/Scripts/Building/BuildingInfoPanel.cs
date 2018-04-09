@@ -149,16 +149,5 @@ public class BuildingInfoPanel : GameView
         uipv.SetProperty( type.ToString() );
         uipv.SetValue( float.MaxValue, value );
     }
-
-    private void RemoveAllChildren( Transform transform )
-    {
-        GameObject go;
-        while( transform.childCount != 0 )
-        {
-            go = transform.GetChild( 0 ).gameObject;
-            go.transform.SetParent( null );
-            DestroyImmediate( go );
-        }
-    }
-
+    
 }

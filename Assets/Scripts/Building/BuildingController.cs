@@ -94,7 +94,7 @@ public class BuildingController : AbstractController, IGameInit
                 if( hm.Unit != null )
                 {
                     _hexUpdateCommand.Execute( hm.Unit.Resistance, hm );
-                    hm.Unit.Props[ R.Health ].Value = hm.Props[ R.HexScore ].Value;
+                    //hm.Unit.Props[ R.Health ].Value = hm.Props[ R.HexScore ].Value;
                 }
                 else
                     _hexUpdateCommand.Execute( _planet.Life.Resistance, hm );

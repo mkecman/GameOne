@@ -82,15 +82,5 @@ public class BuildingUnlockPanel : GameView
             abilityUnlockView.Setup( _life.BuildingsState[ i ], EffectPrefab );
         }
     }
-
-    private void RemoveAllChildren( Transform transform )
-    {
-        GameObject go;
-        while( transform.childCount != 0 )
-        {
-            go = transform.GetChild( 0 ).gameObject;
-            go.transform.SetParent( null );
-            DestroyImmediate( go );
-        }
-    }
+    
 }

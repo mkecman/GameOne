@@ -4,7 +4,7 @@ using UniRx;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class HexMap : MonoBehaviour
+public class HexMap : GameView
 {
     public R Lens;
 
@@ -90,7 +90,7 @@ public class HexMap : MonoBehaviour
     public void ReDraw()
     {
         Debug.Log( "REDRAWING MAP!" );
-        RemoveAllChildren();
+        RemoveAllChildren( gameObject.transform );
         DrawTiles();
     }
 
@@ -117,17 +117,5 @@ public class HexMap : MonoBehaviour
         Ocean.transform.position = new Vector3( ( mapModel.Width * _hexConfig.xOffset ) / 2, -.65f + ( 1.3f * LiquidLevel.Value ), ( ( mapModel.Height * _hexConfig.zOffset ) / 2 ) - 0.5f );
         Ocean.GetComponent<MeshRenderer>().material.color = LiquidColor;
     }
-    
-    private void RemoveAllChildren()
-    {
-        GameObject go;
-        while( gameObject.transform.childCount != 0 )
-        {
-            go = gameObject.transform.GetChild( 0 ).gameObject;
-            go.transform.SetParent( null );
-            DestroyImmediate( go );
-        }
-    }
-
     
 }

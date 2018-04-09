@@ -23,6 +23,8 @@ public class UnitController : AbstractController, IGameInit
     private HexUpdateCommand _hexUpdateCommand;
     private GameDebug _debug;
     private Dictionary<R, BellCurve> _bellCurves;
+    private List<ElementModel> _elements;
+    private int _elementIndex;
 
     public void Init()
     {
@@ -34,6 +36,7 @@ public class UnitController : AbstractController, IGameInit
         _hexUpdateCommand = GameModel.Get<HexUpdateCommand>();
         _debug = GameModel.Get<GameDebug>();
         _bellCurves = GameConfig.Get<BellCurveConfig>();
+        _elements = GameConfig.Get<ElementConfig>().Elements;
 
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
     }
@@ -117,20 +120,29 @@ public class UnitController : AbstractController, IGameInit
             um = _life.Units[ i ];
             hm = _hexMapModel.Table[ um.X ][ um.Y ];
 
-            /*
-            um.Props[ R.Health ].Value -= 1 - hm.Props[ R.HexScore ].Value;
+            /**/
+            um.Props[ R.Health ].Value -= 1f - hm.Props[ R.HexScore ].Value;
             if( um.Props[ R.Health ].Value <= 0 )
             {
                 RemoveUnit( um );
                 continue;
             }
-            */
+            /**/
             //Moved to when a unit is moved onto a new hexmodel
             //um.Props[ R.Health ].Value = hm.Props[ R.HexScore ].Value;
 
-            _updateValues[ R.Energy ] += ( hm.Props[ R.Energy ].Value * um.Props[ R.Health ].Value ) + um.AbilitiesDelta[ R.Energy ].Value;
-            _updateValues[ R.Science ] += ( hm.Props[ R.Science ].Value * um.Props[ R.Health ].Value ) + um.AbilitiesDelta[ R.Science ].Value;
-            _updateValues[ R.Minerals ] += ( hm.Props[ R.Minerals ].Value * um.Props[ R.Health ].Value ) + um.AbilitiesDelta[ R.Minerals ].Value;
+            _elementIndex = (int)hm.Props[ R.Element ].Value;
+            if( _elementIndex > 0 )
+            {
+                if( _life.Elements.ContainsKey( _elementIndex ) )
+                    _life.Elements[ _elementIndex ].Amount++;
+                else
+                    _life.Elements.Add( _elementIndex, new LifeElementModel( _elementIndex, _elements[ _elementIndex ].Symbol, 1 ) );
+            }
+
+            //_updateValues[ R.Energy ] += ( hm.Props[ R.Energy ].Value * um.Props[ R.Health ].Value ) + um.AbilitiesDelta[ R.Energy ].Value;
+            //_updateValues[ R.Science ] += ( hm.Props[ R.Science ].Value * um.Props[ R.Health ].Value ) + um.AbilitiesDelta[ R.Science ].Value;
+            //_updateValues[ R.Minerals ] += hm.Props[ R.Minerals ].Value + um.AbilitiesDelta[ R.Minerals ].Value;
 
             /* Moved to BuildingController
             hm.Props[ R.Temperature ].Value += um.AbilitiesDelta[ R.Temperature ].Value;
@@ -223,7 +235,7 @@ public class UnitController : AbstractController, IGameInit
     private void UpdateHexAndHealth( Dictionary<R, BellCurve> resistance, HexModel hexModel )
     {
         _hexUpdateCommand.Execute( resistance, hexModel );
-        _selectedUnit.Props[ R.Health ].Value = hexModel.Props[ R.HexScore ].Value;
+        //_selectedUnit.Props[ R.Health ].Value = hexModel.Props[ R.HexScore ].Value;
     }
 
     private void OnHexClickedMessage( HexClickedMessage value )
