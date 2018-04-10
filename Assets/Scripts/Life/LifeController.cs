@@ -65,12 +65,12 @@ public class LifeController : AbstractController, IGameInit
 
                 _hexUpdateCommand.Execute( _selectedLife.Resistance, hex );
 
-                totalEnergy += hex.Props[ R.Energy ].Value;
-                totalScience += hex.Props[ R.Science ].Value;
-                totalMinerals += hex.Props[ R.Minerals ].Value;
+                //totalEnergy += hex.Props[ R.Energy ].Value;
+                //totalScience += hex.Props[ R.Science ].Value;
+                //totalMinerals += hex.Props[ R.Minerals ].Value;
 
-                foodTiles[ (int)hex.Props[ R.Energy ].Value ]++;
-                scienceTiles[ (int)hex.Props[ R.Science ].Value ]++;
+                //foodTiles[ (int)hex.Props[ R.Energy ].Value ]++;
+                //scienceTiles[ (int)hex.Props[ R.Science ].Value ]++;
                 //wordsTiles[ (int)hex.Props[ R.Minerals ].Value ]++;
 
                 

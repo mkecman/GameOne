@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 using System.Collections.Generic;
 
-public class WeightedTexture : MonoBehaviour
+public class GradientTextureView : MonoBehaviour
 {
     public RawImage rawImage;
-    public Color GreenColor;
-    public Color RedColor;
+    public Color[] Colors;
 
     public int Width;
     public int Height;
@@ -25,20 +25,30 @@ public class WeightedTexture : MonoBehaviour
         _texture = new Texture2D( Width, Height );
         _gradient = new Color[ 100 ];
         _pixels = new Color[ Width * Height ];
+        //Debug.Log( "Awake: " + Width + ":" + Height );
+    }
+    
+    public void Draw( BellCurve bellCurve )
+    {
+        for( int i = 0; i < 100; i++ )
+        {
+            _gradient[ i ] = Color.Lerp( Colors[0], Colors[1], bellCurve.GetValueAt( i / 100f ) );
+        }
+        rawImage.texture = GetTexture();
     }
 
     public void Draw( List<WeightedValue> weights )
     {
-        rawImage.texture = GetTexture( weights );
-    }
-
-    private Texture2D GetTexture( List<WeightedValue> weights )
-    {
         for( int i = 0; i < 100; i++ )
         {
-            _gradient[ i ] = Color.Lerp( RedColor, GreenColor, weights[ i ].Weight );
+            _gradient[ i ] = Color.Lerp( Colors[ 2 ], Colors[ 3 ], weights[ i ].Weight );
         }
+        rawImage.texture = GetTexture();
+    }
 
+    private Texture2D GetTexture()
+    {
+        //Debug.Log( "GetTexture: " + Width + ":" + Height );
         for( int x = 0; x < Width; x++ )
         {
             for( int y = 0; y < Height; y++ )

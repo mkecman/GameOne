@@ -43,6 +43,7 @@ public class PlanetController : AbstractController, IGameInit
         Generate( index );
         _star._Planets.Add( _selectedPlanet );
         _star.PlanetsCount++;
+        GameModel.Get<PlanetPropsUpdateCommand>().Execute();
         GameModel.Set<PlanetModel>( _selectedPlanet );
     }
 

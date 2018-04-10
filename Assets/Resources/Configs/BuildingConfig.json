@@ -10,8 +10,9 @@
     "Y": 0,
     "Altitude": 0.0,
     "Effects": {
-      "Radiation": -0.01,
-      "Minerals": -0.6
+      "Radiation": -70,
+      "Temperature": -10,
+      "Minerals":-1
     },
     "State": 0
   },
@@ -24,8 +25,9 @@
     "Y": 0,
     "Altitude": 0.0,
     "Effects": {
-      "Pressure": -0.01,
-      "Minerals": -0.7
+      "Pressure": -20,
+      "Humidity": 70,
+      "Minerals":-1
     },
     "State": 0
   },
@@ -38,8 +40,8 @@
     "Y": 0,
     "Altitude": 0.0,
     "Effects": {
-      "Humidity": 0.01,
-      "Minerals": -0.8
+      "Pressure": 70,
+      "Minerals":-1
     },
     "State": 0
   },
@@ -52,8 +54,9 @@
     "Y": 0,
     "Altitude": 0.0,
     "Effects": {
-      "Temperature": 0.01,
-      "Minerals": -1.0
+      "Temperature": 70,
+      "Humidity": -20,
+      "Minerals":-1
     },
     "State": 0
   },
@@ -66,8 +69,9 @@
     "Y": 0,
     "Altitude": 0.0,
     "Effects": {
-      "Radiation": 0.01,
-      "Minerals": -1.2
+      "Radiation": -50,
+      "Pressure": -10,
+      "Minerals":-1
     },
     "State": 0
   },
@@ -80,9 +84,9 @@
     "Y": 0,
     "Altitude": 0.0,
     "Effects": {
-      "Pressure": -0.01,
-      "Radiation": -0.01,
-      "Minerals": -1.3
+      "Temperature": -20,
+      "Humidity": -50,
+      "Minerals":-1
     },
     "State": 0
   },
@@ -95,9 +99,9 @@
     "Y": 0,
     "Altitude": 0.0,
     "Effects": {
-      "Humidity": 0.01,
-      "Radiation": -0.01,
-      "Minerals": -1.4
+      "Pressure": -50,
+      "Radiation": -20,
+      "Minerals":-1
     },
     "State": 0
   },
@@ -110,9 +114,8 @@
     "Y": 0,
     "Altitude": 0.0,
     "Effects": {
-      "Pressure": -0.01,
-      "Humidity": 0.01,
-      "Minerals": -1.5
+      "Temperature": -50,
+      "Minerals":-1
     },
     "State": 0
   },
@@ -125,8 +128,9 @@
     "Y": 0,
     "Altitude": 0.0,
     "Effects": {
-      "Pressure": 0.01,
-      "Minerals": -1.5
+      "Pressure": -10,
+      "Radiation": 30,
+      "Minerals":-1
     },
     "State": 0
   },
@@ -139,9 +143,9 @@
     "Y": 0,
     "Altitude": 0.0,
     "Effects": {
-      "Temperature": 0.01,
-      "Radiation": -0.01,
-      "Minerals": -1.6
+      "Humidity": 30,
+      "Radiation": -10,
+      "Minerals":-1
     },
     "State": 0
   },
@@ -154,8 +158,9 @@
     "Y": 0,
     "Altitude": 0.0,
     "Effects": {
-      "Humidity": -0.01,
-      "Minerals": -1.6
+      "Temperature": -10,
+      "Pressure": 30,
+      "Minerals":-1
     },
     "State": 0
   },
@@ -168,9 +173,9 @@
     "Y": 0,
     "Altitude": 0.0,
     "Effects": {
-      "Temperature": 0.01,
-      "Pressure": -0.01,
-      "Minerals": -1.7
+      "Temperature": 30,
+      "Humidity": -10,
+      "Minerals":-1
     },
     "State": 0
   },
@@ -183,9 +188,9 @@
     "Y": 0,
     "Altitude": 0.0,
     "Effects": {
-      "Temperature": 0.01,
-      "Humidity": 0.01,
-      "Minerals": -1.8
+      "Radiation": -20,
+      "Humidity": -10,
+      "Minerals":-1
     },
     "State": 0
   },
@@ -198,9 +203,8 @@
     "Y": 0,
     "Altitude": 0.0,
     "Effects": {
-      "Pressure": -0.01,
-      "Radiation": 0.01,
-      "Minerals": -1.9
+      "Humidity": -20,
+      "Minerals":-1
     },
     "State": 0
   },
@@ -213,8 +217,9 @@
     "Y": 0,
     "Altitude": 0.0,
     "Effects": {
-      "Temperature": -0.01,
-      "Minerals": -2.0
+      "Pressure": -20,
+      "Radiation": -10,
+      "Minerals":-1
     },
     "State": 0
   },
@@ -227,9 +232,8 @@
     "Y": 0,
     "Altitude": 0.0,
     "Effects": {
-      "Humidity": 0.01,
-      "Radiation": 0.01,
-      "Minerals": -2.0
+      "Temperature": -20,
+      "Minerals":-1
     },
     "State": 0
   },
@@ -242,10 +246,8 @@
     "Y": 0,
     "Altitude": 0.0,
     "Effects": {
-      "Pressure": -0.01,
-      "Humidity": 0.01,
-      "Radiation": -0.01,
-      "Minerals": -2.1
+      "Radiation": 10,
+      "Minerals":-1
     },
     "State": 0
   },
@@ -258,9 +260,8 @@
     "Y": 0,
     "Altitude": 0.0,
     "Effects": {
-      "Pressure": 0.01,
-      "Radiation": -0.01,
-      "Minerals": -2.1
+      "Humidity": 10,
+      "Minerals":-1
     },
     "State": 0
   },
@@ -273,9 +274,8 @@
     "Y": 0,
     "Altitude": 0.0,
     "Effects": {
-      "Temperature": 0.01,
-      "Radiation": 0.01,
-      "Minerals": -2.2
+      "Pressure": 10,
+      "Minerals":-1
     },
     "State": 0
   },
@@ -288,972 +288,8 @@
     "Y": 0,
     "Altitude": 0.0,
     "Effects": {
-      "Humidity": -0.01,
-      "Radiation": -0.01,
-      "Minerals": -2.2
-    },
-    "State": 0
-  },
-  {
-    "Index": 20,
-    "Name": "Building 20",
-    "UnlockCost": 230,
-    "BuildCost": 115,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Pressure": 0.01,
-      "Humidity": 0.01,
-      "Minerals": -2.3
-    },
-    "State": 0
-  },
-  {
-    "Index": 21,
-    "Name": "Building 21",
-    "UnlockCost": 230,
-    "BuildCost": 115,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": 0.01,
-      "Pressure": -0.01,
-      "Radiation": -0.01,
-      "Minerals": -2.3
-    },
-    "State": 0
-  },
-  {
-    "Index": 22,
-    "Name": "Building 22",
-    "UnlockCost": 230,
-    "BuildCost": 115,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Pressure": -0.01,
-      "Humidity": -0.01,
-      "Minerals": -2.3
-    },
-    "State": 0
-  },
-  {
-    "Index": 23,
-    "Name": "Building 23",
-    "UnlockCost": 240,
-    "BuildCost": 120,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": 0.01,
-      "Humidity": 0.01,
-      "Radiation": -0.01,
-      "Minerals": -2.4
-    },
-    "State": 0
-  },
-  {
-    "Index": 24,
-    "Name": "Building 24",
-    "UnlockCost": 250,
-    "BuildCost": 125,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": 0.01,
-      "Pressure": 0.01,
-      "Minerals": -2.5
-    },
-    "State": 0
-  },
-  {
-    "Index": 25,
-    "Name": "Building 25",
-    "UnlockCost": 250,
-    "BuildCost": 125,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": 0.01,
-      "Pressure": -0.01,
-      "Humidity": 0.01,
-      "Minerals": -2.5
-    },
-    "State": 0
-  },
-  {
-    "Index": 26,
-    "Name": "Building 26",
-    "UnlockCost": 260,
-    "BuildCost": 130,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Radiation": -0.01,
-      "Minerals": -2.6
-    },
-    "State": 0
-  },
-  {
-    "Index": 27,
-    "Name": "Building 27",
-    "UnlockCost": 260,
-    "BuildCost": 130,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": 0.01,
-      "Humidity": -0.01,
-      "Minerals": -2.6
-    },
-    "State": 0
-  },
-  {
-    "Index": 28,
-    "Name": "Building 28",
-    "UnlockCost": 270,
-    "BuildCost": 135,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Pressure": 0.01,
-      "Radiation": 0.01,
-      "Minerals": -2.7
-    },
-    "State": 0
-  },
-  {
-    "Index": 29,
-    "Name": "Building 29",
-    "UnlockCost": 270,
-    "BuildCost": 135,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Pressure": -0.01,
-      "Humidity": 0.01,
-      "Radiation": 0.01,
-      "Minerals": -2.7
-    },
-    "State": 0
-  },
-  {
-    "Index": 30,
-    "Name": "Building 30",
-    "UnlockCost": 270,
-    "BuildCost": 135,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Pressure": -0.01,
-      "Minerals": -2.7
-    },
-    "State": 0
-  },
-  {
-    "Index": 31,
-    "Name": "Building 31",
-    "UnlockCost": 280,
-    "BuildCost": 140,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Humidity": 0.01,
-      "Minerals": -2.8
-    },
-    "State": 0
-  },
-  {
-    "Index": 32,
-    "Name": "Building 32",
-    "UnlockCost": 280,
-    "BuildCost": 140,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Humidity": -0.01,
-      "Radiation": 0.01,
-      "Minerals": -2.8
-    },
-    "State": 0
-  },
-  {
-    "Index": 33,
-    "Name": "Building 33",
-    "UnlockCost": 290,
-    "BuildCost": 145,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Pressure": -0.01,
-      "Humidity": -0.01,
-      "Radiation": -0.01,
-      "Minerals": -2.9
-    },
-    "State": 0
-  },
-  {
-    "Index": 34,
-    "Name": "Building 34",
-    "UnlockCost": 290,
-    "BuildCost": 145,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": 0.01,
-      "Pressure": -0.01,
-      "Radiation": 0.01,
-      "Minerals": -2.9
-    },
-    "State": 0
-  },
-  {
-    "Index": 35,
-    "Name": "Building 35",
-    "UnlockCost": 290,
-    "BuildCost": 145,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Pressure": 0.01,
-      "Humidity": 0.01,
-      "Radiation": -0.01,
-      "Minerals": -2.9
-    },
-    "State": 0
-  },
-  {
-    "Index": 36,
-    "Name": "Building 36",
-    "UnlockCost": 300,
-    "BuildCost": 150,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": 0.01,
-      "Humidity": 0.01,
-      "Radiation": 0.01,
-      "Minerals": -3.0
-    },
-    "State": 0
-  },
-  {
-    "Index": 37,
-    "Name": "Building 37",
-    "UnlockCost": 310,
-    "BuildCost": 155,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Pressure": 0.01,
-      "Humidity": -0.01,
-      "Minerals": -3.1
-    },
-    "State": 0
-  },
-  {
-    "Index": 38,
-    "Name": "Building 38",
-    "UnlockCost": 310,
-    "BuildCost": 155,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": 0.01,
-      "Pressure": -0.01,
-      "Humidity": 0.01,
-      "Radiation": -0.01,
-      "Minerals": -3.1
-    },
-    "State": 0
-  },
-  {
-    "Index": 39,
-    "Name": "Building 39",
-    "UnlockCost": 310,
-    "BuildCost": 155,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": 0.01,
-      "Pressure": 0.01,
-      "Radiation": -0.01,
-      "Minerals": -3.1
-    },
-    "State": 0
-  },
-  {
-    "Index": 40,
-    "Name": "Building 40",
-    "UnlockCost": 320,
-    "BuildCost": 160,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": 0.01,
-      "Humidity": -0.01,
-      "Radiation": -0.01,
-      "Minerals": -3.2
-    },
-    "State": 0
-  },
-  {
-    "Index": 41,
-    "Name": "Building 41",
-    "UnlockCost": 320,
-    "BuildCost": 160,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Radiation": 0.01,
-      "Minerals": -3.2
-    },
-    "State": 0
-  },
-  {
-    "Index": 42,
-    "Name": "Building 42",
-    "UnlockCost": 330,
-    "BuildCost": 165,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Pressure": -0.01,
-      "Radiation": -0.01,
-      "Minerals": -3.3
-    },
-    "State": 0
-  },
-  {
-    "Index": 43,
-    "Name": "Building 43",
-    "UnlockCost": 330,
-    "BuildCost": 165,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": 0.01,
-      "Pressure": -0.01,
-      "Humidity": -0.01,
-      "Minerals": -3.3
-    },
-    "State": 0
-  },
-  {
-    "Index": 44,
-    "Name": "Building 44",
-    "UnlockCost": 330,
-    "BuildCost": 165,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": 0.01,
-      "Pressure": 0.01,
-      "Humidity": 0.01,
-      "Minerals": -3.3
-    },
-    "State": 0
-  },
-  {
-    "Index": 45,
-    "Name": "Building 45",
-    "UnlockCost": 340,
-    "BuildCost": 170,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Humidity": 0.01,
-      "Radiation": -0.01,
-      "Minerals": -3.4
-    },
-    "State": 0
-  },
-  {
-    "Index": 46,
-    "Name": "Building 46",
-    "UnlockCost": 350,
-    "BuildCost": 175,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Pressure": 0.01,
-      "Humidity": 0.01,
-      "Radiation": 0.01,
-      "Minerals": -3.5
-    },
-    "State": 0
-  },
-  {
-    "Index": 47,
-    "Name": "Building 47",
-    "UnlockCost": 350,
-    "BuildCost": 175,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Pressure": 0.01,
-      "Minerals": -3.5
-    },
-    "State": 0
-  },
-  {
-    "Index": 48,
-    "Name": "Building 48",
-    "UnlockCost": 350,
-    "BuildCost": 175,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Pressure": -0.01,
-      "Humidity": 0.01,
-      "Minerals": -3.5
-    },
-    "State": 0
-  },
-  {
-    "Index": 49,
-    "Name": "Building 49",
-    "UnlockCost": 350,
-    "BuildCost": 175,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Pressure": -0.01,
-      "Humidity": -0.01,
-      "Radiation": 0.01,
-      "Minerals": -3.5
-    },
-    "State": 0
-  },
-  {
-    "Index": 50,
-    "Name": "Building 50",
-    "UnlockCost": 360,
-    "BuildCost": 180,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Humidity": -0.01,
-      "Minerals": -3.6
-    },
-    "State": 0
-  },
-  {
-    "Index": 51,
-    "Name": "Building 51",
-    "UnlockCost": 370,
-    "BuildCost": 185,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": 0.01,
-      "Pressure": -0.01,
-      "Humidity": 0.01,
-      "Radiation": 0.01,
-      "Minerals": -3.7
-    },
-    "State": 0
-  },
-  {
-    "Index": 52,
-    "Name": "Building 52",
-    "UnlockCost": 370,
-    "BuildCost": 185,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": 0.01,
-      "Pressure": 0.01,
-      "Radiation": 0.01,
-      "Minerals": -3.7
-    },
-    "State": 0
-  },
-  {
-    "Index": 53,
-    "Name": "Building 53",
-    "UnlockCost": 370,
-    "BuildCost": 185,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Pressure": 0.01,
-      "Humidity": -0.01,
-      "Radiation": -0.01,
-      "Minerals": -3.7
-    },
-    "State": 0
-  },
-  {
-    "Index": 54,
-    "Name": "Building 54",
-    "UnlockCost": 380,
-    "BuildCost": 190,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": 0.01,
-      "Humidity": -0.01,
-      "Radiation": 0.01,
-      "Minerals": -3.8
-    },
-    "State": 0
-  },
-  {
-    "Index": 55,
-    "Name": "Building 55",
-    "UnlockCost": 390,
-    "BuildCost": 195,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": 0.01,
-      "Pressure": -0.01,
-      "Humidity": -0.01,
-      "Radiation": -0.01,
-      "Minerals": -3.9
-    },
-    "State": 0
-  },
-  {
-    "Index": 56,
-    "Name": "Building 56",
-    "UnlockCost": 390,
-    "BuildCost": 195,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Pressure": -0.01,
-      "Radiation": 0.01,
-      "Minerals": -3.9
-    },
-    "State": 0
-  },
-  {
-    "Index": 57,
-    "Name": "Building 57",
-    "UnlockCost": 390,
-    "BuildCost": 195,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": 0.01,
-      "Pressure": 0.01,
-      "Humidity": 0.01,
-      "Radiation": -0.01,
-      "Minerals": -3.9
-    },
-    "State": 0
-  },
-  {
-    "Index": 58,
-    "Name": "Building 58",
-    "UnlockCost": 400,
-    "BuildCost": 200,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Humidity": 0.01,
-      "Radiation": 0.01,
-      "Minerals": -4.0
-    },
-    "State": 0
-  },
-  {
-    "Index": 59,
-    "Name": "Building 59",
-    "UnlockCost": 410,
-    "BuildCost": 205,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": 0.01,
-      "Pressure": 0.01,
-      "Humidity": -0.01,
-      "Minerals": -4.1
-    },
-    "State": 0
-  },
-  {
-    "Index": 60,
-    "Name": "Building 60",
-    "UnlockCost": 410,
-    "BuildCost": 205,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Pressure": -0.01,
-      "Humidity": 0.01,
-      "Radiation": -0.01,
-      "Minerals": -4.1
-    },
-    "State": 0
-  },
-  {
-    "Index": 61,
-    "Name": "Building 61",
-    "UnlockCost": 410,
-    "BuildCost": 205,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Pressure": 0.01,
-      "Radiation": -0.01,
-      "Minerals": -4.1
-    },
-    "State": 0
-  },
-  {
-    "Index": 62,
-    "Name": "Building 62",
-    "UnlockCost": 420,
-    "BuildCost": 210,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Humidity": -0.01,
-      "Radiation": -0.01,
-      "Minerals": -4.2
-    },
-    "State": 0
-  },
-  {
-    "Index": 63,
-    "Name": "Building 63",
-    "UnlockCost": 430,
-    "BuildCost": 215,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Pressure": -0.01,
-      "Humidity": -0.01,
-      "Minerals": -4.3
-    },
-    "State": 0
-  },
-  {
-    "Index": 64,
-    "Name": "Building 64",
-    "UnlockCost": 430,
-    "BuildCost": 215,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Pressure": 0.01,
-      "Humidity": -0.01,
-      "Radiation": 0.01,
-      "Minerals": -4.3
-    },
-    "State": 0
-  },
-  {
-    "Index": 65,
-    "Name": "Building 65",
-    "UnlockCost": 430,
-    "BuildCost": 215,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Pressure": 0.01,
-      "Humidity": 0.01,
-      "Minerals": -4.3
-    },
-    "State": 0
-  },
-  {
-    "Index": 66,
-    "Name": "Building 66",
-    "UnlockCost": 450,
-    "BuildCost": 225,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": 0.01,
-      "Pressure": 0.01,
-      "Humidity": 0.01,
-      "Radiation": 0.01,
-      "Minerals": -4.5
-    },
-    "State": 0
-  },
-  {
-    "Index": 67,
-    "Name": "Building 67",
-    "UnlockCost": 450,
-    "BuildCost": 225,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": 0.01,
-      "Pressure": -0.01,
-      "Humidity": -0.01,
-      "Radiation": 0.01,
-      "Minerals": -4.5
-    },
-    "State": 0
-  },
-  {
-    "Index": 68,
-    "Name": "Building 68",
-    "UnlockCost": 470,
-    "BuildCost": 235,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Pressure": 0.01,
-      "Radiation": 0.01,
-      "Minerals": -4.7
-    },
-    "State": 0
-  },
-  {
-    "Index": 69,
-    "Name": "Building 69",
-    "UnlockCost": 470,
-    "BuildCost": 235,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": 0.01,
-      "Pressure": 0.01,
-      "Humidity": -0.01,
-      "Radiation": -0.01,
-      "Minerals": -4.7
-    },
-    "State": 0
-  },
-  {
-    "Index": 70,
-    "Name": "Building 70",
-    "UnlockCost": 470,
-    "BuildCost": 235,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Pressure": -0.01,
-      "Humidity": 0.01,
-      "Radiation": 0.01,
-      "Minerals": -4.7
-    },
-    "State": 0
-  },
-  {
-    "Index": 71,
-    "Name": "Building 71",
-    "UnlockCost": 480,
-    "BuildCost": 240,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Humidity": -0.01,
-      "Radiation": 0.01,
-      "Minerals": -4.8
-    },
-    "State": 0
-  },
-  {
-    "Index": 72,
-    "Name": "Building 72",
-    "UnlockCost": 490,
-    "BuildCost": 245,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Pressure": -0.01,
-      "Humidity": -0.01,
-      "Radiation": -0.01,
-      "Minerals": -4.9
-    },
-    "State": 0
-  },
-  {
-    "Index": 73,
-    "Name": "Building 73",
-    "UnlockCost": 490,
-    "BuildCost": 245,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Pressure": 0.01,
-      "Humidity": 0.01,
-      "Radiation": -0.01,
-      "Minerals": -4.9
-    },
-    "State": 0
-  },
-  {
-    "Index": 74,
-    "Name": "Building 74",
-    "UnlockCost": 510,
-    "BuildCost": 255,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Pressure": 0.01,
-      "Humidity": -0.01,
-      "Minerals": -5.1
-    },
-    "State": 0
-  },
-  {
-    "Index": 75,
-    "Name": "Building 75",
-    "UnlockCost": 530,
-    "BuildCost": 265,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": 0.01,
-      "Pressure": 0.01,
-      "Humidity": -0.01,
-      "Radiation": 0.01,
-      "Minerals": -5.3
-    },
-    "State": 0
-  },
-  {
-    "Index": 76,
-    "Name": "Building 76",
-    "UnlockCost": 550,
-    "BuildCost": 275,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Pressure": 0.01,
-      "Humidity": 0.01,
-      "Radiation": 0.01,
-      "Minerals": -5.5
-    },
-    "State": 0
-  },
-  {
-    "Index": 77,
-    "Name": "Building 77",
-    "UnlockCost": 550,
-    "BuildCost": 275,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Pressure": -0.01,
-      "Humidity": -0.01,
-      "Radiation": 0.01,
-      "Minerals": -5.5
-    },
-    "State": 0
-  },
-  {
-    "Index": 78,
-    "Name": "Building 78",
-    "UnlockCost": 570,
-    "BuildCost": 285,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Pressure": 0.01,
-      "Humidity": -0.01,
-      "Radiation": -0.01,
-      "Minerals": -5.7
-    },
-    "State": 0
-  },
-  {
-    "Index": 79,
-    "Name": "Building 79",
-    "UnlockCost": 630,
-    "BuildCost": 315,
-    "X": 0,
-    "Y": 0,
-    "Altitude": 0.0,
-    "Effects": {
-      "Temperature": -0.01,
-      "Pressure": 0.01,
-      "Humidity": -0.01,
-      "Radiation": 0.01,
-      "Minerals": -6.3
+      "Temperature": 10,
+      "Minerals":-1
     },
     "State": 0
   }

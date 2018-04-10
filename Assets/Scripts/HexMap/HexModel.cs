@@ -19,22 +19,22 @@ public class HexModel
     public HexModel()
     {
         AddProp( R.Default );
-        AddProp( R.Altitude );
+        AddProp( R.Altitude, 2 );
         AddProp( R.Temperature );
         AddProp( R.Pressure );
         AddProp( R.Humidity );
         AddProp( R.Radiation );
         AddProp( R.HexScore );
 
-        AddProp( R.Energy );
-        AddProp( R.Science );
-        AddProp( R.Minerals );
+        //AddProp( R.Energy );
+        //AddProp( R.Science );
+        //AddProp( R.Minerals );
 
-        AddProp( R.Element );
+        AddProp( R.Element, 118 );
     }
 
-    private void AddProp( R prop )
+    private void AddProp( R prop, float maxValue = 1 )
     {
-        Props[ prop ] = new Resource( prop, 0 );
+        Props[ prop ] = new Resource( prop, 0, 0, 0, maxValue );
     }
 }

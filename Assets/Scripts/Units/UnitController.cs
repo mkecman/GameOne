@@ -131,14 +131,7 @@ public class UnitController : AbstractController, IGameInit
             //Moved to when a unit is moved onto a new hexmodel
             //um.Props[ R.Health ].Value = hm.Props[ R.HexScore ].Value;
 
-            _elementIndex = (int)hm.Props[ R.Element ].Value;
-            if( _elementIndex > 0 )
-            {
-                if( _life.Elements.ContainsKey( _elementIndex ) )
-                    _life.Elements[ _elementIndex ].Amount++;
-                else
-                    _life.Elements.Add( _elementIndex, new LifeElementModel( _elementIndex, _elements[ _elementIndex ].Symbol, 1 ) );
-            }
+            
 
             //_updateValues[ R.Energy ] += ( hm.Props[ R.Energy ].Value * um.Props[ R.Health ].Value ) + um.AbilitiesDelta[ R.Energy ].Value;
             //_updateValues[ R.Science ] += ( hm.Props[ R.Science ].Value * um.Props[ R.Health ].Value ) + um.AbilitiesDelta[ R.Science ].Value;
@@ -154,13 +147,13 @@ public class UnitController : AbstractController, IGameInit
 
         }
 
-        _life.Props[ R.Energy ].Value += _updateValues[ R.Energy ];
+        //_life.Props[ R.Energy ].Value += _updateValues[ R.Energy ];
         //_life.Props[ R.Energy ].Delta = _updateValues[ R.Energy ];
 
-        _life.Props[ R.Science ].Value += _updateValues[ R.Science ];
+        //_life.Props[ R.Science ].Value += _updateValues[ R.Science ];
         //_life.Props[ R.Science ].Delta = _updateValues[ R.Science ];
 
-        _life.Props[ R.Minerals ].Value += _updateValues[ R.Minerals ];
+        //_life.Props[ R.Minerals ].Value += _updateValues[ R.Minerals ];
         //_life.Props[ R.Minerals ].Delta = _updateValues[ R.Minerals ];
     }
 

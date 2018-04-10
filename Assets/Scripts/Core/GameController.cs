@@ -57,7 +57,7 @@ public class GameController : MonoBehaviour
         generator.Load();
         /**/
 
-        //StartNewGame();
+        StartNewGame();
         //Load();
         Debug.Log( "GameController Started" );
     }

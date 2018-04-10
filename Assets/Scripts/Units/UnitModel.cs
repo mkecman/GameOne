@@ -43,8 +43,8 @@ public class UnitModel
 
     public UnitModel( int x, int y, float altitude, Dictionary<R, BellCurve> resistance )
     {
-        Props.Add( R.Altitude, new Resource( R.Altitude, altitude ) );
-        Props.Add( R.Health, new Resource( R.Health, 100 ) );
+        Props.Add( R.Altitude, new Resource( R.Altitude, altitude, 0, 0, 2 ) );
+        Props.Add( R.Health, new Resource( R.Health, 100, 0, 0, 100 ) );
 
         X = x;
         Y = y;

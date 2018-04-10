@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AccidentalNoise;
 using PsiPhi;
 using UnityEngine;
@@ -62,6 +63,7 @@ public class HexMapGenerator
                     Y = y,
                     Lens = m.Lens
                 };
+                SetWideHexPropsRange( hex );
                 _map.Table[ x ][ y ] = hex;
 
                 // WRAP ON BOTH AXIS
@@ -126,15 +128,46 @@ public class HexMapGenerator
                 SetHex( hex, R.Radiation );
 
                 hex.Props[ R.Element ].Value = _planetModel._Elements[ RandomUtil.FromRangeInt( 0, _planetModel._Elements.Count ) ].Index;
-                hex.Props[ R.Minerals ].Value = (int)_elements[ (int)hex.Props[ R.Element ].Value ].Weight;
+                //hex.Props[ R.Minerals ].Value = (int)_elements[ (int)hex.Props[ R.Element ].Value ].Weight;
 
                 hex.Props[ R.HexScore ].Value = 0;
                 hex.Props[ R.HexScore ].Color = Color.red;
 
                 hex.Props[ R.Altitude ].Value *= 2;
+
+                SetNormalHexPropsRange( hex );
             }
         }
     }
+
+    private void SetNormalHexPropsRange( HexModel hex )
+    {
+        hex.Props[ R.Altitude ].MinValue = 0;
+        hex.Props[ R.Altitude ].MaxValue = 2;
+        hex.Props[ R.Temperature ].MinValue = 0;
+        hex.Props[ R.Temperature ].MaxValue = 1;
+        hex.Props[ R.Pressure ].MinValue = 0;
+        hex.Props[ R.Pressure ].MaxValue = 1;
+        hex.Props[ R.Humidity ].MinValue = 0;
+        hex.Props[ R.Humidity ].MaxValue = 1;
+        hex.Props[ R.Radiation ].MinValue = 0;
+        hex.Props[ R.Radiation ].MaxValue = 1;
+    }
+
+    private void SetWideHexPropsRange( HexModel hex )
+    {
+        hex.Props[ R.Altitude ].MinValue = -2;
+        hex.Props[ R.Altitude ].MaxValue = 2;
+        hex.Props[ R.Temperature ].MinValue = -2;
+        hex.Props[ R.Temperature ].MaxValue = 2;
+        hex.Props[ R.Pressure ].MinValue = -2;
+        hex.Props[ R.Pressure ].MaxValue = 2;
+        hex.Props[ R.Humidity ].MinValue = -2;
+        hex.Props[ R.Humidity ].MaxValue = 2;
+        hex.Props[ R.Radiation ].MinValue = -2;
+        hex.Props[ R.Radiation ].MaxValue = 2;
+    }
+
 
     private void SetHex( HexModel hex, R type )
     {

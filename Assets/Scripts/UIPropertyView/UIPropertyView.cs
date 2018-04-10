@@ -9,6 +9,8 @@ public class UIPropertyView : MonoBehaviour
 
     public Color GreenColor, RedColor;
 
+    public string StringFormat = "N2";
+
     public void SetProperty( string propertyName )
     {
         Property.text = propertyName;
@@ -19,7 +21,7 @@ public class UIPropertyView : MonoBehaviour
         if( value == float.MaxValue )
             Value.text = "";
         else
-            Value.text = value.ToString( "N2" );
+            Value.text = value.ToString( StringFormat );
 
         if( delta == float.MaxValue || delta == 0 )
         {
@@ -37,6 +39,6 @@ public class UIPropertyView : MonoBehaviour
             Delta.color = RedColor;
             Delta.text = "";
         }
-        Delta.text += delta.ToString( "N2" );
+        Delta.text += delta.ToString( StringFormat );
     }
 }

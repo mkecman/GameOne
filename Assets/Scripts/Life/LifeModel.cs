@@ -32,9 +32,9 @@ public class LifeModel
 
     public LifeModel()
     {
-        Props.Add( R.Population, new Resource( R.Population, 0 ) );
-        Props.Add( R.Energy, new Resource( R.Energy, 0 ) );
-        Props.Add( R.Science, new Resource( R.Science, 0 ) );
-        Props.Add( R.Minerals, new Resource( R.Minerals, 0 ) );
+        Props.Add( R.Population, new Resource( R.Population, 0, 0, 0, float.MaxValue ) );
+        Props.Add( R.Energy, new Resource( R.Energy, 0, 0, 0, float.MaxValue ) );
+        Props.Add( R.Science, new Resource( R.Science, 0, 0, 0, float.MaxValue ) );
+        Props.Add( R.Minerals, new Resource( R.Minerals, 0, 0, 0, float.MaxValue ) );
     }
 }

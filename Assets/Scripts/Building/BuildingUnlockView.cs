@@ -76,6 +76,7 @@ public class BuildingUnlockView : GameView, IPointerClickHandler
     {
         GameObject go = Instantiate( prefab, EffectsGrid );
         UIPropertyView uipv = go.GetComponent<UIPropertyView>();
+        uipv.StringFormat = "";
         uipv.SetProperty( type.ToString() );
         uipv.SetValue( float.MaxValue, value );
     }

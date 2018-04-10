@@ -5,7 +5,7 @@ public class BuildingController : AbstractController, IGameInit
     private PlanetModel _planet;
     private BuildingPaymentService _pay;
     private HexUpdateCommand _hexUpdateCommand;
-
+    private List<ElementModel> _elements;
     private HexModel hm;
     private BuildingModel bm;
     private int hexCount;
@@ -22,6 +22,7 @@ public class BuildingController : AbstractController, IGameInit
 
         _pay = GameModel.Get<BuildingPaymentService>();
         _hexUpdateCommand = GameModel.Get<HexUpdateCommand>();
+        _elements = GameConfig.Get<ElementConfig>().Elements;
 
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
     }
@@ -53,6 +54,7 @@ public class BuildingController : AbstractController, IGameInit
         tempProps[ R.Radiation ] = 0;
 
         bool buildingsActive = false;
+        int _elementIndex;
         for( int i = 0; i < _planet.Life.Buildings.Count; i++ )
         {
             bm = _planet.Life.Buildings[ i ];
@@ -60,6 +62,15 @@ public class BuildingController : AbstractController, IGameInit
             {
                 if( _pay.BuyMaintenance( - bm.Effects[ R.Minerals ] ) )
                 {
+                    _elementIndex = (int)_planet.Map.Table[ bm.X ][ bm.Y ].Props[ R.Element ].Value;
+                    if( _elementIndex > 0 )
+                    {
+                        if( _planet.Life.Elements.ContainsKey( _elementIndex ) )
+                            _planet.Life.Elements[ _elementIndex ].Amount++;
+                        else
+                            _planet.Life.Elements.Add( _elementIndex, new LifeElementModel( _elementIndex, _elements[ _elementIndex ].Symbol, 1 ) );
+                    }
+
                     CollectEffectValue( R.Temperature, tempProps, bm.Effects );
                     CollectEffectValue( R.Pressure, tempProps, bm.Effects );
                     CollectEffectValue( R.Humidity, tempProps, bm.Effects );
@@ -77,10 +88,10 @@ public class BuildingController : AbstractController, IGameInit
         if( !buildingsActive )
             return;
 
-        tempProps[ R.Temperature ] /= hexCount;
-        tempProps[ R.Pressure ] /= hexCount;
-        tempProps[ R.Humidity ] /= hexCount;
-        tempProps[ R.Radiation ] /= hexCount;
+        tempProps[ R.Temperature ] = ( tempProps[ R.Temperature ] / 100f ) / hexCount;
+        tempProps[ R.Pressure ] = ( tempProps[ R.Pressure ] / 100f ) / hexCount;
+        tempProps[ R.Humidity ] = ( tempProps[ R.Humidity ] / 100f ) / hexCount;
+        tempProps[ R.Radiation ] = ( tempProps[ R.Radiation ] / 100f ) / hexCount;
 
         for( int width = 0; width < _planet.Map.Width; width++ )
         {
