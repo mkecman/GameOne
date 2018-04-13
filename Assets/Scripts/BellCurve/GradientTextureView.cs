@@ -25,7 +25,6 @@ public class GradientTextureView : MonoBehaviour
         _texture = new Texture2D( Width, Height );
         _gradient = new Color[ 100 ];
         _pixels = new Color[ Width * Height ];
-        //Debug.Log( "Awake: " + Width + ":" + Height );
     }
     
     public void Draw( BellCurve bellCurve )

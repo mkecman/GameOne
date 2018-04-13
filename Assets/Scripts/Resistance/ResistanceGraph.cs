@@ -36,6 +36,8 @@ public class ResistanceGraph : GameView, IPointerClickHandler
     {
         GameModel.RemoveHandle<PlanetModel>( OnPlanetModel );
         GameModel.RemoveHandle<HexModel>( OnHexModelChange );
+        disposables.Clear();
+        planetDisposable.Clear();
     }
 
     private void OnPlanetModel( PlanetModel value )

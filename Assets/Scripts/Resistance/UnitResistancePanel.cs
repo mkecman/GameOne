@@ -15,6 +15,11 @@ public class UnitResistancePanel : GameView
 
     private UnitModel _selectedUnit;
 
+    private void Awake()
+    {
+        OnOkButtonClick();
+    }
+
     void OnEnable()
     {
         GameModel.HandleGet<UnitModel>( OnUnitChange );
@@ -25,6 +30,7 @@ public class UnitResistancePanel : GameView
     {
         GameModel.RemoveHandle<UnitModel>( OnUnitChange );
         OkButton.onClick.RemoveListener( OnOkButtonClick );
+        disposables.Clear();
     }
 
     private void OnOkButtonClick()
