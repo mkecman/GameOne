@@ -21,9 +21,14 @@ public class BellCurve
         Range.Value = range;
     }
 
-    public float GetValueAt( float time )
+    public float GetFloatAt( float time )
     {
         return Amplitude.Value * Mathf.Exp( -Mathf.Pow( time - Position.Value, 2 ) / ( 2 * Mathf.Pow( Range.Value, 2 ) ) );
+    }
+
+    public int GetIntAt( float time )
+    {
+        return (int)( Amplitude.Value * Mathf.Exp( -Mathf.Pow( time - Position.Value, 2 ) / ( 2 * Mathf.Pow( Range.Value, 2 ) ) ) * 100 );
     }
 
     public bool ChangePosition( float delta )

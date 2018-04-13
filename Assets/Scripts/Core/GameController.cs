@@ -42,6 +42,7 @@ public class GameController : MonoBehaviour
         AddController<HexUpdateCommand>();
         AddController<PlanetGenerateCommand>();
         AddController<PlanetPropsUpdateCommand>();
+        AddController<UnitFactory>();
 
         for( int i = 0; i < _gameControllers.Count; i++ )
         {

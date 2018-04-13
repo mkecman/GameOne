@@ -22,8 +22,8 @@ public class UnitController : AbstractController, IGameInit
     private Dictionary<R, float> _updateValues = new Dictionary<R, float>();
     private HexUpdateCommand _hexUpdateCommand;
     private GameDebug _debug;
-    private Dictionary<R, BellCurve> _bellCurves;
     private List<ElementModel> _elements;
+    private UnitFactory _factory;
     private int _elementIndex;
 
     public void Init()
@@ -35,8 +35,8 @@ public class UnitController : AbstractController, IGameInit
         _pay = GameModel.Get<UnitPaymentService>();
         _hexUpdateCommand = GameModel.Get<HexUpdateCommand>();
         _debug = GameModel.Get<GameDebug>();
-        _bellCurves = GameConfig.Get<BellCurveConfig>();
         _elements = GameConfig.Get<ElementConfig>().Elements;
+        _factory = GameModel.Get<UnitFactory>();
 
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
     }
@@ -189,7 +189,7 @@ public class UnitController : AbstractController, IGameInit
         if( _hexMapModel.Table[ x ][ y ].Unit != null )
             return;
 
-        UnitModel um = new UnitModel( x, y, _hexMapModel.Table[ x ][ y ].Props[ R.Altitude ].Value, GameModel.Copy( _bellCurves ) );
+        UnitModel um = _factory.GetUnit( x, y );
         _hexMapModel.Table[ x ][ y ].Unit = um;
         _life.Units.Add( um );
         _life.Props[ R.Population ].Value++;

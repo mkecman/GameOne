@@ -31,7 +31,7 @@ public class GradientTextureView : MonoBehaviour
     {
         for( int i = 0; i < 100; i++ )
         {
-            _gradient[ i ] = Color.Lerp( Colors[0], Colors[1], bellCurve.GetValueAt( i / 100f ) );
+            _gradient[ i ] = Color.Lerp( Colors[0], Colors[1], bellCurve.GetFloatAt( i / 100f ) );
         }
         rawImage.texture = GetTexture();
     }

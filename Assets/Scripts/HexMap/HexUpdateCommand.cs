@@ -37,10 +37,10 @@ public class HexUpdateCommand : IGameInit
         hexScore = hex.Props[ R.HexScore ];
 
 
-        temperatureBonus = Resistance[ R.Temperature ].GetValueAt( temperature.Value );
-        pressureBonus = Resistance[ R.Pressure ].GetValueAt( pressure.Value );
-        humidityBonus = Resistance[ R.Humidity ].GetValueAt( humidity.Value );
-        radiationBonus = Resistance[ R.Radiation ].GetValueAt( radiation.Value );
+        temperatureBonus = Resistance[ R.Temperature ].GetFloatAt( temperature.Value );
+        pressureBonus = Resistance[ R.Pressure ].GetFloatAt( pressure.Value );
+        humidityBonus = Resistance[ R.Humidity ].GetFloatAt( humidity.Value );
+        radiationBonus = Resistance[ R.Radiation ].GetFloatAt( radiation.Value );
         /*
         hex.Props[ R.Temperature ].Color = Color.Lerp( Color.red, Color.green, hex.Props[ R.Temperature ].Value );
         hex.Props[ R.Pressure ].Color = Color.Lerp( Color.red, Color.green, hex.Props[ R.Pressure ].Value );

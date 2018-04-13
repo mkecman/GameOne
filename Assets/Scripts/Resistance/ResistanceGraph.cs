@@ -77,7 +77,7 @@ public class ResistanceGraph : GameView, IPointerClickHandler
         if( _selectedUnit != null )
         {
             Gradient.Draw( _selectedUnit.Resistance[ Lens ] );
-            UpdateUI( (int)Math.Round( _selectedUnit.Resistance[ Lens ].GetValueAt( _hexModel.Props[ Lens ].Value ) * 100, 0 ) + "%", _hexModel.Props[ Lens ].Value );
+            UpdateUI( (int)Math.Round( _selectedUnit.Resistance[ Lens ].GetFloatAt( _hexModel.Props[ Lens ].Value ) * 100, 0 ) + "%", _hexModel.Props[ Lens ].Value );
         }
         else
             if( _hexModel == null )

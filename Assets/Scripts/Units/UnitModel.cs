@@ -39,24 +39,8 @@ public class UnitModel
 
     public Dictionary<R,Resource> Props = new Dictionary<R,Resource>();
 
+    public Dictionary<S, ResourceInt> Stats = new Dictionary<S, ResourceInt>();
+
     internal Vector3 Position = new Vector3();
-
-    public UnitModel( int x, int y, float altitude, Dictionary<R, BellCurve> resistance )
-    {
-        Props.Add( R.Altitude, new Resource( R.Altitude, altitude, 0, 0, 2 ) );
-        Props.Add( R.Health, new Resource( R.Health, 100, 0, 0, 100 ) );
-
-        X = x;
-        Y = y;
-
-        Resistance = resistance;
-        
-        AbilitiesDelta.Add( R.Energy, new FloatReactiveProperty( -.5f) );
-        AbilitiesDelta.Add( R.Science, new FloatReactiveProperty() );
-        AbilitiesDelta.Add( R.Minerals, new FloatReactiveProperty() );
-
-        Abilities.Add( 0, BuildingState.UNLOCKED );
-    }
-
-    public UnitModel() { }
+    
 }

@@ -10,11 +10,13 @@ public class LifeController : AbstractController, IGameInit
     private LifeModel _selectedLife;
     private Dictionary<R, BellCurve> _bellCurves;
     private HexUpdateCommand _hexUpdateCommand;
+    private UnitFactory _factory;
 
     public void Init()
     {
         _bellCurves = GameConfig.Get<BellCurveConfig>();
         _hexUpdateCommand = GameModel.Get<HexUpdateCommand>();
+        _factory = GameModel.Get<UnitFactory>();
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
     }
 
@@ -40,7 +42,7 @@ public class LifeController : AbstractController, IGameInit
 
         int unitX = (int)( _planet.Map.Width / 2 ) + 2;
         int unitY = (int)( _planet.Map.Height / 2 ) + 2;
-        _selectedLife.Units.Add( new UnitModel( unitX, unitY, _planet.Map.Table[ unitX ][ unitY ].Props[ R.Altitude ].Value, GameModel.Copy( _bellCurves ) ) );
+        _selectedLife.Units.Add( _factory.GetUnit( unitX, unitY ) );
 
         _planet.Life = _selectedLife;
         UpdatePlanetMapColors();
