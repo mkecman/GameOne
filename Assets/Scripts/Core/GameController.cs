@@ -44,6 +44,13 @@ public class GameController : MonoBehaviour
         AddController<PlanetPropsUpdateCommand>();
         AddController<UnitFactory>();
 
+        AddController<SkillCommand>();
+
+        AddController<LiveSkill>();
+        AddController<MoveSkill>();
+        AddController<CloneSkill>();
+        AddController<MineSkill>();
+
         for( int i = 0; i < _gameControllers.Count; i++ )
         {
             _gameControllers[ i ].Init();

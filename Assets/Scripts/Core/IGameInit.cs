@@ -1,4 +1,4 @@
-﻿interface IGameInit
+﻿public interface IGameInit
 {
     void Init();
 }

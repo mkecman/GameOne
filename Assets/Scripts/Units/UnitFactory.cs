@@ -22,7 +22,11 @@
         unit.Resistance = GameModel.Copy( _bellCurves );
 
         for( int i = 0; i < (int)S.Count; i++ )
-            unit.Stats.Add( (S)i, new ResourceInt( (S)i, 1 ) );
+            unit.Stats.Add( (S)i, new ResourceInt( (S)i, 100,0,0,100 ) );
+
+        //unit.Skills.Add( SkillName.Live, new Skill() );
+        unit.ActiveSkills.Add( SkillName.Live );
+        unit.ActiveSkills.Add( SkillName.Mine );
 
         return unit;
     }

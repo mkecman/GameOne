@@ -39,8 +39,11 @@ public class UnitModel
 
     public Dictionary<R,Resource> Props = new Dictionary<R,Resource>();
 
-    public Dictionary<S, ResourceInt> Stats = new Dictionary<S, ResourceInt>();
-
     internal Vector3 Position = new Vector3();
-    
+
+
+    /// RPG SYSTEM
+    public Dictionary<S, ResourceInt> Stats = new Dictionary<S, ResourceInt>();
+    public Dictionary<SkillName, Skill> Skills = new Dictionary<SkillName, Skill>();
+    public List<SkillName> ActiveSkills = new List<SkillName>();
 }

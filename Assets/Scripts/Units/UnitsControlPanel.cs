@@ -6,7 +6,8 @@ using UniRx;
 
 public class UnitsControlPanel : GameView
 {
-    public Button AddUnitButton;
+    public Button CloneButton;
+    public Button MoveButton;
 
     private PlanetModel _planet;
 
@@ -17,15 +18,18 @@ public class UnitsControlPanel : GameView
     {
         _unitPaymentService = GameModel.Get<UnitPaymentService>();
         GameModel.HandleGet<PlanetModel>( OnPlanetModelChange );
-        AddUnitButton.OnClickAsObservable().Subscribe( _ => 
-        {
-            GameMessage.Send<UnitMessage>( new UnitMessage( UnitMessageType.Add, 10, 10 ) ); } ).AddTo( disposables );
+        
+        MoveButton.OnClickAsObservable().Subscribe( _ => 
+        GameModel.Get<SkillCommand>().Execute( GameModel.Get<UnitModel>(), SkillName.Move ) ).AddTo( disposables );
+
+        CloneButton.OnClickAsObservable().Subscribe( _ =>
+        GameModel.Get<SkillCommand>().Execute( GameModel.Get<UnitModel>(), SkillName.Clone ) ).AddTo( disposables );
     }
 
     private void OnPlanetModelChange( PlanetModel value )
     {
         _planet = value;
-        _planet.Life.Props[ R.Population ]._Value.Subscribe( population => AddUnitButton.GetComponentInChildren<Text>().text = "Add: " + _unitPaymentService.GetAddUnitPrice() ).AddTo( disposables );
+        _planet.Life.Props[ R.Population ]._Value.Subscribe( population => CloneButton.GetComponentInChildren<Text>().text = "Add: " + _unitPaymentService.GetAddUnitPrice() ).AddTo( disposables );
     }
     
 }
