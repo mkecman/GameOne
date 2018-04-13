@@ -77,7 +77,7 @@ public class LifeController : AbstractController, IGameInit
             }
         }
         
-        Debug.Log( "Energy: " + totalEnergy + "::: Science: " + totalScience + "::: Minerals: " + totalMinerals );
+        //Debug.Log( "Energy: " + totalEnergy + "::: Science: " + totalScience + "::: Minerals: " + totalMinerals );
 
         for( int i = 0; i < 6; i++ )
         {

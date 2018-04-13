@@ -39,7 +39,7 @@ public class GameConfig : MonoBehaviour
         if( configFile != null )
         {
             _instance._configs.Add( className, JsonConvert.DeserializeObject<T>( configFile.text ) );
-            Debug.Log( "Loaded config: " + className );
+            //Debug.Log( "Loaded config: " + className );
         }
     }
 
@@ -56,7 +56,7 @@ public class GameConfig : MonoBehaviour
 
         DontDestroyOnLoad( this.gameObject );
         _instance.Init();
-        Debug.Log( "Config Awaken" );
+        //Debug.Log( "Config Awaken" );
     }
     
 }

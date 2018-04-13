@@ -105,6 +105,6 @@ public class GameModel : MonoBehaviour
     {
         _instance._models = new Dictionary<string, object>();
         _instance._binding = new Dictionary<string, object>();
-        Debug.Log( "GameModel Awaken" );
+        //Debug.Log( "GameModel Awaken" );
     }
 }

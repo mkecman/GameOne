@@ -59,7 +59,7 @@ public class GameController : MonoBehaviour
 
         StartNewGame();
         //Load();
-        Debug.Log( "GameController Started" );
+        //Debug.Log( "GameController Started" );
     }
 
     public void StartNewGame()

@@ -17,7 +17,7 @@ public class UnitResistancePanel : GameView
 
     private void Awake()
     {
-        OnOkButtonClick();
+        
     }
 
     void OnEnable()

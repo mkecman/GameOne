@@ -76,6 +76,6 @@ public class GameMessage : MonoBehaviour
     private void Init()
     {
         _instance._messages = new Dictionary<string, object>();
-        Debug.Log( "GameMessage Init" );
+        //Debug.Log( "GameMessage Init" );
     }
 }
