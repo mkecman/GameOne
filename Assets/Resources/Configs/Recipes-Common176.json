@@ -1,0 +1,311 @@
+{
+	"Items":
+	[
+ {
+   "Name": "Aluminium nitrate",
+   "Formula": "Al(NO3)3",
+   "MolecularMass": 212.994,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Acetaldehyde",
+   "Formula": "C2H4O",
+   "MolecularMass": 44.053,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Acetamide",
+   "Formula": "C2H5NO",
+   "MolecularMass": 59.068,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Acetic acid",
+   "Formula": "CH3COOH",
+   "MolecularMass": 60.052,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Acetone",
+   "Formula": "C3H6O",
+   "MolecularMass": 58.08,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Acetonitrile",
+   "Formula": "C2H3N",
+   "MolecularMass": 41.053,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Aluminium chloride",
+   "Formula": "AlCl3",
+   "MolecularMass": 133.33,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Aluminium sulfate",
+   "Formula": "Al2(SO4)3",
+   "MolecularMass": 342.132,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Ammonia",
+   "Formula": "NH3",
+   "MolecularMass": 17.031,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Ammonium acetate",
+   "Formula": "CH3COONH4",
+   "MolecularMass": 77.083,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Ammonium carbonate",
+   "Formula": "(NH4)2CO3",
+   "MolecularMass": 96.086,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Ammonium chloride",
+   "Formula": "NH4Cl",
+   "MolecularMass": 53.49,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Ammonium dichromate",
+   "Formula": "(NH4)2Cr2O7",
+   "MolecularMass": 252.063,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Ammonium hydroxide",
+   "Formula": "NH4OH",
+   "MolecularMass": 35.046,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Ammonium nitrate",
+   "Formula": "NH4NO3",
+   "MolecularMass": 80.043,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Ammonium oxalate",
+   "Formula": "(NH4)2C2O4",
+   "MolecularMass": 124.096,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Ammonium sulfate",
+   "Formula": "(NH4)2SO4",
+   "MolecularMass": 132.13,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Antimony(III) chloride",
+   "Formula": "SbCl3",
+   "MolecularMass": 228.11,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Antimony(V) chloride",
+   "Formula": "SbCl5",
+   "MolecularMass": 299.01,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Barium chloride",
+   "Formula": "BaCl2",
+   "MolecularMass": 208.23,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Barium hydroxide",
+   "Formula": "Ba(OH)2",
+   "MolecularMass": 171.34,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Barium nitrate",
+   "Formula": "Ba(NO3)2",
+   "MolecularMass": 261.34,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Bismuth(III) chloride",
+   "Formula": "BiCl3",
+   "MolecularMass": 315.33,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Bismuth(III) nitrate",
+   "Formula": "Bi(NO3)3",
+   "MolecularMass": 394.99,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Butan-1-ol",
+   "Formula": "C4H10O",
+   "MolecularMass": 74.123,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Butyric acid",
+   "Formula": "C4H8O2",
+   "MolecularMass": 88.106,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Cadmium nitrate",
+   "Formula": "Cd(NO3)2",
+   "MolecularMass": 236.42,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Cadmium sulfate",
+   "Formula": "CdSO4",
+   "MolecularMass": 208.47,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Calcium chloride",
+   "Formula": "CaCl2",
+   "MolecularMass": 110.98,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Calcium hydroxide",
+   "Formula": "Ca(OH)2",
+   "MolecularMass": 74.092,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Calcium nitrate",
+   "Formula": "Ca(NO3)2",
+   "MolecularMass": 164.086,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Calcium sulfate",
+   "Formula": "CaSO4",
+   "MolecularMass": 136.13,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Carbon disulfide",
+   "Formula": "CS2",
+   "MolecularMass": 76.13,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Chloroacetic acid",
+   "Formula": "C2H3ClO2",
+   "MolecularMass": 94.49,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Chloroauric acid",
+   "Formula": "HAuCl4",
+   "MolecularMass": 339.78,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Chloroform",
+   "Formula": "CHCl3",
+   "MolecularMass": 119.37,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Chloroplatinic acid",
+   "Formula": "H2PtCl6",
+   "MolecularMass": 409.8,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Chromium(III) chloride",
+   "Formula": "CrCl3",
+   "MolecularMass": 158.35,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Chromium(III) nitrate",
+   "Formula": "Cr(NO3)3",
+   "MolecularMass": 238.008,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Chromium(III) sulfate",
+   "Formula": "Cr2(SO4)3",
+   "MolecularMass": 392.16,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Chromium(VI) oxide",
+   "Formula": "CrO3",
+   "MolecularMass": 99.993,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Citric acid",
+   "Formula": "C6H8O7",
+   "MolecularMass": 192.123,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Cobalt(II) nitrate",
+   "Formula": "Co(NO3)2",
+   "MolecularMass": 182.941,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Cobalt(II) sulfate",
+   "Formula": "CoSO4",
+   "MolecularMass": 154.99,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Copper(I) chloride",
+   "Formula": "Cu2Cl2",
+   "MolecularMass": 197.99,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Copper(II) chloride",
+   "Formula": "CuCl2",
+   "MolecularMass": 134.45,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Copper(II) nitrate",
+   "Formula": "Cu(NO3)2",
+   "MolecularMass": 187.554,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Copper(II) sulfate",
+   "Formula": "CuSO4",
+   "MolecularMass": 159.6,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Dichloroacetic acid",
+   "Formula": "C2H2Cl2O2",
+   "MolecularMass": 128.94,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Diethyl ether",
+   "Formula": "(C2H5)2O",
+   "MolecularMass": 74.123,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Dimethylglyoxime",
+   "Formula": "(CH3CNOH)2",
+   "MolecularMass": 116.12,
+   "ExchangeRate": 1
+ }
+]
+}

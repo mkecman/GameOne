@@ -65,6 +65,9 @@ public class GameController : MonoBehaviour
         generator.Load();
         /**/
 
+        CompoundConfig cc = new CompoundConfig();
+        cc.Load();
+
         StartNewGame();
         //Load();
         //Debug.Log( "GameController Started" );

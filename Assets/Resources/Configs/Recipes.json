@@ -1,0 +1,186 @@
+{
+	"Items":
+	[
+ {
+   "Name": "R-alpine-hydride™",
+   "Formula": "C18H32BLi",
+   "MolecularMass": 266.2,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Liquid hydrogen",
+   "Formula": "H2",
+   "MolecularMass": 2.02,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Helium hydride ion",
+   "Formula": "HeH",
+   "MolecularMass": 5.01,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Lithium hydride",
+   "Formula": "LiH",
+   "MolecularMass": 7.95,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Beryllium hydride",
+   "Formula": "BeH2",
+   "MolecularMass": 11.03,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Diborane ",
+   "Formula": "B2H6",
+   "MolecularMass": 27.67,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "beryllium acetate",
+   "Formula": "C4H6BeO4",
+   "MolecularMass": 406.31,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "beryllium boride",
+   "Formula": "B2Be",
+   "MolecularMass": 30.63,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Lithium borohydride",
+   "Formula": "LiBH4",
+   "MolecularMass": 21.78,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Superhydride",
+   "Formula": "Li(C2H5)3BH",
+   "MolecularMass": 105.95,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Methyllithium ",
+   "Formula": "CH3Li",
+   "MolecularMass": 21.98,
+   "ExchangeRate": 1
+ },
+
+ {
+   "Name": "Beryllium nitrate",
+   "Formula": "Be(NO3)2",
+   "MolecularMass": 133.02,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Lithium amide",
+   "Formula": "LiNH2",
+   "MolecularMass": 22.96,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "lithium pyrrolidinoborohydride",
+   "Formula": "C4H11BLiN",
+   "MolecularMass": 90.89,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Beryllium hydroxide",
+   "Formula": "Be(OH)2",
+   "MolecularMass": 43.03,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Water",
+   "Formula": "H2O",
+   "MolecularMass": 18.01,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Lithium hydroxide",
+   "Formula": "LiOH",
+   "MolecularMass": 23.95,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Boron oxide",
+   "Formula": "B2O3",
+   "MolecularMass": 69.61,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Carbon dioxide",
+   "Formula": "CO2",
+   "MolecularMass": 44.01,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Nitrogen dioxide",
+   "Formula": "NO2",
+   "MolecularMass": 46.0055,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "sodium tetrafluoroberyllate",
+   "Formula": "Na2BeF4",
+   "MolecularMass": 130.98,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "aspartate beryllium trifluoride",
+   "Formula": "C4H8BeF3NO4",
+   "MolecularMass": 200.11,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "lithium 3-fluoropyridine-2-carboxylate",
+   "Formula": "C6H3LiFNO2",
+   "MolecularMass": 147.03,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Sodium borohydride",
+   "Formula": "NaBH4",
+   "MolecularMass": 37.83,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Borax",
+   "Formula": "Na2B4O7",
+   "MolecularMass": 201.21,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "magnesium oxalate",
+   "Formula": "MgC2O4",
+   "MolecularMass": 112.32,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Hydrotalcite",
+   "Formula": "CH24Al2Mg6O23",
+   "MolecularMass": 603.98,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "Lithium aluminium hydride",
+   "Formula": "LiAlH4",
+   "MolecularMass": 37.95,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "trimethylsilyl",
+   "Formula": "C24H30ClOPSi",
+   "MolecularMass": 429,
+   "ExchangeRate": 1
+ },
+ {
+   "Name": "calcium aluminate",
+   "Formula": "Al2CaO4",
+   "MolecularMass": 158.03,
+   "ExchangeRate": 1
+ }
+]
+}

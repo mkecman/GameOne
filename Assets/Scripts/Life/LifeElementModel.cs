@@ -11,8 +11,8 @@ public class LifeElementModel
     {
         Index = index;
         Symbol = symbol;
-        Amount = amount;
         MaxAmount = maxAmount;
+        Amount = amount;
     }
 
     [SerializeField]
