@@ -64,10 +64,7 @@ public class GameController : MonoBehaviour
         ElementConfigGenerator generator = new ElementConfigGenerator();
         generator.Load();
         /**/
-
-        CompoundConfig cc = new CompoundConfig();
-        cc.Load();
-
+        
         StartNewGame();
         //Load();
         //Debug.Log( "GameController Started" );

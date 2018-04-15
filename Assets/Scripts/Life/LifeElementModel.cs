@@ -47,7 +47,7 @@ public class LifeElementModel
     }
 
     [SerializeField]
-    internal IntReactiveProperty _MaxAmount = new IntReactiveProperty();
+    internal IntReactiveProperty _MaxAmount = new IntReactiveProperty( Int32.MaxValue );
     public int MaxAmount
     {
         get { return _MaxAmount.Value; }
