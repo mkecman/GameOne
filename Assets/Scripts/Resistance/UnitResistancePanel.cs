@@ -50,7 +50,7 @@ public class UnitResistancePanel : GameView
             Pressure.SetUnit( _selectedUnit );
             Radiation.SetUnit( _selectedUnit );
             
-            _selectedUnit.AbilitiesDelta[ R.Science ].Subscribe( _ => ScienceCost.text = _.ToString() ).AddTo( disposables );
+            //_selectedUnit.AbilitiesDelta[ R.Science ].Subscribe( _ => ScienceCost.text = _.ToString() ).AddTo( disposables );
         }
     }
     

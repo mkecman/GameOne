@@ -16,12 +16,11 @@ public class GradientTextureView : MonoBehaviour
     private Color[] _gradient;
     private Color[] _pixels;
 
-    // Use this for initialization
     void Awake()
     {
-        RectTransform rectTransform = rawImage.GetComponent<RectTransform>();
+        /*RectTransform rectTransform = rawImage.GetComponent<RectTransform>();
         Width = (int)rectTransform.rect.width;
-        Height = (int)rectTransform.rect.height;
+        Height = (int)rectTransform.rect.height;*/
         _texture = new Texture2D( Width, Height );
         _gradient = new Color[ 100 ];
         _pixels = new Color[ Width * Height ];

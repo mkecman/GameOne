@@ -64,8 +64,9 @@ public class GameController : MonoBehaviour
         ElementConfigGenerator generator = new ElementConfigGenerator();
         generator.Load();
         /**/
-        
-        StartNewGame();
+
+        Observable.TimerFrame( 100 ).Subscribe( _ => StartNewGame() );
+
         //Load();
         //Debug.Log( "GameController Started" );
     }
