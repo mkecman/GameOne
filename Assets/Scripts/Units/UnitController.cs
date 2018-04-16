@@ -51,7 +51,7 @@ public class UnitController : AbstractController, IGameInit
     public void RemoveUnit( UnitModel um )
     {
         if( _selectedUnit == um )
-            DeselectUnit();
+            DeselectUnit( false );
 
         _life.Units.Remove( um );
         _hexMapModel.Table[ um.X ][ um.Y ].Unit = null;
@@ -72,21 +72,23 @@ public class UnitController : AbstractController, IGameInit
         _selectedUnit.Props[ R.Altitude ].Value = _hexMapModel.Table[ xTo ][ yTo ].Props[ R.Altitude ].Value;
         _selectedUnit.X = xTo;
         _selectedUnit.Y = yTo;
+        _hexMapModel.Table[ xTo ][ yTo ].isExplored.Value = true;
     }
     
-    public void DeselectUnit()
+    public void DeselectUnit( bool setUnitModel = true )
     {
         if( _selectedUnit != null )
         {
             _selectedUnit.isSelected.Value = false;
             _selectedUnit = null;
-            GameModel.Set<UnitModel>( _selectedUnit );
+            if( setUnitModel )
+                GameModel.Set<UnitModel>( _selectedUnit );
         }
     }
 
     public void SelectUnit( int x, int y )
     {
-        DeselectUnit();
+        DeselectUnit( false );
         _selectedUnit = _hexMapModel.Table[ x ][ y ].Unit;
         _selectedUnit.isSelected.Value = true;
         _hexMapModel.Table[ x ][ y ].isExplored.Value = true;
@@ -136,7 +138,7 @@ public class UnitController : AbstractController, IGameInit
             _unitModel = _life.Units[ i ];
             for( int j = 0; j < _unitModel.ActiveSkills.Count; j++ )
             {
-                _skillCommand.Execute( _unitModel, _unitModel.Skills[ _unitModel.ActiveSkills[ j ] ] );
+                _skillCommand.Execute( _unitModel, _unitModel.ActiveSkills[ j ] );
             }
         }
     }

@@ -25,9 +25,14 @@
 
         unit.Skills.Add( SkillType.Live, GameModel.Copy( _skills[ SkillType.Live ][ 0 ] ) );
         unit.Skills.Add( SkillType.Mine, GameModel.Copy( _skills[ SkillType.Mine ][ 0 ] ) );
+        unit.Skills.Add( SkillType.Move, GameModel.Copy( _skills[ SkillType.Move ][ 0 ] ) );
+        unit.Skills.Add( SkillType.Clone, GameModel.Copy( _skills[ SkillType.Clone ][ 0 ] ) );
 
         unit.ActiveSkills.Add( SkillType.Live );
         unit.ActiveSkills.Add( SkillType.Mine );
+
+        unit.PassiveSkills.Add( SkillType.Move );
+        unit.PassiveSkills.Add( SkillType.Clone );
 
         return unit;
     }

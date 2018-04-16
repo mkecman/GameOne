@@ -10,6 +10,7 @@ public class CloneSkill : ISkill
     private List<HexModel> _markedHexes;
     private GridModel<HexModel> _hexMapModel;
     private List<Vector2Int> _positions;
+    private SkillDeactivateAllMessage _deactivateMessage = new SkillDeactivateAllMessage();
 
     public void Init()
     {
@@ -17,11 +18,13 @@ public class CloneSkill : ISkill
         _controller = GameModel.Get<UnitController>();
         _planetController = GameModel.Get<PlanetController>();
         _markedHexes = new List<HexModel>();
+        GameMessage.Listen<SkillDeactivateAllMessage>( OnSkillDeactivate );
     }
 
     public void Execute( UnitModel unitModel, SkillData skillData )
     {
         _hexMapModel = _planetController.SelectedPlanet.Map;
+        GameMessage.Send( _deactivateMessage );
         MarkNeighborHexes( unitModel );
         GameMessage.Listen<HexClickedMessage>( OnHexClicked );
     }
@@ -31,6 +34,16 @@ public class CloneSkill : ISkill
         if( value.Hex.isMarked.Value && _pay.BuyAddUnit() )
             _controller.AddUnit( value.Hex.X, value.Hex.Y );
 
+        Deactivate();
+    }
+
+    private void OnSkillDeactivate( SkillDeactivateAllMessage value )
+    {
+        Deactivate();
+    }
+
+    private void Deactivate()
+    {
         UnmarkHexes();
         GameMessage.StopListen<HexClickedMessage>( OnHexClicked );
     }

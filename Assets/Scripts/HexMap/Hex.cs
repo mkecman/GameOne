@@ -20,6 +20,7 @@ public class Hex : GameView
     private HexClickedMessage _HexClickedMessage;
     private GameDebug _debug;
     private List<ElementModel> _elements;
+    private Material _solidMaterial;
     private StringBuilder labelSB = new StringBuilder();
 
     private void Awake()
@@ -27,6 +28,7 @@ public class Hex : GameView
         _HexClickedMessage = new HexClickedMessage( null );
         _debug = GameModel.Get<GameDebug>();
         _elements = GameConfig.Get<ElementConfig>().Elements;
+        _solidMaterial = Solid.GetComponent<MeshRenderer>().material;
     }
 
     public void SetModel( HexModel model )
@@ -41,28 +43,22 @@ public class Hex : GameView
 
         _model.Props[ R.HexScore ]._Value.Subscribe( _ => OnHexScoreChange() ).AddTo( disposables );
         
-        _model.isMarked.Skip( 1 ).Subscribe( _ => UpdateMarkedColor( _ ) ).AddTo( disposables );
+        _model.isMarked.Subscribe( _ => SetColor() ).AddTo( disposables );
         _model.isExplored.Subscribe( _ => SetSymbol() ).AddTo( disposables );
 
-        OnHexScoreChange();
+        //OnHexScoreChange();
     }
 
+    Color _newHexColor;
     private void OnHexScoreChange()
     {
-        _model.Props[ R.Default ].Color = (
-            Gradient1.Evaluate( _model.Props[ R.Temperature ].Value ) +
-            Gradient2.Evaluate( _model.Props[ R.Pressure ].Value ) +
-            Gradient3.Evaluate( _model.Props[ R.Humidity ].Value ) +
-            Gradient4.Evaluate( _model.Props[ R.Radiation ].Value ) 
-            ) / 4;
+        _newHexColor = Gradient1.Evaluate( _model.Props[ R.Temperature ].Value );
+        _newHexColor = AddColor( _newHexColor, Gradient2.Evaluate( _model.Props[ R.Pressure ].Value ) );
+        _newHexColor = AddColor( _newHexColor, Gradient3.Evaluate( _model.Props[ R.Humidity ].Value ) );
+        _newHexColor = AddColor( _newHexColor, Gradient4.Evaluate( _model.Props[ R.Radiation ].Value ) );
 
-        Color temp = Gradient1.Evaluate( _model.Props[ R.Temperature ].Value );
-        temp = AddColor( temp, Gradient2.Evaluate( _model.Props[ R.Pressure ].Value ) );
-        temp = AddColor( temp, Gradient3.Evaluate( _model.Props[ R.Humidity ].Value ) );
-        temp = AddColor( temp, Gradient4.Evaluate( _model.Props[ R.Radiation ].Value ) );
-
-        _model.Props[ R.Default ].Color = temp;
-        _model.Props[ R.Element ].Color = temp;
+        _model.Props[ R.Default ].Color = _newHexColor;
+        _model.Props[ R.Element ].Color = _newHexColor;
 
         SetColor();
         //SetSymbol();
@@ -72,15 +68,7 @@ public class Hex : GameView
     {
         return Color.Lerp( original, addition, addition.a );
     }
-
-    private void UpdateMarkedColor( bool isMarked )
-    {
-        if( isMarked )
-            Solid.GetComponent<MeshRenderer>().material.color = Color.magenta;
-        else
-            SetColor();
-    }
-
+    
     private void OnMouseDown()
     {
         if( !EventSystem.current.IsPointerOverGameObject() )
@@ -109,9 +97,14 @@ public class Hex : GameView
     {
         /**/
         if( _model.isExplored.Value || _debug.isActive )
-            Solid.GetComponent<MeshRenderer>().material.color = _model.Props[ _model.Lens ].Color;
+            _newHexColor = _model.Props[ _model.Lens ].Color;
         else
-            Solid.GetComponent<MeshRenderer>().material.color = Color.gray;
+            _newHexColor = Color.gray;
+
+        if( _model.isMarked.Value )
+            _newHexColor = Color.magenta;
+
+            _solidMaterial.color = _newHexColor;
         /**/
     }
 

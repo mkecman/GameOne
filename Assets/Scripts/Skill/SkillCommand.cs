@@ -15,8 +15,8 @@ public class SkillCommand : IGameInit
         };
     }
 
-    internal void Execute( UnitModel um, SkillData skillData )
+    internal void Execute( UnitModel um, SkillType type )
     {
-        _skills[ skillData.Type ].Execute( um, skillData );
+        _skills[ type ].Execute( um, um.Skills[ type ] );
     }
 }

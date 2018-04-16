@@ -45,5 +45,6 @@ public class UnitModel
     /// RPG SYSTEM
     //public Dictionary<R, Resource> Stats = new Dictionary<R, Resource>();
     public Dictionary<SkillType, SkillData> Skills = new Dictionary<SkillType, SkillData>();
+    public List<SkillType> PassiveSkills = new List<SkillType>();
     public List<SkillType> ActiveSkills = new List<SkillType>();
 }
