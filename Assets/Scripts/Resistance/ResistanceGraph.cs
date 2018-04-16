@@ -63,7 +63,7 @@ public class ResistanceGraph : GameView, IPointerClickHandler
             else
                 _selectedUnit = null;
 
-            _hexModel.Props[ Lens ]._Value.Subscribe( _ => UpdateView() ).AddTo( disposables );
+            //_hexModel.Props[ Lens ]._Value.Subscribe( _ => UpdateView() ).AddTo( disposables );
         }
         else
         {

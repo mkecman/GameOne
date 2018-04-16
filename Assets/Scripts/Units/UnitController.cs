@@ -33,7 +33,7 @@ public class UnitController : AbstractController, IGameInit
         if( _selectedUnit.Resistance[ value.Type ].ChangePosition( value.Delta ) )
             delta = -delta;
 
-        _selectedUnit.AbilitiesDelta[ R.Science ].Value = _selectedUnit.AbilitiesDelta[ R.Science ].Value.Sum( delta );
+        //_selectedUnit.AbilitiesDelta[ R.Science ].Value = _selectedUnit.AbilitiesDelta[ R.Science ].Value.Sum( delta );
     }
     
     public void AddUnit( int x, int y )
