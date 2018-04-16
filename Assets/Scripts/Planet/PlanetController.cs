@@ -15,6 +15,8 @@ public class PlanetController : AbstractController, IGameInit
     private UniverseConfig _universeConfig;
     private ElementConfig _elementsConfig;
     private HexMapGenerator _hexMapGenerator;
+    private PlanetPropsUpdateCommand _planetUpdateCommand;
+    private int _counter;
 
     public void Init()
     {
@@ -22,6 +24,7 @@ public class PlanetController : AbstractController, IGameInit
         _universeConfig = GameConfig.Get<UniverseConfig>();
         _elementsConfig = GameConfig.Get<ElementConfig>();
         _hexMapGenerator = new HexMapGenerator();
+        _planetUpdateCommand = GameModel.Get<PlanetPropsUpdateCommand>();
 
         GameModel.HandleGet<StarModel>( OnStarChange );
     }
@@ -34,23 +37,39 @@ public class PlanetController : AbstractController, IGameInit
     public void Load( int index )
     {
         _selectedPlanet = _star._Planets[ index ];
-        GameModel.Get<PlanetPropsUpdateCommand>().Execute();
-        GameModel.Set<PlanetModel>( _selectedPlanet );
+        PlanetLoaded();
     }
-
+    
     public void New( int index )
     {
         Generate( index );
         _star._Planets.Add( _selectedPlanet );
         _star.PlanetsCount++;
-        GameModel.Get<PlanetPropsUpdateCommand>().Execute();
-        GameModel.Set<PlanetModel>( _selectedPlanet );
+        PlanetLoaded();
     }
 
     public void GenerateFromModel( PlanetModel planetModel )
     {
         planetModel.Map = _hexMapGenerator.Generate( planetModel );
         _selectedPlanet = planetModel;
+    }
+
+    public void PlanetLoaded()
+    {
+        _planetUpdateCommand.Execute();
+        GameModel.Set<PlanetModel>( _selectedPlanet );
+        GameMessage.Listen<ClockTickMessage>( OnClockTick );
+    }
+
+    private void OnClockTick( ClockTickMessage value )
+    {
+        _planetUpdateCommand.Execute();
+
+        if( _counter >= 30 ) //update every 30th tick (seconds)
+        {
+            _counter = 0;
+        }
+        _counter++;
     }
 
     private void Generate( int index )

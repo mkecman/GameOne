@@ -65,7 +65,7 @@ public class Hex : GameView
         _model.Props[ R.Element ].Color = temp;
 
         SetColor();
-        SetSymbol();
+        //SetSymbol();
     }
 
     private Color AddColor( Color original, Color addition )

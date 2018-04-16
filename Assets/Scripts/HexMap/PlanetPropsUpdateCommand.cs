@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlanetPropsUpdateCommand : IGameInit
 {
     private PlanetController _planetController;
+    private HexUpdateCommand _hexUpdateCommand;
     private PlanetModel _planet;
 
     private Dictionary<R, List<WeightedValue>> _weightsList;
@@ -15,6 +16,7 @@ public class PlanetPropsUpdateCommand : IGameInit
     public void Init()
     {
         _planetController = GameModel.Get<PlanetController>();
+        _hexUpdateCommand = GameModel.Get<HexUpdateCommand>();
 
         _weightsList = new Dictionary<R, List<WeightedValue>>();
         _totalValues = new Dictionary<R, float>();
@@ -36,6 +38,7 @@ public class PlanetPropsUpdateCommand : IGameInit
             for( int y = 0; y < _planet.Map.Height; y++ )
             {
                 hex = _planet.Map.Table[ x ][ y ];
+                _hexUpdateCommand.Execute( hex );
 
                 AddInitialValue( R.Temperature, Mathf.RoundToInt( hex.Props[ R.Temperature ].Value * 100 ) );
                 AddInitialValue( R.Pressure, Mathf.RoundToInt( hex.Props[ R.Pressure ].Value * 100 ) );

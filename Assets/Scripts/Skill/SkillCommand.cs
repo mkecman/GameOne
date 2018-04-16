@@ -2,21 +2,21 @@
 
 public class SkillCommand : IGameInit
 {
-    private Dictionary<SkillName, ISkill> _skills;
+    private Dictionary<SkillType, ISkill> _skills;
 
     public void Init()
     {
-        _skills = new Dictionary<SkillName, ISkill>
+        _skills = new Dictionary<SkillType, ISkill>
         {
-            { SkillName.Live, GameModel.Get<LiveSkill>() },
-            { SkillName.Clone, GameModel.Get<CloneSkill>() },
-            { SkillName.Move, GameModel.Get<MoveSkill>() },
-            { SkillName.Mine, GameModel.Get<MineSkill>() }
+            { SkillType.Live, GameModel.Get<LiveSkill>() },
+            { SkillType.Clone, GameModel.Get<CloneSkill>() },
+            { SkillType.Move, GameModel.Get<MoveSkill>() },
+            { SkillType.Mine, GameModel.Get<MineSkill>() }
         };
     }
 
-    internal void Execute( UnitModel um, SkillName skillName )
+    internal void Execute( UnitModel um, SkillData skillData )
     {
-        _skills[ skillName ].Execute( um );
+        _skills[ skillData.Type ].Execute( um, skillData );
     }
 }

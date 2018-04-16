@@ -63,7 +63,6 @@ public class HexMapGenerator
                     Y = y,
                     Lens = m.Lens
                 };
-                SetWideHexPropsRange( hex );
                 _map.Table[ x ][ y ] = hex;
 
                 // WRAP ON BOTH AXIS
@@ -134,55 +133,25 @@ public class HexMapGenerator
                 hex.Props[ R.HexScore ].Color = Color.red;
 
                 hex.Props[ R.Altitude ].Value *= 2;
-
-                SetNormalHexPropsRange( hex );
+                
             }
         }
     }
-
-    private void SetNormalHexPropsRange( HexModel hex )
-    {
-        hex.Props[ R.Altitude ].MinValue = 0;
-        hex.Props[ R.Altitude ].MaxValue = 2;
-        hex.Props[ R.Temperature ].MinValue = 0;
-        hex.Props[ R.Temperature ].MaxValue = 1;
-        hex.Props[ R.Pressure ].MinValue = 0;
-        hex.Props[ R.Pressure ].MaxValue = 1;
-        hex.Props[ R.Humidity ].MinValue = 0;
-        hex.Props[ R.Humidity ].MaxValue = 1;
-        hex.Props[ R.Radiation ].MinValue = 0;
-        hex.Props[ R.Radiation ].MaxValue = 1;
-    }
-
-    private void SetWideHexPropsRange( HexModel hex )
-    {
-        hex.Props[ R.Altitude ].MinValue = -2;
-        hex.Props[ R.Altitude ].MaxValue = 2;
-        hex.Props[ R.Temperature ].MinValue = -2;
-        hex.Props[ R.Temperature ].MaxValue = 2;
-        hex.Props[ R.Pressure ].MinValue = -2;
-        hex.Props[ R.Pressure ].MaxValue = 2;
-        hex.Props[ R.Humidity ].MinValue = -2;
-        hex.Props[ R.Humidity ].MaxValue = 2;
-        hex.Props[ R.Radiation ].MinValue = -2;
-        hex.Props[ R.Radiation ].MaxValue = 2;
-    }
-
-
+    
     private void SetHex( HexModel hex, R type )
     {
         //normalize value to be between 0 - 1
-        hex.Props[ type ].Value = Mathf.InverseLerp( Ranges[ (int)type ].x, Ranges[ (int)type ].y, hex.Props[ type ].Value );
+        hex.Props[ type ].Delta = _planetModel.Props[ type ].Variation * ( Mathf.InverseLerp( Ranges[ (int)type ].x, Ranges[ (int)type ].y, hex.Props[ type ].Delta ) - 0.5f );
 
         //add variation to properties based on planet values
-        hex.Props[ type ].Value = PPMath.Round( Mathf.Clamp( ( ( hex.Props[ type ].Value - 0.5f ) * _planetModel.Props[ type ].Variation ) + _planetModel.Props[ type ].Value, 0, 1 ), 2 );
+        hex.Props[ type ].Value = Mathf.Clamp( _planetModel.Props[ type ].Value + hex.Props[ type ].Delta, 0, 1 );
 
         hex.Props[ type ].Color = Color.Lerp( Color.red, Color.green, hex.Props[ type ].Value );
     }
 
     private void SetInitialHexValue( HexModel hex, R lens, float value )
     {
-        hex.Props[ lens ].Value = value;
+        hex.Props[ lens ].Delta = value;
 
         if( value > Ranges[ (int)lens ].y )
             Ranges[ (int)lens ].y = value;

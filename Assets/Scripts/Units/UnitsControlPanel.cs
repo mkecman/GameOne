@@ -20,10 +20,10 @@ public class UnitsControlPanel : GameView
         GameModel.HandleGet<PlanetModel>( OnPlanetModelChange );
         
         MoveButton.OnClickAsObservable().Subscribe( _ => 
-        GameModel.Get<SkillCommand>().Execute( GameModel.Get<UnitModel>(), SkillName.Move ) ).AddTo( disposables );
+        GameModel.Get<SkillCommand>().Execute( GameModel.Get<UnitModel>(), new SkillData() { Type = SkillType.Move } ) ).AddTo( disposables );
 
         CloneButton.OnClickAsObservable().Subscribe( _ =>
-        GameModel.Get<SkillCommand>().Execute( GameModel.Get<UnitModel>(), SkillName.Clone ) ).AddTo( disposables );
+        GameModel.Get<SkillCommand>().Execute( GameModel.Get<UnitModel>(), new SkillData() { Type = SkillType.Clone } ) ).AddTo( disposables );
     }
 
     private void OnPlanetModelChange( PlanetModel value )

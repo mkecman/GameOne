@@ -19,6 +19,7 @@ public class GameConfig : MonoBehaviour
         _instance.Load<ElementConfig>();
         _instance.Load<HexConfig>();
         _instance.Load<CompoundConfig>();
+        _instance.Load<SkillConfig>();
         _instance.Load<BellCurveConfig>();
         _instance.Load<BuildingConfig>();
         Get<BuildingConfig>().Setup();

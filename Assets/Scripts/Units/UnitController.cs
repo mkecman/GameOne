@@ -65,7 +65,7 @@ public class UnitController : AbstractController, IGameInit
             hexModel.Building.State = BuildingState.INACTIVE;
 
         hexModel.Unit = null;
-        _hexUpdateCommand.Execute( _life.Resistance, hexModel );
+        //_hexUpdateCommand.Execute( _life.Resistance, hexModel );
 
         _hexMapModel.Table[ xTo ][ yTo ].Unit = _selectedUnit;
 
@@ -136,7 +136,7 @@ public class UnitController : AbstractController, IGameInit
             _unitModel = _life.Units[ i ];
             for( int j = 0; j < _unitModel.ActiveSkills.Count; j++ )
             {
-                _skillCommand.Execute( _unitModel, _unitModel.ActiveSkills[ j ] );
+                _skillCommand.Execute( _unitModel, _unitModel.Skills[ _unitModel.ActiveSkills[ j ] ] );
             }
         }
     }

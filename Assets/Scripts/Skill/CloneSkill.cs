@@ -19,7 +19,7 @@ public class CloneSkill : ISkill
         _markedHexes = new List<HexModel>();
     }
 
-    public void Execute( UnitModel unitModel )
+    public void Execute( UnitModel unitModel, SkillData skillData )
     {
         _hexMapModel = _planetController.SelectedPlanet.Map;
         MarkNeighborHexes( unitModel );

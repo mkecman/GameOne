@@ -12,12 +12,12 @@ public class LiveSkill : ISkill
         _unitController = GameModel.Get<UnitController>();
     }
 
-    public void Execute( UnitModel unitModel )
+    public void Execute( UnitModel unitModel, SkillData skillData )
     {
         _planet = _planetController.SelectedPlanet;
 
-        unitModel.Stats[ S.HP ].Value -= 1; //_planet.Map.Table[ unitModel.X ][ unitModel.Y ].Props[ R.HexScore ].Value;
-        if( unitModel.Stats[ S.HP ].Value <= 0 )
+        unitModel.Props[ R.Health ].Value -= 1; //_planet.Map.Table[ unitModel.X ][ unitModel.Y ].Props[ R.HexScore ].Value;
+        if( unitModel.Props[ R.Health ].Value <= 0 )
             _unitController.RemoveUnit( unitModel );
     }
 }

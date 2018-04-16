@@ -24,8 +24,8 @@ public class LifeController : AbstractController, IGameInit
     {
         _planet = value;
         _selectedLife = _planet.Life;
-        if( _selectedLife.Resistance.Count > 0 )
-            UpdatePlanetMapColors();
+        //if( _selectedLife.Resistance.Count > 0 )
+          //  UpdatePlanetMapColors();
     }
 
     public void New()
@@ -45,7 +45,7 @@ public class LifeController : AbstractController, IGameInit
         _selectedLife.Units.Add( _factory.GetUnit( unitX, unitY ) );
 
         _planet.Life = _selectedLife;
-        UpdatePlanetMapColors();
+        //UpdatePlanetMapColors();
     }
 
     private void UpdatePlanetMapColors()
@@ -65,7 +65,7 @@ public class LifeController : AbstractController, IGameInit
             {
                 hex = _planet.Map.Table[ x ][ y ];
 
-                _hexUpdateCommand.Execute( _selectedLife.Resistance, hex );
+                //_hexUpdateCommand.Execute( _selectedLife.Resistance, hex );
 
                 //totalEnergy += hex.Props[ R.Energy ].Value;
                 //totalScience += hex.Props[ R.Science ].Value;

@@ -15,11 +15,13 @@ public class CompoundGenerator : MonoBehaviour
 
     public List<CompoundDefinition> Items;
     private List<ElementModel> _elements;
+    private List<BuildingModel> _buildings;
 
     //call to convert and generate new config
     public void ConvertOldConfigToNewFormat()
     {
         _elements = GameConfig.Get<ElementConfig>().Elements;
+        _buildings = GameConfig.Get<BuildingConfig>().Buildings;
 
         TextAsset configFile = Resources.Load<TextAsset>( "Configs/Recipes-Common176" );
         Items = JsonConvert.DeserializeObject<CompoundGenerator>( configFile.text ).Items;
@@ -40,6 +42,8 @@ public class CompoundGenerator : MonoBehaviour
                 MolecularMass = compoundDefinition.MolecularMass
             };
             compoundJSON.Elements = SplitFormula( compoundJSON.Formula );
+            if( i < _buildings.Count )
+                compoundJSON.Effects = _buildings[ i ].Effects;
 
             jsons.Add( compoundJSON );
         }

@@ -37,8 +37,8 @@ public class GameController : MonoBehaviour
 
         AddController<UnitController>();
         AddController<UnitPaymentService>();
-        AddController<BuildingController>();
-        AddController<BuildingPaymentService>();
+        //AddController<BuildingController>();
+        //AddController<BuildingPaymentService>();
         AddController<HexUpdateCommand>();
         AddController<PlanetGenerateCommand>();
         AddController<PlanetPropsUpdateCommand>();

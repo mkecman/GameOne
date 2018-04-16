@@ -2,6 +2,8 @@
 
 public class BuildingController : AbstractController, IGameInit
 {
+    public void Init() { }
+    /*
     private PlanetModel _planet;
     private BuildingPaymentService _pay;
     private HexUpdateCommand _hexUpdateCommand;
@@ -103,12 +105,10 @@ public class BuildingController : AbstractController, IGameInit
                 hm.Props[ R.Humidity ].Value += tempProps[ R.Humidity ];
                 hm.Props[ R.Radiation ].Value += tempProps[ R.Radiation ];
                 if( hm.Unit != null )
-                {
                     _hexUpdateCommand.Execute( hm.Unit.Resistance, hm );
-                    //hm.Unit.Props[ R.Health ].Value = hm.Props[ R.HexScore ].Value;
-                }
                 else
                     _hexUpdateCommand.Execute( _planet.Life.Resistance, hm );
+                
             }
         }
 
@@ -203,6 +203,6 @@ public class BuildingController : AbstractController, IGameInit
         }
     }
 
-    
+    */
 
 }

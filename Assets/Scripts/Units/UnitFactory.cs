@@ -2,11 +2,13 @@
 {
     private PlanetController _planetController;
     private BellCurveConfig _bellCurves;
+    private SkillConfig _skills;
 
     public void Init()
     {
         _planetController = GameModel.Get<PlanetController>();
         _bellCurves = GameConfig.Get<BellCurveConfig>();
+        _skills = GameConfig.Get<SkillConfig>();
     }
 
     public UnitModel GetUnit( int x, int y )
@@ -21,12 +23,11 @@
 
         unit.Resistance = GameModel.Copy( _bellCurves );
 
-        for( int i = 0; i < (int)S.Count; i++ )
-            unit.Stats.Add( (S)i, new ResourceInt( (S)i, 100,0,0,100 ) );
+        unit.Skills.Add( SkillType.Live, GameModel.Copy( _skills[ SkillType.Live ][ 0 ] ) );
+        unit.Skills.Add( SkillType.Mine, GameModel.Copy( _skills[ SkillType.Mine ][ 0 ] ) );
 
-        //unit.Skills.Add( SkillName.Live, new Skill() );
-        unit.ActiveSkills.Add( SkillName.Live );
-        unit.ActiveSkills.Add( SkillName.Mine );
+        unit.ActiveSkills.Add( SkillType.Live );
+        unit.ActiveSkills.Add( SkillType.Mine );
 
         return unit;
     }
