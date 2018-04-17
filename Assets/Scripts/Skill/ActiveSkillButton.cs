@@ -4,11 +4,11 @@ using UnityEngine.UI;
 using UniRx;
 using System;
 
-public class PassiveSkillButton : GameView
+public class ActiveSkillButton : GameView
 {
     public Button Button;
     public Text ButtonText;
-    public SkillType Type;
+    public int Index;
 
     private SkillCommand _skillCommand;
     private UnitModel _unit;
@@ -16,7 +16,6 @@ public class PassiveSkillButton : GameView
     void Start()
     {
         _skillCommand = GameModel.Get<SkillCommand>();
-        ButtonText.text = Type.ToString();
         GameModel.HandleGet<UnitModel>( OnUnitChange );
         Button.OnClickAsObservable().Subscribe( _ => OnButtonClick() ).AddTo( disposables );
     }
@@ -24,6 +23,8 @@ public class PassiveSkillButton : GameView
     private void OnUnitChange( UnitModel value )
     {
         _unit = value;
+        if( _unit != null )
+            ButtonText.text = _unit.Skills[ Index ].Type.ToString();
     }
 
     void OnDisable()
@@ -34,7 +35,7 @@ public class PassiveSkillButton : GameView
     private void OnButtonClick()
     {
         if( _unit != null )
-            _skillCommand.Execute( _unit, Type );
+            _skillCommand.Execute( _unit, Index );
     }
     
     public override void OnDestroy()

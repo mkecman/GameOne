@@ -12,7 +12,7 @@ public class SkillsControlPanel : GameView
     public SkillUnlockPanel UnlockPanel;
 
     private UnitModel _unit;
-    private SkillMessage _message = new SkillMessage();
+    private SkillControlMessage _message = new SkillControlMessage();
 
     // Use this for initialization
     void Start()
@@ -26,13 +26,14 @@ public class SkillsControlPanel : GameView
         GameMessage.Send( new CameraControlMessage( false ) );
         GameModel.HandleGet<UnitModel>( OnUnitChange );
         GameMessage.Listen<SkillTypeMessage>( OnSkillTypeMessage );
-        //OnBuildingChange( new BuildingUnlockMessage( _abilityMessage.Index ) );
+        GameMessage.Listen<SkillMessage>( OnSkillMessage );
     }
 
     private void OnDisable()
     {
         GameMessage.Send( new CameraControlMessage( true ) );
         GameMessage.StopListen<SkillTypeMessage>( OnSkillTypeMessage );
+        GameMessage.StopListen<SkillMessage>( OnSkillMessage );
         GameModel.RemoveHandle<UnitModel>( OnUnitChange );
     }
 
@@ -43,15 +44,17 @@ public class SkillsControlPanel : GameView
 
     private void OnSkillMessage( SkillMessage value )
     {
-        if( _unit.Skills[ value.Type ].State == SkillState.LOCKED )
-        {
-            UnlockButton.interactable = true;
-            ChooseButton.interactable = false;
-        }
-        else
+        _message.Index = value.Index;
+
+        if( _unit.Skills.ContainsKey( value.Index ) )
         {
             UnlockButton.interactable = false;
             ChooseButton.interactable = true;
+        }
+        else
+        {
+            UnlockButton.interactable = true;
+            ChooseButton.interactable = false;
         }
     }
 

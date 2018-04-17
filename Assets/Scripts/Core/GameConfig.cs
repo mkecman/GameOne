@@ -22,7 +22,7 @@ public class GameConfig : MonoBehaviour
         _instance.Load<SkillConfig>();
         _instance.Load<BellCurveConfig>();
         _instance.Load<BuildingConfig>();
-        Get<BuildingConfig>().Setup();
+        //Get<BuildingConfig>().Setup();
     }
 
     public static T Get<T>()

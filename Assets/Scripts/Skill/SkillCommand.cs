@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class SkillCommand : IGameInit
 {
     private Dictionary<SkillType, ISkill> _skills;
+    private SkillData _skill;
 
     public void Init()
     {
@@ -15,8 +17,9 @@ public class SkillCommand : IGameInit
         };
     }
 
-    internal void Execute( UnitModel um, SkillType type )
+    internal void Execute( UnitModel um, int index )
     {
-        _skills[ type ].Execute( um, um.Skills[ type ] );
+        _skill = um.Skills[ index ];
+        _skills[ _skill.Type ].Execute( um, _skill );
     }
 }

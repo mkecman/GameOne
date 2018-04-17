@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 [Serializable]
-public class SkillConfig : Dictionary<SkillType, List<SkillData>>
+public class SkillConfig : List<SkillData>
 {
 
 }

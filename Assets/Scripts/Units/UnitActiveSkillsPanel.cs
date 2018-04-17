@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class UnitPassiveSkillsPanel : GameView
+public class UnitActiveSkillsPanel : GameView
 {
     public GameObject ButtonPrefab;
     // Use this for initialization
@@ -15,15 +15,15 @@ public class UnitPassiveSkillsPanel : GameView
     {
         RemoveAllChildren( transform );
         if( value != null )
-        for( int i = 0; i < value.PassiveSkills.Count; i++ )
+        for( int i = 0; i < value.ActiveSkills.Count; i++ )
         {
-            Add( value.PassiveSkills[ i ] );
+            Add( value.ActiveSkills[ i ] );
         }
     }
 
-    private void Add( SkillType type )
+    private void Add( int index )
     {
         GameObject go = Instantiate( ButtonPrefab, transform );
-        go.GetComponent<PassiveSkillButton>().Type = type;
+        go.GetComponent<ActiveSkillButton>().Index = index;
     }
 }

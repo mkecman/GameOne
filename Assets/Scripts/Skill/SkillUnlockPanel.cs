@@ -14,8 +14,8 @@ public class SkillUnlockPanel : GameView
     private BuildingMessage _abilityMessage;
     private UnitModel _unit;
     private SkillType _type;
-    private List<SkillData> _skills;
     private SkillConfig _skillConfig;
+    private SkillData _skill;
 
     // Use this for initialization
     void Awake()
@@ -28,13 +28,19 @@ public class SkillUnlockPanel : GameView
     {
         _unit = unit;
         _type = type;
-        _skills = _skillConfig[ type ];
-
+        
         RemoveAllChildren( Container );
-        for( int i = 0; i < _skills.Count; i++ )
+        for( int i = 0; i < _skillConfig.Count; i++ )
         {
-            GameObject go = Instantiate( SkillUnlockPrefab, Container );
-            go.GetComponent<SkillUnlockView>().Setup( _skills[ i ], EffectPrefab );
+            _skill = _skillConfig[ i ];
+            if( _skill.Type == type )
+            {
+                GameObject go = Instantiate( SkillUnlockPrefab, Container );
+                if( _unit.Skills.ContainsKey( _skill.Index ) )
+                    go.GetComponent<SkillUnlockView>().Setup( _unit.Skills[ _skill.Index ], EffectPrefab );
+                else
+                    go.GetComponent<SkillUnlockView>().Setup( _skill, EffectPrefab );
+            }
         }
     }
 

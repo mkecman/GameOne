@@ -9,6 +9,7 @@ public class SkillData
     public string Name;
     public SkillType Type;
     public float UnlockCost;
+    public bool IsPassive;
     public Dictionary<R, float> Effects = new Dictionary<R, float>();
 
     [SerializeField]

@@ -28,6 +28,8 @@ public class SkillUnlockView : GameView, IPointerClickHandler
     private void OnSkillSelected( SkillMessage value )
     {
         Outline.enabled = _skill.Index == value.Index;
+        if( Outline.enabled )
+            SetState( value.State );
     }
 
     public void OnPointerClick( PointerEventData eventData )
@@ -35,21 +37,21 @@ public class SkillUnlockView : GameView, IPointerClickHandler
         GameMessage.Send( _message );
     }
 
-    internal void SetState()
+    internal void SetState( SkillState state )
     {
         //if( _skill.State == SkillState.LOCKED || _skill.State == SkillState.UNLOCKED )
-            BackgroundImage.color = StateColors[ (int)_skill.State ];
+            BackgroundImage.color = StateColors[ (int)state ];
     }
 
     internal void Setup( SkillData skill, GameObject effectPrefab )
     {
         _skill = skill;
         _message.Index = _skill.Index;
-        _message.Type = _skill.Type;
         _message.State = _skill.State;
 
-        disposables.Clear();
-        _skill._State.Subscribe( _ => SetState() ).AddTo( disposables );
+        //disposables.Clear();
+        //_skill._State.Subscribe( _ => SetState() ).AddTo( disposables );
+        SetState( _skill.State );
 
         Name.SetProperty( _skill.Name );
         UnlockPrice.SetProperty( "Unlock:" );

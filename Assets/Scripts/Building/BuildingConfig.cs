@@ -14,26 +14,31 @@ public class BuildingConfig
         /*
          * Take Effects from BuildingConfig and make a new SkillConfig
          * 
-         /**
-        Dictionary<SkillType, List<SkillData>> skills = new Dictionary<SkillType, List<SkillData>>
+         /**/
+        List<SkillData> skills = new List<SkillData>()
         {
-            { SkillType.Live, new List<SkillData> { new SkillData { Type = SkillType.Live } } },
-            { SkillType.Clone, new List<SkillData> { new SkillData { Type = SkillType.Clone } } },
-            { SkillType.Craft, new List<SkillData> { new SkillData { Type = SkillType.Craft } } },
-            { SkillType.Move, new List<SkillData> { new SkillData { Type = SkillType.Move } } },
-            { SkillType.Mine, new List<SkillData>() }
+            new SkillData { Index = 0,Type = SkillType.LIVE, IsPassive = true },
+            new SkillData { Index = 1,Type = SkillType.CLONE, IsPassive = false },
+            new SkillData { Index = 2,Type = SkillType.CRAFT, IsPassive = false },
+            new SkillData { Index = 3,Type = SkillType.MOVE, IsPassive = false }
         };
+
+        int index = 4;
         
         for( int i = 0; i < Buildings.Count; i++ )
         {
             SkillData skill = new SkillData
             {
                 Name = "Mining Skill #" + i,
-                Type = SkillType.Mine,
+                Index = index,
+                Type = SkillType.MINE,
+                State = SkillState.LOCKED,
+                IsPassive = true,
                 Effects = Buildings[ i ].Effects
             };
             skill.Effects.Remove( R.Minerals );
-            skills[ SkillType.Mine ].Add( skill );
+            skills.Add( skill );
+            index++;
         }
 
         File.WriteAllText(

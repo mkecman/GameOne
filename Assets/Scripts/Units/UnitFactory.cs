@@ -23,16 +23,22 @@
 
         unit.Resistance = GameModel.Copy( _bellCurves );
 
-        unit.Skills.Add( SkillType.LIVE, GameModel.Copy( _skills[ SkillType.LIVE ][ 0 ] ) );
-        unit.Skills.Add( SkillType.MINE, GameModel.Copy( _skills[ SkillType.MINE ][ 0 ] ) );
-        unit.Skills.Add( SkillType.MOVE, GameModel.Copy( _skills[ SkillType.MOVE ][ 0 ] ) );
-        unit.Skills.Add( SkillType.CLONE, GameModel.Copy( _skills[ SkillType.CLONE ][ 0 ] ) );
+        unit.Skills.Add( 0, GameModel.Copy( _skills[ 0 ] ) ); //live
+        unit.Skills[ 0 ].State = SkillState.SELECTED;
+        unit.Skills.Add( 1, GameModel.Copy( _skills[ 1 ] ) ); //clone
+        unit.Skills[ 1 ].State = SkillState.SELECTED;
+        unit.Skills.Add( 2, GameModel.Copy( _skills[ 2 ] ) ); //craft
+        unit.Skills[ 2 ].State = SkillState.SELECTED;
+        unit.Skills.Add( 3, GameModel.Copy( _skills[ 3 ] ) ); //move
+        unit.Skills[ 3 ].State = SkillState.SELECTED;
+        unit.Skills.Add( 4, GameModel.Copy( _skills[ 4 ] ) ); //mine
+        unit.Skills[ 4 ].State = SkillState.SELECTED;
 
-        unit.ActiveSkills.Add( SkillType.LIVE );
-        unit.ActiveSkills.Add( SkillType.MINE );
+        unit.PassiveSkills.Add( 0 );//live
+        unit.PassiveSkills.Add( 4 ); //mine
 
-        unit.PassiveSkills.Add( SkillType.MOVE );
-        unit.PassiveSkills.Add( SkillType.CLONE );
+        unit.ActiveSkills.Add( 3 );//move
+        unit.ActiveSkills.Add( 1 );//clone
 
         return unit;
     }

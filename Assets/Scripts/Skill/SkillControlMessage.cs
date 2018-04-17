@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SkillMessage
+public class SkillControlMessage
 {
     public int Index;
     public SkillState State;

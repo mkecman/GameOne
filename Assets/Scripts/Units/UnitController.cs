@@ -136,9 +136,9 @@ public class UnitController : AbstractController, IGameInit
         for( int i = 0; i < _life.Units.Count; i++ )
         {
             _unitModel = _life.Units[ i ];
-            for( int j = 0; j < _unitModel.ActiveSkills.Count; j++ )
+            for( int j = 0; j < _unitModel.PassiveSkills.Count; j++ )
             {
-                _skillCommand.Execute( _unitModel, _unitModel.ActiveSkills[ j ] );
+                _skillCommand.Execute( _unitModel, _unitModel.PassiveSkills[ j ] );
             }
         }
     }
