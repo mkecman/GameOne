@@ -16,14 +16,18 @@ public class GradientTextureView : MonoBehaviour
     private Color[] _gradient;
     private Color[] _pixels;
 
-    void Awake()
+    private bool _isInitialized = false;
+
+    void OnEnable()
     {
-        /*RectTransform rectTransform = rawImage.GetComponent<RectTransform>();
-        Width = (int)rectTransform.rect.width;
-        Height = (int)rectTransform.rect.height;*/
-        _texture = new Texture2D( Width, Height );
-        _gradient = new Color[ 100 ];
-        _pixels = new Color[ Width * Height ];
+        Debug.Log( "Texture Enable" );
+        if( !_isInitialized )
+        {
+            _texture = new Texture2D( Width, Height );
+            _gradient = new Color[ 100 ];
+            _pixels = new Color[ Width * Height ];
+            _isInitialized = true;
+        }
     }
     
     public void Draw( BellCurve bellCurve )

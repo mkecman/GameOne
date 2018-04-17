@@ -17,10 +17,12 @@ public class ResistanceGraph : GameView, IPointerClickHandler
     private HexModel _hexModel;
     private PlanetModel _planet;
     private CompositeDisposable planetDisposable = new CompositeDisposable();
+    private RectTransform _gradientRect;
 
     void Start()
     {
         PropertyText.text = Lens.ToString();
+        _gradientRect = Gradient.GetComponent<RectTransform>();
     }
 
     void OnEnable()
@@ -63,13 +65,15 @@ public class ResistanceGraph : GameView, IPointerClickHandler
             else
                 _selectedUnit = null;
 
-            //_hexModel.Props[ Lens ]._Value.Subscribe( _ => UpdateView() ).AddTo( disposables );
+            _hexModel.Props[ Lens ]._Value.Subscribe( _ => UpdateView() ).AddTo( disposables );
         }
         else
         {
             _hexModel = null;
             _selectedUnit = null;
         }
+
+        //UpdateView();
     }
 
     private void UpdateView()
@@ -77,7 +81,7 @@ public class ResistanceGraph : GameView, IPointerClickHandler
         if( _selectedUnit != null )
         {
             Gradient.Draw( _selectedUnit.Resistance[ Lens ] );
-            UpdateUI( (int)Math.Round( _selectedUnit.Resistance[ Lens ].GetFloatAt( _hexModel.Props[ Lens ].Value ) * 100, 0 ) + "%", _hexModel.Props[ Lens ].Value );
+            UpdateUI( _selectedUnit.Resistance[ Lens ].GetIntAt( _hexModel.Props[ Lens ].Value ) + "%", _hexModel.Props[ Lens ].Value );
         }
         else
             if( _hexModel == null )
@@ -88,14 +92,14 @@ public class ResistanceGraph : GameView, IPointerClickHandler
             else
             {
                 Gradient.Draw( _planet.Props[ Lens ].HexDistribution );
-                UpdateUI( _planet.Props[ Lens ].AvgValue.ToString( "N2" ), _hexModel.Props[ Lens ].Value);
+                UpdateUI( _hexModel.Props[ Lens ].Value.ToString( "N2" ), _hexModel.Props[ Lens ].Value );
             }
     }
 
     private void UpdateUI( string match, float value )
     {
         MatchText.text = match;
-        _tileValueRectTransform.anchoredPosition = new Vector2( ( value - 0.5f ) * Gradient.Width, 0 );
+        _tileValueRectTransform.anchoredPosition = new Vector2( ( value - 0.5f ) * _gradientRect.rect.width, 0 );
     }
     
     public void OnPointerClick( PointerEventData eventData )
