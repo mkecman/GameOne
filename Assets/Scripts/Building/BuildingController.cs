@@ -203,6 +203,6 @@ public class BuildingController : AbstractController, IGameInit
         }
     }
 
-    */
+    /**/
 
 }

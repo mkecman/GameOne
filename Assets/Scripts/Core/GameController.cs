@@ -36,6 +36,7 @@ public class GameController : MonoBehaviour
         _life                           = AddController<LifeController>();
 
         AddController<UnitController>();
+        AddController<SkillController>();
         AddController<UnitPaymentService>();
         //AddController<BuildingController>();
         //AddController<BuildingPaymentService>();
@@ -65,7 +66,7 @@ public class GameController : MonoBehaviour
         generator.Load();
         /**/
 
-        Observable.TimerFrame( 100 ).Subscribe( _ => StartNewGame() );
+        Observable.TimerFrame( 30 ).Subscribe( _ => StartNewGame() );
 
         //Load();
         //Debug.Log( "GameController Started" );

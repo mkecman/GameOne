@@ -23,16 +23,16 @@
 
         unit.Resistance = GameModel.Copy( _bellCurves );
 
-        unit.Skills.Add( SkillType.Live, GameModel.Copy( _skills[ SkillType.Live ][ 0 ] ) );
-        unit.Skills.Add( SkillType.Mine, GameModel.Copy( _skills[ SkillType.Mine ][ 0 ] ) );
-        unit.Skills.Add( SkillType.Move, GameModel.Copy( _skills[ SkillType.Move ][ 0 ] ) );
-        unit.Skills.Add( SkillType.Clone, GameModel.Copy( _skills[ SkillType.Clone ][ 0 ] ) );
+        unit.Skills.Add( SkillType.LIVE, GameModel.Copy( _skills[ SkillType.LIVE ][ 0 ] ) );
+        unit.Skills.Add( SkillType.MINE, GameModel.Copy( _skills[ SkillType.MINE ][ 0 ] ) );
+        unit.Skills.Add( SkillType.MOVE, GameModel.Copy( _skills[ SkillType.MOVE ][ 0 ] ) );
+        unit.Skills.Add( SkillType.CLONE, GameModel.Copy( _skills[ SkillType.CLONE ][ 0 ] ) );
 
-        unit.ActiveSkills.Add( SkillType.Live );
-        unit.ActiveSkills.Add( SkillType.Mine );
+        unit.ActiveSkills.Add( SkillType.LIVE );
+        unit.ActiveSkills.Add( SkillType.MINE );
 
-        unit.PassiveSkills.Add( SkillType.Move );
-        unit.PassiveSkills.Add( SkillType.Clone );
+        unit.PassiveSkills.Add( SkillType.MOVE );
+        unit.PassiveSkills.Add( SkillType.CLONE );
 
         return unit;
     }

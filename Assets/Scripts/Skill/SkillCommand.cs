@@ -8,10 +8,10 @@ public class SkillCommand : IGameInit
     {
         _skills = new Dictionary<SkillType, ISkill>
         {
-            { SkillType.Live, GameModel.Get<LiveSkill>() },
-            { SkillType.Clone, GameModel.Get<CloneSkill>() },
-            { SkillType.Move, GameModel.Get<MoveSkill>() },
-            { SkillType.Mine, GameModel.Get<MineSkill>() }
+            { SkillType.LIVE, GameModel.Get<LiveSkill>() },
+            { SkillType.CLONE, GameModel.Get<CloneSkill>() },
+            { SkillType.MOVE, GameModel.Get<MoveSkill>() },
+            { SkillType.MINE, GameModel.Get<MineSkill>() }
         };
     }
 
