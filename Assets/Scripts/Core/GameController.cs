@@ -35,15 +35,16 @@ public class GameController : MonoBehaviour
         _planet                         = AddController<PlanetController>();
         _life                           = AddController<LifeController>();
 
+        AddController<UnitPaymentService>();
+        AddController<UnitFactory>();
         AddController<UnitController>();
         AddController<SkillController>();
-        AddController<UnitPaymentService>();
         //AddController<BuildingController>();
         //AddController<BuildingPaymentService>();
         AddController<HexUpdateCommand>();
         AddController<PlanetGenerateCommand>();
         AddController<PlanetPropsUpdateCommand>();
-        AddController<UnitFactory>();
+        AddController<UnitDefenseUpdateCommand>();
 
         AddController<SkillCommand>();
 

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UniRx;
+using System;
 
 public class UnitModel
 {
@@ -31,9 +32,8 @@ public class UnitModel
     
     public BoolReactiveProperty isSelected = new BoolReactiveProperty( false );
 
-    public Dictionary<int, BuildingState> Abilities = new Dictionary<int, BuildingState>();
-
-    public Dictionary<R, FloatReactiveProperty> AbilitiesDelta = new Dictionary<R, FloatReactiveProperty>();
+    //public Dictionary<int, BuildingState> Abilities = new Dictionary<int, BuildingState>();
+    //public Dictionary<R, FloatReactiveProperty> AbilitiesDelta = new Dictionary<R, FloatReactiveProperty>();
 
     public Dictionary<R, BellCurve> Resistance = new Dictionary<R,BellCurve>();
 
@@ -41,10 +41,25 @@ public class UnitModel
 
     internal Vector3 Position = new Vector3();
 
-
-    /// RPG SYSTEM
-    //public Dictionary<R, Resource> Stats = new Dictionary<R, Resource>();
     public Dictionary<int, SkillData> Skills = new Dictionary<int, SkillData>();
     public List<int> PassiveSkills = new List<int>();
     public List<int> ActiveSkills = new List<int>();
+
+    internal CompositeDisposable disposables = new CompositeDisposable();
+    internal void Init()
+    {
+        Props[ R.Body ]._Value.Subscribe( _ => UpdateAttack() ).AddTo( disposables );
+        Props[ R.Speed ]._Value.Subscribe( _ => UpdateAttack() ).AddTo( disposables );
+    }
+
+    internal void Destroy()
+    {
+        disposables.Dispose();
+        disposables = null;
+    }
+
+    private void UpdateAttack()
+    {
+        Props[ R.Attack ].Value = Props[ R.Body ].Value * ( ( Props[ R.Speed ].Value / 100 ) + 1 );
+    }
 }

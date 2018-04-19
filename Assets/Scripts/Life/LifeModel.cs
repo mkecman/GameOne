@@ -13,14 +13,6 @@ public class LifeModel
         set { _Name.Value = value; }
     }
     
-    [SerializeField]
-    internal DoubleReactiveProperty _ClimbLevel = new DoubleReactiveProperty();
-    public Double ClimbLevel
-    {
-        get { return _ClimbLevel.Value; }
-        set { _ClimbLevel.Value = value; }
-    }
-    
     public Dictionary<R,BellCurve> Resistance = new Dictionary<R, BellCurve>();
     public Dictionary<R, Resource> Props = new Dictionary<R, Resource>();
 

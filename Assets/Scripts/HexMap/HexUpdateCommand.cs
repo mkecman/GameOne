@@ -5,10 +5,12 @@ public class HexUpdateCommand : IGameInit
 {
     private PlanetController _planetController;
     private PlanetModel _planet;
+    private UnitDefenseUpdateCommand _unitDefenseUpdateCommand;
 
     public void Init()
     {
         _planetController = GameModel.Get<PlanetController>();
+        _unitDefenseUpdateCommand = GameModel.Get<UnitDefenseUpdateCommand>();
     }
 
     public void Execute( HexModel hex )
@@ -25,6 +27,9 @@ public class HexUpdateCommand : IGameInit
             hex.Props[ R.Pressure ].Value +
             hex.Props[ R.Humidity ].Value +
             hex.Props[ R.Radiation ].Value ) / 4, 2 );
+
+        if( hex.Unit != null )
+            _unitDefenseUpdateCommand.Execute( hex.Unit );
     }
 
     private void UpdateProp( R type, HexModel hex )

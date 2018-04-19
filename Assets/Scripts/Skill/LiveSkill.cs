@@ -5,6 +5,7 @@ public class LiveSkill : ISkill
     private PlanetController _planetController;
     private UnitController _unitController;
     private PlanetModel _planet;
+    private HexModel _hex;
 
     public void Init()
     {
@@ -12,12 +13,16 @@ public class LiveSkill : ISkill
         _unitController = GameModel.Get<UnitController>();
     }
 
-    public void Execute( UnitModel unitModel, SkillData skillData )
+    public void Execute( UnitModel unit, SkillData skillData )
     {
         _planet = _planetController.SelectedPlanet;
+        _hex = _planet.Map.Table[ unit.X ][ unit.Y ];
 
-        unitModel.Props[ R.Health ].Value -= 1; //_planet.Map.Table[ unitModel.X ][ unitModel.Y ].Props[ R.HexScore ].Value;
-        if( unitModel.Props[ R.Health ].Value <= 0 )
-            _unitController.RemoveUnit( unitModel );
+        unit.Props[ R.Health ].Value -= unit.Props[ R.Armor ].Value;
+        //^NOT GOOD!!! I need tileAttack prop in Unit class, calculated when a unit moves into a tile
+
+        if( unit.Props[ R.Health ].Value <= 0 )
+            _unitController.RemoveUnit( unit );
     }
+
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UniRx;
 
 public class UnitController : AbstractController, IGameInit
 {
@@ -12,17 +13,18 @@ public class UnitController : AbstractController, IGameInit
     private GridModel<HexModel> _hexMapModel;
     private UnitModel _selectedUnit;
 
-    private HexUpdateCommand _hexUpdateCommand;
     private UnitFactory _factory;
     private SkillCommand _skillCommand;
+    private UnitDefenseUpdateCommand _unitDefenseUpdateCommand;
 
-    private UnitModel _unitModel;
+    private UnitModel _tempUnitModel;
+    private HexModel _tempHexModel;
 
     public void Init()
     {
-        _hexUpdateCommand = GameModel.Get<HexUpdateCommand>();
         _factory = GameModel.Get<UnitFactory>();
         _skillCommand = GameModel.Get<SkillCommand>();
+        _unitDefenseUpdateCommand = GameModel.Get<UnitDefenseUpdateCommand>();
 
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
     }
@@ -33,18 +35,22 @@ public class UnitController : AbstractController, IGameInit
         if( _selectedUnit.Resistance[ value.Type ].ChangePosition( value.Delta ) )
             delta = -delta;
 
+        _unitDefenseUpdateCommand.Execute( _selectedUnit );
         //_selectedUnit.AbilitiesDelta[ R.Science ].Value = _selectedUnit.AbilitiesDelta[ R.Science ].Value.Sum( delta );
     }
-    
+
     public void AddUnit( int x, int y )
     {
         if( _hexMapModel.Table[ x ][ y ].Unit != null )
             return;
 
-        UnitModel um = _factory.GetUnit( x, y );
-        _hexMapModel.Table[ x ][ y ].Unit = um;
-        _life.Units.Add( um );
+        _tempUnitModel = _factory.GetUnit( x, y );
+        _hexMapModel.Table[ x ][ y ].Unit = _tempUnitModel;
+        _unitDefenseUpdateCommand.Execute( _tempUnitModel );
+
+        _life.Units.Add( _tempUnitModel );
         _life.Props[ R.Population ].Value++;
+
         SelectUnit( x, y );
     }
 
@@ -73,6 +79,7 @@ public class UnitController : AbstractController, IGameInit
         _selectedUnit.X = xTo;
         _selectedUnit.Y = yTo;
         _hexMapModel.Table[ xTo ][ yTo ].isExplored.Value = true;
+        _unitDefenseUpdateCommand.Execute( _selectedUnit );
     }
     
     public void DeselectUnit( bool setUnitModel = true )
@@ -108,10 +115,11 @@ public class UnitController : AbstractController, IGameInit
 
         for( int i = 0; i < _life.Units.Count; i++ )
         {
-            _unitModel = _life.Units[ i ];
-            _unitModel.Props[ R.Altitude ].Value = _hexMapModel.Table[ _unitModel.X ][ _unitModel.Y ].Props[ R.Altitude ].Value; //not sure if this is needed? only if regenerating planets, but keeping units
-            _unitModel.Y = _unitModel.Y; //update position vector3
-            _hexMapModel.Table[ _unitModel.X ][ _unitModel.Y ].Unit = _unitModel;
+            _tempUnitModel = _life.Units[ i ];
+            _tempUnitModel.Props[ R.Altitude ].Value = _hexMapModel.Table[ _tempUnitModel.X ][ _tempUnitModel.Y ].Props[ R.Altitude ].Value; //not sure if this is needed? only if regenerating planets, but keeping units
+            _tempUnitModel.Y = _tempUnitModel.Y; //update position vector3
+            _hexMapModel.Table[ _tempUnitModel.X ][ _tempUnitModel.Y ].Unit = _tempUnitModel;
+            _unitDefenseUpdateCommand.Execute( _tempUnitModel );
         }
 
     }
@@ -135,10 +143,10 @@ public class UnitController : AbstractController, IGameInit
         //update all units active skills
         for( int i = 0; i < _life.Units.Count; i++ )
         {
-            _unitModel = _life.Units[ i ];
-            for( int j = 0; j < _unitModel.PassiveSkills.Count; j++ )
+            _tempUnitModel = _life.Units[ i ];
+            for( int j = 0; j < _tempUnitModel.PassiveSkills.Count; j++ )
             {
-                _skillCommand.Execute( _unitModel, _unitModel.PassiveSkills[ j ] );
+                _skillCommand.Execute( _tempUnitModel, _tempUnitModel.PassiveSkills[ j ] );
             }
         }
     }

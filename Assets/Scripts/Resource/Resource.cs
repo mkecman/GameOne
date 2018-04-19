@@ -85,5 +85,12 @@ public enum R
     Population,
     Health,
     Element,
+    Experience,
+    Body,
+    Speed,
+    Mind,
+    Soul,
+    Armor,
+    Attack,
     Count
 }

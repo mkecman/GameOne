@@ -42,7 +42,8 @@ public class Hex : GameView
         _model.ObserveEveryValueChanged( _ => _.Lens ).Subscribe( _ => { SetColor(); SetSymbol(); } ).AddTo( disposables );
 
         _model.Props[ R.HexScore ]._Value.Subscribe( _ => OnHexScoreChange() ).AddTo( disposables );
-        
+        _model.Props[ R.Element ]._Delta.Subscribe( _ => SetSymbol() ).AddTo( disposables );
+
         _model.isMarked.Subscribe( _ => SetColor() ).AddTo( disposables );
         _model.isExplored.Subscribe( _ => SetSymbol() ).AddTo( disposables );
 
@@ -118,7 +119,7 @@ public class Hex : GameView
         if( _model.Lens == R.Default )
         {
             //SymbolText.text = Math.Round( _model.Props[ R.Minerals ].Value, 0 ).ToString();
-            SymbolText.text = _elements[ (int)_model.Props[ R.Element ].Value ].Symbol;
+            SymbolText.text = _elements[ (int)_model.Props[ R.Element ].Value ].Symbol + ":" + _model.Props[ R.Element ].Delta;
             /*
             labelSB.Clear();
             
@@ -140,7 +141,6 @@ public class Hex : GameView
         
         //SymbolText.text = Model.X + "," + Model.Y; //Show coordinates;
 
-        SymbolText.gameObject.transform.position = new Vector3( SymbolText.gameObject.transform.position.x, _model.Props[ R.Altitude ].Value + .01f, SymbolText.gameObject.transform.position.z );
     }
 
     private void SetHeight( GameObject target, float height )
@@ -155,5 +155,7 @@ public class Hex : GameView
         mesh.vertices = verts;
         mesh.RecalculateNormals();
         GetComponent<MeshCollider>().sharedMesh = mesh;
+
+        SymbolText.gameObject.transform.position = new Vector3( SymbolText.gameObject.transform.position.x, _model.Props[ R.Altitude ].Value + .01f, SymbolText.gameObject.transform.position.z );
     }
 }

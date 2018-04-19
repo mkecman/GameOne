@@ -20,7 +20,6 @@ public class GradientTextureView : MonoBehaviour
 
     void OnEnable()
     {
-        Debug.Log( "Texture Enable" );
         if( !_isInitialized )
         {
             _texture = new Texture2D( Width, Height );

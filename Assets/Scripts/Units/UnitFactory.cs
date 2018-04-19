@@ -15,14 +15,24 @@
     {
         UnitModel unit = new UnitModel();
 
-        unit.Props.Add( R.Altitude, new Resource( R.Altitude, _planetController.SelectedPlanet.Map.Table[ x ][ y ].Props[ R.Altitude ].Value, 0, 0, 2 ) );
+        //STATS
         unit.Props.Add( R.Health, new Resource( R.Health, 100, 0, 0, 100 ) );
-
-        unit.X = x;
-        unit.Y = y;
+        unit.Props.Add( R.Experience, new Resource( R.Experience, 1, 0, 0, 100 ) );
+        unit.Props.Add( R.Body, new Resource( R.Body, 10, 0, 0, 100 ) );
+        unit.Props.Add( R.Mind, new Resource( R.Mind, 10, 0, 0, 100 ) );
+        unit.Props.Add( R.Soul, new Resource( R.Soul, 10, 0, 0, 100 ) );
+        unit.Props.Add( R.Speed, new Resource( R.Speed, 10, 0, 0, 100 ) );
+        unit.Props.Add( R.Armor, new Resource( R.Armor, 0 ) );
+        unit.Props.Add( R.Attack, new Resource( R.Attack, 0 ) );
 
         unit.Resistance = GameModel.Copy( _bellCurves );
 
+        //MAP POSITION
+        unit.Props.Add( R.Altitude, new Resource( R.Altitude, _planetController.SelectedPlanet.Map.Table[ x ][ y ].Props[ R.Altitude ].Value, 0, 0, 2 ) );
+        unit.X = x;
+        unit.Y = y;
+
+        //SKILLS
         unit.Skills.Add( 0, GameModel.Copy( _skills[ 0 ] ) ); //live
         unit.Skills[ 0 ].State = SkillState.SELECTED;
         unit.Skills.Add( 1, GameModel.Copy( _skills[ 1 ] ) ); //clone
@@ -39,6 +49,8 @@
 
         unit.ActiveSkills.Add( 3 );//move
         unit.ActiveSkills.Add( 1 );//clone
+
+        unit.Init();
 
         return unit;
     }

@@ -10,7 +10,9 @@ public class MineSkill : ISkill
     private List<ElementModel> _elements;
     private SkillData _skillData;
     private PlanetModel _planet;
+    private Resource _element;
     private int _elementIndex;
+    private float _critHit;
 
     public void Init()
     {
@@ -23,20 +25,33 @@ public class MineSkill : ISkill
     {
         _skillData = skillData;
         _planet = _planetController.SelectedPlanet;
-        _elementIndex = (int)_planet.Map.Table[ unitModel.X ][ unitModel.Y ].Props[ R.Element ].Value;
+        _element = _planet.Map.Table[ unitModel.X ][ unitModel.Y ].Props[ R.Element ];
+        _elementIndex = (int)_element.Value;
 
-        if( _elementIndex > 0 )
+        //fight
+        if( RandomUtil.FromRange( 0, unitModel.Props[ R.Soul ].MaxValue ) < unitModel.Props[ R.Soul ].Value )
         {
-            if( _planet.Life.Elements.ContainsKey( _elementIndex ) )
-                _planet.Life.Elements[ _elementIndex ].Amount++;
-            else
-                _planet.Life.Elements.Add( _elementIndex, new LifeElementModel( _elementIndex, _elements[ _elementIndex ].Symbol, 1 ) );
-
-            UpdatePlanetProp( R.Temperature );
-            UpdatePlanetProp( R.Pressure );
-            UpdatePlanetProp( R.Humidity );
-            UpdatePlanetProp( R.Radiation );
+            _critHit = unitModel.Props[ R.Body ].Value;
+            Debug.Log( "CRITICAL HIT!" );
         }
+        else
+            _critHit = 0;
+
+        _element.Delta -= unitModel.Props[ R.Attack ].Value + _critHit;
+
+        //If beaten, collect the element and reset HP
+        if( _element.Delta <= 0 )
+        {
+            _planet.Life.Elements[ _elementIndex ].Amount++;
+            _element.Delta = _elements[ _elementIndex ].Weight * 100;
+        }
+
+        UpdatePlanetProp( R.Temperature );
+        UpdatePlanetProp( R.Pressure );
+        UpdatePlanetProp( R.Humidity );
+        UpdatePlanetProp( R.Radiation );
+
+        unitModel.Props[ R.Experience ].Value++;
     }
 
     private void UpdatePlanetProp( R type )
