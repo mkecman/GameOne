@@ -22,7 +22,6 @@ public class UnitDefenseUpdateCommand : IGameInit
             unit.Resistance[ R.Humidity ].GetFloatAt( _tempHexModel.Props[ R.Humidity ].Value ) +
             unit.Resistance[ R.Radiation ].GetFloatAt( _tempHexModel.Props[ R.Radiation ].Value )
         ) / 4;
-        Debug.Log( unit.Props[ R.Armor ].Value );
     }
 
     private void OnPlanetModel( PlanetModel value )

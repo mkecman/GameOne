@@ -46,8 +46,8 @@ public class LifeController : AbstractController, IGameInit
             _selectedLife.Elements.Add( i, new LifeElementModel( i, _elements[ i ].Symbol, 0, 100 ) );
         }
 
-        int unitX = (int)( _planet.Map.Width / 2 ) + 2;
-        int unitY = (int)( _planet.Map.Height / 2 ) + 2;
+        int unitX = ( _planet.Map.Width / 2 ) + 2;
+        int unitY = ( _planet.Map.Height / 2 ) + 2;
         _selectedLife.Units.Add( _factory.GetUnit( unitX, unitY ) );
 
         _planet.Life = _selectedLife;

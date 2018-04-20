@@ -22,8 +22,9 @@
         unit.Props.Add( R.Mind, new Resource( R.Mind, 10, 0, 0, 100 ) );
         unit.Props.Add( R.Soul, new Resource( R.Soul, 10, 0, 0, 100 ) );
         unit.Props.Add( R.Speed, new Resource( R.Speed, 10, 0, 0, 100 ) );
-        unit.Props.Add( R.Armor, new Resource( R.Armor, 0 ) );
-        unit.Props.Add( R.Attack, new Resource( R.Attack, 0 ) );
+        unit.Props.Add( R.Armor, new Resource( R.Armor, 0, 0, 0, 100 ) );
+        unit.Props.Add( R.Attack, new Resource( R.Attack, 0, 0, 0, 100 ) );
+        unit.UpdateAttack();
 
         unit.Resistance = GameModel.Copy( _bellCurves );
 
@@ -49,8 +50,6 @@
 
         unit.ActiveSkills.Add( 3 );//move
         unit.ActiveSkills.Add( 1 );//clone
-
-        unit.Init();
 
         return unit;
     }

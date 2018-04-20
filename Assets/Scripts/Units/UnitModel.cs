@@ -45,20 +45,7 @@ public class UnitModel
     public List<int> PassiveSkills = new List<int>();
     public List<int> ActiveSkills = new List<int>();
 
-    internal CompositeDisposable disposables = new CompositeDisposable();
-    internal void Init()
-    {
-        Props[ R.Body ]._Value.Subscribe( _ => UpdateAttack() ).AddTo( disposables );
-        Props[ R.Speed ]._Value.Subscribe( _ => UpdateAttack() ).AddTo( disposables );
-    }
-
-    internal void Destroy()
-    {
-        disposables.Dispose();
-        disposables = null;
-    }
-
-    private void UpdateAttack()
+    public void UpdateAttack()
     {
         Props[ R.Attack ].Value = Props[ R.Body ].Value * ( ( Props[ R.Speed ].Value / 100 ) + 1 );
     }
