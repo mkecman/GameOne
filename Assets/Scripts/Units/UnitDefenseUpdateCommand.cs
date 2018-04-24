@@ -15,7 +15,7 @@ public class UnitDefenseUpdateCommand : IGameInit
     public void Execute( UnitModel unit )
     {
         _tempHexModel = _hexMapModel.Table[ unit.X ][ unit.Y ];
-        unit.Props[ R.Armor ].Value = 1 -
+        unit.Props[ R.Armor ].Value =
         (
             unit.Resistance[ R.Temperature ].GetFloatAt( _tempHexModel.Props[ R.Temperature ].Value ) +
             unit.Resistance[ R.Pressure ].GetFloatAt( _tempHexModel.Props[ R.Pressure ].Value ) +

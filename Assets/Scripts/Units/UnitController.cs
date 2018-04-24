@@ -49,7 +49,6 @@ public class UnitController : AbstractController, IGameInit
         _unitDefenseUpdateCommand.Execute( _tempUnitModel );
 
         _life.Units.Add( _tempUnitModel );
-        _tempUnitModel.UpdateAttack();
         _life.Props[ R.Population ].Value++;
 
         SelectUnit( x, y );
