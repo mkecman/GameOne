@@ -16,7 +16,10 @@ public class GameConfig : MonoBehaviour
 
         _instance.Load<UniverseConfig>();
         _instance.Load<StarsConfig>();
+
         _instance.Load<ElementConfig>();
+        Get<ElementConfig>().Setup();
+
         _instance.Load<HexConfig>();
         _instance.Load<CompoundConfig>();
         _instance.Load<SkillConfig>();

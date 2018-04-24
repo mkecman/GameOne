@@ -7,7 +7,9 @@ using UnityEngine;
 public class HexMapGenerator
 {
     private GridModel<HexModel> _map;
-    private List<ElementModel> _elements;
+    private List<ElementData> _elements;
+    private Dictionary<int, ElementData> _elementsDict;
+    private List<WeightedValue> _elementsProbabilities;
     private Vector2[] Ranges = new Vector2[ 7 ];
     private PlanetModel _planetModel;
 
@@ -17,7 +19,14 @@ public class HexMapGenerator
         GameObject go = GameObject.Find( "Map" );
         HexMap hexMap = go.GetComponent<HexMap>();
         _map = new GridModel<HexModel>( hexMap.width.Value, hexMap.height.Value );
-        _elements = GameConfig.Get<ElementConfig>().Elements;
+        _elements = GameConfig.Get<ElementConfig>().ElementsList;
+        _elementsDict = GameConfig.Get<ElementConfig>().ElementsDictionary;
+        _elementsProbabilities = new List<WeightedValue>();
+
+        for( int i = 0; i < _elements.Count; i++ )
+        {
+            _elementsProbabilities.Add( new WeightedValue( _elements[ i ].Index, _elements[ i ].Rarity ) );
+        }
 
         Vector2 defaultRange = new Vector2( float.MaxValue, float.MinValue );
         for( int i = 0; i < 7; i++ )
@@ -126,7 +135,12 @@ public class HexMapGenerator
                 SetHex( hex, R.Humidity );
                 SetHex( hex, R.Radiation );
 
-                hex.Props[ R.Element ].Value = _planetModel._Elements[ RandomUtil.FromRangeInt( 0, _planetModel._Elements.Count ) ].Index;
+                hex.Props[ R.Element ].Value = RandomUtil.GetWeightedValue( _elementsProbabilities );
+                hex.Props[ R.Element ].Delta = _elementsDict[ (int)hex.Props[ R.Element ].Value ].Weight * 100;
+                Color mColor;
+                ColorUtility.TryParseHtmlString( _elementsDict[ (int)hex.Props[ R.Element ].Value ].Color, out mColor );
+                hex.Props[ R.Element ].Color = mColor;
+                //hex.Props[ R.Element ].Value = _planetModel._Elements[ RandomUtil.FromRangeInt( 0, _planetModel._Elements.Count ) ].Index;
                 //hex.Props[ R.Minerals ].Value = (int)_elements[ (int)hex.Props[ R.Element ].Value ].Weight;
 
                 hex.Props[ R.HexScore ].Value = 0;

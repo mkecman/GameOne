@@ -11,7 +11,7 @@ public class HexMapModel
     public GridModel<float> HumidityMap;
     public GridModel<float> RadiationMap;
     public GridModel<Color> ColorMap;
-    public GridModel<ElementModel> ElementMap;
+    public GridModel<ElementData> ElementMap;
     public int Width;
     public int Height;
 
@@ -26,7 +26,7 @@ public class HexMapModel
         HumidityMap = new GridModel<float>( width, height );
         RadiationMap = new GridModel<float>( width, height );
         ColorMap = new GridModel<Color>( width, height );
-        ElementMap = new GridModel<ElementModel>( width, height );
+        ElementMap = new GridModel<ElementData>( width, height );
 
     }
 }

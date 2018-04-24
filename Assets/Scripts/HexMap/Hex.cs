@@ -19,7 +19,7 @@ public class Hex : GameView
 
     private HexClickedMessage _HexClickedMessage;
     private GameDebug _debug;
-    private List<ElementModel> _elements;
+    private Dictionary<int, ElementData> _elements;
     private Material _solidMaterial;
     private StringBuilder labelSB = new StringBuilder();
 
@@ -27,7 +27,7 @@ public class Hex : GameView
     {
         _HexClickedMessage = new HexClickedMessage( null );
         _debug = GameModel.Get<GameDebug>();
-        _elements = GameConfig.Get<ElementConfig>().Elements;
+        _elements = GameConfig.Get<ElementConfig>().ElementsDictionary;
         _solidMaterial = Solid.GetComponent<MeshRenderer>().material;
     }
 
@@ -59,7 +59,7 @@ public class Hex : GameView
         _newHexColor = AddColor( _newHexColor, Gradient4.Evaluate( _model.Props[ R.Radiation ].Value ) );
 
         _model.Props[ R.Default ].Color = _newHexColor;
-        _model.Props[ R.Element ].Color = _newHexColor;
+        //_model.Props[ R.Element ].Color = _newHexColor;
 
         SetColor();
         //SetSymbol();
@@ -135,7 +135,7 @@ public class Hex : GameView
         }
         else
         if( _model.Lens == R.Element )
-            SymbolText.text = ( (int)_elements[ (int)_model.Props[ R.Element ].Value ].Weight).ToString();
+            SymbolText.text = _elements[ (int)_model.Props[ R.Element ].Value ].Symbol;
         else
             SymbolText.text = Math.Round( _model.Props[ _model.Lens ].Value, 2 ).ToString();
         

@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using UniRx;
+using System.Collections.Generic;
 
 public class StarController : AbstractController, IGameInit
 {
@@ -13,13 +14,13 @@ public class StarController : AbstractController, IGameInit
 
     private StarsConfig _starsConfig;
     private UniverseConfig _universeConfig;
-    private ElementConfig _elementsConfig;
+    private List<ElementData> _elements;
 
     public void Init()
     {
         _starsConfig = GameConfig.Get<StarsConfig>();
         _universeConfig = GameConfig.Get<UniverseConfig>();
-        _elementsConfig = GameConfig.Get<ElementConfig>();
+        _elements = GameConfig.Get<ElementConfig>().ElementsList;
         GameModel.HandleGet<GalaxyModel>( OnGalaxyChange );
     }
 
@@ -61,7 +62,7 @@ public class StarController : AbstractController, IGameInit
 
     private ReactiveCollection<WeightedValue> GenerateStarElements( int index )
     {
-        int ElementCount = _elementsConfig.Elements.Count;
+        int ElementCount = _elements.Count;
 
         float curve = index * ( ElementCount * _starsConfig.MaxElementsBellCurveMagnifier / _starsConfig.Stars.Count );
         float ofset = index * ( ElementCount / _starsConfig.Stars.Count );

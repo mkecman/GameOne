@@ -6,7 +6,7 @@ using UnityEngine;
 public class ElementConfigGenerator
 {
     public List<JSONAtomModel> atoms;
-    public List<ElementModel> elements;
+    public List<ElementData> elements;
 
     internal void Load()
     {
@@ -15,22 +15,22 @@ public class ElementConfigGenerator
         TextAsset targetFile = Resources.Load<TextAsset>( "Configs/AtomsJSON" );
         atoms = JsonConvert.DeserializeObject<List<JSONAtomModel>>( targetFile.text );
 
-        elements = new List<ElementModel>();
+        elements = new List<ElementData>();
         for( int i = 0; i < atoms.Count; i++ )
         {
-            ElementModel tempElement = new ElementModel();
+            ElementData tempElement = new ElementData();
             tempElement.Name = atoms[ i ].Name;
             tempElement.Symbol = atoms[ i ].Symbol;
             tempElement.Index = atoms[ i ].Index;
             tempElement.Weight = atoms[ i ].Weight;
             tempElement.Density = atoms[ i ].Density;
-            tempElement.HexColor = atoms[ i ].HexColor;
-            tempElement.GroupBlock = atoms[ i ].GroupBlock;
+            tempElement.Color = atoms[ i ].HexColor;
+            tempElement.Group = atoms[ i ].GroupBlock;
 
             //tempElement.Modifiers = new List<ElementModifierModel>();
-            tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Food, atoms[ i ].Food ) );
-            tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Science, atoms[ i ].Science ) );
-            tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Words, atoms[ i ].Words ) );
+            //tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Food, atoms[ i ].Food ) );
+            //tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Science, atoms[ i ].Science ) );
+            //tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Words, atoms[ i ].Words ) );
             /*tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Temperature, atoms[ i ].Temperature ) );
             tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Pressure, atoms[ i ].Pressure ) );
             tempElement._Modifiers.Add( CreateModifier( ElementModifiers.Gravity, atoms[ i ].Gravity ) );

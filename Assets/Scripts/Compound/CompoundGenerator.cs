@@ -4,25 +4,35 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using System.IO;
+using System;
 
 public class CompoundGenerator : MonoBehaviour
 {
+
+    public List<CompoundDefinition> Items;
+    private Dictionary<int, ElementData> _elements;
+    private List<BuildingModel> _buildings;
+
     // Use this for initialization
     void Start()
     {
-        ConvertOldConfigToNewFormat();
+        _elements = GameConfig.Get<ElementConfig>().ElementsDictionary;
+        _buildings = GameConfig.Get<BuildingConfig>().Buildings;
+
+        GenerateArmorCompounds();
+        //ConvertOldConfigToNewFormat();
     }
 
-    public List<CompoundDefinition> Items;
-    private List<ElementModel> _elements;
-    private List<BuildingModel> _buildings;
+    private void GenerateArmorCompounds()
+    {
+        List<CompoundJSON> jsons = new List<CompoundJSON>();
+
+
+    }
 
     //call to convert and generate new config
     public void ConvertOldConfigToNewFormat()
     {
-        _elements = GameConfig.Get<ElementConfig>().Elements;
-        _buildings = GameConfig.Get<BuildingConfig>().Buildings;
-
         TextAsset configFile = Resources.Load<TextAsset>( "Configs/Recipes-Common176" );
         Items = JsonConvert.DeserializeObject<CompoundGenerator>( configFile.text ).Items;
 
@@ -146,7 +156,7 @@ public class CompoundGenerator : MonoBehaviour
         return atomDict;
     }
 
-    private ElementModel GetAtom( string symbol )
+    private ElementData GetAtom( string symbol )
     {
         for( int i = 0; i < _elements.Count; i++ )
         {

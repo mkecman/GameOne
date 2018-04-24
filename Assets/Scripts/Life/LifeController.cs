@@ -11,14 +11,14 @@ public class LifeController : AbstractController, IGameInit
     private Dictionary<R, BellCurve> _bellCurves;
     private HexUpdateCommand _hexUpdateCommand;
     private UnitFactory _factory;
-    private List<ElementModel> _elements;
+    private List<ElementData> _elements;
 
     public void Init()
     {
         _bellCurves = GameConfig.Get<BellCurveConfig>();
         _hexUpdateCommand = GameModel.Get<HexUpdateCommand>();
         _factory = GameModel.Get<UnitFactory>();
-        _elements = GameConfig.Get<ElementConfig>().Elements;
+        _elements = GameConfig.Get<ElementConfig>().ElementsList;
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
     }
 
@@ -41,9 +41,9 @@ public class LifeController : AbstractController, IGameInit
         _selectedLife.BuildingsState = GameModel.Copy( GameConfig.Get<BuildingConfig>().Buildings );
         _selectedLife.Resistance = GameModel.Copy( _bellCurves );
 
-        for( int i = 1; i < _elements.Count; i++ )
+        for( int i = 0; i < _elements.Count; i++ )
         {
-            _selectedLife.Elements.Add( i, new LifeElementModel( i, _elements[ i ].Symbol, 0, 100 ) );
+            _selectedLife.Elements.Add( _elements[ i ].Index, new LifeElementModel( _elements[ i ].Index, _elements[ i ].Symbol, 0, 100 ) );
         }
 
         int unitX = ( _planet.Map.Width / 2 ) + 2;
