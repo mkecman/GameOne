@@ -6,26 +6,24 @@ using UniRx;
 
 public class CompoundTypeButton : GameView
 {
+    public CompoundType Type;
     public Toggle Button;
     public Text Label;
 
-    private SkillTypeMessage _message = new SkillTypeMessage();
+    private CompoundTypeMessage _message = new CompoundTypeMessage();
 
     // Use this for initialization
     void Start()
     {
-        GameMessage.Listen<SkillTypeMessage>( OnSkillTypeMessage );
+        _message.Type = Type;
+        Label.text = Type.ToString();
+
+        GameMessage.Listen<CompoundTypeMessage>( OnCompoundTypeMessage );
         Button.OnValueChangedAsObservable().Where( _ => _ == true ).Subscribe( _ => GameMessage.Send( _message ) ).AddTo( disposables );
     }
 
-    private void OnSkillTypeMessage( SkillTypeMessage value )
+    private void OnCompoundTypeMessage( CompoundTypeMessage value )
     {
         Button.isOn = value.Type == _message.Type;
-    }
-
-    internal void Setup( SkillType type )
-    {
-        _message.Type = type;
-        Label.text = type.ToString();
     }
 }

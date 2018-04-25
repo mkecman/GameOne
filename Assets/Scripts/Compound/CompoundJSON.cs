@@ -4,6 +4,7 @@ using System.Collections.Generic;
 [Serializable]
 public class CompoundJSON
 {
+    public int Index;
     public string Name;
     public CompoundType Type;
     public string Formula;

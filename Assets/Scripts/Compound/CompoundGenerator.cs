@@ -15,7 +15,7 @@ public class CompoundGenerator : MonoBehaviour
     private List<BuildingModel> _buildings;
     private Dictionary<int, Dictionary<ElementRarityClass, ArmorLevelData>> _levelConfig;
     private List<CompoundJSON> _compounds;
-
+    private int _indexer;
     private Dictionary<ElementRarityClass, List<WeightedValue>> _elementsProbabilities;
 
     // Use this for initialization
@@ -32,6 +32,7 @@ public class CompoundGenerator : MonoBehaviour
     private void GenerateArmorCompounds()
     {
         _compounds = new List<CompoundJSON>();
+        _indexer = 0;
 
         _elementsProbabilities = new Dictionary<ElementRarityClass, List<WeightedValue>>();
         _elementsProbabilities.Add( ElementRarityClass.Abundant, new List<WeightedValue>() );
@@ -112,6 +113,7 @@ public class CompoundGenerator : MonoBehaviour
         float delta = _levelConfig[ level ][ ElementRarityClass.Abundant ].Delta * sign;
         CompoundJSON compound = new CompoundJSON
         {
+            Index = _indexer,
             Type = CompoundType.Armor,
             Name = effect.ToString() + " " + delta
         };
@@ -128,6 +130,7 @@ public class CompoundGenerator : MonoBehaviour
         }
 
         _compounds.Add( compound );
+        _indexer++;
     }
 
     private List<LifeElementModel> CreateCompoundElements( CompoundJSON compound, int level, ElementRarityClass rarityClass )

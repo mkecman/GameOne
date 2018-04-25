@@ -10,24 +10,30 @@ using System.Linq;
 public class CompoundView : GameView, IPointerClickHandler
 {
     public UIPropertyView Name;
-    public UIPropertyView UnlockPrice;
-    public UIPropertyView MaintenancePrice;
+    public Transform ElementsGrid;
     public Transform EffectsGrid;
     public Outline Outline;
     public Image BackgroundImage;
     public Color[] StateColors = new Color[ 4 ] { Color.gray, Color.yellow, Color.green, Color.magenta };
 
-    private SkillData _skill;
+    private CompoundJSON _compound;
     private SkillMessage _message = new SkillMessage();
+    private LifeModel _life;
 
-    void Start()
+    void Awake()
     {
+        GameModel.HandleGet<PlanetModel>( OnPlanetChange );
         GameMessage.Listen<SkillMessage>( OnSkillSelected );
+    }
+
+    private void OnPlanetChange( PlanetModel value )
+    {
+        _life = value.Life;
     }
 
     private void OnSkillSelected( SkillMessage value )
     {
-        Outline.enabled = _skill.Index == value.Index;
+        Outline.enabled = _compound.Index == value.Index;
         if( Outline.enabled )
             SetState( value.State );
     }
@@ -43,21 +49,26 @@ public class CompoundView : GameView, IPointerClickHandler
         BackgroundImage.color = StateColors[ (int)state ];
     }
 
-    internal void Setup( SkillData skill, GameObject effectPrefab )
+    internal void Setup( CompoundJSON compound, GameObject effectPrefab )
     {
-        _skill = skill;
-        _message.Index = _skill.Index;
-        _message.State = _skill.State;
+        _compound = compound;
+        _message.Index = _compound.Index;
 
-        //disposables.Clear();
-        //_skill._State.Subscribe( _ => SetState() ).AddTo( disposables );
-        SetState( _skill.State );
+        Name.SetProperty( _compound.Name );
 
-        Name.SetProperty( _skill.Name );
-        UnlockPrice.SetProperty( "Unlock:" );
-        UnlockPrice.SetValue( float.MaxValue, -_skill.UnlockCost );
-
-        foreach( KeyValuePair<R, float> effect in _skill.Effects )
+        for( int i = 0; i < ElementsGrid.childCount; i++ )
+        {
+            if( i >= _compound.Elements.Count )
+            {
+                ElementsGrid.GetChild( i ).GetComponent<CompoundElementAmountView>().Setup( null, 0 );
+            }
+            else
+            {
+                ElementsGrid.GetChild(i).GetComponent<CompoundElementAmountView>().Setup( _life.Elements[ _compound.Elements[ i ].Index ], _compound.Elements[ i ].Amount );
+            }
+        }
+        
+        foreach( KeyValuePair<R, float> effect in _compound.Effects )
         {
             AddEffect( effectPrefab, effect.Key, effect.Value );
         }
@@ -75,7 +86,7 @@ public class CompoundView : GameView, IPointerClickHandler
     public override void OnDestroy()
     {
         base.OnDestroy();
-        _skill = null;
+        _compound = null;
         _message = null;
         GameMessage.StopListen<SkillMessage>( OnSkillSelected );
     }

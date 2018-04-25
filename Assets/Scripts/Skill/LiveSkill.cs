@@ -18,7 +18,7 @@ public class LiveSkill : ISkill
         _planet = _planetController.SelectedPlanet;
         _hex = _planet.Map.Table[ unit.X ][ unit.Y ];
 
-        unit.Props[ R.Health ].Value -= 1 - unit.Props[ R.Armor ].Value;
+        //unit.Props[ R.Health ].Value -= 1 - unit.Props[ R.Armor ].Value;
         //^NOT GOOD!!! I need tileAttack prop in Unit class, calculated when a unit moves into a tile
 
         if( unit.Props[ R.Health ].Value <= 0 )

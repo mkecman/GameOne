@@ -8,38 +8,28 @@ using UniRx;
 public class CompoundsPanel : GameView
 {
     public Transform Container;
-    public GameObject SkillUnlockPrefab;
+    public GameObject CompoundUnlockPrefab;
     public GameObject EffectPrefab;
-
+    private CompoundConfig _compoundConfig;
     private BuildingMessage _abilityMessage;
-    private UnitModel _unit;
-    private SkillType _type;
-    private SkillConfig _skillConfig;
-    private SkillData _skill;
+    private CompoundJSON _compound;
 
     // Use this for initialization
     void Awake()
     {
-        _skillConfig = GameConfig.Get<SkillConfig>();
-        _abilityMessage = new BuildingMessage( BuildingState.LOCKED, 0 );
+        _compoundConfig = GameConfig.Get<CompoundConfig>();
     }
 
-    public void SetModel( UnitModel unit, SkillType type )
+    public void SetModel( LifeModel life, CompoundType type )
     {
-        _unit = unit;
-        _type = type;
-
         RemoveAllChildren( Container );
-        for( int i = 0; i < _skillConfig.Count; i++ )
+        for( int i = 0; i < _compoundConfig.Count; i++ )
         {
-            _skill = _skillConfig[ i ];
-            if( _skill.Type == type )
+            _compound = _compoundConfig[ i ];
+            if( _compound.Type == type )
             {
-                GameObject go = Instantiate( SkillUnlockPrefab, Container );
-                if( _unit.Skills.ContainsKey( _skill.Index ) )
-                    go.GetComponent<SkillUnlockView>().Setup( _unit.Skills[ _skill.Index ], EffectPrefab );
-                else
-                    go.GetComponent<SkillUnlockView>().Setup( _skill, EffectPrefab );
+                GameObject go = Instantiate( CompoundUnlockPrefab, Container );
+                go.GetComponent<CompoundView>().Setup( _compound, EffectPrefab );
             }
         }
     }
