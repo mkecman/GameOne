@@ -11,7 +11,6 @@ public class CompoundsPanel : GameView
     public GameObject CompoundUnlockPrefab;
     public GameObject EffectPrefab;
     private CompoundConfig _compoundConfig;
-    private BuildingMessage _abilityMessage;
     private CompoundJSON _compound;
 
     // Use this for initialization

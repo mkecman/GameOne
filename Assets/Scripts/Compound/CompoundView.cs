@@ -14,16 +14,20 @@ public class CompoundView : GameView, IPointerClickHandler
     public Transform EffectsGrid;
     public Outline Outline;
     public Image BackgroundImage;
+    public Button CraftButton;
     public Color[] StateColors = new Color[ 4 ] { Color.gray, Color.yellow, Color.green, Color.magenta };
 
     private CompoundJSON _compound;
-    private SkillMessage _message = new SkillMessage();
+    private CompoundSelectMessage _message = new CompoundSelectMessage();
     private LifeModel _life;
+
+    private BoolReactiveProperty canCraft = new BoolReactiveProperty( true );
 
     void Awake()
     {
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
-        GameMessage.Listen<SkillMessage>( OnSkillSelected );
+        GameMessage.Listen<CompoundSelectMessage>( OnCompoundSelected );
+        canCraft.Subscribe( _ => SetState() ).AddTo(this);
     }
 
     private void OnPlanetChange( PlanetModel value )
@@ -31,11 +35,13 @@ public class CompoundView : GameView, IPointerClickHandler
         _life = value.Life;
     }
 
-    private void OnSkillSelected( SkillMessage value )
+    private void OnCompoundSelected( CompoundSelectMessage value )
     {
         Outline.enabled = _compound.Index == value.Index;
+        /*
         if( Outline.enabled )
             SetState( value.State );
+            */
     }
 
     public void OnPointerClick( PointerEventData eventData )
@@ -43,10 +49,10 @@ public class CompoundView : GameView, IPointerClickHandler
         GameMessage.Send( _message );
     }
 
-    internal void SetState( SkillState state )
+    internal void SetState()
     {
-        //if( _skill.State == SkillState.LOCKED || _skill.State == SkillState.UNLOCKED )
-        BackgroundImage.color = StateColors[ (int)state ];
+        CraftButton.interactable = canCraft.Value;
+        BackgroundImage.color = StateColors[ canCraft.Value?1:0 ];
     }
 
     internal void Setup( CompoundJSON compound, GameObject effectPrefab )
@@ -60,11 +66,11 @@ public class CompoundView : GameView, IPointerClickHandler
         {
             if( i >= _compound.Elements.Count )
             {
-                ElementsGrid.GetChild( i ).GetComponent<CompoundElementAmountView>().Setup( null, 0 );
+                ElementsGrid.GetChild( i ).GetComponent<CompoundElementAmountView>().Setup( null, 0, canCraft );
             }
             else
             {
-                ElementsGrid.GetChild(i).GetComponent<CompoundElementAmountView>().Setup( _life.Elements[ _compound.Elements[ i ].Index ], _compound.Elements[ i ].Amount );
+                ElementsGrid.GetChild(i).GetComponent<CompoundElementAmountView>().Setup( _life.Elements[ _compound.Elements[ i ].Index ], _compound.Elements[ i ].Amount, canCraft );
             }
         }
         
@@ -88,6 +94,6 @@ public class CompoundView : GameView, IPointerClickHandler
         base.OnDestroy();
         _compound = null;
         _message = null;
-        GameMessage.StopListen<SkillMessage>( OnSkillSelected );
+        GameMessage.StopListen<CompoundSelectMessage>( OnCompoundSelected );
     }
 }

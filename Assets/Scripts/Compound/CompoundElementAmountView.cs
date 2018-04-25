@@ -9,9 +9,11 @@ public class CompoundElementAmountView : GameView
     public Color RedColor;
     public Color GreenColor;
     private int _requiredAmount;
+    private BoolReactiveProperty _canCraft;
 
-    public void Setup( LifeElementModel lifeElementModel, int requiredAmount )
+    public void Setup( LifeElementModel lifeElementModel, int requiredAmount, BoolReactiveProperty canCraft )
     {
+        _canCraft = canCraft;
         disposables.Clear();
         if( lifeElementModel == null )
         {
@@ -34,11 +36,13 @@ public class CompoundElementAmountView : GameView
         {
             Symbol.color = RedColor;
             Amount.color = RedColor;
+            _canCraft.Value = false;
         }
         else
         {
             Symbol.color = GreenColor;
             Amount.color = GreenColor;
+            _canCraft.Value = _canCraft.Value && true;
         }
     }
 }

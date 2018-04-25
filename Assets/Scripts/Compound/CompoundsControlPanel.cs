@@ -24,14 +24,14 @@ public class CompoundsControlPanel : GameView
         GameMessage.Send( new CameraControlMessage( false ) );
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
         GameMessage.Listen<CompoundTypeMessage>( OnCompoundTypeMessage );
-        GameMessage.Listen<SkillMessage>( OnSkillMessage );
+        GameMessage.Listen<CompoundSelectMessage>( OnCompoundSelectMessage );
     }
 
     private void OnDisable()
     {
         GameMessage.Send( new CameraControlMessage( true ) );
         GameMessage.StopListen<CompoundTypeMessage>( OnCompoundTypeMessage );
-        GameMessage.StopListen<SkillMessage>( OnSkillMessage );
+        GameMessage.StopListen<CompoundSelectMessage>( OnCompoundSelectMessage );
         GameModel.RemoveHandle<PlanetModel>( OnPlanetChange );
     }
 
@@ -40,10 +40,11 @@ public class CompoundsControlPanel : GameView
         CompoundsPanel.SetModel( _life, value.Type );
     }
 
-    private void OnSkillMessage( SkillMessage value )
+    private void OnCompoundSelectMessage( CompoundSelectMessage value )
     {
         _message.Index = value.Index;
 
+        /*
         if( _life.Compounds.ContainsKey( value.Index ) )
         {
             UnlockButton.interactable = false;
@@ -54,6 +55,7 @@ public class CompoundsControlPanel : GameView
             UnlockButton.interactable = true;
             ChooseButton.interactable = false;
         }
+        */
     }
 
     private void OnPlanetChange( PlanetModel value )

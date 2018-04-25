@@ -45,6 +45,7 @@ public class GameController : MonoBehaviour
         AddController<PlanetGenerateCommand>();
         AddController<PlanetPropsUpdateCommand>();
         AddController<UnitDefenseUpdateCommand>();
+        AddController<CompoundController>();
 
         AddController<SkillCommand>();
 
