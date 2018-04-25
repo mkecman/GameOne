@@ -48,6 +48,26 @@ public class RandomUtil
     /// <summary>
     /// Sum of probabilites has to be 1!!!
     /// </summary>
+    /// <param name="probabilities">Value is output value, Weight is a probability percent</param>
+    /// <returns>Random object Value based on probabilities.</returns>
+    public static WeightedValue GetWeightedValueObject( List<WeightedValue> probabilities )
+    {
+        float diceRoll = GetNext();
+        float cumulative = 0.0f;
+        for( int i = 0; i < probabilities.Count; i++ )
+        {
+            cumulative += probabilities[ i ].Weight;
+            if( diceRoll < cumulative )
+            {
+                return probabilities[ i ];
+            }
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// Sum of probabilites has to be 1!!!
+    /// </summary>
     /// <param name="probabilities">Key index is output value, Weight is a probability percent</param>
     /// <returns>Random object Key index based on probabilities.</returns>
     public static int GetWeightedKey(List<WeightedValue> probabilities)

@@ -11,12 +11,18 @@ public class CompoundGenerator : MonoBehaviour
 
     public List<CompoundDefinition> Items;
     private Dictionary<int, ElementData> _elements;
+    private List<ElementData> _elementsList;
     private List<BuildingModel> _buildings;
+    private Dictionary<int, Dictionary<ElementRarityClass, ArmorLevelData>> _levelConfig;
+    private List<CompoundJSON> _compounds;
+
+    private Dictionary<ElementRarityClass, List<WeightedValue>> _elementsProbabilities;
 
     // Use this for initialization
     void Start()
     {
         _elements = GameConfig.Get<ElementConfig>().ElementsDictionary;
+        _elementsList = GameConfig.Get<ElementConfig>().ElementsList;
         _buildings = GameConfig.Get<BuildingConfig>().Buildings;
 
         GenerateArmorCompounds();
@@ -25,9 +31,150 @@ public class CompoundGenerator : MonoBehaviour
 
     private void GenerateArmorCompounds()
     {
-        List<CompoundJSON> jsons = new List<CompoundJSON>();
+        _compounds = new List<CompoundJSON>();
+
+        _elementsProbabilities = new Dictionary<ElementRarityClass, List<WeightedValue>>();
+        _elementsProbabilities.Add( ElementRarityClass.Abundant, new List<WeightedValue>() );
+        _elementsProbabilities.Add( ElementRarityClass.Common, new List<WeightedValue>() );
+        _elementsProbabilities.Add( ElementRarityClass.Uncommon, new List<WeightedValue>() );
+        _elementsProbabilities.Add( ElementRarityClass.Rare, new List<WeightedValue>() );
+        for( int i = 0; i < _elementsList.Count; i++ )
+        {
+            _elementsProbabilities[ _elementsList[ i ].RarityClass ].Add( new WeightedValue( _elementsList[ i ].Index, 0 ) );
+        }
+        foreach( KeyValuePair<ElementRarityClass, List<WeightedValue>> probs in _elementsProbabilities )
+        {
+            foreach( WeightedValue item in probs.Value )
+            {
+                item.Weight = 1f / probs.Value.Count;
+            }
+        }
+
+        _levelConfig = new Dictionary<int, Dictionary<ElementRarityClass, ArmorLevelData>>();
+
+        ///level 1
+        Dictionary<ElementRarityClass, ArmorLevelData> temp = new Dictionary<ElementRarityClass, ArmorLevelData>
+        {
+            { ElementRarityClass.Abundant, new ArmorLevelData( ElementRarityClass.Abundant, 3, 0.80f, 2, 4 ) },
+            { ElementRarityClass.Common, new ArmorLevelData( ElementRarityClass.Common, 3, 0.2f, 1, 2 ) },
+            { ElementRarityClass.Uncommon, new ArmorLevelData( ElementRarityClass.Uncommon, 3, 0f, 0, 0 ) },
+            { ElementRarityClass.Rare, new ArmorLevelData( ElementRarityClass.Rare, 3, 0f, 0, 0 ) }
+        };
+        _levelConfig.Add( 1, temp );
+        ///level 2
+        temp = new Dictionary<ElementRarityClass, ArmorLevelData>
+        {
+            { ElementRarityClass.Abundant, new ArmorLevelData( ElementRarityClass.Abundant, 9, 0.3f, 1, 3 ) },
+            { ElementRarityClass.Common, new ArmorLevelData( ElementRarityClass.Common, 9, 0.5f, 2, 4 ) },
+            { ElementRarityClass.Uncommon, new ArmorLevelData( ElementRarityClass.Uncommon, 9, 0.2f, 1, 2 ) },
+            { ElementRarityClass.Rare, new ArmorLevelData( ElementRarityClass.Rare, 9, 0f, 0, 0 ) }
+        };
+        _levelConfig.Add( 2, temp );
+        ///level 3
+        temp = new Dictionary<ElementRarityClass, ArmorLevelData>
+        {
+            { ElementRarityClass.Abundant, new ArmorLevelData( ElementRarityClass.Abundant, 18, 0.1f, 0, 1 ) },
+            { ElementRarityClass.Common, new ArmorLevelData( ElementRarityClass.Common, 18, 0.25f, 1, 2 ) },
+            { ElementRarityClass.Uncommon, new ArmorLevelData( ElementRarityClass.Uncommon, 18, 0.35f, 2, 4 ) },
+            { ElementRarityClass.Rare, new ArmorLevelData( ElementRarityClass.Rare, 18, 0.3f, 1, 2 ) }
+        };
+        _levelConfig.Add( 3, temp );
 
 
+        bool isPositive = true;
+        for( int i = 1; i <= 3; i++ )
+        {
+            CreateCompound( R.Temperature, i, isPositive );
+            CreateCompound( R.Pressure, i, isPositive );
+            CreateCompound( R.Humidity, i, isPositive );
+            CreateCompound( R.Radiation, i, isPositive );
+            isPositive = false;
+            CreateCompound( R.Temperature, i, isPositive );
+            CreateCompound( R.Pressure, i, isPositive );
+            CreateCompound( R.Humidity, i, isPositive );
+            CreateCompound( R.Radiation, i, isPositive );
+            isPositive = true;
+        }
+
+        //SAVE TO FILE
+        File.WriteAllText(
+            Application.persistentDataPath + "-Compounds.json",
+            JsonConvert.SerializeObject( _compounds )
+            );
+
+        Debug.Log( "DONE Generating Compounds" );
+
+    }
+
+    private void CreateCompound( R effect, int level, bool isPositive )
+    {
+        float sign = isPositive ? 1 : -1;
+        float delta = _levelConfig[ level ][ ElementRarityClass.Abundant ].Delta * sign;
+        CompoundJSON compound = new CompoundJSON
+        {
+            Type = CompoundType.Armor,
+            Name = effect.ToString() + " " + delta
+        };
+        compound.Effects.Add( effect, delta );
+
+        compound.Elements.AddRange( CreateCompoundElements( compound, level, ElementRarityClass.Rare ) );
+        compound.Elements.AddRange( CreateCompoundElements( compound, level, ElementRarityClass.Uncommon ) );
+        compound.Elements.AddRange( CreateCompoundElements( compound, level, ElementRarityClass.Common ) );
+        compound.Elements.AddRange( CreateCompoundElements( compound, level, ElementRarityClass.Abundant ) );
+
+        foreach( LifeElementModel item in compound.Elements )
+        {
+            compound.Formula += item.Symbol + item.Amount + " ";
+        }
+
+        _compounds.Add( compound );
+    }
+
+    private List<LifeElementModel> CreateCompoundElements( CompoundJSON compound, int level, ElementRarityClass rarityClass )
+    {
+        List<LifeElementModel> output = new List<LifeElementModel>();
+
+        ArmorLevelData armorLevelData = _levelConfig[ level ][ rarityClass ];
+        int numberOfElements = RandomUtil.FromRangeInt( armorLevelData.Min, armorLevelData.Max );
+        float amountNeeded = armorLevelData.Weight * ( armorLevelData.Delta * 110 );
+        List<WeightedValue> probabilities = GameModel.Copy( _elementsProbabilities[ rarityClass ] );
+        WeightedValue weightedValue;
+        int index;
+        for( int i = 0; i < numberOfElements; i++ )
+        {
+            weightedValue = RandomUtil.GetWeightedValueObject( probabilities );
+            index = (int)weightedValue.Value;
+            output.Add( new LifeElementModel( index, _elements[ index ].Symbol, 0, 100000 ) );
+            probabilities.Remove( weightedValue );
+            foreach( WeightedValue item in probabilities )
+            {
+                item.Weight = 1f / probabilities.Count;
+            }
+        }
+
+        float amountCollected = 0;
+        int fullElements = 0;
+        bool isFull = false;
+        while( !isFull )
+        {
+            fullElements = 0;
+            for( int i = 0; i < numberOfElements; i++ )
+            {
+                if( _elements[ output[ i ].Index ].Weight + amountCollected > amountNeeded )
+                    fullElements++;
+                else
+                {
+                    output[ i ].Amount++;
+                    amountCollected += _elements[ output[ i ].Index ].Weight;
+                }
+            }
+            if( fullElements == numberOfElements )
+                isFull = true;
+        }
+
+        compound.MolecularMass += amountCollected;
+
+        return output;
     }
 
     //call to convert and generate new config
@@ -167,3 +314,22 @@ public class CompoundGenerator : MonoBehaviour
         return null;
     }
 }
+
+internal class ArmorLevelData
+{
+    public ElementRarityClass RarityClass;
+    public float Delta;
+    public float Weight;
+    public int Min;
+    public int Max;
+
+    public ArmorLevelData( ElementRarityClass rarityClass, float delta, float weight, int min, int max )
+    {
+        RarityClass = rarityClass;
+        Delta = delta;
+        Weight = weight;
+        Min = min;
+        Max = max;
+    }
+}
+

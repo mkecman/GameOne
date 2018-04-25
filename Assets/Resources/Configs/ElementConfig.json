@@ -7,9 +7,10 @@
    "Group": "nonmetal",
    "Name": "Hydrogen",
    "Symbol": "H",
-   "Density": 0,
+   "Density": 0.0000899,
    "Weight": 1.00794,
-   "Rarity": 0.09
+   "Rarity": 0.09,
+   "RarityClass": "Abundant"
  },
  {
    "Index": 3,
@@ -19,7 +20,8 @@
    "Symbol": "Li",
    "Density": 0.535,
    "Weight": 6.941,
-   "Rarity": 0.03
+   "Rarity": 0.03,
+   "RarityClass": "Uncommon"
  },
  {
    "Index": 6,
@@ -29,7 +31,8 @@
    "Symbol": "C",
    "Density": 2.26,
    "Weight": 12.011,
-   "Rarity": 0.08
+   "Rarity": 0.08,
+   "RarityClass": "Abundant"
  },
  {
    "Index": 7,
@@ -37,9 +40,10 @@
    "Group": "nonmetal",
    "Name": "Nitrogen",
    "Symbol": "N",
-   "Density": 0.001,
+   "Density": 0.001251,
    "Weight": 14.00674,
-   "Rarity": 0.08
+   "Rarity": 0.08,
+   "RarityClass": "Abundant"
  },
  {
    "Index": 8,
@@ -47,9 +51,10 @@
    "Group": "nonmetal",
    "Name": "Oxygen",
    "Symbol": "O",
-   "Density": 0.001,
+   "Density": 0.001251,
    "Weight": 15.9994,
-   "Rarity": 0.09
+   "Rarity": 0.09,
+   "RarityClass": "Abundant"
  },
  {
    "Index": 9,
@@ -57,9 +62,10 @@
    "Group": "halogen",
    "Name": "Fluorine",
    "Symbol": "F",
-   "Density": 0.002,
+   "Density": 0.001696,
    "Weight": 18.998403,
-   "Rarity": 0.03
+   "Rarity": 0.03,
+   "RarityClass": "Uncommon"
  },
  {
    "Index": 11,
@@ -69,7 +75,8 @@
    "Symbol": "Na",
    "Density": 0.968,
    "Weight": 22.989768,
-   "Rarity": 0.04
+   "Rarity": 0.04,
+   "RarityClass": "Common"
  },
  {
    "Index": 12,
@@ -79,7 +86,8 @@
    "Symbol": "Mg",
    "Density": 1.738,
    "Weight": 24.305,
-   "Rarity": 0.06
+   "Rarity": 0.06,
+   "RarityClass": "Abundant"
  },
  {
    "Index": 13,
@@ -89,7 +97,8 @@
    "Symbol": "Al",
    "Density": 2.7,
    "Weight": 26.981539,
-   "Rarity": 0.05
+   "Rarity": 0.05,
+   "RarityClass": "Common"
  },
  {
    "Index": 14,
@@ -99,7 +108,8 @@
    "Symbol": "Si",
    "Density": 2.33,
    "Weight": 28.0855,
-   "Rarity": 0.07
+   "Rarity": 0.07,
+   "RarityClass": "Abundant"
  },
  {
    "Index": 15,
@@ -109,7 +119,8 @@
    "Symbol": "P",
    "Density": 1.823,
    "Weight": 30.973762,
-   "Rarity": 0.03
+   "Rarity": 0.03,
+   "RarityClass": "Uncommon"
  },
  {
    "Index": 16,
@@ -119,7 +130,8 @@
    "Symbol": "S",
    "Density": 1.96,
    "Weight": 32.066,
-   "Rarity": 0.04
+   "Rarity": 0.04,
+   "RarityClass": "Common"
  },
  {
    "Index": 17,
@@ -127,9 +139,10 @@
    "Group": "halogen",
    "Name": "Chlorine",
    "Symbol": "Cl",
-   "Density": 0.003,
+   "Density": 0.003214,
    "Weight": 35.4527,
-   "Rarity": 0.04
+   "Rarity": 0.04,
+   "RarityClass": "Common"
  },
  {
    "Index": 20,
@@ -139,7 +152,8 @@
    "Symbol": "Ca",
    "Density": 1.55,
    "Weight": 40.078,
-   "Rarity": 0.05
+   "Rarity": 0.05,
+   "RarityClass": "Common"
  },
  {
    "Index": 22,
@@ -149,7 +163,8 @@
    "Symbol": "Ti",
    "Density": 4.507,
    "Weight": 47.88,
-   "Rarity": 0.02
+   "Rarity": 0.02,
+   "RarityClass": "Uncommon"
  },
  {
    "Index": 26,
@@ -159,7 +174,8 @@
    "Symbol": "Fe",
    "Density": 7.874,
    "Weight": 55.847,
-   "Rarity": 0.05
+   "Rarity": 0.05,
+   "RarityClass": "Common"
  },
  {
    "Index": 27,
@@ -169,7 +185,8 @@
    "Symbol": "Co",
    "Density": 8.9,
    "Weight": 58.9332,
-   "Rarity": 0.02
+   "Rarity": 0.02,
+   "RarityClass": "Uncommon"
  },
  {
    "Index": 28,
@@ -179,7 +196,8 @@
    "Symbol": "Ni",
    "Density": 8.908,
    "Weight": 58.6934,
-   "Rarity": 0.04
+   "Rarity": 0.04,
+   "RarityClass": "Common"
  },
  {
    "Index": 29,
@@ -189,7 +207,8 @@
    "Symbol": "Cu",
    "Density": 8.92,
    "Weight": 63.546,
-   "Rarity": 0.02
+   "Rarity": 0.02,
+   "RarityClass": "Uncommon"
  },
  {
    "Index": 30,
@@ -199,7 +218,8 @@
    "Symbol": "Zn",
    "Density": 7.14,
    "Weight": 65.39,
-   "Rarity": 0.02
+   "Rarity": 0.02,
+   "RarityClass": "Uncommon"
  },
  {
    "Index": 47,
@@ -209,7 +229,8 @@
    "Symbol": "Ag",
    "Density": 10.49,
    "Weight": 107.8682,
-   "Rarity": 0.01
+   "Rarity": 0.01,
+   "RarityClass": "Rare"
  },
  {
    "Index": 78,
@@ -219,7 +240,8 @@
    "Symbol": "Pt",
    "Density": 21.09,
    "Weight": 195.08,
-   "Rarity": 0.01
+   "Rarity": 0.01,
+   "RarityClass": "Rare"
  },
  {
    "Index": 79,
@@ -229,7 +251,8 @@
    "Symbol": "Au",
    "Density": 19.3,
    "Weight": 196.96654,
-   "Rarity": 0.01
+   "Rarity": 0.01,
+   "RarityClass": "Rare"
  },
  {
    "Index": 80,
@@ -239,7 +262,8 @@
    "Symbol": "Hg",
    "Density": 13.534,
    "Weight": 200.59,
-   "Rarity": 0.01
+   "Rarity": 0.01,
+   "RarityClass": "Rare"
  },
  {
    "Index": 92,
@@ -249,7 +273,8 @@
    "Symbol": "U",
    "Density": 19.05,
    "Weight": 238.0289,
-   "Rarity": 0.005
+   "Rarity": 0.005,
+   "RarityClass": "Rare"
  },
  {
    "Index": 94,
@@ -259,7 +284,8 @@
    "Symbol": "Pu",
    "Density": 19.816,
    "Weight": 244.0642,
-   "Rarity": 0.005
+   "Rarity": 0.005,
+   "RarityClass": "Rare"
  }
 ]
 }

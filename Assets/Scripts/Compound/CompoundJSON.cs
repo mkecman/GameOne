@@ -8,7 +8,7 @@ public class CompoundJSON
     public CompoundType Type;
     public string Formula;
     public float MolecularMass;
-    public List<LifeElementModel> Elements;
+    public List<LifeElementModel> Elements = new List<LifeElementModel>();
     public Dictionary<R, float> Effects = new Dictionary<R, float>();
 }
 

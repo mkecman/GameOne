@@ -1,1 +1,896 @@
-[{"Name":"Aluminium nitrate","Type":1,"Formula":"Al(NO3)3","MolecularMass":212.994,"Elements":[{"Index":7,"Symbol":"N","Amount":3,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":9,"MaxAmount":100},{"Index":13,"Symbol":"Al","Amount":1,"MaxAmount":100}],"Effects":{"Radiation":-70.0,"Temperature":-10.0,"Minerals":-1.0}},{"Name":"Acetaldehyde","Type":0,"Formula":"C2H4O","MolecularMass":44.053,"Elements":[{"Index":1,"Symbol":"H","Amount":4,"MaxAmount":100},{"Index":6,"Symbol":"C","Amount":2,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":1,"MaxAmount":100}],"Effects":{"Pressure":-20.0,"Humidity":70.0,"Minerals":-1.0}},{"Name":"Acetamide","Type":0,"Formula":"C2H5NO","MolecularMass":59.068,"Elements":[{"Index":1,"Symbol":"H","Amount":5,"MaxAmount":100},{"Index":6,"Symbol":"C","Amount":2,"MaxAmount":100},{"Index":7,"Symbol":"N","Amount":1,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":1,"MaxAmount":100}],"Effects":{"Pressure":70.0,"Minerals":-1.0}},{"Name":"Acetic acid","Type":1,"Formula":"CH3COOH","MolecularMass":60.052,"Elements":[{"Index":1,"Symbol":"H","Amount":4,"MaxAmount":100},{"Index":6,"Symbol":"C","Amount":2,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":2,"MaxAmount":100}],"Effects":{"Temperature":70.0,"Humidity":-20.0,"Minerals":-1.0}},{"Name":"Acetone","Type":1,"Formula":"C3H6O","MolecularMass":58.08,"Elements":[{"Index":1,"Symbol":"H","Amount":6,"MaxAmount":100},{"Index":6,"Symbol":"C","Amount":3,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":1,"MaxAmount":100}],"Effects":{"Radiation":-50.0,"Pressure":-10.0,"Minerals":-1.0}},{"Name":"Acetonitrile","Type":0,"Formula":"C2H3N","MolecularMass":41.053,"Elements":[{"Index":1,"Symbol":"H","Amount":3,"MaxAmount":100},{"Index":6,"Symbol":"C","Amount":2,"MaxAmount":100},{"Index":7,"Symbol":"N","Amount":1,"MaxAmount":100}],"Effects":{"Temperature":-20.0,"Humidity":-50.0,"Minerals":-1.0}},{"Name":"Aluminium chloride","Type":1,"Formula":"AlCl3","MolecularMass":133.33,"Elements":[{"Index":13,"Symbol":"Al","Amount":1,"MaxAmount":100},{"Index":17,"Symbol":"Cl","Amount":3,"MaxAmount":100}],"Effects":{"Pressure":-50.0,"Radiation":-20.0,"Minerals":-1.0}},{"Name":"Aluminium sulfate","Type":1,"Formula":"Al2(SO4)3","MolecularMass":342.132,"Elements":[{"Index":8,"Symbol":"O","Amount":12,"MaxAmount":100},{"Index":13,"Symbol":"Al","Amount":2,"MaxAmount":100},{"Index":16,"Symbol":"S","Amount":3,"MaxAmount":100}],"Effects":{"Temperature":-50.0,"Minerals":-1.0}},{"Name":"Ammonia","Type":0,"Formula":"NH3","MolecularMass":17.031,"Elements":[{"Index":1,"Symbol":"H","Amount":3,"MaxAmount":100},{"Index":7,"Symbol":"N","Amount":1,"MaxAmount":100}],"Effects":{"Pressure":-10.0,"Radiation":30.0,"Minerals":-1.0}},{"Name":"Ammonium acetate","Type":1,"Formula":"CH3COONH4","MolecularMass":77.083,"Elements":[{"Index":1,"Symbol":"H","Amount":7,"MaxAmount":100},{"Index":6,"Symbol":"C","Amount":2,"MaxAmount":100},{"Index":7,"Symbol":"N","Amount":1,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":2,"MaxAmount":100}],"Effects":{"Humidity":30.0,"Radiation":-10.0,"Minerals":-1.0}},{"Name":"Ammonium carbonate","Type":0,"Formula":"(NH4)2CO3","MolecularMass":96.086,"Elements":[{"Index":1,"Symbol":"H","Amount":8,"MaxAmount":100},{"Index":6,"Symbol":"C","Amount":1,"MaxAmount":100},{"Index":7,"Symbol":"N","Amount":2,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":3,"MaxAmount":100}],"Effects":{"Temperature":-10.0,"Pressure":30.0,"Minerals":-1.0}},{"Name":"Ammonium chloride","Type":1,"Formula":"NH4Cl","MolecularMass":53.49,"Elements":[{"Index":1,"Symbol":"H","Amount":4,"MaxAmount":100},{"Index":7,"Symbol":"N","Amount":1,"MaxAmount":100},{"Index":17,"Symbol":"Cl","Amount":1,"MaxAmount":100}],"Effects":{"Temperature":30.0,"Humidity":-10.0,"Minerals":-1.0}},{"Name":"Ammonium dichromate","Type":0,"Formula":"(NH4)2Cr2O7","MolecularMass":252.063,"Elements":[{"Index":1,"Symbol":"H","Amount":8,"MaxAmount":100},{"Index":7,"Symbol":"N","Amount":2,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":7,"MaxAmount":100},{"Index":24,"Symbol":"Cr","Amount":2,"MaxAmount":100}],"Effects":{"Radiation":-20.0,"Humidity":-10.0,"Minerals":-1.0}},{"Name":"Ammonium hydroxide","Type":0,"Formula":"NH4OH","MolecularMass":35.046,"Elements":[{"Index":1,"Symbol":"H","Amount":5,"MaxAmount":100},{"Index":7,"Symbol":"N","Amount":1,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":1,"MaxAmount":100}],"Effects":{"Humidity":-20.0,"Minerals":-1.0}},{"Name":"Ammonium nitrate","Type":1,"Formula":"NH4NO3","MolecularMass":80.043,"Elements":[{"Index":1,"Symbol":"H","Amount":4,"MaxAmount":100},{"Index":7,"Symbol":"N","Amount":2,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":3,"MaxAmount":100}],"Effects":{"Pressure":-20.0,"Radiation":-10.0,"Minerals":-1.0}},{"Name":"Ammonium oxalate","Type":1,"Formula":"(NH4)2C2O4","MolecularMass":124.096,"Elements":[{"Index":1,"Symbol":"H","Amount":8,"MaxAmount":100},{"Index":6,"Symbol":"C","Amount":2,"MaxAmount":100},{"Index":7,"Symbol":"N","Amount":2,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":4,"MaxAmount":100}],"Effects":{"Temperature":-20.0,"Minerals":-1.0}},{"Name":"Ammonium sulfate","Type":0,"Formula":"(NH4)2SO4","MolecularMass":132.13,"Elements":[{"Index":1,"Symbol":"H","Amount":8,"MaxAmount":100},{"Index":7,"Symbol":"N","Amount":2,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":4,"MaxAmount":100},{"Index":16,"Symbol":"S","Amount":1,"MaxAmount":100}],"Effects":{"Radiation":10.0,"Minerals":-1.0}},{"Name":"Antimony(III) chloride","Type":1,"Formula":"SbCl3","MolecularMass":228.11,"Elements":[{"Index":17,"Symbol":"Cl","Amount":3,"MaxAmount":100},{"Index":51,"Symbol":"Sb","Amount":1,"MaxAmount":100}],"Effects":{"Humidity":10.0,"Minerals":-1.0}},{"Name":"Antimony(V) chloride","Type":0,"Formula":"SbCl5","MolecularMass":299.01,"Elements":[{"Index":17,"Symbol":"Cl","Amount":5,"MaxAmount":100},{"Index":51,"Symbol":"Sb","Amount":1,"MaxAmount":100}],"Effects":{"Pressure":10.0,"Minerals":-1.0}},{"Name":"Barium chloride","Type":0,"Formula":"BaCl2","MolecularMass":208.23,"Elements":[{"Index":17,"Symbol":"Cl","Amount":2,"MaxAmount":100},{"Index":56,"Symbol":"Ba","Amount":1,"MaxAmount":100}],"Effects":{"Temperature":10.0,"Minerals":-1.0}},{"Name":"Barium hydroxide","Type":1,"Formula":"Ba(OH)2","MolecularMass":171.34,"Elements":[{"Index":1,"Symbol":"H","Amount":2,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":2,"MaxAmount":100},{"Index":56,"Symbol":"Ba","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Barium nitrate","Type":0,"Formula":"Ba(NO3)2","MolecularMass":261.34,"Elements":[{"Index":7,"Symbol":"N","Amount":2,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":6,"MaxAmount":100},{"Index":56,"Symbol":"Ba","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Bismuth(III) chloride","Type":1,"Formula":"BiCl3","MolecularMass":315.33,"Elements":[{"Index":17,"Symbol":"Cl","Amount":3,"MaxAmount":100},{"Index":83,"Symbol":"Bi","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Bismuth(III) nitrate","Type":0,"Formula":"Bi(NO3)3","MolecularMass":394.99,"Elements":[{"Index":7,"Symbol":"N","Amount":3,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":9,"MaxAmount":100},{"Index":83,"Symbol":"Bi","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Butan-1-ol","Type":1,"Formula":"C4H10O","MolecularMass":74.123,"Elements":[{"Index":1,"Symbol":"H","Amount":10,"MaxAmount":100},{"Index":6,"Symbol":"C","Amount":4,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Butyric acid","Type":0,"Formula":"C4H8O2","MolecularMass":88.106,"Elements":[{"Index":1,"Symbol":"H","Amount":8,"MaxAmount":100},{"Index":6,"Symbol":"C","Amount":4,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":2,"MaxAmount":100}],"Effects":{}},{"Name":"Cadmium nitrate","Type":1,"Formula":"Cd(NO3)2","MolecularMass":236.42,"Elements":[{"Index":7,"Symbol":"N","Amount":2,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":6,"MaxAmount":100},{"Index":48,"Symbol":"Cd","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Cadmium sulfate","Type":0,"Formula":"CdSO4","MolecularMass":208.47,"Elements":[{"Index":8,"Symbol":"O","Amount":4,"MaxAmount":100},{"Index":16,"Symbol":"S","Amount":1,"MaxAmount":100},{"Index":48,"Symbol":"Cd","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Calcium chloride","Type":1,"Formula":"CaCl2","MolecularMass":110.98,"Elements":[{"Index":17,"Symbol":"Cl","Amount":2,"MaxAmount":100},{"Index":20,"Symbol":"Ca","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Calcium hydroxide","Type":1,"Formula":"Ca(OH)2","MolecularMass":74.092,"Elements":[{"Index":1,"Symbol":"H","Amount":2,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":2,"MaxAmount":100},{"Index":20,"Symbol":"Ca","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Calcium nitrate","Type":1,"Formula":"Ca(NO3)2","MolecularMass":164.086,"Elements":[{"Index":7,"Symbol":"N","Amount":2,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":6,"MaxAmount":100},{"Index":20,"Symbol":"Ca","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Calcium sulfate","Type":1,"Formula":"CaSO4","MolecularMass":136.13,"Elements":[{"Index":8,"Symbol":"O","Amount":4,"MaxAmount":100},{"Index":16,"Symbol":"S","Amount":1,"MaxAmount":100},{"Index":20,"Symbol":"Ca","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Carbon disulfide","Type":1,"Formula":"CS2","MolecularMass":76.13,"Elements":[{"Index":6,"Symbol":"C","Amount":1,"MaxAmount":100},{"Index":16,"Symbol":"S","Amount":2,"MaxAmount":100}],"Effects":{}},{"Name":"Chloroacetic acid","Type":1,"Formula":"C2H3ClO2","MolecularMass":94.49,"Elements":[{"Index":1,"Symbol":"H","Amount":3,"MaxAmount":100},{"Index":6,"Symbol":"C","Amount":2,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":2,"MaxAmount":100},{"Index":17,"Symbol":"Cl","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Chloroauric acid","Type":0,"Formula":"HAuCl4","MolecularMass":339.78,"Elements":[{"Index":1,"Symbol":"H","Amount":1,"MaxAmount":100},{"Index":17,"Symbol":"Cl","Amount":4,"MaxAmount":100},{"Index":79,"Symbol":"Au","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Chloroform","Type":0,"Formula":"CHCl3","MolecularMass":119.37,"Elements":[{"Index":1,"Symbol":"H","Amount":1,"MaxAmount":100},{"Index":6,"Symbol":"C","Amount":1,"MaxAmount":100},{"Index":17,"Symbol":"Cl","Amount":3,"MaxAmount":100}],"Effects":{}},{"Name":"Chloroplatinic acid","Type":0,"Formula":"H2PtCl6","MolecularMass":409.8,"Elements":[{"Index":1,"Symbol":"H","Amount":2,"MaxAmount":100},{"Index":17,"Symbol":"Cl","Amount":6,"MaxAmount":100},{"Index":78,"Symbol":"Pt","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Chromium(III) chloride","Type":0,"Formula":"CrCl3","MolecularMass":158.35,"Elements":[{"Index":17,"Symbol":"Cl","Amount":3,"MaxAmount":100},{"Index":24,"Symbol":"Cr","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Chromium(III) nitrate","Type":1,"Formula":"Cr(NO3)3","MolecularMass":238.008,"Elements":[{"Index":7,"Symbol":"N","Amount":3,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":9,"MaxAmount":100},{"Index":24,"Symbol":"Cr","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Chromium(III) sulfate","Type":0,"Formula":"Cr2(SO4)3","MolecularMass":392.16,"Elements":[{"Index":8,"Symbol":"O","Amount":12,"MaxAmount":100},{"Index":16,"Symbol":"S","Amount":3,"MaxAmount":100},{"Index":24,"Symbol":"Cr","Amount":2,"MaxAmount":100}],"Effects":{}},{"Name":"Chromium(VI) oxide","Type":1,"Formula":"CrO3","MolecularMass":99.993,"Elements":[{"Index":8,"Symbol":"O","Amount":3,"MaxAmount":100},{"Index":24,"Symbol":"Cr","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Citric acid","Type":1,"Formula":"C6H8O7","MolecularMass":192.123,"Elements":[{"Index":1,"Symbol":"H","Amount":8,"MaxAmount":100},{"Index":6,"Symbol":"C","Amount":6,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":7,"MaxAmount":100}],"Effects":{}},{"Name":"Cobalt(II) nitrate","Type":1,"Formula":"Co(NO3)2","MolecularMass":182.941,"Elements":[{"Index":7,"Symbol":"N","Amount":2,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":6,"MaxAmount":100},{"Index":27,"Symbol":"Co","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Cobalt(II) sulfate","Type":0,"Formula":"CoSO4","MolecularMass":154.99,"Elements":[{"Index":8,"Symbol":"O","Amount":4,"MaxAmount":100},{"Index":16,"Symbol":"S","Amount":1,"MaxAmount":100},{"Index":27,"Symbol":"Co","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Copper(I) chloride","Type":1,"Formula":"Cu2Cl2","MolecularMass":197.99,"Elements":[{"Index":17,"Symbol":"Cl","Amount":2,"MaxAmount":100},{"Index":29,"Symbol":"Cu","Amount":2,"MaxAmount":100}],"Effects":{}},{"Name":"Copper(II) chloride","Type":0,"Formula":"CuCl2","MolecularMass":134.45,"Elements":[{"Index":17,"Symbol":"Cl","Amount":2,"MaxAmount":100},{"Index":29,"Symbol":"Cu","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Copper(II) nitrate","Type":0,"Formula":"Cu(NO3)2","MolecularMass":187.554,"Elements":[{"Index":7,"Symbol":"N","Amount":2,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":6,"MaxAmount":100},{"Index":29,"Symbol":"Cu","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Copper(II) sulfate","Type":1,"Formula":"CuSO4","MolecularMass":159.6,"Elements":[{"Index":8,"Symbol":"O","Amount":4,"MaxAmount":100},{"Index":16,"Symbol":"S","Amount":1,"MaxAmount":100},{"Index":29,"Symbol":"Cu","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Dichloroacetic acid","Type":1,"Formula":"C2H2Cl2O2","MolecularMass":128.94,"Elements":[{"Index":1,"Symbol":"H","Amount":2,"MaxAmount":100},{"Index":6,"Symbol":"C","Amount":2,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":2,"MaxAmount":100},{"Index":17,"Symbol":"Cl","Amount":2,"MaxAmount":100}],"Effects":{}},{"Name":"Diethyl ether","Type":1,"Formula":"(C2H5)2O","MolecularMass":74.123,"Elements":[{"Index":1,"Symbol":"H","Amount":10,"MaxAmount":100},{"Index":6,"Symbol":"C","Amount":4,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":1,"MaxAmount":100}],"Effects":{}},{"Name":"Dimethylglyoxime","Type":1,"Formula":"(CH3CNOH)2","MolecularMass":116.12,"Elements":[{"Index":1,"Symbol":"H","Amount":8,"MaxAmount":100},{"Index":6,"Symbol":"C","Amount":4,"MaxAmount":100},{"Index":7,"Symbol":"N","Amount":2,"MaxAmount":100},{"Index":8,"Symbol":"O","Amount":2,"MaxAmount":100}],"Effects":{}}]
+[
+  {
+    "Name": "Temperature 3",
+    "Type": 1,
+    "Formula": "Fe1 N6 C5 Si4 ",
+    "MolecularMass": 312.284424,
+    "Elements": [
+      {
+        "Index": 26,
+        "Symbol": "Fe",
+        "Amount": 1,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 7,
+        "Symbol": "N",
+        "Amount": 6,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 6,
+        "Symbol": "C",
+        "Amount": 5,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 14,
+        "Symbol": "Si",
+        "Amount": 4,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Temperature": 3.0
+    }
+  },
+  {
+    "Name": "Pressure 3",
+    "Type": 1,
+    "Formula": "Al2 Si6 O5 ",
+    "MolecularMass": 302.473083,
+    "Elements": [
+      {
+        "Index": 13,
+        "Symbol": "Al",
+        "Amount": 2,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 14,
+        "Symbol": "Si",
+        "Amount": 6,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 8,
+        "Symbol": "O",
+        "Amount": 5,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Pressure": 3.0
+    }
+  },
+  {
+    "Name": "Humidity 3",
+    "Type": 1,
+    "Formula": "Ca1 Si6 H11 C7 ",
+    "MolecularMass": 303.7553,
+    "Elements": [
+      {
+        "Index": 20,
+        "Symbol": "Ca",
+        "Amount": 1,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 14,
+        "Symbol": "Si",
+        "Amount": 6,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 1,
+        "Symbol": "H",
+        "Amount": 11,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 6,
+        "Symbol": "C",
+        "Amount": 7,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Humidity": 3.0
+    }
+  },
+  {
+    "Name": "Radiation 3",
+    "Type": 1,
+    "Formula": "Fe1 Mg5 Si5 ",
+    "MolecularMass": 317.7995,
+    "Elements": [
+      {
+        "Index": 26,
+        "Symbol": "Fe",
+        "Amount": 1,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 12,
+        "Symbol": "Mg",
+        "Amount": 5,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 14,
+        "Symbol": "Si",
+        "Amount": 5,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Radiation": 3.0
+    }
+  },
+  {
+    "Name": "Temperature -3",
+    "Type": 1,
+    "Formula": "Na2 Mg6 Si4 H5 ",
+    "MolecularMass": 309.191223,
+    "Elements": [
+      {
+        "Index": 11,
+        "Symbol": "Na",
+        "Amount": 2,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 12,
+        "Symbol": "Mg",
+        "Amount": 6,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 14,
+        "Symbol": "Si",
+        "Amount": 4,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 1,
+        "Symbol": "H",
+        "Amount": 5,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Temperature": -3.0
+    }
+  },
+  {
+    "Name": "Pressure -3",
+    "Type": 1,
+    "Formula": "Ni1 N6 O5 Mg4 ",
+    "MolecularMass": 319.950836,
+    "Elements": [
+      {
+        "Index": 28,
+        "Symbol": "Ni",
+        "Amount": 1,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 7,
+        "Symbol": "N",
+        "Amount": 6,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 8,
+        "Symbol": "O",
+        "Amount": 5,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 12,
+        "Symbol": "Mg",
+        "Amount": 4,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Pressure": -3.0
+    }
+  },
+  {
+    "Name": "Humidity -3",
+    "Type": 1,
+    "Formula": "S2 C6 N5 Mg5 ",
+    "MolecularMass": 327.7567,
+    "Elements": [
+      {
+        "Index": 16,
+        "Symbol": "S",
+        "Amount": 2,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 6,
+        "Symbol": "C",
+        "Amount": 6,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 7,
+        "Symbol": "N",
+        "Amount": 5,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 12,
+        "Symbol": "Mg",
+        "Amount": 5,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Humidity": -3.0
+    }
+  },
+  {
+    "Name": "Radiation -3",
+    "Type": 1,
+    "Formula": "Na2 N7 Mg6 H19 ",
+    "MolecularMass": 309.007477,
+    "Elements": [
+      {
+        "Index": 11,
+        "Symbol": "Na",
+        "Amount": 2,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 7,
+        "Symbol": "N",
+        "Amount": 7,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 12,
+        "Symbol": "Mg",
+        "Amount": 6,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 1,
+        "Symbol": "H",
+        "Amount": 19,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Radiation": -3.0
+    }
+  },
+  {
+    "Name": "Temperature 9",
+    "Type": 1,
+    "Formula": "Li28 Cl8 Al7 Si7 O6 ",
+    "MolecularMass": 959.435242,
+    "Elements": [
+      {
+        "Index": 3,
+        "Symbol": "Li",
+        "Amount": 28,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 17,
+        "Symbol": "Cl",
+        "Amount": 8,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 13,
+        "Symbol": "Al",
+        "Amount": 7,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 14,
+        "Symbol": "Si",
+        "Amount": 7,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 8,
+        "Symbol": "O",
+        "Amount": 6,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Temperature": 9.0
+    }
+  },
+  {
+    "Name": "Pressure 9",
+    "Type": 1,
+    "Formula": "F10 Ni5 S6 Si10 H16 ",
+    "MolecularMass": 972.829,
+    "Elements": [
+      {
+        "Index": 9,
+        "Symbol": "F",
+        "Amount": 10,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 28,
+        "Symbol": "Ni",
+        "Amount": 5,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 16,
+        "Symbol": "S",
+        "Amount": 6,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 14,
+        "Symbol": "Si",
+        "Amount": 10,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 1,
+        "Symbol": "H",
+        "Amount": 16,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Pressure": 9.0
+    }
+  },
+  {
+    "Name": "Humidity 9",
+    "Type": 1,
+    "Formula": "Li28 S7 Cl7 H294 ",
+    "MolecularMass": 963.3125,
+    "Elements": [
+      {
+        "Index": 3,
+        "Symbol": "Li",
+        "Amount": 28,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 16,
+        "Symbol": "S",
+        "Amount": 7,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 17,
+        "Symbol": "Cl",
+        "Amount": 7,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 1,
+        "Symbol": "H",
+        "Amount": 294,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Humidity": 9.0
+    }
+  },
+  {
+    "Name": "Radiation 9",
+    "Type": 1,
+    "Formula": "Cu3 Na5 Al5 Ni4 Si10 ",
+    "MolecularMass": 956.1231,
+    "Elements": [
+      {
+        "Index": 29,
+        "Symbol": "Cu",
+        "Amount": 3,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 11,
+        "Symbol": "Na",
+        "Amount": 5,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 13,
+        "Symbol": "Al",
+        "Amount": 5,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 28,
+        "Symbol": "Ni",
+        "Amount": 4,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 14,
+        "Symbol": "Si",
+        "Amount": 10,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Radiation": 9.0
+    }
+  },
+  {
+    "Name": "Temperature -9",
+    "Type": 1,
+    "Formula": "Li28 S7 Cl7 O18 ",
+    "MolecularMass": 954.96814,
+    "Elements": [
+      {
+        "Index": 3,
+        "Symbol": "Li",
+        "Amount": 28,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 16,
+        "Symbol": "S",
+        "Amount": 7,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 17,
+        "Symbol": "Cl",
+        "Amount": 7,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 8,
+        "Symbol": "O",
+        "Amount": 18,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Temperature": -9.0
+    }
+  },
+  {
+    "Name": "Pressure -9",
+    "Type": 1,
+    "Formula": "F10 Cl6 Fe5 H294 ",
+    "MolecularMass": 978.268738,
+    "Elements": [
+      {
+        "Index": 9,
+        "Symbol": "F",
+        "Amount": 10,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 17,
+        "Symbol": "Cl",
+        "Amount": 6,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 26,
+        "Symbol": "Fe",
+        "Amount": 5,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 1,
+        "Symbol": "H",
+        "Amount": 294,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Pressure": -9.0
+    }
+  },
+  {
+    "Name": "Humidity -9",
+    "Type": 1,
+    "Formula": "P6 Ca4 Ni3 Cl4 O7 Mg7 ",
+    "MolecularMass": 946.176331,
+    "Elements": [
+      {
+        "Index": 15,
+        "Symbol": "P",
+        "Amount": 6,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 20,
+        "Symbol": "Ca",
+        "Amount": 4,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 28,
+        "Symbol": "Ni",
+        "Amount": 3,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 17,
+        "Symbol": "Cl",
+        "Amount": 4,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 8,
+        "Symbol": "O",
+        "Amount": 7,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 12,
+        "Symbol": "Mg",
+        "Amount": 7,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Humidity": -9.0
+    }
+  },
+  {
+    "Name": "Radiation -9",
+    "Type": 1,
+    "Formula": "Li28 Na10 S8 H294 ",
+    "MolecularMass": 977.107239,
+    "Elements": [
+      {
+        "Index": 3,
+        "Symbol": "Li",
+        "Amount": 28,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 11,
+        "Symbol": "Na",
+        "Amount": 10,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 16,
+        "Symbol": "S",
+        "Amount": 8,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 1,
+        "Symbol": "H",
+        "Amount": 294,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Radiation": -9.0
+    }
+  },
+  {
+    "Name": "Temperature 18",
+    "Type": 1,
+    "Formula": "Au3 Zn5 Li6 Cu5 Ni8 ",
+    "MolecularMass": 1746.77271,
+    "Elements": [
+      {
+        "Index": 79,
+        "Symbol": "Au",
+        "Amount": 3,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 30,
+        "Symbol": "Zn",
+        "Amount": 5,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 3,
+        "Symbol": "Li",
+        "Amount": 6,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 29,
+        "Symbol": "Cu",
+        "Amount": 5,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 28,
+        "Symbol": "Ni",
+        "Amount": 8,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Temperature": 18.0
+    }
+  },
+  {
+    "Name": "Pressure 18",
+    "Type": 1,
+    "Formula": "Pt3 F9 Li11 Cu7 Al18 ",
+    "MolecularMass": 1763.06641,
+    "Elements": [
+      {
+        "Index": 78,
+        "Symbol": "Pt",
+        "Amount": 3,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 9,
+        "Symbol": "F",
+        "Amount": 9,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 3,
+        "Symbol": "Li",
+        "Amount": 11,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 29,
+        "Symbol": "Cu",
+        "Amount": 7,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 13,
+        "Symbol": "Al",
+        "Amount": 18,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Pressure": 18.0
+    }
+  },
+  {
+    "Name": "Humidity 18",
+    "Type": 1,
+    "Formula": "Pt3 Co6 Ti7 Ca12 ",
+    "MolecularMass": 1754.9353,
+    "Elements": [
+      {
+        "Index": 78,
+        "Symbol": "Pt",
+        "Amount": 3,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 27,
+        "Symbol": "Co",
+        "Amount": 6,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 22,
+        "Symbol": "Ti",
+        "Amount": 7,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 20,
+        "Symbol": "Ca",
+        "Amount": 12,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Humidity": 18.0
+    }
+  },
+  {
+    "Name": "Radiation 18",
+    "Type": 1,
+    "Formula": "Au3 F5 Zn5 Cu4 S15 ",
+    "MolecularMass": 1748.01575,
+    "Elements": [
+      {
+        "Index": 79,
+        "Symbol": "Au",
+        "Amount": 3,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 9,
+        "Symbol": "F",
+        "Amount": 5,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 30,
+        "Symbol": "Zn",
+        "Amount": 5,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 29,
+        "Symbol": "Cu",
+        "Amount": 4,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 16,
+        "Symbol": "S",
+        "Amount": 15,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Radiation": 18.0
+    }
+  },
+  {
+    "Name": "Temperature -18",
+    "Type": 1,
+    "Formula": "Pt3 Zn6 P6 F6 Fe8 ",
+    "MolecularMass": 1724.189,
+    "Elements": [
+      {
+        "Index": 78,
+        "Symbol": "Pt",
+        "Amount": 3,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 30,
+        "Symbol": "Zn",
+        "Amount": 6,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 15,
+        "Symbol": "P",
+        "Amount": 6,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 9,
+        "Symbol": "F",
+        "Amount": 6,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 26,
+        "Symbol": "Fe",
+        "Amount": 8,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Temperature": -18.0
+    }
+  },
+  {
+    "Name": "Pressure -18",
+    "Type": 1,
+    "Formula": "U2 Li8 Ti8 P8 Na21 ",
+    "MolecularMass": 1645.201,
+    "Elements": [
+      {
+        "Index": 92,
+        "Symbol": "U",
+        "Amount": 2,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 3,
+        "Symbol": "Li",
+        "Amount": 8,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 22,
+        "Symbol": "Ti",
+        "Amount": 8,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 15,
+        "Symbol": "P",
+        "Amount": 8,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 11,
+        "Symbol": "Na",
+        "Amount": 21,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Pressure": -18.0
+    }
+  },
+  {
+    "Name": "Humidity -18",
+    "Type": 1,
+    "Formula": "Pu2 Zn6 Ti6 Cl13 ",
+    "MolecularMass": 1628.63354,
+    "Elements": [
+      {
+        "Index": 94,
+        "Symbol": "Pu",
+        "Amount": 2,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 30,
+        "Symbol": "Zn",
+        "Amount": 6,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 22,
+        "Symbol": "Ti",
+        "Amount": 6,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 17,
+        "Symbol": "Cl",
+        "Amount": 13,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Humidity": -18.0
+    }
+  },
+  {
+    "Name": "Radiation -18",
+    "Type": 1,
+    "Formula": "Au3 P6 F6 Cu6 Al18 ",
+    "MolecularMass": 1757.67627,
+    "Elements": [
+      {
+        "Index": 79,
+        "Symbol": "Au",
+        "Amount": 3,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 15,
+        "Symbol": "P",
+        "Amount": 6,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 9,
+        "Symbol": "F",
+        "Amount": 6,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 29,
+        "Symbol": "Cu",
+        "Amount": 6,
+        "MaxAmount": 100000
+      },
+      {
+        "Index": 13,
+        "Symbol": "Al",
+        "Amount": 18,
+        "MaxAmount": 100000
+      }
+    ],
+    "Effects": {
+      "Radiation": -18.0
+    }
+  }
+]

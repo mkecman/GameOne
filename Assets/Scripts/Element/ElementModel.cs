@@ -11,4 +11,13 @@ public class ElementData
     public float Weight;
     public float Density;
     public float Rarity;
+    public ElementRarityClass RarityClass;
+}
+
+public enum ElementRarityClass
+{
+    Abundant,
+    Common,
+    Uncommon,
+    Rare
 }
