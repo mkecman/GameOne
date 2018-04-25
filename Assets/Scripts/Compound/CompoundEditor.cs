@@ -21,6 +21,6 @@ public class CompoundEditor : MonoBehaviour
             );
         Debug.Log( "CompoundConfig Saved" );
 
-        UnityEditor.AssetDatabase.Refresh(); //this is not to forget how to refresh assets after change.. you still need to reload the game to take new configs!
+        //UnityEditor.AssetDatabase.Refresh(); //this is not to forget how to refresh assets after change.. you still need to reload the game to take new configs!
     }
 }

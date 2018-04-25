@@ -9,7 +9,7 @@ public class CompoundsControlPanel : GameView
     public Button ChooseButton;
     public Transform SkillTypeContainer;
     public GameObject SkillTypeButtonPrefab;
-    public SkillUnlockPanel UnlockPanel;
+    public CompoundsPanel CompoundsPanel;
 
     private UnitModel _unit;
     private SkillControlMessage _message = new SkillControlMessage();
@@ -39,7 +39,7 @@ public class CompoundsControlPanel : GameView
 
     private void OnSkillTypeMessage( SkillTypeMessage value )
     {
-        UnlockPanel.SetModel( _unit, value.Type );
+        CompoundsPanel.SetModel( _unit, value.Type );
     }
 
     private void OnSkillMessage( SkillMessage value )
@@ -62,7 +62,7 @@ public class CompoundsControlPanel : GameView
     {
         _unit = value;
 
-        UnlockPanel.SetModel( _unit, SkillType.MINE );
+        CompoundsPanel.SetModel( _unit, SkillType.MINE );
 
         RemoveAllChildren( SkillTypeContainer );
         var list = _unit.Skills.Keys;
