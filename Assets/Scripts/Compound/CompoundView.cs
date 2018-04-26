@@ -94,6 +94,7 @@ public class CompoundView : GameView, IPointerClickHandler
         base.OnDestroy();
         _compound = null;
         _message = null;
+        _life = null;
         GameMessage.StopListen<CompoundSelectMessage>( OnCompoundSelected );
     }
 }
