@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UniRx;
 
 public class CompoundController : IGameInit
 {
     private LifeModel _life;
+    private CompoundConfig _compounds;
 
     public void Init()
     {
+        _compounds = GameConfig.Get<CompoundConfig>();
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
         GameMessage.Listen<CompoundControlMessage>( OnCompoundControlMessage );
     }
@@ -16,7 +19,7 @@ public class CompoundController : IGameInit
     {
         _life = value.Life;
     }
-
+    
     private void OnCompoundControlMessage( CompoundControlMessage value )
     {
         if( _life.Compounds.ContainsKey( value.Index ) )

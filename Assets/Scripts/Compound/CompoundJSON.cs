@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using UniRx;
+using UnityEngine;
 
 [Serializable]
 public class CompoundJSON
@@ -11,6 +13,15 @@ public class CompoundJSON
     public float MolecularMass;
     public List<LifeElementModel> Elements = new List<LifeElementModel>();
     public Dictionary<R, float> Effects = new Dictionary<R, float>();
+
+    [SerializeField]
+    internal BoolReactiveProperty _CanCraft = new BoolReactiveProperty( true );
+    public bool CanCraft
+    {
+        get { return _CanCraft.Value; }
+        set { _CanCraft.Value = value; }
+    }
+
 }
 
 public enum CompoundType

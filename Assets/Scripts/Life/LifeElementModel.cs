@@ -41,7 +41,10 @@ public class LifeElementModel
         {
             if( value > MaxAmount )
                 value = MaxAmount;
+            if( value < 0 )
+                value = 0;
 
+            IsFull = value == MaxAmount;
             _Amount.Value = value;
         }
     }
@@ -54,5 +57,12 @@ public class LifeElementModel
         set { _MaxAmount.Value = value; }
     }
 
+    [SerializeField]
+    internal BoolReactiveProperty _IsFull = new BoolReactiveProperty( false );
+    public bool IsFull
+    {
+        get { return _IsFull.Value; }
+        set { _IsFull.Value = value; }
+    }
 
 }

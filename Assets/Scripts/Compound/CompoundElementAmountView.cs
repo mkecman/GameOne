@@ -8,41 +8,28 @@ public class CompoundElementAmountView : GameView
     public Text Amount;
     public Color RedColor;
     public Color GreenColor;
-    private int _requiredAmount;
-    private BoolReactiveProperty _canCraft;
 
-    public void Setup( LifeElementModel lifeElementModel, int requiredAmount, BoolReactiveProperty canCraft )
+    public void Setup( LifeElementModel compoundElementModel )
     {
-        _canCraft = canCraft;
         disposables.Clear();
-        if( lifeElementModel == null )
+
+        if( compoundElementModel == null )
         {
             Symbol.text = "";
             Amount.text = "";
         }
         else
         {
-            _requiredAmount = requiredAmount;
-            Amount.text = _requiredAmount.ToString();
-            Symbol.text = lifeElementModel.Symbol;
-
-            lifeElementModel._Amount.Subscribe( _ => SetColor( _ ) ).AddTo( disposables );
+            Amount.text = compoundElementModel.MaxAmount.ToString();
+            Symbol.text = compoundElementModel.Symbol;
+            compoundElementModel._IsFull.Subscribe( _ => SetColor( _ ? GreenColor : RedColor ) ).AddTo( disposables );
         }
     }
 
-    private void SetColor( int amount )
+    private void SetColor( Color color )
     {
-        if( amount < _requiredAmount )
-        {
-            Symbol.color = RedColor;
-            Amount.color = RedColor;
-            _canCraft.Value = false;
-        }
-        else
-        {
-            Symbol.color = GreenColor;
-            Amount.color = GreenColor;
-            _canCraft.Value = _canCraft.Value && true;
-        }
+        Symbol.color = color;
+        Amount.color = color;
     }
+
 }

@@ -147,7 +147,7 @@ public class CompoundGenerator : MonoBehaviour
         {
             weightedValue = RandomUtil.GetWeightedValueObject( probabilities );
             index = (int)weightedValue.Value;
-            output.Add( new LifeElementModel( index, _elements[ index ].Symbol, 0, 100000 ) );
+            output.Add( new LifeElementModel( index, _elements[ index ].Symbol, 0, 0 ) );
             probabilities.Remove( weightedValue );
             foreach( WeightedValue item in probabilities )
             {
@@ -167,7 +167,7 @@ public class CompoundGenerator : MonoBehaviour
                     fullElements++;
                 else
                 {
-                    output[ i ].Amount++;
+                    output[ i ].MaxAmount++;
                     amountCollected += _elements[ output[ i ].Index ].Weight;
                 }
             }

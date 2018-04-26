@@ -15,10 +15,13 @@ public class ProgressBar : MonoBehaviour
     void Awake()
     {
         _fillRect = Fill.GetComponent<RectTransform>();
+        Invoke( "Setup", 0.01f ); //hack to wait for first frame and layout calculations before getting width of RectTransform
+    }
+
+    public void Setup()
+    {
         _width = gameObject.GetComponent<RectTransform>().rect.width;
         SetFill();
-
-        //_fillImage = Fill.GetComponent<Image>();
     }
     
     public float Value
