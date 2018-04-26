@@ -92,5 +92,6 @@ public enum R
     Soul,
     Armor,
     Attack,
+    UpgradePoint,
     Count
 }

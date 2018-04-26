@@ -25,6 +25,7 @@
         unit.Props.Add( R.Armor, new Resource( R.Armor, 0, 0, 0, 100 ) );
         unit.Props.Add( R.Attack, new Resource( R.Attack, 0, 0, 0, 100 ) );
         unit.UpdateAttack();
+        unit.Props.Add( R.UpgradePoint, new Resource( R.UpgradePoint, 100, 0, 0, 100 ) );
 
         unit.Resistance = GameModel.Copy( _bellCurves );
 

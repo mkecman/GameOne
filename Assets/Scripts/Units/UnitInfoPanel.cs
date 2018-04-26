@@ -10,14 +10,14 @@ public class UnitInfoPanel : GameView
     public GameObject PropertyPrefab;
 
     private UnitModel _unit;
-    private UIPropertyView _ui;
+    private UnitPropUpgradeView _ui;
 
-    private Dictionary<R, UIPropertyView> _propViews;
+    private Dictionary<R, UnitPropUpgradeView> _propViews;
 
     // Use this for initialization
     void Start()
     {
-        _propViews = new Dictionary<R, UIPropertyView>();
+        _propViews = new Dictionary<R, UnitPropUpgradeView>();
         GameModel.HandleGet<UnitModel>( OnModelChange );
     }
 
@@ -53,10 +53,9 @@ public class UnitInfoPanel : GameView
 
     private void AddProp( R prop )
     {
-        _ui = Instantiate( PropertyPrefab, transform ).GetComponent<UIPropertyView>();
-        _ui.SetProperty( prop.ToString() );
-        _ui.SetValue( _unit.Props[ prop ].Value );
+        _ui = Instantiate( PropertyPrefab, transform ).GetComponent<UnitPropUpgradeView>();
+        _ui.SetModel( prop, _unit );
+        
         _propViews.Add( prop, _ui );
-        _unit.Props[ prop ]._Value.Subscribe( _ => _propViews[ prop ].SetValue( _ ) ).AddTo( disposables );
     }
 }

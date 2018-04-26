@@ -27,8 +27,18 @@ public class UnitController : AbstractController, IGameInit
         _unitDefenseUpdateCommand = GameModel.Get<UnitDefenseUpdateCommand>();
 
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
+        GameMessage.Listen<UnitPropUpgradeMessage>( OnUnitPropUpgradeMessage );
     }
-    
+
+    private void OnUnitPropUpgradeMessage( UnitPropUpgradeMessage value )
+    {
+        if( _selectedUnit.Props[R.UpgradePoint].Value > 0 )
+        {
+            _selectedUnit.Props[ R.UpgradePoint ].Value--;
+            _selectedUnit.Props[ value.Property ].Value++;
+        }
+    }
+
     private void OnResistanceUpgrade( ResistanceUpgradeMessage value )
     {
         float delta = Mathf.Abs( value.Delta );
