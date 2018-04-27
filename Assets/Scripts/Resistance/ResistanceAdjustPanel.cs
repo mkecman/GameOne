@@ -18,6 +18,7 @@ public class ResistanceAdjustPanel : GameView
     {
         _resistanceMessage = new ResistanceUpgradeMessage();
         _resistanceMessage.Type = ResistanceGraph.Lens;
+        GameModel.HandleGet<UnitModel>( OnUnitChange );
     }
 
     private void OnDecreaseButtonClick()
@@ -32,13 +33,13 @@ public class ResistanceAdjustPanel : GameView
         GameMessage.Send( _resistanceMessage );
     }
 
-    public void SetUnit( UnitModel value )
+    public void OnUnitChange( UnitModel value )
     {
         disposables.Clear();
         _selectedUnit = value;
         if( _selectedUnit != null )
         {
-            _selectedUnit.Resistance[ ResistanceGraph.Lens ].Consumption.Subscribe( _ => ScienceCostText.text = Math.Round(_/100f,2).ToString() ).AddTo( disposables );
+            _selectedUnit.Resistance[ ResistanceGraph.Lens ].Consumption.Subscribe( _ => ScienceCostText.text = _.ToString() ).AddTo( disposables );
             IncreaseButton.OnClickAsObservable().Subscribe( _ => OnIncreaseButtonClick() ).AddTo( disposables );
             DecreaseButton.OnClickAsObservable().Subscribe( _ => OnDecreaseButtonClick() ).AddTo( disposables );
         }

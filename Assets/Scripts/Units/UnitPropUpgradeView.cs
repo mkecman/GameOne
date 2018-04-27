@@ -1,14 +1,17 @@
-﻿using UniRx;
+﻿using System;
+using UniRx;
 using UnityEngine.UI;
 
 public class UnitPropUpgradeView : GameView
 {
     public UIPropertyView PropertyView;
     public Button UpgradeButton;
+    private int delta = 0;
 
     public void SetModel( R prop, UnitModel unit )
     {
         disposables.Clear();
+        delta = 0;
 
         PropertyView.SetProperty( prop.ToString() );
 
@@ -21,8 +24,11 @@ public class UnitPropUpgradeView : GameView
             .AddTo( disposables );
 
         UpgradeButton.OnClickAsObservable()
-            .Subscribe( _ => GameMessage.Send( new UnitPropUpgradeMessage( prop ) ) )
+            .Subscribe( _ =>
+            {
+                GameMessage.Send( new UnitPropUpgradeMessage( prop ) );
+                PropertyView.SetDelta( ++delta );
+            } )
             .AddTo( disposables );
     }
-
 }

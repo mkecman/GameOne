@@ -5,7 +5,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Hex : GameView
+public class Hex : GameView, IPointerClickHandler
 {
     public HexModel _model;
     public TextMesh SymbolText;
@@ -22,6 +22,8 @@ public class Hex : GameView
     private Dictionary<int, ElementData> _elements;
     private Material _solidMaterial;
     private StringBuilder labelSB = new StringBuilder();
+    private Color _newHexColor;
+    private bool _clickEnabled = true;
 
     private void Awake()
     {
@@ -29,6 +31,7 @@ public class Hex : GameView
         _debug = GameModel.Get<GameDebug>();
         _elements = GameConfig.Get<ElementConfig>().ElementsDictionary;
         _solidMaterial = Solid.GetComponent<MeshRenderer>().material;
+        GameMessage.Listen<CameraControlMessage>( _ => _clickEnabled = _.Enable );
     }
 
     public void SetModel( HexModel model )
@@ -50,7 +53,6 @@ public class Hex : GameView
         //OnHexScoreChange();
     }
 
-    Color _newHexColor;
     private void OnHexScoreChange()
     {
         _newHexColor = Gradient1.Evaluate( _model.Props[ R.Temperature ].Value );
@@ -70,24 +72,6 @@ public class Hex : GameView
         return Color.Lerp( original, addition, addition.a );
     }
     
-    private void OnMouseDown()
-    {
-        if( !EventSystem.current.IsPointerOverGameObject() )
-            GameMessage.Send( _HexClickedMessage );
-    }
-
-    /*
-    private void OnMouseOver()
-    {
-        Solid.GetComponent<MeshRenderer>().material.color = Color.blue;
-    }
-
-    private void OnMouseExit()
-    {
-        SetColor();
-    }
-    */
-
     private void SetClouds()
     {
         Gas.transform.position = new Vector3( Gas.transform.position.x, 0.9f, Gas.transform.position.z );
@@ -157,5 +141,12 @@ public class Hex : GameView
         GetComponent<MeshCollider>().sharedMesh = mesh;
 
         SymbolText.gameObject.transform.position = new Vector3( SymbolText.gameObject.transform.position.x, _model.Props[ R.Altitude ].Value + .01f, SymbolText.gameObject.transform.position.z );
+    }
+
+    public void OnPointerClick( PointerEventData eventData )
+    {
+        if( _clickEnabled )
+            GameMessage.Send( _HexClickedMessage );
+
     }
 }

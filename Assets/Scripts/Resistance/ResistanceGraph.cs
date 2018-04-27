@@ -19,17 +19,15 @@ public class ResistanceGraph : GameView, IPointerClickHandler
     private CompositeDisposable planetDisposable = new CompositeDisposable();
     private RectTransform _gradientRect;
 
-    void Start()
+    void Awake()
     {
         PropertyText.text = Lens.ToString();
         _gradientRect = Gradient.GetComponent<RectTransform>();
+        _tileValueRectTransform = TileValue.GetComponent<RectTransform>();
     }
 
     void OnEnable()
     {
-        if( _tileValueRectTransform == null )
-            _tileValueRectTransform = TileValue.GetComponent<RectTransform>();
-
         GameModel.HandleGet<PlanetModel>( OnPlanetModel );
         GameModel.HandleGet<HexModel>( OnHexModelChange );
     }

@@ -23,6 +23,11 @@ public class UIPropertyView : MonoBehaviour
         else
             Value.text = value.ToString( StringFormat );
 
+        SetDelta( delta );
+    }
+
+    public void SetDelta( float delta )
+    {
         if( delta == float.MaxValue || delta == 0 )
         {
             Delta.text = "";
