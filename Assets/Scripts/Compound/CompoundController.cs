@@ -24,11 +24,11 @@ public class CompoundController : IGameInit
     {
         if( _life.Compounds.ContainsKey( value.Index ) )
         {
-            _life.Compounds[ value.Index ]++;
+            _life.Compounds[ value.Index ].Value++;
         }
         else
         {
-            _life.Compounds.Add( value.Index, 1 );
+            _life.Compounds.Add( value.Index, new IntReactiveProperty( 1 ) );
         }
     }
 }

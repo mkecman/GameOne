@@ -22,6 +22,8 @@ public class CompoundJSON
         set { _CanCraft.Value = value; }
     }
 
+    internal Texture2D Texture;
+
 }
 
 public enum CompoundType

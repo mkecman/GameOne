@@ -17,6 +17,7 @@ public class CompoundGenerator : MonoBehaviour
     private List<CompoundJSON> _compounds;
     private int _indexer;
     private Dictionary<ElementRarityClass, List<WeightedValue>> _elementsProbabilities;
+    private Color[] _pixels;
 
     // Use this for initialization
     void Start()
@@ -129,8 +130,46 @@ public class CompoundGenerator : MonoBehaviour
             compound.Formula += item.Symbol + item.Amount + " ";
         }
 
+        CreateCompoundTexture( compound );
+
         _compounds.Add( compound );
         _indexer++;
+    }
+
+    private void CreateCompoundTexture( CompoundJSON compound )
+    {
+        Gradient gradient = new Gradient();
+        GradientColorKey[] gradientColorKeys = new GradientColorKey[ compound.Elements.Count ];
+        GradientAlphaKey[] gradientAlphaKeys = new GradientAlphaKey[ compound.Elements.Count ];
+
+        float increment = 1f / compound.Elements.Count;
+        float time = increment / 2f;
+        Color mColor;
+        for( int i = 0; i < compound.Elements.Count; i++ )
+        {
+            gradientAlphaKeys[ i ].alpha = 1f;
+            gradientAlphaKeys[ i ].time = time;
+
+            ColorUtility.TryParseHtmlString( _elements[ compound.Elements[ i ].Index ].Color, out mColor );
+            gradientColorKeys[ i ].color = mColor;
+            gradientColorKeys[ i ].time = time;
+
+            time += increment;
+        }
+        gradient.SetKeys( gradientColorKeys, gradientAlphaKeys );
+
+        _pixels = new Color[ 100 ];
+        for( int y = 0; y < 100; y++ )
+        {
+            _pixels[ y ] = gradient.Evaluate( y / 100f );
+        }
+        Texture2D _texture = new Texture2D( 1, 100, TextureFormat.RGB24, false );
+        _texture.SetPixels( _pixels );
+        _texture.wrapMode = TextureWrapMode.Clamp;
+        _texture.Apply();
+
+        byte[] bytes = _texture.EncodeToPNG();
+        File.WriteAllBytes( Application.persistentDataPath + "-" + _indexer + ".png", bytes );
     }
 
     private List<LifeElementModel> CreateCompoundElements( CompoundJSON compound, int level, ElementRarityClass rarityClass )

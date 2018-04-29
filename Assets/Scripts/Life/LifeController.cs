@@ -43,7 +43,7 @@ public class LifeController : AbstractController, IGameInit
 
         for( int i = 0; i < _elements.Count; i++ )
         {
-            _selectedLife.Elements.Add( _elements[ i ].Index, new LifeElementModel( _elements[ i ].Index, _elements[ i ].Symbol, 0, 100 ) );
+            _selectedLife.Elements.Add( _elements[ i ].Index, new LifeElementModel( _elements[ i ].Index, _elements[ i ].Symbol, 100, 100 ) );
         }
 
         int unitX = ( _planet.Map.Width / 2 ) + 2;

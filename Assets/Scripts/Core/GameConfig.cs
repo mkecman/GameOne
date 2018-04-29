@@ -22,7 +22,10 @@ public class GameConfig : MonoBehaviour
 
         _instance.Load<BodySlotsConfig>();
         _instance.Load<HexConfig>();
+
         _instance.Load<CompoundConfig>();
+        Get<CompoundConfig>().Setup();
+
         _instance.Load<SkillConfig>();
         _instance.Load<BellCurveConfig>();
         _instance.Load<BuildingConfig>();

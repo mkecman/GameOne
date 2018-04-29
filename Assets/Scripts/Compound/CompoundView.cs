@@ -15,6 +15,7 @@ public class CompoundView : GameView, IPointerClickHandler
     public GameObject EffectPrefab;
     public Outline Outline;
     public Image BackgroundImage;
+    public RawImage rawImage;
     public Color[] StateColors = new Color[ 4 ] { Color.gray, Color.yellow, Color.green, Color.magenta };
 
     private CompoundJSON _compound;
@@ -61,6 +62,7 @@ public class CompoundView : GameView, IPointerClickHandler
         _message.Index = _compound.Index;
 
         Name.SetProperty( _compound.Name );
+        rawImage.texture = _compound.Texture;
 
         for( int i = 0; i < ElementsGrid.childCount; i++ )
         {

@@ -21,7 +21,7 @@ public class CompoundsPanel : GameView
     // Use this for initialization
     void Awake()
     {
-        _compoundConfig = GameModel.Copy( GameConfig.Get<CompoundConfig>() );
+        _compoundConfig = GameConfig.Get<CompoundConfig>();
         _compounds = new List<CompoundViewModel>();
         for( int i = 0; i < _compoundConfig.Count; i++ )
             _compounds.Add( new CompoundViewModel( _compoundConfig[i] ) );

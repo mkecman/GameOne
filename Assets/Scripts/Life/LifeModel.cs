@@ -19,7 +19,7 @@ public class LifeModel
     public ReactiveCollection<UnitModel> Units = new ReactiveCollection<UnitModel>();
     public ReactiveCollection<BuildingModel> Buildings = new ReactiveCollection<BuildingModel>();
     public ReactiveDictionary<int, LifeElementModel> Elements = new ReactiveDictionary<int, LifeElementModel>();
-    public ReactiveDictionary<int, int> Compounds = new ReactiveDictionary<int, int>();
+    public ReactiveDictionary<int, IntReactiveProperty> Compounds = new ReactiveDictionary<int, IntReactiveProperty>();
 
     public List<BuildingModel> BuildingsState = new List<BuildingModel>();
 
