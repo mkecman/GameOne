@@ -1,14 +1,19 @@
-﻿public class UnitFactory : IGameInit
+﻿using System.Collections.Generic;
+
+public class UnitFactory : IGameInit
 {
     private PlanetController _planetController;
     private BellCurveConfig _bellCurves;
     private SkillConfig _skills;
+    private BodySlotsConfig _slotsConfig;
+    private List<int> _slots;
 
     public void Init()
     {
         _planetController = GameModel.Get<PlanetController>();
         _bellCurves = GameConfig.Get<BellCurveConfig>();
         _skills = GameConfig.Get<SkillConfig>();
+        _slotsConfig = GameConfig.Get<BodySlotsConfig>();
     }
 
     public UnitModel GetUnit( int x, int y )
@@ -28,6 +33,13 @@
         unit.Props.Add( R.UpgradePoint, new Resource( R.UpgradePoint, 100, 0, 0, 100 ) );
 
         unit.Resistance = GameModel.Copy( _bellCurves );
+
+        //BOBY SLOTS
+        _slots = _slotsConfig[ (int)( unit.Props[ R.Body ].Value / 8.34f ) ];
+        for( int i = 0; i < _slots.Count; i++ )
+        {
+            unit.BodySlots.Add( i, new BodySlotModel( i, _slots[ i ] == 1 ? true : false ) );
+        }
 
         //MAP POSITION
         unit.Props.Add( R.Altitude, new Resource( R.Altitude, _planetController.SelectedPlanet.Map.Table[ x ][ y ].Props[ R.Altitude ].Value, 0, 0, 2 ) );

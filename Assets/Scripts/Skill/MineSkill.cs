@@ -32,7 +32,7 @@ public class MineSkill : ISkill
         if( RandomUtil.FromRange( 0, unitModel.Props[ R.Soul ].MaxValue ) < unitModel.Props[ R.Soul ].Value )
         {
             _critHit = unitModel.Props[ R.Body ].Value;
-            Debug.Log( "CRITICAL HIT!" );
+            //Debug.Log( "CRITICAL HIT!" );
         }
         else
             _critHit = 0;

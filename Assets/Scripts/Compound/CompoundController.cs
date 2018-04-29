@@ -7,12 +7,20 @@ public class CompoundController : IGameInit
 {
     private LifeModel _life;
     private CompoundConfig _compounds;
+    private UnitEquipCommand _unitEquipCommand;
 
     public void Init()
     {
         _compounds = GameConfig.Get<CompoundConfig>();
+        _unitEquipCommand = GameModel.Get<UnitEquipCommand>();
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
         GameMessage.Listen<CompoundControlMessage>( OnCompoundControlMessage );
+        GameMessage.Listen<CompoundDropMessage>( OnCompoundDropMessage );
+    }
+
+    private void OnCompoundDropMessage( CompoundDropMessage value )
+    {
+        _unitEquipCommand.Execute( value.CompoundIndex, value.BodySlotIndex );
     }
 
     private void OnPlanetChange( PlanetModel value )

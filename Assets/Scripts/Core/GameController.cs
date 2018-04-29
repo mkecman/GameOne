@@ -39,15 +39,16 @@ public class GameController : MonoBehaviour
         AddController<UnitFactory>();
         AddController<UnitController>();
         AddController<SkillController>();
+        AddController<CompoundController>();
         //AddController<BuildingController>();
         //AddController<BuildingPaymentService>();
+
         AddController<HexUpdateCommand>();
         AddController<PlanetGenerateCommand>();
         AddController<PlanetPropsUpdateCommand>();
         AddController<UnitDefenseUpdateCommand>();
-        AddController<CompoundController>();
-
         AddController<SkillCommand>();
+        AddController<UnitEquipCommand>();
 
         AddController<LiveSkill>();
         AddController<MoveSkill>();

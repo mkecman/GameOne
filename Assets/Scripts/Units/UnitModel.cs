@@ -39,6 +39,8 @@ public class UnitModel
 
     public Dictionary<R,Resource> Props = new Dictionary<R,Resource>();
 
+    public Dictionary<int, BodySlotModel> BodySlots = new Dictionary<int, BodySlotModel>();
+
     internal Vector3 Position = new Vector3();
 
     public Dictionary<int, SkillData> Skills = new Dictionary<int, SkillData>();
