@@ -16,7 +16,7 @@ public class CompoundJSON
 
     [SerializeField]
     internal BoolReactiveProperty _CanCraft = new BoolReactiveProperty( true );
-    public bool CanCraft
+    internal bool CanCraft
     {
         get { return _CanCraft.Value; }
         set { _CanCraft.Value = value; }

@@ -29,6 +29,7 @@ public class CompoundInventoryPanel : GameView
         }
 
         _LifeCompounds.ObserveAdd().Subscribe( _ => Add( _compounds[ _.Key ], _.Value ) ).AddTo( disposables );
+        //_LifeCompounds.ObserveRemove().Subscribe( _ => Remove( _.Key ) ).AddTo( disposables );
     }
 
     private void Add( CompoundJSON compoundJSON, IntReactiveProperty value )

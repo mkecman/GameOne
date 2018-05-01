@@ -7,31 +7,41 @@ using System;
 
 public class CompoundInventoryView : GameView, IDragHandler, IPointerUpHandler, IPointerDownHandler
 {
-    public RawImage CompoundTexture;
+    public CompoundIconView Icon;
     public Text AmountText;
     public CompoundJSON Compound;
-    public GameObject Copy;
 
+    private GameObject Copy;
     private Transform DragPanel;
-    private int _amount;
+    private CompoundControlMessage _controlMessage;
+    
 
     private void Awake()
     {
         DragPanel = GameObject.Find( "DragPanel" ).transform;
+        
+        _controlMessage = new CompoundControlMessage();
+        _controlMessage.Action = CompoundControlAction.REMOVE;
     }
 
     internal void Setup( CompoundJSON compound, IntReactiveProperty amount )
     {
         disposables.Clear();
         Compound = compound;
+        _controlMessage.Index = compound.Index;
         amount.Subscribe( _ => OnAmountChange( _ ) ).AddTo( disposables );
-        CompoundTexture.texture = compound.Texture;
+        Icon.Setup( compound );
     }
 
     private void OnAmountChange( int value )
     {
-        _amount = value;
         AmountText.text = value.ToString();
+
+        if( value <= 0 )
+        {
+            GameMessage.Send( _controlMessage );
+            Destroy( gameObject );
+        }
     }
 
     public override void OnDestroy()
@@ -40,7 +50,6 @@ public class CompoundInventoryView : GameView, IDragHandler, IPointerUpHandler, 
         Copy = null;
         DragPanel = null;
         Compound = null;
-        CompoundTexture.texture = null;
     }
 
     public void OnDrag( PointerEventData eventData )
@@ -57,6 +66,6 @@ public class CompoundInventoryView : GameView, IDragHandler, IPointerUpHandler, 
     public void OnPointerDown( PointerEventData eventData )
     {
         Copy = Instantiate( this.gameObject, DragPanel );
-        Copy.GetComponent<CompoundInventoryView>().CompoundTexture.raycastTarget = false;
+        Copy.GetComponent<CompoundInventoryView>().Icon.IsRaycastTarget = false;
     }
 }

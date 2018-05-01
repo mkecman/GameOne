@@ -30,13 +30,37 @@ public class CompoundController : IGameInit
     
     private void OnCompoundControlMessage( CompoundControlMessage value )
     {
-        if( _life.Compounds.ContainsKey( value.Index ) )
+        switch( value.Action )
         {
-            _life.Compounds[ value.Index ].Value++;
+            case CompoundControlAction.ADD:
+                AddCompound( value.Index );
+                break;
+            case CompoundControlAction.REMOVE:
+                RemoveCompound( value.Index );
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void RemoveCompound( int index )
+    {
+        if( _life.Compounds.ContainsKey( index ) )
+        {
+            _life.Compounds[ index ].Dispose();
+            _life.Compounds.Remove( index );
+        }
+    }
+
+    private void AddCompound( int index )
+    {
+        if( _life.Compounds.ContainsKey( index ) )
+        {
+            _life.Compounds[ index ].Value++;
         }
         else
         {
-            _life.Compounds.Add( value.Index, new IntReactiveProperty( 1 ) );
+            _life.Compounds.Add( index, new IntReactiveProperty( 1 ) );
         }
     }
 }
