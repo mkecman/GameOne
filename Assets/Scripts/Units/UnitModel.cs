@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UniRx;
 using System;
 
-public class UnitModel
+public class UnitModel : IDisposable
 {
     [SerializeField]
     internal IntReactiveProperty _X = new IntReactiveProperty();
@@ -47,7 +47,40 @@ public class UnitModel
     public List<int> PassiveSkills = new List<int>();
     public List<int> ActiveSkills = new List<int>();
 
-    public void UpdateAttack()
+    private CompositeDisposable disposables = new CompositeDisposable();
+    private BodySlotsConfig _slotsConfig;
+    private List<int> _slots;
+
+    public void Setup()
+    {
+        _slotsConfig = GameConfig.Get<BodySlotsConfig>();
+        Props[ R.Body ]._Value.Subscribe( _ => UpdateBody() ).AddTo( disposables );
+        Props[ R.Speed ]._Value.Subscribe( _ => UpdateAttack() ).AddTo( disposables );
+    }
+
+    public void Dispose()
+    {
+        _slots = null;
+        _slotsConfig = null;
+        disposables.Clear();
+        disposables = null;
+    }
+
+    private void UpdateBody()
+    {
+        _slots = _slotsConfig[ (int)( Props[ R.Body ].Value / 8.34f ) ];
+        for( int i = 0; i < _slots.Count; i++ )
+        {
+            if( BodySlots.ContainsKey( i ) )
+                BodySlots[ i ].IsEnabled = _slots[ i ] == 1 ? true : false;
+            else
+                BodySlots.Add( i, new BodySlotModel( i, _slots[ i ] == 1 ? true : false ) );
+        }
+
+        UpdateAttack();
+    }
+
+    private void UpdateAttack()
     {
         Props[ R.Attack ].Value = Props[ R.Body ].Value * ( ( Props[ R.Speed ].Value / 100 ) + 1 );
     }

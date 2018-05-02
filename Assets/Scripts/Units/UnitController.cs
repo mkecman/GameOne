@@ -69,6 +69,7 @@ public class UnitController : AbstractController, IGameInit
         if( _selectedUnit == um )
             DeselectUnit( false );
 
+        um.Dispose();
         _life.Units.Remove( um );
         _hexMapModel.Table[ um.X ][ um.Y ].Unit = null;
         _life.Props[ R.Population ].Value--;

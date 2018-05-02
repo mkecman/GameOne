@@ -5,15 +5,12 @@ public class UnitFactory : IGameInit
     private PlanetController _planetController;
     private BellCurveConfig _bellCurves;
     private SkillConfig _skills;
-    private BodySlotsConfig _slotsConfig;
-    private List<int> _slots;
 
     public void Init()
     {
         _planetController = GameModel.Get<PlanetController>();
         _bellCurves = GameConfig.Get<BellCurveConfig>();
         _skills = GameConfig.Get<SkillConfig>();
-        _slotsConfig = GameConfig.Get<BodySlotsConfig>();
     }
 
     public UnitModel GetUnit( int x, int y )
@@ -29,20 +26,13 @@ public class UnitFactory : IGameInit
         unit.Props.Add( R.Speed, new Resource( R.Speed, 10, 0, 0, 100 ) );
         unit.Props.Add( R.Armor, new Resource( R.Armor, 0, 0, 0, 100 ) );
         unit.Props.Add( R.Attack, new Resource( R.Attack, 0, 0, 0, 100 ) );
-        unit.UpdateAttack();
         unit.Props.Add( R.UpgradePoint, new Resource( R.UpgradePoint, 100, 0, 0, 100 ) );
 
         unit.Resistance = GameModel.Copy( _bellCurves );
 
-        //BOBY SLOTS
-        _slots = _slotsConfig[ (int)( unit.Props[ R.Body ].Value / 8.34f ) ];
-        for( int i = 0; i < _slots.Count; i++ )
-        {
-            unit.BodySlots.Add( i, new BodySlotModel( i, _slots[ i ] == 1 ? true : false ) );
-        }
-
         //MAP POSITION
         unit.Props.Add( R.Altitude, new Resource( R.Altitude, _planetController.SelectedPlanet.Map.Table[ x ][ y ].Props[ R.Altitude ].Value, 0, 0, 2 ) );
+        //unit.Props.Add( R.Altitude, new Resource( R.Altitude, 0 ) );
         unit.X = x;
         unit.Y = y;
 
@@ -63,6 +53,8 @@ public class UnitFactory : IGameInit
 
         unit.ActiveSkills.Add( 3 );//move
         unit.ActiveSkills.Add( 1 );//clone
+
+        unit.Setup();
 
         return unit;
     }

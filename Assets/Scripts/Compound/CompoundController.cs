@@ -8,11 +8,13 @@ public class CompoundController : IGameInit
     private LifeModel _life;
     private CompoundConfig _compounds;
     private UnitEquipCommand _unitEquipCommand;
+    private CompoundPaymentService _pay;
 
     public void Init()
     {
         _compounds = GameConfig.Get<CompoundConfig>();
         _unitEquipCommand = GameModel.Get<UnitEquipCommand>();
+        _pay = GameModel.Get<CompoundPaymentService>();
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
         GameMessage.Listen<CompoundControlMessage>( OnCompoundControlMessage );
         GameMessage.Listen<CompoundDropMessage>( OnCompoundDropMessage );
@@ -54,13 +56,10 @@ public class CompoundController : IGameInit
 
     private void AddCompound( int index )
     {
-        if( _life.Compounds.ContainsKey( index ) )
-        {
-            _life.Compounds[ index ].Value++;
-        }
-        else
-        {
-            _life.Compounds.Add( index, new IntReactiveProperty( 1 ) );
-        }
+        if( _pay.BuyCompound( index ) )
+            if( _life.Compounds.ContainsKey( index ) )
+                _life.Compounds[ index ].Value++;
+            else
+                _life.Compounds.Add( index, new IntReactiveProperty( 1 ) );
     }
 }

@@ -1,11 +1,8 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
-using System;
-using UnityEngine.EventSystems;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UniRx;
-using System.Linq;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CompoundView : GameView, IPointerClickHandler
 {
@@ -49,7 +46,6 @@ public class CompoundView : GameView, IPointerClickHandler
 
     internal void SetState( int colorIndex )
     {
-        Debug.Log( _compound.Name + "----------- SetState: " + colorIndex );
         BackgroundImage.color = StateColors[ colorIndex ];
     }
 
@@ -72,10 +68,10 @@ public class CompoundView : GameView, IPointerClickHandler
             }
             else
             {
-                ElementsGrid.GetChild(i).GetComponent<CompoundElementAmountView>().Setup( _compound.Elements[ i ] );
+                ElementsGrid.GetChild( i ).GetComponent<CompoundElementAmountView>().Setup( _compound.Elements[ i ] );
             }
         }
-        
+
         foreach( KeyValuePair<R, float> effect in _compound.Effects )
         {
             AddEffect( effect.Key, effect.Value );

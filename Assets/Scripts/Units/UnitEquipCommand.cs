@@ -8,7 +8,7 @@ public class UnitEquipCommand : IGameInit
     private UnitController _unitController;
     private PlanetController _planetController;
     private CompoundControlMessage _message;
-    private IntReactiveProperty _unitSlotCompound;
+    private IntReactiveProperty _unitSlotCompoundIndex;
     private ReactiveDictionary<int, IntReactiveProperty> _lifeCompounds;
 
     public void Init()
@@ -21,17 +21,21 @@ public class UnitEquipCommand : IGameInit
 
     public void Execute( int compoundIndex, int bodySlotIndex )
     {
-        _unitSlotCompound = _unitController.SelectedUnit.BodySlots[ bodySlotIndex ]._CompoundIndex;
+        _unitSlotCompoundIndex = _unitController.SelectedUnit.BodySlots[ bodySlotIndex ]._CompoundIndex;
         _lifeCompounds = _planetController.SelectedPlanet.Life.Compounds;
 
-        if( _unitSlotCompound.Value != Int32.MaxValue )
+        if( _unitSlotCompoundIndex.Value != Int32.MaxValue )
         {
+            foreach( KeyValuePair<R, float> item in _compounds[ _unitSlotCompoundIndex.Value ].Effects )
+            {
+                _unitController.SelectedUnit.Resistance[ item.Key ].ChangePosition( -item.Value / 100f );
+            }
 
-            _message.Index = _unitSlotCompound.Value;
+            _message.Index = _unitSlotCompoundIndex.Value;
             GameMessage.Send( _message );
         }
 
-        _unitSlotCompound.Value = compoundIndex;
+        _unitSlotCompoundIndex.Value = compoundIndex;
         _lifeCompounds[ compoundIndex ].Value--;
 
         foreach( KeyValuePair<R, float> item in _compounds[ compoundIndex ].Effects )
