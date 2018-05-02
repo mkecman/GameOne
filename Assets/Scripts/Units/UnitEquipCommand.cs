@@ -17,13 +17,36 @@ public class UnitEquipCommand : IGameInit
         _unitController = GameModel.Get<UnitController>();
         _planetController = GameModel.Get<PlanetController>();
         _message = new CompoundControlMessage();
+        _message.SpendCurrency = false;
     }
 
-    public void Execute( int compoundIndex, int bodySlotIndex )
+    public void ExecuteEquip( int compoundIndex, int bodySlotIndex )
     {
         _unitSlotCompoundIndex = _unitController.SelectedUnit.BodySlots[ bodySlotIndex ]._CompoundIndex;
         _lifeCompounds = _planetController.SelectedPlanet.Life.Compounds;
 
+        Unequip();
+
+        //EQUIP
+        _unitSlotCompoundIndex.Value = compoundIndex;
+        _lifeCompounds[ compoundIndex ].Value--;
+
+        foreach( KeyValuePair<R, float> item in _compounds[ compoundIndex ].Effects )
+        {
+            _unitController.SelectedUnit.Resistance[ item.Key ].ChangePosition( item.Value / 100f );
+        }
+    }
+
+    public void ExecuteUnequip( int bodySlotIndex )
+    {
+        _unitSlotCompoundIndex = _unitController.SelectedUnit.BodySlots[ bodySlotIndex ]._CompoundIndex;
+        _lifeCompounds = _planetController.SelectedPlanet.Life.Compounds;
+
+        Unequip();
+    }
+
+    private void Unequip()
+    {
         if( _unitSlotCompoundIndex.Value != Int32.MaxValue )
         {
             foreach( KeyValuePair<R, float> item in _compounds[ _unitSlotCompoundIndex.Value ].Effects )
@@ -33,14 +56,8 @@ public class UnitEquipCommand : IGameInit
 
             _message.Index = _unitSlotCompoundIndex.Value;
             GameMessage.Send( _message );
-        }
 
-        _unitSlotCompoundIndex.Value = compoundIndex;
-        _lifeCompounds[ compoundIndex ].Value--;
-
-        foreach( KeyValuePair<R, float> item in _compounds[ compoundIndex ].Effects )
-        {
-            _unitController.SelectedUnit.Resistance[ item.Key ].ChangePosition( item.Value / 100f );
+            _unitSlotCompoundIndex.Value = Int32.MaxValue;
         }
     }
 }

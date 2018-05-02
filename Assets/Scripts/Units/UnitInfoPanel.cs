@@ -30,12 +30,14 @@ public class UnitInfoPanel : GameView
 
             AddProp( R.Health );
             AddProp( R.Experience );
+            AddProp( R.Level );
+            AddProp( R.UpgradePoint );
             AddProp( R.Attack );
             AddProp( R.Armor );
-            AddProp( R.Body );
-            AddProp( R.Mind );
-            AddProp( R.Soul );
-            AddProp( R.Speed );
+            AddProp( R.Body, true );
+            AddProp( R.Mind, true );
+            AddProp( R.Soul, true );
+            AddProp( R.Speed, true );
         }
         else
         {
@@ -51,10 +53,10 @@ public class UnitInfoPanel : GameView
         RemoveAllChildren( transform );
     }
 
-    private void AddProp( R prop )
+    private void AddProp( R prop, bool canChange = false )
     {
         _ui = Instantiate( PropertyPrefab, transform ).GetComponent<UnitPropUpgradeView>();
-        _ui.SetModel( prop, _unit );
+        _ui.SetModel( prop, _unit, canChange );
         
         _propViews.Add( prop, _ui );
     }

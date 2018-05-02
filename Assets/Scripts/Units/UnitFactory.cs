@@ -20,13 +20,14 @@ public class UnitFactory : IGameInit
         //STATS
         unit.Props.Add( R.Health, new Resource( R.Health, 100, 0, 0, 100 ) );
         unit.Props.Add( R.Experience, new Resource( R.Experience, 1, 0, 0, 100 ) );
+        unit.Props.Add( R.Level, new Resource( R.Level, 1, 0, 1, 100 ) );
         unit.Props.Add( R.Body, new Resource( R.Body, 10, 0, 0, 100 ) );
         unit.Props.Add( R.Mind, new Resource( R.Mind, 10, 0, 0, 100 ) );
         unit.Props.Add( R.Soul, new Resource( R.Soul, 10, 0, 0, 100 ) );
         unit.Props.Add( R.Speed, new Resource( R.Speed, 10, 0, 0, 100 ) );
         unit.Props.Add( R.Armor, new Resource( R.Armor, 0, 0, 0, 100 ) );
         unit.Props.Add( R.Attack, new Resource( R.Attack, 0, 0, 0, 100 ) );
-        unit.Props.Add( R.UpgradePoint, new Resource( R.UpgradePoint, 100, 0, 0, 100 ) );
+        unit.Props.Add( R.UpgradePoint, new Resource( R.UpgradePoint, 0, 0, 0, 100 ) );
 
         unit.Resistance = GameModel.Copy( _bellCurves );
 

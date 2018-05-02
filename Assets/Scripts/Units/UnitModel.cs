@@ -49,13 +49,30 @@ public class UnitModel : IDisposable
 
     private CompositeDisposable disposables = new CompositeDisposable();
     private BodySlotsConfig _slotsConfig;
+    private LevelUpConfig _levelUpConfig;
     private List<int> _slots;
+    private LevelUpModel _levelUpModel;
 
     public void Setup()
     {
         _slotsConfig = GameConfig.Get<BodySlotsConfig>();
+        _levelUpConfig = GameConfig.Get<LevelUpConfig>();
+        _levelUpModel = _levelUpConfig[ (int)Props[ R.Level ].Value ];
+
         Props[ R.Body ]._Value.Subscribe( _ => UpdateBody() ).AddTo( disposables );
         Props[ R.Speed ]._Value.Subscribe( _ => UpdateAttack() ).AddTo( disposables );
+        Props[ R.Experience ]._Value.Subscribe( _ => CheckLevelUp() ).AddTo( disposables );
+    }
+
+    private void CheckLevelUp()
+    {
+        if( Props[ R.Experience ].Value >= _levelUpModel.Experience )
+        {
+            Props[ R.Experience ].Value -= _levelUpModel.Experience;
+            Props[ R.UpgradePoint ].Value += _levelUpModel.UpgradePoints;
+            Props[ R.Level ].Value++;
+            _levelUpModel = _levelUpConfig[ (int)Props[ R.Level ].Value ];
+        }
     }
 
     public void Dispose()

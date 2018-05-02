@@ -151,7 +151,7 @@ public class UnitController : AbstractController, IGameInit
 
     private void OnClockTick( ClockTickMessage value )
     {
-        //update all units active skills
+        //update all units passive skills
         for( int i = 0; i < _life.Units.Count; i++ )
         {
             _tempUnitModel = _life.Units[ i ];

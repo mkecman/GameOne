@@ -8,7 +8,7 @@ public class UnitPropUpgradeView : GameView
     public Button UpgradeButton;
     private int delta = 0;
 
-    public void SetModel( R prop, UnitModel unit )
+    public void SetModel( R prop, UnitModel unit, bool canChange )
     {
         disposables.Clear();
         delta = 0;
@@ -23,12 +23,19 @@ public class UnitPropUpgradeView : GameView
             .Subscribe( _ => UpgradeButton.interactable = _ > 0 ? true : false )
             .AddTo( disposables );
 
-        UpgradeButton.OnClickAsObservable()
-            .Subscribe( _ =>
-            {
-                GameMessage.Send( new UnitPropUpgradeMessage( prop ) );
-                PropertyView.SetDelta( ++delta );
-            } )
-            .AddTo( disposables );
+        if( canChange )
+        {
+            UpgradeButton.OnClickAsObservable()
+                .Subscribe( _ =>
+                {
+                    GameMessage.Send( new UnitPropUpgradeMessage( prop ) );
+                    PropertyView.SetDelta( ++delta );
+                } )
+                .AddTo( disposables );
+        }
+        else
+        {
+            UpgradeButton.gameObject.SetActive( false );
+        }
     }
 }

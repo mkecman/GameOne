@@ -24,6 +24,9 @@ public class CompoundPaymentService : AbstractController, IGameInit
 
     public bool BuyCompound( int index, bool spendCurrency = true )
     {
+        if( !spendCurrency )
+            return true;
+
         _compound = _compounds[ index ];
         _hasEnough = true;
         for( int i = 0; i < _compound.Elements.Count; i++ )

@@ -17,12 +17,15 @@ public class CompoundController : IGameInit
         _pay = GameModel.Get<CompoundPaymentService>();
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
         GameMessage.Listen<CompoundControlMessage>( OnCompoundControlMessage );
-        GameMessage.Listen<CompoundDropMessage>( OnCompoundDropMessage );
+        GameMessage.Listen<CompoundEquipMessage>( OnCompoundDropMessage );
     }
 
-    private void OnCompoundDropMessage( CompoundDropMessage value )
+    private void OnCompoundDropMessage( CompoundEquipMessage value )
     {
-        _unitEquipCommand.Execute( value.CompoundIndex, value.BodySlotIndex );
+        if( value.Action == CompoundEquipAction.EQUIP )
+            _unitEquipCommand.ExecuteEquip( value.CompoundIndex, value.BodySlotIndex );
+        else
+            _unitEquipCommand.ExecuteUnequip( value.BodySlotIndex );
     }
 
     private void OnPlanetChange( PlanetModel value )
@@ -35,7 +38,7 @@ public class CompoundController : IGameInit
         switch( value.Action )
         {
             case CompoundControlAction.ADD:
-                AddCompound( value.Index );
+                AddCompound( value.Index, value.SpendCurrency );
                 break;
             case CompoundControlAction.REMOVE:
                 RemoveCompound( value.Index );
@@ -54,9 +57,9 @@ public class CompoundController : IGameInit
         }
     }
 
-    private void AddCompound( int index )
+    private void AddCompound( int index, bool spendCurrency )
     {
-        if( _pay.BuyCompound( index ) )
+        if( _pay.BuyCompound( index, spendCurrency ) )
             if( _life.Compounds.ContainsKey( index ) )
                 _life.Compounds[ index ].Value++;
             else

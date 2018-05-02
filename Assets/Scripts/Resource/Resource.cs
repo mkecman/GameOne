@@ -93,5 +93,6 @@ public enum R
     Armor,
     Attack,
     UpgradePoint,
+    Level,
     Count
 }

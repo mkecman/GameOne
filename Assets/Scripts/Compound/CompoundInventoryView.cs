@@ -5,21 +5,17 @@ using UniRx;
 using UnityEngine.EventSystems;
 using System;
 
-public class CompoundInventoryView : GameView, IDragHandler, IPointerUpHandler, IPointerDownHandler
+public class CompoundInventoryView : GameView
 {
     public CompoundIconView Icon;
     public Text AmountText;
     public CompoundJSON Compound;
 
-    private GameObject Copy;
-    private Transform DragPanel;
     private CompoundControlMessage _controlMessage;
     
 
     private void Awake()
     {
-        DragPanel = GameObject.Find( "DragPanel" ).transform;
-        
         _controlMessage = new CompoundControlMessage();
         _controlMessage.Action = CompoundControlAction.REMOVE;
     }
@@ -47,25 +43,7 @@ public class CompoundInventoryView : GameView, IDragHandler, IPointerUpHandler, 
     public override void OnDestroy()
     {
         base.OnDestroy();
-        Copy = null;
-        DragPanel = null;
         Compound = null;
     }
 
-    public void OnDrag( PointerEventData eventData )
-    {
-        Copy.transform.position = eventData.position;
-    }
-
-    public void OnPointerUp( PointerEventData eventData )
-    {
-        Destroy( Copy );
-        Copy = null;
-    }
-
-    public void OnPointerDown( PointerEventData eventData )
-    {
-        Copy = Instantiate( this.gameObject, DragPanel );
-        Copy.GetComponent<CompoundInventoryView>().Icon.IsRaycastTarget = false;
-    }
 }

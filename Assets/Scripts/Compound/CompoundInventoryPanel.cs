@@ -3,17 +3,21 @@ using System.Collections;
 using System;
 using UniRx;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
-public class CompoundInventoryPanel : GameView
+public class CompoundInventoryPanel : GameView, IDropHandler, IDragHandler
 {
     public GameObject CompoundInventoryPrefab;
     private ReactiveDictionary<int, IntReactiveProperty> _LifeCompounds;
     private CompoundConfig _compounds;
+    private CompoundEquipMessage _compoundEquipMessage;
+    private BodySlotView _dragObject;
 
     private void Start()
     {
         _compounds = GameConfig.Get<CompoundConfig>();
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
+        _compoundEquipMessage = new CompoundEquipMessage( 0, 0, CompoundEquipAction.UNEQUIP );
     }
 
     private void OnPlanetChange( PlanetModel value )
@@ -39,4 +43,21 @@ public class CompoundInventoryPanel : GameView
             .Setup( compoundJSON, value );
     }
 
+    public void OnDrop( PointerEventData eventData )
+    {
+        Debug.Log( "OnDrop" );
+
+        _dragObject = eventData.pointerDrag.GetComponentInParent<BodySlotView>();
+        if( _dragObject != null )
+        {
+            Debug.Log( "DROPPPPPERD" );
+            _compoundEquipMessage.BodySlotIndex = _dragObject.Index;
+            GameMessage.Send( _compoundEquipMessage );
+        }
+    }
+
+    public void OnDrag( PointerEventData eventData )
+    {
+        //needed for OnDrop to work
+    }
 }

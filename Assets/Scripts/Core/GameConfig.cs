@@ -30,6 +30,8 @@ public class GameConfig : MonoBehaviour
         _instance.Load<BellCurveConfig>();
         _instance.Load<BuildingConfig>();
         //Get<BuildingConfig>().Setup();
+
+        _instance.Load<LevelUpConfig>();
     }
 
     public static T Get<T>()
