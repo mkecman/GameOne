@@ -29,11 +29,6 @@ public class GameModel : MonoBehaviour
         }
     }
 
-    internal static void Get<T>( object onPlanetChange )
-    {
-        throw new NotImplementedException();
-    }
-
     public static void HandleGet<T>( ModelDelegate<T> handler )
     {
         string className = typeof( T ).Name;

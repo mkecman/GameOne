@@ -25,8 +25,13 @@ public class CompoundGenerator : MonoBehaviour
         _elements = GameConfig.Get<ElementConfig>().ElementsDictionary;
         _elementsList = GameConfig.Get<ElementConfig>().ElementsList;
         _buildings = GameConfig.Get<BuildingConfig>().Buildings;
+        _compounds = GameConfig.Get<CompoundConfig>();
 
-        GenerateArmorCompounds();
+        _indexer = 24;
+        CreateCompoundTexture( _compounds[ 24 ] );
+        _indexer = 25;
+        CreateCompoundTexture( _compounds[ 25 ] );
+        //GenerateArmorCompounds();
         //ConvertOldConfigToNewFormat();
     }
 
@@ -136,7 +141,7 @@ public class CompoundGenerator : MonoBehaviour
         _indexer++;
     }
 
-    private void CreateCompoundTexture( CompoundJSON compound )
+    public void CreateCompoundTexture( CompoundJSON compound )
     {
         Gradient gradient = new Gradient();
         GradientColorKey[] gradientColorKeys = new GradientColorKey[ compound.Elements.Count ];

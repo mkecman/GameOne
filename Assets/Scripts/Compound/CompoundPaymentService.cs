@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System;
 
 public class CompoundPaymentService : AbstractController, IGameInit
 {
     private LifeModel _life;
     private GameDebug _debug;
     private CompoundConfig _compounds;
-    private CompoundJSON _compound;
     private bool _hasEnough;
 
     public void Init()
@@ -27,11 +28,17 @@ public class CompoundPaymentService : AbstractController, IGameInit
         if( !spendCurrency )
             return true;
 
-        _compound = _compounds[ index ];
+        BuyRecipe( _compounds[ index ].Elements, spendCurrency );
+
+        return _hasEnough;
+    }
+
+    public bool BuyRecipe( List<LifeElementModel> elements, bool spendCurrency = true )
+    {
         _hasEnough = true;
-        for( int i = 0; i < _compound.Elements.Count; i++ )
+        for( int i = 0; i < elements.Count; i++ )
         {
-            if( _life.Elements[ _compound.Elements[ i ].Index ].Amount < _compound.Elements[ i ].Amount )
+            if( _life.Elements[ elements[ i ].Index ].Amount < elements[ i ].Amount )
             {
                 _hasEnough = false;
                 continue;
@@ -39,14 +46,32 @@ public class CompoundPaymentService : AbstractController, IGameInit
         }
 
         if( _hasEnough && spendCurrency )
-            for( int i = 0; i < _compound.Elements.Count; i++ )
-                _life.Elements[ _compound.Elements[ i ].Index ].Amount -= _compound.Elements[ i ].Amount;
+            for( int i = 0; i < elements.Count; i++ )
+                _life.Elements[ elements[ i ].Index ].Amount -= elements[ i ].Amount;
 
         return _hasEnough;
     }
 
+    internal bool BuySkillUse( int compoundIndex, int amount, bool spendCurrency = true )
+    {
+        if( _life.Compounds.ContainsKey( compoundIndex ) && _life.Compounds[ compoundIndex ].Value >= amount )
+        {
+            if( spendCurrency )
+                _life.Compounds[ compoundIndex ].Value--;
+            return true;
+        }
 
+        return false;
+    }
 
+    public string GetSkillPriceText( int compoundIndex, int amount )
+    {
+        return amount + "x " + _compounds[ compoundIndex ].Name;
+    }
+
+    
+    /// ///////OLD STUFF
+    /// 
     public int GetAddUnitPrice()
     {
         return (int)( _life.Props[ R.Population ].Value * 50 );//(int)( Math.Pow( 1.3, _life.Props[ R.Population ].Value ) * 20 );

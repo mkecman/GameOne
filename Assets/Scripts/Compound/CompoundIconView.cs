@@ -7,7 +7,7 @@ public class CompoundIconView : MonoBehaviour, IDragHandler, IPointerUpHandler, 
 {
     public RawImage rawImage;
 
-    private CompoundTooltipMessage _tooltipMessage = new CompoundTooltipMessage();
+    private TooltipMessage _tooltipMessage = new TooltipMessage();
     private Transform DragPanel;
     private GameObject Copy;
 
@@ -18,7 +18,7 @@ public class CompoundIconView : MonoBehaviour, IDragHandler, IPointerUpHandler, 
 
     public void Setup( CompoundJSON compound )
     {
-        _tooltipMessage.Compound = compound;
+        _tooltipMessage.Text = compound.Name;
         rawImage.texture = Resources.Load( "CompoundTexture/" + compound.Index ) as Texture2D;
     }
 
@@ -36,7 +36,7 @@ public class CompoundIconView : MonoBehaviour, IDragHandler, IPointerUpHandler, 
 
     public void OnBeginDrag( PointerEventData eventData )
     {
-        _tooltipMessage.Action = CompoundControlAction.REMOVE;
+        _tooltipMessage.Action = TooltipAction.HIDE;
         GameMessage.Send( _tooltipMessage );
 
         Copy = Instantiate( this.gameObject, DragPanel );
@@ -45,7 +45,7 @@ public class CompoundIconView : MonoBehaviour, IDragHandler, IPointerUpHandler, 
 
     public void OnPointerUp( PointerEventData eventData )
     {
-        _tooltipMessage.Action = CompoundControlAction.REMOVE;
+        _tooltipMessage.Action = TooltipAction.HIDE;
         GameMessage.Send( _tooltipMessage );
 
         Destroy( Copy );
@@ -54,7 +54,7 @@ public class CompoundIconView : MonoBehaviour, IDragHandler, IPointerUpHandler, 
 
     public void OnPointerDown( PointerEventData eventData )
     {
-        _tooltipMessage.Action = CompoundControlAction.ADD;
+        _tooltipMessage.Action = TooltipAction.SHOW;
         _tooltipMessage.Position = transform.position;
         GameMessage.Send( _tooltipMessage );
     }

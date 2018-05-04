@@ -39,6 +39,7 @@ public class GameController : MonoBehaviour
         AddController<UnitFactory>();
         AddController<UnitController>();
         AddController<SkillController>();
+        AddController<SkillPaymentService>();
         AddController<CompoundController>();
         AddController<CompoundPaymentService>();
         //AddController<BuildingController>();

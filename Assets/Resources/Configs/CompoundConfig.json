@@ -1,1 +1,1134 @@
-[{"Index":0,"Name":"Temperature 3","Type":1,"Formula":"Fe0 N0 C0 Si0 ","MolecularMass":312.284424,"Elements":[{"Index":26,"Symbol":"Fe","Amount":0,"MaxAmount":1,"IsFull":true},{"Index":7,"Symbol":"N","Amount":0,"MaxAmount":6,"IsFull":true},{"Index":6,"Symbol":"C","Amount":0,"MaxAmount":5,"IsFull":true},{"Index":14,"Symbol":"Si","Amount":0,"MaxAmount":4,"IsFull":true}],"Effects":{"Temperature":3.0},"CanCraft":true},{"Index":1,"Name":"Pressure 3","Type":1,"Formula":"Al0 Si0 O0 ","MolecularMass":302.473083,"Elements":[{"Index":13,"Symbol":"Al","Amount":0,"MaxAmount":2,"IsFull":true},{"Index":14,"Symbol":"Si","Amount":0,"MaxAmount":6,"IsFull":true},{"Index":8,"Symbol":"O","Amount":0,"MaxAmount":5,"IsFull":true}],"Effects":{"Pressure":3.0},"CanCraft":true},{"Index":2,"Name":"Humidity 3","Type":1,"Formula":"Ca0 Si0 H0 C0 ","MolecularMass":303.7553,"Elements":[{"Index":20,"Symbol":"Ca","Amount":0,"MaxAmount":1,"IsFull":true},{"Index":14,"Symbol":"Si","Amount":0,"MaxAmount":6,"IsFull":true},{"Index":1,"Symbol":"H","Amount":0,"MaxAmount":11,"IsFull":true},{"Index":6,"Symbol":"C","Amount":0,"MaxAmount":7,"IsFull":true}],"Effects":{"Humidity":3.0},"CanCraft":true},{"Index":3,"Name":"Radiation 3","Type":1,"Formula":"Fe0 Mg0 Si0 ","MolecularMass":317.7995,"Elements":[{"Index":26,"Symbol":"Fe","Amount":0,"MaxAmount":1,"IsFull":true},{"Index":12,"Symbol":"Mg","Amount":0,"MaxAmount":5,"IsFull":true},{"Index":14,"Symbol":"Si","Amount":0,"MaxAmount":5,"IsFull":true}],"Effects":{"Radiation":3.0},"CanCraft":true},{"Index":4,"Name":"Temperature -3","Type":1,"Formula":"Na0 Mg0 Si0 H0 ","MolecularMass":309.191223,"Elements":[{"Index":11,"Symbol":"Na","Amount":0,"MaxAmount":2,"IsFull":true},{"Index":12,"Symbol":"Mg","Amount":0,"MaxAmount":6,"IsFull":true},{"Index":14,"Symbol":"Si","Amount":0,"MaxAmount":4,"IsFull":true},{"Index":1,"Symbol":"H","Amount":0,"MaxAmount":5,"IsFull":true}],"Effects":{"Temperature":-3.0},"CanCraft":true},{"Index":5,"Name":"Pressure -3","Type":1,"Formula":"Ni0 N0 O0 Mg0 ","MolecularMass":319.950836,"Elements":[{"Index":28,"Symbol":"Ni","Amount":0,"MaxAmount":1,"IsFull":true},{"Index":7,"Symbol":"N","Amount":0,"MaxAmount":6,"IsFull":true},{"Index":8,"Symbol":"O","Amount":0,"MaxAmount":5,"IsFull":true},{"Index":12,"Symbol":"Mg","Amount":0,"MaxAmount":4,"IsFull":true}],"Effects":{"Pressure":-3.0},"CanCraft":true},{"Index":6,"Name":"Humidity -3","Type":1,"Formula":"S0 C0 N0 Mg0 ","MolecularMass":327.7567,"Elements":[{"Index":16,"Symbol":"S","Amount":0,"MaxAmount":2,"IsFull":true},{"Index":6,"Symbol":"C","Amount":0,"MaxAmount":6,"IsFull":true},{"Index":7,"Symbol":"N","Amount":0,"MaxAmount":5,"IsFull":true},{"Index":12,"Symbol":"Mg","Amount":0,"MaxAmount":5,"IsFull":true}],"Effects":{"Humidity":-3.0},"CanCraft":true},{"Index":7,"Name":"Radiation -3","Type":1,"Formula":"Na0 N0 Mg0 H0 ","MolecularMass":309.007477,"Elements":[{"Index":11,"Symbol":"Na","Amount":0,"MaxAmount":2,"IsFull":true},{"Index":7,"Symbol":"N","Amount":0,"MaxAmount":7,"IsFull":true},{"Index":12,"Symbol":"Mg","Amount":0,"MaxAmount":6,"IsFull":true},{"Index":1,"Symbol":"H","Amount":0,"MaxAmount":19,"IsFull":true}],"Effects":{"Radiation":-3.0},"CanCraft":true},{"Index":8,"Name":"Temperature 9","Type":1,"Formula":"Li0 Cl0 Al0 Si0 O0 ","MolecularMass":959.435242,"Elements":[{"Index":3,"Symbol":"Li","Amount":0,"MaxAmount":28,"IsFull":true},{"Index":17,"Symbol":"Cl","Amount":0,"MaxAmount":8,"IsFull":true},{"Index":13,"Symbol":"Al","Amount":0,"MaxAmount":7,"IsFull":true},{"Index":14,"Symbol":"Si","Amount":0,"MaxAmount":7,"IsFull":true},{"Index":8,"Symbol":"O","Amount":0,"MaxAmount":6,"IsFull":true}],"Effects":{"Temperature":9.0},"CanCraft":true},{"Index":9,"Name":"Pressure 9","Type":1,"Formula":"F0 Ni0 S0 Si0 H0 ","MolecularMass":972.829,"Elements":[{"Index":9,"Symbol":"F","Amount":0,"MaxAmount":10,"IsFull":true},{"Index":28,"Symbol":"Ni","Amount":0,"MaxAmount":5,"IsFull":true},{"Index":16,"Symbol":"S","Amount":0,"MaxAmount":6,"IsFull":true},{"Index":14,"Symbol":"Si","Amount":0,"MaxAmount":10,"IsFull":true},{"Index":1,"Symbol":"H","Amount":0,"MaxAmount":16,"IsFull":true}],"Effects":{"Pressure":9.0},"CanCraft":true},{"Index":10,"Name":"Humidity 9","Type":1,"Formula":"Li0 S0 Cl0 H0 ","MolecularMass":963.3125,"Elements":[{"Index":3,"Symbol":"Li","Amount":0,"MaxAmount":28,"IsFull":true},{"Index":16,"Symbol":"S","Amount":0,"MaxAmount":7,"IsFull":true},{"Index":17,"Symbol":"Cl","Amount":0,"MaxAmount":7,"IsFull":true},{"Index":1,"Symbol":"H","Amount":0,"MaxAmount":294,"IsFull":true}],"Effects":{"Humidity":9.0},"CanCraft":true},{"Index":11,"Name":"Radiation 9","Type":1,"Formula":"Cu0 Na0 Al0 Ni0 Si0 ","MolecularMass":956.1231,"Elements":[{"Index":29,"Symbol":"Cu","Amount":0,"MaxAmount":3,"IsFull":true},{"Index":11,"Symbol":"Na","Amount":0,"MaxAmount":5,"IsFull":true},{"Index":13,"Symbol":"Al","Amount":0,"MaxAmount":5,"IsFull":true},{"Index":28,"Symbol":"Ni","Amount":0,"MaxAmount":4,"IsFull":true},{"Index":14,"Symbol":"Si","Amount":0,"MaxAmount":10,"IsFull":true}],"Effects":{"Radiation":9.0},"CanCraft":true},{"Index":12,"Name":"Temperature -9","Type":1,"Formula":"Li0 S0 Cl0 O0 ","MolecularMass":954.96814,"Elements":[{"Index":3,"Symbol":"Li","Amount":0,"MaxAmount":28,"IsFull":true},{"Index":16,"Symbol":"S","Amount":0,"MaxAmount":7,"IsFull":true},{"Index":17,"Symbol":"Cl","Amount":0,"MaxAmount":7,"IsFull":true},{"Index":8,"Symbol":"O","Amount":0,"MaxAmount":18,"IsFull":true}],"Effects":{"Temperature":-9.0},"CanCraft":true},{"Index":13,"Name":"Pressure -9","Type":1,"Formula":"F0 Cl0 Fe0 H0 ","MolecularMass":978.268738,"Elements":[{"Index":9,"Symbol":"F","Amount":0,"MaxAmount":10,"IsFull":true},{"Index":17,"Symbol":"Cl","Amount":0,"MaxAmount":6,"IsFull":true},{"Index":26,"Symbol":"Fe","Amount":0,"MaxAmount":5,"IsFull":true},{"Index":1,"Symbol":"H","Amount":0,"MaxAmount":294,"IsFull":true}],"Effects":{"Pressure":-9.0},"CanCraft":true},{"Index":14,"Name":"Humidity -9","Type":1,"Formula":"P0 Ca0 Ni0 Cl0 O0 Mg0 ","MolecularMass":946.176331,"Elements":[{"Index":15,"Symbol":"P","Amount":0,"MaxAmount":6,"IsFull":true},{"Index":20,"Symbol":"Ca","Amount":0,"MaxAmount":4,"IsFull":true},{"Index":28,"Symbol":"Ni","Amount":0,"MaxAmount":3,"IsFull":true},{"Index":17,"Symbol":"Cl","Amount":0,"MaxAmount":4,"IsFull":true},{"Index":8,"Symbol":"O","Amount":0,"MaxAmount":7,"IsFull":true},{"Index":12,"Symbol":"Mg","Amount":0,"MaxAmount":7,"IsFull":true}],"Effects":{"Humidity":-9.0},"CanCraft":true},{"Index":15,"Name":"Radiation -9","Type":1,"Formula":"Li0 Na0 S0 H0 ","MolecularMass":977.107239,"Elements":[{"Index":3,"Symbol":"Li","Amount":0,"MaxAmount":28,"IsFull":true},{"Index":11,"Symbol":"Na","Amount":0,"MaxAmount":10,"IsFull":true},{"Index":16,"Symbol":"S","Amount":0,"MaxAmount":8,"IsFull":true},{"Index":1,"Symbol":"H","Amount":0,"MaxAmount":294,"IsFull":true}],"Effects":{"Radiation":-9.0},"CanCraft":true},{"Index":16,"Name":"Temperature 18","Type":1,"Formula":"Au0 Zn0 Li0 Cu0 Ni0 ","MolecularMass":1746.77271,"Elements":[{"Index":79,"Symbol":"Au","Amount":0,"MaxAmount":3,"IsFull":true},{"Index":30,"Symbol":"Zn","Amount":0,"MaxAmount":5,"IsFull":true},{"Index":3,"Symbol":"Li","Amount":0,"MaxAmount":6,"IsFull":true},{"Index":29,"Symbol":"Cu","Amount":0,"MaxAmount":5,"IsFull":true},{"Index":28,"Symbol":"Ni","Amount":0,"MaxAmount":8,"IsFull":true}],"Effects":{"Temperature":18.0},"CanCraft":true},{"Index":17,"Name":"Pressure 18","Type":1,"Formula":"Pt0 F0 Li0 Cu0 Al0 ","MolecularMass":1763.06641,"Elements":[{"Index":78,"Symbol":"Pt","Amount":0,"MaxAmount":3,"IsFull":true},{"Index":9,"Symbol":"F","Amount":0,"MaxAmount":9,"IsFull":true},{"Index":3,"Symbol":"Li","Amount":0,"MaxAmount":11,"IsFull":true},{"Index":29,"Symbol":"Cu","Amount":0,"MaxAmount":7,"IsFull":true},{"Index":13,"Symbol":"Al","Amount":0,"MaxAmount":18,"IsFull":true}],"Effects":{"Pressure":18.0},"CanCraft":true},{"Index":18,"Name":"Humidity 18","Type":1,"Formula":"Pt0 Co0 Ti0 Ca0 ","MolecularMass":1754.9353,"Elements":[{"Index":78,"Symbol":"Pt","Amount":0,"MaxAmount":3,"IsFull":true},{"Index":27,"Symbol":"Co","Amount":0,"MaxAmount":6,"IsFull":true},{"Index":22,"Symbol":"Ti","Amount":0,"MaxAmount":7,"IsFull":true},{"Index":20,"Symbol":"Ca","Amount":0,"MaxAmount":12,"IsFull":true}],"Effects":{"Humidity":18.0},"CanCraft":true},{"Index":19,"Name":"Radiation 18","Type":1,"Formula":"Au0 F0 Zn0 Cu0 S0 ","MolecularMass":1748.01575,"Elements":[{"Index":79,"Symbol":"Au","Amount":0,"MaxAmount":3,"IsFull":true},{"Index":9,"Symbol":"F","Amount":0,"MaxAmount":5,"IsFull":true},{"Index":30,"Symbol":"Zn","Amount":0,"MaxAmount":5,"IsFull":true},{"Index":29,"Symbol":"Cu","Amount":0,"MaxAmount":4,"IsFull":true},{"Index":16,"Symbol":"S","Amount":0,"MaxAmount":15,"IsFull":true}],"Effects":{"Radiation":18.0},"CanCraft":true},{"Index":20,"Name":"Temperature -18","Type":1,"Formula":"Pt0 Zn0 P0 F0 Fe0 ","MolecularMass":1724.189,"Elements":[{"Index":78,"Symbol":"Pt","Amount":0,"MaxAmount":3,"IsFull":true},{"Index":30,"Symbol":"Zn","Amount":0,"MaxAmount":6,"IsFull":true},{"Index":15,"Symbol":"P","Amount":0,"MaxAmount":6,"IsFull":true},{"Index":9,"Symbol":"F","Amount":0,"MaxAmount":6,"IsFull":true},{"Index":26,"Symbol":"Fe","Amount":0,"MaxAmount":8,"IsFull":true}],"Effects":{"Temperature":-18.0},"CanCraft":true},{"Index":21,"Name":"Pressure -18","Type":1,"Formula":"U0 Li0 Ti0 P0 Na0 ","MolecularMass":1645.201,"Elements":[{"Index":92,"Symbol":"U","Amount":0,"MaxAmount":2,"IsFull":true},{"Index":3,"Symbol":"Li","Amount":0,"MaxAmount":8,"IsFull":true},{"Index":22,"Symbol":"Ti","Amount":0,"MaxAmount":8,"IsFull":true},{"Index":15,"Symbol":"P","Amount":0,"MaxAmount":8,"IsFull":true},{"Index":11,"Symbol":"Na","Amount":0,"MaxAmount":21,"IsFull":true}],"Effects":{"Pressure":-18.0},"CanCraft":true},{"Index":22,"Name":"Humidity -18","Type":1,"Formula":"Pu0 Zn0 Ti0 Cl0 ","MolecularMass":1628.63354,"Elements":[{"Index":94,"Symbol":"Pu","Amount":0,"MaxAmount":2,"IsFull":true},{"Index":30,"Symbol":"Zn","Amount":0,"MaxAmount":6,"IsFull":true},{"Index":22,"Symbol":"Ti","Amount":0,"MaxAmount":6,"IsFull":true},{"Index":17,"Symbol":"Cl","Amount":0,"MaxAmount":13,"IsFull":true}],"Effects":{"Humidity":-18.0},"CanCraft":true},{"Index":23,"Name":"Radiation -18","Type":1,"Formula":"Au0 P0 F0 Cu0 Al0 ","MolecularMass":1757.67627,"Elements":[{"Index":79,"Symbol":"Au","Amount":0,"MaxAmount":3,"IsFull":true},{"Index":15,"Symbol":"P","Amount":0,"MaxAmount":6,"IsFull":true},{"Index":9,"Symbol":"F","Amount":0,"MaxAmount":6,"IsFull":true},{"Index":29,"Symbol":"Cu","Amount":0,"MaxAmount":6,"IsFull":true},{"Index":13,"Symbol":"Al","Amount":0,"MaxAmount":18,"IsFull":true}],"Effects":{"Radiation":-18.0},"CanCraft":true}]
+[
+  {
+    "Index": 0,
+    "Name": "Temperature 3",
+    "Type": 1,
+    "Formula": "Fe0 N0 C0 Si0 ",
+    "MolecularMass": 312.284424,
+    "Elements": [
+      {
+        "Index": 26,
+        "Symbol": "Fe",
+        "Amount": 0,
+        "MaxAmount": 1,
+        "IsFull": true
+      },
+      {
+        "Index": 7,
+        "Symbol": "N",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      },
+      {
+        "Index": 6,
+        "Symbol": "C",
+        "Amount": 0,
+        "MaxAmount": 5,
+        "IsFull": true
+      },
+      {
+        "Index": 14,
+        "Symbol": "Si",
+        "Amount": 0,
+        "MaxAmount": 4,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Temperature": 3.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 1,
+    "Name": "Pressure 3",
+    "Type": 1,
+    "Formula": "Al0 Si0 O0 ",
+    "MolecularMass": 302.473083,
+    "Elements": [
+      {
+        "Index": 13,
+        "Symbol": "Al",
+        "Amount": 0,
+        "MaxAmount": 2,
+        "IsFull": true
+      },
+      {
+        "Index": 14,
+        "Symbol": "Si",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      },
+      {
+        "Index": 8,
+        "Symbol": "O",
+        "Amount": 0,
+        "MaxAmount": 5,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Pressure": 3.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 2,
+    "Name": "Humidity 3",
+    "Type": 1,
+    "Formula": "Ca0 Si0 H0 C0 ",
+    "MolecularMass": 303.7553,
+    "Elements": [
+      {
+        "Index": 20,
+        "Symbol": "Ca",
+        "Amount": 0,
+        "MaxAmount": 1,
+        "IsFull": true
+      },
+      {
+        "Index": 14,
+        "Symbol": "Si",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      },
+      {
+        "Index": 1,
+        "Symbol": "H",
+        "Amount": 0,
+        "MaxAmount": 11,
+        "IsFull": true
+      },
+      {
+        "Index": 6,
+        "Symbol": "C",
+        "Amount": 0,
+        "MaxAmount": 7,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Humidity": 3.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 3,
+    "Name": "Radiation 3",
+    "Type": 1,
+    "Formula": "Fe0 Mg0 Si0 ",
+    "MolecularMass": 317.7995,
+    "Elements": [
+      {
+        "Index": 26,
+        "Symbol": "Fe",
+        "Amount": 0,
+        "MaxAmount": 1,
+        "IsFull": true
+      },
+      {
+        "Index": 12,
+        "Symbol": "Mg",
+        "Amount": 0,
+        "MaxAmount": 5,
+        "IsFull": true
+      },
+      {
+        "Index": 14,
+        "Symbol": "Si",
+        "Amount": 0,
+        "MaxAmount": 5,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Radiation": 3.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 4,
+    "Name": "Temperature -3",
+    "Type": 1,
+    "Formula": "Na0 Mg0 Si0 H0 ",
+    "MolecularMass": 309.191223,
+    "Elements": [
+      {
+        "Index": 11,
+        "Symbol": "Na",
+        "Amount": 0,
+        "MaxAmount": 2,
+        "IsFull": true
+      },
+      {
+        "Index": 12,
+        "Symbol": "Mg",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      },
+      {
+        "Index": 14,
+        "Symbol": "Si",
+        "Amount": 0,
+        "MaxAmount": 4,
+        "IsFull": true
+      },
+      {
+        "Index": 1,
+        "Symbol": "H",
+        "Amount": 0,
+        "MaxAmount": 5,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Temperature": -3.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 5,
+    "Name": "Pressure -3",
+    "Type": 1,
+    "Formula": "Ni0 N0 O0 Mg0 ",
+    "MolecularMass": 319.950836,
+    "Elements": [
+      {
+        "Index": 28,
+        "Symbol": "Ni",
+        "Amount": 0,
+        "MaxAmount": 1,
+        "IsFull": true
+      },
+      {
+        "Index": 7,
+        "Symbol": "N",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      },
+      {
+        "Index": 8,
+        "Symbol": "O",
+        "Amount": 0,
+        "MaxAmount": 5,
+        "IsFull": true
+      },
+      {
+        "Index": 12,
+        "Symbol": "Mg",
+        "Amount": 0,
+        "MaxAmount": 4,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Pressure": -3.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 6,
+    "Name": "Humidity -3",
+    "Type": 1,
+    "Formula": "S0 C0 N0 Mg0 ",
+    "MolecularMass": 327.7567,
+    "Elements": [
+      {
+        "Index": 16,
+        "Symbol": "S",
+        "Amount": 0,
+        "MaxAmount": 2,
+        "IsFull": true
+      },
+      {
+        "Index": 6,
+        "Symbol": "C",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      },
+      {
+        "Index": 7,
+        "Symbol": "N",
+        "Amount": 0,
+        "MaxAmount": 5,
+        "IsFull": true
+      },
+      {
+        "Index": 12,
+        "Symbol": "Mg",
+        "Amount": 0,
+        "MaxAmount": 5,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Humidity": -3.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 7,
+    "Name": "Radiation -3",
+    "Type": 1,
+    "Formula": "Na0 N0 Mg0 H0 ",
+    "MolecularMass": 309.007477,
+    "Elements": [
+      {
+        "Index": 11,
+        "Symbol": "Na",
+        "Amount": 0,
+        "MaxAmount": 2,
+        "IsFull": true
+      },
+      {
+        "Index": 7,
+        "Symbol": "N",
+        "Amount": 0,
+        "MaxAmount": 7,
+        "IsFull": true
+      },
+      {
+        "Index": 12,
+        "Symbol": "Mg",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      },
+      {
+        "Index": 1,
+        "Symbol": "H",
+        "Amount": 0,
+        "MaxAmount": 19,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Radiation": -3.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 8,
+    "Name": "Temperature 9",
+    "Type": 1,
+    "Formula": "Li0 Cl0 Al0 Si0 O0 ",
+    "MolecularMass": 959.435242,
+    "Elements": [
+      {
+        "Index": 3,
+        "Symbol": "Li",
+        "Amount": 0,
+        "MaxAmount": 28,
+        "IsFull": true
+      },
+      {
+        "Index": 17,
+        "Symbol": "Cl",
+        "Amount": 0,
+        "MaxAmount": 8,
+        "IsFull": true
+      },
+      {
+        "Index": 13,
+        "Symbol": "Al",
+        "Amount": 0,
+        "MaxAmount": 7,
+        "IsFull": true
+      },
+      {
+        "Index": 14,
+        "Symbol": "Si",
+        "Amount": 0,
+        "MaxAmount": 7,
+        "IsFull": true
+      },
+      {
+        "Index": 8,
+        "Symbol": "O",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Temperature": 9.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 9,
+    "Name": "Pressure 9",
+    "Type": 1,
+    "Formula": "F0 Ni0 S0 Si0 H0 ",
+    "MolecularMass": 972.829,
+    "Elements": [
+      {
+        "Index": 9,
+        "Symbol": "F",
+        "Amount": 0,
+        "MaxAmount": 10,
+        "IsFull": true
+      },
+      {
+        "Index": 28,
+        "Symbol": "Ni",
+        "Amount": 0,
+        "MaxAmount": 5,
+        "IsFull": true
+      },
+      {
+        "Index": 16,
+        "Symbol": "S",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      },
+      {
+        "Index": 14,
+        "Symbol": "Si",
+        "Amount": 0,
+        "MaxAmount": 10,
+        "IsFull": true
+      },
+      {
+        "Index": 1,
+        "Symbol": "H",
+        "Amount": 0,
+        "MaxAmount": 16,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Pressure": 9.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 10,
+    "Name": "Humidity 9",
+    "Type": 1,
+    "Formula": "Li0 S0 Cl0 H0 ",
+    "MolecularMass": 963.3125,
+    "Elements": [
+      {
+        "Index": 3,
+        "Symbol": "Li",
+        "Amount": 0,
+        "MaxAmount": 28,
+        "IsFull": true
+      },
+      {
+        "Index": 16,
+        "Symbol": "S",
+        "Amount": 0,
+        "MaxAmount": 7,
+        "IsFull": true
+      },
+      {
+        "Index": 17,
+        "Symbol": "Cl",
+        "Amount": 0,
+        "MaxAmount": 7,
+        "IsFull": true
+      },
+      {
+        "Index": 1,
+        "Symbol": "H",
+        "Amount": 0,
+        "MaxAmount": 294,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Humidity": 9.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 11,
+    "Name": "Radiation 9",
+    "Type": 1,
+    "Formula": "Cu0 Na0 Al0 Ni0 Si0 ",
+    "MolecularMass": 956.1231,
+    "Elements": [
+      {
+        "Index": 29,
+        "Symbol": "Cu",
+        "Amount": 0,
+        "MaxAmount": 3,
+        "IsFull": true
+      },
+      {
+        "Index": 11,
+        "Symbol": "Na",
+        "Amount": 0,
+        "MaxAmount": 5,
+        "IsFull": true
+      },
+      {
+        "Index": 13,
+        "Symbol": "Al",
+        "Amount": 0,
+        "MaxAmount": 5,
+        "IsFull": true
+      },
+      {
+        "Index": 28,
+        "Symbol": "Ni",
+        "Amount": 0,
+        "MaxAmount": 4,
+        "IsFull": true
+      },
+      {
+        "Index": 14,
+        "Symbol": "Si",
+        "Amount": 0,
+        "MaxAmount": 10,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Radiation": 9.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 12,
+    "Name": "Temperature -9",
+    "Type": 1,
+    "Formula": "Li0 S0 Cl0 O0 ",
+    "MolecularMass": 954.96814,
+    "Elements": [
+      {
+        "Index": 3,
+        "Symbol": "Li",
+        "Amount": 0,
+        "MaxAmount": 28,
+        "IsFull": true
+      },
+      {
+        "Index": 16,
+        "Symbol": "S",
+        "Amount": 0,
+        "MaxAmount": 7,
+        "IsFull": true
+      },
+      {
+        "Index": 17,
+        "Symbol": "Cl",
+        "Amount": 0,
+        "MaxAmount": 7,
+        "IsFull": true
+      },
+      {
+        "Index": 8,
+        "Symbol": "O",
+        "Amount": 0,
+        "MaxAmount": 18,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Temperature": -9.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 13,
+    "Name": "Pressure -9",
+    "Type": 1,
+    "Formula": "F0 Cl0 Fe0 H0 ",
+    "MolecularMass": 978.268738,
+    "Elements": [
+      {
+        "Index": 9,
+        "Symbol": "F",
+        "Amount": 0,
+        "MaxAmount": 10,
+        "IsFull": true
+      },
+      {
+        "Index": 17,
+        "Symbol": "Cl",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      },
+      {
+        "Index": 26,
+        "Symbol": "Fe",
+        "Amount": 0,
+        "MaxAmount": 5,
+        "IsFull": true
+      },
+      {
+        "Index": 1,
+        "Symbol": "H",
+        "Amount": 0,
+        "MaxAmount": 294,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Pressure": -9.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 14,
+    "Name": "Humidity -9",
+    "Type": 1,
+    "Formula": "P0 Ca0 Ni0 Cl0 O0 Mg0 ",
+    "MolecularMass": 946.176331,
+    "Elements": [
+      {
+        "Index": 15,
+        "Symbol": "P",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      },
+      {
+        "Index": 20,
+        "Symbol": "Ca",
+        "Amount": 0,
+        "MaxAmount": 4,
+        "IsFull": true
+      },
+      {
+        "Index": 28,
+        "Symbol": "Ni",
+        "Amount": 0,
+        "MaxAmount": 3,
+        "IsFull": true
+      },
+      {
+        "Index": 17,
+        "Symbol": "Cl",
+        "Amount": 0,
+        "MaxAmount": 4,
+        "IsFull": true
+      },
+      {
+        "Index": 8,
+        "Symbol": "O",
+        "Amount": 0,
+        "MaxAmount": 7,
+        "IsFull": true
+      },
+      {
+        "Index": 12,
+        "Symbol": "Mg",
+        "Amount": 0,
+        "MaxAmount": 7,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Humidity": -9.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 15,
+    "Name": "Radiation -9",
+    "Type": 1,
+    "Formula": "Li0 Na0 S0 H0 ",
+    "MolecularMass": 977.107239,
+    "Elements": [
+      {
+        "Index": 3,
+        "Symbol": "Li",
+        "Amount": 0,
+        "MaxAmount": 28,
+        "IsFull": true
+      },
+      {
+        "Index": 11,
+        "Symbol": "Na",
+        "Amount": 0,
+        "MaxAmount": 10,
+        "IsFull": true
+      },
+      {
+        "Index": 16,
+        "Symbol": "S",
+        "Amount": 0,
+        "MaxAmount": 8,
+        "IsFull": true
+      },
+      {
+        "Index": 1,
+        "Symbol": "H",
+        "Amount": 0,
+        "MaxAmount": 294,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Radiation": -9.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 16,
+    "Name": "Temperature 18",
+    "Type": 1,
+    "Formula": "Au0 Zn0 Li0 Cu0 Ni0 ",
+    "MolecularMass": 1746.77271,
+    "Elements": [
+      {
+        "Index": 79,
+        "Symbol": "Au",
+        "Amount": 0,
+        "MaxAmount": 3,
+        "IsFull": true
+      },
+      {
+        "Index": 30,
+        "Symbol": "Zn",
+        "Amount": 0,
+        "MaxAmount": 5,
+        "IsFull": true
+      },
+      {
+        "Index": 3,
+        "Symbol": "Li",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      },
+      {
+        "Index": 29,
+        "Symbol": "Cu",
+        "Amount": 0,
+        "MaxAmount": 5,
+        "IsFull": true
+      },
+      {
+        "Index": 28,
+        "Symbol": "Ni",
+        "Amount": 0,
+        "MaxAmount": 8,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Temperature": 18.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 17,
+    "Name": "Pressure 18",
+    "Type": 1,
+    "Formula": "Pt0 F0 Li0 Cu0 Al0 ",
+    "MolecularMass": 1763.06641,
+    "Elements": [
+      {
+        "Index": 78,
+        "Symbol": "Pt",
+        "Amount": 0,
+        "MaxAmount": 3,
+        "IsFull": true
+      },
+      {
+        "Index": 9,
+        "Symbol": "F",
+        "Amount": 0,
+        "MaxAmount": 9,
+        "IsFull": true
+      },
+      {
+        "Index": 3,
+        "Symbol": "Li",
+        "Amount": 0,
+        "MaxAmount": 11,
+        "IsFull": true
+      },
+      {
+        "Index": 29,
+        "Symbol": "Cu",
+        "Amount": 0,
+        "MaxAmount": 7,
+        "IsFull": true
+      },
+      {
+        "Index": 13,
+        "Symbol": "Al",
+        "Amount": 0,
+        "MaxAmount": 18,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Pressure": 18.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 18,
+    "Name": "Humidity 18",
+    "Type": 1,
+    "Formula": "Pt0 Co0 Ti0 Ca0 ",
+    "MolecularMass": 1754.9353,
+    "Elements": [
+      {
+        "Index": 78,
+        "Symbol": "Pt",
+        "Amount": 0,
+        "MaxAmount": 3,
+        "IsFull": true
+      },
+      {
+        "Index": 27,
+        "Symbol": "Co",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      },
+      {
+        "Index": 22,
+        "Symbol": "Ti",
+        "Amount": 0,
+        "MaxAmount": 7,
+        "IsFull": true
+      },
+      {
+        "Index": 20,
+        "Symbol": "Ca",
+        "Amount": 0,
+        "MaxAmount": 12,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Humidity": 18.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 19,
+    "Name": "Radiation 18",
+    "Type": 1,
+    "Formula": "Au0 F0 Zn0 Cu0 S0 ",
+    "MolecularMass": 1748.01575,
+    "Elements": [
+      {
+        "Index": 79,
+        "Symbol": "Au",
+        "Amount": 0,
+        "MaxAmount": 3,
+        "IsFull": true
+      },
+      {
+        "Index": 9,
+        "Symbol": "F",
+        "Amount": 0,
+        "MaxAmount": 5,
+        "IsFull": true
+      },
+      {
+        "Index": 30,
+        "Symbol": "Zn",
+        "Amount": 0,
+        "MaxAmount": 5,
+        "IsFull": true
+      },
+      {
+        "Index": 29,
+        "Symbol": "Cu",
+        "Amount": 0,
+        "MaxAmount": 4,
+        "IsFull": true
+      },
+      {
+        "Index": 16,
+        "Symbol": "S",
+        "Amount": 0,
+        "MaxAmount": 15,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Radiation": 18.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 20,
+    "Name": "Temperature -18",
+    "Type": 1,
+    "Formula": "Pt0 Zn0 P0 F0 Fe0 ",
+    "MolecularMass": 1724.189,
+    "Elements": [
+      {
+        "Index": 78,
+        "Symbol": "Pt",
+        "Amount": 0,
+        "MaxAmount": 3,
+        "IsFull": true
+      },
+      {
+        "Index": 30,
+        "Symbol": "Zn",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      },
+      {
+        "Index": 15,
+        "Symbol": "P",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      },
+      {
+        "Index": 9,
+        "Symbol": "F",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      },
+      {
+        "Index": 26,
+        "Symbol": "Fe",
+        "Amount": 0,
+        "MaxAmount": 8,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Temperature": -18.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 21,
+    "Name": "Pressure -18",
+    "Type": 1,
+    "Formula": "U0 Li0 Ti0 P0 Na0 ",
+    "MolecularMass": 1645.201,
+    "Elements": [
+      {
+        "Index": 92,
+        "Symbol": "U",
+        "Amount": 0,
+        "MaxAmount": 2,
+        "IsFull": true
+      },
+      {
+        "Index": 3,
+        "Symbol": "Li",
+        "Amount": 0,
+        "MaxAmount": 8,
+        "IsFull": true
+      },
+      {
+        "Index": 22,
+        "Symbol": "Ti",
+        "Amount": 0,
+        "MaxAmount": 8,
+        "IsFull": true
+      },
+      {
+        "Index": 15,
+        "Symbol": "P",
+        "Amount": 0,
+        "MaxAmount": 8,
+        "IsFull": true
+      },
+      {
+        "Index": 11,
+        "Symbol": "Na",
+        "Amount": 0,
+        "MaxAmount": 21,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Pressure": -18.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 22,
+    "Name": "Humidity -18",
+    "Type": 1,
+    "Formula": "Pu0 Zn0 Ti0 Cl0 ",
+    "MolecularMass": 1628.63354,
+    "Elements": [
+      {
+        "Index": 94,
+        "Symbol": "Pu",
+        "Amount": 0,
+        "MaxAmount": 2,
+        "IsFull": true
+      },
+      {
+        "Index": 30,
+        "Symbol": "Zn",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      },
+      {
+        "Index": 22,
+        "Symbol": "Ti",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      },
+      {
+        "Index": 17,
+        "Symbol": "Cl",
+        "Amount": 0,
+        "MaxAmount": 13,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Humidity": -18.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 23,
+    "Name": "Radiation -18",
+    "Type": 1,
+    "Formula": "Au0 P0 F0 Cu0 Al0 ",
+    "MolecularMass": 1757.67627,
+    "Elements": [
+      {
+        "Index": 79,
+        "Symbol": "Au",
+        "Amount": 0,
+        "MaxAmount": 3,
+        "IsFull": true
+      },
+      {
+        "Index": 15,
+        "Symbol": "P",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      },
+      {
+        "Index": 9,
+        "Symbol": "F",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      },
+      {
+        "Index": 29,
+        "Symbol": "Cu",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      },
+      {
+        "Index": 13,
+        "Symbol": "Al",
+        "Amount": 0,
+        "MaxAmount": 18,
+        "IsFull": true
+      }
+    ],
+    "Effects": {
+      "Radiation": -18.0
+    },
+    "CanCraft": true
+  },
+  {
+    "Index": 24,
+    "Name": "DNA",
+    "Type": 0,
+    "Formula": "H20	C20	N15	O4	P1	S1",
+    "MolecularMass": 597.51,
+    "Elements": [
+      {
+        "Index": 1,
+        "Symbol": "H",
+        "Amount": 0,
+        "MaxAmount": 20,
+        "IsFull": true
+      },
+      {
+        "Index": 6,
+        "Symbol": "C",
+        "Amount": 0,
+        "MaxAmount": 20,
+        "IsFull": true
+      },
+      {
+        "Index": 7,
+        "Symbol": "N",
+        "Amount": 0,
+        "MaxAmount": 15,
+        "IsFull": true
+      },
+      {
+        "Index": 8,
+        "Symbol": "O",
+        "Amount": 0,
+        "MaxAmount": 4,
+        "IsFull": true
+      },
+      {
+        "Index": 15,
+        "Symbol": "P",
+        "Amount": 0,
+        "MaxAmount": 1,
+        "IsFull": true
+      },
+      {
+        "Index": 16,
+        "Symbol": "S",
+        "Amount": 0,
+        "MaxAmount": 1,
+        "IsFull": true
+      }
+    ],
+    "Effects": {},
+    "CanCraft": true
+  },
+  {
+    "Index": 25,
+    "Name": "Glucose",
+    "Type": 0,
+    "Formula": "H12 C6 O6",
+    "MolecularMass": 180.16,
+    "Elements": [
+      {
+        "Index": 1,
+        "Symbol": "H",
+        "Amount": 0,
+        "MaxAmount": 12,
+        "IsFull": true
+      },
+      {
+        "Index": 6,
+        "Symbol": "C",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      },
+      {
+        "Index": 8,
+        "Symbol": "O",
+        "Amount": 0,
+        "MaxAmount": 6,
+        "IsFull": true
+      }
+    ],
+    "Effects": {},
+    "CanCraft": true
+  }
+]

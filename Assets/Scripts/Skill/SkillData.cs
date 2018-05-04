@@ -9,6 +9,7 @@ public class SkillData
     public string Name;
     public SkillType Type;
     public float UnlockCost;
+    public float UseCost;
     public bool IsPassive;
     public Dictionary<R, float> Effects = new Dictionary<R, float>();
 
@@ -26,7 +27,8 @@ public enum SkillState
 {
     LOCKED,
     UNLOCKED,
-    SELECTED
+    SELECTED,
+    EXECUTING
 }
 
 public enum SkillType

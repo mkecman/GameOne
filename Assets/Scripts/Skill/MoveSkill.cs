@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class MoveSkill : ISkill
 {
-    private UnitPaymentService _pay;
+    private CompoundPaymentService _pay;
     private UnitController _controller;
     private PlanetController _planetController;
     private List<HexModel> _markedHexes;
     private GridModel<HexModel> _hexMapModel;
     private List<Vector2Int> _positions;
-    private SkillDeactivateAllMessage _deactivateMessage = new SkillDeactivateAllMessage();
+    private HexModel _hex;
+    private SkillData _skillData;
 
     public void Init()
     {
-        _pay = GameModel.Get<UnitPaymentService>();
+        _pay = GameModel.Get<CompoundPaymentService>();
         _controller = GameModel.Get<UnitController>();
         _planetController = GameModel.Get<PlanetController>();
         _markedHexes = new List<HexModel>();
@@ -23,26 +24,29 @@ public class MoveSkill : ISkill
     
     public void Execute( UnitModel unitModel, SkillData skillData )
     {
-        _hexMapModel = _planetController.SelectedPlanet.Map;
-        GameMessage.Send( _deactivateMessage );
-        MarkNeighborHexes( unitModel );
-        GameMessage.Listen<HexClickedMessage>( OnHexClicked );
+        if( _pay.BuySkillUse( (int)skillData.UseCost, 1, false ) )
+        {
+            _skillData = skillData;
+            _skillData.State = SkillState.EXECUTING;
+            _hexMapModel = _planetController.SelectedPlanet.Map;
+            MarkNeighborHexes( unitModel );
+            GameMessage.Listen<HexClickedMessage>( OnHexClicked );
+        }
     }
 
     private void OnHexClicked( HexClickedMessage value )
     {
         if( value.Hex.isMarked.Value )
         {
-            if( _pay.BuyMoveUnit() )
-            {
-                _controller.MoveUnit( value.Hex.X, value.Hex.Y );
-                UnmarkHexes();
-                MarkNeighborHexes( _controller.SelectedUnit );
-            }
-            else
+            if( !_pay.BuySkillUse( (int)_skillData.UseCost, 1, true ) )
             {
                 Deactivate();
+                return;
             }
+
+            _controller.MoveUnit( value.Hex.X, value.Hex.Y );
+            UnmarkHexes();
+            MarkNeighborHexes( _controller.SelectedUnit );
         }
         else
         {
@@ -59,6 +63,11 @@ public class MoveSkill : ISkill
     {
         UnmarkHexes();
         GameMessage.StopListen<HexClickedMessage>( OnHexClicked );
+        if( _skillData != null )
+        {
+            _skillData.State = SkillState.UNLOCKED;
+            _skillData = null;
+        }
     }
 
     private void MarkNeighborHexes( UnitModel unit )
@@ -68,7 +77,6 @@ public class MoveSkill : ISkill
             CheckAndMark( _positions[ i ].x, _positions[ i ].y, unit );
     }
 
-    HexModel _hex;
     private void CheckAndMark( int x, int y, UnitModel unit )
     {
         _hex = _hexMapModel.Table[ x ][ y ];

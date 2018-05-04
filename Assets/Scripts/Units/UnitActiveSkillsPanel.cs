@@ -13,6 +13,7 @@ public class UnitActiveSkillsPanel : GameView
 
     private void OnUnitChange( UnitModel value )
     {
+        GameMessage.Send( new SkillDeactivateAllMessage() );
         RemoveAllChildren( transform );
         if( value != null )
         for( int i = 0; i < value.ActiveSkills.Count; i++ )
