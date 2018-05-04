@@ -1,9 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
-using System;
-using UniRx;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class UnitInfoPanel : GameView
 {
@@ -57,7 +53,7 @@ public class UnitInfoPanel : GameView
     {
         _ui = Instantiate( PropertyPrefab, transform ).GetComponent<UnitPropUpgradeView>();
         _ui.SetModel( prop, _unit, canChange );
-        
+
         _propViews.Add( prop, _ui );
     }
 }
