@@ -1049,7 +1049,7 @@
   {
     "Index": 24,
     "Name": "DNA",
-    "Type": "Consumable",
+    "Type": "Item",
     "Formula": "H20	C20	N15	O4	P1	S1",
     "MolecularMass": 597.51,
     "Elements": [
@@ -1102,7 +1102,7 @@
   {
     "Index": 25,
     "Name": "Glucose",
-    "Type": 0,
+    "Type": "Consumable",
     "Formula": "H12 C6 O6",
     "MolecularMass": 180.16,
     "Elements": [
@@ -1134,7 +1134,7 @@
   {
     "Index": 26,
     "Name": "Water",
-    "Type": 0,
+    "Type": "Consumable",
     "Formula": "H2 O",
     "MolecularMass": 18.01,
     "Elements": [

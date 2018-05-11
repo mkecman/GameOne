@@ -1,8 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using UnityEngine;
 
 public class GameModel : MonoBehaviour
 {
@@ -10,12 +9,13 @@ public class GameModel : MonoBehaviour
     public static GameModel Instance { get { return _instance; } }
     public delegate void ModelDelegate<T>( T value );
 
-    private Dictionary<string, object> _models;
-    private Dictionary<string, object> _binding;
-    
+    private Dictionary<Type, object> _models;
+    private Dictionary<Type, object> _binding;
+    private static Type className;
+
     public static void Set<T>( T value )
     {
-        string className = typeof( T ).Name;
+        className = typeof( T );
 
         if( !_instance._models.ContainsKey( className ) )
             _instance._models.Add( className, value );
@@ -23,25 +23,20 @@ public class GameModel : MonoBehaviour
             _instance._models[ className ] = value;
 
         if( _instance._binding.ContainsKey( className ) )
-        {
-            ModelDelegate<T> modelDelegate = (ModelDelegate<T>)_instance._binding[ className ];
-            modelDelegate( value );
-        }
+            ( _instance._binding[ className ] as ModelDelegate<T> ).Invoke( value );
     }
 
     public static void HandleGet<T>( ModelDelegate<T> handler )
     {
-        string className = typeof( T ).Name;
-        ModelDelegate<T> modelDelegate;
+        className = typeof( T );
 
         if( !_instance._binding.ContainsKey( className ) )
         {
-            modelDelegate = handler;
-            _instance._binding.Add( className, modelDelegate );
+            _instance._binding.Add( className, handler );
         }
         else
         {
-            modelDelegate = (ModelDelegate<T>)_instance._binding[ className ];
+            ModelDelegate<T> modelDelegate = (ModelDelegate<T>)_instance._binding[ className ];
             modelDelegate += handler;
             _instance._binding[ className ] = modelDelegate;
         }
@@ -52,16 +47,16 @@ public class GameModel : MonoBehaviour
 
     public static T Get<T>()
     {
-        string className = typeof( T ).Name;
+        className = typeof( T );
         if( _instance._models.ContainsKey( className ) )
             return (T)_instance._models[ className ];
 
-        return default(T);
+        throw new Exception( "Class " + className.Name + " is not present as GameModel." );
     }
 
     public static void RemoveHandle<T>( ModelDelegate<T> handler )
     {
-        string className = typeof( T ).Name;
+        className = typeof( T );
 
         if( _instance._binding.ContainsKey( className ) )
         {
@@ -73,7 +68,7 @@ public class GameModel : MonoBehaviour
             else
                 _instance._binding[ className ] = modelDelegate;
         }
-        
+
     }
 
     public static T Copy<T>( T data )
@@ -98,8 +93,8 @@ public class GameModel : MonoBehaviour
 
     private void Init()
     {
-        _instance._models = new Dictionary<string, object>();
-        _instance._binding = new Dictionary<string, object>();
+        _instance._models = new Dictionary<Type, object>();
+        _instance._binding = new Dictionary<Type, object>();
         //Debug.Log( "GameModel Awaken" );
     }
 }

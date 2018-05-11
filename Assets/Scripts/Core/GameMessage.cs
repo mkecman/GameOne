@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 //[ExecuteInEditMode]
 public class GameMessage : MonoBehaviour
@@ -9,12 +8,12 @@ public class GameMessage : MonoBehaviour
     public delegate void MessageDelegate<T>( T value );
 
     private static GameMessage _instance;
-    private Dictionary<string, object> _messages;
-    private static string _className;
-    
+    private Dictionary<Type, object> _messages;
+    private static Type _className;
+
     public static void Listen<T>( MessageDelegate<T> handler )
     {
-        _className = typeof( T ).Name;
+        _className = typeof( T );
 
         if( !_instance._messages.ContainsKey( _className ) )
         {
@@ -32,7 +31,7 @@ public class GameMessage : MonoBehaviour
 
     public static void StopListen<T>( MessageDelegate<T> handler )
     {
-        _className = typeof( T ).Name;
+        _className = typeof( T );
 
         if( _instance._messages.ContainsKey( _className ) )
         {
@@ -48,7 +47,7 @@ public class GameMessage : MonoBehaviour
 
     public static void Send<T>( T message )
     {
-        _className = typeof( T ).Name;
+        _className = typeof( T );
         if( _instance._messages.ContainsKey( _className ) )
         {
             ( _instance._messages[ _className ] as MessageDelegate<T> ).Invoke( message );
@@ -71,10 +70,10 @@ public class GameMessage : MonoBehaviour
         _instance = this;
         _instance.Init();
     }
-    
+
     private void Init()
     {
-        _instance._messages = new Dictionary<string, object>();
+        _instance._messages = new Dictionary<Type, object>();
         //Debug.Log( "GameMessage Init" );
     }
 }

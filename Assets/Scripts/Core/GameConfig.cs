@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,11 +7,13 @@ public class GameConfig : MonoBehaviour
 {
     public static GameConfig Instance { get { return _instance; } }
     private static GameConfig _instance;
-    private Dictionary<string, object> _configs;
-    
+    private Dictionary<Type, object> _configs;
+
+    private static Type className;
+
     private void Init()
     {
-        _instance._configs = new Dictionary<string, object>();
+        _instance._configs = new Dictionary<Type, object>();
 
         _instance.Load<UniverseConfig>();
         _instance.Load<StarsConfig>();
@@ -36,17 +37,17 @@ public class GameConfig : MonoBehaviour
 
     public static T Get<T>()
     {
-        string className = typeof( T ).Name;
+        className = typeof( T );
         if( _instance._configs.ContainsKey( className ) )
             return (T)_instance._configs[ className ];
         else
-            return default( T );
+            throw new Exception( "Config with name: " + className.Name + " doesn't exist!" );
     }
-    
+
     private void Load<T>()
     {
-        string className = typeof( T ).Name;
-        TextAsset configFile = Resources.Load<TextAsset>( "Configs/" + className );
+        className = typeof( T );
+        TextAsset configFile = Resources.Load<TextAsset>( "Configs/" + className.Name );
         if( configFile != null )
         {
             _instance._configs.Add( className, JsonConvert.DeserializeObject<T>( configFile.text ) );
@@ -69,5 +70,5 @@ public class GameConfig : MonoBehaviour
         _instance.Init();
         //Debug.Log( "Config Awaken" );
     }
-    
+
 }
