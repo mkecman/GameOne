@@ -9,6 +9,10 @@ public class LevelUpGenerator : MonoBehaviour
     private List<LevelUpModel> _levels = new List<LevelUpModel>();
     private float BaseXP = 10f;
     private float Exponent = 1.5f;
+
+    private float BaseHealth = 100f;
+    private float ExponentHealth = 0.7f;
+
     private float UpgradeDivisor = 34f;
 
     // Use this for initialization
@@ -20,6 +24,7 @@ public class LevelUpGenerator : MonoBehaviour
             level.Level = i;
             level.Experience = Mathf.RoundToInt( Mathf.Pow( i * BaseXP, Exponent ) );
             level.UpgradePoints = Mathf.CeilToInt( i / UpgradeDivisor );
+            level.Effects.Add( R.Health, Mathf.RoundToInt( BaseHealth + Mathf.Pow( i * BaseHealth, ExponentHealth ) ) );
 
             _levels.Add( level );
         }

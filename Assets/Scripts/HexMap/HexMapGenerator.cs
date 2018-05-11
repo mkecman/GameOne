@@ -115,6 +115,7 @@ public class HexMapGenerator
                 hex = _map.Table[ x ][ y ];
 
                 SetHex( hex, R.Altitude );
+                /*
                 if( hex.Props[ R.Altitude ].Value < _planetModel.LiquidLevel )
                 {
                     SetInitialHexValue( hex, R.Humidity, hex.Props[ R.Humidity ].Value + 0.5f );
@@ -129,6 +130,7 @@ public class HexMapGenerator
                         SetInitialHexValue( hex, R.Temperature, ( hex.Props[ R.Temperature ].Value + ( hex.Props[ R.Temperature ].Value * 0.5f ) ) );
                     }
                 }
+                */
 
                 SetHex( hex, R.Temperature );
                 SetHex( hex, R.Pressure );
@@ -136,7 +138,7 @@ public class HexMapGenerator
                 SetHex( hex, R.Radiation );
 
                 hex.Props[ R.Element ].Value = RandomUtil.GetWeightedValue( _elementsProbabilities );
-                hex.Props[ R.Element ].Delta = _elementsDict[ (int)hex.Props[ R.Element ].Value ].Weight * 100;
+                hex.Props[ R.Element ].Delta = _elementsDict[ (int)hex.Props[ R.Element ].Value ].Weight * 1;
                 Color mColor;
                 ColorUtility.TryParseHtmlString( _elementsDict[ (int)hex.Props[ R.Element ].Value ].Color, out mColor );
                 hex.Props[ R.Element ].Color = mColor;

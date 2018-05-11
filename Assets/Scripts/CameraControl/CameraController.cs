@@ -46,6 +46,8 @@ public class CameraController : MonoBehaviour
         if( Input.GetAxis( "Mouse ScrollWheel" ) < 0 )
             gameObject.transform.Translate( Vector3.down * MovementSpeed  * 10 );
 
+        /*
+        // Moved to GameCamera class
         if( Input.GetMouseButtonDown( 0 ) )
         {
             _oldPosition = transform.position;
@@ -59,6 +61,6 @@ public class CameraController : MonoBehaviour
             pos.y = 0;
             transform.position = _oldPosition + -pos * MousePanSpeed;                                    
         }
-        
+        */
     }
 }

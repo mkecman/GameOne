@@ -29,7 +29,7 @@ public class UnitInfoPanel : GameView
             AddProp( R.Level );
             AddProp( R.UpgradePoint );
             AddProp( R.Attack );
-            AddProp( R.Armor );
+            AddProp( R.Armor, false, "N3" );
             AddProp( R.Body, true );
             AddProp( R.Mind, true );
             AddProp( R.Soul, true );
@@ -49,10 +49,10 @@ public class UnitInfoPanel : GameView
         RemoveAllChildren( transform );
     }
 
-    private void AddProp( R prop, bool canChange = false )
+    private void AddProp( R prop, bool canChange = false, string stringFormat = "N0" )
     {
         _ui = Instantiate( PropertyPrefab, transform ).GetComponent<UnitPropUpgradeView>();
-        _ui.SetModel( prop, _unit, canChange );
+        _ui.SetModel( prop, _unit, canChange, stringFormat );
 
         _propViews.Add( prop, _ui );
     }

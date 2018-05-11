@@ -18,7 +18,6 @@ public class BuildingUnlockPanel : GameView
 
     private void OnEnable()
     {
-        GameMessage.Send( new CameraControlMessage( false ) );
         GameMessage.Listen<BuildingUnlockMessage>( OnBuildingChange );
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
         OnBuildingChange( new BuildingUnlockMessage( _abilityMessage.Index ) );
@@ -26,7 +25,6 @@ public class BuildingUnlockPanel : GameView
 
     private void OnDisable()
     {
-        GameMessage.Send( new CameraControlMessage( true ) );
         GameMessage.StopListen<BuildingUnlockMessage>( OnBuildingChange );
         GameModel.RemoveHandle<PlanetModel>( OnPlanetChange );
     }

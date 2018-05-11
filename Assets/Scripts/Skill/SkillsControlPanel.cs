@@ -23,7 +23,6 @@ public class SkillsControlPanel : GameView
 
     private void OnEnable()
     {
-        GameMessage.Send( new CameraControlMessage( false ) );
         GameModel.HandleGet<UnitModel>( OnUnitChange );
         GameMessage.Listen<SkillTypeMessage>( OnSkillTypeMessage );
         GameMessage.Listen<SkillMessage>( OnSkillMessage );
@@ -31,7 +30,6 @@ public class SkillsControlPanel : GameView
 
     private void OnDisable()
     {
-        GameMessage.Send( new CameraControlMessage( true ) );
         GameMessage.StopListen<SkillTypeMessage>( OnSkillTypeMessage );
         GameMessage.StopListen<SkillMessage>( OnSkillMessage );
         GameModel.RemoveHandle<UnitModel>( OnUnitChange );

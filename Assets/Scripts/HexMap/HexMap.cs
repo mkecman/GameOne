@@ -37,11 +37,6 @@ public class HexMap : GameView
     public IntReactiveProperty width = new IntReactiveProperty( 64 );
     public IntReactiveProperty height = new IntReactiveProperty( 40 );
 
-    [Header( "Liquid" )]
-    [RangeReactiveProperty( 0, 1 )]
-    public FloatReactiveProperty LiquidLevel = new FloatReactiveProperty( 0 );
-    public Color LiquidColor;
-
     [Header( "Maps" )]
     public FractalModel AltitudeFractal;
     //public FractalModel TemperatureFractal;
@@ -100,22 +95,19 @@ public class HexMap : GameView
         {
             for( int y = 0; y < mapModel.Height; y++ )
             {
-                GameObject hex_go = (GameObject)Instantiate(
+                GameObject hex_go = Instantiate(
                     HexagonPrefab,
                     new Vector3( HexMapHelper.GetXPosition(x,y), -0.1f, HexMapHelper.GetZPosition( y ) ),
                     Quaternion.identity );
 
+                hex_go.transform.SetParent( this.transform );
                 hex_go.name = "Hex_" + x + "_" + y;
                 hex_go.GetComponent<Hex>().SetModel( mapModel.Table[ x ][ y ] );
-                hex_go.transform.SetParent( this.transform );
                 // TODO: Quill needs to explain different optimization later...
                 hex_go.isStatic = true;
             }
         }
 
-        Ocean.transform.localScale = new Vector3( ( mapModel.Width * _hexConfig.xOffset ) + 1, 1, ( mapModel.Height * _hexConfig.zOffset ) + 1 );
-        Ocean.transform.position = new Vector3( ( mapModel.Width * _hexConfig.xOffset ) / 2, -.65f + ( 1.3f * LiquidLevel.Value ), ( ( mapModel.Height * _hexConfig.zOffset ) / 2 ) - 0.5f );
-        Ocean.GetComponent<MeshRenderer>().material.color = LiquidColor;
     }
     
 }

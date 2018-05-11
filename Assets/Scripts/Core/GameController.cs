@@ -51,6 +51,7 @@ public class GameController : MonoBehaviour
         AddController<UnitDefenseUpdateCommand>();
         AddController<SkillCommand>();
         AddController<UnitEquipCommand>();
+        AddController<UnitUseCompoundCommand>();
 
         AddController<LiveSkill>();
         AddController<MoveSkill>();

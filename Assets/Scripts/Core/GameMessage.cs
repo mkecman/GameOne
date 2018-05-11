@@ -10,49 +10,48 @@ public class GameMessage : MonoBehaviour
 
     private static GameMessage _instance;
     private Dictionary<string, object> _messages;
+    private static string _className;
     
     public static void Listen<T>( MessageDelegate<T> handler )
     {
-        string className = typeof( T ).Name;
-        MessageDelegate<T> messageDelegate;
+        _className = typeof( T ).Name;
 
-        if( !_instance._messages.ContainsKey( className ) )
+        if( !_instance._messages.ContainsKey( _className ) )
         {
-            messageDelegate = handler;
-            _instance._messages.Add( className, messageDelegate );
+            _instance._messages.Add( _className, handler );
         }
         else
         {
-            messageDelegate = (MessageDelegate<T>)_instance._messages[ className ];
+            MessageDelegate<T> messageDelegate;
+            messageDelegate = (MessageDelegate<T>)_instance._messages[ _className ];
             messageDelegate -= handler; //remove handler in case it's already added
             messageDelegate += handler;
-            _instance._messages[ className ] = messageDelegate;
+            _instance._messages[ _className ] = messageDelegate;
         }
     }
 
     public static void StopListen<T>( MessageDelegate<T> handler )
     {
-        string className = typeof( T ).Name;
+        _className = typeof( T ).Name;
 
-        if( _instance._messages.ContainsKey( className ) )
+        if( _instance._messages.ContainsKey( _className ) )
         {
-            MessageDelegate<T> messageDelegate = (MessageDelegate<T>)_instance._messages[ className ];
+            MessageDelegate<T> messageDelegate = (MessageDelegate<T>)_instance._messages[ _className ];
             messageDelegate -= handler;
 
             if( messageDelegate == null )
-                _instance._messages.Remove( className );
+                _instance._messages.Remove( _className );
             else
-                _instance._messages[ className ] = messageDelegate;
+                _instance._messages[ _className ] = messageDelegate;
         }
     }
 
     public static void Send<T>( T message )
     {
-        string className = typeof( T ).Name;
-        if( _instance._messages.ContainsKey( className ) )
+        _className = typeof( T ).Name;
+        if( _instance._messages.ContainsKey( _className ) )
         {
-            MessageDelegate<T> messageDelegate = (MessageDelegate<T>)_instance._messages[ className ];
-            messageDelegate( message );
+            ( _instance._messages[ _className ] as MessageDelegate<T> ).Invoke( message );
         }
     }
 

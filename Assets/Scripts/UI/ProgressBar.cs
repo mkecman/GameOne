@@ -15,7 +15,7 @@ public class ProgressBar : MonoBehaviour
     void Awake()
     {
         _fillRect = Fill.GetComponent<RectTransform>();
-        Invoke( "Setup", 0.01f ); //hack to wait for first frame and layout calculations before getting width of RectTransform
+        Invoke( "Setup", 0.1f ); //hack to wait for first frame and layout calculations before getting width of RectTransform
     }
 
     public void Setup()

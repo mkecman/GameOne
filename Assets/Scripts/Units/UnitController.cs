@@ -16,7 +16,7 @@ public class UnitController : AbstractController, IGameInit
     private UnitFactory _factory;
     private SkillCommand _skillCommand;
     private UnitDefenseUpdateCommand _unitDefenseUpdateCommand;
-
+    private UnitUseCompoundCommand _unitUseCompoundCommand;
     private UnitModel _tempUnitModel;
     private HexModel _tempHexModel;
 
@@ -25,9 +25,16 @@ public class UnitController : AbstractController, IGameInit
         _factory = GameModel.Get<UnitFactory>();
         _skillCommand = GameModel.Get<SkillCommand>();
         _unitDefenseUpdateCommand = GameModel.Get<UnitDefenseUpdateCommand>();
+        _unitUseCompoundCommand = GameModel.Get<UnitUseCompoundCommand>();
 
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
         GameMessage.Listen<UnitPropUpgradeMessage>( OnUnitPropUpgradeMessage );
+        GameMessage.Listen<UnitUseCompoundMessage>( OnUnitUseCompoundMessage );
+    }
+
+    private void OnUnitUseCompoundMessage( UnitUseCompoundMessage value )
+    {
+        _unitUseCompoundCommand.Execute( value.Unit, value.CompoundIndex );
     }
 
     private void OnUnitPropUpgradeMessage( UnitPropUpgradeMessage value )

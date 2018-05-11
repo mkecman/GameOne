@@ -121,15 +121,6 @@ public class PlanetModel
     }
 
     [SerializeField]
-    internal FloatReactiveProperty _LiquidLevel = new FloatReactiveProperty();
-    public float LiquidLevel
-    {
-        get { return _LiquidLevel.Value; }
-        set { _LiquidLevel.Value = value; }
-    }
-
-
-    [SerializeField]
     internal FloatReactiveProperty _TotalEnergyValue = new FloatReactiveProperty();
     public float TotalEnergyValue
     {

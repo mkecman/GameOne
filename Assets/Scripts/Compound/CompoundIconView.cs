@@ -5,7 +5,12 @@ using UnityEngine.EventSystems;
 
 public class CompoundIconView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler, IBeginDragHandler
 {
-    public RawImage rawImage;
+    public RawImage TextureImage;
+    public Image BackgoundImage;
+    public Image MaskImage;
+
+    public Sprite[] BackgroundSprites;
+    public Sprite[] MaskSprites;
 
     private TooltipMessage _tooltipMessage = new TooltipMessage();
     private Transform DragPanel;
@@ -19,13 +24,15 @@ public class CompoundIconView : MonoBehaviour, IDragHandler, IPointerUpHandler, 
     public void Setup( CompoundJSON compound )
     {
         _tooltipMessage.Text = compound.Name;
-        rawImage.texture = Resources.Load( "CompoundTexture/" + compound.Index ) as Texture2D;
+        TextureImage.texture = Resources.Load( "CompoundTexture/" + compound.Index ) as Texture2D;
+        BackgoundImage.sprite = BackgroundSprites[ (int)compound.Type ];
+        MaskImage.sprite = MaskSprites[ (int)compound.Type ];
     }
 
     public bool IsRaycastTarget
     {
-        get { return rawImage.raycastTarget; }
-        set { rawImage.raycastTarget = value; }
+        get { return TextureImage.raycastTarget; }
+        set { TextureImage.raycastTarget = value; }
     }
 
     public void OnDrag( PointerEventData eventData )
@@ -63,8 +70,8 @@ public class CompoundIconView : MonoBehaviour, IDragHandler, IPointerUpHandler, 
     {
         DragPanel = null;
         Copy = null;
-        rawImage.texture = null;
-        rawImage = null;
+        TextureImage.texture = null;
+        TextureImage = null;
     }
 
     

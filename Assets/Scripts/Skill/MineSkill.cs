@@ -43,7 +43,7 @@ public class MineSkill : ISkill
         if( _element.Delta <= 0 )
         {
             _planet.Life.Elements[ _elementIndex ].Amount++;
-            _element.Delta = _elements[ _elementIndex ].Weight * 100;
+            _element.Delta = _elements[ _elementIndex ].Weight * 1;
         }
 
         UpdatePlanetProp( R.Temperature );

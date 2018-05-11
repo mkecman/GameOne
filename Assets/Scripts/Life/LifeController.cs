@@ -43,8 +43,18 @@ public class LifeController : AbstractController, IGameInit
 
         for( int i = 0; i < _elements.Count; i++ )
         {
-            _selectedLife.Elements.Add( _elements[ i ].Index, new LifeElementModel( _elements[ i ].Index, _elements[ i ].Symbol, 100, 100 ) );
+            _selectedLife.Elements.Add( _elements[ i ].Index, new LifeElementModel( _elements[ i ].Index, _elements[ i ].Symbol, 0, 100 ) );
         }
+
+        for( int i = 0; i < 3; i++ )
+            AddCompound( 24 );
+
+        for( int i = 0; i < 20; i++ )
+            AddCompound( 25 );
+
+        for( int i = 0; i < 10; i++ )
+            AddCompound( 26 );
+
 
         int unitX = ( _planet.Map.Width / 2 ) + 2;
         int unitY = ( _planet.Map.Height / 2 ) + 2;
@@ -52,6 +62,15 @@ public class LifeController : AbstractController, IGameInit
 
         _planet.Life = _selectedLife;
         //UpdatePlanetMapColors();
+    }
+
+    private void AddCompound( int index )
+    {
+        CompoundControlMessage _compoundMessage = new CompoundControlMessage();
+        _compoundMessage.Action = CompoundControlAction.ADD;
+        _compoundMessage.Index = index;
+        _compoundMessage.SpendCurrency = false;
+        GameMessage.Send( _compoundMessage );
     }
 
     private void UpdatePlanetMapColors()

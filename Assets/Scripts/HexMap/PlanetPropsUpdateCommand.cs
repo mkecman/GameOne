@@ -55,7 +55,7 @@ public class PlanetPropsUpdateCommand : IGameInit
 
     private void Reset()
     {
-        for( int i = 0; i < 100; i++ )
+        for( int i = 0; i <= 100; i++ )
         {
             _weightsList[ R.Temperature ][ i ].Weight = 0;
             _weightsList[ R.Pressure ][ i ].Weight = 0;
@@ -71,7 +71,7 @@ public class PlanetPropsUpdateCommand : IGameInit
     private void InitializeDictionaries( R type )
     {
         _weightsList.Add( type, new List<WeightedValue>() );
-        for( int i = 0; i < 100; i++ )
+        for( int i = 0; i <= 100; i++ )
             _weightsList[ type ].Add( new WeightedValue( PPMath.Round( i / 100f ), 0 ) );
 
         _totalValues.Add( type, 0 );

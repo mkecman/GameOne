@@ -8,12 +8,13 @@ public class UnitPropUpgradeView : GameView
     public Button UpgradeButton;
     private int delta = 0;
 
-    public void SetModel( R prop, UnitModel unit, bool canChange )
+    public void SetModel( R prop, UnitModel unit, bool canChange, string stringFormat = "N0" )
     {
         disposables.Clear();
         delta = 0;
 
         PropertyView.SetProperty( prop.ToString() );
+        PropertyView.StringFormat = stringFormat;
 
         unit.Props[ prop ]._Value
             .Subscribe( _ => PropertyView.SetValue( _ ) )

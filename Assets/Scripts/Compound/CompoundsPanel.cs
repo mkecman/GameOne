@@ -32,7 +32,6 @@ public class CompoundsPanel : GameView
 
     private void OnEnable()
     {
-        GameMessage.Send( new CameraControlMessage( false ) );
         GameMessage.Listen<CompoundTypeMessage>( OnCompoundTypeMessage );
         GameMessage.Listen<CompoundSelectMessage>( OnCompoundSelectMessage );
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
@@ -43,7 +42,7 @@ public class CompoundsPanel : GameView
         for( int i = 0; i < _compounds.Count; i++ )
             _compounds[ i ].Setup( value.Life.Elements );
 
-        SetModel( CompoundType.Armor );
+        //SetModel( CompoundType.Armor );
     }
 
     private void OnDisable()
@@ -56,7 +55,6 @@ public class CompoundsPanel : GameView
         RemoveAllChildren( Container );
 
         GameModel.RemoveHandle<PlanetModel>( OnPlanetChange );
-        GameMessage.Send( new CameraControlMessage( true ) );
         GameMessage.StopListen<CompoundTypeMessage>( OnCompoundTypeMessage );
         GameMessage.StopListen<CompoundSelectMessage>( OnCompoundSelectMessage );
     }

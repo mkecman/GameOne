@@ -15,29 +15,27 @@ public class BodySlotView : GameView, IDropHandler, IDragHandler
 
     private CompoundInventoryView _dragObject;
     private CompoundConfig _compounds;
-    private CompoundEquipMessage _compoundDropMessage;
+    private CompoundEquipMessage _compoundEquipMessage;
     private BodySlotModel _model;
 
     private void Awake()
     {
         _compounds = GameConfig.Get<CompoundConfig>();
-        _compoundDropMessage = new CompoundEquipMessage( 0, Index );
+        _compoundEquipMessage = new CompoundEquipMessage( 0, Index );
 
     }
 
     public void OnDrop( PointerEventData eventData )
     {
-        //Debug.Log( "OnDrop" );
         if( !_model.IsEnabled )
             return;
 
         _dragObject = eventData.pointerDrag.GetComponentInParent<CompoundInventoryView>();
-        if( _dragObject != null )
+        if( _dragObject != null && 
+            ( _dragObject.Compound.Type == CompoundType.Armor || _dragObject.Compound.Type == CompoundType.Weapon ) )
         {
-            //Debug.Log( "DROPPPPPERD" );
-            _compoundDropMessage.CompoundIndex = _dragObject.Compound.Index;
-            GameMessage.Send( _compoundDropMessage );
-            //_dragObject.Copy.transform.SetParent( transform );
+            _compoundEquipMessage.CompoundIndex = _dragObject.Compound.Index;
+            GameMessage.Send( _compoundEquipMessage );
         }
     }
     public void OnDrag( PointerEventData eventData )

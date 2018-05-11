@@ -72,6 +72,9 @@ public class UnitModel : IDisposable
             Props[ R.UpgradePoint ].Value += _levelUpModel.UpgradePoints;
             Props[ R.Level ].Value++;
             _levelUpModel = _levelUpConfig[ (int)Props[ R.Level ].Value ];
+
+            Props[ R.Health ].MaxValue = _levelUpModel.Effects[ R.Health ];
+            Props[ R.Health ].Value = Props[ R.Health ].MaxValue;
         }
     }
 
@@ -93,6 +96,8 @@ public class UnitModel : IDisposable
             else
                 BodySlots.Add( i, new BodySlotModel( i, _slots[ i ] == 1 ? true : false ) );
         }
+
+
 
         UpdateAttack();
     }

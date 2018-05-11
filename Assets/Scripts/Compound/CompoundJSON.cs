@@ -30,5 +30,6 @@ public enum CompoundType
 {
     Item,
     Armor,
-    Weapon
+    Weapon,
+    Consumable
 }

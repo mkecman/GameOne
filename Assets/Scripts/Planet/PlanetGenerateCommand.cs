@@ -26,8 +26,6 @@ public class PlanetGenerateCommand : IGameInit
         _planet.SelectedPlanet.Props[ R.Radiation ].Value = map.Radiation.Value;
         _planet.SelectedPlanet.Props[ R.Radiation ].Variation = map.RadiationVariation.Value;
 
-        _planet.SelectedPlanet.LiquidLevel = map.LiquidLevel.Value;
-
         _planet.GenerateFromModel( _planet.SelectedPlanet );
         /////////
         _planet.SelectedPlanet.Life = life;

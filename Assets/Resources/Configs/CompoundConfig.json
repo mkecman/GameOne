@@ -1049,7 +1049,7 @@
   {
     "Index": 24,
     "Name": "DNA",
-    "Type": 0,
+    "Type": "Consumable",
     "Formula": "H20	C20	N15	O4	P1	S1",
     "MolecularMass": 597.51,
     "Elements": [
@@ -1129,6 +1129,31 @@
       }
     ],
     "Effects": {},
+    "CanCraft": true
+  },
+  {
+    "Index": 26,
+    "Name": "Water",
+    "Type": 0,
+    "Formula": "H2 O",
+    "MolecularMass": 18.01,
+    "Elements": [
+      {
+        "Index": 1,
+        "Symbol": "H",
+        "Amount": 0,
+        "MaxAmount": 2,
+        "IsFull": true
+      },
+      {
+        "Index": 8,
+        "Symbol": "O",
+        "Amount": 0,
+        "MaxAmount": 1,
+        "IsFull": true
+      }
+    ],
+    "Effects": { "Health" : 20 },
     "CanCraft": true
   }
 ]

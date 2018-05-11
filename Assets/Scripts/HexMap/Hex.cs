@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Hex : GameView, IPointerClickHandler
+public class Hex : GameView, IPointerClickHandler, IDropHandler, IDragHandler, IBeginDragHandler
 {
     public HexModel _model;
-    public TextMesh SymbolText;
+    public TextMeshPro SymbolText;
     public GameObject Gas;
     public GameObject Liquid;
     public GameObject Solid;
@@ -18,16 +19,23 @@ public class Hex : GameView, IPointerClickHandler
     public Gradient Gradient4;
 
     private HexClickedMessage _HexClickedMessage;
+    private UnitUseCompoundMessage _unitUseCompoundMessage;
+    private CameraMessage _cameraMessage;
+
     private GameDebug _debug;
     private Dictionary<int, ElementData> _elements;
     private Material _solidMaterial;
     private StringBuilder labelSB = new StringBuilder();
     private Color _newHexColor;
     private bool _clickEnabled = true;
+    private CompoundInventoryView _dragObject;
 
     private void Awake()
     {
         _HexClickedMessage = new HexClickedMessage( null );
+        _unitUseCompoundMessage = new UnitUseCompoundMessage();
+        _cameraMessage = new CameraMessage();
+
         _debug = GameModel.Get<GameDebug>();
         _elements = GameConfig.Get<ElementConfig>().ElementsDictionary;
         _solidMaterial = Solid.GetComponent<MeshRenderer>().material;
@@ -102,7 +110,7 @@ public class Hex : GameView, IPointerClickHandler
 
         if( _model.Lens == R.Default )
         {
-            SymbolText.text = "<color=\"#000000\">" + _elements[ (int)_model.Props[ R.Element ].Value ].Symbol + "</color>\n" + _model.Props[ R.Element ].Delta.ToString( "F0" );
+            SymbolText.text = "<#000000>" + _elements[ (int)_model.Props[ R.Element ].Value ].Symbol + "</color>\n" + _model.Props[ R.Element ].Delta.ToString( "F0" );
             //SymbolText.text = "<color=\"" + _elements[ (int)_model.Props[ R.Element ].Value ].Color +  "\">" + _elements[ (int)_model.Props[ R.Element ].Value ].Symbol + "</color>\n" + _model.Props[ R.Element ].Delta;
             /*
             labelSB.Clear();
@@ -140,13 +148,49 @@ public class Hex : GameView, IPointerClickHandler
         mesh.RecalculateNormals();
         GetComponent<MeshCollider>().sharedMesh = mesh;
 
-        SymbolText.gameObject.transform.position = new Vector3( SymbolText.gameObject.transform.position.x, _model.Props[ R.Altitude ].Value + .01f, SymbolText.gameObject.transform.position.z );
+        //for textmesh
+        //SymbolText.gameObject.transform.position = new Vector3( SymbolText.gameObject.transform.position.x, _model.Props[ R.Altitude ].Value + .01f, SymbolText.gameObject.transform.position.z );
+        SymbolText.rectTransform.position = new Vector3( SymbolText.gameObject.transform.position.x, _model.Props[ R.Altitude ].Value + .01f, SymbolText.gameObject.transform.position.z );
+
     }
 
     public void OnPointerClick( PointerEventData eventData )
     {
         if( _clickEnabled )
             GameMessage.Send( _HexClickedMessage );
-
     }
+
+    public void OnBeginDrag( PointerEventData eventData )
+    {
+        if( _clickEnabled )
+        {
+            _cameraMessage.Action = CameraAction.START_DRAG;
+            GameMessage.Send( _cameraMessage );
+        }
+    }
+
+    public void OnDrag( PointerEventData eventData )
+    {
+        if( _clickEnabled )
+        {
+            _cameraMessage.Action = CameraAction.DRAG;
+            GameMessage.Send( _cameraMessage );
+        }
+    }
+
+    public void OnDrop( PointerEventData eventData )
+    {
+        _dragObject = eventData.pointerDrag.GetComponentInParent<CompoundInventoryView>();
+        if( _dragObject != null )
+        {
+            if( _model.Unit != null )
+            {
+                _unitUseCompoundMessage.Unit = _model.Unit;
+                _unitUseCompoundMessage.CompoundIndex = _dragObject.Compound.Index;
+                GameMessage.Send( _unitUseCompoundMessage );
+            }
+        }
+    }
+
+    
 }
