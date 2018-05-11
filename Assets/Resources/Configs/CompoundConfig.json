@@ -1155,5 +1155,30 @@
     ],
     "Effects": { "Health" : 20 },
     "CanCraft": true
+  },
+  {
+    "Index": 27,
+    "Name": "Test Weapon",
+    "Type": "Weapon",
+    "Formula": "H2 O",
+    "MolecularMass": 18.01,
+    "Elements": [
+      {
+        "Index": 1,
+        "Symbol": "H",
+        "Amount": 0,
+        "MaxAmount": 2,
+        "IsFull": true
+      },
+      {
+        "Index": 8,
+        "Symbol": "O",
+        "Amount": 0,
+        "MaxAmount": 1,
+        "IsFull": true
+      }
+    ],
+    "Effects": { "Body" : 20 },
+    "CanCraft": true
   }
 ]

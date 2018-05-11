@@ -10,6 +10,7 @@ public class UnitEquipCommand : IGameInit
     private CompoundControlMessage _message;
     private IntReactiveProperty _unitSlotCompoundIndex;
     private ReactiveDictionary<int, IntReactiveProperty> _lifeCompounds;
+    private CompoundJSON _compound;
 
     public void Init()
     {
@@ -31,10 +32,13 @@ public class UnitEquipCommand : IGameInit
         _unitSlotCompoundIndex.Value = compoundIndex;
         _lifeCompounds[ compoundIndex ].Value--;
 
-        foreach( KeyValuePair<R, float> item in _compounds[ compoundIndex ].Effects )
-        {
-            _unitController.SelectedUnit.Resistance[ item.Key ].ChangePosition( item.Value / 100f );
-        }
+        if( _compounds[ compoundIndex ].Type == CompoundType.Armor )
+            foreach( KeyValuePair<R, float> item in _compounds[ compoundIndex ].Effects )
+                _unitController.SelectedUnit.Resistance[ item.Key ].ChangePosition( item.Value / 100f );
+
+        if( _compounds[ compoundIndex ].Type == CompoundType.Weapon )
+            foreach( KeyValuePair<R, float> item in _compounds[ compoundIndex ].Effects )
+                _unitController.SelectedUnit.Props[ item.Key ].Value += item.Value;
     }
 
     public void ExecuteUnequip( int bodySlotIndex )
@@ -49,15 +53,19 @@ public class UnitEquipCommand : IGameInit
     {
         if( _unitSlotCompoundIndex.Value != Int32.MaxValue )
         {
-            foreach( KeyValuePair<R, float> item in _compounds[ _unitSlotCompoundIndex.Value ].Effects )
-            {
-                _unitController.SelectedUnit.Resistance[ item.Key ].ChangePosition( -item.Value / 100f );
-            }
-
             _message.Index = _unitSlotCompoundIndex.Value;
             GameMessage.Send( _message );
 
+            _compound = _compounds[ _unitSlotCompoundIndex.Value ];
             _unitSlotCompoundIndex.Value = Int32.MaxValue;
+
+            if( _compound.Type == CompoundType.Armor )
+                foreach( KeyValuePair<R, float> item in _compound.Effects )
+                    _unitController.SelectedUnit.Resistance[ item.Key ].ChangePosition( -item.Value / 100f );
+
+            if( _compound.Type == CompoundType.Weapon )
+                foreach( KeyValuePair<R, float> item in _compound.Effects )
+                    _unitController.SelectedUnit.Props[ item.Key ].Value = -item.Value;
         }
     }
 }

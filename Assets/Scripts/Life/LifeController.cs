@@ -55,6 +55,10 @@ public class LifeController : AbstractController, IGameInit
         for( int i = 0; i < 10; i++ )
             AddCompound( 26 );
 
+        AddCompound( 27 );
+        AddCompound( 1 );
+        AddCompound( 2 );
+
 
         int unitX = ( _planet.Map.Width / 2 ) + 2;
         int unitY = ( _planet.Map.Height / 2 ) + 2;

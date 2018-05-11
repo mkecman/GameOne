@@ -92,7 +92,11 @@ public class UnitModel : IDisposable
         for( int i = 0; i < _slots.Count; i++ )
         {
             if( BodySlots.ContainsKey( i ) )
+            {
                 BodySlots[ i ].IsEnabled = _slots[ i ] == 1 ? true : false;
+                if( !BodySlots[ i ].IsEnabled )
+                    GameModel.Get<UnitEquipCommand>().ExecuteUnequip( i );
+            }
             else
                 BodySlots.Add( i, new BodySlotModel( i, _slots[ i ] == 1 ? true : false ) );
         }

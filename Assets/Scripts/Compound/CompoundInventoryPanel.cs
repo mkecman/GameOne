@@ -32,7 +32,10 @@ public class CompoundInventoryPanel : GameView, IDropHandler, IDragHandler
             Add( _compounds[ item.Key ], item.Value );
         }
 
-        _LifeCompounds.ObserveAdd().Subscribe( _ => Add( _compounds[ _.Key ], _.Value ) ).AddTo( disposables );
+        _LifeCompounds.ObserveAdd()
+            .Where( _ => _.Key != Int32.MaxValue )
+            .Subscribe( _ => Add( _compounds[ _.Key ], _.Value ) )
+            .AddTo( disposables );
         //_LifeCompounds.ObserveRemove().Subscribe( _ => Remove( _.Key ) ).AddTo( disposables );
     }
 
@@ -45,12 +48,9 @@ public class CompoundInventoryPanel : GameView, IDropHandler, IDragHandler
 
     public void OnDrop( PointerEventData eventData )
     {
-        Debug.Log( "OnDrop" );
-
         _dragObject = eventData.pointerDrag.GetComponentInParent<BodySlotView>();
         if( _dragObject != null )
         {
-            Debug.Log( "DROPPPPPERD" );
             _compoundEquipMessage.BodySlotIndex = _dragObject.Index;
             GameMessage.Send( _compoundEquipMessage );
         }
