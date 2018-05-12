@@ -49,6 +49,8 @@ public class PlanetChangeTableUnitRowView : GameView
     private void OnButtonClick()
     {
         GameMessage.Send( _unitSelectMessage );
+        //GameMessage.Send( new PanelMessage( PanelAction.HIDE, PanelNames.PlanetChangePanel ) );
+        GameMessage.Send( new PanelMessage( PanelAction.SHOWONLY, PanelNames.UnitEditPanel ) );
     }
 
     public override void OnDestroy()
