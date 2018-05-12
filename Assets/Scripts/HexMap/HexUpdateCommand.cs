@@ -34,6 +34,6 @@ public class HexUpdateCommand : IGameInit
 
     private void UpdateProp( R type, HexModel hex )
     {
-        hex.Props[ type ].Value = Mathf.Clamp( _planet.Props[ type ].Value + hex.Props[ type ].Delta, 0, 1 );
+        hex.Props[ type ].Value = Mathf.Clamp( (float)_planet.Props[ type ].Value + hex.Props[ type ].Delta, 0, 1 );
     }
 }

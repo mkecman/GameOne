@@ -85,7 +85,7 @@ public class ResistanceGraph : GameView, IPointerClickHandler
             if( _hexModel == null )
             {
                 Gradient.Draw( _planet.Props[ Lens ].HexDistribution );
-                UpdateUI( _planet.Props[ Lens ].AvgValue.ToString( "N2" ), _planet.Props[ Lens ].AvgValue );
+                UpdateUI( _planet.Props[ Lens ].AvgValue.ToString( "N2" ), (float)_planet.Props[ Lens ].AvgValue );
             }
             else
             {

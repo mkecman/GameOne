@@ -4,7 +4,8 @@
 	"SunMassInKilograms": 1.989E+30,
 	"SunRadiusInMeters": 695700000,
 	"AUInMeters": 149597870700.0,
-	"Boltzmann": 0.00000005670373
-
-
+	"Boltzmann": 0.00000005670373,
+	"PlanetValueToIntMultiplier": 1000000,
+	"IntToPlanetValueMultiplier": 0.000001,
+	"PlanetValueStringFormat" : "######"
 }

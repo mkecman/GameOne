@@ -25,6 +25,7 @@ public class HealthBar : GameView
         disposables.Clear();
         _unitModel = um;
 
+        _unitModel.Props[ R.Health ]._MaxValue.Subscribe( _ => ProgressBar.MaxValue = _ ).AddTo( disposables );
         _unitModel.Props[ R.Health ]._Value.Subscribe( _ => ProgressBar.Value = _ ).AddTo( disposables );
     }
 
@@ -32,6 +33,7 @@ public class HealthBar : GameView
     {
         _unitScreenPosition = Camera.main.WorldToScreenPoint( _unitModel.Position );
         _transform.position = _unitScreenPosition;
+
         _scale = 10 / _unitScreenPosition.z;
         _unitScale.Set( _scale, _scale, _scale );
         _transform.localScale = _unitScale;

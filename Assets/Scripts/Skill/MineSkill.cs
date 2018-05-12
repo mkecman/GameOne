@@ -1,13 +1,11 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using System;
+﻿using System.Collections.Generic;
 
 public class MineSkill : ISkill
 {
     private PlanetController _planetController;
     private UnitController _unitController;
     private Dictionary<int, ElementData> _elements;
+    private UniverseConfig _universeConfig;
     private SkillData _skillData;
     private PlanetModel _planet;
     private Resource _element;
@@ -19,6 +17,7 @@ public class MineSkill : ISkill
         _planetController = GameModel.Get<PlanetController>();
         _unitController = GameModel.Get<UnitController>();
         _elements = GameConfig.Get<ElementConfig>().ElementsDictionary;
+        _universeConfig = GameConfig.Get<UniverseConfig>();
     }
 
     public void Execute( UnitModel unitModel, SkillData skillData )
@@ -56,7 +55,7 @@ public class MineSkill : ISkill
 
     private void UpdatePlanetProp( R type )
     {
-        if( _skillData.Effects.ContainsKey( type ) )
-            _planet.Props[ type ].Value += _skillData.Effects[ type ] / 10000f;
+        //if( _skillData.Effects.ContainsKey( type ) )
+        _planet.Props[ type ].Value += _skillData.Effects[ type ] * _universeConfig.IntToPlanetValueMultiplier;
     }
 }

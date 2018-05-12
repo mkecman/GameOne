@@ -40,10 +40,10 @@ public class PlanetPropsUpdateCommand : IGameInit
                 hex = _planet.Map.Table[ x ][ y ];
                 _hexUpdateCommand.Execute( hex );
 
-                AddInitialValue( R.Temperature, Mathf.RoundToInt( hex.Props[ R.Temperature ].Value * 100 ) );
-                AddInitialValue( R.Pressure, Mathf.RoundToInt( hex.Props[ R.Pressure ].Value * 100 ) );
-                AddInitialValue( R.Humidity, Mathf.RoundToInt( hex.Props[ R.Humidity ].Value * 100 ) );
-                AddInitialValue( R.Radiation, Mathf.RoundToInt( hex.Props[ R.Radiation ].Value * 100 ) );
+                AddInitialValue( R.Temperature, Mathf.RoundToInt( hex.Props[ R.Temperature ].Value * 100 ), hex.Props[ R.Temperature ].Value );
+                AddInitialValue( R.Pressure, Mathf.RoundToInt( hex.Props[ R.Pressure ].Value * 100 ), hex.Props[ R.Pressure ].Value );
+                AddInitialValue( R.Humidity, Mathf.RoundToInt( hex.Props[ R.Humidity ].Value * 100 ), hex.Props[ R.Humidity ].Value );
+                AddInitialValue( R.Radiation, Mathf.RoundToInt( hex.Props[ R.Radiation ].Value * 100 ), hex.Props[ R.Radiation ].Value );
             }
         }
         
@@ -77,15 +77,15 @@ public class PlanetPropsUpdateCommand : IGameInit
         _totalValues.Add( type, 0 );
     }
 
-    private void AddInitialValue( R type, int key )
+    private void AddInitialValue( R type, int key, float value )
     {
         _weightsList[ type ][ key ].Weight = PPMath.Round( _weightsList[ type ][ key ].Weight + .05f );
-        _totalValues[ type ] += key;
+        _totalValues[ type ] += value;
     }
 
     private void SetValues( R type )
     {
         _planet.Props[ type ].HexDistribution = _weightsList[ type ];
-        _planet.Props[ type ].AvgValue = ( _totalValues[ type ] / 100f ) / _planet.Map.Count;
+        _planet.Props[ type ].AvgValue = _totalValues[ type ] / _planet.Map.Count;
     }
 }

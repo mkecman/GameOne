@@ -31,12 +31,12 @@ public class ProgressBar : MonoBehaviour
             if( value == _value )
                 return;
 
-            /*
+            /**/
             if( value < 0 )
                 _value = 0;
             if( value > _maxValue )
                 _value = _maxValue;
-            */
+            /**/
             //if( value >= 0 && value <= _maxValue )
             _value = value;
 
@@ -52,14 +52,7 @@ public class ProgressBar : MonoBehaviour
             if( value == _maxValue )
                 return;
 
-            /*if( value < 1 )
-                _maxValue = 1;
-            if( value >= 1 )*/
             _maxValue = value;
-
-            /*if( _value > _maxValue )
-                _value = _maxValue;*/
-
             SetFill();
         }
         get { return _maxValue; }

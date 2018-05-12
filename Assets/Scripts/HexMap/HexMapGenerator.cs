@@ -160,7 +160,7 @@ public class HexMapGenerator
         hex.Props[ type ].Delta = _planetModel.Props[ type ].Variation * ( Mathf.InverseLerp( Ranges[ (int)type ].x, Ranges[ (int)type ].y, hex.Props[ type ].Delta ) - 0.5f );
 
         //add variation to properties based on planet values
-        hex.Props[ type ].Value = Mathf.Clamp( _planetModel.Props[ type ].Value + hex.Props[ type ].Delta, 0, 1 );
+        hex.Props[ type ].Value = Mathf.Clamp( (float)_planetModel.Props[ type ].Value + hex.Props[ type ].Delta, 0, 1 );
 
         hex.Props[ type ].Color = Color.Lerp( Color.red, Color.green, hex.Props[ type ].Value );
     }

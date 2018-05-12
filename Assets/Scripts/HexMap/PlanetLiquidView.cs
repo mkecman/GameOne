@@ -26,8 +26,8 @@ public class PlanetLiquidView : GameView
         _planet.Props[R.Humidity]._AvgValue.Subscribe( _ => OnLiquidLevelChange( _ ) ).AddTo( disposables );
     }
 
-    private void OnLiquidLevelChange( float _ )
+    private void OnLiquidLevelChange( double _ )
     {
-        LiquidTransform.position = new Vector3( ( _planet.Map.Width * _hexConfig.xOffset ) / 2, -.65f + ( 1.3f * _ ), ( ( _planet.Map.Height * _hexConfig.zOffset ) / 2 ) - 0.5f );
+        LiquidTransform.position = new Vector3( ( _planet.Map.Width * _hexConfig.xOffset ) / 2, -.65f + ( 1.3f * (float)_ ), ( ( _planet.Map.Height * _hexConfig.zOffset ) / 2 ) - 0.5f );
     }
 }

@@ -10,5 +10,7 @@ public class UniverseConfig
     public float AUInMeters;
     public float Boltzmann;
     public float SolarLuminosity;
-
+    public float IntToPlanetValueMultiplier;
+    public int PlanetValueToIntMultiplier;
+    public string PlanetValueStringFormat;
 }

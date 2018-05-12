@@ -38,7 +38,7 @@ public class UnitEquipCommand : IGameInit
 
         if( _compounds[ compoundIndex ].Type == CompoundType.Weapon )
             foreach( KeyValuePair<R, float> item in _compounds[ compoundIndex ].Effects )
-                _unitController.SelectedUnit.Props[ item.Key ].Value += item.Value;
+                _unitController.SelectedUnit.Props[ item.Key ].Value += (int)item.Value;
     }
 
     public void ExecuteUnequip( int bodySlotIndex )
@@ -65,7 +65,7 @@ public class UnitEquipCommand : IGameInit
 
             if( _compound.Type == CompoundType.Weapon )
                 foreach( KeyValuePair<R, float> item in _compound.Effects )
-                    _unitController.SelectedUnit.Props[ item.Key ].Value = -item.Value;
+                    _unitController.SelectedUnit.Props[ item.Key ].Value -= (int)item.Value;
         }
     }
 }

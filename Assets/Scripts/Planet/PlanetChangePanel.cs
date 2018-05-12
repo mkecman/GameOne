@@ -1,7 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
-using UniRx;
+﻿using UniRx;
+using UnityEngine;
 
 public class PlanetChangePanel : GameView
 {
@@ -10,11 +8,12 @@ public class PlanetChangePanel : GameView
     public PlanetChangeTableHeaderView PlanetTotalRow;
     public PlanetChangeTableHeaderView PlanetDeltaRow;
     private PlanetModel _planet;
+    private UniverseConfig _universeConfig;
 
     // Use this for initialization
     void Awake()
     {
-        
+        _universeConfig = GameConfig.Get<UniverseConfig>();
     }
 
     private void OnEnable()
@@ -60,10 +59,15 @@ public class PlanetChangePanel : GameView
     private void OnPlanetPropChange()
     {
         PlanetTotalRow.SetupText(
-            _planet.Props[ R.Temperature ].AvgValue.ToString(),
-            _planet.Props[ R.Pressure ].AvgValue.ToString(),
-            _planet.Props[ R.Humidity ].AvgValue.ToString(),
-            _planet.Props[ R.Radiation ].AvgValue.ToString() );
+            GetPropString( R.Temperature ),
+            GetPropString( R.Pressure ),
+            GetPropString( R.Humidity ),
+            GetPropString( R.Radiation ) );
+    }
+
+    private string GetPropString( R type )
+    {
+        return ( _planet.Props[ type ].Value * _universeConfig.PlanetValueToIntMultiplier ).ToString( _universeConfig.PlanetValueStringFormat );
     }
 
 }
