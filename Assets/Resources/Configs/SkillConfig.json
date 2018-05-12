@@ -4,6 +4,7 @@
     "Name": null,
     "Type": 0,
     "UnlockCost": 0.0,
+    "UseCost": 0.0,
     "IsPassive": true,
     "Effects": {},
     "State": 0
@@ -23,6 +24,7 @@
     "Name": null,
     "Type": 3,
     "UnlockCost": 0.0,
+    "UseCost": 0.0,
     "IsPassive": false,
     "Effects": {},
     "State": 0
@@ -42,10 +44,13 @@
     "Name": "Mining Skill #0",
     "Type": 2,
     "UnlockCost": 0.0,
+    "UseCost": 0.0,
     "IsPassive": true,
     "Effects": {
       "Radiation": -70.0,
-      "Temperature": -10.0
+      "Temperature": -10.0,
+      "Pressure": 0.0,
+      "Humidity": 0.0
     },
     "State": 0
   },
@@ -54,10 +59,13 @@
     "Name": "Mining Skill #1",
     "Type": 2,
     "UnlockCost": 0.0,
+    "UseCost": 0.0,
     "IsPassive": true,
     "Effects": {
       "Pressure": -20.0,
-      "Humidity": 70.0
+      "Humidity": 70.0,
+      "Temperature": 0.0,
+      "Radiation": 0.0
     },
     "State": 0
   },
@@ -66,9 +74,13 @@
     "Name": "Mining Skill #2",
     "Type": 2,
     "UnlockCost": 0.0,
+    "UseCost": 0.0,
     "IsPassive": true,
     "Effects": {
-      "Pressure": 70.0
+      "Pressure": 70.0,
+      "Temperature": 0.0,
+      "Humidity": 0.0,
+      "Radiation": 0.0
     },
     "State": 0
   },
@@ -77,10 +89,13 @@
     "Name": "Mining Skill #3",
     "Type": 2,
     "UnlockCost": 0.0,
+    "UseCost": 0.0,
     "IsPassive": true,
     "Effects": {
       "Temperature": 70.0,
-      "Humidity": -20.0
+      "Humidity": -20.0,
+      "Pressure": 0.0,
+      "Radiation": 0.0
     },
     "State": 0
   },
@@ -89,10 +104,13 @@
     "Name": "Mining Skill #4",
     "Type": 2,
     "UnlockCost": 0.0,
+    "UseCost": 0.0,
     "IsPassive": true,
     "Effects": {
       "Radiation": -50.0,
-      "Pressure": -10.0
+      "Pressure": -10.0,
+      "Temperature": 0.0,
+      "Humidity": 0.0
     },
     "State": 0
   },
@@ -101,10 +119,13 @@
     "Name": "Mining Skill #5",
     "Type": 2,
     "UnlockCost": 0.0,
+    "UseCost": 0.0,
     "IsPassive": true,
     "Effects": {
       "Temperature": -20.0,
-      "Humidity": -50.0
+      "Humidity": -50.0,
+      "Pressure": 0.0,
+      "Radiation": 0.0
     },
     "State": 0
   },
@@ -113,10 +134,13 @@
     "Name": "Mining Skill #6",
     "Type": 2,
     "UnlockCost": 0.0,
+    "UseCost": 0.0,
     "IsPassive": true,
     "Effects": {
       "Pressure": -50.0,
-      "Radiation": -20.0
+      "Radiation": -20.0,
+      "Temperature": 0.0,
+      "Humidity": 0.0
     },
     "State": 0
   },
@@ -125,9 +149,13 @@
     "Name": "Mining Skill #7",
     "Type": 2,
     "UnlockCost": 0.0,
+    "UseCost": 0.0,
     "IsPassive": true,
     "Effects": {
-      "Temperature": -50.0
+      "Temperature": -50.0,
+      "Pressure": 0.0,
+      "Humidity": 0.0,
+      "Radiation": 0.0
     },
     "State": 0
   },
@@ -136,10 +164,13 @@
     "Name": "Mining Skill #8",
     "Type": 2,
     "UnlockCost": 0.0,
+    "UseCost": 0.0,
     "IsPassive": true,
     "Effects": {
       "Pressure": -10.0,
-      "Radiation": 30.0
+      "Radiation": 30.0,
+      "Temperature": 0.0,
+      "Humidity": 0.0
     },
     "State": 0
   },
@@ -148,10 +179,13 @@
     "Name": "Mining Skill #9",
     "Type": 2,
     "UnlockCost": 0.0,
+    "UseCost": 0.0,
     "IsPassive": true,
     "Effects": {
       "Humidity": 30.0,
-      "Radiation": -10.0
+      "Radiation": -10.0,
+      "Temperature": 0.0,
+      "Pressure": 0.0
     },
     "State": 0
   },
@@ -160,10 +194,13 @@
     "Name": "Mining Skill #10",
     "Type": 2,
     "UnlockCost": 0.0,
+    "UseCost": 0.0,
     "IsPassive": true,
     "Effects": {
       "Temperature": -10.0,
-      "Pressure": 30.0
+      "Pressure": 30.0,
+      "Humidity": 0.0,
+      "Radiation": 0.0
     },
     "State": 0
   },
@@ -172,10 +209,13 @@
     "Name": "Mining Skill #11",
     "Type": 2,
     "UnlockCost": 0.0,
+    "UseCost": 0.0,
     "IsPassive": true,
     "Effects": {
       "Temperature": 30.0,
-      "Humidity": -10.0
+      "Humidity": -10.0,
+      "Pressure": 0.0,
+      "Radiation": 0.0
     },
     "State": 0
   },
@@ -184,10 +224,13 @@
     "Name": "Mining Skill #12",
     "Type": 2,
     "UnlockCost": 0.0,
+    "UseCost": 0.0,
     "IsPassive": true,
     "Effects": {
       "Radiation": -20.0,
-      "Humidity": -10.0
+      "Humidity": -10.0,
+      "Temperature": 0.0,
+      "Pressure": 0.0
     },
     "State": 0
   },
@@ -196,9 +239,13 @@
     "Name": "Mining Skill #13",
     "Type": 2,
     "UnlockCost": 0.0,
+    "UseCost": 0.0,
     "IsPassive": true,
     "Effects": {
-      "Humidity": -20.0
+      "Humidity": -20.0,
+      "Temperature": 0.0,
+      "Pressure": 0.0,
+      "Radiation": 0.0
     },
     "State": 0
   },
@@ -207,10 +254,13 @@
     "Name": "Mining Skill #14",
     "Type": 2,
     "UnlockCost": 0.0,
+    "UseCost": 0.0,
     "IsPassive": true,
     "Effects": {
       "Pressure": -20.0,
-      "Radiation": -10.0
+      "Radiation": -10.0,
+      "Temperature": 0.0,
+      "Humidity": 0.0
     },
     "State": 0
   },
@@ -219,9 +269,13 @@
     "Name": "Mining Skill #15",
     "Type": 2,
     "UnlockCost": 0.0,
+    "UseCost": 0.0,
     "IsPassive": true,
     "Effects": {
-      "Temperature": -20.0
+      "Temperature": -20.0,
+      "Pressure": 0.0,
+      "Humidity": 0.0,
+      "Radiation": 0.0
     },
     "State": 0
   },
@@ -230,9 +284,13 @@
     "Name": "Mining Skill #16",
     "Type": 2,
     "UnlockCost": 0.0,
+    "UseCost": 0.0,
     "IsPassive": true,
     "Effects": {
-      "Radiation": 10.0
+      "Radiation": 10.0,
+      "Temperature": 0.0,
+      "Pressure": 0.0,
+      "Humidity": 0.0
     },
     "State": 0
   },
@@ -241,9 +299,13 @@
     "Name": "Mining Skill #17",
     "Type": 2,
     "UnlockCost": 0.0,
+    "UseCost": 0.0,
     "IsPassive": true,
     "Effects": {
-      "Humidity": 10.0
+      "Humidity": 10.0,
+      "Temperature": 0.0,
+      "Pressure": 0.0,
+      "Radiation": 0.0
     },
     "State": 0
   },
@@ -252,9 +314,13 @@
     "Name": "Mining Skill #18",
     "Type": 2,
     "UnlockCost": 0.0,
+    "UseCost": 0.0,
     "IsPassive": true,
     "Effects": {
-      "Pressure": 10.0
+      "Pressure": 10.0,
+      "Temperature": 0.0,
+      "Humidity": 0.0,
+      "Radiation": 0.0
     },
     "State": 0
   },
@@ -263,9 +329,13 @@
     "Name": "Mining Skill #19",
     "Type": 2,
     "UnlockCost": 0.0,
+    "UseCost": 0.0,
     "IsPassive": true,
     "Effects": {
-      "Temperature": 10.0
+      "Temperature": 10.0,
+      "Pressure": 0.0,
+      "Humidity": 0.0,
+      "Radiation": 0.0
     },
     "State": 0
   }

@@ -30,6 +30,12 @@ public class UnitController : AbstractController, IGameInit
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
         GameMessage.Listen<UnitPropUpgradeMessage>( OnUnitPropUpgradeMessage );
         GameMessage.Listen<UnitUseCompoundMessage>( OnUnitUseCompoundMessage );
+        GameMessage.Listen<UnitSelectMessage>( OnUnitSelectMessage );
+    }
+
+    private void OnUnitSelectMessage( UnitSelectMessage value )
+    {
+        SelectUnit( value.X, value.Y );
     }
 
     private void OnUnitUseCompoundMessage( UnitUseCompoundMessage value )

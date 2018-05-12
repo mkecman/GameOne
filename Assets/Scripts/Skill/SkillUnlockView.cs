@@ -59,7 +59,8 @@ public class SkillUnlockView : GameView, IPointerClickHandler
 
         foreach( KeyValuePair<R, float> effect in _skill.Effects )
         {
-            AddEffect( effectPrefab, effect.Key, effect.Value );
+            if( effect.Value != 0 )
+                AddEffect( effectPrefab, effect.Key, effect.Value );
         }
     }
 

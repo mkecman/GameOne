@@ -37,6 +37,16 @@ public class BuildingConfig
                 Effects = Buildings[ i ].Effects
             };
             skill.Effects.Remove( R.Minerals );
+
+            if( !skill.Effects.ContainsKey( R.Temperature ) )
+                skill.Effects.Add( R.Temperature, 0 );
+            if( !skill.Effects.ContainsKey( R.Pressure ) )
+                skill.Effects.Add( R.Pressure, 0 );
+            if( !skill.Effects.ContainsKey( R.Humidity ) )
+                skill.Effects.Add( R.Humidity, 0 );
+            if( !skill.Effects.ContainsKey( R.Radiation ) )
+                skill.Effects.Add( R.Radiation, 0 );
+
             skills.Add( skill );
             index++;
         }
