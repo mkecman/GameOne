@@ -25,7 +25,6 @@ public class Hex : GameView, IPointerClickHandler, IDropHandler, IDragHandler, I
     private GameDebug _debug;
     private Dictionary<int, ElementData> _elements;
     private Material _solidMaterial;
-    private StringBuilder labelSB = new StringBuilder();
     private Color _newHexColor;
     private bool _clickEnabled = true;
     private CompoundInventoryView _dragObject;

@@ -3,7 +3,6 @@
 public class MineSkill : ISkill
 {
     private PlanetController _planetController;
-    private UnitController _unitController;
     private Dictionary<int, ElementData> _elements;
     private UniverseConfig _universeConfig;
     private SkillData _skillData;
@@ -15,7 +14,6 @@ public class MineSkill : ISkill
     public void Init()
     {
         _planetController = GameModel.Get<PlanetController>();
-        _unitController = GameModel.Get<UnitController>();
         _elements = GameConfig.Get<ElementConfig>().ElementsDictionary;
         _universeConfig = GameConfig.Get<UniverseConfig>();
     }

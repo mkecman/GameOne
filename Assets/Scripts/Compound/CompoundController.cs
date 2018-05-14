@@ -6,13 +6,11 @@ using UniRx;
 public class CompoundController : IGameInit
 {
     private LifeModel _life;
-    private CompoundConfig _compounds;
     private UnitEquipCommand _unitEquipCommand;
     private CompoundPaymentService _pay;
 
     public void Init()
     {
-        _compounds = GameConfig.Get<CompoundConfig>();
         _unitEquipCommand = GameModel.Get<UnitEquipCommand>();
         _pay = GameModel.Get<CompoundPaymentService>();
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );

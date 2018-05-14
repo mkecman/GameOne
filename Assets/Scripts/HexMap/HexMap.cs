@@ -49,9 +49,6 @@ public class HexMap : GameView
     public GameObject Ocean;
 
     private GridModel<HexModel> mapModel;
-    
-    private HexConfig _hexConfig;
-
 
     public void Regenerate()
     {
@@ -72,7 +69,6 @@ public class HexMap : GameView
     // Use this for initialization
     private void Start()
     {
-        _hexConfig = GameConfig.Get<HexConfig>();
         GameModel.HandleGet<PlanetModel>( OnPlanetModelChange );
     }
 

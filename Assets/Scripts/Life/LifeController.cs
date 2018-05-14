@@ -9,14 +9,12 @@ public class LifeController : AbstractController, IGameInit
     private PlanetModel _planet;
     private LifeModel _selectedLife;
     private Dictionary<R, BellCurve> _bellCurves;
-    private HexUpdateCommand _hexUpdateCommand;
     private UnitFactory _factory;
     private List<ElementData> _elements;
 
     public void Init()
     {
         _bellCurves = GameConfig.Get<BellCurveConfig>();
-        _hexUpdateCommand = GameModel.Get<HexUpdateCommand>();
         _factory = GameModel.Get<UnitFactory>();
         _elements = GameConfig.Get<ElementConfig>().ElementsList;
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
@@ -77,45 +75,5 @@ public class LifeController : AbstractController, IGameInit
         GameMessage.Send( _compoundMessage );
     }
 
-    private void UpdatePlanetMapColors()
-    {
-        HexModel hex;
-
-        int[] foodTiles = new int[] { 0, 0, 0, 0, 0, 0 };
-        int[] scienceTiles = new int[] { 0, 0, 0, 0, 0, 0 };
-        int[] wordsTiles = new int[] { 0, 0, 0, 0, 0, 0 };
-        float totalEnergy = 0;
-        float totalScience = 0;
-        float totalMinerals = 0;
-        
-        for( int x = 0; x < _planet.Map.Width; x++ )
-        {
-            for( int y = 0; y < _planet.Map.Height; y++ )
-            {
-                hex = _planet.Map.Table[ x ][ y ];
-
-                //_hexUpdateCommand.Execute( _selectedLife.Resistance, hex );
-
-                //totalEnergy += hex.Props[ R.Energy ].Value;
-                //totalScience += hex.Props[ R.Science ].Value;
-                //totalMinerals += hex.Props[ R.Minerals ].Value;
-
-                //foodTiles[ (int)hex.Props[ R.Energy ].Value ]++;
-                //scienceTiles[ (int)hex.Props[ R.Science ].Value ]++;
-                //wordsTiles[ (int)hex.Props[ R.Minerals ].Value ]++;
-
-                
-            }
-        }
-        
-        //Debug.Log( "Energy: " + totalEnergy + "::: Science: " + totalScience + "::: Minerals: " + totalMinerals );
-
-        for( int i = 0; i < 6; i++ )
-        {
-            totalEnergy += i * foodTiles[ i ];
-            totalScience += i * scienceTiles[ i ];
-            totalMinerals += i * wordsTiles[ i ];
-        }
-
-    }
+    
 }

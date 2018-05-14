@@ -17,17 +17,10 @@ public class CompoundView : GameView, IPointerClickHandler
 
     private CompoundJSON _compound;
     private CompoundSelectMessage _message = new CompoundSelectMessage();
-    private LifeModel _life;
 
     void Awake()
     {
-        GameModel.HandleGet<PlanetModel>( OnPlanetChange );
         GameMessage.Listen<CompoundSelectMessage>( OnCompoundSelected );
-    }
-
-    private void OnPlanetChange( PlanetModel value )
-    {
-        _life = value.Life;
     }
 
     private void OnCompoundSelected( CompoundSelectMessage value )
@@ -93,7 +86,6 @@ public class CompoundView : GameView, IPointerClickHandler
         base.OnDestroy();
         _compound = null;
         _message = null;
-        _life = null;
         GameMessage.StopListen<CompoundSelectMessage>( OnCompoundSelected );
     }
 }

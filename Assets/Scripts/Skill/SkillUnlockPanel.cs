@@ -11,9 +11,7 @@ public class SkillUnlockPanel : GameView
     public GameObject SkillUnlockPrefab;
     public GameObject EffectPrefab;
 
-    private BuildingMessage _abilityMessage;
     private UnitModel _unit;
-    private SkillType _type;
     private SkillConfig _skillConfig;
     private SkillData _skill;
 
@@ -21,13 +19,11 @@ public class SkillUnlockPanel : GameView
     void Awake()
     {
         _skillConfig = GameConfig.Get<SkillConfig>();
-        _abilityMessage = new BuildingMessage( BuildingState.LOCKED, 0 );
     }
 
     public void SetModel( UnitModel unit, SkillType type )
     {
         _unit = unit;
-        _type = type;
         
         RemoveAllChildren( Container );
         for( int i = 0; i < _skillConfig.Count; i++ )
