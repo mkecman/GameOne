@@ -20,30 +20,16 @@ public class PlanetChangeTableUnitRowView : GameView
 
     public Vector4 Setup( UnitModel unit )
     {
-        _skill = null;
-        foreach( KeyValuePair<int,SkillData> skill in unit.Skills )
-        {
-            if ( skill.Value.Type == SkillType.MINE && skill.Value.State == SkillState.SELECTED )
-            {
-                _skill = skill.Value;
-                continue;
-            }
-        }
-
         NameText.text = "Unit " + unit.X + ":" + unit.Y;
         _unitSelectMessage = new UnitSelectMessage( unit.X, unit.Y );
         RowButon.onClick.AddListener( OnButtonClick );
 
-        if( _skill == null )
-            return new Vector4();
+        TemperatureText.text = unit.Impact[ R.Temperature ].ToString();
+        PressureText.text = unit.Impact[ R.Pressure ].ToString();
+        HumidityText.text = unit.Impact[ R.Humidity ].ToString();
+        RadiationText.text = unit.Impact[ R.Radiation ].ToString();
 
-        TemperatureText.text = _skill.Effects[ R.Temperature ].ToString();
-        PressureText.text = _skill.Effects[ R.Pressure ].ToString();
-        HumidityText.text = _skill.Effects[ R.Humidity ].ToString();
-        RadiationText.text = _skill.Effects[ R.Radiation ].ToString();
-
-
-        return new Vector4( _skill.Effects[ R.Temperature ], _skill.Effects[ R.Pressure ], _skill.Effects[ R.Humidity ], _skill.Effects[ R.Radiation ] );
+        return new Vector4( unit.Impact[ R.Temperature ].Value, unit.Impact[ R.Pressure ].Value, unit.Impact[ R.Humidity ].Value, unit.Impact[ R.Radiation ].Value );
     }
 
     private void OnButtonClick()

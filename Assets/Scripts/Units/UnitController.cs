@@ -150,6 +150,8 @@ public class UnitController : AbstractController, IGameInit
 
     private void OnHexClickedMessage( HexClickedMessage value )
     {
+        GameModel.Set<HexModel>( value.Hex );
+
         if( value.Hex.isMarked.Value )
             return;
 
@@ -159,7 +161,6 @@ public class UnitController : AbstractController, IGameInit
         else
             DeselectUnit();
 
-        GameModel.Set<HexModel>( value.Hex );
     }
 
     private void OnClockTick( ClockTickMessage value )

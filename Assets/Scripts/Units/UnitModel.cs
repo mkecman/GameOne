@@ -36,6 +36,7 @@ public class UnitModel : IDisposable
     //public Dictionary<R, FloatReactiveProperty> AbilitiesDelta = new Dictionary<R, FloatReactiveProperty>();
 
     public Dictionary<R, BellCurve> Resistance = new Dictionary<R,BellCurve>();
+    public Dictionary<R, IntReactiveProperty> Impact = new Dictionary<R, IntReactiveProperty>();
 
     public Dictionary<R,Resource> Props = new Dictionary<R,Resource>();
 
@@ -55,9 +56,18 @@ public class UnitModel : IDisposable
 
     public void Setup()
     {
-        _slotsConfig = GameConfig.Get<BodySlotsConfig>();
         _levelUpConfig = GameConfig.Get<LevelUpConfig>();
         _levelUpModel = _levelUpConfig[ (int)Props[ R.Level ].Value ];
+
+        Impact.Add( R.Temperature, new IntReactiveProperty() );
+        Impact.Add( R.Pressure, new IntReactiveProperty() );
+        Impact.Add( R.Humidity, new IntReactiveProperty() );
+        Impact.Add( R.Radiation, new IntReactiveProperty() );
+
+        _slotsConfig = GameConfig.Get<BodySlotsConfig>();
+        _slots = _slotsConfig[ 0 ];
+        for( int i = 0; i < _slots.Count; i++ )
+            BodySlots.Add( i, new BodySlotModel( i, _slots[ i ] == 1 ? true : false ) );
 
         Props[ R.Body ]._Value.Subscribe( _ => UpdateBody() ).AddTo( disposables );
         Props[ R.Speed ]._Value.Subscribe( _ => UpdateAttack() ).AddTo( disposables );
@@ -91,17 +101,10 @@ public class UnitModel : IDisposable
         _slots = _slotsConfig[ (int)( Props[ R.Body ].Value / 8.34f ) ];
         for( int i = 0; i < _slots.Count; i++ )
         {
-            if( BodySlots.ContainsKey( i ) )
-            {
-                BodySlots[ i ].IsEnabled = _slots[ i ] == 1 ? true : false;
-                if( !BodySlots[ i ].IsEnabled )
-                    GameModel.Get<UnitEquipCommand>().ExecuteUnequip( i );
-            }
-            else
-                BodySlots.Add( i, new BodySlotModel( i, _slots[ i ] == 1 ? true : false ) );
+            BodySlots[ i ].IsEnabled = _slots[ i ] == 1 ? true : false;
+            if( !BodySlots[ i ].IsEnabled && BodySlots[ i ].CompoundIndex != Int32.MaxValue )
+                GameModel.Get<UnitEquipCommand>().ExecuteUnequip( i );
         }
-
-
 
         UpdateAttack();
     }

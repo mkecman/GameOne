@@ -41,10 +41,10 @@ public class LifeController : AbstractController, IGameInit
 
         for( int i = 0; i < _elements.Count; i++ )
         {
-            _selectedLife.Elements.Add( _elements[ i ].Index, new LifeElementModel( _elements[ i ].Index, _elements[ i ].Symbol, 100, 100 ) );
+            _selectedLife.Elements.Add( _elements[ i ].Index, new LifeElementModel( _elements[ i ].Index, _elements[ i ].Symbol, 0, 1000 ) );
         }
 
-        for( int i = 0; i < 3; i++ )
+        for( int i = 0; i < 300; i++ )
             AddCompound( 24 );
 
         for( int i = 0; i < 20; i++ )

@@ -5,11 +5,11 @@
       "HasValue": true
     },
     "Position": {
-      "Value": 0.33,
+      "Value": 0.5,
       "HasValue": true
     },
     "Range": {
-      "Value": 0.1,
+      "Value": 0.15,
       "HasValue": true
     },
     "Consumption": {
@@ -23,11 +23,11 @@
       "HasValue": true
     },
     "Position": {
-      "Value": 0.80,
+      "Value": 0.5,
       "HasValue": true
     },
     "Range": {
-      "Value": 0.1,
+      "Value": 0.15,
       "HasValue": true
     },
     "Consumption": {
@@ -41,11 +41,11 @@
       "HasValue": true
     },
     "Position": {
-      "Value": 0.66,
+      "Value": 0.5,
       "HasValue": true
     },
     "Range": {
-      "Value": 0.1,
+      "Value": 0.15,
       "HasValue": true
     },
     "Consumption": {
@@ -59,11 +59,11 @@
       "HasValue": true
     },
     "Position": {
-      "Value": 0.20,
+      "Value": 0.5,
       "HasValue": true
     },
     "Range": {
-      "Value": 0.1,
+      "Value": 0.15,
       "HasValue": true
     },
     "Consumption": {

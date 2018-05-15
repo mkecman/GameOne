@@ -1178,7 +1178,11 @@
         "IsFull": true
       }
     ],
-    "Effects": { "Body" : 20 },
+    "Effects": { 
+    	"Body" : 90,
+    	"Temperature" : 10,
+    	"Radiation" : -10 
+    },
     "CanCraft": true
   }
 ]

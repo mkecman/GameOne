@@ -5,6 +5,8 @@ public class MineSkill : ISkill
     private PlanetController _planetController;
     private Dictionary<int, ElementData> _elements;
     private UniverseConfig _universeConfig;
+
+    private UnitModel _unitModel;
     private SkillData _skillData;
     private PlanetModel _planet;
     private Resource _element;
@@ -20,21 +22,22 @@ public class MineSkill : ISkill
 
     public void Execute( UnitModel unitModel, SkillData skillData )
     {
+        _unitModel = unitModel;
         _skillData = skillData;
         _planet = _planetController.SelectedPlanet;
-        _element = _planet.Map.Table[ unitModel.X ][ unitModel.Y ].Props[ R.Element ];
+        _element = _planet.Map.Table[ _unitModel.X ][ _unitModel.Y ].Props[ R.Element ];
         _elementIndex = (int)_element.Value;
 
         //fight
-        if( RandomUtil.FromRange( 0, unitModel.Props[ R.Soul ].MaxValue ) < unitModel.Props[ R.Soul ].Value )
+        if( RandomUtil.FromRange( 0, _unitModel.Props[ R.Soul ].MaxValue ) < _unitModel.Props[ R.Soul ].Value )
         {
-            _critHit = unitModel.Props[ R.Body ].Value;
+            _critHit = _unitModel.Props[ R.Body ].Value;
             //Debug.Log( "CRITICAL HIT!" );
         }
         else
             _critHit = 0;
 
-        _element.Delta -= unitModel.Props[ R.Attack ].Value + _critHit;
+        _element.Delta -= _unitModel.Props[ R.Attack ].Value + _critHit;
 
         //If beaten, collect the element and reset HP
         if( _element.Delta <= 0 )
@@ -48,12 +51,11 @@ public class MineSkill : ISkill
         UpdatePlanetProp( R.Humidity );
         UpdatePlanetProp( R.Radiation );
 
-        unitModel.Props[ R.Experience ].Value++;
+        _unitModel.Props[ R.Experience ].Value++;
     }
 
     private void UpdatePlanetProp( R type )
     {
-        //if( _skillData.Effects.ContainsKey( type ) )
-        _planet.Props[ type ].Value += _skillData.Effects[ type ] * _universeConfig.IntToPlanetValueMultiplier;
+        _planet.Props[ type ].Value += _unitModel.Impact[ type ].Value * _universeConfig.IntToPlanetValueMultiplier;
     }
 }
