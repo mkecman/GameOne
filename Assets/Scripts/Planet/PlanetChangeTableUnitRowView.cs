@@ -1,9 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections.Generic;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
-using System;
-using System.Collections.Generic;
 
 public class PlanetChangeTableUnitRowView : GameView
 {
@@ -20,10 +18,28 @@ public class PlanetChangeTableUnitRowView : GameView
 
     public Vector4 Setup( UnitModel unit )
     {
+        NameText.text = "Unit " + unit.X + ":" + unit.Y;
+        _unitSelectMessage = new UnitSelectMessage( unit.X, unit.Y );
+        RowButon.onClick.AddListener( OnButtonClick );
+
+        TemperatureText.text = unit.Props[ R.Temperature ].Value.ToString();
+        PressureText.text = unit.Props[ R.Pressure ].Value.ToString();
+        HumidityText.text = unit.Props[ R.Humidity ].Value.ToString();
+        RadiationText.text = unit.Props[ R.Radiation ].Value.ToString();
+
+        return new Vector4(
+            unit.Props[ R.Temperature ].Value,
+            unit.Props[ R.Pressure ].Value,
+            unit.Props[ R.Humidity ].Value,
+            unit.Props[ R.Radiation ].Value );
+    }
+
+    public Vector4 SetupOld( UnitModel unit )
+    {
         _skill = null;
-        foreach( KeyValuePair<int,SkillData> skill in unit.Skills )
+        foreach( KeyValuePair<int, SkillData> skill in unit.Skills )
         {
-            if ( skill.Value.Type == SkillType.MINE && skill.Value.State == SkillState.SELECTED )
+            if( skill.Value.Type == SkillType.MINE && skill.Value.State == SkillState.SELECTED )
             {
                 _skill = skill.Value;
                 continue;

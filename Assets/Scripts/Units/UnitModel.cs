@@ -29,7 +29,9 @@ public class UnitModel : IDisposable
                 _Y.Value = value;
             }
     }
-    
+
+    public string Name;
+
     public BoolReactiveProperty isSelected = new BoolReactiveProperty( false );
 
     //public Dictionary<int, BuildingState> Abilities = new Dictionary<int, BuildingState>();

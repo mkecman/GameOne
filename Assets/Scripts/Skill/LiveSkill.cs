@@ -14,7 +14,8 @@ public class LiveSkill : ISkill
         unit.Props[ R.Health ].Value -= 1 - unit.Props[ R.Armor ].Value;
 
         if( unit.Props[ R.Health ].Value <= 0 )
-            _unitController.RemoveUnit( unit );
+            unit.Props[ R.Health ].Value = unit.Props[ R.Health ].MaxValue;
+            //_unitController.RemoveUnit( unit );
     }
 
 }

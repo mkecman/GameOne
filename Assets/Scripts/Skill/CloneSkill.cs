@@ -32,6 +32,8 @@ public class CloneSkill : ISkill
             _hexMapModel = _planetController.SelectedPlanet.Map;
             MarkNeighborHexes( unitModel );
             GameMessage.Listen<HexClickedMessage>( OnHexClicked );
+
+            GameMessage.Send( new HexClickedMessage( _markedHexes[ RandomUtil.FromRangeInt( 0, _markedHexes.Count - 1 ) ] ) );
         }
     }
 
@@ -40,7 +42,7 @@ public class CloneSkill : ISkill
         if( value.Hex.isMarked.Value )
         {
             if( _pay.BuySkillUse( (int)_skillData.UseCost, 1, true ) )
-                _controller.AddUnit( value.Hex.X, value.Hex.Y );
+                GameMessage.Send( new PanelMessage( PanelAction.SHOW, PanelNames.NewUnitPanel ) );
         }
 
         Deactivate();

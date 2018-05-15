@@ -9,6 +9,7 @@ public class MineSkill : ISkill
     private PlanetModel _planet;
     private Resource _element;
     private int _elementIndex;
+    private UnitModel _unitModel;
     private float _critHit;
 
     public void Init()
@@ -24,6 +25,7 @@ public class MineSkill : ISkill
         _planet = _planetController.SelectedPlanet;
         _element = _planet.Map.Table[ unitModel.X ][ unitModel.Y ].Props[ R.Element ];
         _elementIndex = (int)_element.Value;
+        _unitModel = unitModel;
 
         //fight
         if( RandomUtil.FromRange( 0, unitModel.Props[ R.Soul ].MaxValue ) < unitModel.Props[ R.Soul ].Value )
@@ -42,7 +44,7 @@ public class MineSkill : ISkill
             _planet.Life.Elements[ _elementIndex ].Amount++;
             _element.Delta = _elements[ _elementIndex ].Weight * 1;
         }
-
+        
         UpdatePlanetProp( R.Temperature );
         UpdatePlanetProp( R.Pressure );
         UpdatePlanetProp( R.Humidity );
@@ -53,7 +55,7 @@ public class MineSkill : ISkill
 
     private void UpdatePlanetProp( R type )
     {
-        //if( _skillData.Effects.ContainsKey( type ) )
-        _planet.Props[ type ].Value += _skillData.Effects[ type ] * _universeConfig.IntToPlanetValueMultiplier;
+        //_planet.Props[ type ].Value += _skillData.Effects[ type ] * _universeConfig.IntToPlanetValueMultiplier;
+        _planet.Props[ type ].Value += _unitModel.Props[ type ].Value * _universeConfig.IntToPlanetValueMultiplier;
     }
 }

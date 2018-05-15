@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using System;
+using UniRx;
 using UnityEngine;
 
 public class PlanetChangePanel : GameView
@@ -39,6 +40,14 @@ public class PlanetChangePanel : GameView
         _planet.Props[ R.Humidity ]._AvgValue.Subscribe( _ => OnPlanetPropChange() ).AddTo( disposables );
         _planet.Props[ R.Radiation ]._AvgValue.Subscribe( _ => OnPlanetPropChange() ).AddTo( disposables );
 
+        _planet.Life.Units.ObserveAdd().Subscribe( _ => OnUnitCountChange() ).AddTo( disposables );
+        _planet.Life.Units.ObserveRemove().Subscribe( _ => OnUnitCountChange() ).AddTo( disposables );
+
+        
+    }
+
+    private void OnUnitCountChange()
+    {
         RemoveAllChildren( UnitContainer );
 
         Vector4 unitSkillValue;

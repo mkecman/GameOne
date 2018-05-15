@@ -31,6 +31,12 @@ public class UnitController : AbstractController, IGameInit
         GameMessage.Listen<UnitPropUpgradeMessage>( OnUnitPropUpgradeMessage );
         GameMessage.Listen<UnitUseCompoundMessage>( OnUnitUseCompoundMessage );
         GameMessage.Listen<UnitSelectMessage>( OnUnitSelectMessage );
+        GameMessage.Listen<UnitAddMessage>( OnUnitAddMessage );
+    }
+
+    private void OnUnitAddMessage( UnitAddMessage value )
+    {
+        AddUnit( value.UnitTypeIndex, value.X, value.Y );
     }
 
     private void OnUnitSelectMessage( UnitSelectMessage value )
@@ -62,12 +68,12 @@ public class UnitController : AbstractController, IGameInit
         //_selectedUnit.AbilitiesDelta[ R.Science ].Value = _selectedUnit.AbilitiesDelta[ R.Science ].Value.Sum( delta );
     }
 
-    public void AddUnit( int x, int y )
+    public void AddUnit( int typeIndex, int x, int y )
     {
         if( _hexMapModel.Table[ x ][ y ].Unit != null )
             return;
 
-        _tempUnitModel = _factory.GetUnit( x, y );
+        _tempUnitModel = _factory.GetUnitType( typeIndex, x, y );
         _hexMapModel.Table[ x ][ y ].Unit = _tempUnitModel;
         _unitDefenseUpdateCommand.Execute( _tempUnitModel );
 
@@ -150,6 +156,7 @@ public class UnitController : AbstractController, IGameInit
 
     private void OnHexClickedMessage( HexClickedMessage value )
     {
+        GameModel.Set<HexModel>( value.Hex );
         if( value.Hex.isMarked.Value )
             return;
 
@@ -159,7 +166,6 @@ public class UnitController : AbstractController, IGameInit
         else
             DeselectUnit();
 
-        GameModel.Set<HexModel>( value.Hex );
     }
 
     private void OnClockTick( ClockTickMessage value )

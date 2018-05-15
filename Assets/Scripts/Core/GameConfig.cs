@@ -15,6 +15,8 @@ public class GameConfig : MonoBehaviour
     {
         _instance._configs = new Dictionary<Type, object>();
 
+        _instance.Load<UnitTypesConfig>();
+
         _instance.Load<UniverseConfig>();
         _instance.Load<StarsConfig>();
 

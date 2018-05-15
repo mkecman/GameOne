@@ -5,12 +5,14 @@ public class UnitFactory : IGameInit
     private PlanetController _planetController;
     private BellCurveConfig _bellCurves;
     private SkillConfig _skills;
+    private UnitTypesConfig _unitsConfig;
 
     public void Init()
     {
         _planetController = GameModel.Get<PlanetController>();
         _bellCurves = GameConfig.Get<BellCurveConfig>();
         _skills = GameConfig.Get<SkillConfig>();
+        _unitsConfig = GameConfig.Get<UnitTypesConfig>();
     }
 
     public UnitModel GetUnit( int x, int y )
@@ -28,6 +30,12 @@ public class UnitFactory : IGameInit
         unit.Props.Add( R.Armor, new Resource( R.Armor, 0, 0, 0, 100 ) );
         unit.Props.Add( R.Attack, new Resource( R.Attack, 0, 0, 0, 100 ) );
         unit.Props.Add( R.UpgradePoint, new Resource( R.UpgradePoint, 0, 0, 0, 100 ) );
+
+        //PLANET INFLUENCE
+        unit.Props.Add( R.Temperature, new Resource( R.Temperature, 2, 0, -10, 10 ) );
+        unit.Props.Add( R.Pressure, new Resource( R.Pressure, 1, 0, -10, 10 ) );
+        unit.Props.Add( R.Humidity, new Resource( R.Humidity, -1, 0, -10, 10 ) );
+        unit.Props.Add( R.Radiation, new Resource( R.Radiation, -2, 0, -10, 10 ) );
 
         unit.Resistance = GameModel.Copy( _bellCurves );
 
@@ -55,8 +63,28 @@ public class UnitFactory : IGameInit
         unit.ActiveSkills.Add( 3 );//move
         unit.ActiveSkills.Add( 1 );//clone
 
-        unit.Setup();
+        return unit;
+    }
 
+    public UnitModel GetUnitType( int index, int x, int y )
+    {
+        UnitModel unit = GetUnit( x, y );
+
+        unit.Props[ R.Temperature ].Value = _unitsConfig[ index ].ITemperature;
+        unit.Props[ R.Pressure ].Value = _unitsConfig[ index ].IPressure;
+        unit.Props[ R.Humidity ].Value = _unitsConfig[ index ].IHumidity;
+        unit.Props[ R.Radiation ].Value = _unitsConfig[ index ].IRadiation;
+
+        unit.Resistance[ R.Temperature ].Position.Value = _unitsConfig[ index ].Temperature;
+        unit.Resistance[ R.Pressure ].Position.Value = _unitsConfig[ index ].Pressure;
+        unit.Resistance[ R.Humidity ].Position.Value = _unitsConfig[ index ].Humidity;
+        unit.Resistance[ R.Radiation ].Position.Value = _unitsConfig[ index ].Radiation;
+
+        unit.Props[ R.Mind ].Value = _unitsConfig[ index ].Mind;
+        unit.Props[ R.Soul ].Value = _unitsConfig[ index ].Soul;
+        unit.Props[ R.Body ].Value = _unitsConfig[ index ].Body;
+
+        unit.Setup();
         return unit;
     }
 }
