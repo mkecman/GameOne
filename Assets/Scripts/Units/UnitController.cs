@@ -144,13 +144,13 @@ public class UnitController : AbstractController, IGameInit
             _tempUnitModel.Y = _tempUnitModel.Y; //update position vector3
             _hexMapModel.Table[ _tempUnitModel.X ][ _tempUnitModel.Y ].Unit = _tempUnitModel;
             _unitDefenseUpdateCommand.Execute( _tempUnitModel );
+            _tempUnitModel.Setup();
         }
 
     }
 
     private void OnHexClickedMessage( HexClickedMessage value )
     {
-        GameModel.Set<HexModel>( value.Hex );
 
         if( value.Hex.isMarked.Value )
             return;
@@ -161,6 +161,7 @@ public class UnitController : AbstractController, IGameInit
         else
             DeselectUnit();
 
+        GameModel.Set<HexModel>( value.Hex );
     }
 
     private void OnClockTick( ClockTickMessage value )

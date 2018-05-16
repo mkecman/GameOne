@@ -14,7 +14,7 @@
     "Name": null,
     "Type": 4,
     "UnlockCost": 0.0,
-    "UseCost": 24,
+    "UseCost": 1,
     "IsPassive": false,
     "Effects": {},
     "State": 0
@@ -34,7 +34,7 @@
     "Name": null,
     "Type": 1,
     "UnlockCost": 0.0,
-    "UseCost": 25,
+    "UseCost": 2,
     "IsPassive": false,
     "Effects": {},
     "State": 0

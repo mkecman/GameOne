@@ -76,6 +76,7 @@ public class CloneSkill : ISkill
         if( _hex.Unit == null )
         {
             _hex.isMarked.Value = true;
+            _hex.isExplored.Value = true;
             _markedHexes.Add( _hex );
         }
     }

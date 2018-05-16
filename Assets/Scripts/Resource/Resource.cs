@@ -94,5 +94,6 @@ public enum R
     Attack,
     UpgradePoint,
     Level,
+    Critical,
     Count
 }

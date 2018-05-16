@@ -72,7 +72,8 @@ public class GameController : MonoBehaviour
         generator.Load();
         /**/
 
-        Observable.TimerFrame( 30 ).Subscribe( _ => StartNewGame() ); 
+        //Observable.TimerFrame( 30 ).Subscribe( _ => StartNewGame() ); 
+        Observable.TimerFrame( 30 ).Subscribe( _ => Load() );
 
         //Load();
         //Debug.Log( "GameController Started" );

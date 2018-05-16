@@ -54,46 +54,55 @@ public class UnitModel : IDisposable
     private List<int> _slots;
     private LevelUpModel _levelUpModel;
 
-    public void Setup()
+    public UnitModel()
     {
-        _levelUpConfig = GameConfig.Get<LevelUpConfig>();
-        _levelUpModel = _levelUpConfig[ (int)Props[ R.Level ].Value ];
-
         Impact.Add( R.Temperature, new IntReactiveProperty() );
         Impact.Add( R.Pressure, new IntReactiveProperty() );
         Impact.Add( R.Humidity, new IntReactiveProperty() );
         Impact.Add( R.Radiation, new IntReactiveProperty() );
 
+        _levelUpConfig = GameConfig.Get<LevelUpConfig>();
         _slotsConfig = GameConfig.Get<BodySlotsConfig>();
         _slots = _slotsConfig[ 0 ];
         for( int i = 0; i < _slots.Count; i++ )
             BodySlots.Add( i, new BodySlotModel( i, _slots[ i ] == 1 ? true : false ) );
+    }
 
-        Props[ R.Body ]._Value.Subscribe( _ => UpdateBody() ).AddTo( disposables );
-        Props[ R.Speed ]._Value.Subscribe( _ => UpdateAttack() ).AddTo( disposables );
+    public void Setup()
+    {
+        _levelUpModel = _levelUpConfig[ (int)Props[ R.Level ].Value ];
+
+        Props[ R.Body ]._Value.Subscribe( _ => { UpdateBody(); UpdateBaseStat(); } ).AddTo( disposables );
+        Props[ R.Mind ]._Value.Subscribe( _ => UpdateBaseStat() ).AddTo( disposables );
+        Props[ R.Soul ]._Value.Subscribe( _ => UpdateBaseStat() ).AddTo( disposables );
+
+        Props[ R.Experience ].MaxValue = _levelUpModel.Experience;
         Props[ R.Experience ]._Value.Subscribe( _ => CheckLevelUp() ).AddTo( disposables );
+
+        Props[ R.Attack ]._Delta.Subscribe( _ => UpdateBaseStat() ).AddTo( disposables );
+    }
+
+    private void UpdateBaseStat()
+    {
+        Props[ R.Attack ].Value = (int)( ( Props[ R.Body ].Value + Props[ R.Mind ].Value + Props[ R.Soul ].Value ) / 3 ) + Props[ R.Attack ].Delta;
+        Props[ R.Speed ].Value = ( ( Props[ R.Body ].Value + Props[ R.Mind ].Value ) * 0.025f ) + 1;
+        Props[ R.Health ].MaxValue = (int)( Props[ R.Body ].Value + Props[ R.Soul ].Value ) * 15;
+        Props[ R.Critical ].Value = ( Props[ R.Mind ].Value * Props[ R.Soul ].Value ) / 400f;
     }
 
     private void CheckLevelUp()
     {
-        if( Props[ R.Experience ].Value >= _levelUpModel.Experience )
+        if( Props[ R.Experience ].Value >= Props[ R.Experience ].MaxValue )
         {
             Props[ R.Experience ].Value -= _levelUpModel.Experience;
             Props[ R.UpgradePoint ].Value += _levelUpModel.UpgradePoints;
             Props[ R.Level ].Value++;
             _levelUpModel = _levelUpConfig[ (int)Props[ R.Level ].Value ];
+            Props[ R.Experience ].MaxValue = _levelUpModel.Experience;
 
-            Props[ R.Health ].MaxValue = _levelUpModel.Effects[ R.Health ];
+            //Props[ R.Health ].MaxValue = _levelUpModel.Effects[ R.Health ];
             Props[ R.Health ].Value = Props[ R.Health ].MaxValue;
         }
-    }
-
-    public void Dispose()
-    {
-        _slots = null;
-        _slotsConfig = null;
-        disposables.Clear();
-        disposables = null;
     }
 
     private void UpdateBody()
@@ -105,12 +114,13 @@ public class UnitModel : IDisposable
             if( !BodySlots[ i ].IsEnabled && BodySlots[ i ].CompoundIndex != Int32.MaxValue )
                 GameModel.Get<UnitEquipCommand>().ExecuteUnequip( i );
         }
-
-        UpdateAttack();
     }
 
-    private void UpdateAttack()
+    public void Dispose()
     {
-        Props[ R.Attack ].Value = Props[ R.Body ].Value * ( ( Props[ R.Speed ].Value / 100 ) + 1 );
+        _slots = null;
+        _slotsConfig = null;
+        disposables.Clear();
+        disposables = null;
     }
 }

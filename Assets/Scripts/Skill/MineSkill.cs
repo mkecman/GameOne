@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class MineSkill : ISkill
 {
@@ -29,15 +30,15 @@ public class MineSkill : ISkill
         _elementIndex = (int)_element.Value;
 
         //fight
-        if( RandomUtil.FromRange( 0, _unitModel.Props[ R.Soul ].MaxValue ) < _unitModel.Props[ R.Soul ].Value )
+        if( RandomUtil.FromRange( 0, 1 ) < _unitModel.Props[ R.Critical ].Value )
         {
-            _critHit = _unitModel.Props[ R.Body ].Value;
-            //Debug.Log( "CRITICAL HIT!" );
+            _critHit = 2;
+            Debug.Log( "CRITICAL HIT! " + _unitModel.Props[ R.Attack ].Value );
         }
         else
-            _critHit = 0;
+            _critHit = 1;
 
-        _element.Delta -= _unitModel.Props[ R.Attack ].Value + _critHit;
+        _element.Delta -= ( _unitModel.Props[ R.Attack ].Value * _critHit ) * _unitModel.Props[ R.Speed ].Value;
 
         //If beaten, collect the element and reset HP
         if( _element.Delta <= 0 )

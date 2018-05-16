@@ -11,10 +11,12 @@ public class HexMapGenerator
     private Dictionary<int, ElementData> _elementsDict;
     private List<WeightedValue> _elementsProbabilities;
     private Vector2[] Ranges = new Vector2[ 7 ];
+    private BellCurveConfig _resistanceConfig;
     private PlanetModel _planetModel;
 
     public GridModel<HexModel> Generate( PlanetModel planetModel )
     {
+        _resistanceConfig = GameConfig.Get<BellCurveConfig>();
         _planetModel = planetModel;
         GameObject go = GameObject.Find( "Map" );
         HexMap hexMap = go.GetComponent<HexMap>();
@@ -102,7 +104,7 @@ public class HexMapGenerator
                 SetInitialHexValue( hex, R.Altitude, altitude );
                 SetInitialHexValue( hex, R.Temperature, temperature );
                 SetInitialHexValue( hex, R.Humidity, ( humidity - ( temperature * 0.3f ) ) );
-                SetInitialHexValue( hex, R.Pressure, ( ( 1 - humidity ) + ( 1 - altitude ) + ( 1 - temperature ) ) / 3 );
+                SetInitialHexValue( hex, R.Pressure, ( ( 1 - altitude ) + ( 1 - temperature ) ) / 2 );
                 SetInitialHexValue( hex, R.Radiation, ( radiation + equador ) / 2 );
             }
         }
@@ -162,7 +164,7 @@ public class HexMapGenerator
         //add variation to properties based on planet values
         hex.Props[ type ].Value = Mathf.Clamp( (float)_planetModel.Props[ type ].Value + hex.Props[ type ].Delta, 0, 1 );
 
-        hex.Props[ type ].Color = Color.Lerp( Color.red, Color.green, hex.Props[ type ].Value );
+        hex.Props[ type ].Color = Color.Lerp( Color.red, Color.green, _resistanceConfig[type].GetFloatAt( hex.Props[ type ].Value ) );
     }
 
     private void SetInitialHexValue( HexModel hex, R lens, float value )

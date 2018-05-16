@@ -14,6 +14,9 @@ public class UnitDefenseUpdateCommand : IGameInit
 
     public void Execute( UnitModel unit )
     {
+        if( _hexMapModel == null )
+            return;
+
         _tempHexModel = _hexMapModel.Table[ unit.X ][ unit.Y ];
         unit.Props[ R.Armor ].Value =
         (

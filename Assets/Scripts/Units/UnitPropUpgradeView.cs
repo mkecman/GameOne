@@ -8,7 +8,7 @@ public class UnitPropUpgradeView : GameView
     public Button UpgradeButton;
     private int delta = 0;
 
-    public void SetModel( R prop, UnitModel unit, bool canChange, string stringFormat = "N0" )
+    public void SetModel( R prop, UnitModel unit, bool canChange, string stringFormat = "N0", bool showMaxValue = false )
     {
         disposables.Clear();
         delta = 0;
@@ -18,6 +18,11 @@ public class UnitPropUpgradeView : GameView
 
         unit.Props[ prop ]._Value
             .Subscribe( _ => PropertyView.SetValue( _ ) )
+            .AddTo( disposables );
+
+        if( showMaxValue )
+        unit.Props[ prop ]._MaxValue
+            .Subscribe( _ => PropertyView.SetDelta( _ ) )
             .AddTo( disposables );
 
         unit.Props[ R.UpgradePoint ]._Value

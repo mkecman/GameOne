@@ -41,7 +41,7 @@ public class HexTileInfoPanelView : GameView
         _hex.Props[ R.Pressure ]._Value.Subscribe( _ => Pressure.SetValue( GetPropValue( _ ) ) ).AddTo( disposables );
         _hex.Props[ R.Humidity ]._Value.Subscribe( _ => Humidity.SetValue( GetPropValue( _ ) ) ).AddTo( disposables );
         _hex.Props[ R.Radiation ]._Value.Subscribe( _ => Radiation.SetValue( GetPropValue( _ ) ) ).AddTo( disposables );
-        _hex.Props[ R.HexScore ]._Value.Subscribe( _ => HexScore.SetValue( GetPropValue( _ ) ) ).AddTo( disposables );
+        _hex.Props[ R.HexScore ]._Value.Subscribe( _ => HexScore.SetValue( _ ) ).AddTo( disposables );
     }
 
     private float GetPropValue( float value )

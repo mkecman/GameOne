@@ -17,22 +17,26 @@ public class Unit : GameView
         _originalColor = meshRenderer.material.color;
 
         disposables.Clear();
-        _model.isSelected.Subscribe( _ => SetSelectedState( _ ) ).AddTo( disposables );
+        _model.Props[ R.UpgradePoint ]._Value.Subscribe( _ => SetSelectedState() ).AddTo( disposables );
+        _model.isSelected.Subscribe( _ => SetSelectedState() ).AddTo( disposables );
         _model._X.Subscribe( _ => UpdatePosition() ).AddTo( disposables );
         _model._Y.Subscribe( _ => UpdatePosition() ).AddTo( disposables );
     }
-    
+
     private void UpdatePosition()
     {
         transform.position = _model.Position;
     }
 
-    private void SetSelectedState( bool isSelected )
+    private void SetSelectedState()
     {
-        if( isSelected )
+        if( _model.isSelected.Value )
             meshRenderer.material.color = Color.red;
         else
-            meshRenderer.material.color = _originalColor;
+            if( _model.Props[ R.UpgradePoint ].Value > 0 )
+                meshRenderer.material.color = Color.blue;
+            else
+                meshRenderer.material.color = _originalColor;
     }
 
     public override void OnDestroy()

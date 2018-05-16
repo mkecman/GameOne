@@ -101,6 +101,11 @@ public class PlanetController : AbstractController, IGameInit
         _selectedPlanet.Props[ R.Temperature ].Value = Mathf.Pow( ( TemperatureFromStar * ( 1 + ( ( 3 * greenhouse * 0.5841f ) / 4 ) ) / .9f ), 0.25f );
         _selectedPlanet.Props[ R.Temperature ].Value -= 273; //convert to Celsius
 
+        _selectedPlanet.Goals.Add( R.Temperature, 500000 );
+        _selectedPlanet.Goals.Add( R.Pressure, 500000 );
+        _selectedPlanet.Goals.Add( R.Humidity, 500000 );
+        _selectedPlanet.Goals.Add( R.Radiation, 500000 );
+
         _selectedPlanet.Map = _hexMapGenerator.Generate( _selectedPlanet );
     }
     

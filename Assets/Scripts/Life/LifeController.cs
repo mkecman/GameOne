@@ -44,23 +44,19 @@ public class LifeController : AbstractController, IGameInit
             _selectedLife.Elements.Add( _elements[ i ].Index, new LifeElementModel( _elements[ i ].Index, _elements[ i ].Symbol, 0, 1000 ) );
         }
 
-        for( int i = 0; i < 300; i++ )
-            AddCompound( 24 );
+        for( int i = 0; i < 5; i++ )
+            AddCompound( 1 );
 
-        for( int i = 0; i < 20; i++ )
-            AddCompound( 25 );
+        for( int i = 0; i < 50; i++ )
+            AddCompound( 2 );
 
         for( int i = 0; i < 10; i++ )
-            AddCompound( 26 );
-
-        AddCompound( 27 );
-        AddCompound( 1 );
-        AddCompound( 2 );
+            AddCompound( 3 );
 
 
         int unitX = ( _planet.Map.Width / 2 ) + 2;
         int unitY = ( _planet.Map.Height / 2 ) + 2;
-        _selectedLife.Units.Add( _factory.GetUnit( unitX, unitY ) );
+        _selectedLife.Units.Add( _factory.GetUnit( unitX, 5 ) );
 
         _planet.Life = _selectedLife;
         //UpdatePlanetMapColors();

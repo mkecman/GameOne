@@ -20,6 +20,7 @@ public class PlanetModel
     public LifeModel Life = new LifeModel();
     public GridModel<HexModel> Map;
     public Dictionary<R, PlanetProperty> Props = new Dictionary<R, PlanetProperty>();
+    public Dictionary<R, int> Goals = new Dictionary<R, int>();
 
     internal StringReactiveProperty _Name = new StringReactiveProperty();
     public string Name

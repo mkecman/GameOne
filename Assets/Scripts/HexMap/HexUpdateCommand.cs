@@ -6,11 +6,13 @@ public class HexUpdateCommand : IGameInit
     private PlanetController _planetController;
     private PlanetModel _planet;
     private UnitDefenseUpdateCommand _unitDefenseUpdateCommand;
+    private BellCurveConfig _resistanceConfig;
 
     public void Init()
     {
         _planetController = GameModel.Get<PlanetController>();
         _unitDefenseUpdateCommand = GameModel.Get<UnitDefenseUpdateCommand>();
+        _resistanceConfig = GameConfig.Get<BellCurveConfig>();
     }
 
     public void Execute( HexModel hex )
@@ -23,10 +25,11 @@ public class HexUpdateCommand : IGameInit
         UpdateProp( R.Radiation, hex );
 
         hex.Props[ R.HexScore ].Value = 
-            PPMath.Round( ( hex.Props[ R.Temperature ].Value +
-            hex.Props[ R.Pressure ].Value +
-            hex.Props[ R.Humidity ].Value +
-            hex.Props[ R.Radiation ].Value ) / 4, 2 );
+                ( GetPropBellCurveValue( R.Temperature, hex ) +
+                GetPropBellCurveValue( R.Pressure, hex ) +
+                GetPropBellCurveValue( R.Humidity, hex ) +
+                GetPropBellCurveValue( R.Radiation, hex ) )
+                / 4f;
 
         if( hex.Unit != null )
             _unitDefenseUpdateCommand.Execute( hex.Unit );
@@ -35,5 +38,10 @@ public class HexUpdateCommand : IGameInit
     private void UpdateProp( R type, HexModel hex )
     {
         hex.Props[ type ].Value = Mathf.Clamp( (float)_planet.Props[ type ].Value + hex.Props[ type ].Delta, 0, 1 );
+    }
+
+    private float GetPropBellCurveValue( R type, HexModel hex )
+    {
+        return _resistanceConfig[ type ].GetFloatAt( hex.Props[ type ].Value );
     }
 }
