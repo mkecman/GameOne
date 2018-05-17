@@ -7,9 +7,9 @@ using Newtonsoft.Json;
 public class LevelUpGenerator : MonoBehaviour
 {
     private List<LevelUpModel> _levels = new List<LevelUpModel>();
-    private float BaseXPMultiplier = 2f;
+    private float BaseXPMultiplier = .9f;
     private int BaseXP = 10;
-    private float Exponent = 1.5f;
+    private float Exponent = 1.99f;
 
     private float BaseHealth = 100f;
     private float ExponentHealth = 0.7f;
@@ -19,7 +19,7 @@ public class LevelUpGenerator : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        for( int i = 0; i < 100; i++ )
+        for( int i = 0; i <= 100; i++ )
         {
             LevelUpModel level = new LevelUpModel();
             level.Level = i;

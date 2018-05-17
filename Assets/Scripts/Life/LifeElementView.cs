@@ -17,6 +17,11 @@ public class LifeElementView : GameView
 
         SymbolText.text = _model.Symbol;
         Bar.MaxValue = _model.MaxAmount;
-        _model._Amount.Subscribe( _ => { Bar.Value = _; AmountText.text = _.ToString(); } ).AddTo( disposables );
+        _model._Amount.Subscribe( _ => 
+        {
+            Bar.Value = _;
+            AmountText.text = _.ToString();
+            gameObject.SetActive( _ > 0 );
+        } ).AddTo( disposables );
     }
 }

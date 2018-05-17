@@ -56,7 +56,7 @@ public class LifeController : AbstractController, IGameInit
 
         int unitX = ( _planet.Map.Width / 2 ) + 2;
         int unitY = ( _planet.Map.Height / 2 ) + 2;
-        _selectedLife.Units.Add( _factory.GetUnit( unitX, 5 ) );
+        _selectedLife.Units.Add( _factory.GetUnit( unitX+2, 6 ) );
 
         _planet.Life = _selectedLife;
         //UpdatePlanetMapColors();
