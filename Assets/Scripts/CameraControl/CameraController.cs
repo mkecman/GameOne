@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
 {
     public float MovementSpeed = 0.1f;
     public float MousePanSpeed = 10f;
+    public float ZoomSpeed = 1f;
     
     private Vector3 _oldPosition;
     private Vector3 _viewportOrigin;
@@ -37,15 +38,16 @@ public class CameraController : MonoBehaviour
             gameObject.transform.Translate( Vector3.right * MovementSpeed );
 
         if( Input.GetKey( KeyCode.Q ) )
-            gameObject.transform.Translate( Vector3.up * MovementSpeed );
+            gameObject.transform.Translate( Vector3.up * ZoomSpeed );
         if( Input.GetKey( KeyCode.E ) )
-            gameObject.transform.Translate( Vector3.down * MovementSpeed );
+            gameObject.transform.Translate( Vector3.down * ZoomSpeed );
 
         if( Input.GetAxis( "Mouse ScrollWheel" ) > 0 )
-            gameObject.transform.Translate( Vector3.up * MovementSpeed * 10 );
+            gameObject.transform.Translate( Vector3.up * ZoomSpeed );
         if( Input.GetAxis( "Mouse ScrollWheel" ) < 0 )
-            gameObject.transform.Translate( Vector3.down * MovementSpeed  * 10 );
+            gameObject.transform.Translate( Vector3.down * ZoomSpeed );
 
+        gameObject.transform.position = new Vector3( gameObject.transform.position.x, Mathf.Clamp( gameObject.transform.position.y, 10f, 40f ), gameObject.transform.position.z );
         /*
         // Moved to GameCamera class
         if( Input.GetMouseButtonDown( 0 ) )

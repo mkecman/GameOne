@@ -2,7 +2,7 @@
 using UniRx;
 using System.Collections.Generic;
 
-public class HealthBarsContainer : GameView
+public class UnitBarsContainer : GameView
 {
     public GameObject Prefab;
     private LifeModel _life;
@@ -45,7 +45,7 @@ public class HealthBarsContainer : GameView
                     new Vector3( 0,0,0 ),
                     Quaternion.identity );
         unitGO.transform.SetParent( this.transform );
-        unitGO.GetComponent<HealthBar>().SetModel( unit );
+        unitGO.GetComponent<UnitBar>().SetModel( unit );
         _children.Add( unit, unitGO );
     }
     

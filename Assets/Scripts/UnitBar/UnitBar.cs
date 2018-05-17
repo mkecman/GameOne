@@ -2,9 +2,10 @@
 using System.Collections;
 using UniRx;
 
-public class HealthBar : GameView
+public class UnitBar : GameView
 {
-    public ProgressBar ProgressBar;
+    public ProgressBar Health;
+    public ProgressBar XP;
 
     private UnitModel _unitModel;
     private Transform _transform;
@@ -25,8 +26,10 @@ public class HealthBar : GameView
         disposables.Clear();
         _unitModel = um;
 
-        _unitModel.Props[ R.Health ]._MaxValue.Subscribe( _ => ProgressBar.MaxValue = _ ).AddTo( disposables );
-        _unitModel.Props[ R.Health ]._Value.Subscribe( _ => ProgressBar.Value = _ ).AddTo( disposables );
+        _unitModel.Props[ R.Health ]._MaxValue.Subscribe( _ => Health.MaxValue = _ ).AddTo( disposables );
+        _unitModel.Props[ R.Health ]._Value.Subscribe( _ => Health.Value = _ ).AddTo( disposables );
+        _unitModel.Props[ R.Experience ]._MaxValue.Subscribe( _ => XP.MaxValue = _ ).AddTo( disposables );
+        _unitModel.Props[ R.Experience ]._Value.Subscribe( _ => XP.Value = _ ).AddTo( disposables );
     }
 
     private void Update()
