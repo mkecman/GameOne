@@ -151,7 +151,6 @@ public class UnitController : AbstractController, IGameInit
 
     private void OnHexClickedMessage( HexClickedMessage value )
     {
-
         if( value.Hex.isMarked.Value )
             return;
 

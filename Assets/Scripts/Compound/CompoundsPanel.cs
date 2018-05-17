@@ -1,22 +1,16 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using System;
-using UnityEngine.UI;
-using UniRx;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class CompoundsPanel : GameView
 {
     public Transform Container;
     public GameObject CompoundUnlockPrefab;
-    public Button UnlockButton;
-    public Button ChooseButton;
 
     private CompoundConfig _compoundConfig;
     private List<CompoundViewModel> _compounds;
     private CompoundJSON _compound;
-    private CompoundControlMessage _message = new CompoundControlMessage();
     private LifeModel _life;
+    private CompoundType _type = CompoundType.Consumable;
 
     // Use this for initialization
     void Awake()
@@ -24,16 +18,12 @@ public class CompoundsPanel : GameView
         _compoundConfig = GameConfig.Get<CompoundConfig>();
         _compounds = new List<CompoundViewModel>();
         for( int i = 0; i < _compoundConfig.Count; i++ )
-            _compounds.Add( new CompoundViewModel( _compoundConfig[i] ) );
-
-        UnlockButton.OnClickAsObservable().Subscribe( _ => OnUnlockButtonClick() ).AddTo( this );
-        ChooseButton.OnClickAsObservable().Subscribe( _ => OnBuildButtonClick() ).AddTo( this );
+            _compounds.Add( new CompoundViewModel( _compoundConfig[ i ] ) );
     }
 
     private void OnEnable()
     {
         GameMessage.Listen<CompoundTypeMessage>( OnCompoundTypeMessage );
-        GameMessage.Listen<CompoundSelectMessage>( OnCompoundSelectMessage );
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
     }
 
@@ -42,7 +32,7 @@ public class CompoundsPanel : GameView
         for( int i = 0; i < _compounds.Count; i++ )
             _compounds[ i ].Setup( value.Life.Elements );
 
-        //SetModel( CompoundType.Armor );
+        SetModel();
     }
 
     private void OnDisable()
@@ -51,21 +41,19 @@ public class CompoundsPanel : GameView
             _compounds[ i ].Disable();
 
         disposables.Clear();
-        canCraftDisposable.Clear();
         RemoveAllChildren( Container );
 
         GameModel.RemoveHandle<PlanetModel>( OnPlanetChange );
         GameMessage.StopListen<CompoundTypeMessage>( OnCompoundTypeMessage );
-        GameMessage.StopListen<CompoundSelectMessage>( OnCompoundSelectMessage );
     }
 
-    private void SetModel( CompoundType type )
+    private void SetModel()
     {
         RemoveAllChildren( Container );
         for( int i = 0; i < _compoundConfig.Count; i++ )
         {
             _compound = _compoundConfig[ i ];
-            if( _compound.Type == type )
+            if( _compound.Type == _type )
             {
                 GameObject go = Instantiate( CompoundUnlockPrefab, Container );
                 go.GetComponent<CompoundView>().Setup( _compound );
@@ -75,27 +63,8 @@ public class CompoundsPanel : GameView
 
     private void OnCompoundTypeMessage( CompoundTypeMessage value )
     {
-        SetModel( value.Type );
-    }
-
-    private CompositeDisposable canCraftDisposable = new CompositeDisposable();
-    private void OnCompoundSelectMessage( CompoundSelectMessage value )
-    {
-        _message.Index = value.Index;
-        canCraftDisposable.Clear();
-        _compoundConfig[ _message.Index ]._CanCraft.Subscribe( _ => ChooseButton.interactable = _ ).AddTo( canCraftDisposable );
-    }
-
-    private void OnUnlockButtonClick()
-    {
-        //_message.State = SkillState.UNLOCKED;
-        //GameMessage.Send( _message );
-    }
-
-    private void OnBuildButtonClick()
-    {
-        //_message.State = SkillState.SELECTED;
-        GameMessage.Send( _message );
+        _type = value.Type;
+        SetModel();
     }
 
 }

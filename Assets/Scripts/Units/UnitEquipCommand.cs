@@ -19,9 +19,7 @@ public class UnitEquipCommand : IGameInit
         _compounds = GameConfig.Get<CompoundConfig>();
         _unitController = GameModel.Get<UnitController>();
         _planetController = GameModel.Get<PlanetController>();
-        _message = new CompoundControlMessage();
-        _message.SpendCurrency = false;
-
+        _message = new CompoundControlMessage( 0, CompoundControlAction.ADD, false );
         _unitDefenseUpdateCommand = GameModel.Get<UnitDefenseUpdateCommand>();
     }
 

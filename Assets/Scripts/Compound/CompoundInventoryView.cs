@@ -1,9 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using UniRx;
 using UnityEngine.UI;
-using UniRx;
-using UnityEngine.EventSystems;
-using System;
 
 public class CompoundInventoryView : GameView
 {
@@ -11,14 +7,7 @@ public class CompoundInventoryView : GameView
     public Text AmountText;
     public CompoundJSON Compound;
 
-    private CompoundControlMessage _controlMessage;
-    
-
-    private void Awake()
-    {
-        _controlMessage = new CompoundControlMessage();
-        _controlMessage.Action = CompoundControlAction.REMOVE;
-    }
+    private CompoundControlMessage _controlMessage = new CompoundControlMessage( 0, CompoundControlAction.REMOVE );
 
     internal void Setup( CompoundJSON compound, IntReactiveProperty amount )
     {
@@ -44,6 +33,7 @@ public class CompoundInventoryView : GameView
     {
         base.OnDestroy();
         Compound = null;
+        _controlMessage = null;
     }
 
 }

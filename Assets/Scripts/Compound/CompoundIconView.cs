@@ -2,9 +2,11 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class CompoundIconView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler, IBeginDragHandler
 {
+    public bool CanDrag = true;
     public RawImage TextureImage;
     public Image BackgoundImage;
     public Image MaskImage;
@@ -23,7 +25,10 @@ public class CompoundIconView : MonoBehaviour, IDragHandler, IPointerUpHandler, 
 
     public void Setup( CompoundJSON compound )
     {
-        _tooltipMessage.Text = compound.Name;
+        _tooltipMessage.Text = compound.Name + "\n";
+        foreach( KeyValuePair<R,float> effect in compound.Effects )
+            _tooltipMessage.Text += effect.Key + " " + effect.Value + "\n";
+
         TextureImage.texture = Resources.Load( "CompoundTexture/" + compound.Index ) as Texture2D;
         BackgoundImage.sprite = BackgroundSprites[ (int)compound.Type ];
         MaskImage.sprite = MaskSprites[ (int)compound.Type ];
@@ -37,12 +42,18 @@ public class CompoundIconView : MonoBehaviour, IDragHandler, IPointerUpHandler, 
 
     public void OnDrag( PointerEventData eventData )
     {
+        if( !CanDrag )
+            return;
+
         Copy.transform.position = eventData.position;
         //ExecuteEvents.ExecuteHierarchy( transform.parent.gameObject, eventData, ExecuteEvents.dragHandler );
     }
 
     public void OnBeginDrag( PointerEventData eventData )
     {
+        if( !CanDrag )
+            return;
+
         _tooltipMessage.Action = TooltipAction.HIDE;
         GameMessage.Send( _tooltipMessage );
 
@@ -52,6 +63,9 @@ public class CompoundIconView : MonoBehaviour, IDragHandler, IPointerUpHandler, 
 
     public void OnPointerUp( PointerEventData eventData )
     {
+        if( !CanDrag )
+            return;
+
         _tooltipMessage.Action = TooltipAction.HIDE;
         GameMessage.Send( _tooltipMessage );
 
@@ -61,6 +75,9 @@ public class CompoundIconView : MonoBehaviour, IDragHandler, IPointerUpHandler, 
 
     public void OnPointerDown( PointerEventData eventData )
     {
+        if( !CanDrag )
+            return;
+
         _tooltipMessage.Action = TooltipAction.SHOW;
         _tooltipMessage.Position = transform.position;
         GameMessage.Send( _tooltipMessage );

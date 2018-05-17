@@ -11,6 +11,7 @@ public class LifeController : AbstractController, IGameInit
     private Dictionary<R, BellCurve> _bellCurves;
     private UnitFactory _factory;
     private List<ElementData> _elements;
+    private CompoundControlMessage _compoundMessage = new CompoundControlMessage( 0, CompoundControlAction.ADD, false );
 
     public void Init()
     {
@@ -41,7 +42,7 @@ public class LifeController : AbstractController, IGameInit
 
         for( int i = 0; i < _elements.Count; i++ )
         {
-            _selectedLife.Elements.Add( _elements[ i ].Index, new LifeElementModel( _elements[ i ].Index, _elements[ i ].Symbol, 0, 1000 ) );
+            _selectedLife.Elements.Add( _elements[ i ].Index, new LifeElementModel( _elements[ i ].Index, _elements[ i ].Symbol, 1000, 1000 ) );
         }
 
         for( int i = 0; i < 5; i++ )
@@ -64,10 +65,7 @@ public class LifeController : AbstractController, IGameInit
 
     private void AddCompound( int index )
     {
-        CompoundControlMessage _compoundMessage = new CompoundControlMessage();
-        _compoundMessage.Action = CompoundControlAction.ADD;
         _compoundMessage.Index = index;
-        _compoundMessage.SpendCurrency = false;
         GameMessage.Send( _compoundMessage );
     }
 

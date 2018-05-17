@@ -18,8 +18,8 @@ public class OpenPanelButton : GameView
 
     private void OnButtonClick()
     {
-        _cameraControl.Enable = Panel.activeSelf;
-        GameMessage.Send( _cameraControl );
+        //_cameraControl.Enable = Panel.activeSelf;
+        //GameMessage.Send( _cameraControl );
 
         if( Panel.activeSelf )
             Panel.SetActive( false );

@@ -11,12 +11,16 @@ public class UnitInfoPanel : GameView
 
     private Dictionary<R, UnitPropUpgradeView> _propViews;
 
+    private PanelMessage _panelMessage;
+
     // Use this for initialization
     void Start()
     {
         _propViews = new Dictionary<R, UnitPropUpgradeView>();
         GameModel.HandleGet<UnitModel>( OnModelChange );
-        GameMessage.Send( new PanelMessage( PanelAction.HIDE, PanelNames.UnitEditPanel ) );
+
+        _panelMessage = new PanelMessage( PanelAction.HIDE, PanelNames.UnitEditPanel );
+        SetPanels( PanelAction.HIDE );
     }
 
     private void OnModelChange( UnitModel value )
@@ -41,11 +45,11 @@ public class UnitInfoPanel : GameView
             AddProp( R.Speed, false, "##%" );
             AddProp( R.Critical, false, "##%" );
 
-            GameMessage.Send( new PanelMessage( PanelAction.SHOW, PanelNames.UnitEditPanel ) );
+            SetPanels( PanelAction.SHOW );
         }
         else
         {
-            GameMessage.Send( new PanelMessage( PanelAction.HIDE, PanelNames.UnitEditPanel ) );
+            SetPanels( PanelAction.HIDE );
             Clear();
             _unit = null;
         }
@@ -64,5 +68,14 @@ public class UnitInfoPanel : GameView
         _ui.SetModel( prop, _unit, canChange, stringFormat, showMaxValue );
 
         _propViews.Add( prop, _ui );
+    }
+
+    private void SetPanels( PanelAction action = PanelAction.HIDE )
+    {
+        _panelMessage.Action = action;
+        _panelMessage.PanelName = PanelNames.UnitEditPanel;
+        GameMessage.Send( _panelMessage );
+        _panelMessage.PanelName = PanelNames.CompoundInventoryPanel;
+        GameMessage.Send( _panelMessage );
     }
 }

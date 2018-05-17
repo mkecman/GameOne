@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class TooltipPanel : GameView
 {
     public Transform Tooltip;
-    public Text Text;
+    public TextMeshProUGUI Text;
 
     // Use this for initialization
     void Start()
