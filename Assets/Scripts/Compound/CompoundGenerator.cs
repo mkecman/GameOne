@@ -247,6 +247,11 @@ public class CompoundGenerator : MonoBehaviour
         Debug.Log( "DONE Generating Compounds" );
     }
 
+
+
+
+
+    //OLD STUFF BELOW
     //call to convert and generate new config
     public void ConvertOldConfigToNewFormat()
     {
