@@ -18,7 +18,7 @@ public class PlanetChangeTableUnitRowView : GameView
     private UnitSelectMessage _unitSelectMessage;
     public SkillData _skill;
 
-    public Vector4 Setup( UnitModel unit )
+    public void Setup( UnitModel unit )
     {
         NameText.text = "Unit " + unit.X + ":" + unit.Y;
         _unitSelectMessage = new UnitSelectMessage( unit.X, unit.Y );
@@ -28,8 +28,6 @@ public class PlanetChangeTableUnitRowView : GameView
         PressureText.text = unit.Impact[ R.Pressure ].ToString();
         HumidityText.text = unit.Impact[ R.Humidity ].ToString();
         RadiationText.text = unit.Impact[ R.Radiation ].ToString();
-
-        return new Vector4( unit.Impact[ R.Temperature ].Value, unit.Impact[ R.Pressure ].Value, unit.Impact[ R.Humidity ].Value, unit.Impact[ R.Radiation ].Value );
     }
 
     private void OnButtonClick()

@@ -4,20 +4,13 @@ using System;
 
 public class UnitDefenseUpdateCommand : IGameInit
 {
-    private GridModel<HexModel> _hexMapModel;
+    private PlanetModel _planet;
     private HexModel _tempHexModel;
-
-    public void Init()
-    {
-        GameModel.HandleGet<PlanetModel>( OnPlanetModel );
-    }
+    private UnitModel _tempUnit;
 
     public void Execute( UnitModel unit )
     {
-        if( _hexMapModel == null )
-            return;
-
-        _tempHexModel = _hexMapModel.Table[ unit.X ][ unit.Y ];
+        _tempHexModel = _planet.Map.Table[ unit.X ][ unit.Y ];
         unit.Props[ R.Armor ].Value =
         (
             unit.Resistance[ R.Temperature ].GetFloatAt( _tempHexModel.Props[ R.Temperature ].Value ) +
@@ -27,8 +20,36 @@ public class UnitDefenseUpdateCommand : IGameInit
         ) / 4;
     }
 
+    public void ExecuteAverageArmorInTime( UnitModel unit, float timeDelta )
+    {
+        _tempHexModel = _planet.Map.Table[ unit.X ][ unit.Y ];
+        _tempUnit = unit;
+
+        unit.Props[ R.Armor ].Value =
+        (
+            GetAverage( R.Temperature, timeDelta ) +
+            GetAverage( R.Pressure, timeDelta ) +
+            GetAverage( R.Humidity, timeDelta ) +
+            GetAverage( R.Radiation, timeDelta )
+        ) / 4;
+    }
+
+    private float GetAverage( R prop, float timeDelta )
+    {
+        return _tempUnit.Resistance[ prop ].GetAverage
+                ( 
+                    _tempHexModel.Props[ prop ].Value, 
+                    _tempHexModel.Props[ prop ].Value + ( timeDelta * _planet.Impact[ prop ].Value ) 
+                );
+    }
+
+    public void Init()
+    {
+        GameModel.HandleGet<PlanetModel>( OnPlanetModel );
+    }
+
     private void OnPlanetModel( PlanetModel value )
     {
-        _hexMapModel = value.Map;
+        _planet = value;
     }
 }

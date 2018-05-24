@@ -6,7 +6,7 @@ using UnityEngine;
 public class BellCurve
 {
     public FloatReactiveProperty Amplitude = new FloatReactiveProperty( 1 );
-    public FloatReactiveProperty Range = new FloatReactiveProperty( .1f );
+    public FloatReactiveProperty Range = new FloatReactiveProperty( .05f );
     public FloatReactiveProperty Position = new FloatReactiveProperty( .5f );
     public IntReactiveProperty Consumption = new IntReactiveProperty( 0 );
 
@@ -14,21 +14,33 @@ public class BellCurve
 
     public BellCurve(){}
 
-    public BellCurve( float amplitude = 1, float position = .5f, float range = .1f )
+    public BellCurve( float amplitude = 1, float position = .5f, float range = .05f )
     {
         Amplitude.Value = amplitude;
         Position.Value = position;
         Range.Value = range;
     }
 
+    public float GetAverage( float startTime, float endTime )
+    {
+        float total = 0;
+
+        for( float i = startTime; i < endTime; i+=0.01f )
+        {
+            total += GetFloatAt( i );
+        }
+
+        return total / ( endTime - startTime );
+    }
+
     public float GetFloatAt( float time )
     {
-        return Amplitude.Value * Mathf.Exp( -Mathf.Pow( time - Position.Value, 2 ) / ( 2 * Mathf.Pow( Range.Value, 2 ) ) );
+        return Amplitude.Value * Mathf.Exp( -Mathf.Pow( time - Position.Value, 2 ) / Range.Value );
     }
 
     public int GetIntAt( float time )
     {
-        return (int)( Amplitude.Value * Mathf.Exp( -Mathf.Pow( time - Position.Value, 2 ) / ( 2 * Mathf.Pow( Range.Value, 2 ) ) ) * 100 );
+        return (int)( Amplitude.Value * Mathf.Exp( -Mathf.Pow( time - Position.Value, 2 ) / Range.Value ) * 100 );
     }
 
     public bool ChangePosition( float delta )

@@ -120,6 +120,8 @@ public class UnitModel : IDisposable
     {
         _slots = null;
         _slotsConfig = null;
+        _levelUpConfig = null;
+        _levelUpModel = null;
         disposables.Clear();
         disposables = null;
     }

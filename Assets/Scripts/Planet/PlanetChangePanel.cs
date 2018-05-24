@@ -49,29 +49,36 @@ public class PlanetChangePanel : GameView
         _planet.Props[ R.Humidity ]._AvgValue.Subscribe( _ => OnPlanetPropChange() ).AddTo( disposables );
         _planet.Props[ R.Radiation ]._AvgValue.Subscribe( _ => OnPlanetPropChange() ).AddTo( disposables );
 
+        _planet.Impact[ R.Temperature ].Subscribe( _ => OnPlanetImpactChange() ).AddTo( disposables );
+        _planet.Impact[ R.Pressure ].Subscribe( _ => OnPlanetImpactChange() ).AddTo( disposables );
+        _planet.Impact[ R.Humidity ].Subscribe( _ => OnPlanetImpactChange() ).AddTo( disposables );
+        _planet.Impact[ R.Radiation ].Subscribe( _ => OnPlanetImpactChange() ).AddTo( disposables );
+
         _planet.Life.Units.ObserveAdd().Subscribe( _ => OnUnitCountChange() ).AddTo( disposables );
         _planet.Life.Units.ObserveRemove().Subscribe( _ => OnUnitCountChange() ).AddTo( disposables );
 
         OnUnitCountChange();
     }
 
+    private void OnPlanetImpactChange()
+    {
+        PlanetDeltaRow.SetupText
+        (
+            _planet.Impact[ R.Temperature ].Value.ToString(),
+            _planet.Impact[ R.Pressure ].Value.ToString(),
+            _planet.Impact[ R.Humidity ].Value.ToString(),
+            _planet.Impact[ R.Radiation ].Value.ToString()
+        );
+    }
+
     private void OnUnitCountChange()
     {
         RemoveAllChildren( UnitContainer );
 
-        Vector4 unitSkillValue;
-        int dT = 0, dP = 0, dH = 0, dR = 0;
-        int length = _planet.Life.Units.Count;
-        for( int i = 0; i < length; i++ )
+        for( int i = 0; i < _planet.Life.Units.Count; i++ )
         {
-            unitSkillValue = Instantiate( TableRowPrefab, UnitContainer ).GetComponent<PlanetChangeTableUnitRowView>().Setup( _planet.Life.Units[ i ] );
-            dT += (int)unitSkillValue.x;
-            dP += (int)unitSkillValue.y;
-            dH += (int)unitSkillValue.z;
-            dR += (int)unitSkillValue.w;
+            Instantiate( TableRowPrefab, UnitContainer ).GetComponent<PlanetChangeTableUnitRowView>().Setup( _planet.Life.Units[ i ] );
         }
-
-        PlanetDeltaRow.SetupText( dT.ToString(), dP.ToString(), dH.ToString(), dR.ToString() );
     }
 
     private void OnPlanetPropChange()
