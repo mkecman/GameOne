@@ -10,6 +10,9 @@ public class UnitDefenseUpdateCommand : IGameInit
 
     public void Execute( UnitModel unit )
     {
+        if( _planet == null )
+            return;
+
         _tempHexModel = _planet.Map.Table[ unit.X ][ unit.Y ];
         unit.Props[ R.Armor ].Value =
         (

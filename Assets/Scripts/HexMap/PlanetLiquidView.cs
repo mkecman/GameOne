@@ -23,11 +23,11 @@ public class PlanetLiquidView : GameView
 
         LiquidTransform.localScale = new Vector3( ( _planet.Map.Width * _hexConfig.xOffset ) + 1, 1, ( _planet.Map.Height * _hexConfig.zOffset ) + 1 );
 
-        _planet.Props[R.Humidity]._AvgValue.Subscribe( _ => OnLiquidLevelChange( _ ) ).AddTo( disposables );
+        _planet.Props[R.Humidity]._Value.Subscribe( _ => OnLiquidLevelChange( _ ) ).AddTo( disposables );
     }
 
-    private void OnLiquidLevelChange( double _ )
+    private void OnLiquidLevelChange( double planetHumidityValue )
     {
-        LiquidTransform.position = new Vector3( ( _planet.Map.Width * _hexConfig.xOffset ) / 2, -.65f + ( 1.3f * (float)_ ), ( ( _planet.Map.Height * _hexConfig.zOffset ) / 2 ) - 0.5f );
+        LiquidTransform.position = new Vector3( ( _planet.Map.Width * _hexConfig.xOffset ) / 2, -.65f + ( 1.3f * (float)planetHumidityValue ), ( ( _planet.Map.Height * _hexConfig.zOffset ) / 2 ) - 0.5f );
     }
 }

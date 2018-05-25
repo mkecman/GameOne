@@ -82,8 +82,8 @@ public class UnitEquipCommand : IGameInit
             {
                 if( item.Key == R.Temperature || item.Key == R.Pressure || item.Key == R.Humidity || item.Key == R.Radiation )
                 {
-                    _unitController.SelectedUnit.Impact[ item.Key ].Value += (int)item.Value * multiplier * _universeConfig.IntToPlanetValueMultiplier;
-                    _planetController.SelectedPlanet.Impact[ item.Key ].Value += _unitController.SelectedUnit.Impact[ item.Key ].Value;
+                    _unitController.SelectedUnit.Impact[ item.Key ].Value += (int)( item.Value * multiplier );
+                    _planetController.SelectedPlanet.Impact[ item.Key ].Value += (int)( item.Value * multiplier );
                 }
                 else
                     _unitController.SelectedUnit.Props[ item.Key ].Delta += (int)item.Value * multiplier;

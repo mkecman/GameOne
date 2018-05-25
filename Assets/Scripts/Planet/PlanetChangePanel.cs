@@ -44,10 +44,10 @@ public class PlanetChangePanel : GameView
 
         PlanetGoalRow.SetupText( _planet.Goals[ R.Temperature ].ToString(), _planet.Goals[ R.Pressure ].ToString(), _planet.Goals[ R.Humidity ].ToString(), _planet.Goals[ R.Radiation ].ToString() );
 
-        _planet.Props[ R.Temperature ]._AvgValue.Subscribe( _ => OnPlanetPropChange() ).AddTo( disposables );
-        _planet.Props[ R.Pressure ]._AvgValue.Subscribe( _ => OnPlanetPropChange() ).AddTo( disposables );
-        _planet.Props[ R.Humidity ]._AvgValue.Subscribe( _ => OnPlanetPropChange() ).AddTo( disposables );
-        _planet.Props[ R.Radiation ]._AvgValue.Subscribe( _ => OnPlanetPropChange() ).AddTo( disposables );
+        _planet.Props[ R.Temperature ]._Value.Subscribe( _ => OnPlanetPropChange() ).AddTo( disposables );
+        _planet.Props[ R.Pressure ]._Value.Subscribe( _ => OnPlanetPropChange() ).AddTo( disposables );
+        _planet.Props[ R.Humidity ]._Value.Subscribe( _ => OnPlanetPropChange() ).AddTo( disposables );
+        _planet.Props[ R.Radiation ]._Value.Subscribe( _ => OnPlanetPropChange() ).AddTo( disposables );
 
         _planet.Impact[ R.Temperature ].Subscribe( _ => OnPlanetImpactChange() ).AddTo( disposables );
         _planet.Impact[ R.Pressure ].Subscribe( _ => OnPlanetImpactChange() ).AddTo( disposables );
@@ -89,10 +89,10 @@ public class PlanetChangePanel : GameView
         double hP = Math.Round( ( _planet.Props[ R.Humidity ].Value * _universeConfig.PlanetValueToIntMultiplier ) / _planet.Goals[ R.Humidity ], 4 );
         double rP = Math.Round( ( _planet.Props[ R.Radiation ].Value * _universeConfig.PlanetValueToIntMultiplier ) / _planet.Goals[ R.Radiation ], 4 );
         */
-        double tP = _resistanceConfig[ R.Temperature ].GetFloatAt( (float)_planet.Props[ R.Temperature ].AvgValue );
-        double pP = _resistanceConfig[ R.Pressure ].GetFloatAt( (float)_planet.Props[ R.Pressure ].AvgValue );
-        double hP = _resistanceConfig[ R.Humidity ].GetFloatAt( (float)_planet.Props[ R.Humidity ].AvgValue );
-        double rP = _resistanceConfig[ R.Radiation ].GetFloatAt( (float)_planet.Props[ R.Radiation ].AvgValue );
+        double tP = _resistanceConfig[ R.Temperature ].GetFloatAt( (float)_planet.Props[ R.Temperature ].Value );
+        double pP = _resistanceConfig[ R.Pressure ].GetFloatAt( (float)_planet.Props[ R.Pressure ].Value );
+        double hP = _resistanceConfig[ R.Humidity ].GetFloatAt( (float)_planet.Props[ R.Humidity ].Value );
+        double rP = _resistanceConfig[ R.Radiation ].GetFloatAt( (float)_planet.Props[ R.Radiation ].Value );
         PlanetGoalPercent.SetupText( tP.ToString("##%"), pP.ToString( "##%" ), hP.ToString( "##%" ), rP.ToString( "##%" ) );
 
         VictoryText.text = "VICTORY: " + ( ( tP + pP + hP + rP ) / 4 ).ToString("##%");

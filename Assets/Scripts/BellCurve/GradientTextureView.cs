@@ -38,7 +38,7 @@ public class GradientTextureView : MonoBehaviour
         rawImage.texture = GetTexture();
     }
 
-    public void Draw( List<WeightedValue> weights )
+    public void Draw( WeightedValue[] weights )
     {
         for( int i = 0; i < 100; i++ )
         {

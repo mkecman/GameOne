@@ -1,11 +1,11 @@
 ﻿using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CompoundElementAmountView : GameView
 {
-    public Text Symbol;
-    public Text Amount;
+    public TextMeshProUGUI ElementSymbolAndAmountText;
     public Color RedColor;
     public Color GreenColor;
 
@@ -15,21 +15,12 @@ public class CompoundElementAmountView : GameView
 
         if( compoundElementModel == null )
         {
-            Symbol.text = "";
-            Amount.text = "";
+            ElementSymbolAndAmountText.text = "";
         }
         else
         {
-            Amount.text = compoundElementModel.MaxAmount.ToString();
-            Symbol.text = compoundElementModel.Symbol;
-            compoundElementModel._IsFull.Subscribe( _ => SetColor( _ ? GreenColor : RedColor ) ).AddTo( disposables );
+            ElementSymbolAndAmountText.text = compoundElementModel.Symbol + compoundElementModel.MaxAmount.ToString();
+            compoundElementModel._IsFull.Subscribe( _ => ElementSymbolAndAmountText.color = _ ? GreenColor : RedColor ).AddTo( disposables );
         }
     }
-
-    private void SetColor( Color color )
-    {
-        Symbol.color = color;
-        Amount.color = color;
-    }
-
 }

@@ -76,10 +76,10 @@ public class ResistanceGraph : GameView, IPointerClickHandler
         {
             _hexModel = null;
             _selectedUnit = null;
-            _planet.Props[ Lens ]._AvgValue.Subscribe( _ =>
+            _planet.Props[ Lens ]._Value.Subscribe( _ =>
             {
                 Gradient.Draw( _planet.Props[ Lens ].HexDistribution );
-                UpdateUI( _planet.Props[ Lens ].AvgValue.ToString( "N2" ), (float)_planet.Props[ Lens ].AvgValue );
+                UpdateUI( _planet.Props[ Lens ].Value.ToString( "N2" ), (float)_planet.Props[ Lens ].Value );
             } ).AddTo( disposables );
         }
 

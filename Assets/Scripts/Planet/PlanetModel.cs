@@ -15,6 +15,11 @@ public class PlanetModel
         Props.Add( R.Pressure, new PlanetProperty( 0, 0 ) );
         Props.Add( R.Humidity, new PlanetProperty( 0, 0 ) );
         Props.Add( R.Radiation, new PlanetProperty( 0, 0 ) );
+
+        Impact.Add( R.Temperature, new IntReactiveProperty( 0 ) );
+        Impact.Add( R.Pressure, new IntReactiveProperty( 0 ) );
+        Impact.Add( R.Humidity, new IntReactiveProperty( 0 ) );
+        Impact.Add( R.Radiation, new IntReactiveProperty( 0 ) );
     }
 
     public LifeModel Life = new LifeModel();
