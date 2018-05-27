@@ -13,3 +13,8 @@
 
 This should generate and open the VS project
 That's it!
+
+
+## Branch description
+`master` - main branch containing post release code
+`develop` - current development branch accepting non-tested changes
