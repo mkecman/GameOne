@@ -7,7 +7,7 @@
 4. Clone this repository to a local computer `eg. C:\GameOne`
 5. Open the cloned project in Unity 
 - If not alredy, be sure to set the Platform to `PC, Mac & Linux Standalone` in `File->Build Settings`
-6. Open the scene named "HexMap"
+6. Open the scene named "HexMap" from the `Assets/Scenes` folder
 7. Build and play
 8. To start editing the code, select `Assets->Open C# Project` from the main menu
 
