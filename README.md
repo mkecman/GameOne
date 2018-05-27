@@ -6,5 +6,10 @@
 3. Download and install .NET v4.6.2 Framework from [here](https://www.microsoft.com/en-us/download/details.aspx?id=53344)
 4. Clone this repository to a local computer `eg. C:\GameOne`
 5. Open the cloned project in Unity 
+5.1 If not alredy, be sure to set the Platform to `PC, Mac & Linux Standalone` in `File->Build Settings`
 6. Open the scene named "HexMap"
 7. Build and play
+8. To start editing the code, select `Assets->Open C# Project` from the main menu
+
+This should generate and open the VS project
+That's it!
