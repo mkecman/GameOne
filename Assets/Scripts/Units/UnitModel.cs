@@ -72,7 +72,7 @@ public class UnitModel : IDisposable
     {
         _levelUpModel = _levelUpConfig[ (int)Props[ R.Level ].Value ];
 
-        Props[ R.Body ]._Value.Subscribe( _ => { UpdateBody(); UpdateBaseStat(); } ).AddTo( disposables );
+        Props[ R.Body ]._Value.Subscribe( _ => { UpdateBodySlots(); UpdateBaseStat(); } ).AddTo( disposables );
         Props[ R.Mind ]._Value.Subscribe( _ => UpdateBaseStat() ).AddTo( disposables );
         Props[ R.Soul ]._Value.Subscribe( _ => UpdateBaseStat() ).AddTo( disposables );
 
@@ -105,7 +105,7 @@ public class UnitModel : IDisposable
         }
     }
 
-    private void UpdateBody()
+    private void UpdateBodySlots()
     {
         _slots = _slotsConfig[ (int)( Props[ R.Body ].Value / 8.34f ) ];
         for( int i = 0; i < _slots.Count; i++ )

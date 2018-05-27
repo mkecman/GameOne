@@ -28,6 +28,10 @@ public class UnitController : AbstractController, IGameInit
         _unitUseCompoundCommand = GameModel.Get<UnitUseCompoundCommand>();
 
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
+
+        GameMessage.Listen<HexClickedMessage>( OnHexClickedMessage );
+        GameMessage.Listen<ClockTickMessage>( OnClockTick );
+        GameMessage.Listen<ResistanceUpgradeMessage>( OnResistanceUpgrade );
         GameMessage.Listen<UnitPropUpgradeMessage>( OnUnitPropUpgradeMessage );
         GameMessage.Listen<UnitUseCompoundMessage>( OnUnitUseCompoundMessage );
         GameMessage.Listen<UnitSelectMessage>( OnUnitSelectMessage );
@@ -132,10 +136,6 @@ public class UnitController : AbstractController, IGameInit
     {
         _hexMapModel = value.Map;
         _life = value.Life;
-
-        GameMessage.Listen<HexClickedMessage>( OnHexClickedMessage );
-        GameMessage.Listen<ClockTickMessage>( OnClockTick );
-        GameMessage.Listen<ResistanceUpgradeMessage>( OnResistanceUpgrade );
 
         for( int i = 0; i < _life.Units.Count; i++ )
         {

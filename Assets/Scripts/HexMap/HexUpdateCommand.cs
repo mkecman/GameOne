@@ -31,6 +31,8 @@ public class HexUpdateCommand : IGameInit
                 GetPropBellCurveValue( R.Radiation, hex ) )
                 / 4f;
 
+        hex.Props[ R.HexScore ].Color = Color.Lerp( Color.red, Color.green, hex.Props[ R.HexScore ].Value );
+
         if( hex.Unit != null )
             _unitDefenseUpdateCommand.Execute( hex.Unit );
     }
