@@ -5,11 +5,12 @@
 2. Download and install Visual Studio 2017 Community from [here](https://www.visualstudio.com/downloads)
 3. Download and install .NET v4.6.2 Framework from [here](https://www.microsoft.com/en-us/download/details.aspx?id=53344)
 4. Clone this repository to a local computer `eg. C:\GameOne`
-5. Open the cloned project in Unity 
+5. Checkout the branch `develop`
+6. Open the cloned project in Unity 
 - If not alredy, be sure to set the Platform to `PC, Mac & Linux Standalone` in `File->Build Settings`
-6. Open the scene named "HexMap" from the `Assets/Scenes` folder
-7. Build and play
-8. To start editing the code, select `Assets->Open C# Project` from the main menu
+7. Open the scene named "HexMap" from the `Assets/Scenes` folder
+8. Build and play
+9. To start editing the code, select `Assets->Open C# Project` from the main menu
 
 This should generate and open the VS project
 That's it!
@@ -18,3 +19,4 @@ That's it!
 ## Branch description
 `master` - main branch containing post release code
 `develop` - current development branch accepting non-tested changes
+
