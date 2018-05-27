@@ -72,8 +72,10 @@ public class GameController : MonoBehaviour
         generator.Load();
         /**/
 
-        //Observable.TimerFrame( 30 ).Subscribe( _ => StartNewGame() ); 
-        Observable.TimerFrame( 30 ).Subscribe( _ => Load() );
+        if( File.Exists( Application.persistentDataPath + "-Player.json" ) )
+            Observable.TimerFrame( 30 ).Subscribe( _ => Load() );
+        else
+            Observable.TimerFrame( 30 ).Subscribe( _ => StartNewGame() ); 
 
         //Load();
         //Debug.Log( "GameController Started" );
