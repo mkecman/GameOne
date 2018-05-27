@@ -17,6 +17,6 @@ That's it!
 
 
 ## Branch description
-`master` - main branch containing post release code
-`develop` - current development branch accepting non-tested changes
+- `master` - main branch containing post release code
+- `develop` - current development branch accepting non-tested changes
 
