@@ -14,7 +14,13 @@ public class LiveSkill : ISkill
         unit.Props[ R.Health ].Value -= 1 - unit.Props[ R.Armor ].Value;
 
         if( unit.Props[ R.Health ].Value <= 0 )
-            _unitController.RemoveUnit( unit );
+        {
+            //_unitController.RemoveUnit( unit );
+            //return;
+        }
+
+        if( unit.Props[ R.Experience ].Delta < 4320 )
+            unit.Props[ R.Experience ].Delta++;
     }
 
 }

@@ -42,7 +42,7 @@ public class LifeController : AbstractController, IGameInit
 
         for( int i = 0; i < _elements.Count; i++ )
         {
-            _selectedLife.Elements.Add( _elements[ i ].Index, new LifeElementModel( _elements[ i ].Index, _elements[ i ].Symbol, 1000, 1000 ) );
+            _selectedLife.Elements.Add( _elements[ i ].Index, new LifeElementModel( _elements[ i ].Index, _elements[ i ].Symbol, 100, 1000 ) );
         }
 
         for( int i = 0; i < 5; i++ )

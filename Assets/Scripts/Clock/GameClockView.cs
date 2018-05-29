@@ -12,8 +12,8 @@ public class GameClockView : GameView
 
     private void OnClockTick( ClockTickMessage value )
     {
-        TimeSpan timeSpan = TimeSpan.FromSeconds( value.elapsedTicksSinceStart );
-        TextField.text = string.Format( "{0}d {1:D2}:{2:D2}:{3:D2}", timeSpan.Days, timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds );
+        TimeSpan timeSpan = TimeSpan.FromMinutes( value.elapsedTicksSinceStart );
+        TextField.text = string.Format( "{0}d {1:D2}h:{2:D2}m", timeSpan.Days, timeSpan.Hours, timeSpan.Minutes );
     }
 
 }

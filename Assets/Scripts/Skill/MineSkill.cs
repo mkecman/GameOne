@@ -21,8 +21,43 @@ public class MineSkill : ISkill
         _universeConfig = GameConfig.Get<UniverseConfig>();
     }
 
+    public void ExecuteTime( int timeSeconds, UnitModel unitModel, SkillData skillData )
+    {
+        _unitModel = unitModel;
+        _skillData = skillData;
+        _planet = _planetController.SelectedPlanet;
+        _element = _planet.Map.Table[ _unitModel.X ][ _unitModel.Y ].Props[ R.Element ];
+        _elementIndex = (int)_element.Value;
+
+        float totalDamage = ( ( timeSeconds / 60f ) * _unitModel.Props[ R.Attack ].Value ) * ( 1 + _unitModel.Props[ R.Critical ].Value );
+        int wholeElements = Mathf.FloorToInt( totalDamage / _elements[ _elementIndex ].Weight );
+        if( wholeElements < 1 )
+        {
+            if( _element.Delta - totalDamage > 0 )
+                _element.Delta -= totalDamage;
+            else
+            {
+                _element.Delta = _elements[ _elementIndex ].Weight - ( totalDamage - _element.Delta );
+                _planet.Life.Elements[ _elementIndex ].Amount++;
+            }
+        }
+        else
+        {
+            _planet.Life.Elements[ _elementIndex ].Amount += wholeElements;
+            _element.Delta = _elements[ _elementIndex ].Weight - ( totalDamage - ( wholeElements * _elements[ _elementIndex ].Weight ) );
+        }
+
+        UpdatePlanetProp( R.Temperature, timeSeconds );
+        UpdatePlanetProp( R.Pressure, timeSeconds );
+        UpdatePlanetProp( R.Humidity, timeSeconds );
+        UpdatePlanetProp( R.Radiation, timeSeconds );
+    }
+
     public void Execute( UnitModel unitModel, SkillData skillData )
     {
+        ExecuteTime( 60, unitModel, skillData );
+        return;
+
         _unitModel = unitModel;
         _skillData = skillData;
         _planet = _planetController.SelectedPlanet;
@@ -52,11 +87,11 @@ public class MineSkill : ISkill
         UpdatePlanetProp( R.Humidity );
         UpdatePlanetProp( R.Radiation );
 
-        _unitModel.Props[ R.Experience ].Value++;
+        //_unitModel.Props[ R.Experience ].Value++;
     }
 
-    private void UpdatePlanetProp( R type )
+    private void UpdatePlanetProp( R type, int time = 1 )
     {
-        _planet.Props[ type ].Value += _unitModel.Impact[ type ].Value * _universeConfig.IntToPlanetValueMultiplier;
+        _planet.Props[ type ].Value += time * _unitModel.Impact[ type ].Value * _universeConfig.IntToPlanetValueMultiplier;
     }
 }

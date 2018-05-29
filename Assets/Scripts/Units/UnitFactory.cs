@@ -19,7 +19,7 @@ public class UnitFactory : IGameInit
 
         //STATS
         unit.Props.Add( R.Health, new Resource( R.Health, 100, 0, 0, 100 ) );
-        unit.Props.Add( R.Experience, new Resource( R.Experience, 1, 0, 0, 32000 ) );
+        unit.Props.Add( R.Experience, new Resource( R.Experience, 0, 0, 0, 1 ) );
         unit.Props.Add( R.Level, new Resource( R.Level, 1, 0, 1, 100 ) );
         unit.Props.Add( R.UpgradePoint, new Resource( R.UpgradePoint, 0, 0, 0, 100 ) );
 
