@@ -72,11 +72,14 @@ public class UnitModel : IDisposable
     {
         _levelUpModel = _levelUpConfig[ (int)Props[ R.Level ].Value ];
 
-        Props[ R.Body ]._Value.Subscribe( _ => { UpdateBodyStats(); } ).AddTo( disposables );
+        Props[ R.Body ]._Value.Subscribe( _ => UpdateBodyStats() ).AddTo( disposables );
         Props[ R.Mind ]._Value.Subscribe( _ => UpdateMindStats() ).AddTo( disposables );
         Props[ R.Soul ]._Value.Subscribe( _ => UpdateSoulStats() ).AddTo( disposables );
+        Props[ R.Health ].Value = Props[ R.Health ].MaxValue;
 
         //Props[ R.Experience ].MaxValue = _levelUpModel.Experience;
+        Props[ R.Experience ].MaxValue = GetMaxXP( (int)Props[ R.Level ].Value );
+        Props[ R.Level ].Delta = GetXPCumulative( (int)Props[ R.Level ].Value );
         Props[ R.Experience ]._Delta.Subscribe( _ => CheckLevelUp() ).AddTo( disposables );
 
         Props[ R.Attack ]._Delta.Subscribe( _ => UpdateMindStats() ).AddTo( disposables );
@@ -84,7 +87,7 @@ public class UnitModel : IDisposable
 
     private void UpdateMindStats()
     {
-        Props[ R.Attack ].Value = Props[ R.Mind ].Value + Props[ R.Attack ].Delta;
+        Props[ R.Attack ].Value = Mathf.CeilToInt( Mathf.Pow( Props[ R.Mind ].Value, 0.6f ) * 4 ) + Props[ R.Attack ].Delta;
     }
 
     private void UpdateSoulStats()
@@ -95,7 +98,10 @@ public class UnitModel : IDisposable
 
     private void UpdateBodyStats()
     {
-        _slots = _slotsConfig[ Mathf.CeilToInt( Mathf.Pow( Props[ R.Body ].Value, 0.5f ) * 1.1236f ) ];
+        if( Props[ R.Body ].Value <= 1 ) //because math returns 2 for body == 1 and it should return 1
+            return;
+
+        _slots = _slotsConfig[ Mathf.CeilToInt( Mathf.Pow( Props[ R.Body ].Value, 0.5f ) * 1.1236f ) - 1 ];
         for( int i = 0; i < _slots.Count; i++ )
         {
             BodySlots[ i ].IsEnabled = _slots[ i ] == 1 ? true : false;
@@ -106,15 +112,16 @@ public class UnitModel : IDisposable
 
     private void CheckLevelUp()
     {
-        int newLevel = Mathf.Clamp( Mathf.FloorToInt( ( 5f / 3f ) * Mathf.Sqrt( 5f / 6f ) * Mathf.Sqrt( Props[ R.Experience ].Delta ) ), 0, 100 );
+        int newLevel = Mathf.Clamp( Mathf.CeilToInt( ( 5f * Mathf.Sqrt( Props[ R.Experience ].Delta ) ) / 25.455844122f ), 1, 100 );
         int levelDelta = (int)( newLevel - Props[ R.Level ].Value );
         if( levelDelta > 0 )
         {
             Props[ R.Experience ].MaxValue = GetMaxXP( newLevel );
             Props[ R.UpgradePoint ].Value += levelDelta;
             Props[ R.Level ].Value = newLevel;
+            Props[ R.Level ].Delta = GetXPCumulative( (int)Props[ R.Level ].Value );
         }
-        Props[ R.Experience ].Value = Props[ R.Experience ].Delta - GetXPCumulative( newLevel );
+        Props[ R.Experience ].Value = Props[ R.Experience ].MaxValue + ( Props[ R.Experience ].Delta - Props[ R.Level ].Delta );
         
         /*
         if( Props[ R.Experience ].Value >= Props[ R.Experience ].MaxValue )
@@ -138,7 +145,7 @@ public class UnitModel : IDisposable
 
     private int GetXPCumulative( int level )
     {
-        return Mathf.CeilToInt( 0.432f * Mathf.Pow( level, 2 ) );
+        return Mathf.CeilToInt( 25.92f * Mathf.Pow( level, 2 ) );
     }
 
     public void Dispose()

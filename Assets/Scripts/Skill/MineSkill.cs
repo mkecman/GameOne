@@ -21,16 +21,21 @@ public class MineSkill : ISkill
         _universeConfig = GameConfig.Get<UniverseConfig>();
     }
 
-    public void ExecuteTime( int timeSeconds, UnitModel unitModel, SkillData skillData )
+    public void Execute( UnitModel unitModel, SkillData skillData )
+    {
+        ExecuteTime( 1, unitModel );
+    }
+
+    public void ExecuteTime( int secondsPassed, UnitModel unitModel )
     {
         _unitModel = unitModel;
-        _skillData = skillData;
         _planet = _planetController.SelectedPlanet;
         _element = _planet.Map.Table[ _unitModel.X ][ _unitModel.Y ].Props[ R.Element ];
         _elementIndex = (int)_element.Value;
 
-        float totalDamage = ( ( timeSeconds / 60f ) * _unitModel.Props[ R.Attack ].Value ) * ( 1 + _unitModel.Props[ R.Critical ].Value );
+        float totalDamage = ( ( secondsPassed / 60f ) * _unitModel.Props[ R.Attack ].Value ) * ( 1 + _unitModel.Props[ R.Critical ].Value );
         int wholeElements = Mathf.FloorToInt( totalDamage / _elements[ _elementIndex ].Weight );
+        
         if( wholeElements < 1 )
         {
             if( _element.Delta - totalDamage > 0 )
@@ -46,49 +51,15 @@ public class MineSkill : ISkill
             _planet.Life.Elements[ _elementIndex ].Amount += wholeElements;
             _element.Delta = _elements[ _elementIndex ].Weight - ( totalDamage - ( wholeElements * _elements[ _elementIndex ].Weight ) );
         }
+        
 
-        UpdatePlanetProp( R.Temperature, timeSeconds );
-        UpdatePlanetProp( R.Pressure, timeSeconds );
-        UpdatePlanetProp( R.Humidity, timeSeconds );
-        UpdatePlanetProp( R.Radiation, timeSeconds );
+        UpdatePlanetProp( R.Temperature, secondsPassed );
+        UpdatePlanetProp( R.Pressure, secondsPassed );
+        UpdatePlanetProp( R.Humidity, secondsPassed );
+        UpdatePlanetProp( R.Radiation, secondsPassed );
     }
 
-    public void Execute( UnitModel unitModel, SkillData skillData )
-    {
-        ExecuteTime( 60, unitModel, skillData );
-        return;
-
-        _unitModel = unitModel;
-        _skillData = skillData;
-        _planet = _planetController.SelectedPlanet;
-        _element = _planet.Map.Table[ _unitModel.X ][ _unitModel.Y ].Props[ R.Element ];
-        _elementIndex = (int)_element.Value;
-
-        //fight
-        if( RandomUtil.FromRange( 0, 1 ) < _unitModel.Props[ R.Critical ].Value )
-        {
-            _critHit = 2;
-            Debug.Log( "CRITICAL HIT! " + _unitModel.Props[ R.Attack ].Value );
-        }
-        else
-            _critHit = 1;
-
-        _element.Delta -= ( _unitModel.Props[ R.Attack ].Value * _critHit ) * _unitModel.Props[ R.Speed ].Value;
-
-        //If beaten, collect the element and reset HP
-        if( _element.Delta <= 0 )
-        {
-            _planet.Life.Elements[ _elementIndex ].Amount++;
-            _element.Delta = _elements[ _elementIndex ].Weight * 1;
-        }
-
-        UpdatePlanetProp( R.Temperature );
-        UpdatePlanetProp( R.Pressure );
-        UpdatePlanetProp( R.Humidity );
-        UpdatePlanetProp( R.Radiation );
-
-        //_unitModel.Props[ R.Experience ].Value++;
-    }
+    
 
     private void UpdatePlanetProp( R type, int time = 1 )
     {

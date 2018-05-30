@@ -30,7 +30,7 @@ public class UnitController : AbstractController, IGameInit
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
 
         GameMessage.Listen<HexClickedMessage>( OnHexClickedMessage );
-        GameMessage.Listen<ClockTickMessage>( OnClockTick );
+        //GameMessage.Listen<ClockTickMessage>( OnClockTick );
         GameMessage.Listen<ResistanceUpgradeMessage>( OnResistanceUpgrade );
         GameMessage.Listen<UnitPropUpgradeMessage>( OnUnitPropUpgradeMessage );
         GameMessage.Listen<UnitUseCompoundMessage>( OnUnitUseCompoundMessage );

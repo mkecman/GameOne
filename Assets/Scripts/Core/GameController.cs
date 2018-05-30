@@ -9,10 +9,7 @@ public class GameController : MonoBehaviour
 {
     public Clock clock;
     public BoolReactiveProperty IsDebug = new BoolReactiveProperty();
-
-    public int UpdateSteps = 360;
-    public BoolReactiveProperty RunSteps = new BoolReactiveProperty();
-
+    
     private PlayerController _player;
     private GalaxyController _galaxy;
     private StarController _star;
@@ -25,7 +22,6 @@ public class GameController : MonoBehaviour
     {
         GameModel.Set( new GameDebug() );
         IsDebug.Subscribe( _ => GameModel.Get<GameDebug>().isActive = _ );
-        RunSteps.Where( _ => _ == true ).Subscribe( _ => StopwatchSteps( UpdateSteps ) );
 
         _gameControllers = new List<IGameInit>();
 
@@ -46,6 +42,7 @@ public class GameController : MonoBehaviour
         //AddController<BuildingPaymentService>();
 
         AddController<HexUpdateCommand>();
+        AddController<HexScoreUpdateCommand>();
         AddController<PlanetGenerateCommand>();
         AddController<PlanetPropsUpdateCommand>();
         AddController<UnitDefenseUpdateCommand>();
@@ -93,7 +90,7 @@ public class GameController : MonoBehaviour
         HexMap hexMap = go.GetComponent<HexMap>();
         GameModel.Get<PlanetGenerateCommand>().Execute( hexMap );
 
-        clock.ElapsedUpdates.Subscribe<long>( x => UpdateStep( 1 ) ).AddTo( clock ); //start the game ticking
+        clock.StartTimer();
     }
 
     public void Load()
@@ -104,7 +101,7 @@ public class GameController : MonoBehaviour
         _star.Load( 0 );
         _planet.Load( 0 );
 
-        clock.ElapsedUpdates.Subscribe<long>( x => UpdateStep( 1 ) ).AddTo( clock );
+        clock.StartTimer();
     }
 
     public void Save()
@@ -120,26 +117,6 @@ public class GameController : MonoBehaviour
         CSV.Add( "Done" );
         CSV.Out();
         */
-    }
-
-    private void StopwatchSteps( int steps )
-    {
-        DateTime start = DateTime.Now;
-        //Debug.Log( "start at: " + start.ToString() );
-
-        UpdateStep( steps );
-
-        DateTime end = DateTime.Now;
-        Debug.Log( "end in: " + ( end - start ).ToString() );
-    }
-
-    public void UpdateStep( int steps )
-    {
-        for( int i = 0; i < steps; i++ )
-        {
-            GameMessage.Send( clock.message );
-            clock.message.elapsedTicksSinceStart++;
-        }
     }
 
     private T AddController<T>() where T : new()

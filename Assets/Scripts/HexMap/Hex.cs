@@ -109,7 +109,7 @@ public class Hex : GameView, IPointerClickHandler, IDropHandler, IDragHandler, I
 
         if( _model.Lens == R.Default )
         {
-            SymbolText.text = "<#000000>" + _elements[ (int)_model.Props[ R.Element ].Value ].Symbol + "</color>\n" + _model.Props[ R.Element ].Delta.ToString( "F0" );
+            SymbolText.text = "<#000000>" + _elements[ (int)_model.Props[ R.Element ].Value ].Symbol + "</color>\n" + _model.Props[ R.Element ].Delta.ToString( "F2" );
             //SymbolText.text = "<color=\"" + _elements[ (int)_model.Props[ R.Element ].Value ].Color +  "\">" + _elements[ (int)_model.Props[ R.Element ].Value ].Symbol + "</color>\n" + _model.Props[ R.Element ].Delta;
             /*
             labelSB.Clear();

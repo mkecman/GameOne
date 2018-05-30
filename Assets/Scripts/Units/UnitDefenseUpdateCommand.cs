@@ -7,6 +7,7 @@ public class UnitDefenseUpdateCommand : IGameInit
     private PlanetModel _planet;
     private HexModel _tempHexModel;
     private UnitModel _tempUnit;
+    private UniverseConfig _universeConfig;
 
     public void Execute( UnitModel unit )
     {
@@ -42,12 +43,13 @@ public class UnitDefenseUpdateCommand : IGameInit
         return _tempUnit.Resistance[ prop ].GetAverage
                 ( 
                     _tempHexModel.Props[ prop ].Value, 
-                    _tempHexModel.Props[ prop ].Value + ( timeDelta * _planet.Impact[ prop ].Value ) 
+                    _tempHexModel.Props[ prop ].Value + ( timeDelta * _planet.Impact[ prop ].Value * _universeConfig.IntToPlanetValueMultiplier ) 
                 );
     }
 
     public void Init()
     {
+        _universeConfig = GameConfig.Get<UniverseConfig>();
         GameModel.HandleGet<PlanetModel>( OnPlanetModel );
     }
 

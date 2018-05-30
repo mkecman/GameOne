@@ -15,6 +15,7 @@ public class PlanetController : AbstractController, IGameInit
     private UniverseConfig _universeConfig;
     private HexMapGenerator _hexMapGenerator;
     private PlanetPropsUpdateCommand _planetUpdateCommand;
+    private HexScoreUpdateCommand _hexScoreUpdateCommand;
     private int _counter;
 
     public void Init()
@@ -23,6 +24,7 @@ public class PlanetController : AbstractController, IGameInit
         _universeConfig = GameConfig.Get<UniverseConfig>();
         _hexMapGenerator = new HexMapGenerator();
         _planetUpdateCommand = GameModel.Get<PlanetPropsUpdateCommand>();
+        _hexScoreUpdateCommand = GameModel.Get<HexScoreUpdateCommand>();
 
         GameModel.HandleGet<StarModel>( OnStarChange );
     }
@@ -54,14 +56,14 @@ public class PlanetController : AbstractController, IGameInit
 
     public void PlanetLoaded()
     {
-        _planetUpdateCommand.Execute();
         GameModel.Set<PlanetModel>( _selectedPlanet );
+        _planetUpdateCommand.Execute();
         GameMessage.Listen<ClockTickMessage>( OnClockTick );
     }
 
     private void OnClockTick( ClockTickMessage value )
     {
-        _planetUpdateCommand.Execute();
+        //_planetUpdateCommand.Execute();
 
         if( _counter >= 30 ) //update every 30th tick (seconds)
         {

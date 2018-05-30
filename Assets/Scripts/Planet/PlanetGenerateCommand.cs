@@ -4,10 +4,12 @@ using System.Collections;
 public class PlanetGenerateCommand : IGameInit
 {
     PlanetController _planet;
+    private PlanetPropsUpdateCommand _planetUpdateCommand;
 
     public void Init()
     {
         _planet = GameModel.Get<PlanetController>();
+        _planetUpdateCommand = GameModel.Get<PlanetPropsUpdateCommand>();
     }
 
     public void Execute( HexMap map )
@@ -28,7 +30,7 @@ public class PlanetGenerateCommand : IGameInit
 
         _planet.GenerateFromModel( _planet.SelectedPlanet );
         /////////
-        _planet.SelectedPlanet.Life = life;
+        _planet.SelectedPlanet.Life = GameModel.Copy( life );
 
         _planet.PlanetLoaded();
     }
