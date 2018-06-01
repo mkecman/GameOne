@@ -87,7 +87,7 @@ public class UnitModel : IDisposable
 
     private void UpdateMindStats()
     {
-        Props[ R.Attack ].Value = Mathf.CeilToInt( Mathf.Pow( Props[ R.Mind ].Value, 0.6f ) * 4 ) + Props[ R.Attack ].Delta;
+        Props[ R.Attack ].Value = Mathf.CeilToInt( Mathf.Pow( Props[ R.Mind ].Value, 0.5f ) * 8 ) + Props[ R.Attack ].Delta;
     }
 
     private void UpdateSoulStats()

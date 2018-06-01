@@ -8,6 +8,7 @@ public class GradientTextureView : MonoBehaviour
 {
     public RawImage rawImage;
     public Color[] Colors;
+    public Gradient ResistanceGradient;
 
     public int Width;
     public int Height;
@@ -33,7 +34,8 @@ public class GradientTextureView : MonoBehaviour
     {
         for( int i = 0; i < 100; i++ )
         {
-            _gradient[ i ] = Color.Lerp( Colors[0], Colors[1], bellCurve.GetFloatAt( i / 100f ) );
+            //_gradient[ i ] = Color.Lerp( Colors[0], Colors[1], bellCurve.GetFloatAt( i / 100f ) );
+            _gradient[ i ] = ResistanceGradient.Evaluate( bellCurve.GetFloatAt( i / 100f ) );
         }
         rawImage.texture = GetTexture();
     }

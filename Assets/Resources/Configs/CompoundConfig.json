@@ -116,7 +116,7 @@
         "IsFull": true
       }
     ],
-    "Effects": { "Health" : 20 },
+    "Effects": { "Health" : 50 },
     "CanCraft": true
   },
   {
