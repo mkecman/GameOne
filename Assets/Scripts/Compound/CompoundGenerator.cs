@@ -49,30 +49,39 @@ public class CompoundGenerator : MonoBehaviour
         ///level 1
         Dictionary<ElementRarityClass, CompoundLevelData> temp = new Dictionary<ElementRarityClass, CompoundLevelData>
         {
-            { ElementRarityClass.Abundant, new CompoundLevelData( ElementRarityClass.Abundant, 3, 0.80f, 2, 4 ) },
-            { ElementRarityClass.Common, new CompoundLevelData( ElementRarityClass.Common, 3, 0.2f, 1, 2 ) },
-            { ElementRarityClass.Uncommon, new CompoundLevelData( ElementRarityClass.Uncommon, 3, 0f, 0, 0 ) },
-            { ElementRarityClass.Rare, new CompoundLevelData( ElementRarityClass.Rare, 3, 0f, 0, 0 ) }
+            { ElementRarityClass.Abundant, new CompoundLevelData( ElementRarityClass.Abundant, 3, 0.8f, 300, 2, 4 ) },
+            { ElementRarityClass.Common, new CompoundLevelData( ElementRarityClass.Common, 3, 0.2f, 300, 1, 1 ) },
+            { ElementRarityClass.Uncommon, new CompoundLevelData( ElementRarityClass.Uncommon, 3, 0f, 300, 0, 0 ) },
+            { ElementRarityClass.Rare, new CompoundLevelData( ElementRarityClass.Rare, 3, 0f, 300, 0, 0 ) }
         };
         _levelConfig.Add( 1, temp );
         ///level 2
         temp = new Dictionary<ElementRarityClass, CompoundLevelData>
         {
-            { ElementRarityClass.Abundant, new CompoundLevelData( ElementRarityClass.Abundant, 9, 0.3f, 1, 3 ) },
-            { ElementRarityClass.Common, new CompoundLevelData( ElementRarityClass.Common, 9, 0.5f, 2, 4 ) },
-            { ElementRarityClass.Uncommon, new CompoundLevelData( ElementRarityClass.Uncommon, 9, 0.2f, 1, 2 ) },
-            { ElementRarityClass.Rare, new CompoundLevelData( ElementRarityClass.Rare, 9, 0f, 0, 0 ) }
+            { ElementRarityClass.Abundant, new CompoundLevelData( ElementRarityClass.Abundant, 8, 0.4f, 900, 1, 2 ) },
+            { ElementRarityClass.Common, new CompoundLevelData( ElementRarityClass.Common, 8, 0.4f, 900, 1, 2 ) },
+            { ElementRarityClass.Uncommon, new CompoundLevelData( ElementRarityClass.Uncommon, 8, 0.2f, 900, 1, 1 ) },
+            { ElementRarityClass.Rare, new CompoundLevelData( ElementRarityClass.Rare, 8, 0f, 900, 0, 0 ) }
         };
         _levelConfig.Add( 2, temp );
         ///level 3
         temp = new Dictionary<ElementRarityClass, CompoundLevelData>
         {
-            { ElementRarityClass.Abundant, new CompoundLevelData( ElementRarityClass.Abundant, 18, 0.1f, 0, 1 ) },
-            { ElementRarityClass.Common, new CompoundLevelData( ElementRarityClass.Common, 18, 0.25f, 1, 2 ) },
-            { ElementRarityClass.Uncommon, new CompoundLevelData( ElementRarityClass.Uncommon, 18, 0.35f, 2, 4 ) },
-            { ElementRarityClass.Rare, new CompoundLevelData( ElementRarityClass.Rare, 18, 0.3f, 1, 2 ) }
+            { ElementRarityClass.Abundant, new CompoundLevelData( ElementRarityClass.Abundant, 13, 0.2f, 8000, 1, 1 ) },
+            { ElementRarityClass.Common, new CompoundLevelData( ElementRarityClass.Common, 13, 0.2f, 8000, 1, 1 ) },
+            { ElementRarityClass.Uncommon, new CompoundLevelData( ElementRarityClass.Uncommon, 13, 0.4f, 8000, 1, 2 ) },
+            { ElementRarityClass.Rare, new CompoundLevelData( ElementRarityClass.Rare, 13, 0.2f, 8000, 1, 1 ) }
         };
         _levelConfig.Add( 3, temp );
+        ///level 4
+        temp = new Dictionary<ElementRarityClass, CompoundLevelData>
+        {
+            { ElementRarityClass.Abundant, new CompoundLevelData( ElementRarityClass.Abundant, 18, 0.2f, 24000, 1, 1 ) },
+            { ElementRarityClass.Common, new CompoundLevelData( ElementRarityClass.Common, 18, 0.2f, 24000, 1, 1 ) },
+            { ElementRarityClass.Uncommon, new CompoundLevelData( ElementRarityClass.Uncommon, 18, 0.2f, 24000, 1, 1 ) },
+            { ElementRarityClass.Rare, new CompoundLevelData( ElementRarityClass.Rare, 18, 0.4f, 24000, 1, 2 ) }
+        };
+        _levelConfig.Add( 4, temp );
 
         ///////END SETUP
 
@@ -89,7 +98,7 @@ public class CompoundGenerator : MonoBehaviour
     private void GenerateWeaponCompounds()
     {
         bool isPositive = true;
-        for( int i = 1; i <= 3; i++ )
+        for( int i = 1; i <= 4; i++ )
         {
             CreateCompound( R.Temperature, i, isPositive, CompoundType.Weapon );
             CreateCompound( R.Pressure, i, isPositive, CompoundType.Weapon );
@@ -108,7 +117,7 @@ public class CompoundGenerator : MonoBehaviour
     private void GenerateArmorCompounds()
     {
         bool isPositive = true;
-        for( int i = 1; i <= 3; i++ )
+        for( int i = 1; i <= 4; i++ )
         {
             CreateCompound( R.Temperature, i, isPositive );
             CreateCompound( R.Pressure, i, isPositive );
@@ -126,16 +135,16 @@ public class CompoundGenerator : MonoBehaviour
     private void CreateCompound( R effect, int level, bool isPositive, CompoundType compoundType = CompoundType.Armor )
     {
         float sign = isPositive ? 1 : -1;
-        float delta = _levelConfig[ level ][ ElementRarityClass.Abundant ].Delta * sign;
+        float delta = _levelConfig[ level ][ ElementRarityClass.Abundant ].Impact * sign;
         CompoundJSON compound = new CompoundJSON
         {
             Index = _indexer,
             Type = compoundType,
-            Name = effect.ToString() + " " + delta
+            Name = compoundType.ToString() + " #" + _indexer
         };
         compound.Effects.Add( effect, delta );
         if( compoundType == CompoundType.Weapon )
-            compound.Effects.Add( R.Attack, RandomUtil.FromRangeInt( 1, (int)Math.Abs( delta ) ) );
+            compound.Effects.Add( R.Attack, 4+level );
 
         compound.Elements.AddRange( CreateCompoundElements( compound, level, ElementRarityClass.Rare ) );
         compound.Elements.AddRange( CreateCompoundElements( compound, level, ElementRarityClass.Uncommon ) );
@@ -144,7 +153,7 @@ public class CompoundGenerator : MonoBehaviour
 
         foreach( LifeElementModel item in compound.Elements )
         {
-            compound.Formula += item.Symbol + item.Amount + " ";
+            compound.Formula += item.Symbol + item.MaxAmount + " ";
         }
 
         CreateCompoundTexture( compound );
@@ -195,10 +204,10 @@ public class CompoundGenerator : MonoBehaviour
 
         CompoundLevelData armorLevelData = _levelConfig[ level ][ rarityClass ];
         int numberOfElements = RandomUtil.FromRangeInt( armorLevelData.Min, armorLevelData.Max );
-        float amountNeeded = armorLevelData.Weight * ( armorLevelData.Delta * 110 );
+        float amountNeeded = Mathf.Ceil( armorLevelData.PercentOfCompound * armorLevelData.Price );
         List<WeightedValue> probabilities = GameModel.Copy( _elementsProbabilities[ rarityClass ] );
         WeightedValue weightedValue;
-        int index;
+        int index = 0;
         for( int i = 0; i < numberOfElements; i++ )
         {
             weightedValue = RandomUtil.GetWeightedValueObject( probabilities );
@@ -210,8 +219,17 @@ public class CompoundGenerator : MonoBehaviour
                 item.Weight = 1f / probabilities.Count;
             }
         }
+        //only exception is if Hydrogen is selected, we'll add another abundand element to avoid big numbers of Hydrogen
+        if( rarityClass == ElementRarityClass.Abundant && index == 1 )
+        {
+            weightedValue = RandomUtil.GetWeightedValueObject( probabilities );
+            index = (int)weightedValue.Value;
+            output.Add( new LifeElementModel( index, _elements[ index ].Symbol, 0, 0 ) );
+            numberOfElements++;
+        }
 
-        float amountCollected = 0;
+
+            float amountCollected = 0;
         int fullElements = 0;
         bool isFull = false;
         while( !isFull )
@@ -393,16 +411,18 @@ public class CompoundGenerator : MonoBehaviour
 internal class CompoundLevelData
 {
     public ElementRarityClass RarityClass;
-    public float Delta;
-    public float Weight;
+    public float Impact;
+    public float PercentOfCompound;
+    public int Price;
     public int Min;
     public int Max;
 
-    public CompoundLevelData( ElementRarityClass rarityClass, float delta, float weight, int min, int max )
+    public CompoundLevelData( ElementRarityClass rarityClass, float delta, float weight, int price, int min, int max )
     {
         RarityClass = rarityClass;
-        Delta = delta;
-        Weight = weight;
+        Impact = delta;
+        PercentOfCompound = weight;
+        Price = price;
         Min = min;
         Max = max;
     }

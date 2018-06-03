@@ -20,7 +20,7 @@
    "Symbol": "Li",
    "Density": 0.535,
    "Weight": 6.941,
-   "Rarity": 0.02,
+   "Rarity": 0.03,
    "RarityClass": "Uncommon"
  },
  {
@@ -57,6 +57,17 @@
    "RarityClass": "Abundant"
  },
  {
+   "Index": 9,
+   "Color": "#B3E3F5",
+   "Group": "halogen",
+   "Name": "Fluorine",
+   "Symbol": "F",
+   "Density": 0.001696,
+   "Weight": 18.998403,
+   "Rarity": 0.03,
+   "RarityClass": "Uncommon"
+ },
+ {
    "Index": 11,
    "Color": "#AB5CF2",
    "Group": "alkali metal",
@@ -75,7 +86,7 @@
    "Symbol": "Mg",
    "Density": 1.738,
    "Weight": 24.305,
-   "Rarity": 0.07,
+   "Rarity": 0.06,
    "RarityClass": "Abundant"
  },
  {
@@ -86,7 +97,7 @@
    "Symbol": "Al",
    "Density": 2.7,
    "Weight": 26.981539,
-   "Rarity": 0.04,
+   "Rarity": 0.05,
    "RarityClass": "Common"
  },
  {
@@ -119,7 +130,7 @@
    "Symbol": "S",
    "Density": 1.96,
    "Weight": 32.066,
-   "Rarity": 0.06,
+   "Rarity": 0.04,
    "RarityClass": "Common"
  },
  {
@@ -130,7 +141,7 @@
    "Symbol": "Cl",
    "Density": 0.003214,
    "Weight": 35.4527,
-   "Rarity": 0.05,
+   "Rarity": 0.04,
    "RarityClass": "Common"
  },
  {
@@ -141,7 +152,7 @@
    "Symbol": "Ca",
    "Density": 1.55,
    "Weight": 40.078,
-   "Rarity": 0.06,
+   "Rarity": 0.05,
    "RarityClass": "Common"
  },
  {
@@ -163,7 +174,7 @@
    "Symbol": "Fe",
    "Density": 7.874,
    "Weight": 55.847,
-   "Rarity": 0.06,
+   "Rarity": 0.05,
    "RarityClass": "Common"
  },
  {
@@ -174,8 +185,19 @@
    "Symbol": "Co",
    "Density": 8.9,
    "Weight": 58.9332,
-   "Rarity": 0.03,
+   "Rarity": 0.02,
    "RarityClass": "Uncommon"
+ },
+ {
+   "Index": 28,
+   "Color": "#50D050",
+   "Group": "transition metal",
+   "Name": "Nickel",
+   "Symbol": "Ni",
+   "Density": 8.908,
+   "Weight": 58.6934,
+   "Rarity": 0.04,
+   "RarityClass": "Common"
  },
  {
    "Index": 29,
@@ -185,7 +207,7 @@
    "Symbol": "Cu",
    "Density": 8.92,
    "Weight": 63.546,
-   "Rarity": 0.03,
+   "Rarity": 0.02,
    "RarityClass": "Uncommon"
  },
  {
@@ -196,7 +218,7 @@
    "Symbol": "Zn",
    "Density": 7.14,
    "Weight": 65.39,
-   "Rarity": 0.03,
+   "Rarity": 0.02,
    "RarityClass": "Uncommon"
  },
  {

@@ -107,23 +107,12 @@ public class Hex : GameView, IPointerClickHandler, IDropHandler, IDragHandler, I
             return;
         /**/
 
-        if( _model.Lens == R.Default )
-        {
-            SymbolText.text = "<#000000>" + _elements[ (int)_model.Props[ R.Element ].Value ].Symbol + "</color>\n" + _model.Props[ R.Element ].Delta.ToString( "F2" );
-            //SymbolText.text = "<color=\"" + _elements[ (int)_model.Props[ R.Element ].Value ].Color +  "\">" + _elements[ (int)_model.Props[ R.Element ].Value ].Symbol + "</color>\n" + _model.Props[ R.Element ].Delta;
-            /*
-            labelSB.Clear();
-            
-            if( Model.Props[ R.Energy ].Value > 0 )
-                labelSB.Append( "<color=\"#007800\">" + Math.Round( Model.Props[ R.Energy ].Value, 0 ).ToString() +"</color>");
-            if( Model.Props[ R.Science ].Value > 0 )
-                labelSB.Append( "<color=\"#000ff0\">" + Math.Round( Model.Props[ R.Science ].Value, 0 ).ToString() + "</color>" );
-            if( Model.Props[ R.Minerals ].Value > 0 )
-                labelSB.Append( "<color=\"#ff0000\">" + Math.Round( Model.Props[ R.Minerals ].Value, 0 ).ToString() + "</color>" );
+        string delta = "";
+        if( _model.Unit != null )
+            delta = "\n" + _model.Props[ R.Element ].Delta.ToString( "F2" );
 
-            SymbolText.text = labelSB.ToString();
-            */
-        }
+        if( _model.Lens == R.Default )
+            SymbolText.text = "<#000000>" + _elements[ (int)_model.Props[ R.Element ].Value ].Symbol + "</color>" + delta;
         else
         if( _model.Lens == R.Element )
             SymbolText.text = _elements[ (int)_model.Props[ R.Element ].Value ].Symbol;
