@@ -62,7 +62,7 @@ public class CoreSimulator : MonoBehaviour
                 continue;
 
             _unitDefenseCommand.ExecuteAverageArmorInTime( unit, _timeDelta );
-            unitLifetime = (int)( unit.Props[ R.Health ].Value / unit.Props[ R.Armor ].Value ) + 1;
+            unitLifetime = (int)( unit.Props[ R.Health ].Value * unit.Props[ R.Armor ].Value ) + 1;
             if( _minUnitLifetime > unitLifetime )
                 _minUnitLifetime = unitLifetime;
         }

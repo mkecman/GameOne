@@ -71,7 +71,7 @@ public class Hex : GameView, IPointerClickHandler, IDropHandler, IDragHandler, I
         //_model.Props[ R.Element ].Color = _newHexColor;
 
         SetColor();
-        //SetSymbol();
+        SetSymbol();
     }
 
     private Color AddColor( Color original, Color addition )

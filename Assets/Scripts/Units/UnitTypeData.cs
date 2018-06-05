@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class UnitTypeData
+﻿public class UnitTypeData
 {
     public int Index;
     public string Name;
@@ -15,8 +12,8 @@ public class UnitTypeData
     public float Humidity;
     public float Radiation;
 
-    public float ITemperature;
-    public float IPressure;
-    public float IHumidity;
-    public float IRadiation;
+    public int ITemperature;
+    public int IPressure;
+    public int IHumidity;
+    public int IRadiation;
 }
