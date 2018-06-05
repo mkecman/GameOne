@@ -8,6 +8,7 @@ public class LifeController : AbstractController, IGameInit
 
     private PlanetModel _planet;
     private LifeModel _selectedLife;
+    private GameDebug _debug;
     private Dictionary<R, BellCurve> _bellCurves;
     private UnitFactory _factory;
     private List<ElementData> _elements;
@@ -15,6 +16,7 @@ public class LifeController : AbstractController, IGameInit
 
     public void Init()
     {
+        _debug = GameModel.Get<GameDebug>();
         _bellCurves = GameConfig.Get<BellCurveConfig>();
         _factory = GameModel.Get<UnitFactory>();
         _elements = GameConfig.Get<ElementConfig>().ElementsList;
@@ -40,9 +42,13 @@ public class LifeController : AbstractController, IGameInit
         _selectedLife.BuildingsState = GameModel.Copy( GameConfig.Get<BuildingConfig>().Buildings );
         _selectedLife.Resistance = GameModel.Copy( _bellCurves );
 
+        int startingElementAmount = 0;
+        if( _debug.isActive )
+            startingElementAmount = 300;
+
         for( int i = 0; i < _elements.Count; i++ )
         {
-            _selectedLife.Elements.Add( _elements[ i ].Index, new LifeElementModel( _elements[ i ].Index, _elements[ i ].Symbol, 0, 1000 ) );
+            _selectedLife.Elements.Add( _elements[ i ].Index, new LifeElementModel( _elements[ i ].Index, _elements[ i ].Symbol, startingElementAmount, 300 ) );
         }
 
         for( int i = 0; i < 5; i++ )
@@ -51,7 +57,7 @@ public class LifeController : AbstractController, IGameInit
         for( int i = 0; i < 50; i++ )
             AddCompound( 2 );
 
-        for( int i = 0; i < 10; i++ )
+        for( int i = 0; i < 5; i++ )
             AddCompound( 3 );
 
 

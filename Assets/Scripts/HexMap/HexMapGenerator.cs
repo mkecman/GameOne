@@ -10,6 +10,7 @@ public class HexMapGenerator
     private List<ElementData> _elements;
     private Dictionary<int, ElementData> _elementsDict;
     private List<WeightedValue> _elementsProbabilities;
+    private HexScoreUpdateCommand _hexScoreUpdateCommand;
     private Vector2[] Ranges = new Vector2[ 7 ];
     private BellCurveConfig _resistanceConfig;
     private PlanetModel _planetModel;
@@ -24,6 +25,7 @@ public class HexMapGenerator
         _elements = GameConfig.Get<ElementConfig>().ElementsList;
         _elementsDict = GameConfig.Get<ElementConfig>().ElementsDictionary;
         _elementsProbabilities = new List<WeightedValue>();
+        _hexScoreUpdateCommand = GameModel.Get<HexScoreUpdateCommand>();
 
         for( int i = 0; i < _elements.Count; i++ )
         {
@@ -147,8 +149,7 @@ public class HexMapGenerator
                 //hex.Props[ R.Element ].Value = _planetModel._Elements[ RandomUtil.FromRangeInt( 0, _planetModel._Elements.Count ) ].Index;
                 //hex.Props[ R.Minerals ].Value = (int)_elements[ (int)hex.Props[ R.Element ].Value ].Weight;
 
-                hex.Props[ R.HexScore ].Value = 0;
-                hex.Props[ R.HexScore ].Color = Color.red;
+                _hexScoreUpdateCommand.ExecuteHex( hex );
 
                 hex.Props[ R.Altitude ].Value *= 2;
                 

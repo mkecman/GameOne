@@ -18,6 +18,7 @@ public class CompoundGenerator : MonoBehaviour
     private int _indexer;
     private Dictionary<ElementRarityClass, List<WeightedValue>> _elementsProbabilities;
     private Color[] _pixels;
+    private List<CompoundExcelJSON> _rawCompounds;
 
     // Use this for initialization
     void Start()
@@ -83,16 +84,66 @@ public class CompoundGenerator : MonoBehaviour
         };
         _levelConfig.Add( 4, temp );
 
+        _compounds = new List<CompoundJSON>();
+        _compounds.Add( new CompoundJSON() );
+        _indexer = 1;
         ///////END SETUP
 
-        _compounds = new List<CompoundJSON>();
-        _indexer = 4;
+
+        GenerateConsumableCompounds();
 
         GenerateArmorCompounds();
         GenerateWeaponCompounds();
         //ConvertOldConfigToNewFormat();
 
         SaveToFile();
+    }
+
+    private void GenerateConsumableCompounds()
+    {
+        //load json exported from a spreadsheet
+        TextAsset configFile = Resources.Load<TextAsset>( "Configs/CompoundExcelConfig" );
+        _rawCompounds = JsonConvert.DeserializeObject<List<CompoundExcelJSON>>( configFile.text );
+
+        for( int i = 0; i < _rawCompounds.Count; i++ )
+        {
+            CompoundExcelJSON rawCompound = _rawCompounds[ i ];
+            CompoundJSON compound = new CompoundJSON
+            {
+                Index = _indexer,
+                Type = rawCompound.Type,
+                Name = rawCompound.Name,
+                MolecularMass = rawCompound.MolecularMass
+            };
+            if( rawCompound.Effect != R.Default )
+                compound.Effects.Add( rawCompound.Effect, rawCompound.EffectDelta );
+
+            for( int j = 0; j < 5; j++ )
+            {
+                string symbol = (string)GetPropValue( rawCompound, "E" + j );
+                if( symbol != "-" )
+                compound.Elements.Add( 
+                    new LifeElementModel( 
+                        GetAtom( symbol ).Index, 
+                        symbol, 
+                        0, (int)GetPropValue( rawCompound, "A" + j ) ) );
+            }
+
+            foreach( LifeElementModel item in compound.Elements )
+            {
+                compound.Formula += item.Symbol + item.MaxAmount + " ";
+            }
+
+            CreateCompoundTexture( compound );
+
+            _compounds.Add( compound );
+            _indexer++;
+        }
+    }
+
+    public object GetPropValue( object src, string propName )
+    {
+        return src.GetType().GetField( propName ).GetValue( src );
     }
 
     private void GenerateWeaponCompounds()
@@ -258,7 +309,7 @@ public class CompoundGenerator : MonoBehaviour
     {
         //SAVE TO FILE
         File.WriteAllText(
-            Application.persistentDataPath + "-Compounds.json",
+            Application.persistentDataPath + "-CompoundConfig.json",
             JsonConvert.SerializeObject( _compounds )
             );
 
@@ -398,10 +449,10 @@ public class CompoundGenerator : MonoBehaviour
 
     private ElementData GetAtom( string symbol )
     {
-        for( int i = 0; i < _elements.Count; i++ )
+        for( int i = 0; i < _elementsList.Count; i++ )
         {
-            if( _elements[ i ].Symbol == symbol )
-                return _elements[ i ];
+            if( _elementsList[ i ].Symbol == symbol )
+                return _elementsList[ i ];
         }
 
         return null;
@@ -427,4 +478,5 @@ internal class CompoundLevelData
         Max = max;
     }
 }
+
 

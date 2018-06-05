@@ -50,9 +50,7 @@ public class UnitModel : IDisposable
 
     private CompositeDisposable disposables = new CompositeDisposable();
     private BodySlotsConfig _slotsConfig;
-    private LevelUpConfig _levelUpConfig;
     private List<int> _slots;
-    private LevelUpModel _levelUpModel;
 
     public UnitModel()
     {
@@ -61,7 +59,6 @@ public class UnitModel : IDisposable
         Impact.Add( R.Humidity, new IntReactiveProperty() );
         Impact.Add( R.Radiation, new IntReactiveProperty() );
 
-        _levelUpConfig = GameConfig.Get<LevelUpConfig>();
         _slotsConfig = GameConfig.Get<BodySlotsConfig>();
         _slots = _slotsConfig[ 0 ];
         for( int i = 0; i < _slots.Count; i++ )
@@ -70,14 +67,10 @@ public class UnitModel : IDisposable
 
     public void Setup()
     {
-        _levelUpModel = _levelUpConfig[ (int)Props[ R.Level ].Value ];
-
         Props[ R.Body ]._Value.Subscribe( _ => UpdateBodyStats() ).AddTo( disposables );
         Props[ R.Mind ]._Value.Subscribe( _ => UpdateMindStats() ).AddTo( disposables );
         Props[ R.Soul ]._Value.Subscribe( _ => UpdateSoulStats() ).AddTo( disposables );
-        Props[ R.Health ].Value = Props[ R.Health ].MaxValue;
-
-        //Props[ R.Experience ].MaxValue = _levelUpModel.Experience;
+        
         Props[ R.Experience ].MaxValue = GetMaxXP( (int)Props[ R.Level ].Value );
         Props[ R.Level ].Delta = GetXPCumulative( (int)Props[ R.Level ].Value );
         Props[ R.Experience ]._Delta.Subscribe( _ => CheckLevelUp() ).AddTo( disposables );
@@ -122,20 +115,6 @@ public class UnitModel : IDisposable
             Props[ R.Level ].Delta = GetXPCumulative( (int)Props[ R.Level ].Value );
         }
         Props[ R.Experience ].Value = Props[ R.Experience ].MaxValue + ( Props[ R.Experience ].Delta - Props[ R.Level ].Delta );
-        
-        /*
-        if( Props[ R.Experience ].Value >= Props[ R.Experience ].MaxValue )
-        {
-            Props[ R.Experience ].Value -= _levelUpModel.Experience;
-            Props[ R.UpgradePoint ].Value += _levelUpModel.UpgradePoints;
-            Props[ R.Level ].Value++;
-            _levelUpModel = _levelUpConfig[ (int)Props[ R.Level ].Value ];
-            Props[ R.Experience ].MaxValue = _levelUpModel.Experience;
-
-            //Props[ R.Health ].MaxValue = _levelUpModel.Effects[ R.Health ];
-            Props[ R.Health ].Value = Props[ R.Health ].MaxValue;
-        }
-        */
     }
 
     private int GetMaxXP( int level )
@@ -152,8 +131,6 @@ public class UnitModel : IDisposable
     {
         _slots = null;
         _slotsConfig = null;
-        _levelUpConfig = null;
-        _levelUpModel = null;
         disposables.Clear();
         disposables = null;
     }

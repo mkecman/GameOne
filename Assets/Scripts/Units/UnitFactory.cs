@@ -60,6 +60,8 @@ public class UnitFactory : IGameInit
 
         unit.Setup();
 
+        unit.Props[ R.Health ].Value = unit.Props[ R.Health ].MaxValue;
+
         return unit;
     }
 }

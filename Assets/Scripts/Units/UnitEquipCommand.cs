@@ -6,7 +6,6 @@ using UniRx;
 public class UnitEquipCommand : IGameInit
 {
     private CompoundConfig _compounds;
-    private UniverseConfig _universeConfig;
     private UnitController _unitController;
     private PlanetController _planetController;
     private CompoundControlMessage _message;
@@ -18,7 +17,6 @@ public class UnitEquipCommand : IGameInit
     public void Init()
     {
         _compounds = GameConfig.Get<CompoundConfig>();
-        _universeConfig = GameConfig.Get<UniverseConfig>();
         _unitController = GameModel.Get<UnitController>();
         _planetController = GameModel.Get<PlanetController>();
         _message = new CompoundControlMessage( 0, CompoundControlAction.ADD, false );

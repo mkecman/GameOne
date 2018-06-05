@@ -15,7 +15,6 @@ public class PlanetController : AbstractController, IGameInit
     private UniverseConfig _universeConfig;
     private HexMapGenerator _hexMapGenerator;
     private PlanetPropsUpdateCommand _planetUpdateCommand;
-    private HexScoreUpdateCommand _hexScoreUpdateCommand;
     private int _counter;
 
     public void Init()
@@ -24,7 +23,6 @@ public class PlanetController : AbstractController, IGameInit
         _universeConfig = GameConfig.Get<UniverseConfig>();
         _hexMapGenerator = new HexMapGenerator();
         _planetUpdateCommand = GameModel.Get<PlanetPropsUpdateCommand>();
-        _hexScoreUpdateCommand = GameModel.Get<HexScoreUpdateCommand>();
 
         GameModel.HandleGet<StarModel>( OnStarChange );
     }

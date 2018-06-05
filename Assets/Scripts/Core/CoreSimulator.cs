@@ -9,25 +9,24 @@ public class CoreSimulator : MonoBehaviour
 
     private PlanetModel _planet;
     private int _minUnitLifetime;
-    private UniverseConfig _universeConfig;
     private UnitDefenseUpdateCommand _unitDefenseCommand;
     private PlanetPropsUpdateCommand _planetUpdateCommand;
     private HexScoreUpdateCommand _hexScoreUpdateCommand;
     private MineSkill _mineSkill;
     private LiveSkill _liveSkill;
     private Clock _clock;
-    private DateTime _startStopWatch;
+    private GameDebug _debug;
 
     // Use this for initialization
     void Start()
     {
-        _universeConfig = GameConfig.Get<UniverseConfig>();
         _unitDefenseCommand = GameModel.Get<UnitDefenseUpdateCommand>();
         _planetUpdateCommand = GameModel.Get<PlanetPropsUpdateCommand>();
         _hexScoreUpdateCommand = GameModel.Get<HexScoreUpdateCommand>();
         _mineSkill = GameModel.Get<MineSkill>();
         _liveSkill = GameModel.Get<LiveSkill>();
         _clock = GameModel.Get<Clock>();
+        _debug = GameModel.Get<GameDebug>();
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
         GameMessage.Listen<ClockTickMessage>( OnClockTick );
 
@@ -36,6 +35,7 @@ public class CoreSimulator : MonoBehaviour
     public void Run( int time )
     {
         _timeDelta = time;
+        _planet.Time += _timeDelta;
         StartRunning();
     }
 
@@ -46,7 +46,6 @@ public class CoreSimulator : MonoBehaviour
 
     private void StartRunning()
     {
-        _startStopWatch = DateTime.Now;
         _clock.StopTimer();
         RunTime();
         _clock.message.elapsedTicksSinceStart += ( _timeDelta - 1 ); //-1 because Clock already increments elapsedTicksSinceStart
@@ -81,9 +80,6 @@ public class CoreSimulator : MonoBehaviour
             UpdateUnits( _timeDelta );
             _hexScoreUpdateCommand.Execute();
             _clock.StartTimer();
-
-            //uncomment to output time it takes for full simulation to be over
-            //Debug.Log( "UpdateTime: " + ( DateTime.Now - _startStopWatch ).ToString() );
         }
     }
 
@@ -91,11 +87,11 @@ public class CoreSimulator : MonoBehaviour
     {
         foreach( UnitModel unit in _planet.Life.Units )
         {
-            //if( unit.Props[ R.Health ].Value > 0 )
-            //{
-            _liveSkill.ExecuteTime( minUnitLifetime, unit );
-            _mineSkill.ExecuteTime( minUnitLifetime, unit );
-            //}
+            if( _debug.isActive || unit.Props[ R.Health ].Value > 0 )
+            {
+                _liveSkill.ExecuteTime( minUnitLifetime, unit );
+                _mineSkill.ExecuteTime( minUnitLifetime, unit );
+            }
         }
 
         _planetUpdateCommand.Execute();
