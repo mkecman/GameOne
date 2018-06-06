@@ -77,5 +77,10 @@ public class UnitInfoPanel : GameView
         GameMessage.Send( _panelMessage );
         _panelMessage.PanelName = PanelNames.CompoundInventoryPanel;
         GameMessage.Send( _panelMessage );
+        if( action == PanelAction.HIDE )
+        {
+            _panelMessage.PanelName = PanelNames.CompoundsPanel;
+            GameMessage.Send( _panelMessage );
+        }
     }
 }
