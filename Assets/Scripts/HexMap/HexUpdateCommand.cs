@@ -30,9 +30,22 @@ public class HexUpdateCommand : IGameInit
     public void Execute( HexModel hex )
     {
         UpdateProp( Temperature, hex.Props[ R.Temperature ] );
+
+        float liquidLevel = (float)_planet.Props[ R.Humidity ].Value;
+        float altitude = hex.Props[ R.Altitude ].Value / 2f;
+        hex.Props[ R.Humidity ].Value = Mathf.Clamp01( liquidLevel / altitude );
+
+        float liquidPressure = 0f;
+        if( liquidLevel > altitude )
+            liquidPressure = ( liquidLevel - altitude ) * 2f;
+        //hex.Props[ R.Pressure ].Value = Mathf.Clamp01( ( 1f - altitude ) + liquidPressure );
+        
+        /*
+        UpdateProp( Temperature, hex.Props[ R.Temperature ] );
         UpdateProp( Pressure, hex.Props[ R.Pressure ] );
         UpdateProp( Humidity, hex.Props[ R.Humidity ] );
         UpdateProp( Radiation, hex.Props[ R.Radiation ] );
+        */
 
         if( hex.Unit != null )
             _unitDefenseUpdateCommand.Execute( hex.Unit );

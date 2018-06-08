@@ -34,9 +34,9 @@ public class HexScoreUpdateCommand : IGameInit
         hex.Props[ R.HexScore ].Value =
                 ( GetPropBellCurveValue( R.Temperature, hex ) +
                 GetPropBellCurveValue( R.Pressure, hex ) +
-                GetPropBellCurveValue( R.Humidity, hex ) +
-                GetPropBellCurveValue( R.Radiation, hex ) )
-                / 4f;
+                GetPropBellCurveValue( R.Humidity, hex )// +
+                //GetPropBellCurveValue( R.Radiation, hex )
+                ) / 3f;
 
         hex.Props[ R.HexScore ].Color = Color.Lerp( Color.red, Color.green, hex.Props[ R.HexScore ].Value );
     }

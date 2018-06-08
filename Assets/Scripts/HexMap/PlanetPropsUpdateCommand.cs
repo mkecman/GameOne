@@ -34,10 +34,10 @@ public class PlanetPropsUpdateCommand : IGameInit
                 _hex = _planet.Map.Table[ x ][ y ];
                 _hexUpdateCommand.Execute( _hex );
 
-                _planet.Props[ R.Temperature ].HexDistribution[ Mathf.RoundToInt( _hex.Props[ R.Temperature ].Value * 100 ) ].Weight += .05f;
-                _planet.Props[ R.Pressure ].HexDistribution[ Mathf.RoundToInt( _hex.Props[ R.Pressure ].Value * 100 ) ].Weight += .05f;
-                _planet.Props[ R.Humidity ].HexDistribution[ Mathf.RoundToInt( _hex.Props[ R.Humidity ].Value * 100 ) ].Weight += .05f;
-                _planet.Props[ R.Radiation ].HexDistribution[ Mathf.RoundToInt( _hex.Props[ R.Radiation ].Value * 100 ) ].Weight += .05f;
+                _planet.Props[ R.Temperature ].HexDistribution[ Mathf.FloorToInt( _hex.Props[ R.Temperature ].Value * 100 ) ].Weight += .05f;
+                _planet.Props[ R.Pressure ].HexDistribution[ Mathf.FloorToInt( _hex.Props[ R.Pressure ].Value * 100 ) ].Weight += .05f;
+                _planet.Props[ R.Humidity ].HexDistribution[ Mathf.FloorToInt( _hex.Props[ R.Humidity ].Value * 100 ) ].Weight += .05f;
+                _planet.Props[ R.Radiation ].HexDistribution[ Mathf.FloorToInt( _hex.Props[ R.Radiation ].Value * 100 ) ].Weight += .05f;
             }
         }
     }

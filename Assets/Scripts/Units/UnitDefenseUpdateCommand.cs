@@ -19,9 +19,9 @@ public class UnitDefenseUpdateCommand : IGameInit
         (
             unit.Resistance[ R.Temperature ].GetFloatAt( _tempHexModel.Props[ R.Temperature ].Value ) +
             unit.Resistance[ R.Pressure ].GetFloatAt( _tempHexModel.Props[ R.Pressure ].Value ) +
-            unit.Resistance[ R.Humidity ].GetFloatAt( _tempHexModel.Props[ R.Humidity ].Value ) +
-            unit.Resistance[ R.Radiation ].GetFloatAt( _tempHexModel.Props[ R.Radiation ].Value )
-        ) / 4;
+            unit.Resistance[ R.Humidity ].GetFloatAt( _tempHexModel.Props[ R.Humidity ].Value ) //+
+            //unit.Resistance[ R.Radiation ].GetFloatAt( _tempHexModel.Props[ R.Radiation ].Value )
+        ) / 3;
     }
 
     public void ExecuteAverageArmorInTime( UnitModel unit, float timeDelta )
@@ -33,9 +33,9 @@ public class UnitDefenseUpdateCommand : IGameInit
         (
             GetAverage( R.Temperature, timeDelta ) +
             GetAverage( R.Pressure, timeDelta ) +
-            GetAverage( R.Humidity, timeDelta ) +
-            GetAverage( R.Radiation, timeDelta )
-        ) / 4;
+            GetAverage( R.Humidity, timeDelta ) //+
+            //GetAverage( R.Radiation, timeDelta )
+        ) / 3;
     }
 
     private float GetAverage( R prop, float timeDelta )

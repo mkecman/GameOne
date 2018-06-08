@@ -105,9 +105,14 @@ public class HexMapGenerator
                 // keep track of the max and min values found
                 SetInitialHexValue( hex, R.Altitude, altitude );
                 SetInitialHexValue( hex, R.Temperature, temperature );
-                SetInitialHexValue( hex, R.Humidity, ( humidity - ( temperature * 0.3f ) ) );
-                SetInitialHexValue( hex, R.Pressure, ( ( 1 - altitude ) + ( 1 - temperature ) ) / 2 );
-                SetInitialHexValue( hex, R.Radiation, ( radiation + equador ) / 2 );
+                float liquidLevel = (float)_planetModel.Props[ R.Humidity ].Value;
+                SetInitialHexValue( hex, R.Humidity, liquidLevel / altitude );
+                float liquidPressure = 0f;
+                if( liquidLevel > altitude )
+                    liquidPressure = ( liquidLevel - altitude ) * 2f;
+                SetInitialHexValue( hex, R.Pressure, ( 1f - altitude ) + liquidPressure );
+
+                SetInitialHexValue( hex, R.Radiation, .5f );
             }
         }
 
@@ -118,7 +123,7 @@ public class HexMapGenerator
             {
                 hex = _map.Table[ x ][ y ];
 
-                SetHex( hex, R.Altitude );
+                SetHex( hex, R.Altitude, 0.005f );
                 /*
                 if( hex.Props[ R.Altitude ].Value < _planetModel.LiquidLevel )
                 {
@@ -159,13 +164,13 @@ public class HexMapGenerator
         }
     }
     
-    private void SetHex( HexModel hex, R type )
+    private void SetHex( HexModel hex, R type, float minAltitude = 0 )
     {
         //normalize value to be between 0 - 1
         hex.Props[ type ].Delta = _planetModel.Props[ type ].Variation * ( Mathf.InverseLerp( Ranges[ (int)type ].x, Ranges[ (int)type ].y, hex.Props[ type ].Delta ) - 0.5f );
 
         //add variation to properties based on planet values
-        hex.Props[ type ].Value = Mathf.Clamp( (float)_planetModel.Props[ type ].Value + hex.Props[ type ].Delta, 0, 1 );
+        hex.Props[ type ].Value = Mathf.Clamp( (float)_planetModel.Props[ type ].Value + hex.Props[ type ].Delta, minAltitude, 1 );
 
         hex.Props[ type ].Color = Color.Lerp( Color.red, Color.green, _resistanceConfig[type].GetFloatAt( hex.Props[ type ].Value ) );
     }

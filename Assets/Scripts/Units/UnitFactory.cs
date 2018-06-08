@@ -26,8 +26,8 @@ public class UnitFactory : IGameInit
         _planet.Impact[ R.Pressure ].Value += _unitsConfig[ index ].IPressure;
         unit.Impact[ R.Humidity ].Value = _unitsConfig[ index ].IHumidity;
         _planet.Impact[ R.Humidity ].Value += _unitsConfig[ index ].IHumidity;
-        unit.Impact[ R.Radiation ].Value = _unitsConfig[ index ].IRadiation;
-        _planet.Impact[ R.Radiation ].Value += _unitsConfig[ index ].IRadiation;
+        //unit.Impact[ R.Radiation ].Value = _unitsConfig[ index ].IRadiation;
+        //_planet.Impact[ R.Radiation ].Value += _unitsConfig[ index ].IRadiation;
 
         unit.Resistance[ R.Temperature ].Position.Value = _unitsConfig[ index ].Temperature;
         unit.Resistance[ R.Pressure ].Position.Value = _unitsConfig[ index ].Pressure;
