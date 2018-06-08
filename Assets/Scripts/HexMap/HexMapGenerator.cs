@@ -11,6 +11,7 @@ public class HexMapGenerator
     private Dictionary<int, ElementData> _elementsDict;
     private List<WeightedValue> _elementsProbabilities;
     private HexScoreUpdateCommand _hexScoreUpdateCommand;
+    private HexUpdateCommand _hexUpdateCommand;
     private Vector2[] Ranges = new Vector2[ 7 ];
     private BellCurveConfig _resistanceConfig;
     private PlanetModel _planetModel;
@@ -26,6 +27,7 @@ public class HexMapGenerator
         _elementsDict = GameConfig.Get<ElementConfig>().ElementsDictionary;
         _elementsProbabilities = new List<WeightedValue>();
         _hexScoreUpdateCommand = GameModel.Get<HexScoreUpdateCommand>();
+        _hexUpdateCommand = GameModel.Get<HexUpdateCommand>();
 
         for( int i = 0; i < _elements.Count; i++ )
         {
@@ -105,12 +107,8 @@ public class HexMapGenerator
                 // keep track of the max and min values found
                 SetInitialHexValue( hex, R.Altitude, altitude );
                 SetInitialHexValue( hex, R.Temperature, temperature );
-                float liquidLevel = (float)_planetModel.Props[ R.Humidity ].Value;
-                SetInitialHexValue( hex, R.Humidity, liquidLevel / altitude );
-                float liquidPressure = 0f;
-                if( liquidLevel > altitude )
-                    liquidPressure = ( liquidLevel - altitude ) * 2f;
-                SetInitialHexValue( hex, R.Pressure, ( 1f - altitude ) + liquidPressure );
+                SetInitialHexValue( hex, R.Humidity, humidity );
+                SetInitialHexValue( hex, R.Pressure, 1f - altitude );
 
                 SetInitialHexValue( hex, R.Radiation, .5f );
             }
@@ -156,10 +154,10 @@ public class HexMapGenerator
                 //hex.Props[ R.Element ].Value = _planetModel._Elements[ RandomUtil.FromRangeInt( 0, _planetModel._Elements.Count ) ].Index;
                 //hex.Props[ R.Minerals ].Value = (int)_elements[ (int)hex.Props[ R.Element ].Value ].Weight;
 
-                _hexScoreUpdateCommand.ExecuteHex( hex );
-
                 hex.Props[ R.Altitude ].Value *= 2;
-                
+
+                _hexUpdateCommand.Execute( hex );
+                _hexScoreUpdateCommand.ExecuteHex( hex );
             }
         }
     }

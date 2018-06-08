@@ -1,8 +1,5 @@
-﻿using AccidentalNoise;
-using System;
-using UniRx;
+﻿using UniRx;
 using UnityEngine;
-using System.Collections.Generic;
 
 public class HexMap : GameView
 {
@@ -46,7 +43,6 @@ public class HexMap : GameView
 
     [Header( "Objects" )]
     public GameObject HexagonPrefab;
-    public GameObject Ocean;
 
     private GridModel<HexModel> mapModel;
 
@@ -93,7 +89,7 @@ public class HexMap : GameView
             {
                 GameObject hex_go = Instantiate(
                     HexagonPrefab,
-                    new Vector3( HexMapHelper.GetXPosition(x,y), -0.1f, HexMapHelper.GetZPosition( y ) ),
+                    new Vector3( HexMapHelper.GetXPosition( x, y ), -0.1f, HexMapHelper.GetZPosition( y ) ),
                     Quaternion.identity );
 
                 hex_go.transform.SetParent( this.transform );
@@ -105,5 +101,5 @@ public class HexMap : GameView
         }
 
     }
-    
+
 }

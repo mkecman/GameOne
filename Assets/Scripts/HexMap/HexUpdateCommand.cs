@@ -7,6 +7,7 @@ public class HexUpdateCommand : IGameInit
     private PlanetController _planetController;
     private PlanetModel _planet;
     private UnitDefenseUpdateCommand _unitDefenseUpdateCommand;
+    private BellCurveConfig _resistanceConfig;
     PlanetProperty Temperature;
     PlanetProperty Pressure;
     PlanetProperty Humidity;
@@ -16,6 +17,7 @@ public class HexUpdateCommand : IGameInit
     {
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
         _unitDefenseUpdateCommand = GameModel.Get<UnitDefenseUpdateCommand>();
+        _resistanceConfig = GameConfig.Get<BellCurveConfig>();
     }
 
     private void OnPlanetChange( PlanetModel value )
@@ -29,23 +31,27 @@ public class HexUpdateCommand : IGameInit
 
     public void Execute( HexModel hex )
     {
-        UpdateProp( Temperature, hex.Props[ R.Temperature ] );
+        if( _planet == null )
+            return;
 
-        float liquidLevel = (float)_planet.Props[ R.Humidity ].Value;
-        float altitude = hex.Props[ R.Altitude ].Value / 2f;
-        hex.Props[ R.Humidity ].Value = Mathf.Clamp01( liquidLevel / altitude );
-
-        float liquidPressure = 0f;
-        if( liquidLevel > altitude )
-            liquidPressure = ( liquidLevel - altitude ) * 2f;
-        //hex.Props[ R.Pressure ].Value = Mathf.Clamp01( ( 1f - altitude ) + liquidPressure );
-        
-        /*
+        /**/
         UpdateProp( Temperature, hex.Props[ R.Temperature ] );
         UpdateProp( Pressure, hex.Props[ R.Pressure ] );
         UpdateProp( Humidity, hex.Props[ R.Humidity ] );
-        UpdateProp( Radiation, hex.Props[ R.Radiation ] );
-        */
+        //UpdateProp( Radiation, hex.Props[ R.Radiation ] );
+        /**/
+
+        float altitude = hex.Props[ R.Altitude ].Value / 2f;
+        if( Humidity.Value > altitude )
+        {
+            hex.Props[ R.Humidity ].Value = 1f;
+            hex.Props[ R.Pressure ].Value += ( (float)Humidity.Value - altitude ) * 1f;
+            hex.Props[ R.Temperature ].Value -= ( hex.Props[ R.Temperature ].Value - .5f ) * .33f;
+        }
+        
+        hex.Props[ R.Temperature ].Color = Color.Lerp( Color.red, Color.green, _resistanceConfig[ R.Temperature ].GetFloatAt( hex.Props[ R.Temperature ].Value ) );
+        hex.Props[ R.Humidity ].Color = Color.Lerp( Color.red, Color.green, _resistanceConfig[ R.Humidity ].GetFloatAt( hex.Props[ R.Humidity ].Value ) );
+        hex.Props[ R.Pressure ].Color = Color.Lerp( Color.red, Color.green, _resistanceConfig[ R.Pressure ].GetFloatAt( hex.Props[ R.Pressure ].Value ) );
 
         if( hex.Unit != null )
             _unitDefenseUpdateCommand.Execute( hex.Unit );
