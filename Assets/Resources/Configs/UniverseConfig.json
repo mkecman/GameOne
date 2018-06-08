@@ -7,5 +7,5 @@
 	"Boltzmann": 0.00000005670373,
 	"PlanetValueToIntMultiplier": 1000000,
 	"IntToPlanetValueMultiplier": 0.000001,
-	"PlanetValueStringFormat" : "######"
+	"PlanetValueStringFormat" : "#####0"
 }

@@ -15,6 +15,9 @@ public class Resource
     }
 
     [SerializeField]
+    public int Index;
+
+    [SerializeField]
     internal R Type = R.Temperature;
     
     [SerializeField]

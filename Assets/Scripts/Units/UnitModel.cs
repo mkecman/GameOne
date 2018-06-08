@@ -80,12 +80,12 @@ public class UnitModel : IDisposable
 
     private void UpdateMindStats()
     {
-        Props[ R.Attack ].Value = Mathf.CeilToInt( Mathf.Pow( Props[ R.Mind ].Value, 0.5f ) * 8 ) + Props[ R.Attack ].Delta;
+        Props[ R.Attack ].Value = Mathf.CeilToInt( Mathf.Pow( Props[ R.Mind ].Value, 0.35f ) * 30 ) + Props[ R.Attack ].Delta;
     }
 
     private void UpdateSoulStats()
     {
-        Props[ R.Health ].MaxValue = Mathf.CeilToInt( Mathf.Pow( Props[ R.Soul ].Value, 0.65f ) * 400f );
+        Props[ R.Health ].MaxValue = Mathf.CeilToInt( Mathf.Pow( Props[ R.Soul ].Value, 0.65f ) * 200f );
         Props[ R.Critical ].Value = Props[ R.Soul ].Value / 300f;
     }
 

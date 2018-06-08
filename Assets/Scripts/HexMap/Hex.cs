@@ -107,15 +107,18 @@ public class Hex : GameView, IPointerClickHandler, IDropHandler, IDragHandler, I
             return;
         /**/
 
-        string delta = "";
-        if( _model.Unit != null )
-            delta = "\n" + _model.Props[ R.Element ].Delta.ToString( "F2" );
-
         if( _model.Lens == R.Default )
-            SymbolText.text = "<#000000>" + _elements[ (int)_model.Props[ R.Element ].Value ].Symbol + "</color>" + delta;
+        {
+            if( _model.Props[ R.Element ].Value > 0 )
+                SymbolText.text = "<#000000>" + _elements[ _model.Props[ R.Element ].Index ].Symbol + "</color>" +
+                    "\n" + _model.Props[ R.Element ].Delta.ToString( "##" ) +
+                    "(" + _model.Props[ R.Element ].Value.ToString( "###" ) + ")";
+            else
+                SymbolText.text = "";
+        }
         else
         if( _model.Lens == R.Element )
-            SymbolText.text = _elements[ (int)_model.Props[ R.Element ].Value ].Symbol;
+            SymbolText.text = _elements[ _model.Props[ R.Element ].Index ].Symbol;
         else
             SymbolText.text = Math.Round( _model.Props[ _model.Lens ].Value, 2 ).ToString();
         

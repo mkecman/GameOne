@@ -141,10 +141,12 @@ public class HexMapGenerator
                 SetHex( hex, R.Humidity );
                 SetHex( hex, R.Radiation );
 
-                hex.Props[ R.Element ].Value = RandomUtil.GetWeightedValue( _elementsProbabilities );
-                hex.Props[ R.Element ].Delta = _elementsDict[ (int)hex.Props[ R.Element ].Value ].Weight * 1;
+                //element index
+                hex.Props[ R.Element ].Index = (int)RandomUtil.GetWeightedValue( _elementsProbabilities );
+                hex.Props[ R.Element ].Value = _elementsDict[ hex.Props[ R.Element ].Index ].Amount;
+                hex.Props[ R.Element ].Delta = _elementsDict[ hex.Props[ R.Element ].Index ].Weight * 1;
                 Color mColor;
-                ColorUtility.TryParseHtmlString( _elementsDict[ (int)hex.Props[ R.Element ].Value ].Color, out mColor );
+                ColorUtility.TryParseHtmlString( _elementsDict[ (int)hex.Props[ R.Element ].Index ].Color, out mColor );
                 hex.Props[ R.Element ].Color = mColor;
                 //hex.Props[ R.Element ].Value = _planetModel._Elements[ RandomUtil.FromRangeInt( 0, _planetModel._Elements.Count ) ].Index;
                 //hex.Props[ R.Minerals ].Value = (int)_elements[ (int)hex.Props[ R.Element ].Value ].Weight;

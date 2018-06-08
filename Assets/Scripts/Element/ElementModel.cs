@@ -9,6 +9,7 @@ public class ElementData
     public string Group;
     public string Color;
     public float Weight;
+    public int Amount;
     public float Density;
     public float Rarity;
     public ElementRarityClass RarityClass;
