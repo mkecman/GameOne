@@ -61,9 +61,9 @@ public class LifeController : AbstractController, IGameInit
             AddCompound( 3 );
 
 
-        int unitX = ( _planet.Map.Width / 2 ) + 2;
-        int unitY = ( _planet.Map.Height / 2 ) + 2;
-        _selectedLife.Units.Add( _factory.GetUnitType( 0, unitX+2, 6 ) );
+        int unitX = ( _planet.Map.Width / 2 );
+        int unitY = ( _planet.Map.Height / 2 );
+        _selectedLife.Units.Add( _factory.GetUnitType( 0, unitX, unitY ) );
 
         if( _debug.isActive )
             _selectedLife.Units[ 0 ].Props[ R.UpgradePoint ].Value = 100;

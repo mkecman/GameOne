@@ -21,7 +21,7 @@
    "Symbol": "Li",
    "Density": 0.535,
    "Weight": 6.941,
-   "Amount": 532,
+   "Amount": 250,
    "Rarity": 0.02,
    "RarityClass": "Uncommon"
  },
@@ -57,7 +57,7 @@
    "Symbol": "O",
    "Density": 0.001251,
    "Weight": 15.9994,
-   "Amount": 11,
+   "Amount": 55,
    "Rarity": 0.09,
    "RarityClass": "Abundant"
  },
