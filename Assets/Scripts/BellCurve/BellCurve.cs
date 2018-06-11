@@ -48,12 +48,8 @@ public class BellCurve
 
     public float GetFloatAt( float time )
     {
-        return Amplitude.Value * Mathf.Exp( -Mathf.Pow( time - Position.Value, 2 ) / Range.Value );
-    }
-
-    public int GetIntAt( float time )
-    {
-        return (int)( Amplitude.Value * Mathf.Exp( -Mathf.Pow( time - Position.Value, 2 ) / Range.Value ) * 100 );
+        return 1f - Math.Abs( time - Position.Value ) * 2f;
+        //return Amplitude.Value * Mathf.Exp( -Mathf.Pow( time - Position.Value, 2 ) / Range.Value );
     }
 
     public bool ChangePosition( float delta )
