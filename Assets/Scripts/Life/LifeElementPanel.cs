@@ -60,6 +60,9 @@ public class LifeElementPanel : GameView
 
         for( int i = 0; i < sorted.Count; i++ )
             _children[ sorted[ i ] ].transform.SetSiblingIndex( i );
+
+        sorted.Clear();
+        sorted.Capacity = 0;
     }
 
     private int SortChildrenKeys( LifeElementModel x, LifeElementModel y )

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UniRx;
+using System;
 
 public class HexModel
 {
@@ -30,7 +31,7 @@ public class HexModel
         //AddProp( R.Science );
         //AddProp( R.Minerals );
 
-        AddProp( R.Element, 118 );
+        AddProp( R.Element, Int32.MaxValue );
     }
 
     private void AddProp( R prop, float maxValue = 1 )

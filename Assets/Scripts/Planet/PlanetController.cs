@@ -54,14 +54,14 @@ public class PlanetController : AbstractController, IGameInit
 
     public void PlanetLoaded()
     {
-        _planetUpdateCommand.Execute();
         GameModel.Set<PlanetModel>( _selectedPlanet );
+        _planetUpdateCommand.Execute();
         GameMessage.Listen<ClockTickMessage>( OnClockTick );
     }
 
     private void OnClockTick( ClockTickMessage value )
     {
-        _planetUpdateCommand.Execute();
+        //_planetUpdateCommand.Execute();
 
         if( _counter >= 30 ) //update every 30th tick (seconds)
         {

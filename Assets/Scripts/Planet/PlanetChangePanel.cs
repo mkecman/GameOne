@@ -93,9 +93,9 @@ public class PlanetChangePanel : GameView
         double pP = _resistanceConfig[ R.Pressure ].GetFloatAt( (float)_planet.Props[ R.Pressure ].Value );
         double hP = _resistanceConfig[ R.Humidity ].GetFloatAt( (float)_planet.Props[ R.Humidity ].Value );
         double rP = _resistanceConfig[ R.Radiation ].GetFloatAt( (float)_planet.Props[ R.Radiation ].Value );
-        PlanetGoalPercent.SetupText( tP.ToString("##%"), pP.ToString( "##%" ), hP.ToString( "##%" ), rP.ToString( "##%" ) );
+        PlanetGoalPercent.SetupText( tP.ToString("#0%"), pP.ToString( "#0%" ), hP.ToString( "#0%" ), rP.ToString( "#0%" ) );
 
-        VictoryText.text = "VICTORY: " + ( ( tP + pP + hP + rP ) / 4 ).ToString("##%");
+        VictoryText.text = "VICTORY: " + ( ( tP + pP + hP + rP ) / 4 ).ToString("#0%");
 
         PlanetTotalRow.SetupText(
             GetPropString( R.Temperature ),

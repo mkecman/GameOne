@@ -92,4 +92,5 @@ public class PanelNames
     public static string CompoundInventoryPanel = "CompoundInventoryPanel";
     public static string CompoundTooltipPanel = "CompoundTooltipPanel";
     public static string PlanetChangePanel = "PlanetChangePanel";
+    public static string NewUnitPanel = "NewUnitPanel";
 }

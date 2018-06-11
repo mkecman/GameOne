@@ -40,7 +40,8 @@ public class CloneSkill : ISkill
         if( value.Hex.isMarked.Value )
         {
             if( _pay.BuySkillUse( (int)_skillData.UseCost, 1, true ) )
-                _controller.AddUnit( value.Hex.X, value.Hex.Y );
+                GameMessage.Send( new PanelMessage( PanelAction.SHOW, PanelNames.NewUnitPanel ) );
+                //_controller.AddUnit( value.Hex.X, value.Hex.Y );
         }
 
         Deactivate();

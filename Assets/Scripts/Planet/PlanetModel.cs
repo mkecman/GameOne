@@ -28,6 +28,15 @@ public class PlanetModel
     public Dictionary<R, IntReactiveProperty> Impact = new Dictionary<R, IntReactiveProperty>();
     public Dictionary<R, int> Goals = new Dictionary<R, int>();
 
+    [SerializeField]
+    internal LongReactiveProperty _Time = new LongReactiveProperty();
+    public long Time
+    {
+        get { return _Time.Value; }
+        set { _Time.Value = value; }
+    }
+
+
     internal StringReactiveProperty _Name = new StringReactiveProperty();
     public string Name
     {

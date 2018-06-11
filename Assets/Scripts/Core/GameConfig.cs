@@ -33,6 +33,7 @@ public class GameConfig : MonoBehaviour
         //Get<BuildingConfig>().Setup();
 
         _instance.Load<LevelUpConfig>();
+        _instance.Load<UnitTypesConfig>();
     }
 
     public static T Get<T>()

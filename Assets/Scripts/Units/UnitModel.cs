@@ -50,9 +50,7 @@ public class UnitModel : IDisposable
 
     private CompositeDisposable disposables = new CompositeDisposable();
     private BodySlotsConfig _slotsConfig;
-    private LevelUpConfig _levelUpConfig;
     private List<int> _slots;
-    private LevelUpModel _levelUpModel;
 
     public UnitModel()
     {
@@ -61,7 +59,6 @@ public class UnitModel : IDisposable
         Impact.Add( R.Humidity, new IntReactiveProperty() );
         Impact.Add( R.Radiation, new IntReactiveProperty() );
 
-        _levelUpConfig = GameConfig.Get<LevelUpConfig>();
         _slotsConfig = GameConfig.Get<BodySlotsConfig>();
         _slots = _slotsConfig[ 0 ];
         for( int i = 0; i < _slots.Count; i++ )
@@ -70,44 +67,34 @@ public class UnitModel : IDisposable
 
     public void Setup()
     {
-        _levelUpModel = _levelUpConfig[ (int)Props[ R.Level ].Value ];
+        Props[ R.Body ]._Value.Subscribe( _ => UpdateBodyStats() ).AddTo( disposables );
+        Props[ R.Mind ]._Value.Subscribe( _ => UpdateMindStats() ).AddTo( disposables );
+        Props[ R.Soul ]._Value.Subscribe( _ => UpdateSoulStats() ).AddTo( disposables );
+        
+        Props[ R.Experience ].MaxValue = GetMaxXP( (int)Props[ R.Level ].Value );
+        Props[ R.Level ].Delta = GetXPCumulative( (int)Props[ R.Level ].Value );
+        Props[ R.Experience ]._Delta.Subscribe( _ => CheckLevelUp() ).AddTo( disposables );
 
-        Props[ R.Body ]._Value.Subscribe( _ => { UpdateBodySlots(); UpdateBaseStat(); } ).AddTo( disposables );
-        Props[ R.Mind ]._Value.Subscribe( _ => UpdateBaseStat() ).AddTo( disposables );
-        Props[ R.Soul ]._Value.Subscribe( _ => UpdateBaseStat() ).AddTo( disposables );
-
-        Props[ R.Experience ].MaxValue = _levelUpModel.Experience;
-        Props[ R.Experience ]._Value.Subscribe( _ => CheckLevelUp() ).AddTo( disposables );
-
-        Props[ R.Attack ]._Delta.Subscribe( _ => UpdateBaseStat() ).AddTo( disposables );
+        Props[ R.Attack ]._Delta.Subscribe( _ => UpdateMindStats() ).AddTo( disposables );
     }
 
-    private void UpdateBaseStat()
+    private void UpdateMindStats()
     {
-        Props[ R.Attack ].Value = (int)( ( Props[ R.Body ].Value + Props[ R.Mind ].Value + Props[ R.Soul ].Value ) / 3 ) + Props[ R.Attack ].Delta;
-        Props[ R.Speed ].Value = ( ( Props[ R.Body ].Value + Props[ R.Mind ].Value ) * 0.025f ) + 1;
-        Props[ R.Health ].MaxValue = (int)( Props[ R.Body ].Value + Props[ R.Soul ].Value ) * 15;
-        Props[ R.Critical ].Value = ( Props[ R.Mind ].Value * Props[ R.Soul ].Value ) / 400f;
+        Props[ R.Attack ].Value = Mathf.CeilToInt( Mathf.Pow( Props[ R.Mind ].Value, 0.35f ) * 30 ) + Props[ R.Attack ].Delta;
     }
 
-    private void CheckLevelUp()
+    private void UpdateSoulStats()
     {
-        if( Props[ R.Experience ].Value >= Props[ R.Experience ].MaxValue )
-        {
-            Props[ R.Experience ].Value -= _levelUpModel.Experience;
-            Props[ R.UpgradePoint ].Value += _levelUpModel.UpgradePoints;
-            Props[ R.Level ].Value++;
-            _levelUpModel = _levelUpConfig[ (int)Props[ R.Level ].Value ];
-            Props[ R.Experience ].MaxValue = _levelUpModel.Experience;
-
-            //Props[ R.Health ].MaxValue = _levelUpModel.Effects[ R.Health ];
-            Props[ R.Health ].Value = Props[ R.Health ].MaxValue;
-        }
+        Props[ R.Health ].MaxValue = Mathf.CeilToInt( Mathf.Pow( Props[ R.Soul ].Value, 0.65f ) * 200f );
+        Props[ R.Critical ].Value = Props[ R.Soul ].Value / 300f;
     }
 
-    private void UpdateBodySlots()
+    private void UpdateBodyStats()
     {
-        _slots = _slotsConfig[ (int)( Props[ R.Body ].Value / 8.34f ) ];
+        if( Props[ R.Body ].Value <= 1 ) //because math returns 2 for body == 1 and it should return 1
+            return;
+
+        _slots = _slotsConfig[ Mathf.CeilToInt( Mathf.Pow( Props[ R.Body ].Value, 0.5f ) * 1.1236f ) - 1 ];
         for( int i = 0; i < _slots.Count; i++ )
         {
             BodySlots[ i ].IsEnabled = _slots[ i ] == 1 ? true : false;
@@ -116,12 +103,34 @@ public class UnitModel : IDisposable
         }
     }
 
+    private void CheckLevelUp()
+    {
+        int newLevel = Mathf.Clamp( Mathf.CeilToInt( ( 5f * Mathf.Sqrt( Props[ R.Experience ].Delta ) ) / 25.455844122f ), 1, 100 );
+        int levelDelta = (int)( newLevel - Props[ R.Level ].Value );
+        if( levelDelta > 0 )
+        {
+            Props[ R.Experience ].MaxValue = GetMaxXP( newLevel );
+            Props[ R.UpgradePoint ].Value += levelDelta;
+            Props[ R.Level ].Value = newLevel;
+            Props[ R.Level ].Delta = GetXPCumulative( (int)Props[ R.Level ].Value );
+        }
+        Props[ R.Experience ].Value = Props[ R.Experience ].MaxValue + ( Props[ R.Experience ].Delta - Props[ R.Level ].Delta );
+    }
+
+    private int GetMaxXP( int level )
+    {
+        return GetXPCumulative( level ) - GetXPCumulative( level - 1 );
+    }
+
+    private int GetXPCumulative( int level )
+    {
+        return Mathf.CeilToInt( 25.92f * Mathf.Pow( level, 2 ) );
+    }
+
     public void Dispose()
     {
         _slots = null;
         _slotsConfig = null;
-        _levelUpConfig = null;
-        _levelUpModel = null;
         disposables.Clear();
         disposables = null;
     }

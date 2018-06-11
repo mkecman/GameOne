@@ -6,7 +6,6 @@ using UniRx;
 public class UnitEquipCommand : IGameInit
 {
     private CompoundConfig _compounds;
-    private UniverseConfig _universeConfig;
     private UnitController _unitController;
     private PlanetController _planetController;
     private CompoundControlMessage _message;
@@ -18,7 +17,6 @@ public class UnitEquipCommand : IGameInit
     public void Init()
     {
         _compounds = GameConfig.Get<CompoundConfig>();
-        _universeConfig = GameConfig.Get<UniverseConfig>();
         _unitController = GameModel.Get<UnitController>();
         _planetController = GameModel.Get<PlanetController>();
         _message = new CompoundControlMessage( 0, CompoundControlAction.ADD, false );
@@ -61,16 +59,16 @@ public class UnitEquipCommand : IGameInit
         }
     }
 
-    private void ApplyCompoundEffects( CompoundJSON compound, int multiplier = -1 )
+    private void ApplyCompoundEffects( CompoundJSON compound, int sign = -1 )
     {
         if( compound.Type == CompoundType.Armor )
         {
             foreach( KeyValuePair<R, float> item in compound.Effects )
             {
                 if( item.Key == R.Temperature || item.Key == R.Pressure || item.Key == R.Humidity || item.Key == R.Radiation)
-                    _unitController.SelectedUnit.Resistance[ item.Key ].ChangePosition( PPMath.Round( ( multiplier * item.Value ) / 100f ) );
+                    _unitController.SelectedUnit.Resistance[ item.Key ].ChangePosition( PPMath.Round( ( sign * item.Value ) / 100f ) );
                 else
-                    _unitController.SelectedUnit.Props[ item.Key ].Value += (int)item.Value * multiplier;
+                    _unitController.SelectedUnit.Props[ item.Key ].Value += (int)item.Value * sign;
             }
 
             _unitDefenseUpdateCommand.Execute( _unitController.SelectedUnit );
@@ -82,11 +80,11 @@ public class UnitEquipCommand : IGameInit
             {
                 if( item.Key == R.Temperature || item.Key == R.Pressure || item.Key == R.Humidity || item.Key == R.Radiation )
                 {
-                    _unitController.SelectedUnit.Impact[ item.Key ].Value += (int)( item.Value * multiplier );
-                    _planetController.SelectedPlanet.Impact[ item.Key ].Value += (int)( item.Value * multiplier );
+                    _unitController.SelectedUnit.Impact[ item.Key ].Value += (int)( item.Value * sign );
+                    _planetController.SelectedPlanet.Impact[ item.Key ].Value += (int)( item.Value * sign );
                 }
                 else
-                    _unitController.SelectedUnit.Props[ item.Key ].Delta += (int)item.Value * multiplier;
+                    _unitController.SelectedUnit.Props[ item.Key ].Delta += (int)item.Value * sign;
             }
         }
 

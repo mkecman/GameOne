@@ -7,6 +7,7 @@ public class UnitDefenseUpdateCommand : IGameInit
     private PlanetModel _planet;
     private HexModel _tempHexModel;
     private UnitModel _tempUnit;
+    private UniverseConfig _universeConfig;
 
     public void Execute( UnitModel unit )
     {
@@ -18,9 +19,9 @@ public class UnitDefenseUpdateCommand : IGameInit
         (
             unit.Resistance[ R.Temperature ].GetFloatAt( _tempHexModel.Props[ R.Temperature ].Value ) +
             unit.Resistance[ R.Pressure ].GetFloatAt( _tempHexModel.Props[ R.Pressure ].Value ) +
-            unit.Resistance[ R.Humidity ].GetFloatAt( _tempHexModel.Props[ R.Humidity ].Value ) +
-            unit.Resistance[ R.Radiation ].GetFloatAt( _tempHexModel.Props[ R.Radiation ].Value )
-        ) / 4;
+            unit.Resistance[ R.Humidity ].GetFloatAt( _tempHexModel.Props[ R.Humidity ].Value ) //+
+            //unit.Resistance[ R.Radiation ].GetFloatAt( _tempHexModel.Props[ R.Radiation ].Value )
+        ) / 3;
     }
 
     public void ExecuteAverageArmorInTime( UnitModel unit, float timeDelta )
@@ -32,9 +33,9 @@ public class UnitDefenseUpdateCommand : IGameInit
         (
             GetAverage( R.Temperature, timeDelta ) +
             GetAverage( R.Pressure, timeDelta ) +
-            GetAverage( R.Humidity, timeDelta ) +
-            GetAverage( R.Radiation, timeDelta )
-        ) / 4;
+            GetAverage( R.Humidity, timeDelta ) //+
+            //GetAverage( R.Radiation, timeDelta )
+        ) / 3;
     }
 
     private float GetAverage( R prop, float timeDelta )
@@ -42,12 +43,13 @@ public class UnitDefenseUpdateCommand : IGameInit
         return _tempUnit.Resistance[ prop ].GetAverage
                 ( 
                     _tempHexModel.Props[ prop ].Value, 
-                    _tempHexModel.Props[ prop ].Value + ( timeDelta * _planet.Impact[ prop ].Value ) 
+                    _tempHexModel.Props[ prop ].Value + ( timeDelta * _planet.Impact[ prop ].Value * _universeConfig.IntToPlanetValueMultiplier ) 
                 );
     }
 
     public void Init()
     {
+        _universeConfig = GameConfig.Get<UniverseConfig>();
         GameModel.HandleGet<PlanetModel>( OnPlanetModel );
     }
 

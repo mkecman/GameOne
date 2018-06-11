@@ -1,0 +1,291 @@
+{
+	"ElementsList":
+[
+ {
+   "Index": 1,
+   "Color": "#FFFFFF",
+   "Group": "nonmetal",
+   "Name": "Hydrogen",
+   "Symbol": "H",
+   "Density": 0.0000899,
+   "Weight": 1.00794,
+   "Rarity": 0.09,
+   "RarityClass": "Abundant"
+ },
+ {
+   "Index": 3,
+   "Color": "#CC80FF",
+   "Group": "alkali metal",
+   "Name": "Lithium",
+   "Symbol": "Li",
+   "Density": 0.535,
+   "Weight": 6.941,
+   "Rarity": 0.03,
+   "RarityClass": "Uncommon"
+ },
+ {
+   "Index": 6,
+   "Color": "#909090",
+   "Group": "nonmetal",
+   "Name": "Carbon",
+   "Symbol": "C",
+   "Density": 2.26,
+   "Weight": 12.011,
+   "Rarity": 0.08,
+   "RarityClass": "Abundant"
+ },
+ {
+   "Index": 7,
+   "Color": "#3050F8",
+   "Group": "nonmetal",
+   "Name": "Nitrogen",
+   "Symbol": "N",
+   "Density": 0.001251,
+   "Weight": 14.00674,
+   "Rarity": 0.08,
+   "RarityClass": "Abundant"
+ },
+ {
+   "Index": 8,
+   "Color": "#FF0D0D",
+   "Group": "nonmetal",
+   "Name": "Oxygen",
+   "Symbol": "O",
+   "Density": 0.001251,
+   "Weight": 15.9994,
+   "Rarity": 0.09,
+   "RarityClass": "Abundant"
+ },
+ {
+   "Index": 9,
+   "Color": "#B3E3F5",
+   "Group": "halogen",
+   "Name": "Fluorine",
+   "Symbol": "F",
+   "Density": 0.001696,
+   "Weight": 18.998403,
+   "Rarity": 0.03,
+   "RarityClass": "Uncommon"
+ },
+ {
+   "Index": 11,
+   "Color": "#AB5CF2",
+   "Group": "alkali metal",
+   "Name": "Sodium",
+   "Symbol": "Na",
+   "Density": 0.968,
+   "Weight": 22.989768,
+   "Rarity": 0.04,
+   "RarityClass": "Common"
+ },
+ {
+   "Index": 12,
+   "Color": "#8AFF00",
+   "Group": "alkaline earth metal",
+   "Name": "Magnesium",
+   "Symbol": "Mg",
+   "Density": 1.738,
+   "Weight": 24.305,
+   "Rarity": 0.06,
+   "RarityClass": "Abundant"
+ },
+ {
+   "Index": 13,
+   "Color": "#BFA6A6",
+   "Group": "metal",
+   "Name": "Aluminum",
+   "Symbol": "Al",
+   "Density": 2.7,
+   "Weight": 26.981539,
+   "Rarity": 0.05,
+   "RarityClass": "Common"
+ },
+ {
+   "Index": 14,
+   "Color": "#F0C8A0",
+   "Group": "metalloid",
+   "Name": "Silicon",
+   "Symbol": "Si",
+   "Density": 2.33,
+   "Weight": 28.0855,
+   "Rarity": 0.07,
+   "RarityClass": "Abundant"
+ },
+ {
+   "Index": 15,
+   "Color": "#FF8000",
+   "Group": "nonmetal",
+   "Name": "Phosphorus",
+   "Symbol": "P",
+   "Density": 1.823,
+   "Weight": 30.973762,
+   "Rarity": 0.03,
+   "RarityClass": "Uncommon"
+ },
+ {
+   "Index": 16,
+   "Color": "#FFFF30",
+   "Group": "nonmetal",
+   "Name": "Sulfur",
+   "Symbol": "S",
+   "Density": 1.96,
+   "Weight": 32.066,
+   "Rarity": 0.04,
+   "RarityClass": "Common"
+ },
+ {
+   "Index": 17,
+   "Color": "#1FF01F",
+   "Group": "halogen",
+   "Name": "Chlorine",
+   "Symbol": "Cl",
+   "Density": 0.003214,
+   "Weight": 35.4527,
+   "Rarity": 0.04,
+   "RarityClass": "Common"
+ },
+ {
+   "Index": 20,
+   "Color": "#3DFF00",
+   "Group": "alkaline earth metal",
+   "Name": "Calcium",
+   "Symbol": "Ca",
+   "Density": 1.55,
+   "Weight": 40.078,
+   "Rarity": 0.05,
+   "RarityClass": "Common"
+ },
+ {
+   "Index": 22,
+   "Color": "#BFC2C7",
+   "Group": "transition metal",
+   "Name": "Titanium",
+   "Symbol": "Ti",
+   "Density": 4.507,
+   "Weight": 47.88,
+   "Rarity": 0.02,
+   "RarityClass": "Uncommon"
+ },
+ {
+   "Index": 26,
+   "Color": "#E06633",
+   "Group": "transition metal",
+   "Name": "Iron",
+   "Symbol": "Fe",
+   "Density": 7.874,
+   "Weight": 55.847,
+   "Rarity": 0.05,
+   "RarityClass": "Common"
+ },
+ {
+   "Index": 27,
+   "Color": "#F090A0",
+   "Group": "transition metal",
+   "Name": "Cobalt",
+   "Symbol": "Co",
+   "Density": 8.9,
+   "Weight": 58.9332,
+   "Rarity": 0.02,
+   "RarityClass": "Uncommon"
+ },
+ {
+   "Index": 28,
+   "Color": "#50D050",
+   "Group": "transition metal",
+   "Name": "Nickel",
+   "Symbol": "Ni",
+   "Density": 8.908,
+   "Weight": 58.6934,
+   "Rarity": 0.04,
+   "RarityClass": "Common"
+ },
+ {
+   "Index": 29,
+   "Color": "#C88033",
+   "Group": "transition metal",
+   "Name": "Copper",
+   "Symbol": "Cu",
+   "Density": 8.92,
+   "Weight": 63.546,
+   "Rarity": 0.02,
+   "RarityClass": "Uncommon"
+ },
+ {
+   "Index": 30,
+   "Color": "#7D80B0",
+   "Group": "transition metal",
+   "Name": "Zinc",
+   "Symbol": "Zn",
+   "Density": 7.14,
+   "Weight": 65.39,
+   "Rarity": 0.02,
+   "RarityClass": "Uncommon"
+ },
+ {
+   "Index": 47,
+   "Color": "#C0C0C0",
+   "Group": "transition metal",
+   "Name": "Silver",
+   "Symbol": "Ag",
+   "Density": 10.49,
+   "Weight": 107.8682,
+   "Rarity": 0.01,
+   "RarityClass": "Rare"
+ },
+ {
+   "Index": 78,
+   "Color": "#D0D0E0",
+   "Group": "transition metal",
+   "Name": "Platinum",
+   "Symbol": "Pt",
+   "Density": 21.09,
+   "Weight": 195.08,
+   "Rarity": 0.01,
+   "RarityClass": "Rare"
+ },
+ {
+   "Index": 79,
+   "Color": "#FFD123",
+   "Group": "transition metal",
+   "Name": "Gold",
+   "Symbol": "Au",
+   "Density": 19.3,
+   "Weight": 196.96654,
+   "Rarity": 0.01,
+   "RarityClass": "Rare"
+ },
+ {
+   "Index": 80,
+   "Color": "#B8B8D0",
+   "Group": "transition metal",
+   "Name": "Mercury",
+   "Symbol": "Hg",
+   "Density": 13.534,
+   "Weight": 200.59,
+   "Rarity": 0.01,
+   "RarityClass": "Rare"
+ },
+ {
+   "Index": 92,
+   "Color": "#008FFF",
+   "Group": "actinoid",
+   "Name": "Uranium",
+   "Symbol": "U",
+   "Density": 19.05,
+   "Weight": 238.0289,
+   "Rarity": 0.005,
+   "RarityClass": "Rare"
+ },
+ {
+   "Index": 94,
+   "Color": "#006BFF",
+   "Group": "actinoid",
+   "Name": "Plutonium",
+   "Symbol": "Pu",
+   "Density": 19.816,
+   "Weight": 244.0642,
+   "Rarity": 0.005,
+   "RarityClass": "Rare"
+ }
+]
+}

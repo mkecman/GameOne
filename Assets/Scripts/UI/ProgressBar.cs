@@ -1,29 +1,34 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using UniRx;
+using UnityEngine;
 
-public class ProgressBar : MonoBehaviour
+public class ProgressBar : GameView
 {
     public GameObject Fill;
-    
+    private float _width;
+
     private float _value = 0f;
     private float _maxValue = 100f;
 
     private RectTransform _fillRect;
-    //private Image _fillImage;
-    private float _width;
 
     void Awake()
     {
         _fillRect = Fill.GetComponent<RectTransform>();
-        Invoke( "Setup", 0.1f ); //hack to wait for first frame and layout calculations before getting width of RectTransform
+
+        //hack to wait for layout calculations before getting width of RectTransform
+        gameObject.GetComponent<RectTransform>().ObserveEveryValueChanged( _ => _.rect ).Subscribe( _ => SetWidth( _.width ) ).AddTo( disposables );
     }
 
-    public void Setup()
+    public void SetWidth( float width )
     {
-        _width = gameObject.GetComponent<RectTransform>().rect.width;
-        SetFill();
+        if( width > 0 )
+        {
+            _width = width;
+            SetFill();
+            disposables.Clear();
+        }
     }
-    
+
     public float Value
     {
         set
@@ -31,13 +36,11 @@ public class ProgressBar : MonoBehaviour
             if( value == _value )
                 return;
 
-            /**/
             if( value < 0 )
                 _value = 0;
             if( value > _maxValue )
                 _value = _maxValue;
-            /**/
-            //if( value >= 0 && value <= _maxValue )
+
             _value = value;
 
             SetFill();
@@ -61,18 +64,11 @@ public class ProgressBar : MonoBehaviour
     private void SetFill()
     {
         _fillRect.sizeDelta = new Vector2( ( _value / _maxValue ) * _width, _fillRect.sizeDelta.y );
-
-        /*
-        if( _value == _maxValue )
-            _fillImage.color = Color.red;
-        else
-            _fillImage.color = Color.white;
-        */
     }
 
-    private void OnDestroy()
+    public override void OnDestroy()
     {
-        //_fillImage = null;
+        base.OnDestroy();
         _fillRect = null;
     }
 }

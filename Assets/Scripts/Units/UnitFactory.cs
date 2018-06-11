@@ -1,25 +1,56 @@
-﻿using System.Collections.Generic;
+﻿using System;
 
 public class UnitFactory : IGameInit
 {
-    private PlanetController _planetController;
+    private PlanetModel _planet;
     private BellCurveConfig _bellCurves;
     private SkillConfig _skills;
+    private UnitTypesConfig _unitsConfig;
+
 
     public void Init()
     {
-        _planetController = GameModel.Get<PlanetController>();
+        GameModel.HandleGet<PlanetModel>( OnPlanetChange );
         _bellCurves = GameConfig.Get<BellCurveConfig>();
         _skills = GameConfig.Get<SkillConfig>();
+        _unitsConfig = GameConfig.Get<UnitTypesConfig>();
     }
 
-    public UnitModel GetUnit( int x, int y )
+    public UnitModel GetUnitType( int index, int x, int y )
+    {
+        UnitModel unit = GetUnit( x, y );
+
+        unit.Impact[ R.Temperature ].Value = _unitsConfig[ index ].ITemperature;
+        _planet.Impact[ R.Temperature ].Value += _unitsConfig[ index ].ITemperature;
+        unit.Impact[ R.Pressure ].Value = _unitsConfig[ index ].IPressure;
+        _planet.Impact[ R.Pressure ].Value += _unitsConfig[ index ].IPressure;
+        unit.Impact[ R.Humidity ].Value = _unitsConfig[ index ].IHumidity;
+        _planet.Impact[ R.Humidity ].Value += _unitsConfig[ index ].IHumidity;
+        //unit.Impact[ R.Radiation ].Value = _unitsConfig[ index ].IRadiation;
+        //_planet.Impact[ R.Radiation ].Value += _unitsConfig[ index ].IRadiation;
+
+        unit.Resistance[ R.Temperature ].Position.Value = _unitsConfig[ index ].Temperature;
+        unit.Resistance[ R.Pressure ].Position.Value = _unitsConfig[ index ].Pressure;
+        unit.Resistance[ R.Humidity ].Position.Value = _unitsConfig[ index ].Humidity;
+        unit.Resistance[ R.Radiation ].Position.Value = _unitsConfig[ index ].Radiation;
+
+        unit.Props[ R.Mind ].Value = _unitsConfig[ index ].Mind;
+        unit.Props[ R.Soul ].Value = _unitsConfig[ index ].Soul;
+        unit.Props[ R.Body ].Value = _unitsConfig[ index ].Body;
+
+        unit.Setup();
+        unit.Props[ R.Health ].Value = unit.Props[ R.Health ].MaxValue;
+
+        return unit;
+    }
+
+    private UnitModel GetUnit( int x, int y )
     {
         UnitModel unit = new UnitModel();
 
         //STATS
         unit.Props.Add( R.Health, new Resource( R.Health, 100, 0, 0, 100 ) );
-        unit.Props.Add( R.Experience, new Resource( R.Experience, 1, 0, 0, 32000 ) );
+        unit.Props.Add( R.Experience, new Resource( R.Experience, 0, 0, 0, 1 ) );
         unit.Props.Add( R.Level, new Resource( R.Level, 1, 0, 1, 100 ) );
         unit.Props.Add( R.UpgradePoint, new Resource( R.UpgradePoint, 0, 0, 0, 100 ) );
 
@@ -35,7 +66,7 @@ public class UnitFactory : IGameInit
         unit.Resistance = GameModel.Copy( _bellCurves );
 
         //MAP POSITION
-        unit.Props.Add( R.Altitude, new Resource( R.Altitude, _planetController.SelectedPlanet.Map.Table[ x ][ y ].Props[ R.Altitude ].Value, 0, 0, 2 ) );
+        unit.Props.Add( R.Altitude, new Resource( R.Altitude, _planet.Map.Table[ x ][ y ].Props[ R.Altitude ].Value, 0, 0, 2 ) );
         //unit.Props.Add( R.Altitude, new Resource( R.Altitude, 0 ) );
         unit.X = x;
         unit.Y = y;
@@ -58,8 +89,11 @@ public class UnitFactory : IGameInit
         unit.ActiveSkills.Add( 3 );//move
         unit.ActiveSkills.Add( 1 );//clone
 
-        unit.Setup();
-
         return unit;
+    }
+
+    private void OnPlanetChange( PlanetModel value )
+    {
+        _planet = value;
     }
 }

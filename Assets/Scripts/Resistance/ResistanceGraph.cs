@@ -58,7 +58,7 @@ public class ResistanceGraph : GameView, IPointerClickHandler
                 _selectedUnit.Resistance[ Lens ].Consumption.Subscribe( _ =>
                 {
                     Gradient.Draw( _selectedUnit.Resistance[ Lens ] );
-                    UpdateUI( _selectedUnit.Resistance[ Lens ].GetIntAt( _hexModel.Props[ Lens ].Value ) + "%", _hexModel.Props[ Lens ].Value );
+                    UpdateUI( _selectedUnit.Resistance[ Lens ].GetFloatAt( _hexModel.Props[ Lens ].Value ).ToString( "#%" ), _hexModel.Props[ Lens ].Value );
                 } ).AddTo( disposables );
             }
             else

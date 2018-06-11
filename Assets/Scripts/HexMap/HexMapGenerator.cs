@@ -10,6 +10,8 @@ public class HexMapGenerator
     private List<ElementData> _elements;
     private Dictionary<int, ElementData> _elementsDict;
     private List<WeightedValue> _elementsProbabilities;
+    private HexScoreUpdateCommand _hexScoreUpdateCommand;
+    private HexUpdateCommand _hexUpdateCommand;
     private Vector2[] Ranges = new Vector2[ 7 ];
     private BellCurveConfig _resistanceConfig;
     private PlanetModel _planetModel;
@@ -24,6 +26,8 @@ public class HexMapGenerator
         _elements = GameConfig.Get<ElementConfig>().ElementsList;
         _elementsDict = GameConfig.Get<ElementConfig>().ElementsDictionary;
         _elementsProbabilities = new List<WeightedValue>();
+        _hexScoreUpdateCommand = GameModel.Get<HexScoreUpdateCommand>();
+        _hexUpdateCommand = GameModel.Get<HexUpdateCommand>();
 
         for( int i = 0; i < _elements.Count; i++ )
         {
@@ -103,9 +107,10 @@ public class HexMapGenerator
                 // keep track of the max and min values found
                 SetInitialHexValue( hex, R.Altitude, altitude );
                 SetInitialHexValue( hex, R.Temperature, temperature );
-                SetInitialHexValue( hex, R.Humidity, ( humidity - ( temperature * 0.3f ) ) );
-                SetInitialHexValue( hex, R.Pressure, ( ( 1 - altitude ) + ( 1 - temperature ) ) / 2 );
-                SetInitialHexValue( hex, R.Radiation, ( radiation + equador ) / 2 );
+                SetInitialHexValue( hex, R.Humidity, humidity );
+                SetInitialHexValue( hex, R.Pressure, 1f - altitude );
+
+                SetInitialHexValue( hex, R.Radiation, .5f );
             }
         }
 
@@ -116,7 +121,7 @@ public class HexMapGenerator
             {
                 hex = _map.Table[ x ][ y ];
 
-                SetHex( hex, R.Altitude );
+                SetHex( hex, R.Altitude, 0.005f );
                 /*
                 if( hex.Props[ R.Altitude ].Value < _planetModel.LiquidLevel )
                 {
@@ -139,30 +144,31 @@ public class HexMapGenerator
                 SetHex( hex, R.Humidity );
                 SetHex( hex, R.Radiation );
 
-                hex.Props[ R.Element ].Value = RandomUtil.GetWeightedValue( _elementsProbabilities );
-                hex.Props[ R.Element ].Delta = _elementsDict[ (int)hex.Props[ R.Element ].Value ].Weight * 1;
+                //element index
+                hex.Props[ R.Element ].Index = (int)RandomUtil.GetWeightedValue( _elementsProbabilities );
+                hex.Props[ R.Element ].Value = _elementsDict[ hex.Props[ R.Element ].Index ].Amount;
+                hex.Props[ R.Element ].Delta = _elementsDict[ hex.Props[ R.Element ].Index ].Weight * 1;
                 Color mColor;
-                ColorUtility.TryParseHtmlString( _elementsDict[ (int)hex.Props[ R.Element ].Value ].Color, out mColor );
+                ColorUtility.TryParseHtmlString( _elementsDict[ (int)hex.Props[ R.Element ].Index ].Color, out mColor );
                 hex.Props[ R.Element ].Color = mColor;
                 //hex.Props[ R.Element ].Value = _planetModel._Elements[ RandomUtil.FromRangeInt( 0, _planetModel._Elements.Count ) ].Index;
                 //hex.Props[ R.Minerals ].Value = (int)_elements[ (int)hex.Props[ R.Element ].Value ].Weight;
 
-                hex.Props[ R.HexScore ].Value = 0;
-                hex.Props[ R.HexScore ].Color = Color.red;
-
                 hex.Props[ R.Altitude ].Value *= 2;
-                
+
+                _hexUpdateCommand.Execute( hex );
+                _hexScoreUpdateCommand.ExecuteHex( hex );
             }
         }
     }
     
-    private void SetHex( HexModel hex, R type )
+    private void SetHex( HexModel hex, R type, float minAltitude = 0 )
     {
         //normalize value to be between 0 - 1
         hex.Props[ type ].Delta = _planetModel.Props[ type ].Variation * ( Mathf.InverseLerp( Ranges[ (int)type ].x, Ranges[ (int)type ].y, hex.Props[ type ].Delta ) - 0.5f );
 
         //add variation to properties based on planet values
-        hex.Props[ type ].Value = Mathf.Clamp( (float)_planetModel.Props[ type ].Value + hex.Props[ type ].Delta, 0, 1 );
+        hex.Props[ type ].Value = Mathf.Clamp( (float)_planetModel.Props[ type ].Value + hex.Props[ type ].Delta, minAltitude, 1 );
 
         hex.Props[ type ].Color = Color.Lerp( Color.red, Color.green, _resistanceConfig[type].GetFloatAt( hex.Props[ type ].Value ) );
     }

@@ -1,4 +1,5 @@
-﻿using PsiPhi;
+﻿using System;
+using PsiPhi;
 using UnityEngine;
 
 public class HexUpdateCommand : IGameInit
@@ -7,43 +8,59 @@ public class HexUpdateCommand : IGameInit
     private PlanetModel _planet;
     private UnitDefenseUpdateCommand _unitDefenseUpdateCommand;
     private BellCurveConfig _resistanceConfig;
+    PlanetProperty Temperature;
+    PlanetProperty Pressure;
+    PlanetProperty Humidity;
+    PlanetProperty Radiation;
 
     public void Init()
     {
-        _planetController = GameModel.Get<PlanetController>();
+        GameModel.HandleGet<PlanetModel>( OnPlanetChange );
         _unitDefenseUpdateCommand = GameModel.Get<UnitDefenseUpdateCommand>();
         _resistanceConfig = GameConfig.Get<BellCurveConfig>();
     }
 
+    private void OnPlanetChange( PlanetModel value )
+    {
+        _planet = value;
+        Temperature = _planet.Props[ R.Temperature ];
+        Pressure = _planet.Props[ R.Pressure ];
+        Humidity = _planet.Props[ R.Humidity ];
+        Radiation = _planet.Props[ R.Radiation ];
+    }
+
     public void Execute( HexModel hex )
     {
-        _planet = _planetController.SelectedPlanet;
+        if( _planet == null )
+            return;
 
-        UpdateProp( R.Temperature, hex );
-        UpdateProp( R.Pressure, hex );
-        UpdateProp( R.Humidity, hex );
-        UpdateProp( R.Radiation, hex );
+        /**/
+        UpdateProp( Temperature, hex.Props[ R.Temperature ] );
+        UpdateProp( Pressure, hex.Props[ R.Pressure ] );
+        UpdateProp( Humidity, hex.Props[ R.Humidity ] );
+        //UpdateProp( Radiation, hex.Props[ R.Radiation ] );
+        /**/
 
-        hex.Props[ R.HexScore ].Value = 
-                ( GetPropBellCurveValue( R.Temperature, hex ) +
-                GetPropBellCurveValue( R.Pressure, hex ) +
-                GetPropBellCurveValue( R.Humidity, hex ) +
-                GetPropBellCurveValue( R.Radiation, hex ) )
-                / 4f;
-
-        hex.Props[ R.HexScore ].Color = Color.Lerp( Color.red, Color.green, hex.Props[ R.HexScore ].Value );
+        float altitude = hex.Props[ R.Altitude ].Value / 2f;
+        if( Humidity.Value > altitude )
+        {
+            hex.Props[ R.Humidity ].Value = 1f;
+            hex.Props[ R.Pressure ].Value += ( (float)Humidity.Value - altitude ) * 1f;
+            hex.Props[ R.Temperature ].Value -= ( hex.Props[ R.Temperature ].Value - .5f ) * .33f;
+        }
+        
+        hex.Props[ R.Temperature ].Color = Color.Lerp( Color.red, Color.green, _resistanceConfig[ R.Temperature ].GetFloatAt( hex.Props[ R.Temperature ].Value ) );
+        hex.Props[ R.Humidity ].Color = Color.Lerp( Color.red, Color.green, _resistanceConfig[ R.Humidity ].GetFloatAt( hex.Props[ R.Humidity ].Value ) );
+        hex.Props[ R.Pressure ].Color = Color.Lerp( Color.red, Color.green, _resistanceConfig[ R.Pressure ].GetFloatAt( hex.Props[ R.Pressure ].Value ) );
 
         if( hex.Unit != null )
             _unitDefenseUpdateCommand.Execute( hex.Unit );
     }
 
-    private void UpdateProp( R type, HexModel hex )
+    private void UpdateProp( PlanetProperty planetProp, Resource hexProp )
     {
-        hex.Props[ type ].Value = Mathf.Clamp( (float)_planet.Props[ type ].Value + hex.Props[ type ].Delta, 0, 1 );
+        hexProp.Value = Mathf.Clamp( (float)planetProp.Value + hexProp.Delta, 0, 1 );
     }
 
-    private float GetPropBellCurveValue( R type, HexModel hex )
-    {
-        return _resistanceConfig[ type ].GetFloatAt( hex.Props[ type ].Value );
-    }
+    
 }

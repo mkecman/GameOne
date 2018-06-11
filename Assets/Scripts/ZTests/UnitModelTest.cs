@@ -23,7 +23,7 @@ public class UnitModelTest : MonoBehaviour
 
         for( int i = 0; i < 1000; i++ )
         {
-            _units.Add( _factory.GetUnit( 0, 0 ) );
+            _units.Add( _factory.GetUnitType( 0, 0, 0 ) );
         }
 
         Invoke( "Dispose", 2 );
