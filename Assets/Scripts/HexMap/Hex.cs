@@ -71,7 +71,9 @@ public class Hex : GameView, IPointerClickHandler, IDropHandler, IDragHandler, I
         //_model.Props[ R.Element ].Color = _newHexColor;
 
         SetColor();
-        SetSymbol();
+
+        if( _model.Lens == R.HexScore )
+            SetSymbol();
     }
 
     private Color AddColor( Color original, Color addition )
