@@ -97,8 +97,11 @@ public class GameController : MonoBehaviour
     {
         _player.Model = JsonConvert.DeserializeObject<PlayerModel>( File.ReadAllText( Application.persistentDataPath + "-Player.json" ) );
 
+        _galaxy = GameModel.Get<GalaxyController>();
         _galaxy.Load( 0 );
+        _star = GameModel.Get<StarController>();
         _star.Load( 0 );
+        _planet = GameModel.Get<PlanetController>();
         _planet.Load( 0 );
 
         clock.StartTimer();
