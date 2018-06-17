@@ -11,9 +11,12 @@ public class CompoundEditorEditor : Editor
     {
         CompoundEditor editor = (CompoundEditor)target;
 
-        Rect r = EditorGUILayout.BeginHorizontal( "Window", GUILayout.ExpandHeight( true ) );
-        m_SimpleTreeView.OnGUI( r );
-        EditorGUILayout.EndHorizontal();
+        EditorGUILayout.BeginScrollView( new Vector2(), GUILayout.MaxHeight(800f), GUILayout.ExpandHeight(true) );
+
+        //Rect r = EditorGUILayout.BeginVertical( "Window" );
+        m_SimpleTreeView.OnGUI( EditorGUILayout.GetControlRect( GUILayout.ExpandHeight( true ) ) );
+        //EditorGUILayout.EndVertical();
+        EditorGUILayout.EndScrollView();
 
 
         if( GUILayout.Button( "Add Compound" ) )

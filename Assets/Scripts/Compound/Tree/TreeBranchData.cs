@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 [Serializable]
 public class TreeBranchData
@@ -8,18 +9,16 @@ public class TreeBranchData
     public int ParentIndex;
     public string Name;
     public bool IsUnlocked;
-    public List<TreeBranchData> Children;
-
+    [HideInInspector]
+    public List<TreeBranchData> Children = new List<TreeBranchData>();
 
     public TreeBranchData()
     {
-        Children = new List<TreeBranchData>();
     }
 
     public TreeBranchData( int index, string name = "New Branch" )
     {
         Index = index;
         Name = name;
-        Children = new List<TreeBranchData>();
     }
 }

@@ -12,7 +12,10 @@ public class CompoundEditorTree : TreeView
     public CompoundEditor Editor;
     private int _currentDragIndex;
 
-    public CompoundEditorTree( TreeViewState treeViewState ) : base( treeViewState ) { }
+    public CompoundEditorTree( TreeViewState treeViewState ) : base( treeViewState )
+    {
+        showBorder = true;
+    }
 
     protected override TreeViewItem BuildRoot()
     {
