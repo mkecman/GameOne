@@ -6,6 +6,8 @@ using Newtonsoft.Json;
 
 public class CompoundEditor : MonoBehaviour
 {
+    public TreeBranchData SelectedCompound;
+
     public List<CompoundJSON> List;
     
     public void Load()

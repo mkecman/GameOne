@@ -34,6 +34,8 @@ public class GameConfig : MonoBehaviour
 
         _instance.Load<LevelUpConfig>();
         _instance.Load<UnitTypesConfig>();
+
+        _instance.Load<CompoundTreeConfig>();
     }
 
     public static T Get<T>()
