@@ -9,7 +9,7 @@ public class CompoundEditorTree : TreeView
 {
     public CompoundTreeConfig RootConfig;
     public int TotalItems;
-    public CompoundEditor Editor;
+    public OrgansTreeUnlockView Editor;
     private int _currentDragIndex;
 
     public CompoundEditorTree( TreeViewState treeViewState ) : base( treeViewState )

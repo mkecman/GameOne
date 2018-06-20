@@ -1,11 +1,10 @@
-﻿using Newtonsoft.Json;
-using System.IO;
+﻿using UnityEngine;
+using System.Collections;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
-using UnityEngine;
 
-[CustomEditor( typeof( CompoundEditor ) )]
-public class CompoundEditorEditor : Editor
+[CustomEditor( typeof( OrgansTreeUnlockView ) )]
+public class OrgansTreeUnlockViewEditor : Editor
 {
     [SerializeField]
     private TreeViewState m_TreeViewState;
@@ -15,7 +14,10 @@ public class CompoundEditorEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        EditorGUILayout.BeginScrollView( new Vector2(), GUILayout.MaxHeight(800f), GUILayout.ExpandHeight(true) );
+        OrgansTreeUnlockView editor = (OrgansTreeUnlockView)target;
+        _treeConfig = editor.TreeConfig;
+
+        EditorGUILayout.BeginScrollView( new Vector2(), GUILayout.MaxHeight( 800f ), GUILayout.ExpandHeight( true ) );
         m_SimpleTreeView.OnGUI( EditorGUILayout.GetControlRect( GUILayout.ExpandHeight( true ) ) );
         EditorGUILayout.EndScrollView();
 
@@ -30,6 +32,31 @@ public class CompoundEditorEditor : Editor
                 Debug.Log( "Please press Load first to load data from the config!" );
         }
 
+
+        if( GUILayout.Button( "Load" ) )
+        {
+            editor.Load();
+            _treeConfig = editor.TreeConfig;
+            m_SimpleTreeView.Editor = editor;
+            m_SimpleTreeView.RootConfig = _treeConfig;
+            m_SimpleTreeView.Reload();
+        }
+
+        if( GUILayout.Button( "Draw" ) )
+        {
+            editor.Draw();
+        }
+
+        if( GUILayout.Button( "Update Connections" ) )
+        {
+            editor.UpdateConnections();
+        }
+
+        if( GUILayout.Button( "Save" ) )
+        {
+            editor.Save();
+        }
+
         DrawDefaultInspector();
     }
 
@@ -41,5 +68,4 @@ public class CompoundEditorEditor : Editor
         m_SimpleTreeView = new CompoundEditorTree( m_TreeViewState );
         m_SimpleTreeView.Reload();
     }
-
 }
