@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Text.RegularExpressions;
 using System.Collections;
 using System.Linq;
+using PsiPhi;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -83,6 +84,7 @@ namespace UniRx
     [UnityEditor.CustomPropertyDrawer(typeof(AnimationCurveReactiveProperty))]
     [UnityEditor.CustomPropertyDrawer(typeof(BoundsReactiveProperty))]
     [UnityEditor.CustomPropertyDrawer(typeof(QuaternionReactiveProperty))]
+    [UnityEditor.CustomPropertyDrawer( typeof( TreeBranchStateReactiveProperty ) )]
     public class InspectorDisplayDrawer : UnityEditor.PropertyDrawer
     {
         public override void OnGUI(Rect position, UnityEditor.SerializedProperty property, GUIContent label)

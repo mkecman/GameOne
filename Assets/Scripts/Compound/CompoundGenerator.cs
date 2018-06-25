@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System.IO;
 using System;
 
+[ExecuteInEditMode]
 public class CompoundGenerator : MonoBehaviour
 {
 
@@ -14,21 +15,27 @@ public class CompoundGenerator : MonoBehaviour
     private List<ElementData> _elementsList;
     private List<BuildingModel> _buildings;
     private Dictionary<int, Dictionary<ElementRarityClass, CompoundLevelData>> _levelConfig;
-    private List<CompoundJSON> _compounds;
+    private Dictionary<int, CompoundJSON> _compounds;
     private int _indexer;
     private Dictionary<ElementRarityClass, List<WeightedValue>> _elementsProbabilities;
     private Color[] _pixels;
     private List<CompoundExcelJSON> _rawCompounds;
+    private ElementConfig _elementConfig;
 
     // Use this for initialization
-    void Start()
+    public void Awake()
     {
-        _elements = GameConfig.Get<ElementConfig>().ElementsDictionary;
-        _elementsList = GameConfig.Get<ElementConfig>().ElementsList;
-        _buildings = GameConfig.Get<BuildingConfig>().Buildings;
-        _compounds = GameConfig.Get<CompoundConfig>();
+        Debug.Log( "Compound Generator has Awaken" );
+        _elementConfig = Load<ElementConfig>();
+        _elementConfig.Setup();
+        _elements = _elementConfig.ElementsDictionary;
+        _elementsList = _elementConfig.ElementsList;
+        _buildings = Load<BuildingConfig>().Buildings;
+        CompoundConfig compoundJSONs = Load<CompoundConfig>();
+        compoundJSONs.Setup();
+        _compounds = compoundJSONs;
 
-        PrintCompoundsStats();
+        //PrintCompoundsStats();
 
         _elementsProbabilities = new Dictionary<ElementRarityClass, List<WeightedValue>>();
         _elementsProbabilities.Add( ElementRarityClass.Abundant, new List<WeightedValue>() );
@@ -95,19 +102,19 @@ public class CompoundGenerator : MonoBehaviour
         };
         _levelConfig.Add( 5, temp );
 
-        _compounds = new List<CompoundJSON>();
-        _compounds.Add( new CompoundJSON() );
+        _compounds = new Dictionary<int,CompoundJSON>();
+        _compounds.Add( 0, new CompoundJSON() );
         _indexer = 1;
         ///////END SETUP
 
-
+        /*
         GenerateConsumableCompounds();
-
-        GenerateArmorCompounds();
-        GenerateWeaponCompounds();
-        //ConvertOldConfigToNewFormat();
+        
+        //GenerateArmorCompounds();
+        //GenerateWeaponCompounds();
 
         SaveToFile();
+        /**/
     }
 
     private void GenerateConsumableCompounds()
@@ -147,7 +154,7 @@ public class CompoundGenerator : MonoBehaviour
 
             CreateCompoundTexture( compound );
 
-            _compounds.Add( compound );
+            _compounds.Add( compound.Index, compound );
             _indexer++;
         }
     }
@@ -162,15 +169,15 @@ public class CompoundGenerator : MonoBehaviour
         bool isPositive = true;
         for( int i = 1; i <= 5; i++ )
         {
-            CreateCompound( R.Temperature, i, isPositive, CompoundType.Weapon );
-            CreateCompound( R.Pressure, i, isPositive, CompoundType.Weapon );
-            CreateCompound( R.Humidity, i, isPositive, CompoundType.Weapon );
-            CreateCompound( R.Radiation, i, isPositive, CompoundType.Weapon );
+            _compounds.Add( _indexer, CreateCompound( _indexer++, R.Temperature, i, isPositive, CompoundType.Weapon ) );
+            _compounds.Add( _indexer, CreateCompound( _indexer++, R.Pressure, i, isPositive, CompoundType.Weapon ));
+            _compounds.Add( _indexer, CreateCompound( _indexer++, R.Humidity, i, isPositive, CompoundType.Weapon ));
+            _compounds.Add( _indexer, CreateCompound( _indexer++, R.Radiation, i, isPositive, CompoundType.Weapon ));
             isPositive = false;
-            CreateCompound( R.Temperature, i, isPositive, CompoundType.Weapon );
-            CreateCompound( R.Pressure, i, isPositive, CompoundType.Weapon );
-            CreateCompound( R.Humidity, i, isPositive, CompoundType.Weapon );
-            CreateCompound( R.Radiation, i, isPositive, CompoundType.Weapon );
+            _compounds.Add( _indexer, CreateCompound( _indexer++, R.Temperature, i, isPositive, CompoundType.Weapon ));
+            _compounds.Add( _indexer, CreateCompound( _indexer++, R.Pressure, i, isPositive, CompoundType.Weapon ));
+            _compounds.Add( _indexer, CreateCompound( _indexer++, R.Humidity, i, isPositive, CompoundType.Weapon ));
+            _compounds.Add( _indexer, CreateCompound( _indexer++, R.Radiation, i, isPositive, CompoundType.Weapon ));
             isPositive = true;
         }
 
@@ -181,27 +188,27 @@ public class CompoundGenerator : MonoBehaviour
         bool isPositive = true;
         for( int i = 1; i <= 5; i++ )
         {
-            CreateCompound( R.Temperature, i, isPositive );
-            CreateCompound( R.Pressure, i, isPositive );
-            CreateCompound( R.Humidity, i, isPositive );
-            CreateCompound( R.Radiation, i, isPositive );
+            _compounds.Add( _indexer, CreateCompound( _indexer++, R.Temperature, i, isPositive ));
+            _compounds.Add( _indexer, CreateCompound( _indexer++, R.Pressure, i, isPositive ));
+            _compounds.Add( _indexer, CreateCompound( _indexer++, R.Humidity, i, isPositive ));
+            _compounds.Add( _indexer, CreateCompound( _indexer++, R.Radiation, i, isPositive ));
             isPositive = false;
-            CreateCompound( R.Temperature, i, isPositive );
-            CreateCompound( R.Pressure, i, isPositive );
-            CreateCompound( R.Humidity, i, isPositive );
-            CreateCompound( R.Radiation, i, isPositive );
+            _compounds.Add( _indexer, CreateCompound( _indexer++, R.Temperature, i, isPositive ));
+            _compounds.Add( _indexer, CreateCompound( _indexer++, R.Pressure, i, isPositive ));
+            _compounds.Add( _indexer, CreateCompound( _indexer++, R.Humidity, i, isPositive ));
+            _compounds.Add( _indexer, CreateCompound( _indexer++, R.Radiation, i, isPositive ));
             isPositive = true;
         }
     }
 
-    private void CreateCompound( R effect, int level, bool isPositive, CompoundType compoundType = CompoundType.Armor )
+    public CompoundJSON CreateCompound( int index, R effect, int level, bool isPositive, CompoundType compoundType = CompoundType.Armor )
     {
         float sign = isPositive ? 1 : -1;
         CompoundJSON compound = new CompoundJSON
         {
-            Index = _indexer,
+            Index = index,
             Type = compoundType,
-            Name = compoundType.ToString() + " #" + _indexer
+            Name = compoundType.ToString() + " #" + index
         };
 
         if( compoundType == CompoundType.Weapon )
@@ -226,8 +233,7 @@ public class CompoundGenerator : MonoBehaviour
 
         CreateCompoundTexture( compound );
 
-        _compounds.Add( compound );
-        _indexer++;
+        return compound;
     }
 
     public void CreateCompoundTexture( CompoundJSON compound )
@@ -336,7 +342,7 @@ public class CompoundGenerator : MonoBehaviour
     private void PrintCompoundsStats()
     {
         Dictionary<int, LifeElementModel> elements = new Dictionary<int, LifeElementModel>();
-        foreach( CompoundJSON compound in _compounds )
+        foreach( CompoundJSON compound in _compounds.Values )
         {
             foreach( LifeElementModel compoundElement in compound.Elements )
             {
@@ -500,6 +506,11 @@ public class CompoundGenerator : MonoBehaviour
         }
 
         return null;
+    }
+
+    public T Load<T>()
+    {
+        return JsonConvert.DeserializeObject<T>( Resources.Load<TextAsset>( "Configs/" + typeof( T ).Name ).text );
     }
 }
 

@@ -11,8 +11,6 @@ public class CompoundJSON
     public CompoundType Type;
     public string Formula;
     public float MolecularMass;
-    public List<LifeElementModel> Elements = new List<LifeElementModel>();
-    public Dictionary<R, float> Effects = new Dictionary<R, float>();
 
     [SerializeField]
     internal BoolReactiveProperty _CanCraft = new BoolReactiveProperty( true );
@@ -22,8 +20,17 @@ public class CompoundJSON
         set { _CanCraft.Value = value; }
     }
 
+    public List<LifeElementModel> Elements = new List<LifeElementModel>();
+    public RDictionary Effects = new RDictionary();
+
     internal Texture2D Texture;
 
+}
+
+[Serializable]
+public class RDictionary : Dictionary<R, float>
+{
+    //this class is made so we can make property drawer
 }
 
 public enum CompoundType

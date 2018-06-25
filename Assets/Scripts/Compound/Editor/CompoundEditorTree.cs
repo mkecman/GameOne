@@ -9,7 +9,7 @@ public class CompoundEditorTree : TreeView
 {
     public CompoundTreeConfig RootConfig;
     public int TotalItems;
-    public OrgansTreeUnlockView Editor;
+    public OrgansTreeUnlockView ComponentInstance;
     private int _currentDragIndex;
 
     public CompoundEditorTree( TreeViewState treeViewState ) : base( treeViewState )
@@ -81,15 +81,15 @@ public class CompoundEditorTree : TreeView
             {
                 case DragAndDropPosition.UponItem:
                 case DragAndDropPosition.BetweenItems:
-                    TreeBranchData branch = GetBranch( _currentDragIndex, RootConfig.Children );
+                    TreeBranchData branch = ComponentInstance.GetBranch( _currentDragIndex, RootConfig.Children );
 
                     TreeBranchData branchParent = RootConfig;
                     if( branch.ParentIndex > 0 )
-                        branchParent = GetBranch( branch.ParentIndex, RootConfig.Children );
+                        branchParent = ComponentInstance.GetBranch( branch.ParentIndex, RootConfig.Children );
 
                     TreeBranchData dropParent = RootConfig;
                     if( args.parentItem.id > 0 ) //Root object is id=0
-                        dropParent = GetBranch( args.parentItem.id, RootConfig.Children );
+                        dropParent = ComponentInstance.GetBranch( args.parentItem.id, RootConfig.Children );
                     int insertAtIndex;
                     if( branchParent == dropParent ) //if moving within same parent, we move item in the list
                     {
@@ -124,7 +124,8 @@ public class CompoundEditorTree : TreeView
 
     protected override void SelectionChanged( IList<int> selectedIds )
     {
-        Editor.SelectedCompound = GetBranch( selectedIds[ 0 ], RootConfig.Children );
+        ComponentInstance.SelectedCompound = ComponentInstance.GetBranch( selectedIds[ 0 ], RootConfig.Children );
+        ComponentInstance.CompoundEditor.Compound = ComponentInstance.CompoundListConfig[ selectedIds[ 0 ] ];
     }
 
     protected override bool CanStartDrag( CanStartDragArgs args )
@@ -132,21 +133,5 @@ public class CompoundEditorTree : TreeView
         return true;
     }
 
-    private TreeBranchData GetBranch( int index, List<TreeBranchData> children )
-    {
-        TreeBranchData branch = null;
-        foreach( TreeBranchData child in children )
-        {
-            if( child.Index == index )
-                return child;
-            if( child.Children.Count > 0 )
-            {
-                branch = GetBranch( index, child.Children );
-                if( branch != null )
-                    return branch;
-            }
-        }
-
-        return branch;
-    }
+    
 }

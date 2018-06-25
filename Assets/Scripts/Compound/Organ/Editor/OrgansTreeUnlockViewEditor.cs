@@ -10,54 +10,60 @@ public class OrgansTreeUnlockViewEditor : Editor
     private TreeViewState m_TreeViewState;
     //The TreeView is not serializable, so it should be reconstructed from the tree data.
     private CompoundEditorTree m_SimpleTreeView;
-    private CompoundTreeConfig _treeConfig;
+    private OrgansTreeUnlockView _treeView;
 
     public override void OnInspectorGUI()
     {
-        OrgansTreeUnlockView editor = (OrgansTreeUnlockView)target;
-        _treeConfig = editor.TreeConfig;
-
         EditorGUILayout.BeginScrollView( new Vector2(), GUILayout.MaxHeight( 800f ), GUILayout.ExpandHeight( true ) );
         m_SimpleTreeView.OnGUI( EditorGUILayout.GetControlRect( GUILayout.ExpandHeight( true ) ) );
         EditorGUILayout.EndScrollView();
 
-        if( GUILayout.Button( "Add Item" ) )
+        EditorGUILayout.BeginHorizontal();
+
+        if( GUILayout.Button( "Add" ) )
         {
-            if( _treeConfig != null )
-            {
-                _treeConfig.Children.Add( new TreeBranchData( m_SimpleTreeView.TotalItems, m_SimpleTreeView.TotalItems.ToString() ) );
-                m_SimpleTreeView.Reload();
-            }
-            else
-                Debug.Log( "Please press Load first to load data from the config!" );
+            _treeView.AddGeneratedCompound();
+            m_SimpleTreeView.RootConfig = _treeView.CompoundTreeConfig;
+            m_SimpleTreeView.Reload();
         }
 
+        if( GUILayout.Button( "Remove" ) )
+        {
+            _treeView.RemoveSelectedItem();
+        }
 
         if( GUILayout.Button( "Load" ) )
         {
-            editor.Load();
-            _treeConfig = editor.TreeConfig;
-            m_SimpleTreeView.Editor = editor;
-            m_SimpleTreeView.RootConfig = _treeConfig;
-            m_SimpleTreeView.Reload();
+            Load( true );
         }
 
         if( GUILayout.Button( "Draw" ) )
         {
-            editor.Draw();
+            _treeView.Draw();
         }
 
         if( GUILayout.Button( "Update Connections" ) )
         {
-            editor.UpdateConnections();
+            _treeView.UpdateConnections();
         }
 
         if( GUILayout.Button( "Save" ) )
         {
-            editor.Save();
+            _treeView.Save();
         }
 
+        EditorGUILayout.EndHorizontal();
+
         DrawDefaultInspector();
+    }
+
+    private void Load( bool reload = false )
+    {
+        _treeView = (OrgansTreeUnlockView)target;
+        _treeView.Load( reload );
+        m_SimpleTreeView.ComponentInstance = _treeView;
+        m_SimpleTreeView.RootConfig = _treeView.CompoundTreeConfig;
+        m_SimpleTreeView.Reload();
     }
 
     void OnEnable()
@@ -66,6 +72,7 @@ public class OrgansTreeUnlockViewEditor : Editor
             m_TreeViewState = new TreeViewState();
 
         m_SimpleTreeView = new CompoundEditorTree( m_TreeViewState );
-        m_SimpleTreeView.Reload();
+
+        Load();
     }
 }

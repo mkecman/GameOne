@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PsiPhi;
+using System;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
@@ -34,21 +35,4 @@ public class TreeBranchData
     }
 }
 
-[Serializable]
-public enum TreeBranchState
-{
-    LOCKED,
-    UNLOCKED,
-    AVAILABLE,
-    ACTIVE
-}
 
-[Serializable]
-public class TreeBranchStateReactiveProperty : ReactiveProperty<TreeBranchState>
-{
-    public TreeBranchStateReactiveProperty()
-        : base()
-    {
-
-    }
-}

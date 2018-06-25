@@ -7,39 +7,42 @@ using UnityEngine;
 [CustomEditor( typeof( CompoundEditor ) )]
 public class CompoundEditorEditor : Editor
 {
-    [SerializeField]
-    private TreeViewState m_TreeViewState;
-    //The TreeView is not serializable, so it should be reconstructed from the tree data.
-    private CompoundEditorTree m_SimpleTreeView;
-    private CompoundTreeConfig _treeConfig;
+    private CompoundEditor _compoundEditor;
 
     public override void OnInspectorGUI()
     {
-        EditorGUILayout.BeginScrollView( new Vector2(), GUILayout.MaxHeight(800f), GUILayout.ExpandHeight(true) );
-        m_SimpleTreeView.OnGUI( EditorGUILayout.GetControlRect( GUILayout.ExpandHeight( true ) ) );
-        EditorGUILayout.EndScrollView();
+        _compoundEditor = (CompoundEditor)target;
 
-        if( GUILayout.Button( "Add Item" ) )
+        EditorGUILayout.PropertyField( serializedObject.FindProperty( "Index" ) );
+        EditorGUILayout.PropertyField( serializedObject.FindProperty( "Effect" ) );
+        EditorGUILayout.PropertyField( serializedObject.FindProperty( "Level" ) );
+        EditorGUILayout.PropertyField( serializedObject.FindProperty( "IsPositive" ) );
+        EditorGUILayout.PropertyField( serializedObject.FindProperty( "CompoundType" ) );
+        
+        EditorGUILayout.BeginHorizontal();
+
+        if( GUILayout.Button( "Generate" ) )
         {
-            if( _treeConfig != null )
-            {
-                _treeConfig.Children.Add( new TreeBranchData( m_SimpleTreeView.TotalItems, m_SimpleTreeView.TotalItems.ToString() ) );
-                m_SimpleTreeView.Reload();
-            }
-            else
-                Debug.Log( "Please press Load first to load data from the config!" );
+            _compoundEditor.GenerateCompound();
         }
 
-        DrawDefaultInspector();
+        if( GUILayout.Button( "Export" ) )
+        {
+            Debug.Log( JsonConvert.SerializeObject( _compoundEditor.Compound ) );
+        }
+
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.PropertyField( serializedObject.FindProperty( "Compound" ), true );
+
+        EditorGUILayout.PropertyField( serializedObject.FindProperty( "CompoundGenerator" ) );
+
+        serializedObject.ApplyModifiedProperties();
     }
 
     void OnEnable()
     {
-        if( m_TreeViewState == null )
-            m_TreeViewState = new TreeViewState();
-
-        m_SimpleTreeView = new CompoundEditorTree( m_TreeViewState );
-        m_SimpleTreeView.Reload();
+        
     }
 
 }

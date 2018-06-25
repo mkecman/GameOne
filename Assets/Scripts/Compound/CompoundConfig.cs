@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class CompoundConfig : List<CompoundJSON>
+public class CompoundConfig : Dictionary<int, CompoundJSON>
 {
     internal void Setup()
     {
