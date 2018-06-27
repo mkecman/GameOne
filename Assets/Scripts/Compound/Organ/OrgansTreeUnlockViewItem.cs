@@ -20,7 +20,7 @@ public class OrgansTreeUnlockViewItem : GameView, IPointerClickHandler
         BranchData._State.Subscribe( OnStateChange ).AddTo( disposables );
         NameLabel.text = branchData.Name;
 
-        transform.position = new Vector3( BranchData.X, BranchData.Y );
+        GetComponent<RectTransform>().anchoredPosition = new Vector2( BranchData.X, BranchData.Y );
 
         _compoundSelectMessage.Index = BranchData.Index;
     }

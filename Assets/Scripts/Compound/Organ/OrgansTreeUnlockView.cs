@@ -9,6 +9,8 @@ using System.Collections.Generic;
 public class OrgansTreeUnlockView : GameView
 {
     public TreeBranchData SelectedCompound;
+    public float ItemHeight = 100f;
+    public float DepthStep = 100f;
     public GameObject ConnectionPrefab;
     public Transform ConnectionsContainer;
     public GameObject ItemPrefab;
@@ -17,6 +19,7 @@ public class OrgansTreeUnlockView : GameView
 
     public CompoundTreeConfig CompoundTreeConfig;
     public CompoundConfig CompoundListConfig;
+    private float _currentHeight;
 
     void Start()
     {
@@ -41,6 +44,7 @@ public class OrgansTreeUnlockView : GameView
     {
         RemoveAllChildren( ItemsContainer );
         RemoveAllChildren( ConnectionsContainer );
+        _currentHeight = 0;
         DrawChildrenRecursive( CompoundTreeConfig, null );
     }
 
@@ -51,14 +55,14 @@ public class OrgansTreeUnlockView : GameView
             ConnectionsContainer.GetChild( i ).GetComponent<OrgansTreeUnlockViewConnection>().Update();
         }
 
-        Transform go;
+        RectTransform rectTransform;
         OrgansTreeUnlockViewItem item;
         for( int i = 0; i < ItemsContainer.childCount; i++ )
         {
-            go = ItemsContainer.GetChild( i );
-            item = go.GetComponent<OrgansTreeUnlockViewItem>();
-            item.BranchData.X = go.position.x;
-            item.BranchData.Y = go.position.y;
+            rectTransform = ItemsContainer.GetChild( i ).GetComponent<RectTransform>();
+            item = rectTransform.GetComponent<OrgansTreeUnlockViewItem>();
+            item.BranchData.X = rectTransform.anchoredPosition.x;
+            item.BranchData.Y = rectTransform.anchoredPosition.y;
         }
     }
 
@@ -100,20 +104,24 @@ public class OrgansTreeUnlockView : GameView
         }
     }
 
-    private void DrawChildrenRecursive( TreeBranchData branch, GameObject parent )
+    private void DrawChildrenRecursive( TreeBranchData branch, GameObject parent, float depth = 0f )
     {
-        GameObject parentGO = AddItem( branch );
+        GameObject parentGO = AddItem( branch, depth );
         AddConnection( branch, parentGO, parent );
+        depth += DepthStep;
         foreach( TreeBranchData child in branch.Children )
         {
-            DrawChildrenRecursive( child, parentGO );
+            DrawChildrenRecursive( child, parentGO, depth );
         }
     }
 
-    private GameObject AddItem( TreeBranchData branchData )
+    private GameObject AddItem( TreeBranchData branchData, float depth = 0f )
     {
+        branchData.X = depth;
+        branchData.Y = _currentHeight;
         GameObject go = Instantiate( ItemPrefab, ItemsContainer );
         go.GetComponent<OrgansTreeUnlockViewItem>().Setup( branchData );
+        _currentHeight -= ItemHeight;
         return go;
     }
 
