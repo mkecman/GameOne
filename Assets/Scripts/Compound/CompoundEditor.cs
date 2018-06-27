@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class CompoundEditor : MonoBehaviour
@@ -12,9 +13,19 @@ public class CompoundEditor : MonoBehaviour
     public CompoundJSON Compound;
     public CompoundGenerator CompoundGenerator;
 
-    public void GenerateCompound()
+    public void GenerateCompound( bool createNew = false )
     {
-        Compound = CompoundGenerator.CreateCompound( Index, Effect, Level, IsPositive, this.CompoundType );
+        CompoundJSON compoundJSON = CompoundGenerator.CreateCompound( Index, Effect, Level, IsPositive, this.CompoundType );
+        if( createNew )
+            Compound = compoundJSON;
+        else
+        {
+            //copy properties to the selected compound
+            foreach( FieldInfo property in typeof( CompoundJSON ).GetFields() )
+            {
+                property.SetValue( Compound, property.GetValue( compoundJSON ) );
+            }
+        }
     }
 
     public List<R> _Keys;

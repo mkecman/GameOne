@@ -55,6 +55,8 @@ public class OrgansTreeUnlockViewEditor : Editor
         EditorGUILayout.EndHorizontal();
 
         DrawDefaultInspector();
+
+        serializedObject.ApplyModifiedProperties();
     }
 
     private void Load( bool reload = false )

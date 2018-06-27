@@ -21,6 +21,11 @@ public class CompoundEditorEditor : Editor
         
         EditorGUILayout.BeginHorizontal();
 
+        if( GUILayout.Button( "New" ) )
+        {
+            _compoundEditor.GenerateCompound( true );
+        }
+
         if( GUILayout.Button( "Generate" ) )
         {
             _compoundEditor.GenerateCompound();

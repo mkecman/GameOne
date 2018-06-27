@@ -7,9 +7,9 @@ public class CompoundConfig : Dictionary<int, CompoundJSON>
 {
     internal void Setup()
     {
-        for( int i = 0; i < Count; i++ )
+        foreach( KeyValuePair<int, CompoundJSON> item in this )
         {
-            this[i].Texture = Resources.Load( "CompoundTexture/" + this[i].Index ) as Texture2D;
+            item.Value.Texture = Resources.Load( "CompoundTexture/" + item.Value.Index ) as Texture2D;
         }
     }
 }

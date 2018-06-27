@@ -10,7 +10,8 @@ public class OrgansTreeUnlockView : GameView
 {
     public TreeBranchData SelectedCompound;
     public float ItemHeight = 100f;
-    public float DepthStep = 100f;
+    public float XPositionStep = 100f;
+    public int MaxDepth = 10;
     public GameObject ConnectionPrefab;
     public Transform ConnectionsContainer;
     public GameObject ItemPrefab;
@@ -44,8 +45,8 @@ public class OrgansTreeUnlockView : GameView
     {
         RemoveAllChildren( ItemsContainer );
         RemoveAllChildren( ConnectionsContainer );
-        _currentHeight = 0;
-        DrawChildrenRecursive( CompoundTreeConfig, null );
+        _currentHeight = -100f;
+        DrawChildrenRecursive( CompoundTreeConfig, null, 0, 100f );
     }
 
     public void UpdateConnections()
@@ -104,24 +105,31 @@ public class OrgansTreeUnlockView : GameView
         }
     }
 
-    private void DrawChildrenRecursive( TreeBranchData branch, GameObject parent, float depth = 0f )
+    private void DrawChildrenRecursive( TreeBranchData branch, GameObject parent, int depth = 0, float xPosition = 0f )
     {
-        GameObject parentGO = AddItem( branch, depth );
+        branch.X = xPosition;
+        branch.Y = _currentHeight;
+        
+        GameObject parentGO = AddItem( branch );
         AddConnection( branch, parentGO, parent );
-        depth += DepthStep;
-        foreach( TreeBranchData child in branch.Children )
+
+        if( depth < MaxDepth && branch.Children.Count > 0 )
         {
-            DrawChildrenRecursive( child, parentGO, depth );
+            xPosition += XPositionStep;
+            foreach( TreeBranchData child in branch.Children )
+            {
+                DrawChildrenRecursive( child, parentGO, depth+1, xPosition );
+            }
         }
+
+        if( depth <= 1 )
+            _currentHeight -= ItemHeight;
     }
 
-    private GameObject AddItem( TreeBranchData branchData, float depth = 0f )
+    private GameObject AddItem( TreeBranchData branchData )
     {
-        branchData.X = depth;
-        branchData.Y = _currentHeight;
         GameObject go = Instantiate( ItemPrefab, ItemsContainer );
         go.GetComponent<OrgansTreeUnlockViewItem>().Setup( branchData );
-        _currentHeight -= ItemHeight;
         return go;
     }
 
