@@ -21,12 +21,12 @@ public class OrgansTreeUnlockViewItem : GameView, IPointerClickHandler
         NameLabel.text = branchData.Name;
 
         GetComponent<RectTransform>().anchoredPosition = new Vector2( BranchData.X, BranchData.Y );
-
-        _compoundSelectMessage.Index = BranchData.Index;
     }
 
     public void OnPointerClick( PointerEventData eventData )
     {
+        _compoundSelectMessage.Index = BranchData.Index;
+        _compoundSelectMessage.State = BranchData.State;
         GameMessage.Send( _compoundSelectMessage );
     }
 

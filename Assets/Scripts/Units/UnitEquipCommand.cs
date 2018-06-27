@@ -8,18 +8,19 @@ public class UnitEquipCommand : IGameInit
     private CompoundConfig _compounds;
     private UnitController _unitController;
     private PlanetController _planetController;
-    private CompoundControlMessage _message;
+    private CompoundControlMessage _compoundControlMessage;
     private IntReactiveProperty _unitSlotCompoundIndex;
     private ReactiveDictionary<int, IntReactiveProperty> _lifeCompounds;
     private CompoundJSON _compound;
     private UnitDefenseUpdateCommand _unitDefenseUpdateCommand;
+    private int _currentBodySlotIndex;
 
     public void Init()
     {
         _compounds = GameConfig.Get<CompoundConfig>();
         _unitController = GameModel.Get<UnitController>();
         _planetController = GameModel.Get<PlanetController>();
-        _message = new CompoundControlMessage( 0, CompoundControlAction.ADD, false );
+        _compoundControlMessage = new CompoundControlMessage( 0, CompoundControlAction.ADD, false );
         _unitDefenseUpdateCommand = GameModel.Get<UnitDefenseUpdateCommand>();
     }
 
@@ -49,8 +50,8 @@ public class UnitEquipCommand : IGameInit
     {
         if( _unitSlotCompoundIndex.Value != Int32.MaxValue )
         {
-            _message.Index = _unitSlotCompoundIndex.Value;
-            GameMessage.Send( _message );
+            _compoundControlMessage.Index = _unitSlotCompoundIndex.Value;
+            GameMessage.Send( _compoundControlMessage );
 
             _compound = _compounds[ _unitSlotCompoundIndex.Value ];
             _unitSlotCompoundIndex.Value = Int32.MaxValue;

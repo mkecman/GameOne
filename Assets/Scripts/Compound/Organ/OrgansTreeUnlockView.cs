@@ -83,17 +83,22 @@ public class OrgansTreeUnlockView : GameView
 
     public void Load( bool forceReload = false )
     {
-        if( CompoundTreeConfig == null || forceReload )
+        if( Application.isPlaying && ( CompoundTreeConfig == null || forceReload ) )
+        {
+            CompoundTreeConfig = GameConfig.Get<CompoundTreeConfig>();
+            CompoundListConfig = GameConfig.Get<CompoundConfig>();
+            Debug.Log( "is playing" );
+        }
+        if( !Application.isPlaying && ( CompoundTreeConfig == null || forceReload ) )
         {
             CompoundTreeConfig = JsonConvert.DeserializeObject<CompoundTreeConfig>
                     ( Resources.Load<TextAsset>( "Configs/CompoundTreeConfig" ).text );
             CompoundListConfig = JsonConvert.DeserializeObject<CompoundConfig>
                     ( Resources.Load<TextAsset>( "Configs/CompoundConfig" ).text );
-
-            UpdateCompoundNames( CompoundTreeConfig );
-
-            Debug.Log( "Compound Configs Loaded" );
+            Debug.Log( "is not playing" );
         }
+        UpdateCompoundNames( CompoundTreeConfig );
+        Debug.Log( "Compound Configs Loaded" );
     }
 
     private void UpdateCompoundNames( TreeBranchData branch )

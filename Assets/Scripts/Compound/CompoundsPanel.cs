@@ -7,7 +7,6 @@ public class CompoundsPanel : GameView
     public GameObject CompoundUnlockPrefab;
 
     private CompoundConfig _compoundConfig;
-    private List<CompoundViewModel> _compounds;
     private CompoundJSON _compound;
     private LifeModel _life;
     private CompoundType _type = CompoundType.Consumable;
@@ -16,9 +15,6 @@ public class CompoundsPanel : GameView
     void Awake()
     {
         _compoundConfig = GameConfig.Get<CompoundConfig>();
-        _compounds = new List<CompoundViewModel>();
-        for( int i = 0; i < _compoundConfig.Count; i++ )
-            _compounds.Add( new CompoundViewModel( _compoundConfig[ i ] ) );
     }
 
     private void OnEnable()
@@ -29,17 +25,11 @@ public class CompoundsPanel : GameView
 
     private void OnPlanetChange( PlanetModel value )
     {
-        for( int i = 0; i < _compounds.Count; i++ )
-            _compounds[ i ].Setup( value.Life.Elements );
-
         SetModel();
     }
 
     private void OnDisable()
     {
-        for( int i = 0; i < _compounds.Count; i++ )
-            _compounds[ i ].Disable();
-
         disposables.Clear();
         RemoveAllChildren( Container );
 
@@ -50,9 +40,9 @@ public class CompoundsPanel : GameView
     private void SetModel()
     {
         RemoveAllChildren( Container );
-        for( int i = 0; i < _compoundConfig.Count; i++ )
+        foreach( KeyValuePair<int, CompoundJSON> item in _compoundConfig )
         {
-            _compound = _compoundConfig[ i ];
+            _compound = item.Value;
             if( _compound.Type == _type )
             {
                 GameObject go = Instantiate( CompoundUnlockPrefab, Container );

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PsiPhi;
+using System;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
@@ -8,6 +9,7 @@ using UnityEngine.UI;
 public class OrganUnlockView : GameView
 {
     public Button MainButton;
+    public Button CraftButton;
     public UIPropertyView Name;
     public Transform ElementsGrid;
     public Transform EffectsGrid;
@@ -21,42 +23,47 @@ public class OrganUnlockView : GameView
     private CompoundSelectMessage _compoundSelectMessage = new CompoundSelectMessage();
     private CompoundControlMessage _compoundControlMessage = new CompoundControlMessage( 0, CompoundControlAction.ADD );
     private CompoundConfig _compoundConfig;
+    private UnitEvolveCommand _unitEvolveCommand;
     private IObservable<UniRx.Unit> _buttonStream;
 
     void Awake()
     {
         GameMessage.Listen<CompoundSelectMessage>( OnCompoundSelected );
         _compoundConfig = GameConfig.Get<CompoundConfig>();
+        _unitEvolveCommand = GameModel.Get<UnitEvolveCommand>();
 
+        /*
         _buttonStream = MainButton.OnClickAsObservable();
         _buttonStream.Buffer( _buttonStream.Throttle( TimeSpan.FromMilliseconds( 300 ) ) )
             .Where( _ => _.Count >= 2 )
             .Subscribe( _ => CraftCompound() )
             .AddTo( this );
-    }
+        */
 
-    private void OnCompoundSelected( CompoundSelectMessage value )
-    {
-        Setup( _compoundConfig[ value.Index ] );
+        CraftButton.OnClickAsObservable().Subscribe( _ => CraftCompound() ).AddTo( this );
     }
 
     private void CraftCompound()
     {
         GameMessage.Send( _compoundControlMessage );
+        _unitEvolveCommand.Craft( _compoundControlMessage.Index );
     }
 
-    internal void Setup( CompoundJSON compound )
+    private void OnCompoundSelected( CompoundSelectMessage value )
     {
         disposables.Clear();
 
-        _compound = compound;
+        _compound = _compoundConfig[ value.Index ];
         _compound._CanCraft.Subscribe( _ => SetState( _ ? 1 : 0 ) ).AddTo( disposables );
         _compoundSelectMessage.Index = _compound.Index;
         _compoundControlMessage.Index = _compound.Index;
-
         Name.SetProperty( _compound.Name );
-
         compoundIcon.Setup( _compound );
+
+        if( value.State == TreeBranchState.AVAILABLE )
+            _compound._CanCraft.Subscribe( _ => CraftButton.interactable = _ ).AddTo( disposables );
+        else
+            CraftButton.interactable = false;
 
         for( int i = 0; i < ElementsGrid.childCount; i++ )
         {

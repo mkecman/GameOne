@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using System;
 using UniRx;
 
-public class BodySlotView : GameView, IDropHandler, IDragHandler
+public class BodySlotView : GameView, IDropHandler, IDragHandler, IPointerClickHandler
 {
     public int Index;
     public CompoundIconView CompoundIcon;
@@ -16,13 +16,22 @@ public class BodySlotView : GameView, IDropHandler, IDragHandler
     private CompoundInventoryView _dragObject;
     private CompoundConfig _compounds;
     private CompoundEquipMessage _compoundEquipMessage;
+    private UnitEvolveCommand _unitEvolveCommand;
     private BodySlotModel _model;
 
     private void Awake()
     {
         _compounds = GameConfig.Get<CompoundConfig>();
         _compoundEquipMessage = new CompoundEquipMessage( 0, Index );
+        _unitEvolveCommand = GameModel.Get<UnitEvolveCommand>();
+    }
 
+    public void OnPointerClick( PointerEventData eventData )
+    {
+        if( !_model.IsEnabled )
+            return;
+
+        _unitEvolveCommand.OpenPanel( Index );
     }
 
     public void OnDrop( PointerEventData eventData )

@@ -93,4 +93,5 @@ public class PanelNames
     public static string CompoundTooltipPanel = "CompoundTooltipPanel";
     public static string PlanetChangePanel = "PlanetChangePanel";
     public static string NewUnitPanel = "NewUnitPanel";
+    public static string OrgansPanel = "OrgansPanel";
 }
