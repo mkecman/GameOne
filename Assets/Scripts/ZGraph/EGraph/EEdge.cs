@@ -78,7 +78,7 @@ public class EEdge
                 //formula = Regex.Replace( formula, @"\b" + item + "\b", go.GetComponent<ENode>().Value.ToString() );
                 formula = SafeReplace( formula, item, go.GetComponent<ENode>().Value.ToString(), true );
             }
-            formulaValue = Convert.ToDouble( new DataTable().Compute( formula, null ) );
+            formulaValue = Convert.ToDouble( new System.Data.DataTable().Compute( formula, null ) );
             //string formula = "IIF(1<0,'yes','no')"; //example of IF function 
             //https://msdn.microsoft.com/en-us/library/system.data.datacolumn.expression(v=vs.110).aspx
         }

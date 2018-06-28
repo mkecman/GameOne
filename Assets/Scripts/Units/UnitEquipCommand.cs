@@ -11,7 +11,6 @@ public class UnitEquipCommand : IGameInit
     private CompoundControlMessage _compoundControlMessage;
     private IntReactiveProperty _unitSlotCompoundIndex;
     private ReactiveDictionary<int, IntReactiveProperty> _lifeCompounds;
-    private CompoundJSON _compound;
     private UnitDefenseUpdateCommand _unitDefenseUpdateCommand;
     private int _currentBodySlotIndex;
 
@@ -24,18 +23,18 @@ public class UnitEquipCommand : IGameInit
         _unitDefenseUpdateCommand = GameModel.Get<UnitDefenseUpdateCommand>();
     }
 
-    public void ExecuteEquip( int compoundIndex, int bodySlotIndex, bool returnToInventory = true )
+    public void ExecuteEquip( int compoundIndex, int bodySlotIndex )
     {
         _unitSlotCompoundIndex = _unitController.SelectedUnit.BodySlots[ bodySlotIndex ]._CompoundIndex;
         _lifeCompounds = _planetController.SelectedPlanet.Life.Compounds;
 
-        Unequip( returnToInventory );
+        Unequip();
 
         //EQUIP
         _unitSlotCompoundIndex.Value = compoundIndex;
         _lifeCompounds[ compoundIndex ].Value--;
 
-        ApplyCompoundEffects( _compounds[ compoundIndex ], 1 );
+        ApplyCompoundEffects( compoundIndex, 1 );
     }
 
     public void ExecuteUnequip( int bodySlotIndex )
@@ -46,23 +45,21 @@ public class UnitEquipCommand : IGameInit
         Unequip();
     }
 
-    private void Unequip( bool returnToInventory = true )
+    private void Unequip()
     {
         if( _unitSlotCompoundIndex.Value != Int32.MaxValue )
         {
             _compoundControlMessage.Index = _unitSlotCompoundIndex.Value;
-            if( returnToInventory )
-                GameMessage.Send( _compoundControlMessage );
+            GameMessage.Send( _compoundControlMessage );
 
-            _compound = _compounds[ _unitSlotCompoundIndex.Value ];
+            ApplyCompoundEffects( _unitSlotCompoundIndex.Value, -1 );
             _unitSlotCompoundIndex.Value = Int32.MaxValue;
-
-            ApplyCompoundEffects( _compound, -1 );
         }
     }
 
-    private void ApplyCompoundEffects( CompoundJSON compound, int sign = -1 )
+    public void ApplyCompoundEffects( int compoundIndex, int sign = -1 )
     {
+        CompoundJSON compound = _compounds[ compoundIndex ];
         if( compound.Type == CompoundType.Armor )
         {
             foreach( KeyValuePair<R, float> item in compound.Effects )

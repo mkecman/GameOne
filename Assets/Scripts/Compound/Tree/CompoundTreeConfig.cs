@@ -4,6 +4,9 @@ public class CompoundTreeConfig : TreeBranchData
 {
     public TreeBranchData GetBranch( int index, List<TreeBranchData> children = null )
     {
+        if( this.Index == index )
+            return this;
+
         if( children == null )
             children = this.Children;
 

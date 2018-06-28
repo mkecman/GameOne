@@ -1,8 +1,12 @@
 ﻿public class OrganControlMessage
 {
     public int CompoundIndex;
-    public int BodySlotIndex;
-    public OrganControlAction Action = OrganControlAction.OPEN_PANEL;
+    public OrganControlAction Action;
+
+    public OrganControlMessage( OrganControlAction action = OrganControlAction.OPEN_PANEL )
+    {
+        Action = action;
+    }
 }
 
 public enum OrganControlAction

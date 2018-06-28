@@ -28,11 +28,10 @@ public class CompoundController : IGameInit
     {
         if( message.Action == OrganControlAction.OPEN_PANEL )
         {
-            _unitEvolveCommand.OpenPanel( message.BodySlotIndex );
+            _unitEvolveCommand.OpenPanel();
         }
         else
         {
-            AddCompound( message.CompoundIndex, true );
             _unitEvolveCommand.ApplyCompound( message.CompoundIndex );
         }
     }

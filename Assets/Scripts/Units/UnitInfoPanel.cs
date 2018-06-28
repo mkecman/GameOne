@@ -1,10 +1,14 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UniRx;
+using System;
 
 public class UnitInfoPanel : GameView
 {
     public Transform Container;
     public GameObject PropertyPrefab;
+    public Button EvolveButton;
 
     private UnitModel _unit;
     private UnitPropUpgradeView _ui;
@@ -19,8 +23,15 @@ public class UnitInfoPanel : GameView
         _propViews = new Dictionary<R, UnitPropUpgradeView>();
         GameModel.HandleGet<UnitModel>( OnModelChange );
 
+        EvolveButton.OnClickAsObservable().Subscribe( _ => OnEvolveButtonClick() ).AddTo( this );
+
         _panelMessage = new PanelMessage( PanelAction.HIDE, PanelNames.UnitEditPanel );
         SetPanels( PanelAction.HIDE );
+    }
+
+    private void OnEvolveButtonClick()
+    {
+        GameMessage.Send( new OrganControlMessage() );
     }
 
     private void OnModelChange( UnitModel value )
