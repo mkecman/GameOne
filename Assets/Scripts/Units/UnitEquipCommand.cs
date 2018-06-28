@@ -24,12 +24,12 @@ public class UnitEquipCommand : IGameInit
         _unitDefenseUpdateCommand = GameModel.Get<UnitDefenseUpdateCommand>();
     }
 
-    public void ExecuteEquip( int compoundIndex, int bodySlotIndex )
+    public void ExecuteEquip( int compoundIndex, int bodySlotIndex, bool returnToInventory = true )
     {
         _unitSlotCompoundIndex = _unitController.SelectedUnit.BodySlots[ bodySlotIndex ]._CompoundIndex;
         _lifeCompounds = _planetController.SelectedPlanet.Life.Compounds;
 
-        Unequip();
+        Unequip( returnToInventory );
 
         //EQUIP
         _unitSlotCompoundIndex.Value = compoundIndex;
@@ -46,12 +46,13 @@ public class UnitEquipCommand : IGameInit
         Unequip();
     }
 
-    private void Unequip()
+    private void Unequip( bool returnToInventory = true )
     {
         if( _unitSlotCompoundIndex.Value != Int32.MaxValue )
         {
             _compoundControlMessage.Index = _unitSlotCompoundIndex.Value;
-            GameMessage.Send( _compoundControlMessage );
+            if( returnToInventory )
+                GameMessage.Send( _compoundControlMessage );
 
             _compound = _compounds[ _unitSlotCompoundIndex.Value ];
             _unitSlotCompoundIndex.Value = Int32.MaxValue;

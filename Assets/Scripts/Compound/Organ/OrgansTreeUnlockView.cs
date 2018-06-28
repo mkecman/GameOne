@@ -36,7 +36,7 @@ public class OrgansTreeUnlockView : GameView
 
     public void RemoveSelectedItem()
     {
-        TreeBranchData parent = GetBranch( SelectedCompound.ParentIndex, CompoundTreeConfig.Children );
+        TreeBranchData parent = CompoundTreeConfig.GetBranch( SelectedCompound.ParentIndex );
         parent.Children.Remove( SelectedCompound );
         CompoundListConfig.Remove( SelectedCompound.Index );
     }
@@ -142,24 +142,6 @@ public class OrgansTreeUnlockView : GameView
     {
         GameObject go = Instantiate( ConnectionPrefab, ConnectionsContainer );
         go.GetComponent<OrgansTreeUnlockViewConnection>().Setup( branch, source, parent );
-    }
-
-    public TreeBranchData GetBranch( int index, List<TreeBranchData> children )
-    {
-        TreeBranchData branch = null;
-        foreach( TreeBranchData child in children )
-        {
-            if( child.Index == index )
-                return child;
-            if( child.Children.Count > 0 )
-            {
-                branch = GetBranch( index, child.Children );
-                if( branch != null )
-                    return branch;
-            }
-        }
-
-        return branch;
     }
 
 }

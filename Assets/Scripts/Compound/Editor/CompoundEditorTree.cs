@@ -81,15 +81,15 @@ public class CompoundEditorTree : TreeView
             {
                 case DragAndDropPosition.UponItem:
                 case DragAndDropPosition.BetweenItems:
-                    TreeBranchData branch = ComponentInstance.GetBranch( _currentDragIndex, RootConfig.Children );
+                    TreeBranchData branch = RootConfig.GetBranch( _currentDragIndex );
 
                     TreeBranchData branchParent = RootConfig;
                     if( branch.ParentIndex > 0 )
-                        branchParent = ComponentInstance.GetBranch( branch.ParentIndex, RootConfig.Children );
+                        branchParent = RootConfig.GetBranch( branch.ParentIndex );
 
                     TreeBranchData dropParent = RootConfig;
                     if( args.parentItem.id > 0 ) //Root object is id=0
-                        dropParent = ComponentInstance.GetBranch( args.parentItem.id, RootConfig.Children );
+                        dropParent = RootConfig.GetBranch( args.parentItem.id );
                     int insertAtIndex;
                     if( branchParent == dropParent ) //if moving within same parent, we move item in the list
                     {
@@ -124,7 +124,7 @@ public class CompoundEditorTree : TreeView
 
     protected override void SelectionChanged( IList<int> selectedIds )
     {
-        ComponentInstance.SelectedCompound = ComponentInstance.GetBranch( selectedIds[ 0 ], RootConfig.Children );
+        ComponentInstance.SelectedCompound = RootConfig.GetBranch( selectedIds[ 0 ] );
         ComponentInstance.CompoundEditor.Compound = ComponentInstance.CompoundListConfig[ selectedIds[ 0 ] ];
     }
 

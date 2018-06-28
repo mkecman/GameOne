@@ -13,20 +13,27 @@ public class OrgansTreeUnlockViewItem : GameView, IPointerClickHandler
     public TreeBranchData BranchData;
 
     private CompoundSelectMessage _compoundSelectMessage = new CompoundSelectMessage();
+    private CompoundConfig _compoundConfig;
+
+    public void Awake()
+    {
+        _compoundConfig = GameConfig.Get<CompoundConfig>();
+    }
 
     public void Setup( TreeBranchData branchData )
     {
         BranchData = branchData;
         BranchData._State.Subscribe( OnStateChange ).AddTo( disposables );
-        NameLabel.text = branchData.Name;
 
+        _compoundConfig[ BranchData.Index ]._CanCraft.Subscribe( OnCanCraft ).AddTo( disposables );
+        _compoundSelectMessage.Index = BranchData.Index;
+
+        NameLabel.text = branchData.Name;
         GetComponent<RectTransform>().anchoredPosition = new Vector2( BranchData.X, BranchData.Y );
     }
 
     public void OnPointerClick( PointerEventData eventData )
     {
-        _compoundSelectMessage.Index = BranchData.Index;
-        _compoundSelectMessage.State = BranchData.State;
         GameMessage.Send( _compoundSelectMessage );
     }
 
@@ -35,5 +42,18 @@ public class OrgansTreeUnlockViewItem : GameView, IPointerClickHandler
         Background.color = StateColors[ (int)state ];
     }
 
+    private void OnCanCraft( bool canCraft )
+    {
+        if( canCraft )
+        {
+            if( BranchData.State == TreeBranchState.UNLOCKED )
+                BranchData.State = TreeBranchState.AVAILABLE;
+        }
+        else
+        {
+            if( BranchData.State == TreeBranchState.AVAILABLE )
+                BranchData.State = TreeBranchState.UNLOCKED;
+        }
+    }
     
 }

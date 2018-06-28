@@ -16,14 +16,14 @@ public class BodySlotView : GameView, IDropHandler, IDragHandler, IPointerClickH
     private CompoundInventoryView _dragObject;
     private CompoundConfig _compounds;
     private CompoundEquipMessage _compoundEquipMessage;
-    private UnitEvolveCommand _unitEvolveCommand;
+    private OrganControlMessage _organControlMessage;
     private BodySlotModel _model;
 
     private void Awake()
     {
         _compounds = GameConfig.Get<CompoundConfig>();
         _compoundEquipMessage = new CompoundEquipMessage( 0, Index );
-        _unitEvolveCommand = GameModel.Get<UnitEvolveCommand>();
+        _organControlMessage = new OrganControlMessage();
     }
 
     public void OnPointerClick( PointerEventData eventData )
@@ -31,7 +31,8 @@ public class BodySlotView : GameView, IDropHandler, IDragHandler, IPointerClickH
         if( !_model.IsEnabled )
             return;
 
-        _unitEvolveCommand.OpenPanel( Index );
+        _organControlMessage.BodySlotIndex = Index;
+        GameMessage.Send( _organControlMessage );
     }
 
     public void OnDrop( PointerEventData eventData )

@@ -19,7 +19,7 @@ public class UnitEvolveCommand : IGameInit
 
     public void Craft( int compoundIndex )
     {
-        _unitEquipCommand.ExecuteEquip( compoundIndex, _currentBodySlotIndex );
+        _unitEquipCommand.ExecuteEquip( compoundIndex, _currentBodySlotIndex, false );
     }
 
 }

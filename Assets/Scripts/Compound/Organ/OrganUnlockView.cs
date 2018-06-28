@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class OrganUnlockView : GameView
 {
-    public Button MainButton;
     public Button CraftButton;
     public UIPropertyView Name;
     public Transform ElementsGrid;
@@ -20,33 +19,22 @@ public class OrganUnlockView : GameView
     public Color[] StateColors = new Color[ 4 ] { Color.gray, Color.yellow, Color.green, Color.magenta };
 
     private CompoundJSON _compound;
-    private CompoundSelectMessage _compoundSelectMessage = new CompoundSelectMessage();
-    private CompoundControlMessage _compoundControlMessage = new CompoundControlMessage( 0, CompoundControlAction.ADD );
+    private OrganControlMessage _organControlMessage = new OrganControlMessage();
     private CompoundConfig _compoundConfig;
-    private UnitEvolveCommand _unitEvolveCommand;
-    private IObservable<UniRx.Unit> _buttonStream;
+    private CompoundTreeConfig _compoundTree;
+    private TreeBranchData _branch;
 
     void Awake()
     {
         GameMessage.Listen<CompoundSelectMessage>( OnCompoundSelected );
         _compoundConfig = GameConfig.Get<CompoundConfig>();
-        _unitEvolveCommand = GameModel.Get<UnitEvolveCommand>();
-
-        /*
-        _buttonStream = MainButton.OnClickAsObservable();
-        _buttonStream.Buffer( _buttonStream.Throttle( TimeSpan.FromMilliseconds( 300 ) ) )
-            .Where( _ => _.Count >= 2 )
-            .Subscribe( _ => CraftCompound() )
-            .AddTo( this );
-        */
-
+        _compoundTree = GameConfig.Get<CompoundTreeConfig>();
         CraftButton.OnClickAsObservable().Subscribe( _ => CraftCompound() ).AddTo( this );
     }
 
     private void CraftCompound()
     {
-        GameMessage.Send( _compoundControlMessage );
-        _unitEvolveCommand.Craft( _compoundControlMessage.Index );
+        GameMessage.Send( _organControlMessage );
     }
 
     private void OnCompoundSelected( CompoundSelectMessage value )
@@ -55,15 +43,15 @@ public class OrganUnlockView : GameView
 
         _compound = _compoundConfig[ value.Index ];
         _compound._CanCraft.Subscribe( _ => SetState( _ ? 1 : 0 ) ).AddTo( disposables );
-        _compoundSelectMessage.Index = _compound.Index;
-        _compoundControlMessage.Index = _compound.Index;
+
+        _organControlMessage.CompoundIndex = _compound.Index;
+        _organControlMessage.Action = OrganControlAction.CRAFT;
+
         Name.SetProperty( _compound.Name );
         compoundIcon.Setup( _compound );
 
-        if( value.State == TreeBranchState.AVAILABLE )
-            _compound._CanCraft.Subscribe( _ => CraftButton.interactable = _ ).AddTo( disposables );
-        else
-            CraftButton.interactable = false;
+        _branch = _compoundTree.GetBranch( value.Index );
+        _branch._State.Subscribe( OnStateChange ).AddTo( disposables );
 
         for( int i = 0; i < ElementsGrid.childCount; i++ )
         {
@@ -84,6 +72,14 @@ public class OrganUnlockView : GameView
         }
     }
 
+    private void OnStateChange( TreeBranchState state )
+    {
+        if( state == TreeBranchState.AVAILABLE )
+            CraftButton.interactable = true;
+        else
+            CraftButton.interactable = false;
+    }
+
     private void AddEffect( R type, float value )
     {
         GameObject go = Instantiate( EffectPrefab, EffectsGrid );
@@ -102,9 +98,7 @@ public class OrganUnlockView : GameView
     {
         base.OnDestroy();
         _compound = null;
-        _compoundControlMessage = null;
-        _compoundSelectMessage = null;
-        _buttonStream = null;
+        _organControlMessage = null;
         GameMessage.StopListen<CompoundSelectMessage>( OnCompoundSelected );
     }
 

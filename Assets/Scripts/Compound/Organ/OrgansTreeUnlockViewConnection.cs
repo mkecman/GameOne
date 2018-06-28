@@ -3,8 +3,9 @@ using System.Collections;
 using UnityEngine.UI;
 using System;
 using PsiPhi;
+using UniRx;
 
-public class OrgansTreeUnlockViewConnection : MonoBehaviour
+public class OrgansTreeUnlockViewConnection : GameView
 {
     public GameObject Parent;
     public GameObject Source;
@@ -33,7 +34,13 @@ public class OrgansTreeUnlockViewConnection : MonoBehaviour
         Parent = parent;
         Source = source;
 
-        switch( branch.State )
+        branch._State.Subscribe( OnStateChange ).AddTo( disposables );
+        Update();
+    }
+
+    private void OnStateChange( TreeBranchState state )
+    {
+        switch( state )
         {
             case TreeBranchState.LOCKED:
                 Background.color = new Color32( 100, 100, 100, 255 );
@@ -51,7 +58,14 @@ public class OrgansTreeUnlockViewConnection : MonoBehaviour
                 Background.color = new Color32( 100, 100, 100, 255 );
                 break;
         }
+    }
 
-        Update();
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+        Parent = null;
+        Source = null;
+        _rectTransform = null;
+        Background = null;
     }
 }
