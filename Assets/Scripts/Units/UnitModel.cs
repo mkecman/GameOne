@@ -37,16 +37,14 @@ public class UnitModel : IDisposable
 
     public Dictionary<R, BellCurve> Resistance = new Dictionary<R,BellCurve>();
     public Dictionary<R, IntReactiveProperty> Impact = new Dictionary<R, IntReactiveProperty>();
-
     public Dictionary<R,Resource> Props = new Dictionary<R,Resource>();
-
     public Dictionary<int, BodySlotModel> BodySlots = new Dictionary<int, BodySlotModel>();
-
-    internal Vector3 Position = new Vector3();
-
     public Dictionary<int, SkillData> Skills = new Dictionary<int, SkillData>();
     public List<int> PassiveSkills = new List<int>();
     public List<int> ActiveSkills = new List<int>();
+    public CompoundTreeConfig OrganTree;
+
+    internal Vector3 Position = new Vector3();
 
     private CompositeDisposable disposables = new CompositeDisposable();
     private BodySlotsConfig _slotsConfig;

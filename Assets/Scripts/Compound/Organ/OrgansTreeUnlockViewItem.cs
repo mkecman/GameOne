@@ -15,16 +15,14 @@ public class OrgansTreeUnlockViewItem : GameView, IPointerClickHandler
     private CompoundSelectMessage _compoundSelectMessage = new CompoundSelectMessage();
     private CompoundConfig _compoundConfig;
 
-    public void Awake()
-    {
-        _compoundConfig = GameConfig.Get<CompoundConfig>();
-    }
-
     public void Setup( TreeBranchData branchData )
     {
+        disposables.Clear();
+
         BranchData = branchData;
         BranchData._State.Subscribe( OnStateChange ).AddTo( disposables );
 
+        _compoundConfig = GameConfig.Get<CompoundConfig>();
         _compoundConfig[ BranchData.Index ]._CanCraft.Subscribe( OnCanCraft ).AddTo( disposables );
         _compoundSelectMessage.Index = BranchData.Index;
 

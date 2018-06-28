@@ -6,7 +6,7 @@ public class UnitFactory : IGameInit
     private BellCurveConfig _bellCurves;
     private SkillConfig _skills;
     private UnitTypesConfig _unitsConfig;
-
+    private CompoundTreeConfig _compoundTree;
 
     public void Init()
     {
@@ -14,6 +14,7 @@ public class UnitFactory : IGameInit
         _bellCurves = GameConfig.Get<BellCurveConfig>();
         _skills = GameConfig.Get<SkillConfig>();
         _unitsConfig = GameConfig.Get<UnitTypesConfig>();
+        _compoundTree = GameConfig.Get<CompoundTreeConfig>();
     }
 
     public UnitModel GetUnitType( int index, int x, int y )
@@ -88,6 +89,9 @@ public class UnitFactory : IGameInit
 
         unit.ActiveSkills.Add( 3 );//move
         unit.ActiveSkills.Add( 1 );//clone
+
+        //ORGAN TREE
+        unit.OrganTree = GameModel.Copy( _compoundTree );
 
         return unit;
     }

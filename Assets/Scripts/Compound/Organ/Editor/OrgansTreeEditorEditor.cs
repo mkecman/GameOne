@@ -3,14 +3,14 @@ using System.Collections;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 
-[CustomEditor( typeof( OrgansTreeUnlockView ) )]
-public class OrgansTreeUnlockViewEditor : Editor
+[CustomEditor( typeof( OrgansTreeEditor ) )]
+public class OrgansTreeEditorEditor : Editor
 {
     [SerializeField]
     private TreeViewState m_TreeViewState;
     //The TreeView is not serializable, so it should be reconstructed from the tree data.
     private CompoundEditorTree m_SimpleTreeView;
-    private OrgansTreeUnlockView _treeView;
+    private OrgansTreeEditor _treeView;
 
     public override void OnInspectorGUI()
     {
@@ -42,11 +42,6 @@ public class OrgansTreeUnlockViewEditor : Editor
             _treeView.Draw();
         }
 
-        if( GUILayout.Button( "Update Connections" ) )
-        {
-            _treeView.UpdateConnections();
-        }
-
         if( GUILayout.Button( "Save" ) )
         {
             _treeView.Save();
@@ -61,7 +56,7 @@ public class OrgansTreeUnlockViewEditor : Editor
 
     private void Load( bool reload = false )
     {
-        _treeView = (OrgansTreeUnlockView)target;
+        _treeView = (OrgansTreeEditor)target;
         _treeView.Load( reload );
         m_SimpleTreeView.ComponentInstance = _treeView;
         m_SimpleTreeView.RootConfig = _treeView.CompoundTreeConfig;

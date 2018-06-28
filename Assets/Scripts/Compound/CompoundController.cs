@@ -10,14 +10,12 @@ public class CompoundController : IGameInit
     private UnitEquipCommand _unitEquipCommand;
     private UnitEvolveCommand _unitEvolveCommand;
     private CompoundPaymentService _pay;
-    private CompoundTreeConfig _compoundsTree;
 
     public void Init()
     {
         _unitEquipCommand = GameModel.Get<UnitEquipCommand>();
         _unitEvolveCommand = GameModel.Get<UnitEvolveCommand>();
         _pay = GameModel.Get<CompoundPaymentService>();
-        _compoundsTree = GameConfig.Get<CompoundTreeConfig>();
 
         GameModel.HandleGet<PlanetModel>( OnPlanetChange );
 
@@ -35,13 +33,7 @@ public class CompoundController : IGameInit
         else
         {
             AddCompound( message.CompoundIndex, true );
-            _unitEvolveCommand.Craft( message.CompoundIndex );
-            TreeBranchData treeBranchData = _compoundsTree.GetBranch( message.CompoundIndex );
-            treeBranchData.State = TreeBranchState.ACTIVE;
-            foreach( TreeBranchData child in treeBranchData.Children )
-            {
-                child.State = TreeBranchState.UNLOCKED;
-            }
+            _unitEvolveCommand.ApplyCompound( message.CompoundIndex );
         }
     }
 

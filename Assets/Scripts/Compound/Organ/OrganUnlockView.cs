@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class OrganUnlockView : GameView
@@ -21,14 +20,14 @@ public class OrganUnlockView : GameView
     private CompoundJSON _compound;
     private OrganControlMessage _organControlMessage = new OrganControlMessage();
     private CompoundConfig _compoundConfig;
-    private CompoundTreeConfig _compoundTree;
     private TreeBranchData _branch;
+    private UnitModel _unit;
 
     void Awake()
     {
         GameMessage.Listen<CompoundSelectMessage>( OnCompoundSelected );
         _compoundConfig = GameConfig.Get<CompoundConfig>();
-        _compoundTree = GameConfig.Get<CompoundTreeConfig>();
+        GameModel.HandleGet<UnitModel>( OnUnitChange );
         CraftButton.OnClickAsObservable().Subscribe( _ => CraftCompound() ).AddTo( this );
     }
 
@@ -50,7 +49,7 @@ public class OrganUnlockView : GameView
         Name.SetProperty( _compound.Name );
         compoundIcon.Setup( _compound );
 
-        _branch = _compoundTree.GetBranch( value.Index );
+        _branch = _unit.OrganTree.GetBranch( value.Index );
         _branch._State.Subscribe( OnStateChange ).AddTo( disposables );
 
         for( int i = 0; i < ElementsGrid.childCount; i++ )
@@ -89,16 +88,25 @@ public class OrganUnlockView : GameView
         uipv.SetValue( float.MaxValue, value );
     }
 
-    internal void SetState( int colorIndex )
+    private void SetState( int colorIndex )
     {
         BackgroundImage.color = StateColors[ colorIndex ];
+    }
+
+    private void OnUnitChange( UnitModel value )
+    {
+        _unit = value;
     }
 
     public override void OnDestroy()
     {
         base.OnDestroy();
         _compound = null;
+        _compoundConfig = null;
         _organControlMessage = null;
+        _branch = null;
+        _unit = null;
+        GameModel.RemoveHandle<UnitModel>( OnUnitChange );
         GameMessage.StopListen<CompoundSelectMessage>( OnCompoundSelected );
     }
 
