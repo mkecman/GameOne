@@ -6,13 +6,16 @@ public class OrgansTreeView : GameView
     public float ItemHeight = 100f;
     public float XPositionStep = 100f;
     public int MaxDepth = 10;
+    public float Padding = 100f;
     public GameObject ConnectionPrefab;
     public Transform ConnectionsContainer;
     public GameObject ItemPrefab;
     public Transform ItemsContainer;
+    public RectTransform OrgansPanel;
 
     private TreeBranchData Branch;
     private float _currentHeight;
+    private float _maxWidth;
 
     void Start()
     {
@@ -29,14 +32,22 @@ public class OrgansTreeView : GameView
     {
         RemoveAllChildren( ItemsContainer );
         RemoveAllChildren( ConnectionsContainer );
-        _currentHeight = -100f;
-        DrawChildrenRecursive( Branch, null, 0, 100f );
+        _currentHeight = -Padding;
+        _maxWidth = Padding;
+
+        DrawChildrenRecursive( Branch, null, 0, Padding );
+
+        OrgansPanel.SetSizeWithCurrentAnchors( RectTransform.Axis.Horizontal, _maxWidth );
+        OrgansPanel.SetSizeWithCurrentAnchors( RectTransform.Axis.Vertical, -_currentHeight );
     }
 
     private void DrawChildrenRecursive( TreeBranchData branch, GameObject parent, int depth = 0, float xPosition = 0f )
     {
         branch.X = xPosition;
         branch.Y = _currentHeight;
+
+        if( _maxWidth < xPosition + Padding )
+            _maxWidth = xPosition + Padding;
 
         GameObject parentGO = AddItem( branch );
         AddConnection( branch, parentGO, parent );
