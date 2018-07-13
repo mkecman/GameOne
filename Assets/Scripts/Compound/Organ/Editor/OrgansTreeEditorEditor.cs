@@ -30,6 +30,8 @@ public class OrgansTreeEditorEditor : Editor
         if( GUILayout.Button( "Remove" ) )
         {
             _treeView.RemoveSelectedItem();
+            m_SimpleTreeView.RootConfig = _treeView.CompoundTreeConfig;
+            m_SimpleTreeView.Reload();
         }
 
         if( GUILayout.Button( "Load" ) )

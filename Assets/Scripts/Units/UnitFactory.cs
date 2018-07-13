@@ -60,7 +60,7 @@ public class UnitFactory : IGameInit
         unit.Props.Add( R.Soul, new Resource( R.Soul, 1, 0, 0, 100 ) );
 
         unit.Props.Add( R.Armor, new Resource( R.Armor, 0, 0, 0, 100 ) );
-        unit.Props.Add( R.Attack, new Resource( R.Attack, 0, 0, 0, 100 ) );
+        unit.Props.Add( R.Attack, new Resource( R.Attack, 0, 0, 0, 1000 ) );
         unit.Props.Add( R.Speed, new Resource( R.Speed, 1, 0, 0, 100 ) );
         unit.Props.Add( R.Critical, new Resource( R.Critical, 0, 0, 0, 100 ) );
 

@@ -29,8 +29,16 @@ public class OrgansTreeEditor : GameView
     public void RemoveSelectedItem()
     {
         TreeBranchData parent = CompoundTreeConfig.GetBranch( SelectedCompound.ParentIndex );
+        RemoveRecursive( SelectedCompound );
         parent.Children.Remove( SelectedCompound );
-        CompoundListConfig.Remove( SelectedCompound.Index );
+    }
+
+    private void RemoveRecursive( TreeBranchData branch )
+    {
+        foreach( TreeBranchData child in branch.Children )
+            RemoveRecursive( child );
+
+        CompoundListConfig.Remove( branch.Index );
     }
 
     public void Draw()
